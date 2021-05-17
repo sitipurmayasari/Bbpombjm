@@ -1,0 +1,253 @@
+.navbar-custom{
+	background:#27ae60 !important; 
+}  
+.light-green{
+	background:#27ae60 !important;
+}
+a.btn_link:link, a.btn_link:visited {
+  background-color: #f44336;
+  color: white;
+  padding: 5px 7px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a.btn_link:hover, a.btn_link:active {
+  background-color: red;
+}
+
+.modal-window {
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.25);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
+}
+.modal-window:target {
+  opacity: 1;
+  pointer-events: auto;
+}
+.modal-window > div {
+  width: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  padding: 2em;
+  background: #ffffff;
+  color: #333333;
+  border: 1px solid #828282;
+  padding: 10px;
+  box-shadow: 5px 10px 18px #888888;
+  border-radius: 5px;
+}
+.modal-window header {
+  font-weight: bold;
+}
+.modal-window h1 {
+  font-size: 150%;
+  margin: 0 0 15px;
+  color: #333333;
+}
+
+.modal-close {
+  color: #aaa;
+  line-height: 50px;
+  font-size: 80%;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  width: 70px;
+  text-decoration: none;
+}
+.modal-close:hover {
+  color: #000;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+.btn_new {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.btn_new:focus,
+.btn_new:active:focus,
+.btn_new.active:focus,
+.btn_new.focus,
+.btn_new:active.focus,
+.btn_new.active.focus {
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.btn_new:hover,
+.btn_new:focus,
+.btn_new.focus {
+  color: #333;
+  text-decoration: none;
+}
+.btn_new:active,
+.btn_new.active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+          box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+}
+
+.loader-auto{
+	color:#68737A ;
+}
+
+.well{
+	padding: 10px !important;
+	/* background-color: #fff !important; */
+}
+
+.nama-komentar {
+    margin-bottom: 0px !important;
+}
+
+.well-good{
+	margin-bottom: 0px !important;
+}
+
+.well-default{
+	background-color: #f5f5f5 !important;
+}
+
+.profile-activity img {
+
+    border: 2px solid #C9D6E5;
+    border-radius: 0px !important;
+    max-width: 71px !important;
+    margin-right: 10px;
+    margin-left: 0;
+    box-shadow: none;
+
+}
+
+.widget-toolbar > .btn-xs {
+      line-height: 0px;
+  }
+.modal {
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) { 
+  .modal:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+  }
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+.child-title{
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.sub-title-ads{
+  font-size: 18px;
+  background-color: #31bbfc;
+  color: #fff;
+  font-weight: bold;
+}
+
+.profile-activity img.img-ads{
+  max-width: 50px !important;
+
+}
+
+.text-bulan{
+  font-weight: 600;
+  text-align: center;
+  font-size: 20px;
+}
+
+.modal-header{
+  width: 100% !important;
+}
+
+#dtlSampul{
+  position: relative;
+  display: inline-block;
+  height: 150px;
+  text-align: left;
+  color: white;
+  background-size:     cover;  
+  background-repeat:   no-repeat;
+  background-position: center center;
+}
+
+.modal-header> .tags {
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    overflow: visible;
+    direction: rtl;
+    padding: 0;
+    margin: 0;
+    height: auto;
+    width: auto;
+    background-color: transparent;
+    border-width: 0;
+    vertical-align: inherit;
+}
+
+.modal-header> .tags>.label-holder {
+    opacity: .92;
+    filter: alpha(opacity=92);
+    display: table;
+    margin: 1px 0 0;
+    direction: ltr;
+    text-align: left;

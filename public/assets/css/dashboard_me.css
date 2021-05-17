@@ -1,0 +1,376 @@
+/*!
+
+ =========================================================
+ * Material Dashboard - v2.1.0
+ =========================================================
+
+ * Product Page: https://www.creative-tim.com/product/material-dashboard
+ * Copyright 2020 Creative Tim (http://www.creative-tim.com)
+
+ =========================================================
+
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+ */
+/*     brand Colors              */
+.card {
+  font-size: .875rem;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid #eeeeee;
+  border-radius: 0.25rem;
+  border: 0;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  border-radius: 6px;
+  color: #333333;
+  background: #fff;
+  width: 100%;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.card-header {
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 0;
+  background-color: #fff;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.card-header-warning {
+  background: linear-gradient(60deg, #ffa726, #fb8c00);
+}
+
+.card .card-header-warning .card-icon,
+.card .card-header-warning:not(.card-header-icon):not(.card-header-text),
+.card .card-header-warning .card-text {
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(255, 152, 0, 0.4);
+}
+
+.card-body {
+  flex: 1 1 auto;
+  padding: 1.25rem;
+  direction: rtl;
+  padding: 0.9375rem 1.875rem;
+  position: relative;
+  padding: 0;
+  padding-top: 10px;
+  margin: 0 15px 10px;
+  border-radius: 0;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card .card-category:not([class*="text-"]) {
+  color: #999999;
+}
+
+.card .card-category {
+  margin-top: 10px;
+}
+
+.card .card-category .material-icons {
+  position: relative;
+  top: 8px;
+  line-height: 0;
+}
+
+html[dir="rtl"] .card.card-chart {
+  direction: ltr;
+}
+
+html[dir="rtl"] .card.card-chart .card-title,
+html[dir="rtl"] .card.card-chart .card-category {
+  text-align: right;
+}
+
+.card.card-chart .card-footer i:nth-child(1n+2) {
+  width: 18px;
+  text-align: center;
+}
+
+.card.card-chart .card-category {
+  margin: 0;
+}
+
+.card-chart .card-body+.card-footer,
+.card-product .card-body+.card-footer {
+  border-top: 1px solid #eee;
+}
+
+.card .card-body+.card-footer .stats .material-icons,
+.card .card-footer .stats .material-icons {
+  position: relative;
+  top: 4px;
+  font-size: 16px;
+}
+
+.card .card-stats {
+  background: transparent;
+  display: flex;
+}
+
+.btn-group-sm .btn.btn-fab .material-icons,
+.btn-group-sm .btn.btn-fab .fa,
+.btn.btn-fab.btn-sm .material-icons,
+.btn-group-sm>.btn.btn-fab .material-icons,
+.btn.btn-fab.btn-sm .fa,
+.btn-group-sm>.btn.btn-fab .fa,
+.btn.btn-fab.btn-fab-mini .material-icons,
+.btn.btn-fab.btn-fab-mini .fa,
+.btn-group-sm .btn.btn-just-icon .material-icons,
+.btn-group-sm .btn.btn-just-icon .fa,
+.btn.btn-just-icon.btn-sm .material-icons,
+.btn-group-sm>.btn.btn-just-icon .material-icons,
+.btn.btn-just-icon.btn-sm .fa,
+.btn-group-sm>.btn.btn-just-icon .fa,
+.btn.btn-just-icon.btn-fab-mini .material-icons,
+.btn.btn-just-icon.btn-fab-mini .fa {
+  font-size: 17px;
+  line-height: 29px;
+}
+.btn-group-lg .btn.btn-fab .material-icons,
+.btn-group-lg .btn.btn-fab .fa,
+.btn.btn-fab.btn-lg .material-icons,
+.btn-group-lg>.btn.btn-fab .material-icons,
+.btn.btn-fab.btn-lg .fa,
+.btn-group-lg>.btn.btn-fab .fa,
+.btn-group-lg .btn.btn-just-icon .material-icons,
+.btn-group-lg .btn.btn-just-icon .fa,
+.btn.btn-just-icon.btn-lg .material-icons,
+.btn-group-lg>.btn.btn-just-icon .material-icons,
+.btn.btn-just-icon.btn-lg .fa,
+.btn-group-lg>.btn.btn-just-icon .fa {
+  font-size: 32px;
+  line-height: 56px;
+}
+
+.btn.btn-fab .material-icons,
+.btn.btn-fab .fa,
+.btn.btn-just-icon .material-icons,
+.btn.btn-just-icon .fa {
+  margin-top: 0;
+  position: absolute;
+  width: 100%;
+  transform: none;
+  left: 0;
+  top: 0;
+  height: 100%;
+  line-height: 41px;
+  font-size: 20px;
+}
+.btn .material-icons,
+.btn:not(.btn-just-icon):not(.btn-fab) .fa {
+  position: relative;
+  display: inline-block;
+  top: 0;
+  margin-top: -1em;
+  margin-bottom: -1em;
+  font-size: 1.1rem;
+  vertical-align: middle;
+}
+.navbar .navbar-nav .nav-item .nav-link .material-icons,
+.navbar .navbar-nav .nav-item .nav-link .fa {
+  font-size: 1.25rem;
+  max-width: 24px;
+  margin-top: -1.1em;
+}
+
+.navbar .navbar-nav .nav-item .nav-link:not(.btn) .material-icons {
+  margin-top: -7px;
+  top: 3px;
+  position: relative;
+  margin-right: 3px;
+}
+
+.navbar .collapse .navbar-nav .nav-item .nav-link .material-icons,
+.navbar .collapse .navbar-nav .nav-item .nav-link .fa {
+  font-size: 1.25rem;
+  max-width: 24px;
+  margin-top: -1.1em;
+}
+
+.navbar .collapse .navbar-nav .nav-item .nav-link:not(.btn) .material-icons {
+  margin-top: -3px;
+  top: 0px;
+  position: relative;
+  margin-right: 3px;
+}
+
+.nav-tabs .nav-item .material-icons {
+  margin: -1px 5px 0 0;
+}
+
+.card .card-category .material-icons {
+  position: relative;
+  top: 8px;
+  line-height: 0;
+}
+.card .card-footer .stats .material-icons {
+  position: relative;
+  top: -10px;
+  margin-right: 3px;
+  margin-left: 3px;
+  font-size: 18px;
+}
+
+.card .card-category-social .material-icons {
+  position: relative;
+  top: 5px;
+}
+
+.card .card-body+.card-footer .stats .material-icons,
+.card .card-footer .stats .material-icons {
+  position: relative;
+  top: 4px;
+  font-size: 16px;
+}
+
+.card .card-stats .author,
+.card .card-stats .stats {
+  display: inline-flex;
+}
+
+.card-stats .card-header.card-header-icon,
+.card-stats .card-header.card-header-text {
+  text-align: right;
+}
+
+.card-stats .card-header .card-icon+.card-title,
+.card-stats .card-header .card-icon+.card-category {
+  padding-top: 10px;
+}
+
+.card-stats .card-header.card-header-icon .card-title,
+.card-stats .card-header.card-header-text .card-title,
+.card-stats .card-header.card-header-icon .card-category,
+.card-stats .card-header.card-header-text .card-category {
+  margin: 0;
+}
+
+.card-stats .card-header .card-category {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.card-stats .card-header .card-category:not([class*="text-"]) {
+  color: #999999;
+  font-size: 14px;
+}
+
+.card-stats .card-header+.card-footer {
+  border-top: 1px solid #eee;
+  margin-top: 20px;
+}
+
+.card-stats .card-header.card-header-icon i {
+  font-size: 36px;
+  line-height: 56px;
+  width: 56px;
+  height: 56px;
+  text-align: center;
+}
+
+.card-stats .card-body {
+  text-align: right;
+}
+
+.ct-chart .ct-series-a .ct-point,
+.ct-chart .ct-series-a .ct-line,
+.ct-chart .ct-series-a .ct-bar,
+.ct-chart .ct-series-a .ct-slice-donut,
+.ct-chart .ct-series-a .ct-slice-pie,
+.ct-chart .ct-series-a .ct-slice-donut-solid,
+.ct-chart .ct-series-a .ct-area {
+  stroke: #00bcd4;
+}
+
+.ct-chart .ct-series-b .ct-point,
+.ct-chart .ct-series-b .ct-line,
+.ct-chart .ct-series-b .ct-bar,
+.ct-chart .ct-series-b .ct-slice-donut,
+.ct-chart .ct-series-b .ct-slice-pie,
+.ct-chart .ct-series-b .ct-slice-donut-solid,
+.ct-chart .ct-series-b .ct-area {
+  stroke: #f44336;
+}
+
+.ct-chart .ct-series-c .ct-point,
+.ct-chart .ct-series-c .ct-line,
+.ct-chart .ct-series-c .ct-bar,
+.ct-chart .ct-series-c .ct-slice-donut,
+.ct-chart .ct-series-c .ct-slice-pie,
+.ct-chart .ct-series-c .ct-slice-donut-solid,
+.ct-chart .ct-series-c .ct-area {
+  stroke: #ff9800;
+}
+
+.ct-chart .ct-bar {
+  fill: none;
+  stroke-width: 10px;
+}
+
+.ct-chart .ct-line {
+  fill: none;
+  stroke-width: 4px;
+}
+
+.ct-chart .ct-point {
+  stroke-width: 10px;
+  stroke-linecap: round;
+}
+
+.ct-chart .ct-grid {
+  stroke: rgba(0, 0, 0, 0.2);
+  stroke-width: 1px;
+  stroke-dasharray: 2px;
+}
+
+.ct-chart .ct-label {
+  fill: rgba(0, 0, 0, 0.4);
+  color: rgba(0, 0, 0, 0.4);
+  display: -webkit-flex;
+  display: flex;
+}
+
+.ct-chart .ct-label.ct-vertical.ct-start {
+  -webkit-box-align: flex-end;
+  -webkit-align-items: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+  -webkit-box-pack: flex-end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: flex-end;
+  justify-content: flex-end;
+  text-align: right;
+  text-anchor: end;
+}
+
+.ct-chart .ct-series-a .ct-slice-pie,
+.ct-chart .ct-series-a .ct-slice-donut-solid,
+.ct-chart .ct-series-a .ct-area {
+  fill: #00bcd4;
+}
+
+.ct-chart .ct-series-b .ct-slice-pie,
+.ct-chart .ct-series-b .ct-slice-donut-solid,
+.ct-chart .ct-series-b .ct-area {
+  fill: #f44336;
+}
+
+.ct-chart .ct-series-c .ct-slice-pie,
+.ct-chart .ct-series-c .ct-slice-donut-solid,
+.ct-chart .ct-series-c .ct-area {
+  fill: #ff9800;
+}
+
+
+
+/*# sourceMappingURL=dashboard-free.css.map */

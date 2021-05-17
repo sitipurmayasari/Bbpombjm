@@ -1,0 +1,88 @@
+<?php
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/','LoginController@index')->name('login');
+Route::post('/login','LoginController@auth')->name('auth');
+Route::get('/logout','LoginController@logout')->name('logout');
+
+Route::get('/import','ImportExcelController@index')->name('import');
+Route::post('/import/jabasn','ImportExcelController@jabasn')->name('import.jabasn');
+Route::post('/import/users','ImportExcelController@users')->name('import.users');
+
+Route::group(['middleware' => 'auth'], function(){
+  Route::get('/layouts/portal','PortalController@index')->name('dashboard');
+  Route::get('/profile','ProfileController@index')->name('profile');
+  
+ 
+
+  //Route untuk Profile
+  Route::post('/profile/update/{id}','ProfileController@update')->name('profile.update');
+  Route::get('/profile/deleteanak/{id}','ProfileController@deleteanak')->name('profile.deleteanak');
+  Route::get('/profile/deletesaudara/{id}','ProfileController@deletesaudara')->name('profile.deletesaudara');
+  Route::get('/profile/deletepen/{id}','ProfileController@deletepen')->name('profile.deletepen');
+  Route::get('/profile/deletedok/{id}','ProfileController@deletedok')->name('profile.deletedok');
+  Route::get('/profile/deletepengalaman/{id}','ProfileController@deletepengalaman')->name('profile.deletepengalaman');
+  Route::get('/profile/deletedokpeg/{id}','ProfileController@deletedokpeg')->name('profile.deletedokpeg');
+  //--------------------------Invent------------------------------------------
+  require __DIR__.'/invent.php';
+  //--------------------------AMDK------------------------------------------
+  require __DIR__.'/amdk.php';
+
+});
+
+Route::group(['middleware' => ['auth','userPermission']], function(){
+
+    //Route untuk portal
+    //--------------------------Invent------------------------------------------
+    //Route untuk dashboard
+    Route::get('/invent/dashboard','Invent\DashboardController@index')->name('dashboard');
+    //Route untuk lokasi
+    Route::get('invent/lokasi','Invent\LokasiController@index')->name('lokasi');
+    Route::get('/invent/petugas','Invent\PetugasController@index')->name('petugas');
+    //Route untuk inventaris
+    Route::get('/invent/inventaris','Invent\InventarisController@index')->name('inventaris');
+    //Route untuk maintenance
+    Route::get('/invent/maintenance','Invent\MaintenanceController@index')->name('maintenance');
+     //Route untuk Barang keluar
+     Route::get('/invent/barangkeluar','Invent\BarangkeluarController@index')->name('barangkeluar');
+    //Route untuk aduan
+    Route::get('/invent/aduan','Invent\AduanController@index')->name('aduan');
+     //Route untuk Pengajuan
+     Route::get('/invent/pengajuan','Invent\PengajuanController@index')->name('pengajuan');
+    //Route untuk Laporan
+    Route::get('/invent/laporan','Invent\LaporanController@index')->name('laporan');
+   
+
+    //--------------------------AMDK------------------------------------------
+    //Route untuk dashboard
+    Route::get('/amdk/dashboard','Amdk\DashboardController@index')->name('dashboard');
+    //Route untuk pegawai
+    Route::get('/amdk/pegawai','Amdk\PegawaiController@index')->name('pegawai');
+    //Route untuk pengumuman
+    Route::get('/amdk/pengumuman','Amdk\PengumumanController@index')->name('pengumuman');
+    //Route untuk keluarga
+    Route::get('/amdk/keluarga','Amdk\KeluargaController@index')->name('keluarga');
+    //Route untuk dokumen
+    Route::get('/amdk/dokumen','Amdk\DokumenController@index')->name('dokumen');
+    //Route untuk pengalaman
+    Route::get('/amdk/pengalaman','Amdk\PengalamanController@index')->name('pengalaman');
+    //Route untuk hak akses
+    Route::get('/amdk/akses','Amdk\AksesController@index')->name('akses');
+    //Route untuk jurusan
+    Route::get('/amdk/jurusan','Amdk\JurusanController@index')->name('jurusan');
+    //Route untuk divisi
+    Route::get('/amdk/divisi','Amdk\DivisiController@index')->name('divisi');
+    //Route untuk jabatan
+    Route::get('/amdk/jabatan','Amdk\JabatanController@index')->name('jabatan');
+    //Route untuk riwayat pendidikan
+     Route::get('/amdk/riwayatpend','Amdk\RiwayatPendController@index')->name('riwayatpend');
+    //Route untuk jabasn
+    Route::get('/amdk/jabasn','Amdk\JabasnController@index')->name('jabasn');
+    //Route untuk tukin
+    Route::get('/amdk/tukin','Amdk\TukinController@index')->name('tukin');
+   
+});
+
+
