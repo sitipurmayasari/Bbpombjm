@@ -99,3 +99,33 @@
    Route::get('/amdk/tukin/edit/{id}','Amdk\TukinController@edit')->name('tukin.edit');
    Route::post('/amdk/tukin/update/{id}','Amdk\TukinController@update')->name('tukin.update');
    Route::get('/amdk/tukin/print/{id}','Amdk\TukinController@print')->name('tukin.print');
+   Route::post('/amdk/tukin/impor','Amdk\TukinController@impor')->name('tukin.impor');
+
+   //Route untuk dosir
+  Route::get('/amdk/dosir/create','Amdk\DosirController@create')->name('dosir.create');
+  Route::post('/amdk/dosir/store','Amdk\DosirController@store')->name('dosir.store');
+  Route::get('/amdk/dosir/delete/{id}','Amdk\DosirController@delete')->name('dosir.delete');
+  Route::get('/amdk/dosir/edit/{id}','Amdk\DosirController@edit')->name('dosir.edit');
+  Route::post('/amdk/dosir/update/{id}','Amdk\DosirController@update')->name('dosir.update');
+
+  //Route untuk pelatihan
+  Route::get('/amdk/pelatihan/create','Amdk\PelatihanController@create')->name('pelatihan.create');
+  Route::get('/amdk/pelatihan/createadmin','Amdk\PelatihanController@createadmin')->name('pelatihan.createadmin');
+  Route::post('/amdk/pelatihan/store','Amdk\PelatihanController@store')->name('pelatihan.store');
+  Route::get('/amdk/pelatihan/delete/{id}','Amdk\PelatihanController@delete')->name('pelatihan.delete');
+  Route::get('/amdk/pelatihan/edit/{id}','Amdk\PelatihanController@edit')->name('pelatihan.edit');
+  Route::get('/amdk/pelatihan/editadmin/{id}','Amdk\PelatihanController@editadmin')->name('pelatihan.editadmin');
+  Route::post('/amdk/pelatihan/update/{id}','Amdk\PelatihanController@update')->name('pelatihan.update');
+  Route::get('/amdk/pelatihan/rekap','Amdk\PelatihanController@rekap')->name('pelatihan.rekap');
+  Route::post('/amdk/pelatihan/cetak','Amdk\PelatihanController@cetak')->name('pelatihan.cetak');
+
+
+  //Route untuk dupak
+  Route::get('/amdk/dupak','Amdk\DupakController@index')->name('dupak');
+  Route::get('/amdk/dupak/create','Amdk\DupakController@create')->name('dupak.create');
+  Route::get('/amdk/dupak/getDataPeg','Amdk\DupakController@getDataPeg')->name('dupak.getDataPeg');
+  Route::post('/amdk/dupak/store','Amdk\DupakController@store')->name('dupak.store');
+  Route::get('/amdk/dupak/delete/{id}','Amdk\DupakController@delete')->name('dupak.delete');
+  Route::get('/amdk/dupak/edit/{id}','Amdk\DupakController@edit')->name('dupak.edit');
+  Route::post('/amdk/dupak/update/{id}','Amdk\DupakController@update')->name('dupak.update');
+  Route::get('/amdk/dupak/print/{id}','Amdk\DupakController@print')->name('dupak.print');

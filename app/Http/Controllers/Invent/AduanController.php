@@ -34,7 +34,8 @@ class AduanController extends Controller
     public function create()
     {
         $data = Inventaris::all();
-        $user = User::where('id','!=','1');
+        $user = User::all()
+                ->where('id','!=','1');
         $no_aduan = $this->getNoAduan();
         return view('invent/aduan.add',compact('data','user','no_aduan'));
     }

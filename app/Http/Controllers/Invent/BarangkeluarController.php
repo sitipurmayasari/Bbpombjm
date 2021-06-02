@@ -36,7 +36,8 @@ class BarangkeluarController extends Controller
     public function create()
     {
         $data = Inventaris::all();
-        $user = User::where('id','!=','1');
+        $user = User::all()
+                ->where('id','!=','1');
         $satuan = Satuan::all();
         $nosbb = $this->getNoSBB();
         return view('invent/barangkeluar.create',compact('data','user','nosbb','satuan'));

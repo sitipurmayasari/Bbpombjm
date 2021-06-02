@@ -13,6 +13,6 @@ class PortalController extends Controller
                 whereRaw("curdate() BETWEEN dari AND sampai")
                 ->first();
                 
-        return view('layouts.portal',compact('data'));
+        return view('portal',compact('data'));
     }
 }

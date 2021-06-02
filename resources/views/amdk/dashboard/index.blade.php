@@ -19,29 +19,53 @@
 </style>    
 <div class="col-sm-3">
     <div class="card card-stats">
-        <div class="card-header card-header-warning card-header-icon">
+        @if ($latih->waktu <= 10 )
+          <div class="card-header card-header-danger card-header-icon">
+        @elseif($latih->waktu >= 10 && $latih->waktu <= 20)
+          <div class="card-header card-header-warning card-header-icon">
+        @else
+          <div class="card-header card-header-success card-header-icon">
+        @endif
           <div class="card-icon">
-            <i class="material-icons">badge</i>
+            <i class="material-icons">schedule
+            </i>
           </div>
-          <p class="card-category">Jumlah Pegawai</p>
-          <h3 class="card-title">
-            {{$jumpeg->total}}
-            <small>Orang</small>
-          </h3>
+          <p class="card-category">Total Jam Pelajaran anda</p>
+          <h1 class="card-title">
+            {{$latih->waktu}}
+          
+          </h1>
         </div>
         <div class="card-footer">
-          <div class="stats">
-            <table>
-                @foreach($datapeg as $key=>$row)
-                <tr>
-                    <td>{{$row->status}} &nbsp; </td>
-                    <td>: {{$row->jumlah}}</td>
-                </tr>
-                @endforeach
-            </table>
-          </div>
+         <label for="">Tahun @php echo date('Y');@endphp</label>
         </div>
       </div>
+</div>
+<div class="col-sm-3">
+  <div class="card card-stats">
+      <div class="card-header card-header-warning card-header-icon">
+        <div class="card-icon">
+          <i class="material-icons">badge</i>
+        </div>
+        <p class="card-category">Jumlah Pegawai</p>
+        <h3 class="card-title">
+          {{$jumpeg->total}}
+          <small>Orang</small>
+        </h3>
+      </div>
+      <div class="card-footer">
+        <div class="stats">
+          <table>
+              @foreach($datapeg as $key=>$row)
+              <tr>
+                  <td>{{$row->status}} &nbsp; </td>
+                  <td>: {{$row->jumlah}}</td>
+              </tr>
+              @endforeach
+          </table>
+        </div>
+      </div>
+    </div>
 </div>
 
 
@@ -51,6 +75,8 @@
 @section('footer')
 
 <script>
+   $().ready( function () {
+    } );
  
 </script>
 @endsection

@@ -6,28 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="{{asset('assets/css/no_header.css')}}" rel="stylesheet">
     <title>Document</title>
     <style>
-        .kop{
-            padding-top: 0%;
-            height: 15%;
-            top: 0%;
-            margin-left: 5%;
-            margin-right: 5%;
-        }
-        .footer {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            margin: 0%;
-            padding: 0%;
-            
-        }
-        @page {
-            size: A4;
-             margin: 0;
-            
-            }
         html, table{
             font-family: Arial;
         }
@@ -38,28 +19,25 @@
             margin-right: 10%;
             line-height: 2;
         }
+        
         table, td, tr {
             text-align: justify;
             vertical-align: top;
             line-height: 2;
+            
             /* border: solid; */
         }
 
-        .ttd{
+        .ttdini{
             float: right;
             margin-right: 15%;
-        }
-
-        footer{
-            page-break-after: always;
+            font-size: 11;
         }
 
     </style>
 </head>
+@foreach ($isi as $item)
 <body>
-    <div class="kop">
-        <img src="{{asset('images/kopsurat1.jpg')}}" style="width: 100%">
-    </div>
     <div class="col-sm-12" style="text-align: center">
        <div style="align=center font-size: 18px">
            <b>SURAT PERNYATAAN TANGGUNG JAWAB MUTLAK</b>
@@ -102,8 +80,13 @@
             </tr>
             <tr>
                 <td style="width:5%; text-align: center; line-height: 1.5;">1.</td>
-                <td colspan="2" style="line-height: 1.5;">Perhitungan jumlah uang yang kami terima sebesar Rp.
-                    {{$item->terima}} untuk {{$data->bln}} {{$data->tahun}}
+                <td colspan="2" style="line-height: 1.5;">Perhitungan jumlah uang yang kami terima sebesar
+                    @php
+                        $angka = $item->terima ;
+                        echo "Rp. " . number_format($angka, 2, ".", ",");
+                    @endphp
+                   
+                    untuk {{$data->bln}} {{$data->tahun}}
                     telah dihitung dengan benar dan sesuai dengan daftar hadir kami pada Satuan Kerja Balai Besar POM
                     di <i>Banjarmasin.</i>
                 </td>
@@ -120,7 +103,7 @@
         </table>
     </div>
     <br>
-    <div class="ttd">
+    <div class="ttdini">
         <table>
             <tr>
                 <td style="text-align: center;">Banjarmasin, &nbsp; &nbsp; &nbsp; 
@@ -131,21 +114,15 @@
                 <td style="text-align: center;">Yang membuat pernyataan,</td>
             </tr>
             <tr>
-                <td style="height: 15%"></td>
+                <td style="height: 25%"></td>
             </tr>
             <tr>
                 <td style="text-align: center; line-height: 0;">
                     {{$item->pegawai->name}}
-                   <hr>
-                   {{$item->pegawai->no_pegawai}}
                 </td>
             </tr>
         </table>
     </div>
-        
-    
-    <div class="footer">
-        <img src="{{asset('images/kopsurat2.jpg')}}" style="width: 100%">
-    </div>
 </body>
+@endforeach
 </html>

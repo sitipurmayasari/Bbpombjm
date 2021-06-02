@@ -31,11 +31,20 @@
                         <label class="col-sm-2 control-label no-padding-right" 
                         for="form-field-1"> Jabatan
                         </label>
-
                         <div class="col-sm-8">
-                            <input type="text"  placeholder=" Masukkan Jurusan Pendidikan" 
+                            <input type="text"  placeholder=" Masukkan Nama Jabatan" 
                                     class="col-xs-10 col-sm-10 required " value="{{$data->nama}}"
                                     name="nama" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Kelompok Jabatan
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text"  placeholder=" Masukkan Nama Kelompok" 
+                                    class="col-xs-10 col-sm-10 required " value="{{$data->kelompok}}"
+                                    name="kelompok" required />
                         </div>
                     </div>
 

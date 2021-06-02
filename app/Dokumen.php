@@ -19,5 +19,10 @@ class Dokumen extends Model
         return $this->belongsTo(Jendok::class,'jendok_id','id');
     }
 
+    public function getFIleDok() 
+    {
+        return $this->upload==null ? 'Tidak Ada File' : asset('images/pegawai').'/'.$this->users_id.'/dokument/'.$this->upload;
+    }
+
 
 }

@@ -1,0 +1,32 @@
+@page {
+    size: A4;
+    margin: 170px 0px 100px 0px;
+    font-family: 'Times New Roman';
+    font-size: 11px;
+    page-break-after: always;
+ }
+
+ .isi{
+     margin-left: 8%;
+     margin-right: 8%;
+ }
+
+ header {
+         position:fixed;
+         padding-top: 0%;
+         /* height: 15%; */
+         top: 0%;
+         margin-left: 5%;
+         margin-right: 5%;
+         margin-top: -170px;
+ }
+
+ footer {
+        position:fixed;
+        height: 70px;
+        bottom: 0;
+        width: 100%;
+        margin-bottom: 20px;
+        z-index: -100;
+    
+ }

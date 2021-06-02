@@ -63,7 +63,7 @@
 				</button>
 
 				<div class="navbar-header pull-left">
-					<a href="/layouts/portal" class="navbar-brand">
+					<a href="/portal" class="navbar-brand">
 						<small>
 						<img src="{{asset('images/bbpom.jpg')}}" alt="" srcset="" style="height:35px">
 							SISTEM INVENTARIS BARANG

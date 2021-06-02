@@ -619,7 +619,7 @@
                         '<td>'+response.dok[i].nama+'</td>'+
                         '<td>'+response.dok[i].nomor+'</td>'+
                         '<td>'+response.dok[i].tanggal+'</td>'+
-                        '<td>'+response.dok[i].upload+'</td>'+
+                        '<td><a href="/images/pegawai/'+response.dok[i].users_id+'/dokument/'+response.dok[i].upload+'" target="_blank" >'+response.dok[i].upload+'</a></td>'+
                         '<td>'+
                             '<a href="#" class="btn btn-warning ubah-dokument"'+
                             'r-id="'+response.dok[i].id+'">'+
@@ -783,7 +783,7 @@
                         '<td>'+response.dok_peg[i].tanggal+'</td>'+
                         '<td>'+response.dok_peg[i].keterangan+'</td>'+
                         '<td>'+response.dok_peg[i].tmt+'</td>'+
-                        '<td>'+response.dok_peg[i].upload+'</td>'+
+                        '<td><a href="/images/pegawai/'+response.dok_peg[i].users_id+'/dok_kepegawaian/'+response.dok_peg[i].upload+'" target="_blank" >'+response.dok_peg[i].upload+'</a></td>'+
                         '<td>'+
                             '<a href="#" class="btn btn-warning ubah-dokpeg"'+
                             'r-id="'+response.dok_peg[i].id+'">'+

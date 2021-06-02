@@ -1,0 +1,36 @@
+.kop{
+    padding-top: 0%;
+    height: 15%;
+    top: 0%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    margin: 0%;
+    z-index: -100;
+
+}
+
+@page {
+    size: A4;
+    margin: 0;
+    font-family: 'Times New Roman';
+    font-size: 11px;
+}
+
+.isi{
+    margin-left: 8%;
+    margin-right: 8%;
+}
+
+.ttd{
+    border:none;
+    border-collapse: collapse;
+    text-align: center;
+    width: 100%;
+    margin-left: 10%;
+    position: absolute;
+}

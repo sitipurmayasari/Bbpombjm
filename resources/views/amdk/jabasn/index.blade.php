@@ -36,6 +36,17 @@
                                     name="nama" required />
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Kelompok Jabatan
+                        </label>
+
+                        <div class="col-sm-8">
+                            <input type="text"  placeholder=" Masukkan Nama Kelompok" 
+                                    class="col-xs-10 col-sm-10 required " 
+                                    name="kelompok" required />
+                        </div>
+                    </div>
                     </fieldset>        
                 </div>
             </div>
@@ -58,6 +69,7 @@
             <thead>
                 <th width="40px">No</th>
                 <th>Jabatan</th>
+                <th>Kelompok Jabatan</th>
                 <th>Aksi</th>
             <thead>
             <tbody>   	
@@ -65,6 +77,7 @@
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
                     <td>{{$row->nama}}</td>
+                    <td>{{$row->kelompok}}</td>
                     <td>
                         <a href="/amdk/jabasn/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>

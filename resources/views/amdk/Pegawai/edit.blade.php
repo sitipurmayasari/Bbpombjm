@@ -152,7 +152,7 @@
                                         <option value="PPNPN">PPNPN</option>
                                         <option value="Magang">Magang</option>
                                         <option value="OSC">Outsourcing</option>
-                                    @elseif ($data->status==="Kontrak")
+                                    @elseif ($data->status==="PPNPN")
                                         <option value="">Pilih Status</option>
                                         <option value="PNS">PNS</option>
                                         <option value="PPNPN" selected>PPNPN</option>
@@ -274,7 +274,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
                             for="form-field-1"> Username
                             </label>
@@ -283,7 +283,7 @@
                                         class="col-xs-10 col-sm-10 required " 
                                         name="username" required/>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 

@@ -6,40 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="{{asset('assets/css/cetakan.css')}}" rel="stylesheet">
     <title>Document</title>
-    <style>
-        .kop{
-            padding-top: 0%;
-            height: 15%;
-            top: 0%;
-            margin-left: 5%;
-            margin-right: 5%;
-        }
-        .footer {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            margin: 0%;
-            
-        }
-        @page {
-            size: A4;
-             margin: 0;
-        }
-
-            .ttd{
-            border:none;
-            border-collapse: collapse;
-            text-align: center;
-            font-size: 12px;
-        }
-
-        .isi{
-            margin-left: 8%;
-            margin-right: 8%;
-        }
-
-    </style>
 </head>
 <body>
     <div class="kop">
@@ -99,15 +67,16 @@
         <div class="table-responsive isi">
             <table id="simple-table" class="table  table-bordered table-hover " style="font-size: 11px;" >
                 <thead style="text-align: center">
-                    <th width="20px">No</th>
-                    <th>Tanggal</th>
-                    <th>Kegiatan</th>
-                    <th>Pelaksana</th>
-                    <th>Hasil</th>
-                    <th>Paraf</th>
-                <thead>
-                <tbody>   	
                     <tr>
+                        <th width="20px">No</th>
+                        <th>Tanggal</th>
+                        <th>Kegiatan</th>
+                        <th>Pelaksana</th>
+                        <th>Hasil</th>
+                        <th>Paraf</th>
+                    </tr>
+                </thead>
+                <tbody>   	
                         @php $no=1;  @endphp
                         @foreach($data as $key=>$row)
                         <tr>
@@ -120,7 +89,7 @@
                     </tr>
                   
                     @endforeach
-                <tbody>
+                </tbody>
             </table>
         </div>
     </div>
@@ -149,8 +118,8 @@
 
     </div><br>
 
-    <div class="footer">
-        <img src="{{asset('images/kopsurat2.jpg')}}" style="width: 100%">
-    </div>
+    {{-- <div class="footer">
+        <img src="{{asset('images/kopsurat2.jpg')}}" style="width: 100%" alt="background">
+    </div> --}}
 </body>
 </html>

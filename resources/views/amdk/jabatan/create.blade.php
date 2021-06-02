@@ -108,8 +108,14 @@
                             </label>
                             <div class="col-sm-9">
                                 &nbsp;&nbsp;
-                                <input type="checkbox"name="pjs" value="Pjs.">
-                                &nbsp; PJS 
+                                <input type="radio" name="pjs" value="" checked>
+                                <label class="control-label no-padding-right"> Asli</label> 
+                                &nbsp;&nbsp;
+                                <input type="radio" name="pjs" value="Plt.">
+                                <label class="control-label no-padding-right"> PLT</label> 
+                                &nbsp;&nbsp;
+                                <input type="radio" name="pjs" value="Plh.">
+                                <label class="control-label no-padding-right"> PLH</label>
                             </div>
                         </div>
                     </div>

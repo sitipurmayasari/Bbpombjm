@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 use App\Divisi;
 use App\Jabatan;
@@ -23,6 +26,7 @@ use App\RiwayatPend;
 use App\Jendok;
 use App\Jabasn;
 use App\Tukin;
+use App\Dupak;
 
 
 class ProfileController extends Controller
@@ -61,7 +65,7 @@ class ProfileController extends Controller
                 ->get();
 
         $riwayatpend = RiwayatPend::orderBy('id','asc')
-                ->paginate('10');
+                                    ->paginate('10');
 
         $tukin = Tukin::orderBy('tukin_detail.id','asc')
                 ->select('tukin.nomor','tukin.bulan', 'tukin.tahun','tukin_detail.terima', 'tukin_detail.potonganRp')
@@ -69,10 +73,20 @@ class ProfileController extends Controller
                 ->where('tukin_detail.terima','!=', 0)
                 ->where('tukin_detail.users_id',$id)
                 ->paginate('10');
+        $dupak = Dupak::orderBy('id','asc')
+                        ->selectRaw('*, MONTH(dari) AS bulan')
+                        ->where('users_id',$id)
+                        ->get();
+
+        $thndupak= Dupak::selectRaw('YEAR(dari) AS tahun')
+                        ->where('users_id',$id)
+                        ->groupByRaw('tahun')
+                        ->orderBy('tahun','asc')
+                        ->get();
 
         
         return view('profile.index',compact('data','ortu','anak','mertua','istri','saudara','pend','jenjang','riwayatpend',
-        'jenis','gol','jabasn','tukin'));
+        'jenis','gol','jabasn','tukin','dupak','thndupak'));
     }
    
     public function update(Request $request, $id)

@@ -34,7 +34,8 @@ class PengajuanController extends Controller
 
     public function create()
     {
-        $user = User::where('id','!=','1');
+        $user = User::all()
+                ->where('id','!=','1');
         $satuan = Satuan::all();
         $no_ajuan = $this->getNoAjuan();
         return view('invent/pengajuan.add',compact('user','no_ajuan','satuan'));

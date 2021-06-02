@@ -74,7 +74,8 @@ class LaporanController extends Controller
                                         $query->whereYear('tanggal_diterima',$request->daftartahun);
                                     }
                                  })
-                                ->get();
+                                 ->get();
+                                // ->paginate('10');
             if($request->lokasi!= ""){
                  $lokasi = Lokasi::where('id',$request->lokasi)->first()->nama;
             }

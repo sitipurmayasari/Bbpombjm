@@ -12,8 +12,9 @@ Route::post('/import/jabasn','ImportExcelController@jabasn')->name('import.jabas
 Route::post('/import/users','ImportExcelController@users')->name('import.users');
 
 Route::group(['middleware' => 'auth'], function(){
-  Route::get('/layouts/portal','PortalController@index')->name('dashboard');
+  Route::get('/portal','PortalController@index')->name('dashboard');
   Route::get('/profile','ProfileController@index')->name('profile');
+  Route::get('/carousel','CarouselController@index')->name('carousel');
   
  
 
@@ -82,7 +83,18 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/amdk/jabasn','Amdk\JabasnController@index')->name('jabasn');
     //Route untuk tukin
     Route::get('/amdk/tukin','Amdk\TukinController@index')->name('tukin');
-   
+    //Route untuk dosir
+    Route::get('/amdk/dosir','Amdk\DosirController@index')->name('dosir');
+    //Route untuk pelatihan
+    Route::get('/amdk/pelatihan','Amdk\PelatihanController@index')->name('pelatihan');
+    //Route untuk Rekap
+    Route::get('/amdk/rekapdosir','Amdk\DosirController@rekapdosir')->name('rekapdosir');
+    Route::get('/amdk/rekappelatihan','Amdk\PelatihanController@rekappelatihan')->name('rekappelatihan');
+    //Route untuk dupak
+    Route::get('/amdk/dupak','Amdk\DupakController@index')->name('dupak');
+    //Route untuk dinas
+    Route::get('/amdk/outstation','Amdk\OutstationController@index')->name('outstation');
+
 });
 
 

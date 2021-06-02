@@ -31,7 +31,8 @@ class MaintenanceController extends Controller
     public function create()
     {
         $data = Inventaris::all();
-        $user = User::where('id','!=','1');
+        $user = User::all()
+        ->where('id','!=','1');
         return view('invent/maintenance.create',compact('data','user'));
     }
    
@@ -50,7 +51,8 @@ class MaintenanceController extends Controller
     public function edit($id)
     {
         $inv = Inventaris::all();
-        $user = User::where('id','!=','1');
+        $user = User::all()
+                ->where('id','!=','1');
         $data = Maintenance::where('id',$id)->first();
         return view('invent/maintenance.edit',compact('data','user','inv'));
     }

@@ -7,10 +7,13 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\Tukin;
 use App\TukinDetail;
-
+use Excel;
 use PDF;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\View;
 use Carbon\Carbon;
+
+use App\Imports\TukinImport;
 
 class TukinController extends Controller
 {
@@ -27,7 +30,8 @@ class TukinController extends Controller
 
     public function create()
     {
-        $user = User::where('id','!=','1');
+        $user = User::all()
+                ->where('id','!=','1');
         $no_tukin = $this->getNoTukin();
         return view('amdk/tukin.create',compact('user','no_tukin'));
     }
@@ -54,7 +58,10 @@ class TukinController extends Controller
                     'potonganRp' => $request->potonganRp[$i],
                     'terima' => $request->terima[$i]
                 ];
-                TukinDetail::create($data);
+                if ($request->nilai[$i]!=0) {
+                    TukinDetail::create($data);
+                }
+               
             }
         DB::commit(); 
 
@@ -65,7 +72,8 @@ class TukinController extends Controller
    
     public function edit($id)
     {
-        $user = User::where('id','!=','1');
+        $user = User::all()
+                ->where('id','!=','1');
         $detail = TukinDetail::where('tukin_id',$id)
                     ->get();
         $data = Tukin::where('id',$id)
@@ -157,15 +165,42 @@ class TukinController extends Controller
                             ->where('terima','!=','0')
                             ->get();
           $user = User::all(); 
-        
-          $html = '';
-          foreach($isi as $item)
-            {
-                $view = view('amdk/tukin.print')->with(compact('data','item','user'));
-                $html = $view->render();
-            }
-            $pdf = PDF::loadHTML($html);    
+
+          $pdf = PDF::loadview('amdk/tukin.print',compact('data','isi','user'));
+      
             return $pdf->stream();
+      }
+
+
+      public function impor(Request $request)
+      {
+          $this->validate($request, [
+              'diimpor' => 'required|mimes:csv,xls,xlsx',
+              'nomor' => 'required|unique:tukin',
+              'tanggal' => 'required|date',
+              'bulan'=> 'required',
+              'tahun'=> 'required'
+          ]);
+        
+         
+
+
+          $file = $request->diimpor;
+          $nama_file = $file->getClientOriginalName();
+  
+          $file->move('excel',$nama_file);
+   
+        //   // import data
+        DB::beginTransaction();
+            $tukin =Tukin::create($request->all());
+            $tukin_id = $tukin->id;
+
+          Excel::import(new TukinImport($tukin_id), public_path('/excel/'.$nama_file));
+        
+        DB::commit();
+  
+          return redirect('/amdk/tukin');
+   
       }
 
     

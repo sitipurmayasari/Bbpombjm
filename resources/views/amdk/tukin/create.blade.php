@@ -6,7 +6,7 @@
 @endsection
 @section('content')
 @include('layouts.validasi')
- <form class="form-horizontal validate-form" role="form" 
+ <form class="form-horizontal validate-form" role="form" id="form_id"
          method="post" action="{{route('tukin.store')}}" enctype="multipart/form-data"   >
     {{ csrf_field() }}
 <div class="row">
@@ -66,19 +66,33 @@
             <div class="panel-heading"><h3 class="panel-title">PENERIMA TUKIN</h3></div>
             <div class="panel-body">
                <div class="col-md-12">
-                <table id="myTable" class="table table-bordered table-hover">
-                    <thead>
-                        <th class="text-center col-md-1">NO</th>
-                        <th class="text-center col-md-4">Nama</th>
-                        <th class="text-center col-md-2">Nilai (Rp)</th>
-                        <th class="text-center col-md-1">Potongan(%)</th>
-                        <th class="text-center col-md-1">Potongan(Rp)</th>
-                        <th class="text-center col-md-2">Total Terima (Rp)</th>
-                    </thead>
-                    <tbody id="isi">
-                        
-                    </tbody>
-                </table>
+
+                <button type="button"  class="btn btn-danger" onclick="getAsn()" id="man">
+                    <i class="ace-icon fa fa-check bigger-110"></i>Manually</button>
+                <button type="button"  class="btn btn-danger" onclick="myFunction()" id="aut">
+                    <i class="ace-icon fa fa-check bigger-110"></i>Import From Excel</button>
+                
+
+                <br><br>
+                <div id="manual">
+                    <table id="myTable" class="table table-bordered table-hover">
+                        <thead>
+                            <th class="text-center col-md-1">NO</th>
+                            <th class="text-center col-md-4">Nama</th>
+                            <th class="text-center col-md-2">Nilai (Rp)</th>
+                            <th class="text-center col-md-1">Potongan(%)</th>
+                            <th class="text-center col-md-1">Potongan(Rp)</th>
+                            <th class="text-center col-md-2">Total Terima (Rp)</th>
+                        </thead>
+                        <tbody id="isi">
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <div id="auto">
+                    <input type="file" name="diimpor" class="btn btn-default btn-sm" id="" value="Upload File">
+                </div>
                </div>
             </div>
         </div>
@@ -97,11 +111,39 @@
 @section('footer')
    <script>
     $().ready( function () {
+
         getAsn();
+
+        $("#auto").hide();
 
     } );
 
+    function myFunction() {
+        document.getElementById("aut").classList.remove('btn-danger');  
+        document.getElementById("aut").classList.add('btn-success');
+
+        document.getElementById("man").classList.remove('btn-success');
+        document.getElementById("man").classList.add('btn-danger');
+        
+        document.getElementById("form_id").action = "{{route('tukin.impor')}}";
+
+        $("#manual").hide();
+        $("#auto").show()
+             
+    }
+
     function getAsn(){
+        document.getElementById("man").classList.remove('btn-danger');  
+        document.getElementById("man").classList.add('btn-success');
+
+        document.getElementById("aut").classList.remove('btn-success');
+        document.getElementById("aut").classList.add('btn-danger');
+
+        document.getElementById("form_id").action = "{{route('tukin.store')}}";
+       
+
+        $("#manual").show();
+        $("#auto").hide()
         $.get(
             "{{route('tukin.getAsn') }}",
             function(response) {

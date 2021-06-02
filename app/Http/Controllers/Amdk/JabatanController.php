@@ -37,7 +37,8 @@ class JabatanController extends Controller
         $subdivisi = Subdivisi::all();
         $jabatan = Jabatan::all();
         $divisi = Divisi::all();
-        $user = User::all();
+        $user = User::all()
+                ->where('id','!=','1');
         return view('amdk/jabatan.create',compact('data','subdivisi','divisi','user','jabatan'));
     }
 
@@ -52,7 +53,8 @@ class JabatanController extends Controller
         $subdivisi = Subdivisi::all();
         $jabatan = Jabatan::all();
         $divisi = Divisi::all();
-        $user = User::all();
+        $user = User::all()
+        ->where('id','!=','1');
         $data = Pejabat::where('id',$id)->first();
         return view('amdk/jabatan.edit',compact('data','subdivisi','jabatan','divisi','user'));
     }

@@ -7,6 +7,11 @@
   </nav>
 @endsection
 @section('content')
+<style>
+    .sidebar{
+        overflow: auto;
+    }
+</style>
 @include('layouts.validasi')
     <form action="/profile/update/{{auth()->user()->id}}" method="POST">
       {{ csrf_field() }}
@@ -193,6 +198,7 @@
 
         @if (auth()->user()->status=='PNS')
             <li><a href="#tab-tukin" data-toggle="tab">TuKin</a></li>
+            <li><a href="#tab-dupak" data-toggle="tab">Angka Kredit</a></li>
         @endif
         
     </ul>
@@ -204,6 +210,7 @@
         @include('profile.partials.pengalaman-kerja')
         @include('profile.partials.dokpeg')
         @include('profile.partials.tukin')
+        @include('profile.partials.dupak')
       
     </div>
 @endsection
@@ -729,7 +736,7 @@
                         '<td>'+response.dok[i].nama+'</td>'+
                         '<td>'+response.dok[i].nomor+'</td>'+
                         '<td>'+response.dok[i].tanggal+'</td>'+
-                        '<td>'+response.dok[i].upload+'</td>'+
+                        '<td><a href="images/pegawai/'+response.dok[i].users_id+'/dokument/'+response.dok[i].upload+'" target="_blank" >'+response.dok[i].upload+'</a></td>'+
                         '<td>'+
                             '<a href="#" class="btn btn-warning ubah-dokument"'+
                             'r-id="'+response.dok[i].id+'">'+
@@ -893,7 +900,7 @@
                         '<td>'+response.dok_peg[i].tanggal+'</td>'+
                         '<td>'+response.dok_peg[i].keterangan+'</td>'+
                         '<td>'+response.dok_peg[i].tmt+'</td>'+
-                        '<td>'+response.dok_peg[i].upload+'</td>'+
+                        '<td><a href="images/pegawai/'+response.dok_peg[i].users_id+'/dok_kepegawaian/'+response.dok_peg[i].upload+'" target="_blank" >'+response.dok_peg[i].upload+'</a></td>'+
                         '<td>'+
                             '<a href="#" class="btn btn-warning ubah-dokpeg"'+
                             'r-id="'+response.dok_peg[i].id+'">'+

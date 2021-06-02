@@ -29,8 +29,8 @@ class LoginController extends Controller
                  'password' => request('password'),
                  'aktif' => 'Y'
                  ])){
-                // return redirect('/dashboard')->with('sukses','Selamat, Anda berhasil masuk aplikasi');
-                return redirect('/layouts/portal')->with('sukses','Selamat, Anda berhasil masuk aplikasi');
+                return redirect('/portal')->with('sukses','Selamat, Anda berhasil masuk aplikasi');
+                // return redirect('/layouts/portal')->with('sukses','Selamat, Anda berhasil masuk aplikasi');
         }else{
             return redirect('/')->with('gagal','mohon masukkan password dengan benar');
         }

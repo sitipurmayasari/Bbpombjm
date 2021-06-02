@@ -11,7 +11,8 @@ class PetugasController extends Controller
 {
     public function index(Request $request)
     {
-        $user = User::all();
+        $user = User::all()
+                ->where('id','!=','1');
         $data = Petugas::orderBy('id','desc')
                 ->paginate('10');
         return view('invent/petugas.index',compact('data','user'));
@@ -26,7 +27,8 @@ class PetugasController extends Controller
    
     public function edit($id)
     {
-        $user = User::all();
+        $user = User::all()
+                ->where('id','!=','1');
         $data = Petugas::where('id',$id)->first();
         return view('invent/petugas.edit',compact('data','user'));
     }

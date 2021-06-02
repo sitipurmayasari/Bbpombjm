@@ -32,7 +32,8 @@ class InventarisController extends Controller
     {
 
         $divisi = Divisi::all();
-        $user = User::where('id','!=','1');
+        $user = User::all()
+        ->where('id','!=','1');
         $lokasi = Lokasi::all();
         $jenis = Jenisbrg::all();
         $satuan = Satuan::all();
@@ -116,7 +117,8 @@ class InventarisController extends Controller
         $satuan = Satuan::all();
         $data = Inventaris::where('id',$id)->first();
         $divisi = Divisi::all();
-         $user = User::where('id','!=','1');
+        $user = User::all()
+                ->where('id','!=','1');
         $lokasi = Lokasi::all();
         $jenis = Jenisbrg::all();
         return view('invent/inventaris.edit',compact('data','divisi','user','lokasi','jenis','satuan'));
