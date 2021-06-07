@@ -25,6 +25,6 @@ class DashboardController extends Controller
                 ->groupByRaw('MONTH(tanggal)')
                 ->get();
         
-        return view('invent/dashboard.index',compact('jadwal','maintenance','aduan'));
+        return view('invent/dashboard.index',compact('jadwal','aduan'));
     }
 }
