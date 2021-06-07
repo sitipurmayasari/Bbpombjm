@@ -44,9 +44,7 @@
                 <th>Sisa Stok</th>
                 <th>Lokasi</th>
                 <th  class="col-md-2">Penanggung Jawab</th>
-                <th>UserManual</th>
-                <th>Troubleshouting</th>
-                <th>IKA</th>
+                <th>Qr Code</th>
                 <th>jadwal</th>
                 <th>Aksi</th>
             <thead>
@@ -59,11 +57,11 @@
                     <td>{{$row->jumlah_barang}}</td>
                     <td>{{$row->location->nama}}</td>
                     <td>{{$row->penanggung->no_pegawai}}<br>{{$row->penanggung->name}}</td>
-                    <td><a href="{{$row->getFIleUserManual()}}" target="_blank" >{{$row->file_user_manual}}</a></td>
-                    <td><a href="{{$row->getFIleTrouble()}}" target="_blank" >{{$row->file_trouble}}</a></td>
-                    <td><a href="{{$row->getFIleIka()}}" target="_blank" >{{$row->file_ika}}</a></td>
+                    <td> <a href="/invent/inventaris/qrcode/{{$row->id}}" class="btn btn-success">
+                        <i class="glyphicon glyphicon-qrcode"></i>
+                    </a></td>
                     <td>
-                        <a href="/inventaris/jadwal/{{$row->id}}" class="btn btn-warning">
+                        <a href="/invent/inventaris/jadwal/{{$row->id}}" class="btn btn-success">
                             <i class="glyphicon glyphicon-calendar"></i>
                         </a>
                     </td>

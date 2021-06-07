@@ -94,6 +94,12 @@ class InventarisController extends Controller
         return redirect('/invent/inventaris')->with('sukses','Data Tersimpan');
     }
 
+    public function qrcode($id)
+    {
+        $data = Inventaris::where('id',$id)->first();
+        
+        return view('invent/inventaris.qrcode',compact('data'));
+    }
    
     public function jadwal($id)
     {

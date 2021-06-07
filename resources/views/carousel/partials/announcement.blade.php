@@ -3,15 +3,11 @@
       <h4 class="card-title">Pengumuman</h4>
     </div>
     <div style=" margin-left: 10%; margin-right: 10%;">
-      @if ($data != null)
         <div style="text-align: center" >
-          <h1>{{$data->judul}}</h1><br>
+          <h1>{{$annc->judul}}</h1><br>
         </div>
         <div style="font-size: 30;">
-          {!! $data->isi !!}
+          {!! $annc->isi !!}
         </div>
-      @else
-        <h1>Tidak ada Pengumuman</h1>
-      @endif
     </div>
 </div>

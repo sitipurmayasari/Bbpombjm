@@ -74,12 +74,21 @@
                         </label>
                         <div class="col-sm-9">
                             <input type="text"  class="col-xs-8 col-sm-8 required " 
-                            name="seri_karpeg" required/>
+                            name="seri_karpeg" id="karpeg"  readonly/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right" 
-                        for="form-field-1"> Tmt Golongan Lama
+                        for="form-field-1"> Pendidikan Terakhir
+                        </label>
+                        <div class="col-sm-9">
+                            <input type="text"  class="col-xs-8 col-sm-8 required " readonly 
+                            name="pend" required id="pend"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" 
+                        for="form-field-1"> Tmt Pang&Gol Lama
                         </label>
                         <div class="col-sm-9">
                             <input type="date" style="width: 20%"
@@ -95,29 +104,29 @@
                             name="tmtlama" />
                         </div>
                     </div>
+                    
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right" 
-                        for="form-field-1"> Pendidikan Terakhir
-                        </label>
-                        <div class="col-sm-9">
-                            <input type="text"  class="col-xs-8 col-sm-8 required " readonly 
-                            name="pend" required id="pend"/>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" 
-                        for="form-field-1"> Jabatan Fungsional
+                        for="form-field-1"> Pangkat & Golongan
                         </label>
                         <div class="col-sm-9">
                             <input type="text"  class="col-xs-8 col-sm-8 required " readonly 
                             name="gol" id="gol" required />
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" 
+                        for="form-field-1"> Jabatan Fungsional
+                        </label>
+                        <div class="col-sm-9">
+                            <input type="text"  class="col-xs-8 col-sm-8 required " readonly 
+                            name="jafung" id="jafung" required />
+                        </div>
+                    </div>
                 
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right" 
-                        for="form-field-1"> Masa Kerja Golongan
+                        for="form-field-1"> Masa Kerja Pan&Gol
                         </label>
                         <div class="col-sm-9">
                             <input type="number"  value="0" min="0" style="width: 5%"
@@ -387,6 +396,9 @@
             function(response) {
                 $("#pend").val(response.riwayat.jurusan);
                 $("#gol").val(response.riwayat.golongan+"/"+response.riwayat.ruang);
+                $("#jafung").val(response.riwayat.jafung);
+                $("#karpeg").val(response.riwayat.seri_karpeg);
+                
 
                 if (response.riwayat.jl != null) {
                     $("#jumlama").val(response.riwayat.jl);

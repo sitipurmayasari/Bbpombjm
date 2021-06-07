@@ -136,7 +136,6 @@
                                 </select>
                             </div>
                         </div>
-
                        
 
                         <div class="form-group">
@@ -204,6 +203,15 @@
                                         <option value="{{$sub->id}}">{{$sub->jenis}} / {{$sub->golongan}}/{{$sub->ruang}}</option>
                                     @endforeach
                                 </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Nomor Seri Karpeg
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text"  class="col-xs-10 col-sm-10 required " 
+                                name="seri_karpeg"/>
                             </div>
                         </div>
 

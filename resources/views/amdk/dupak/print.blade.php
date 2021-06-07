@@ -116,7 +116,7 @@
             <tr>
                 <td class="tbl" style="width: 5%; text-align: center;">9</td>
                 <td class="tnt" colspan="4">Unit Kerja</td>
-                <td class="tnt" style="width: 10%;" colspan="5">:  {{$data->pegawai->name}}</td>
+                <td class="tnt" style="width: 10%;" colspan="5">: Balai Besar Pengawas Obat dan Makanan di Banjarmasin</td>
             </tr>
             <tr>
                 <td class="tbl" style="width: 5%; text-align: center;"><b>B</b></td>
@@ -281,21 +281,21 @@
 
                         @elseif ($data->promoted=='J')
                             {{-- golongan lama, tmt lama, jabatan baru, tmt jabatan baru --}}
-                            Pegawai tersebut bisa diusulkan kenaikan pangkat ke {{$data->pegawai->gol->golongan}}/{{$data->pegawai->gol->ruang}}
+                            Pegawai tersebut menduduki {{$data->pegawai->gol->golongan}}/{{$data->pegawai->gol->ruang}}
                             (TMT. {{$data->tmt}}) <br>
-                            &nbsp; Jabatan : {{$data->jabasn->nama}} 
+                            &nbsp; Pegawai tersebut diusulkan Jabatan : {{$data->jabasn->nama}} 
                             (TMT. {{$data->tmtjabbaru}})
 
                         @elseif ($data->promoted=='A')
                             {{-- golongan baru, tmt baru, jabatan baru, tmt jabatan baru --}}
                             Pegawai tersebut bisa diusulkan kenaikan pangkat ke {{$data->gol->golongan}}/{{$data->gol->ruang}}
                             (TMT. {{$data->tmtusul}}) <br>
-                            &nbsp; Jabatan : {{$data->jabasn->nama}} 
+                            &nbsp; Pegawai tersebut diusulkan Jabatan : {{$data->jabasn->nama}} 
                             (TMT. {{$data->tmtjabbaru}})
 
                         @else
                            {{-- golongan lama, tmt lama, jabatan lama, tmt jabatan lama --}}
-                            Pegawai tersebut bisa diusulkan kenaikan pangkat ke {{$data->pegawai->gol->golongan}}/{{$data->pegawai->gol->ruang}}
+                            Pegawai tersebut menduduki {{$data->pegawai->gol->golongan}}/{{$data->pegawai->gol->ruang}}
                             (TMT. {{$data->tmt}}) <br>
                             &nbsp; Jabatan : {{$data->pegawai->jabasn->nama}} 
                             (TMT. {{$data->tmtlama}})
@@ -315,7 +315,32 @@
             </tr>
             <tr>
                 <td class="ttd" style="text-align: left">Kepala BKN di Jakarta</td>
-                <td class="ttd">Pada tanggal {{$data->tanggal}}</td>
+                <td class="ttd">Pada tanggal 
+                    @php
+                        $a = $data->tanggal;
+
+                        function tgl_indo($tanggal){
+                            $bulan = array (
+                                1 =>   'Januari',
+                                'Februari',
+                                'Maret',
+                                'April',
+                                'Mei',
+                                'Juni',
+                                'Juli',
+                                'Agustus',
+                                'September',
+                                'Oktober',
+                                'November',
+                                'Desember'
+                            );
+                            $pecahkan = explode('-', $tanggal);
+                            return $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
+                        }
+
+                        echo tgl_indo($a); 
+                    @endphp
+                   </td>
             </tr>
             <tr>
                 <td></td>

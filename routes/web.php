@@ -11,12 +11,10 @@ Route::get('/import','ImportExcelController@index')->name('import');
 Route::post('/import/jabasn','ImportExcelController@jabasn')->name('import.jabasn');
 Route::post('/import/users','ImportExcelController@users')->name('import.users');
 
-Route::group(['middleware' => 'auth'], function(){
+  Route::group(['middleware' => 'auth'], function(){
   Route::get('/portal','PortalController@index')->name('dashboard');
   Route::get('/profile','ProfileController@index')->name('profile');
   Route::get('/carousel','CarouselController@index')->name('carousel');
-  
- 
 
   //Route untuk Profile
   Route::post('/profile/update/{id}','ProfileController@update')->name('profile.update');
@@ -54,6 +52,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
      Route::get('/invent/pengajuan','Invent\PengajuanController@index')->name('pengajuan');
     //Route untuk Laporan
     Route::get('/invent/laporan','Invent\LaporanController@index')->name('laporan');
+    //Route untuk kendaraan
+    Route::get('/invent/vehicle','Invent\VehicleController@index')->name('vehicle');
    
 
     //--------------------------AMDK------------------------------------------
@@ -92,6 +92,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/amdk/rekappelatihan','Amdk\PelatihanController@rekappelatihan')->name('rekappelatihan');
     //Route untuk dupak
     Route::get('/amdk/dupak','Amdk\DupakController@index')->name('dupak');
+    //Route untuk Angka Kredit
+    Route::get('/amdk/dupak/kredit','Amdk\DupakController@kredit')->name('dupak.kredit');
     //Route untuk dinas
     Route::get('/amdk/outstation','Amdk\OutstationController@index')->name('outstation');
 

@@ -31,26 +31,18 @@
                         </label>
                         <div class="col-sm-10">
                             <select name="jenis" id="" class="col-xs-10 col-sm-10">
-                                @if ($data->jenis=="pelatihan")
-                                    <option value="pelatihan" selected>pelatihan</option>
-                                    <option value="seminar">seminar</option>
-                                    <option value="workshop">workshop</option>
+                                @if ($data->jenis=="pelatihan/bimtek")
+                                    <option value="pelatihan/bimtek" selected>pelatihan/bimtek</option>
+                                    <option value="seminar/workshop">seminar/workshop</option>
                                     <option value="lokakarya">lokakarya</option>
-                                @elseif ($data->jenis=="seminar")
-                                    <option value="pelatihan">pelatihan</option>
-                                    <option value="seminar" selected>seminar</option>
-                                    <option value="workshop">workshop</option>
-                                    <option value="lokakarya">lokakarya</option>
-                                @elseif ($data->jenis=="workshop")
-                                    <option value="pelatihan">pelatihan</option>
-                                    <option value="seminar" >seminar</option>
-                                    <option value="workshop" selected>workshop</option>
+                                @elseif ($data->jenis=="seminar/workshop")
+                                    <option value="pelatihan/bimtek">pelatihan/bimtek</option>
+                                    <option value="seminar/workshop" selected>seminar/workshop</option>
                                     <option value="lokakarya">lokakarya</option>
                                 @else 
-                                    <option value="pelatihan">pelatihan</option>
-                                    <option value="seminar" >seminar</option>
-                                    <option value="workshop" >workshop</option>
-                                    <option value="lokakarya" selected>lokakarya</option>
+                                    <option value="pelatihan/bimtek">pelatihan/bimtek</option>
+                                    <option value="seminar/workshop">seminar/workshop</option>
+                                    <option value="lokakarya">lokakarya</option>
                                 @endif
                            </select>
                             

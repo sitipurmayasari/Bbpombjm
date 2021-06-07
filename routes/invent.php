@@ -20,6 +20,8 @@
   Route::get('/invent/inventaris/jadwal/{id}','Invent\InventarisController@jadwal')->name('inventaris.jadwal');
   Route::post('/invent/inventaris/storejadwal','Invent\InventarisController@storejadwal')->name('inventaris.storejadwal');
   Route::get('/invent/inventaris/getBarang','Invent\InventarisController@getBarang')->name('inventaris.getbarang');
+  Route::get('/invent/inventaris/qrcode/{id}','Invent\InventarisController@qrcode')->name('inventaris.qrcode');
+  
 
   //Route untuk maintenance
   Route::post('/invent/maintenance/store','Invent\MaintenanceController@store')->name('maintenance.store');
@@ -53,3 +55,10 @@
 
   //Route untuk Laporan
   Route::post('/invent/laporan/cetak','Invent\LaporanController@cetak')->name('laporan.cetak');
+
+  //Route untuk kendaraan
+  Route::get('/invent/vehicle/create','Invent\VehicleController@create')->name('vehicle.create');
+  Route::post('invent/vehicle/store','Invent\VehicleController@store')->name('vehicle.store');
+  Route::get('invent/vehicle/delete/{id}','Invent\VehicleController@delete')->name('vehicle.delete');
+  Route::get('invent/vehicle/edit/{id}','Invent\VehicleController@edit')->name('vehicle.edit');
+  Route::post('invent/vehicle/update/{id}','Invent\VehicleController@update')->name('vehicle.update');

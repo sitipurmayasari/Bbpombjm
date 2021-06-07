@@ -63,16 +63,11 @@
             </tr>
             <tr>
                 <td colspan="2">Jabatan</td>
-                <td>: {{$item->pegawai->jabatan->jabatan}} {{$item->pegawai->divisi->nama}}</td>
+                <td>: {{$item->pegawai->jabasn->nama}} </td>
             </tr>
             <tr>
                 <td colspan="2">Unit Kerja</td>
-                <td>: 
-                    @if ($item->pegawai->subdivisi_id != null)
-                        {{$item->pegawai->subdivisi->nama_subdiv}}
-                    @else
-                        {{$item->pegawai->divisi->nama}}
-                    @endif
+                <td>: Balai Besar POM di Banjarmasin
                 </td>
             </tr>
             <tr>

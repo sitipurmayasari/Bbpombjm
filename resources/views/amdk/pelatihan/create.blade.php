@@ -31,9 +31,8 @@
                         </label>
                         <div class="col-sm-10">
                             <select name="jenis" id="" class="col-xs-10 col-sm-10">
-                               <option value="pelatihan">pelatihan</option>
-                               <option value="seminar">seminar</option>
-                               <option value="workshop">workshop</option>
+                               <option value="pelatihan/bimtek">pelatihan/bimtek</option>
+                               <option value="seminar/workshop">seminar/workshop</option>
                                <option value="lokakarya">lokakarya</option>
                            </select>
                             

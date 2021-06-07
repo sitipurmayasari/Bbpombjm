@@ -129,3 +129,11 @@
   Route::get('/amdk/dupak/edit/{id}','Amdk\DupakController@edit')->name('dupak.edit');
   Route::post('/amdk/dupak/update/{id}','Amdk\DupakController@update')->name('dupak.update');
   Route::get('/amdk/dupak/print/{id}','Amdk\DupakController@print')->name('dupak.print');
+
+
+  //Route untuk dinas
+  Route::get('/amdk/outstation/create','Amdk\OutstationController@create')->name('outstation.create');
+  Route::post('/amdk/outstation/store','Amdk\OutstationController@store')->name('outstation.store');
+  Route::get('/amdk/outstation/delete/{id}','Amdk\OutstationController@delete')->name('outstation.delete');
+  Route::get('/amdk/outstation/edit/{id}','Amdk\OutstationController@edit')->name('outstation.edit');
+  Route::post('/amdk/outstation/update/{id}','Amdk\OutstationController@update')->name('outstation.update');

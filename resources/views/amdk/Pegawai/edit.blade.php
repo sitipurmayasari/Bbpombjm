@@ -74,15 +74,15 @@
                             </label>
                             <div class="col-sm-8" style="margin: center;">
                                 @if ($data->jkel=='L')
-                                <input type="radio" required value="L" checked name="jkel" id="L"/> 
-                                &nbsp; Laki - laki  &nbsp;
-                                <input type="radio" required value="P" name="jkel" id="P"/> 
-                                &nbsp; Perempuan
+                                    <input type="radio" required value="L" checked name="jkel" id="L"/> 
+                                    &nbsp; Laki - laki  &nbsp;
+                                    <input type="radio" required value="P" name="jkel" id="P"/> 
+                                    &nbsp; Perempuan
                                 @else
-                                <input type="radio" required value="L" name="jkel" id="L"/> 
-                                &nbsp; Laki - Laki  &nbsp;
-                                <input type="radio" required value="P" checked name="jkel" id="P"/> 
-                                &nbsp; Perempuan  
+                                    <input type="radio" required value="L" name="jkel" id="L"/> 
+                                    &nbsp; Laki - Laki  &nbsp;
+                                    <input type="radio" required value="P" checked name="jkel" id="P"/> 
+                                    &nbsp; Perempuan  
                                 @endif
                                
                             </div>
@@ -273,7 +273,15 @@
                                 </select>
                             </div>
                         </div>
-
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Nomor Seri Karpeg
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text"  class="col-xs-10 col-sm-10 required " 
+                                name="seri_karpeg"  value="{{$data->seri_karpeg}}"/>
+                            </div>
+                        </div>
                         {{-- <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
                             for="form-field-1"> Username

@@ -12,6 +12,7 @@ use App\Jabasn;
 use PDF;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class DupakController extends Controller
 {
@@ -30,9 +31,27 @@ class DupakController extends Controller
         return view('amdk/dupak.index',compact('data'));
     }
 
+    public function kredit(Request $request)
+    {
+        $user = Auth::user();
+        $id = $user->id;
+        $data = Dupak::orderBy('id','desc')
+                ->select('dupak.*','users.name')
+                ->leftJoin('users','users.id','=','dupak.users_id')
+                ->where('users_id', $id)
+                ->where('dupak.file', '!=','NULL')
+                ->when($request->keyword, function ($query) use ($request) {
+                    $query->where('name','LIKE','%'.$request->keyword.'%')
+                            ->orWhere('tanggal', 'LIKE','%'.$request->keyword.'%')
+                            ->orWhere('nomor_kp', 'LIKE','%'.$request->keyword.'%');
+                    })
+                ->paginate('10');
+        return view('amdk/dupak.kredit',compact('data'));
+    }
+
     public function create()
     {
-        $jabasn = Jabasn::all();
+        $jabasn = Jabasn::where('kelompok','Pengawas Farmasi Dan Makanan')->get();
         $user = User::all();
         $gol = Golongan::all();
         return view('amdk/dupak.create',compact('user','gol','jabasn'));
@@ -42,12 +61,13 @@ class DupakController extends Controller
     {
         $user_id = $request->users_id;
         $riwayat = User::orderBy('riwayat_pend.id','desc')
-                ->selectRaw('users.name, riwayat_pend.jurusan_id, golongan.ruang, golongan.golongan, jurusan.jurusan, 
+                ->selectRaw('users.name,users.seri_karpeg, riwayat_pend.jurusan_id, golongan.ruang, golongan.golongan, jurusan.jurusan, jabasn.nama as jafung,
                             (SELECT total FROM dupak WHERE users_id ='.$user_id.' ORDER BY id DESC LIMIT 1) jl')
                 ->leftJoin('golongan','golongan.id','=','users.golongan_id')
                 ->leftJoin('riwayat_pend','riwayat_pend.users_id','=','users.id')
                 ->leftJoin('jurusan','riwayat_pend.jurusan_id','=','jurusan.id')
                 ->leftJoin('dupak','dupak.users_id','=','users.id')
+                ->leftJoin('jabasn','jabasn.id','=','users.jabasn_id')
                 ->where('users.id', $user_id)
                 ->first();
 
@@ -90,7 +110,7 @@ class DupakController extends Controller
 
     public function edit($id)
     {
-        $jabasn = Jabasn::all();
+        $jabasn = Jabasn::where('kelompok','Pengawas Farmasi Dan Makanan')->get();
         $user = User::all();
         $gol = Golongan::all();
         $data = Dupak::orderBy('riwayat_pend.id','desc')
