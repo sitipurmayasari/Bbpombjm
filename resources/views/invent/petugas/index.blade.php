@@ -85,10 +85,6 @@
                         <a href="/invent/petugas/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
-                        <a href="#" class="btn btn-danger delete"
-                            r-name="{{$row->jenis}}" 
-                            r-id="{{$row->id}}">
-                            <i class="glyphicon glyphicon-trash"></i></a>
                     </td>
                 </tr>
               

@@ -12,6 +12,8 @@ use App\JadwalMain;
 use App\Satuan;
 use App\Jenisbrg;
 use Illuminate\Support\Facades\DB;
+use QrCode;
+
 class InventarisController extends Controller
 {
     public function index(Request $request)
@@ -99,6 +101,12 @@ class InventarisController extends Controller
         $data = Inventaris::where('id',$id)->first();
         
         return view('invent/inventaris.qrcode',compact('data'));
+    //     $image = QrCode::format('png')
+    // ->merge('images/bbpom.jpg', 0.5, true)
+    // ->size(500)->errorCorrection('H')
+    // ->generate('MyNotePaper');
+
+return response($image)->header('Content-type','image/png');
     }
    
     public function jadwal($id)
