@@ -115,11 +115,11 @@
 
  </ul>
  <div class="tab-content">
-    @include('amdk.Pegawai.partials.keluarga')
-    @include('amdk.Pegawai.partials.dokument')
-    @include('amdk.Pegawai.partials.riwayat-pendidikan')
-    @include('amdk.Pegawai.partials.pengalaman-kerja')
-    @include('amdk.Pegawai.partials.dokpeg')
+    @include('amdk.pegawai.partials.keluarga')
+    @include('amdk.pegawai.partials.dokument')
+    @include('amdk.pegawai.partials.riwayat-pendidikan')
+    @include('amdk.pegawai.partials.pengalaman-kerja')
+    @include('amdk.pegawai.partials.dokpeg')
 
  </div>
 @endsection

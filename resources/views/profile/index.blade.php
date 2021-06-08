@@ -204,7 +204,7 @@
     </ul>
 
     <div class="tab-content">
-        @include('amdk.Pegawai.partials.keluarga')
+        @include('amdk.pegawai.partials.keluarga')
         @include('profile.partials.dokument')
         @include('profile.partials.riwayat-pendidikan')
         @include('profile.partials.pengalaman-kerja')
