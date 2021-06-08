@@ -26,7 +26,7 @@ class PelatihanController extends Controller
                             ->orWhere('lama', 'LIKE','%'.$request->keyword.'%');
                     })
                 ->paginate('10');
-        return view('amdk/pelatihan.index',compact('data','user'));
+        return view('amdk/pelatihan.index',compact('data'));
     }
 
     public function rekappelatihan(Request $request)
