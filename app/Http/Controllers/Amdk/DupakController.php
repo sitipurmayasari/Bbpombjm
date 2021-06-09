@@ -162,7 +162,7 @@ class DupakController extends Controller
                     ->where('divisi_id', '=', 1)
                     ->whereRaw("(SELECT tanggal FROM aduan WHERE id=$id) BETWEEN dari AND sampai")
                     ->first();
-        $pdf = PDF::loadview('amdk/dupak.print',compact('data','request','mengetahui'));
+        $pdf = PDF::loadview('amdk/dupak.print',compact('data','mengetahui'));
         return $pdf->stream();
     }
 
