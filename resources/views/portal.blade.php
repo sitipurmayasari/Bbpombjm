@@ -320,6 +320,9 @@ h2, a {
               <a class="social-icon" data-tooltip="Inventaris" href="/invent/dashboard">
                 <i class="fa fa-archive fa-10x" aria-hidden="true"></i>
               </a>
+              <a class="social-icon" data-tooltip="Keuangan" href="/finance/dashboard">
+                <i class="fa fa-money fa-10x" aria-hidden="true"></i>
+              </a>
             </div>
          </div>
       </div>

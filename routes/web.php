@@ -111,10 +111,14 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
 
     
     //--------------------------Finance------------------------------------------
-    //Route untuk dashboard
-    // Route::get('/finance/dashboard','Finance\DashboardController@index')->name('dashboard');
-    //Route untuk dinas
-    Route::get('/finance/klcode','Finance\klcodeController@index')->name('klcode');
+    //Route untuk Kode Kementrian Lembaga
+    Route::get('/finance/klcode','Finance\KlcodeController@index')->name('klcode');
+
+    //Route untuk Kode Unit Kementrian Lembaga
+    Route::get('/finance/unitcode','Finance\UnitcodeController@index')->name('unitcode');
+
+    //Route untuk Kode Program Lembaga
+    Route::get('/finance/programcode','Finance\ProgramcodeController@index')->name('programcode');
 
 });
 

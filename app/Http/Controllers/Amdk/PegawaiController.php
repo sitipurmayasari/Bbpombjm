@@ -140,7 +140,6 @@ class PegawaiController extends Controller
     {
         $this->validate($request,[
             'email' => 'required|unique:users,email,'.$id,
-            'status' => 'required|unique:users,status,'.$id,
             'file_foto' => 'mimes:jpg,png,jpeg|max:2048'
         ]);
 
