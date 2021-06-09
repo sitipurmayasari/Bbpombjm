@@ -143,6 +143,9 @@ class PegawaiController extends Controller
             'file_foto' => 'mimes:jpg,png,jpeg|max:2048'
         ]);
 
+
+        
+
         if($request->password_new!=""){
             $request->merge([
                 'password' =>  bcrypt($request->password_new),
