@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('breadcrumb')
     <li>Inventaris</li>
-    <li><a href="/invent/inventaris">Inventaris Asset Tetap</a></li>
+    <li><a href="/invent/disposable">Inventaris Aset Sekali Pakai</a></li>
     <li>Tambah Baru</li>
 @endsection
 @section('content')
@@ -9,12 +9,12 @@
 
 <div class="row">
     <form class="form-horizontal validate-form" role="form" 
-         method="post" action="{{route('inventaris.store')}}" enctype="multipart/form-data">
+         method="post" action="{{route('disposable.store')}}" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div class="col-sm-12">
         <div class="widget-box">
             <div class="widget-header">
-                <h4 class="widget-title"> Input Inventaris Asset Tetap</h4>
+                <h4 class="widget-title"> Input Inventaris Aset Sekali Pakai</h4>
                 <div class="widget-toolbar">
                     <a href="#" data-action="collapse">
                         <i class="ace-icon fa fa-chevron-down"></i>
@@ -31,7 +31,7 @@
                             for="form-field-1"> Kode Barang
                             </label>
                             <div class="col-sm-8">
-                                <input type="hidden" value="R" name="kind"  />
+                                <input type="hidden" value="D" name="kind"  />
                                 <input type="text"  placeholder="nomor pegawai" 
                                         class="col-xs-10 col-sm-10 required " 
                                         name="kode_barang" required />
@@ -59,17 +59,6 @@
                                         name="merk" />
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Tanggal Terima
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="date" name="tanggal_diterima" readonly class="col-xs-10 col-sm-10" 
-                                data-date-format="yyyy-mm-dd" data-provide="datepicker">
-                            </div>
-                        </div>
-
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
                             for="form-field-1"> No. Seri
@@ -118,36 +107,10 @@
                                 </select>
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Penanggung Jawab
-                            </label>
-                            <div class="col-sm-8">
-                                <select id="status" name="penanggung_jawab" class="col-xs-10 col-sm-10 select2">
-                                    <option value="">Pilih Nama Pegawai</option>
-                                    @foreach ($user as $peg)
-                                        <option value="{{$peg->id}}">{{$peg->no_pegawai}} || {{$peg->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Status
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="radio" name="status" value="baik" checked>
-                                <label class="control-label no-padding-right" for="form-field-1"> Baik</label> 
-                                &nbsp;&nbsp;
-                                <input type="radio" name="status" value="rusak">
-                                <label class="control-label no-padding-right" for="form-field-1"> Rusak</label>
-                            </div>
-                        </div>
-
+                        
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" s
-                            for="form-field-1"> Spesifikasi Barang
+                            for="form-field-1"> Keterangan
                             </label>
                             <div class="col-sm-8">
                                 <textarea  placeholder="" class="col-xs-10 col-sm-10"  
@@ -162,31 +125,7 @@
                    <br>
                 <div class="widget-main no-padding">
                     <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" 
-                        for="form-field-1"> User Manual
-                        </label>
-                        <div class="col-sm-9">
-                            <input type="file" name="file_user_manual" class="btn btn-default btn-sm" id="" value="Upload File User Manual">      
-                            <label><i>ex:Lorem_ipsum.pdf</i></label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" 
-                        for="form-field-1"> Troubleshouting
-                        </label>
-                        <div class="col-sm-9">
-                                <input type="file" name="file_user_manual" class="btn btn-default btn-sm" id="" value="Upload File User Manual">      
-                                <label><i>ex:Lorem_ipsum.pdf</i></label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" 
-                        for="form-field-1"> IKA
-                        </label>
-                        <div class="col-sm-9">
-                            <input type="file" name="file_user_manual" class="btn btn-default btn-sm" id="" value="Upload File User Manual">      
-                            <label><i>ex:Lorem_ipsum.pdf</i></label>
-                        </div>
+
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right" 

@@ -13,8 +13,7 @@ class LoginController extends Controller
         if(!Auth::check()){
             return view('layouts.login');
         }else{
-        //    return redirect('/dashboard');
-           return redirect('/layouts/portal');
+           return redirect('/portal');
         }
     }
     public function auth(Request $request)

@@ -72,13 +72,15 @@
                                 1
                             </td>       
                             <td>
-                                <select name="inventaris_id[]" class="col-xs-11 col-sm-11 select2" required id="barang_id-1"
+                                <select name="st_id[]" class="col-xs-11 col-sm-11 select2" required id="barang_id-1"
                                 onchange="getData1()">
                                     <option value="">Pilih Barang</option>
                                     @foreach ($data as $brg)
-                                        <option value="{{$brg->id}}">{{$brg->nama_barang}} || {{$brg->merk}}</option>
+                                        <option value="{{$brg->st_id}}">{{$brg->nama_barang}} || {{$brg->merk}}&nbsp;
+                                            (exp : {{$brg->exp_date}})</option>
                                     @endforeach
                                 </select>
+                                <input type="hidden" name="inventaris_id[]" class="form-control" value="0" id="inventaris_id-1">
                             </td>
                             <td>
                                 <input type=hidden name="satuan_id[]" class="form-control" id="satuan_id-1">
@@ -90,9 +92,10 @@
                             <td>
                                 <input type="number"  min="1" name="jumlah[]" class="form-control" value="0" id="jum-1" onchange="hitung()">
                                 <input type="hidden" name="sisa[]" class="form-control" value="0" id="sisa-1">
+                               
                             </td>
                             <td>
-                                <input type="text" name="ket[]" class="form-control">
+                                <input type="text" name="ket[]" class="form-control" required>
                             </td>
                             <td>
                             </td>
@@ -136,26 +139,27 @@
         $isi =  '<tr id="cell-'+new_baris+'">'+
             '<td>'+new_baris+'</td>'+
                 '<td>'+
-                    '<select name="inventaris_id[]" class="col-xs-11 col-sm-11 select2" required id="barang_id-'+new_baris+'" onchange="getDataBarang('+new_baris+')">'+
+                    '<select name="st_id[]" class="col-xs-11 col-sm-11 select2" required id="barang_id-'+new_baris+'" onchange="getDataBarang('+new_baris+')">'+
                         '<option value="">Pilih Barang</option>'+
                         '@foreach ($data as $brg)'+
-                        '<option value="{{$brg->id}}">{{$brg->nama_barang}} || {{$brg->merk}}</option>'+
+                        '<option value="{{$brg->st_id}}">{{$brg->nama_barang}} || {{$brg->merk}}&nbsp;(exp : {{$brg->exp_date}})</option>'+
                         '@endforeach'+
                     '</select>'+
+                    '<input type="hidden" name="inventaris_id[]" class="form-control" value="0" id="inventaris_id-'+new_baris+'">'+
                 '</td>'+
                 '<td>'+
                     '<input type=hidden name="satuan_id[]" class="form-control" id="satuan_id-'+new_baris+'">'+
                     '<input type="text" name="satuan" class="form-control" readonly id="satuan-'+new_baris+'">'+
                 '</td>'+
                 '<td>'+
-                    '<input type="number" name="stok[]" class="form-control" id="stok-'+new_baris+'">'+
+                    '<input type="number" name="stok[]" class="form-control" readonly id="stok-'+new_baris+'">'+
                 '</td>'+
                 '<td>'+
                     '<input type="number" min="1" name="jumlah[]" class="form-control" value="0" id="jum-'+new_baris+'" onchange="hitung2('+new_baris+')">'+
                     '<input type="hidden" name="sisa[]" class="form-control" value="0" id="sisa-'+new_baris+'">'+
                 '</td>'+
                 '<td>'+
-                    '<input type="text" name="ket[]" class="form-control">'+
+                    '<input type="text" name="ket[]" class="form-control" required>'+
                 '</td>'+
                     '<td><button type="button"  class="btn btn-danger" onclick="deleteRow('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button></td>'+
                 '</tr>';
@@ -177,14 +181,15 @@
             var barang_id =  $("#barang_id-1").val();
             if (barang_id == '') return false;
             $.get(
-                "{{route('inventaris.getbarang') }}",
+                "{{route('barangkeluar.getbarang') }}",
                 {
                     barang_id: barang_id
                 },
                 function(response) {
                     $("#satuan_id-1").val(response.data.satuan_id);
                     $("#satuan-1").val(response.data.satuan);
-                    $("#stok-1").val(response.data.jumlah_barang);
+                    $("#stok-1").val(response.data.stock);
+                    $("#inventaris_id-1").val(response.data.id);
                     var x = $("#stok-1").val();
                     document.getElementById("jum-1").setAttribute("max", x);
 
@@ -204,14 +209,15 @@
             var barang_id =  $("#barang_id-"+i).val();
             if (barang_id == '') return false;
             $.get(
-                "{{route('inventaris.getbarang') }}",
+                "{{route('barangkeluar.getbarang') }}",
                 {
                     barang_id: barang_id
                 },
                 function(response) {
                     $("#satuan_id-"+i).val(response.data.satuan_id);
                     $("#satuan-"+i).val(response.data.satuan);
-                    $("#stok-"+i).val(response.data.jumlah_barang);
+                    $("#stok-"+i).val(response.data.stock);
+                    $("#inventaris_id-"+i).val(response.data.id);
                     var x = $("#stok-"+i).val();
                     document.getElementById("jum-"+i).setAttribute("max", x);
                 }

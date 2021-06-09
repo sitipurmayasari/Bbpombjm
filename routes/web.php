@@ -15,6 +15,17 @@ Route::post('/import/users','ImportExcelController@users')->name('import.users')
   Route::get('/portal','PortalController@index')->name('dashboard');
   Route::get('/profile','ProfileController@index')->name('profile');
   Route::get('/carousel','CarouselController@index')->name('carousel');
+  Route::get('/invent/inventaris/detail/{id}','Invent\InventarisController@detail')->name('inventaris.detail');
+
+  //Route untuk dashboard
+  //--------------------------Invent------------------------------------------
+  Route::get('/invent/dashboard','Invent\DashboardController@index')->name('dashboard');
+  //--------------------------Finance------------------------------------------
+  Route::get('/finance/dashboard','Finance\DashboardController@index')->name('dashboard');
+  //--------------------------AMDK------------------------------------------
+  Route::get('/amdk/dashboard','Amdk\DashboardController@index')->name('dashboard');
+  
+   
 
   //Route untuk Profile
   Route::post('/profile/update/{id}','ProfileController@update')->name('profile.update');
@@ -28,20 +39,19 @@ Route::post('/import/users','ImportExcelController@users')->name('import.users')
   require __DIR__.'/invent.php';
   //--------------------------AMDK------------------------------------------
   require __DIR__.'/amdk.php';
+  //--------------------------Finance------------------------------------------
+  require __DIR__.'/finance.php';
 
 });
 
 Route::group(['middleware' => ['auth','userPermission']], function(){
 
-    //Route untuk portal
     //--------------------------Invent------------------------------------------
-    //Route untuk dashboard
-    Route::get('/invent/dashboard','Invent\DashboardController@index')->name('dashboard');
-    //Route untuk lokasi
-    Route::get('invent/lokasi','Invent\LokasiController@index')->name('lokasi');
-    Route::get('/invent/petugas','Invent\PetugasController@index')->name('petugas');
+   
     //Route untuk inventaris
     Route::get('/invent/inventaris','Invent\InventarisController@index')->name('inventaris');
+    //Route untuk disposable inventaris
+    Route::get('/invent/disposable','Invent\DisposableController@index')->name('disposable');
     //Route untuk maintenance
     Route::get('/invent/maintenance','Invent\MaintenanceController@index')->name('maintenance');
      //Route untuk Barang keluar
@@ -54,11 +64,13 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/invent/laporan','Invent\LaporanController@index')->name('laporan');
     //Route untuk kendaraan
     Route::get('/invent/vehicle','Invent\VehicleController@index')->name('vehicle');
+    //Route untuk lokasi
+    Route::get('invent/lokasi','Invent\LokasiController@index')->name('lokasi');
+    //Route untuk petugas
+    Route::get('/invent/petugas','Invent\PetugasController@index')->name('petugas');
    
 
     //--------------------------AMDK------------------------------------------
-    //Route untuk dashboard
-    Route::get('/amdk/dashboard','Amdk\DashboardController@index')->name('dashboard');
     //Route untuk pegawai
     Route::get('/amdk/pegawai','Amdk\PegawaiController@index')->name('pegawai');
     //Route untuk pengumuman
@@ -96,6 +108,13 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/amdk/dupak/kredit','Amdk\DupakController@kredit')->name('dupak.kredit');
     //Route untuk dinas
     Route::get('/amdk/outstation','Amdk\OutstationController@index')->name('outstation');
+
+    
+    //--------------------------Finance------------------------------------------
+    //Route untuk dashboard
+    // Route::get('/finance/dashboard','Finance\DashboardController@index')->name('dashboard');
+    //Route untuk dinas
+    Route::get('/finance/klcode','Finance\klcodeController@index')->name('klcode');
 
 });
 

@@ -18,9 +18,10 @@ class InventarisController extends Controller
 {
     public function index(Request $request)
     {
-        $data = Inventaris::orderBy('id','desc')
+        $data = Inventaris::orderBy('inventaris.id','desc')
                     ->select('inventaris.*','users.name')
                     ->leftJoin('users','users.id','=','inventaris.penanggung_jawab')
+                    ->where('inventaris.kind','=','R')
                     ->when($request->keyword, function ($query) use ($request) {
                         $query->where('nama_barang','LIKE','%'.$request->keyword.'%')
                                 ->orWhere('merk', 'LIKE','%'.$request->keyword.'%')
@@ -52,8 +53,7 @@ class InventarisController extends Controller
             'file_trouble' => 'mimes:pdf|max:10048',
             'file_ika' => 'mimes:pdf|max:10048',
             'file_foto' => 'mimes:jpg,png,jpeg|max:2048',
-            'tanggal_diterima' => 'required|date',
-            'jumlah_barang' => 'required'
+            'tanggal_diterima' => 'required|date'
         ]);
 
         $inventaris =Inventaris::create($request->all());
@@ -101,12 +101,6 @@ class InventarisController extends Controller
         $data = Inventaris::where('id',$id)->first();
         
         return view('invent/inventaris.qrcode',compact('data'));
-    //     $image = QrCode::format('png')
-    // ->merge('images/bbpom.jpg', 0.5, true)
-    // ->size(500)->errorCorrection('H')
-    // ->generate('MyNotePaper');
-
-return response($image)->header('Content-type','image/png');
     }
    
     public function jadwal($id)
@@ -138,6 +132,18 @@ return response($image)->header('Content-type','image/png');
         return view('invent/inventaris.edit',compact('data','divisi','user','lokasi','jenis','satuan'));
     }
 
+    public function detail($id)
+    {
+        $satuan = Satuan::all();
+        $data = Inventaris::where('id',$id)->first();
+        $divisi = Divisi::all();
+        $user = User::all()
+                ->where('id','!=','1');
+        $lokasi = Lokasi::all();
+        $jenis = Jenisbrg::all();
+        return view('invent/inventaris.detail',compact('data','divisi','user','lokasi','jenis','satuan'));
+    }
+
 
     public function update(Request $request, $id)
     {
@@ -146,8 +152,8 @@ return response($image)->header('Content-type','image/png');
             'file_trouble2' => 'mimes:pdf|max:10048',
             'file_ika2' => 'mimes:pdf|max:10048',
             'file_foto2' => 'mimes:jpg,png,jpeg|max:2048',
-            'tanggal_diterima' => 'required|date',
-            'jumlah_barang' => 'required'
+            'tanggal_diterima' => 'required|date'
+            
         ]);
 
 

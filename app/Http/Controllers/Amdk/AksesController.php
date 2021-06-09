@@ -39,6 +39,16 @@ class AksesController extends Controller
                     UserPermission::create($data);
                 }
             }
+
+            if ($request->input('akses_fin')) {
+                for ($i = 0; $i < count($request->input('akses_fin')); $i++){
+                    $data = [
+                        'user_id' => $request->user_id,
+                        'menu_id' => $request->akses_fin[$i] ,
+                    ];
+                    UserPermission::create($data);
+                }
+            }
            
             if ($request->input('akses_inv')) {
                 for ($i = 0; $i < count($request->input('akses_inv')); $i++){
@@ -71,6 +81,12 @@ class AksesController extends Controller
             ->where('menu.modul','inventaris')
             ->get();
 
+        $finance = Submenu::orderBy('menu.id','asc')
+            ->select('submenu.*','menu.modul','menu.nama as group_nama')
+            ->leftJoin('menu','submenu.menu_id','=','menu.id')
+            ->where('menu.modul','finance')
+            ->get();
+
         $outputAmdk = array();
         foreach ($amdk as $am) {
             $outputAmdk[] = array(
@@ -87,11 +103,20 @@ class AksesController extends Controller
                 'checked' => $this->checkPermissonMenu($user_id,$in->id)
             );
         }
+        $outputFinance = array();
+        foreach ($finance as $in) {
+            $outputFinance[] = array(
+                'id' => $in->id,
+                'nama' => $in->nama,
+                'checked' => $this->checkPermissonMenu($user_id,$in->id)
+            );
+        }
 
         return response()->json([ 
             'success' => true,
             'amdk'=>$outputAmdk,
-            'inventaris' => $outputInventaris
+            'inventaris' => $outputInventaris,
+            'finance' => $outputFinance
         ],200);
     }
 

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('breadcrumb')
     <li>Inventaris</li>
-    <li>Inventaris Asset Tetap</i></li>
+    <li>Inventaris Aset Sekali Pakai</i></li>
 @endsection
 @section('content')
 
@@ -12,13 +12,9 @@
                 <div class="form-group col-sm-12">
                     <div class="row">
                         <div class="form-group col-xs-12 col-sm-3" style="float: left">
-                           <a href="{{Route('inventaris.create')}}"  class="btn btn-primary">Tambah Data</a>   
+                           <a href="{{Route('disposable.create')}}"  class="btn btn-primary">Tambah Data</a>   
                         </div>
                         <div class="form-group col-xs-12 col-sm-5" style="float: right">
-                            {{-- <select onchange="this.form.submit()" name="filter" 
-                            id="filterKategori" class="form-control input-sm pull-right" style="width: 250px;">
-                                <option value="">--Filter --</option>
-                             </select> --}}
                             <div class="input-group">
                                 <input type="text" class="form-control gp-search" name="keyword" placeholder="Cari " value="{{request('keyword')}}" autocomplete="off">
                                 <div class="input-group-btn">
@@ -42,10 +38,9 @@
                 <th class="col-md-2">Nama Barang</th>
                 <th>Merk</th>
                 <th>Lokasi</th>
-                <th>Penanggung Jawab</th>
-                <th  class="col-md-1">Qr Code</th>
-                <th  class="col-md-1">jadwal</th>
-                <th  class="col-md-2">Aksi</th>
+                <th class="col-md-1">Stok</th>
+                <th class="col-md-1">Qr Code</th>
+                <th class="col-md-2">Aksi</th>
             <thead>
             <tbody>   	
                 @foreach($data as $key=>$row)
@@ -54,17 +49,14 @@
                     <td>{{$row->nama_barang}}</td>
                     <td>{{$row->merk}}</td>
                     <td>{{$row->location->nama}}</td>
-                    <td>{{$row->penanggung->no_pegawai}}<br>{{$row->penanggung->name}}</td>
+                    <td> <a href="/invent/disposable/stock/{{$row->id}}" class="btn btn-success">
+                        {{$row->stok}}
+                    </a></td>
                     <td> <a href="/invent/inventaris/qrcode/{{$row->id}}" class="btn btn-success">
                         <i class="glyphicon glyphicon-qrcode"></i>
                     </a></td>
                     <td>
-                        <a href="/invent/inventaris/jadwal/{{$row->id}}" class="btn btn-success">
-                            <i class="glyphicon glyphicon-calendar"></i>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="/invent/inventaris/edit/{{$row->id}}" class="btn btn-warning">
+                        <a href="/invent/disposable/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
                         <a href="#" class="btn btn-danger delete"
@@ -98,7 +90,7 @@
             }).then((result) => {
                 console.log(result);
                 if (result.value) {
-                    window.location = "/invent/inventaris/delete/"+id;
+                    window.location = "/invent/disposable/delete/"+id;
                 }
             });
         });

@@ -98,6 +98,8 @@ class PegawaiController extends Controller
             'email' => 'required|unique:users',
             'tgl_lhr' => 'required',
             'divisi_id' => 'required',
+            'jabatan_id' => 'required',
+            'status' => 'required',
             'file_foto' => 'mimes:jpg,png,jpeg|max:2048'
         ]);
         

@@ -128,7 +128,7 @@
                             for="form-field-1"> Status Kepegawaian
                             </label>
                             <div class="col-sm-8">
-                                <select id="status" name="status" class="col-xs-10 col-sm-10">
+                                <select id="status" name="status" class="col-xs-10 col-sm-10" required>
                                     <option value="PNS">PNS</option>
                                     <option value="PPNPN">PPNPN</option>
                                     <option value="Magang">Magang</option>
@@ -143,7 +143,7 @@
                             for="form-field-1"> Jabatan Struktural
                             </label>
                             <div class="col-sm-8">
-                                <select id="status" name="jabatan_id" class="col-xs-10 col-sm-10">
+                                <select id="jabatan_id" name="jabatan_id" class="col-xs-10 col-sm-10" required>
                                     <option value="">Pilih Jabatan</option>
                                     @foreach ($jabatan as $jab)
                                         <option value="{{$jab->id}}">{{$jab->jabatan}}</option>

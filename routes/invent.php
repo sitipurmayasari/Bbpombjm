@@ -21,6 +21,16 @@
   Route::post('/invent/inventaris/storejadwal','Invent\InventarisController@storejadwal')->name('inventaris.storejadwal');
   Route::get('/invent/inventaris/getBarang','Invent\InventarisController@getBarang')->name('inventaris.getbarang');
   Route::get('/invent/inventaris/qrcode/{id}','Invent\InventarisController@qrcode')->name('inventaris.qrcode');
+
+  //Route untuk disposable inventaris
+  Route::get('/invent/disposable/create','Invent\DisposableController@create')->name('disposable.create');
+  Route::post('/invent/disposable/store','Invent\DisposableController@store')->name('disposable.store');
+  Route::get('/invent/disposable/edit/{id}','Invent\DisposableController@edit')->name('disposable.edit');
+  Route::post('/invent/disposable/update/{id}','Invent\DisposableController@update')->name('disposable.update');
+  Route::get('/invent/disposable/delete/{id}','Invent\DisposableController@delete')->name('disposable.delete');
+  Route::get('/invent/disposable/qrcode/{id}','Invent\DisposableController@qrcode')->name('disposable.qrcode');
+  Route::get('/invent/disposable/stock/{id}','Invent\DisposableController@stock')->name('disposable.stock');
+  Route::post('/invent/disposable/storestock','Invent\DisposableController@storestock')->name('disposable.storestock');
   
 
   //Route untuk maintenance
@@ -45,13 +55,12 @@
   Route::post('/invent/pengajuan/update/{id}','Invent\PengajuanController@update')->name('pengajuan.update');
   Route::get('/invent/pengajuan/print/{id}','Invent\PengajuanController@print')->name('pengajuan.print');
   Route::get('/invent/pengajuan/detail/{id}','Invent\PengajuanController@detail')->name('pengajuan.detail');
-
+  
    //Route untuk Barang Keluar
    Route::get('/invent/barangkeluar/create','Invent\BarangkeluarController@create')->name('barangkeluar.create');
    Route::post('/invent/barangkeluar/store','Invent\BarangkeluarController@store')->name('barangkeluar.store');
-  //  Route::get('/invent/barangkeluar/edit/{id}','Invent\BarangkeluarController@edit')->name('barangkeluar.edit');
-  //  Route::post('/invent/barangkeluar/update/{id}','Invent\BarangkeluarController@update')->name('barangkeluar.update');
    Route::get('/invent/barangkeluar/print/{id}','Invent\BarangkeluarController@print')->name('barangkeluar.print');
+   Route::get('/invent/barangkeluar/getBarang','Invent\BarangkeluarController@getBarang')->name('barangkeluar.getbarang');
 
   //Route untuk Laporan
   Route::post('/invent/laporan/cetak','Invent\LaporanController@cetak')->name('laporan.cetak');

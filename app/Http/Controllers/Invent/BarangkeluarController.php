@@ -13,6 +13,7 @@ use App\Pejabat;
 use App\Petugas;
 use App\Subdivisi;
 use App\Divisi;
+use App\Entrystock;
 use PDF;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -35,7 +36,10 @@ class BarangkeluarController extends Controller
 
     public function create()
     {
-        $data = Inventaris::all();
+        $data = Inventaris::select('inventaris.*','entrystock.exp_date','entrystock.id AS st_id')
+                            ->leftJoin('entrystock','entrystock.inventaris_id','=','inventaris.id')
+                            ->where('inventaris.kind','=','D')
+                        ->get();
         $user = User::all()
                 ->where('id','!=','1');
         $satuan = Satuan::all();
@@ -52,7 +56,7 @@ class BarangkeluarController extends Controller
             'users_id'=> 'required'
         ]);
 
-        DB::beginTransaction(); // kegunaan untuk multiple insert (banyak aksi k database)
+        DB::beginTransaction();
             $sbb =Sbb::create($request->all());
             $sbb_id = $sbb->id;
             for ($i = 0; $i < count($request->input('inventaris_id')); $i++){
@@ -65,12 +69,13 @@ class BarangkeluarController extends Controller
                 ];
                 Sbbdetail::create($data);
 
-                Inventaris::where('id',$request->inventaris_id[$i])->update([
-                'jumlah_barang' => $request->sisa[$i]
+                Entrystock::where('id',$request->st_id[$i])->update([
+                'stock' => $request->sisa[$i]
                 ]);
 
             }
             DB::commit(); 
+            // return redirect('/invent/barangkeluar')->with('sukses','Data Tersimpan');
         return redirect('/invent/barangkeluar/print/'.$sbb_id);
     }
 
@@ -89,6 +94,18 @@ class BarangkeluarController extends Controller
         return $pdf->stream();
     }
 
+    public function getBarang(Request $request)
+    {
+        $id = $request->barang_id;
+
+        $data = DB::table('inventaris')
+            ->leftJoin('satuan', 'inventaris.satuan_id', '=', 'satuan.id','entrystock.id AS st_id')
+            ->leftJoin('entrystock','entrystock.inventaris_id','=','inventaris.id')
+            ->select('inventaris.*','satuan.satuan','entrystock.stock',  'entrystock.exp_date')
+            ->where('entrystock.id',$id)
+            ->first();
+        return response()->json([ 'success' => true,'data' => $data],200);
+    }
    
     // public function edit($id)
     // {

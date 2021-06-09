@@ -10,7 +10,9 @@
 	<div class="text-center" style="margin-top: 50px;">
 		<h3>Inventaris QR Code</h3>
 	
-		{!! QrCode::size(300)->generate($data->kode_barang.'-'.$data->nama_barang.'-'.$data->merk); !!}
+		{!! QrCode::size(300)->generate('http://bbpombjm.online/invent/inventaris/detail/'.$data->id); !!}
+		{{-- {!! QrCode::size(300)->generate('http://bbpom.test/invent/inventaris/edit/'.$data->id); !!} --}}
 	</div>
 </body>
 </html>
+

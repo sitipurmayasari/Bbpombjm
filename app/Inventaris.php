@@ -9,7 +9,8 @@ class Inventaris extends Model
     protected $table = "inventaris";
     protected $fillable = ["kode_barang","nama_barang","harga","kode_bmn","jenis_barang","jumlah_barang",
                             "tanggal_diterima","merk","no_seri","lokasi","penanggung_jawab","spesifikasi","satuan_id",
-                            "file_user_manual","file_ika","file_trouble","file_foto","status_barang"];
+                            "file_user_manual","file_ika","file_trouble","file_foto","status_barang","kind"
+                        ];
 
     public function penanggung() //Relasi dari inventaris k user / pegawai
     {
@@ -22,7 +23,7 @@ class Inventaris extends Model
 
     public function jenis() //Relasi dari inventaris k lokasi
     {
-        return $this->belongsTo(Lokasi::class,'jenis_barang','id');
+        return $this->belongsTo(Jenisbrg::class,'jenis_barang','id');
     }
 
     public function satuan() //Relasi dari inventaris k lokasi
