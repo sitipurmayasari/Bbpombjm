@@ -51,7 +51,7 @@ class BarangkeluarController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'nomor' => 'required|unique:Sbb',
+            'nomor' => 'required|unique:sbb',
             'tanggal' => 'required|date',
             'users_id'=> 'required'
         ]);
