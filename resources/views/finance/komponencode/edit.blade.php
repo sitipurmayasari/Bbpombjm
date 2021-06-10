@@ -1,7 +1,7 @@
 @extends('layouts.mon')
 @section('breadcrumb')
     <li>Setup</li>
-    <li><a href="/finance/unitcode">Kode Kementrian Lembaga</a></li>
+    <li><a href="/finance/komponencode">Kode Komponen</a></li>
     <li>Edit</li>
 @endsection
 @section('content')
@@ -9,12 +9,12 @@
 
 <div class="row">
     <form class="form-horizontal validate-form" role="form" 
-    method="post" action="/finance/unitcode/update/{{$data->id}}">
+    method="post" action="/finance/komponencode/update/{{$data->id}}">
     {{ csrf_field() }}
     <div class="col-sm-12">
         <div class="widget-box">
             <div class="widget-header">
-                <h4 class="widget-title"> Input Kode Kementrian Lembaga</h4>
+                <h4 class="widget-title"> Input Kode Komponen</h4>
                 <div class="widget-toolbar">
                     <a href="#" data-action="collapse">
                         <i class="ace-icon fa fa-chevron-down"></i>
@@ -22,18 +22,19 @@
                 </div>
             </div>
             <div class="widget-body">
+               
                     <div class="widget-main no-padding">
                         <fieldset>
                         <br>
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Kode Kementrian Lembaga
+                            for="form-field-1"> Kode Rincian Output
                             </label>
                             <div class="col-sm-8">
-                                <select name="klcode_id" class="col-xs-10 col-sm-10 required " required>
+                                <select name="detailcode_id" class="col-xs-10 col-sm-10 required " required>
                                     <option value="">Pilih Kode</option>
-                                    @foreach ($kode as $peg)
-                                        @if ($data->klcode_id==$peg->id)
+                                    @foreach ($detail as $peg)
+                                        @if ($data->detailcode_id == $peg->id)
                                             <option value="{{$peg->id}}" selected>{{$peg->code}} || {{$peg->name}}</option>
                                         @else
                                             <option value="{{$peg->id}}">{{$peg->code}} || {{$peg->name}}</option>
@@ -44,25 +45,26 @@
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Kode Unit
+                            for="form-field-1"> Kode Komponen
                             </label>
                             <div class="col-sm-8">
-                                <input type="text"  placeholder="kode Unit" 
-                                        class="col-xs-10 col-sm-10 required " value="{{$data->code}}"
+                                <input type="text"  placeholder="kode Komponen" value="{{$data->code}}"
+                                        class="col-xs-10 col-sm-10 required " 
                                         name="code" required />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Nama Unit
+                            for="form-field-1"> Nama Komponen
                             </label>
                             <div class="col-sm-8">
-                                <input type="text"  placeholder="Nama Unit" value="{{$data->name}}"
+                                <input type="text"  placeholder="Nama Komponen" value="{{$data->name}}"
                                         class="col-xs-10 col-sm-10 required " 
                                         name="name" required/>
                             </div>
                         </div>
                         </fieldset>        
+                   
                </div>
            </div>
         </div>

@@ -1,7 +1,7 @@
 @extends('layouts.mon')
 @section('breadcrumb')
     <li>Setup</li>
-    <li><a href="/finance/unitcode">Kode Kementrian Lembaga</a></li>
+    <li><a href="/finance/detailcode">Kode Rincian Output</a></li>
     <li>Edit</li>
 @endsection
 @section('content')
@@ -9,12 +9,12 @@
 
 <div class="row">
     <form class="form-horizontal validate-form" role="form" 
-    method="post" action="/finance/unitcode/update/{{$data->id}}">
+    method="post" action="/finance/detailcode/update/{{$data->id}}">
     {{ csrf_field() }}
     <div class="col-sm-12">
         <div class="widget-box">
             <div class="widget-header">
-                <h4 class="widget-title"> Input Kode Kementrian Lembaga</h4>
+                <h4 class="widget-title"> Input Kode Rincian Output</h4>
                 <div class="widget-toolbar">
                     <a href="#" data-action="collapse">
                         <i class="ace-icon fa fa-chevron-down"></i>
@@ -27,13 +27,13 @@
                         <br>
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Kode Kementrian Lembaga
+                            for="form-field-1"> Kode Kelompok
                             </label>
                             <div class="col-sm-8">
-                                <select name="klcode_id" class="col-xs-10 col-sm-10 required " required>
+                                <select name="krocode_id" class="col-xs-10 col-sm-10 required " required>
                                     <option value="">Pilih Kode</option>
-                                    @foreach ($kode as $peg)
-                                        @if ($data->klcode_id==$peg->id)
+                                    @foreach ($kro as $peg)
+                                        @if ($data->krocode_id==$peg->id)
                                             <option value="{{$peg->id}}" selected>{{$peg->code}} || {{$peg->name}}</option>
                                         @else
                                             <option value="{{$peg->id}}">{{$peg->code}} || {{$peg->name}}</option>
@@ -44,20 +44,20 @@
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Kode Unit
+                            for="form-field-1"> Kode Rincian
                             </label>
                             <div class="col-sm-8">
-                                <input type="text"  placeholder="kode Unit" 
+                                <input type="text"  placeholder="kode Rincian" 
                                         class="col-xs-10 col-sm-10 required " value="{{$data->code}}"
                                         name="code" required />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Nama Unit
+                            for="form-field-1"> Nama Rincian
                             </label>
                             <div class="col-sm-8">
-                                <input type="text"  placeholder="Nama Unit" value="{{$data->name}}"
+                                <input type="text"  placeholder="Nama Rincian" value="{{$data->name}}"
                                         class="col-xs-10 col-sm-10 required " 
                                         name="name" required/>
                             </div>

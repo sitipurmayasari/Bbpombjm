@@ -120,6 +120,22 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     //Route untuk Kode Program Lembaga
     Route::get('/finance/programcode','Finance\ProgramcodeController@index')->name('programcode');
 
+    //Route untuk Kode kegiatan
+    Route::get('/finance/activitycode','Finance\ActivitycodeController@index')->name('activitycode');
+
+    //Route untuk Kode KRO
+    Route::get('/finance/krocode','Finance\KrocodeController@index')->name('krocode');
+
+    //Route untuk Kode Rincian KRO
+    Route::get('/finance/detailcode','Finance\DetailcodeController@index')->name('detailcode');
+
+    //Route untuk Kode komponen
+    Route::get('/finance/komponencode','Finance\KomponencodeController@index')->name('komponencode');
+
+    //Route untuk Kode Sub komponen
+    Route::get('/finance/subcode','Finance\SubcodeController@index')->name('subcode');
+
+
 });
 
 

@@ -1,7 +1,7 @@
 @extends('layouts.mon')
 @section('breadcrumb')
     <li>Setup</li>
-    <li><a href="/finace/klcode">Kode Kementrian Lembaga</a></li>
+    <li><a href="/finance/programcode">Kode Kementrian Lembaga</a></li>
     <li>Edit</li>
 @endsection
 @section('content')
@@ -9,7 +9,7 @@
 
 <div class="row">
     <form class="form-horizontal validate-form" role="form" 
-    method="post" action="/finance/klcode/update/{{$data->id}}">
+    method="post" action="/finance/programcode/update/{{$data->id}}">
     {{ csrf_field() }}
     <div class="col-sm-12">
         <div class="widget-box">
@@ -22,32 +22,47 @@
                 </div>
             </div>
             <div class="widget-body">
-               
                     <div class="widget-main no-padding">
                         <fieldset>
                         <br>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label no-padding-right" 
-                            for="form-field-1"> Kode
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Kode Kementrian Lembaga
                             </label>
                             <div class="col-sm-8">
-                                <input type="text"  placeholder="kode K/L" value="{{$data->code}}"
-                                        class="col-xs-10 col-sm-10 required " 
+                                <select name="unitcode_id" class="col-xs-10 col-sm-10 required " required>
+                                    <option value="">Pilih Kode</option>
+                                    @foreach ($unit as $peg)
+                                        @if ($data->unitcode_id==$peg->id)
+                                            <option value="{{$peg->id}}" selected>{{$peg->code}} || {{$peg->name}}</option>
+                                        @else
+                                            <option value="{{$peg->id}}">{{$peg->code}} || {{$peg->name}}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Kode Program
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text"  placeholder="kode K/L" 
+                                        class="col-xs-10 col-sm-10 required " value="{{$data->code}}"
                                         name="code" required />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label no-padding-right" 
-                            for="form-field-1"> Nama
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Nama Program
                             </label>
                             <div class="col-sm-8">
                                 <input type="text"  placeholder="Nama K/L" value="{{$data->name}}"
                                         class="col-xs-10 col-sm-10 required " 
-                                        name="name" />
+                                        name="name" required/>
                             </div>
                         </div>
                         </fieldset>        
-                   
                </div>
            </div>
         </div>

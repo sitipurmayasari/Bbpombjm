@@ -5,19 +5,30 @@ namespace App\Http\Controllers\Finance;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Programcode;
+use App\Unitcode;
 
 class ProgramcodeController extends Controller
 {
     public function index(Request $request)
     {
         $data = Programcode::orderBy('id','desc')
-                ->paginate('10');
+                            ->select('programcode.*','unitcode.code as unit','klcode.code as kl')
+                            ->leftJoin('unitcode','unitcode.id','=','programcode.unitcode_id')
+                            ->leftJoin('klcode','klcode.id','=','unitcode.klcode_id')
+                            ->when($request->keyword, function ($query) use ($request) {
+                                $query->where('klcode.code','LIKE','%'.$request->keyword.'%')
+                                        ->orWhere('unitcode.code', 'LIKE','%'.$request->keyword.'%')
+                                        ->orWhere('programcode.code', 'LIKE','%'.$request->keyword.'%')
+                                        ->orWhere('programcode.name', 'LIKE','%'.$request->keyword.'%');
+                                })
+                            ->paginate('10');
         return view('finance/programcode.index',compact('data'));
     }
 
     public function create()
     {
-        return view('finance/programcode.create');
+        $unit = Unitcode::all();
+        return view('finance/programcode.create',compact('unit'));
     }
 
     public function store(Request $request)
@@ -29,8 +40,9 @@ class ProgramcodeController extends Controller
    
     public function edit($id)
     {
+        $unit = Unitcode::all();
         $data = Programcode::where('id',$id)->first();
-        return view('finance/programcode.edit',compact('data'));
+        return view('finance/programcode.edit',compact('data','unit'));
     }
 
    

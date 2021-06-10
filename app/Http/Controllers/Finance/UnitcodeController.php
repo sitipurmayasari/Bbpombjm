@@ -12,7 +12,14 @@ class UnitcodeController extends Controller
     public function index(Request $request)
     {
         $data = Unitcode::orderBy('id','desc')
-                ->paginate('10');
+                        ->select('unitcode.*','klcode.code as kl')
+                        ->leftJoin('klcode','klcode.id','=','unitcode.klcode_id')
+                        ->when($request->keyword, function ($query) use ($request) {
+                            $query->where('klcode.code','LIKE','%'.$request->keyword.'%')
+                                    ->orWhere('unitcode.code', 'LIKE','%'.$request->keyword.'%')
+                                    ->orWhere('unitcode.name', 'LIKE','%'.$request->keyword.'%');
+                            })
+        ->paginate('10');
         return view('finance/unitcode.index',compact('data'));
     }
 

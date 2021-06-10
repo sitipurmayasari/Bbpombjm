@@ -45,7 +45,7 @@
                 @foreach($data as $key=>$row)
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
-                    <td>{{$row->klcode->name}}</td>
+                    <td>{{$row->kl}}</td>
                     <td>{{$row->code}}</td>
                     <td>{{$row->name}}</td>
                     <td>
@@ -53,7 +53,7 @@
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
                         <a href="#" class="btn btn-danger delete"
-                            r-name="{{$row->nama}}" 
+                            r-name="{{$row->name}}" 
                             r-id="{{$row->id}}">
                             <i class="glyphicon glyphicon-trash"></i></a>
                     </td>

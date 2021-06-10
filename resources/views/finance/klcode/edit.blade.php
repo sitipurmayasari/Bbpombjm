@@ -1,7 +1,7 @@
 @extends('layouts.mon')
 @section('breadcrumb')
     <li>Setup</li>
-    <li><a href="/finace/klcode">Kode Kementrian Lembaga</a></li>
+    <li><a href="/finance/klcode">Kode Kementrian Lembaga</a></li>
     <li>Edit</li>
 @endsection
 @section('content')

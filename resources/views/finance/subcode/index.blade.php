@@ -2,7 +2,7 @@
 @section('breadcrumb')
 @section('breadcrumb')
     <li>Setup</li>
-    <li>Kode Program Lembaga</i></li>
+    <li>Kode Sub Komponen</i></li>
 @endsection
 @section('content')
 
@@ -13,7 +13,7 @@
                 <div class="form-group col-sm-12">
                     <div class="row">
                         <div class="form-group col-xs-12 col-sm-3" style="float: left">
-                           <a href="{{Route('programcode.create')}}"  class="btn btn-primary">Tambah Data</a>   
+                           <a href="{{Route('subcode.create')}}"  class="btn btn-primary">Tambah Data</a>   
                         </div>
                         <div class="form-group col-xs-12 col-sm-5" style="float: right">
                             <div class="input-group">
@@ -36,22 +36,20 @@
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
                 <th width="40px">No</th>
-                <th class="col-md-2">Kode K/L</th>
-                <th class="col-md-2">Kode Unit</th>
-                <th class="col-md-2">Kode Program</th>
-                <th>Nama Unit</th>
+                <th class="col-md-2">Kode Komponen</th>
+                <th class="col-md-2">Kode Sub Komponen</th>
+                <th>Nama Sub Komponen</th>
                 <th  class="col-md-2">Aksi</th>
             </thead>
             <tbody>   	
                 @foreach($data as $key=>$row)
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
-                    <td>{{$row->kl}}</td>
-                    <td>{{$row->unit}}</td>
+                    <td>{{$row->komponen}}</td>
                     <td>{{$row->code}}</td>
                     <td>{{$row->name}}</td>
                     <td>
-                        <a href="/finance/programcode/edit/{{$row->id}}" class="btn btn-warning">
+                        <a href="/finance/subcode/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
                         <a href="#" class="btn btn-danger delete"
@@ -85,7 +83,7 @@
             }).then((result) => {
                 console.log(result);
                 if (result.value) {
-                    window.location = "/finance/programcode/delete/"+id;
+                    window.location = "/finance/subcode/delete/"+id;
                 }
             });
         });
