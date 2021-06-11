@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Aduan extends Model
 {
     protected $table = "aduan";
-    protected $fillable = ['no_aduan','tanggal','aduan_status','pegawai_id'];
+    protected $fillable = ['no_aduan','tanggal','aduan_status','pegawai_id','jenis'];
 
     public function getFoto() 
     {

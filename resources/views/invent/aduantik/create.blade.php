@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('breadcrumb')
     <li>Aduan</li>
-    <li>Input Aduan</li>
+    <li>Input Aduan TIK</li>
 @endsection
 @section('content')
 @include('layouts.validasi')
  <form class="form-horizontal validate-form" role="form" 
-         method="post" action="{{route('aduan.store')}}" enctype="multipart/form-data"   >
+         method="post" action="{{route('aduantik.store')}}" enctype="multipart/form-data"   >
     {{ csrf_field() }}
 <div class="row">
     <div class="col-md-12">
@@ -20,7 +20,7 @@
                     class="col-xs-10 col-sm-10 required " 
                     name="no_aduan"
                     value="{{$no_aduan}}"/>
-                    <input type="hidden" name="jenis" value="U"/>
+                    <input type="hidden" name="jenis" value="T"/>
                 </div>
                 <div class="col-md-4">
                     <label for="">TANGGAL ADUAN *</label>

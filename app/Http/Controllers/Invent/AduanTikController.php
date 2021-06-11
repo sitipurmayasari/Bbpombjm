@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\DB;
 use App\AduanDetail;
 use Carbon\Carbon;
 
-class AduanController extends Controller
+class AduanTikController extends Controller
 {
     public function index(Request $request)
     {   
@@ -22,32 +22,33 @@ class AduanController extends Controller
         $data = Aduan::orderBy('aduan_status','asc')
                     ->select('aduan.*','users.name')
                     ->leftJoin('users','users.id','=','aduan.pegawai_id')
-                    ->where('aduan.jenis','=','U')
+                    ->where('aduan.jenis','=','T')
                     ->when($request->keyword, function ($query) use ($request) {
                         $query->where('no_aduan','LIKE','%'.$request->keyword.'%')
                                 ->orWhere('tanggal', 'LIKE','%'.$request->keyword.'%')
                                 ->orWhere('name', 'LIKE','%'.$request->keyword.'%');
                     })
                     ->paginate('10');
-        return view('invent/aduan.index',compact('data','detail'));
+        return view('invent/aduantik.index',compact('data','detail'));
     }
 
     public function create()
     {
+
         $data = Inventaris::all()
                 ->where('kind','=','R')
-                ->where('jenis_barang','!=','4');
+                ->where('jenis_barang','=','4');
         $user = User::all()
                 ->where('id','!=','1');
         $no_aduan = $this->getNoAduan();
-        return view('invent/aduan.add',compact('data','user','no_aduan'));
+        return view('invent/aduantik.create',compact('data','user','no_aduan'));
     }
 
     public function detail($id)
     {
        $aduan = Aduan::find($id);
        $detail = AduanDetail::where('aduan_id',$id)->get();
-       return view('invent/aduan.detail',compact('aduan','detail'));
+       return view('invent/aduantik.detail',compact('aduan','detail'));
     }
 
    
@@ -72,7 +73,7 @@ class AduanController extends Controller
             }
         DB::commit(); 
 
-        return redirect('/invent/aduan/print/'.$aduan_id);
+        return redirect('/invent/aduantik/print/'.$aduan_id);
 
     }
 
@@ -86,6 +87,8 @@ class AduanController extends Controller
         $pejabat = Pejabat::all();
 
         $petugas = Petugas::where('id', '=', 1)->first();
+
+        $petugastik = Petugas::where('id', '=', 5)->first();
 
         $menyetujui = Pejabat::
                         where('jabatan_id', '=', 11)
@@ -113,7 +116,7 @@ class AduanController extends Controller
                         ->whereRaw("(SELECT tanggal FROM aduan WHERE id=$id) BETWEEN dari AND sampai")
                         ->first();
         
-        $pdf = PDF::loadview('invent/aduan.print',compact('data','isi','menyetujui','petugas','pejabat','mengetahui'));
+        $pdf = PDF::loadview('invent/aduantik.print',compact('data','isi','menyetujui','petugas','pejabat','mengetahui','petugastik'));
         return $pdf->stream();
     }
 
@@ -121,7 +124,7 @@ class AduanController extends Controller
     public function edit($id)
     {
         $data = Aduan::where('id',$id)->first();
-        return view('invent/aduan.edit',compact('data'));
+        return view('invent/aduantik.edit',compact('data'));
     }
 
    
@@ -135,7 +138,7 @@ class AduanController extends Controller
             ]);
         }
         $aduan->update(['aduan_status' => $request->aduan_status]);
-        return redirect('/invent/aduan/detail/'.$id)->with('sukses','Barang sudah diperbaharui');
+        return redirect('/invent/aduantik/detail/'.$id)->with('sukses','Barang sudah diperbaharui');
     }
 
 

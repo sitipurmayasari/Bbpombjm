@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('breadcrumb')
-    <li><i class="ace-icon fa fa-table home-icon"></i>  <a href="/invent/aduan">Aduan</a></li>
+    <li><i class="ace-icon fa fa-table home-icon"></i>  <a href="/invent/aduantik">Aduan</a></li>
     <li>No {{$aduan->no_aduan}}</li>
 
 @endsection
 @section('content')
 <form Class="form-horizontal validate-form" role="form" 
-method="post" action="/invent/aduan/update/{{$aduan->id}}">
+method="post" action="/invent/aduantik/update/{{$aduan->id}}">
 {{ csrf_field() }}
 <div class="panel panel-default table-responsive hidden-xs">
     <table class="table table-condensed table-bordered">
@@ -19,7 +19,7 @@ method="post" action="/invent/aduan/update/{{$aduan->id}}">
         <tr>
             <td class="text-center lead" style="border-top: none;">{{$aduan->no_aduan}}</td>
             <td class="text-center lead" style="border-top: none;">{{$aduan->tanggal}}</td>
-            <td class="text-center lead" style="border-top: none;">{{$aduan->lapor->no_pegawai}} <br>  {{$aduan->lapor->name}}</td>
+            <td class="text-center lead" style="border-top: none;">{{$aduan->lapor->no_pegawai}} <br> {{$aduan->lapor->name}}</td>
             <td>
                 @if ($aduan->aduan_status==0)
                     <select name="aduan_status"  class="form-control">

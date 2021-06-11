@@ -58,8 +58,10 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
      Route::get('/invent/barangkeluar','Invent\BarangkeluarController@index')->name('barangkeluar');
     //Route untuk aduan
     Route::get('/invent/aduan','Invent\AduanController@index')->name('aduan');
-     //Route untuk Pengajuan
-     Route::get('/invent/pengajuan','Invent\PengajuanController@index')->name('pengajuan');
+    //Route untuk aduanTIK
+    Route::get('/invent/aduantik','Invent\AduanTikController@index')->name('aduantik');
+    //Route untuk Pengajuan
+    Route::get('/invent/pengajuan','Invent\PengajuanController@index')->name('pengajuan');
     //Route untuk Laporan
     Route::get('/invent/laporan','Invent\LaporanController@index')->name('laporan');
     //Route untuk kendaraan
@@ -113,27 +115,26 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     //--------------------------Finance------------------------------------------
     //Route untuk Kode Kementrian Lembaga
     Route::get('/finance/klcode','Finance\KlcodeController@index')->name('klcode');
-
     //Route untuk Kode Unit Kementrian Lembaga
     Route::get('/finance/unitcode','Finance\UnitcodeController@index')->name('unitcode');
-
     //Route untuk Kode Program Lembaga
     Route::get('/finance/programcode','Finance\ProgramcodeController@index')->name('programcode');
-
     //Route untuk Kode kegiatan
     Route::get('/finance/activitycode','Finance\ActivitycodeController@index')->name('activitycode');
-
     //Route untuk Kode KRO
     Route::get('/finance/krocode','Finance\KrocodeController@index')->name('krocode');
-
     //Route untuk Kode Rincian KRO
     Route::get('/finance/detailcode','Finance\DetailcodeController@index')->name('detailcode');
-
     //Route untuk Kode komponen
     Route::get('/finance/komponencode','Finance\KomponencodeController@index')->name('komponencode');
-
     //Route untuk Kode Sub komponen
     Route::get('/finance/subcode','Finance\SubcodeController@index')->name('subcode');
+    //Route untuk Kode Akun
+    Route::get('/finance/accountcode','Finance\AccountcodeController@index')->name('accountcode');
+    //Route untuk Loka
+    Route::get('/finance/loka','Finance\LokaController@index')->name('loka');
+    //Route untuk Pelaksanaan Anggaran
+    Route::get('/finance/implementation','Finance\ImplementController@index')->name('implementation');
 
 
 });

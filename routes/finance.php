@@ -55,3 +55,23 @@
   Route::get('finance/subcode/delete/{id}','Finance\SubcodeController@delete')->name('subcode.delete');
   Route::get('finance/subcode/edit/{id}','Finance\SubcodeController@edit')->name('subcode.edit');
   Route::post('finance/subcode/update/{id}','Finance\SubcodeController@update')->name('subcode.update');
+
+  //Route untuk Kode Akun
+  Route::get('/finance/accountcode/create','Finance\AccountcodeController@create')->name('accountcode.create');
+  Route::post('finance/accountcode/store','Finance\AccountcodeController@store')->name('accountcode.store');
+  Route::get('finance/accountcode/delete/{id}','Finance\AccountcodeController@delete')->name('accountcode.delete');
+  Route::get('finance/accountcode/edit/{id}','Finance\AccountcodeController@edit')->name('accountcode.edit');
+  Route::post('finance/accountcode/update/{id}','Finance\AccountcodeController@update')->name('accountcode.update');
+
+  //Route untuk Loka
+  Route::get('/finance/loka/create','Finance\LokaController@create')->name('loka.create');
+  Route::post('finance/loka/store','Finance\LokaController@store')->name('loka.store');
+  Route::get('finance/loka/delete/{id}','Finance\LokaController@delete')->name('loka.delete');
+  Route::get('finance/loka/edit/{id}','Finance\LokaController@edit')->name('loka.edit');
+  Route::post('finance/loka/update/{id}','Finance\LokaController@update')->name('loka.update');
+
+  //Route untuk Pelaksanaan Anggaran
+  Route::get('/finance/implementation/create','Finance\ImplementController@create')->name('implementation.create');
+  Route::post('finance/implementation/store','Finance\ImplementController@store')->name('implementation.store');
+  Route::get('finance/implementation/edit/{id}','Finance\ImplementController@edit')->name('implementation.edit');
+  Route::post('finance/implementation/update/{id}','Finance\ImplementController@update')->name('implementation.update');

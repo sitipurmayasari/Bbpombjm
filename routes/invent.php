@@ -42,11 +42,17 @@
 
   //Route untuk aduan
   Route::get('/invent/aduan/create','Invent\AduanController@create')->name('aduan.create');
-  Route::get('/invent/aduan/create2','Invent\AduanController@create')->name('aduan.create');
   Route::post('/invent/aduan/store','Invent\AduanController@store')->name('aduan.store');
   Route::post('/invent/aduan/update/{id}','Invent\AduanController@update')->name('aduan.update');
   Route::get('/invent/aduan/print/{id}','Invent\AduanController@print')->name('aduan.print');
   Route::get('/invent/aduan/detail/{id}','Invent\AduanController@detail')->name('aduan.detail');
+
+  //Route untuk aduan TIK
+  Route::get('/invent/aduantik/create','Invent\AduanTikController@create')->name('aduantik.create');
+  Route::post('/invent/aduantik/store','Invent\AduanTikController@store')->name('aduantik.store');
+  Route::post('/invent/aduantik/update/{id}','Invent\AduanTikController@update')->name('aduantik.update');
+  Route::get('/invent/aduantik/print/{id}','Invent\AduanTikController@print')->name('aduantik.print');
+  Route::get('/invent/aduantik/detail/{id}','Invent\AduanTikController@detail')->name('aduantik.detail');
 
   //Route untuk pengajuan
   Route::get('/invent/pengajuan/create','Invent\PengajuanController@create')->name('pengajuan.create');
