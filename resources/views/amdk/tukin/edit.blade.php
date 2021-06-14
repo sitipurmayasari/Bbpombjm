@@ -7,7 +7,7 @@
 @section('content')
 @include('layouts.validasi')
  <form class="form-horizontal validate-form" role="form" 
-         m method="post" action="/amdk/tukin/update/{{$data->id}}" enctype="multipart/form-data"   >
+         method="post" action="/amdk/tukin/update/{{$data->id}}" enctype="multipart/form-data"   >
     {{ csrf_field() }}
 <div class="row">
     <div class="col-md-12">
@@ -35,7 +35,7 @@
                             $bulan2 = array("","Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus",
                                          "September", "Oktober", "November", "Desember");
                             for($a=1;$a<=12;$a++){
-                                if($a==$bulan){ 
+                                if($a == $data->bulan){ 
                                     $pilih="selected";
                                 }else {
                                     $pilih="";

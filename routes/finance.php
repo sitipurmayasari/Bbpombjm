@@ -34,6 +34,7 @@
   Route::get('finance/krocode/delete/{id}','Finance\KrocodeController@delete')->name('krocode.delete');
   Route::get('finance/krocode/edit/{id}','Finance\KrocodeController@edit')->name('krocode.edit');
   Route::post('finance/krocode/update/{id}','Finance\KrocodeController@update')->name('krocode.update');
+  
 
   //Route untuk Kode Rincian KRO
   Route::get('/finance/detailcode/create','Finance\DetailcodeController@create')->name('detailcode.create');
@@ -41,6 +42,7 @@
   Route::get('finance/detailcode/delete/{id}','Finance\DetailcodeController@delete')->name('detailcode.delete');
   Route::get('finance/detailcode/edit/{id}','Finance\DetailcodeController@edit')->name('detailcode.edit');
   Route::post('finance/detailcode/update/{id}','Finance\DetailcodeController@update')->name('detailcode.update');
+  Route::get('/finance/detailcode/getRO','Finance\DetailcodeController@getRO')->name('detailcode.getRO');
 
   //Route untuk Kode komponen
   Route::get('/finance/komponencode/create','Finance\KomponencodeController@create')->name('komponencode.create');
@@ -48,6 +50,7 @@
   Route::get('finance/komponencode/delete/{id}','Finance\KomponencodeController@delete')->name('komponencode.delete');
   Route::get('finance/komponencode/edit/{id}','Finance\KomponencodeController@edit')->name('komponencode.edit');
   Route::post('finance/komponencode/update/{id}','Finance\KomponencodeController@update')->name('komponencode.update');
+  Route::get('finance/komponencode/getKomponen','Finance\KomponencodeController@getKomponen')->name('komponencode.getKomponen');
 
   //Route untuk Kode Sub komponen
   Route::get('/finance/subcode/create','Finance\SubcodeController@create')->name('subcode.create');
@@ -55,6 +58,7 @@
   Route::get('finance/subcode/delete/{id}','Finance\SubcodeController@delete')->name('subcode.delete');
   Route::get('finance/subcode/edit/{id}','Finance\SubcodeController@edit')->name('subcode.edit');
   Route::post('finance/subcode/update/{id}','Finance\SubcodeController@update')->name('subcode.update');
+  Route::get('/finance/subcode/getSubkom','Finance\SubcodeController@getSubkom')->name('subcode.getSubkom');
 
   //Route untuk Kode Akun
   Route::get('/finance/accountcode/create','Finance\AccountcodeController@create')->name('accountcode.create');

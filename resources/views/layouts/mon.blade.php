@@ -213,6 +213,7 @@
 		<script src="{{asset('assets/js/ace-extra.min.js')}}"></script>
 		<script src="{{asset('assets/js/jQuery-2.1.4.min.js')}}"></script>
 
+		<script src="{{asset('assets/js/easy-number-separator.js')}}"></script>
 		<script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
 		<script src="{{asset('assets/js/jquery-ui.custom.min.js')}}"></script>
 		<script src="{{asset('assets/js/jquery.ui.touch-punch.min.js')}}"></script>

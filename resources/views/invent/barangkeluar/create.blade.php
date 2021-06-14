@@ -203,7 +203,7 @@
         var b =  $("#jum-1").val();
         var c = a - b;
         $("#sisa-1").val(c);
-    }
+        }
 
         function getDataBarang(i){
             var barang_id =  $("#barang_id-"+i).val();

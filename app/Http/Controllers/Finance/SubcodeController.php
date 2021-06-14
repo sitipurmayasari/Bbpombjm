@@ -58,4 +58,14 @@ class SubcodeController extends Controller
         $petugas->delete();
         return redirect('/finance/subcode')->with('sukses','Data Terhapus');
     }
+
+    public function getSubkom(Request $request)
+    {
+        $sub = Subcode::orderBy('id','asc')->where('komponencode_id',$request->komponencode_id)->get();
+        return response()->json([ 
+            'success' => true,
+            'komponencode_id'=>$request->komponencode_id,
+            'data' => $sub],200
+        );
+    }
 }

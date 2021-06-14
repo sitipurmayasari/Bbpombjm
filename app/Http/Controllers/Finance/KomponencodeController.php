@@ -58,4 +58,14 @@ class KomponencodeController extends Controller
         $petugas->delete();
         return redirect('/finance/komponencode')->with('sukses','Data Terhapus');
     }
+
+    public function getKomponen(Request $request)
+    {
+        $komponen = Komponencode::orderBy('id','asc')->where('detailcode_id',$request->detailcode_id)->get();
+        return response()->json([ 
+            'success' => true,
+            'detailcode_id'=>$request->detailcode_id,
+            'data' => $komponen],200
+        );
+    }
 }

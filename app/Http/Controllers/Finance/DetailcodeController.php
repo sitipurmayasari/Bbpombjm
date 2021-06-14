@@ -58,4 +58,14 @@ class DetailcodeController extends Controller
         $petugas->delete();
         return redirect('/finance/detailcode')->with('sukses','Data Terhapus');
     }
+
+    public function getRO(Request $request)
+    {
+        $ro = Detailcode::orderBy('id','asc')->where('krocode_id',$request->kro_id)->get();
+        return response()->json([ 
+            'success' => true,
+            'krocode_id'=>$request->kro_id,
+            'data' => $ro],200
+        );
+    }
 }
