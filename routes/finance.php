@@ -79,3 +79,6 @@
   Route::post('finance/implementation/store','Finance\ImplementController@store')->name('implementation.store');
   Route::get('finance/implementation/edit/{id}','Finance\ImplementController@edit')->name('implementation.edit');
   Route::post('finance/implementation/update/{id}','Finance\ImplementController@update')->name('implementation.update');
+
+   //Route untuk Rekap Anggaran
+   Route::post('/finance/rera/cetakrekap','Finance\ReraController@cetakrekap')->name('rera.cetakrekap');

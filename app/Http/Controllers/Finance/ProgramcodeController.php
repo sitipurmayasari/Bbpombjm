@@ -12,7 +12,7 @@ class ProgramcodeController extends Controller
     public function index(Request $request)
     {
         $data = Programcode::orderBy('id','desc')
-                            ->select('programcode.*','unitcode.code as unit','klcode.code as kl')
+                            ->select('programcode.*')
                             ->leftJoin('unitcode','unitcode.id','=','programcode.unitcode_id')
                             ->leftJoin('klcode','klcode.id','=','unitcode.klcode_id')
                             ->when($request->keyword, function ($query) use ($request) {

@@ -12,7 +12,7 @@ class SubcodeController extends Controller
     public function index(Request $request)
     {
         $data = Subcode::orderBy('id','desc')
-                        ->select('subcode.*','komponencode.code as komponen')
+                        ->select('subcode.*')
                         ->leftJoin('komponencode','komponencode.id','=','subcode.komponencode_id')
                         ->when($request->keyword, function ($query) use ($request) {
                             $query->where('komponencode.code','LIKE','%'.$request->keyword.'%')

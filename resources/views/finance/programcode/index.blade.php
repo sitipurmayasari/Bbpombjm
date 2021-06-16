@@ -36,7 +36,6 @@
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
                 <th width="40px">No</th>
-                <th class="col-md-2">Kode K/L</th>
                 <th class="col-md-2">Kode Unit</th>
                 <th class="col-md-2">Kode Program</th>
                 <th>Nama Unit</th>
@@ -46,8 +45,7 @@
                 @foreach($data as $key=>$row)
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
-                    <td>{{$row->kl}}</td>
-                    <td>{{$row->unit}}</td>
+                    <td>{{$row->unit->klcode->code}} - {{$row->unit->code}}</td>
                     <td>{{$row->code}}</td>
                     <td>{{$row->name}}</td>
                     <td>

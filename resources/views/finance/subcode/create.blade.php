@@ -33,7 +33,7 @@
                                 <select name="komponencode_id" class="col-xs-10 col-sm-10 required " required>
                                     <option value="">Pilih Kode</option>
                                     @foreach ($kode as $peg)
-                                        <option value="{{$peg->id}}">{{$peg->code}} || {{$peg->name}}</option>
+                                        <option value="{{$peg->id}}">{{$peg->det->unit->code}} - {{$peg->det->code}} - {{$peg->code}}</option>
                                     @endforeach
                                 </select>
                             </div>

@@ -12,7 +12,7 @@ class ActivitycodeController extends Controller
     public function index(Request $request)
     {
         $data = Activitycode::orderBy('id','desc')
-                            ->select('activitycode.*','programcode.code as program')
+                            ->select('activitycode.*')
                             ->leftJoin('programcode','programcode.id','=','activitycode.programcode_id')
                             ->when($request->keyword, function ($query) use ($request) {
                                 $query->where('activitycode.code','LIKE','%'.$request->keyword.'%')

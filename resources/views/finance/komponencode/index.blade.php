@@ -45,7 +45,7 @@
                 @foreach($data as $key=>$row)
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
-                    <td>{{$row->det}}</td>
+                    <td>{{$row->det->unit->code}} - {{$row->det->code}}</td>
                     <td>{{$row->code}}</td>
                     <td>{{$row->name}}</td>
                     <td>

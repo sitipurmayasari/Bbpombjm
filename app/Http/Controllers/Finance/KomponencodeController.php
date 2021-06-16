@@ -12,7 +12,7 @@ class KomponencodeController extends Controller
     public function index(Request $request)
     {
         $data = Komponencode::orderBy('id','desc')
-                        ->select('komponencode.*','detailcode.code as det')
+                        ->select('komponencode.*')
                         ->leftJoin('detailcode','detailcode.id','=','komponencode.detailcode_id')
                         ->when($request->keyword, function ($query) use ($request) {
                             $query->where('komponencode.code','LIKE','%'.$request->keyword.'%')

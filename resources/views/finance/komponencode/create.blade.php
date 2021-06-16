@@ -34,8 +34,9 @@
                                 <select name="detailcode_id" class="col-xs-10 col-sm-10 required " required>
                                     <option value="">Pilih Kode</option>
                                     @foreach ($detail as $peg)
-                                        <option value="{{$peg->id}}">{{$peg->code}} || {{$peg->name}}</option>
-                                    @endforeach
+                                        <option value="{{$peg->id}}">{{$peg->unit->code}} - {{$peg->code}}
+                                        </option>
+                                    @endforeach 
                                 </select>
                             </div>
                         </div>

@@ -34,9 +34,9 @@
                                     <option value="">Pilih Kode</option>
                                     @foreach ($unit as $peg)
                                         @if ($data->unitcode_id==$peg->id)
-                                            <option value="{{$peg->id}}" selected>{{$peg->code}} || {{$peg->name}}</option>
+                                            <option value="{{$peg->id}}" selected>{{$peg->klcode->code}} - {{$peg->code}}</option>
                                         @else
-                                            <option value="{{$peg->id}}">{{$peg->code}} || {{$peg->name}}</option>
+                                            <option value="{{$peg->id}}">{{$peg->klcode->code}} - {{$peg->code}}</option>
                                         @endif
                                     @endforeach
                                 </select>
