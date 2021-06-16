@@ -10,7 +10,7 @@
     <style>
         @page {
             size: A4;
-            margin: 170px 0px 100px 0px;
+            margin: 150px 0px 100px 0px;
             font-family: 'Times New Roman';
             font-size: 11px;
             page-break-after: always;
@@ -28,7 +28,7 @@
                 top: 0%;
                 margin-left: 5%;
                 margin-right: 5%;
-                margin-top: -170px;
+                margin-top: -150px;
         }
 
         table{
@@ -108,33 +108,105 @@
                 <tbody class="tbl">
                     @php
                         $no= 1;
+                        $detcode="";
+                        $komcode="";
+                        $subcode="";
+                        $akuncode="";
                     @endphp
                     @foreach ($data as $item)
+                        @if ($detcode != $item->implemen->det->id)
+                            <tr>
+                                <td>
+                                    <b>{{$item->implemen->act->code}}.{{$item->implemen->kro->code}}.{{$item->implemen->det->code}}</b>
+                                </td>
+                                <td>
+                                    <b>{{$item->implemen->det->name}}</b><br>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td style="text-align: right;">
+                                    <b>
+                                        @foreach ($deta as $ini)
+                                            @if ($item->implemen->detailcode_id == $ini->detailcode_id)
+                                                @php
+                                                    $angka = $ini->jum  ;
+                                                    echo "Rp. " . number_format($angka, 2, ".", ",");
+                                                @endphp
+                                            @endif
+                                        @endforeach
+                                    </b>
+                                </td>
+                                <td></td>
+                            </tr>
+                        @endif
+                        @if ($komcode != $item->implemen->komponen->id)
+                            <tr>
+                                <td>
+                                    <b>{{$item->implemen->komponen->code}}</b>
+                                </td>
+                                <td>
+                                    <b> {{$item->implemen->komponen->name}}</b>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td style="text-align: right;">
+                                    <b>
+                                        @foreach ($komp as $ini)
+                                            @if ($item->implemen->komponencode_id == $ini->komponencode_id)
+                                                @php
+                                                    $angka = $ini->jum  ;
+                                                    echo "Rp. " . number_format($angka, 2, ".", ",");
+                                                @endphp
+                                            @endif
+                                        @endforeach
+                                    </b>
+                                </td>
+                                <td></td>
+                            </tr>
+                        @endif
+                        @if ($subcode != $item->implemen->sub->id)
+                            <tr>
+                                <td>
+                                    {{$item->implemen->sub->code}}
+                                </td>
+                                <td>
+                                    {{$item->implemen->sub->name}}
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        @endif
+                        @if ($akuncode != $item->akun->id)
+                            <tr>
+                                <td>
+                                    {{$item->akun->code}}
+                                </td>
+                                <td>
+                                    {{$item->akun->name}}
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td style="text-align: center;">
+                                    @foreach ($akun as $ini)
+                                        @if ($item->accountcode_id == $ini->accountcode_id and $item->subcode_id == $ini->subcode_id)
+                                            @php
+                                                $angka = $ini->jum  ;
+                                                echo "Rp. " . number_format($angka, 2, ".", ",");
+                                            @endphp
+                                        @endif
+                                    @endforeach
+                                </td>
+                                <td style="text-align: center;">
+                                    {{$item->sd}}
+                                </td>
+                            </tr>
+                        @endif
                         <tr>
+                            <td></td>
                             <td>
-                                <b>{{$item->implemen->act->code}}.{{$item->implemen->kro->code}}.{{$item->implemen->det->code}}</b><br>
-
-                                <b>{{$item->implemen->komponen->code}}</b><br>
-
-                                {{$item->implemen->sub->code}} <br>
-
-                                {{$item->akun->code}}
-
-                               
-                            </td>
-                            <td>
-                                <b>{{$item->implemen->det->name}}</b><br>
-
-                                <b> {{$item->implemen->komponen->name}}</b><br>
-
-                                {{$item->implemen->sub->name}} <br>
-
-                                {{$item->akun->name}} <br>
-
                                 {{$item->loka->nama}}
-
-                                
-
                             </td>
                             <td style="text-align: center;">{{$item->volume}}</td>
                             <td style="text-align: right;">
@@ -144,47 +216,19 @@
                                 @endphp
                             </td>
                             <td style="text-align: right;">
-                                <b>
-                                    @foreach ($deta as $ini)
-                                        @if ($item->implemen->detailcode_id == $ini->detailcode_id)
-                                            @php
-                                                $angka = $ini->jum  ;
-                                                echo "Rp. " . number_format($angka, 2, ".", ",");
-                                            @endphp
-                                        @endif
-                                    @endforeach
-                                </b><br>
-
-                                <b>
-                                    @foreach ($komp as $ini)
-                                        @if ($item->implemen->komponencode_id == $ini->komponencode_id)
-                                            @php
-                                                $angka = $ini->jum  ;
-                                                echo "Rp. " . number_format($angka, 2, ".", ",");
-                                            @endphp
-                                        @endif
-                                    @endforeach
-                                </b><br>
-
-                                @foreach ($akun as $ini)
-                                    @if ($item->accountcode_id == $ini->accountcode_id)
-                                        @php
-                                            $angka = $ini->jum  ;
-                                            echo "Rp. " . number_format($angka, 2, ".", ",");
-                                        @endphp
-                                    @endif
-                                @endforeach
-                                <br>
-
                                 @php
                                     $angka = $item->total ;
                                     echo "Rp. " . number_format($angka, 2, ".", ",");
                                 @endphp
                             </td>
-                            <td style="text-align: center;">
-                                {{$item->sd}}
-                            </td>
+                            <td></td>
                         </tr>
+                        @php
+                            $detcode = $item->implemen->det->id;
+                            $komcode = $item->implemen->komponen->id;
+                            $subcode = $item->implemen->sub->id;
+                            $akuncode = $item->akun->id;
+                        @endphp
                      @endforeach                           
                 </tbody>
             </table>
