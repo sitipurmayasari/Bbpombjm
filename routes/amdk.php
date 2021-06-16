@@ -130,6 +130,12 @@
   Route::post('/amdk/dupak/update/{id}','Amdk\DupakController@update')->name('dupak.update');
   Route::get('/amdk/dupak/print/{id}','Amdk\DupakController@print')->name('dupak.print');
 
+  //Route untuk masa arsip
+  Route::get('/amdk/archive_time/create','Amdk\ArchiveTimeController@create')->name('archive_time.create');
+  Route::post('/amdk/archive_time/store','Amdk\ArchiveTimeController@store')->name('archive_time.store');
+  Route::get('/amdk/archive_time/delete/{id}','Amdk\ArchiveTimeController@delete')->name('archive_time.delete');
+  Route::get('/amdk/archive_time/edit/{id}','Amdk\ArchiveTimeController@edit')->name('archive_time.edit');
+  Route::post('/amdk/archive_time/update/{id}','Amdk\ArchiveTimeController@update')->name('archive_time.update');
 
   //Route untuk dinas
   Route::get('/amdk/outstation/create','Amdk\OutstationController@create')->name('outstation.create');
@@ -137,3 +143,5 @@
   Route::get('/amdk/outstation/delete/{id}','Amdk\OutstationController@delete')->name('outstation.delete');
   Route::get('/amdk/outstation/edit/{id}','Amdk\OutstationController@edit')->name('outstation.edit');
   Route::post('/amdk/outstation/update/{id}','Amdk\OutstationController@update')->name('outstation.update');
+
+  

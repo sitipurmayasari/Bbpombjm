@@ -1,10 +1,9 @@
 @extends('amdk/layouts_amdk.app')
 @section('breadcrumb')
-    <li>Dokumen Arsip</li>
-    <li> Dosir</i></li>
+    <li>Setup</li>
+    <li>Masa Arsip</li>
 @endsection
 @section('content')
-
 <form method="get" action="{{ url()->current() }}">
     <div class="row">
         <div class="col-xs-12">
@@ -12,11 +11,11 @@
                 <div class="form-group col-sm-12">
                     <div class="row">
                         <div class="form-group col-xs-12 col-sm-3" style="float: left">
-                           <a href="{{Route('dosir.create')}}"  class="btn btn-primary">Tambah Data</a>   
+                           <a href="{{Route('archive_time.create')}}"  class="btn btn-primary">Tambah Data</a>   
                         </div>
-                        <div class="form-group col-xs-12 col-sm-5" style="float: right">
+                        <div class="form-group col-xs-12 col-sm-3" style="float: right">
                             <div class="input-group">
-                                <input type="text" class="form-control gp-search" name="keyword" placeholder="Cari " value="{{request('keyword')}}" autocomplete="off">
+                                <input type="text" class="form-control gp-search" name="keyword" placeholder="Cari" value="{{request('keyword')}}"  autocomplete="off">
                                 <div class="input-group-btn">
                                     <button type="submit" class="btn btn-default no-border btn-sm gp-search">
                                     <i class="ace-icon fa fa-search icon-on-right bigger-110"></i>
@@ -35,22 +34,20 @@
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
                 <th width="40px">No</th>
-                <th>Jenis Dokumen</th>
-                <th>Nama Dokumen</th>
-                <th>Tanggal</th>
-                <th>File</th>
+                <th>Jenis Arsip</th>
+                <th>Masa Aktif</th>
+                <th>Masa Pasif</th>
                 <th>Aksi</th>
             <thead>
             <tbody>   	
                 @foreach($data as $key=>$row)
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
-                    <td>{{$row->arsip->nama}}</td>
                     <td>{{$row->nama}}</td>
-                    <td>{{$row->created_at}}</td>
-                    <td><a href="{{$row->getFIledosir()}}" target="_blank" >{{$row->file}}</a></td>
+                    <td>{{$row->masa_aktif}}</td>
+                    <td>{{$row->masa_pasif}}</td>
                     <td>
-                        <a href="/amdk/dosir/edit/{{$row->id}}" class="btn btn-warning">
+                        <a href="/amdk/archive_time/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
                         <a href="#" class="btn btn-danger delete"
@@ -84,7 +81,7 @@
             }).then((result) => {
                 console.log(result);
                 if (result.value) {
-                    window.location = "/amdk/dosir/delete/"+id;
+                    window.location = "/amdk/archive_time/delete/"+id;
                 }
             });
         });

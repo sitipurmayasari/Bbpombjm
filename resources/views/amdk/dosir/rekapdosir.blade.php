@@ -32,6 +32,7 @@
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
                 <th width="40px">No</th>
+                <th>Jenis Dokumen</th>
                 <th>Nama Dokumen</th>
                 <th>Tanggal</th>
                 <th>Diupload oleh</th>
@@ -41,6 +42,7 @@
                 @foreach($data as $key=>$row)
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
+                    <td>{{$row->arsip->nama}}</td>
                     <td>{{$row->nama}}</td>
                     <td>{{$row->created_at}}</td>
                     <td>{{$row->pegawai->name}}</td>
