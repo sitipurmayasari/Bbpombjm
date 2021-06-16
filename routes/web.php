@@ -10,12 +10,12 @@ Route::get('/logout','LoginController@logout')->name('logout');
 Route::get('/import','ImportExcelController@index')->name('import');
 Route::post('/import/jabasn','ImportExcelController@jabasn')->name('import.jabasn');
 Route::post('/import/users','ImportExcelController@users')->name('import.users');
+Route::get('/invent/inventaris/detail/{id}','Invent\InventarisController@detail')->name('inventaris.detail');
 
   Route::group(['middleware' => 'auth'], function(){
   Route::get('/portal','PortalController@index')->name('dashboard');
   Route::get('/profile','ProfileController@index')->name('profile');
   Route::get('/carousel','CarouselController@index')->name('carousel');
-  Route::get('/invent/inventaris/detail/{id}','Invent\InventarisController@detail')->name('inventaris.detail');
 
   //Route untuk dashboard
   //--------------------------Invent------------------------------------------
