@@ -9,8 +9,8 @@
 <body>
 	<div class="text-center" style="margin-top: 50px;">
 		<h3>Inventaris QR Code</h3>
-	
-		{!! QrCode::size(300)->generate('http://bbpombjm.online/invent/inventaris/detail/'.$data->id); !!}
+        {{-- {{$data}} --}}
+		{!! QrCode::size(300)->generate(request()->getHttpHost().'/qR/'.$data.'/inventaris'); !!}
 		{{-- {!! QrCode::size(300)->generate('http://bbpom.test/invent/inventaris/edit/'.$data->id); !!} --}}
 	</div>
 </body>

@@ -10,7 +10,7 @@ Route::get('/logout','LoginController@logout')->name('logout');
 Route::get('/import','ImportExcelController@index')->name('import');
 Route::post('/import/jabasn','ImportExcelController@jabasn')->name('import.jabasn');
 Route::post('/import/users','ImportExcelController@users')->name('import.users');
-Route::get('/invent/inventaris/detail/{id}','Invent\InventarisController@detail')->name('inventaris.detail');
+Route::get('/qR/{id}/inventaris','Invent\InventarisController@detail')->name('inventaris.detail');
 
   Route::group(['middleware' => 'auth'], function(){
   Route::get('/portal','PortalController@index')->name('dashboard');
@@ -24,8 +24,8 @@ Route::get('/invent/inventaris/detail/{id}','Invent\InventarisController@detail'
   Route::get('/finance/dashboard','Finance\DashboardController@index')->name('dashboard');
   //--------------------------AMDK------------------------------------------
   Route::get('/amdk/dashboard','Amdk\DashboardController@index')->name('dashboard');
-  
-   
+
+
 
   //Route untuk Profile
   Route::post('/profile/update/{id}','ProfileController@update')->name('profile.update');
@@ -47,7 +47,7 @@ Route::get('/invent/inventaris/detail/{id}','Invent\InventarisController@detail'
 Route::group(['middleware' => ['auth','userPermission']], function(){
 
     //--------------------------Invent------------------------------------------
-   
+
     //Route untuk inventaris
     Route::get('/invent/inventaris','Invent\InventarisController@index')->name('inventaris');
     //Route untuk disposable inventaris
@@ -70,7 +70,7 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('invent/lokasi','Invent\LokasiController@index')->name('lokasi');
     //Route untuk petugas
     Route::get('/invent/petugas','Invent\PetugasController@index')->name('petugas');
-   
+
 
     //--------------------------AMDK------------------------------------------
     //Route untuk pegawai
@@ -113,7 +113,7 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     //Route untuk dinas
     Route::get('/amdk/outstation','Amdk\OutstationController@index')->name('outstation');
 
-    
+
     //--------------------------Finance------------------------------------------
     //Route untuk Kode Kementrian Lembaga
     Route::get('/finance/klcode','Finance\KlcodeController@index')->name('klcode');
