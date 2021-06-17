@@ -19,7 +19,7 @@ class DosirController extends Controller
         $data = Dosir::SelectRaw('Dosir.* , archive_time.masa_aktif, CURDATE() AS hari_ini,
                             DATE_ADD(DATE(dosir.created_at),INTERVAL archive_time.masa_aktif YEAR) batas_aktif')
                     ->orderBy('dosir.id','desc')
-                    ->leftJoin('archive_time','archive_time.id','=','dosir.archive_time')
+                    ->leftJoin('archive_time','archive_time.id','=','dosir.archive_time_id')
                     ->where('users_id','=',$peg)
                     ->whereRaw('CURDATE() BETWEEN DATE(dosir.created_at) 
                             and DATE_ADD(DATE(dosir.created_at),INTERVAL archive_time.masa_aktif YEAR)')
@@ -52,7 +52,7 @@ class DosirController extends Controller
                 ')
                 ->orderBy('dosir.id','desc')
                 ->leftJoin('users','users.id','=','dosir.users_id')
-                ->leftJoin('archive_time','archive_time.id','=','dosir.archive_time')
+                ->leftJoin('archive_time','archive_time.id','=','dosir.archive_time_id')
                 ->whereraw('curdate() > DATE_ADD(dosir.created_at,INTERVAL archive_time.masa_aktif YEAR)')
                 ->when($request->keyword, function ($query) use ($request) {
                     $query->where('dosir.nama','LIKE','%'.$request->keyword.'%')
