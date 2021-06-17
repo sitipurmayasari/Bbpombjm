@@ -16,16 +16,16 @@ class DosirController extends Controller
     public function index(Request $request)
     {
         $peg =auth()->user()->id;
-        $data = Dosir::SelectRaw('Dosir.* , Archive_time.masa_aktif, CURDATE() AS hari_ini,
-                            DATE_ADD(DATE(dosir.created_at),INTERVAL Archive_time.masa_aktif YEAR) batas_aktif')
+        $data = Dosir::SelectRaw('Dosir.* , archive_time.masa_aktif, CURDATE() AS hari_ini,
+                            DATE_ADD(DATE(dosir.created_at),INTERVAL archive_time.masa_aktif YEAR) batas_aktif')
                     ->orderBy('dosir.id','desc')
-                    ->leftJoin('Archive_time','Archive_time.id','=','dosir.Archive_time_id')
+                    ->leftJoin('archive_time','archive_time.id','=','dosir.archive_time')
                     ->where('users_id','=',$peg)
                     ->whereRaw('CURDATE() BETWEEN DATE(dosir.created_at) 
-                            and DATE_ADD(DATE(dosir.created_at),INTERVAL Archive_time.masa_aktif YEAR)')
+                            and DATE_ADD(DATE(dosir.created_at),INTERVAL archive_time.masa_aktif YEAR)')
                     ->when($request->keyword, function ($query) use ($request) {
                         $query->where('dosir.nama','LIKE','%'.$request->keyword.'%')
-                                ->orWhere('Archive_time.nama', 'LIKE','%'.$request->keyword.'%')
+                                ->orWhere('archive_time.nama', 'LIKE','%'.$request->keyword.'%')
                                 ->orWhere('created_at', 'LIKE','%'.$request->keyword.'%');
                         })
                     ->paginate('10');
@@ -40,24 +40,24 @@ class DosirController extends Controller
         $data = Dosir::SelectRaw('Dosir.*,
                     CASE
                         WHEN 
-                            curdate() > DATE_ADD(dosir.created_at,INTERVAL Archive_time.masa_aktif YEAR) 
+                            curdate() > DATE_ADD(dosir.created_at,INTERVAL archive_time.masa_aktif YEAR) 
                             AND CURDATE() < DATE_ADD(dosir.created_at,INTERVAL 
-                            (Archive_time.masa_aktif + Archive_time.masa_pasif) YEAR)
+                            (archive_time.masa_aktif + archive_time.masa_pasif) YEAR)
                             THEN "Pasif"
                         WHEN 
                             curdate() > DATE_ADD(dosir.created_at,INTERVAL 
-                            (Archive_time.masa_aktif + Archive_time.masa_pasif) YEAR) then "Kadaluarsa"
+                            (archive_time.masa_aktif + archive_time.masa_pasif) YEAR) then "Kadaluarsa"
                         ELSE "Aktif"
                     END status        
                 ')
                 ->orderBy('dosir.id','desc')
                 ->leftJoin('users','users.id','=','dosir.users_id')
-                ->leftJoin('Archive_time','Archive_time.id','=','dosir.Archive_time_id')
-                ->whereraw('curdate() > DATE_ADD(dosir.created_at,INTERVAL Archive_time.masa_aktif YEAR)')
+                ->leftJoin('archive_time','archive_time.id','=','dosir.archive_time')
+                ->whereraw('curdate() > DATE_ADD(dosir.created_at,INTERVAL archive_time.masa_aktif YEAR)')
                 ->when($request->keyword, function ($query) use ($request) {
                     $query->where('dosir.nama','LIKE','%'.$request->keyword.'%')
                             ->orWhere('users.name', 'LIKE','%'.$request->keyword.'%')
-                            ->orWhere('Archive_time.nama', 'LIKE','%'.$request->keyword.'%')
+                            ->orWhere('archive_time.nama', 'LIKE','%'.$request->keyword.'%')
                             ->orWhere('dosir.created_at', 'LIKE','%'.$request->keyword.'%');
                     })
                 ->paginate('10');
