@@ -29,7 +29,7 @@ class DosirController extends Controller
                                 ->orWhere('created_at', 'LIKE','%'.$request->keyword.'%');
                         })
                     ->paginate('10');
-        return view('amdk/dosir.index',compact('data','user'));
+        return view('amdk/dosir.index',compact('data'));
     }
 
     public function rekapdosir(Request $request)
