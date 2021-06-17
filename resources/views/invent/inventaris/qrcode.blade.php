@@ -11,7 +11,8 @@
 		<h3>Inventaris QR Code</h3>
         {{-- {{$data}} --}}
 		{!! QrCode::size(300)->generate(request()->getHttpHost().'/qR/'.$data.'/inventaris'); !!}
-		{{-- {!! QrCode::size(300)->generate('http://bbpom.test/invent/inventaris/edit/'.$data->id); !!} --}}
+
+		{{-- <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(300)->generate(request()->getHttpHost().'/qR/'.$data.'/inventaris')) !!} "> --}}
 	</div>
 </body>
 </html>

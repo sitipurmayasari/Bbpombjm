@@ -37,6 +37,7 @@
                 <th>Tanggal</th>
                 <th>Diupload oleh</th>
                 <th>File</th>
+                <th>status</th>
             <thead>
             <tbody>   	
                 @foreach($data as $key=>$row)
@@ -47,6 +48,18 @@
                     <td>{{$row->created_at}}</td>
                     <td>{{$row->pegawai->name}}</td>
                     <td><a href="{{$row->getFIledosir()}}" target="_blank" >{{$row->file}}</a></td>
+                    <td>
+                        @if ($row->status=='Kadaluarsa')
+                            <button type="submit" class="btn btn-danger no-border btn-sm gp-search ">
+                                {{$row->status}}
+                            </button>
+                        @else
+                            <button type="submit" class="btn btn-warning no-border btn-sm gp-search ">
+                                {{$row->status}}
+                            </button>
+                        @endif
+                        
+                    </td>
                 </tr>
               
                 @endforeach

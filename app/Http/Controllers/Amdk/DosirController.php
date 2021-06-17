@@ -37,7 +37,19 @@ class DosirController extends Controller
 
         $masa = Archive_time::all();
         $user = User::all();
-        $data = Dosir::SelectRaw('Dosir.*')
+        $data = Dosir::SelectRaw('Dosir.*,
+                    CASE
+                        WHEN 
+                            curdate() > DATE_ADD(dosir.created_at,INTERVAL Archive_time.masa_aktif YEAR) 
+                            AND CURDATE() < DATE_ADD(dosir.created_at,INTERVAL 
+                            (Archive_time.masa_aktif + Archive_time.masa_pasif) YEAR)
+                            THEN "Pasif"
+                        WHEN 
+                            curdate() > DATE_ADD(dosir.created_at,INTERVAL 
+                            (Archive_time.masa_aktif + Archive_time.masa_pasif) YEAR) then "Kadaluarsa"
+                        ELSE "Aktif"
+                    END status        
+                ')
                 ->orderBy('dosir.id','desc')
                 ->leftJoin('users','users.id','=','dosir.users_id')
                 ->leftJoin('Archive_time','Archive_time.id','=','dosir.Archive_time_id')

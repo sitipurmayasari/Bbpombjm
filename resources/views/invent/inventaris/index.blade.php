@@ -15,10 +15,6 @@
                            <a href="{{Route('inventaris.create')}}"  class="btn btn-primary">Tambah Data</a>   
                         </div>
                         <div class="form-group col-xs-12 col-sm-5" style="float: right">
-                            {{-- <select onchange="this.form.submit()" name="filter" 
-                            id="filterKategori" class="form-control input-sm pull-right" style="width: 250px;">
-                                <option value="">--Filter --</option>
-                             </select> --}}
                             <div class="input-group">
                                 <input type="text" class="form-control gp-search" name="keyword" placeholder="Cari " value="{{request('keyword')}}" autocomplete="off">
                                 <div class="input-group-btn">
