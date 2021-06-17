@@ -51,8 +51,31 @@ class ReraController extends Controller
                                     ->Where('implementation.year',$request->tahun)
                                     ->GroupBy('detailcode_id')
                                     ->get();
-            $pdf = PDF::loadview('finance/rera.rekapumum',compact('data','request','head','akun','komp','deta'));
-            return $pdf->stream();
+            $add = Implementation::SelectRaw('DISTINCT krocode_id, SUM(total) AS jum')
+                                    ->LeftJoin('implemen_detail','implementation.id','=','implemen_detail.implementation_id')
+                                    ->Where('implementation.year',$request->tahun)
+                                    ->GroupBy('krocode_id')
+                                    ->get();
+            $activ = Implementation::SelectRaw('DISTINCT activitycode_id, SUM(total) AS jum')
+                                    ->LeftJoin('implemen_detail','implementation.id','=','implemen_detail.implementation_id')
+                                    ->Where('implementation.year',$request->tahun)
+                                    ->GroupBy('activitycode_id')
+                                    ->get();
+            $prog = Implementation::SelectRaw('DISTINCT programcode_id, SUM(total) AS jum')
+                                    ->LeftJoin('implemen_detail','implementation.id','=','implemen_detail.implementation_id')
+                                    ->LeftJoin('activitycode','activitycode.id','=','implementation.activitycode_id')
+                                    ->Where('implementation.year',$request->tahun)
+                                    ->GroupBy('programcode_id')
+                                    ->get();
+            $alokasi = Implementation::SelectRaw('SUM(total) AS jum')
+                                    ->LeftJoin('implemen_detail','implementation.id','=','implemen_detail.implementation_id')
+                                    ->Where('implementation.year',$request->tahun)
+                                    ->first();
+                                    
+            // $pdf = PDF::loadview('finance/rera.rekapumum',compact('data','request','head','akun','komp','deta'));
+            // return $pdf->stream();
+
+            return view('finance/rera.rekapumum',compact('data','request','head','akun','komp','deta','add','activ','prog','alokasi'));
 
         }else if($request->jenis=="2"){
             $head = Implementation::SelectRaw('implementation.*, loka.nama as lokasi')
@@ -87,8 +110,34 @@ class ReraController extends Controller
                                     ->where('implemen_detail.loka_id',$request->loka)
                                     ->GroupBy('detailcode_id')
                                     ->get();
-            $pdf = PDF::loadview('finance/rera.rekaploka',compact('data','request','head','akun','komp','deta'));
-            return $pdf->stream();
+            $add = Implementation::SelectRaw('DISTINCT krocode_id, SUM(total) AS jum')
+                                    ->LeftJoin('implemen_detail','implementation.id','=','implemen_detail.implementation_id')
+                                    ->Where('implementation.year',$request->tahun)
+                                    ->where('implemen_detail.loka_id',$request->loka)
+                                    ->GroupBy('krocode_id')
+                                    ->get();
+            $activ = Implementation::SelectRaw('DISTINCT activitycode_id, SUM(total) AS jum')
+                                    ->LeftJoin('implemen_detail','implementation.id','=','implemen_detail.implementation_id')
+                                    ->Where('implementation.year',$request->tahun)
+                                    ->where('implemen_detail.loka_id',$request->loka)
+                                    ->GroupBy('activitycode_id')
+                                    ->get();
+            $prog = Implementation::SelectRaw('DISTINCT programcode_id, SUM(total) AS jum')
+                                    ->LeftJoin('implemen_detail','implementation.id','=','implemen_detail.implementation_id')
+                                    ->LeftJoin('activitycode','activitycode.id','=','implementation.activitycode_id')
+                                    ->Where('implementation.year',$request->tahun)
+                                    ->where('implemen_detail.loka_id',$request->loka)
+                                    ->GroupBy('programcode_id')
+                                    ->get();
+            $alokasi = Implementation::SelectRaw('SUM(total) AS jum')
+                                    ->LeftJoin('implemen_detail','implementation.id','=','implemen_detail.implementation_id')
+                                    ->Where('implementation.year',$request->tahun)
+                                    ->where('implemen_detail.loka_id',$request->loka)
+                                    ->first();
+            // $pdf = PDF::loadview('finance/rera.rekaploka',compact('data','request','head','akun','komp','deta'));
+            // return $pdf->stream();
+
+            return view('finance/rera.rekaploka',compact('data','request','head','akun','komp','deta','add','activ','prog','alokasi'));
 
         }else if($request->jenis=="3"){
             $head = Implementation::where('year',$request->tahun)
@@ -121,8 +170,34 @@ class ReraController extends Controller
                                     ->where('implemen_detail.sd',$request->sd)
                                     ->GroupBy('detailcode_id')
                                     ->get();
-            $pdf = PDF::loadview('finance/rera.rekapsd',compact('data','request','head','akun','komp','deta'));
-            return $pdf->stream();
+            $add = Implementation::SelectRaw('DISTINCT krocode_id, SUM(total) AS jum')
+                                    ->LeftJoin('implemen_detail','implementation.id','=','implemen_detail.implementation_id')
+                                    ->Where('implementation.year',$request->tahun)
+                                    ->where('implemen_detail.sd',$request->sd)
+                                    ->GroupBy('krocode_id')
+                                    ->get();
+            $activ = Implementation::SelectRaw('DISTINCT activitycode_id, SUM(total) AS jum')
+                                    ->LeftJoin('implemen_detail','implementation.id','=','implemen_detail.implementation_id')
+                                    ->Where('implementation.year',$request->tahun)
+                                    ->where('implemen_detail.sd',$request->sd)
+                                    ->GroupBy('activitycode_id')
+                                    ->get();
+            $prog = Implementation::SelectRaw('DISTINCT programcode_id, SUM(total) AS jum')
+                                    ->LeftJoin('implemen_detail','implementation.id','=','implemen_detail.implementation_id')
+                                    ->LeftJoin('activitycode','activitycode.id','=','implementation.activitycode_id')
+                                    ->Where('implementation.year',$request->tahun)
+                                    ->where('implemen_detail.sd',$request->sd)
+                                    ->GroupBy('programcode_id')
+                                    ->get();
+            $alokasi = Implementation::SelectRaw('SUM(total) AS jum')
+                                    ->LeftJoin('implemen_detail','implementation.id','=','implemen_detail.implementation_id')
+                                    ->Where('implementation.year',$request->tahun)
+                                    ->where('implemen_detail.sd',$request->sd)
+                                    ->first();
+            // $pdf = PDF::loadview('finance/rera.rekapsd',compact('data','request','head','akun','komp','deta'));
+            // return $pdf->stream();
+            return view('finance/rera.rekapsd',compact('data','request','head','akun','komp','deta','add','activ','prog','alokasi'));
+
         }else{
             dd($request->all());
         }

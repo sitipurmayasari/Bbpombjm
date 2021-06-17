@@ -1,68 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="{{asset('assets/css/print.css')}}" rel="stylesheet">
-    <style>
-        @page {
-            size: A4;
-            margin: 150px 0px 100px 0px;
+@extends('layouts.mon')
+@section('breadcrumb')
+<form action="">
+    <div>
+        <input type="submit" value="print" class="btn btn-primary">
+    </div>
+</form>
+    
+@endsection
+@section('content')
+
+<style>
+    @page {
             font-family: 'Times New Roman';
             font-size: 11px;
-            page-break-after: always;
-        }
+    }
 
-        .isi{
-            margin-left: 8%;
-            margin-right: 8%;
-        }
+    table{
+        width: 100%;
+    }
+    table, th, td{
+        border: 1px solid black;
+    }
 
-        header {
-                position:fixed;
-                padding-top: 2%;
-                /* height: 15%; */
-                top: 0%;
-                margin-left: 5%;
-                margin-right: 5%;
-                margin-top: -150px;
-        }
+    th{
+        text-align: center;
+    }
+    td{
+        padding-left: 3px;
+        border-bottom: 0;
+        border-top: 0;
+        vertical-align: top;
+    }
 
-        table{
-            width: 100%;
-        }
-        table, th, td{
-            border: 1px solid black;
-        }
+    .tbl{
+        border-collapse: collapse;
+        border: none;
+    }
 
-        th{
-            text-align: center;
-        }
-        td{
-            padding-left: 3px;
-            border-bottom: 0;
-            border-top: 0;
-            vertical-align: top;
-        }
+    .header {
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-bottom: 5%
+    }
+    
+</style>
 
-        .tbl{
-            border-collapse: collapse;
-            border: none;
-        }
-        
-
-    </style>
-</head>
-    <title>Document</title>
-</head>
-<body>
-    <header class="isi">
+<div class="row">
+    <div class="col-sm-12 header">
         <table class="tbl" >
             <tr class="tbl">
-                <td colspan="3" class="tbl" style="text-align: center;"><h4>RINCIAN KERTAS KERJA SATKER T.A {{$request->tahun}}</h4></td>
+                <td colspan="3" class="tbl" style="text-align: center;"><b><h4>RINCIAN KERTAS KERJA SATKER T.A {{$request->tahun}}</h4></b></td>
             </tr>
             <tr class="tbl">
                 <td style="width: 20%;" class="tbl"><b>KEMEN/LEMB</b></td>
@@ -76,17 +63,26 @@
             </tr>
             <tr class="tbl">
                 <td class="tbl"><b>UNIT KERJA</b></td>
-                <td class="tbl">({{$head->act->prog->code}})</td>
-                <td class="tbl">{{$head->act->prog->name}}</td>
+                <td class="tbl">(432881)</td>
+                <td class="tbl">BALAI BESAR PENGAWAS OBAT DAN MAKANAN BANJARMASIN</td>
+            </tr>
+            <tr class="tbl">
+                <td class="tbl"><b>ALOKASI</b></td>
+                <td class="tbl">
+                    @php
+                        $angka = $alokasi->jum;
+                        echo "Rp. " . number_format($angka, 2, ".", ",");
+                    @endphp
+                </td>
             </tr>
             <tr class="tbl">
                 <td class="tbl"><b>SUMBER DANA</b></td>
                 <td class="tbl">{{$request->sd}}</td>
             </tr>
         </table>
-    </header>
-    <main>
-        <div class="isi">
+    </div>
+    
+    <div class="col-sm-12">
             <table>
                 <thead>
                     <tr>
@@ -112,12 +108,91 @@
                 <tbody class="tbl">
                     @php
                         $no= 1;
+                        $progcode="";
+                        $activitycode="";
+                        $krocode="";
                         $detcode="";
                         $komcode="";
                         $subcode="";
                         $akuncode="";
+                        
                     @endphp
                     @foreach ($data as $item)
+                        @if ($progcode != $item->implemen->act->prog->id)
+                            <tr>
+                                <td style="color: navy;">
+                                    <b>{{$item->implemen->act->prog->unit->klcode->code}}.{{$item->implemen->act->prog->unit->code}}.{{$item->implemen->act->prog->code}}</b>
+                                </td>
+                                <td style="color: navy;">
+                                    <b>{{$item->implemen->act->prog->name}}</b><br>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td style="text-align: right; color: navy;">
+                                    <b>
+                                        @foreach ($prog as $ini)
+                                            @if ($item->implemen->act->programcode_id == $ini->programcode_id)
+                                                @php
+                                                    $angka = $ini->jum  ;
+                                                    echo "Rp. " . number_format($angka, 2, ".", ",");
+                                                @endphp
+                                            @endif
+                                        @endforeach
+                                    </b>
+                                </td>
+                                <td></td>
+                            </tr>
+                        @endif
+                        @if ($activitycode != $item->implemen->act->id)
+                            <tr>
+                                <td style="color: blue;">
+                                    <b>{{$item->implemen->act->code}}</b>
+                                </td>
+                                <td style="color: blue;">
+                                    <b>{{$item->implemen->act->name}}</b><br>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td style="text-align: right; color: blue;">
+                                    <b>
+                                        @foreach ($activ as $ini)
+                                            @if ($item->implemen->activitycode_id == $ini->activitycode_id)
+                                                @php
+                                                    $angka = $ini->jum  ;
+                                                    echo "Rp. " . number_format($angka, 2, ".", ",");
+                                                @endphp
+                                            @endif
+                                        @endforeach
+                                    </b>
+                                </td>
+                                <td></td>
+                            </tr>
+                        @endif
+                        @if ($krocode != $item->implemen->kro->id) 
+                            <tr>
+                                <td style="border-bottom:dashed; color: red; border-bottom-color: black;">
+                                    <b>{{$item->implemen->act->code}}.{{$item->implemen->kro->code}}</b>
+                                </td>
+                                <td style="border-bottom:dashed; color: red; border-bottom-color: black;">
+                                    <b>{{$item->implemen->kro->name}}</b><br>
+                                </td>
+                                <td style="border-bottom:dashed; color: red; border-bottom-color: black;"> 1.0 Lembaga</td>
+                                <td style="border-bottom:dashed;"></td>
+                                <td style="text-align: right; border-bottom:dashed; color: red; border-bottom-color: black;">
+                                    <b>
+                                        @foreach ($add as $ini)
+                                            @if ($item->implemen->krocode_id == $ini->krocode_id)
+                                                @php
+                                                    $angka = $ini->jum  ;
+                                                    echo "Rp. " . number_format($angka, 2, ".", ",");
+                                                @endphp
+                                            @endif
+                                        @endforeach
+                                    </b>
+                                </td>
+                                <td style="border-bottom:dashed;"></td>
+                            </tr>
+                        @endif
                         @if ($detcode != $item->implemen->det->id)
                             <tr>
                                 <td>
@@ -192,7 +267,7 @@
                                 </td>
                                 <td></td>
                                 <td></td>
-                                <td style="text-align: center;">
+                                <td style="text-align: right;">
                                     @foreach ($akun as $ini)
                                         @if ($item->accountcode_id == $ini->accountcode_id and $item->subcode_id == $ini->subcode_id)
                                             @php
@@ -228,16 +303,21 @@
                             <td></td>
                         </tr>
                         @php
-                            $detcode = $item->implemen->det->id;
-                            $komcode = $item->implemen->komponen->id;
-                            $subcode = $item->implemen->sub->id;
-                            $akuncode = $item->akun->id;
+                            $progcode       = $item->implemen->act->prog->id;
+                            $activitycode   = $item->implemen->act->id;
+                            $krocode        = $item->implemen->kro->id;
+                            $detcode        = $item->implemen->det->id;
+                            $komcode        = $item->implemen->komponen->id;
+                            $subcode        = $item->implemen->sub->id;
+                            $akuncode       = $item->akun->id;
                         @endphp
                      @endforeach                           
                 </tbody>
             </table>
-        </div>
-    </main>
-    
-</body>
-</html>
+    </div>
+</div>
+
+@endsection
+
+@section('footer')
+@endsection
