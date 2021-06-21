@@ -255,7 +255,7 @@
                                 <td></td>
                             </tr>
                         @endif
-                        @if ($akuncode != $item->akun->id)
+                        @if ($akuncode != $item->implemen->sub->id - $item->akun->id)
                             <tr>
                                 <td>
                                     {{$item->akun->code}}
@@ -307,7 +307,7 @@
                             $detcode        = $item->implemen->det->id;
                             $komcode        = $item->implemen->komponen->id;
                             $subcode        = $item->implemen->sub->id;
-                            $akuncode       = $item->akun->id;
+                            $akuncode       = $item->implemen->sub->id - $item->akun->id;
                         @endphp
                      @endforeach                           
                 </tbody>
