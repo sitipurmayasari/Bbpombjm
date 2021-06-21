@@ -41,7 +41,13 @@
   		<link href="{{asset('assets/sweetalert/sweetalert.hack.css')}}" rel="stylesheet">
   		<link rel="stylesheet" href="{{asset('assets/toastr/toastr.min.css')}}">
 		<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-
+		<style>
+			@media print{
+				.noPrint{
+						display: none;
+				}
+			}
+		</style>
 
 		@yield('header')
 
@@ -192,7 +198,7 @@
 				</div>
 			</div><!-- /.main-content -->
 
-			<div class="footer">
+			<div class="footer noPrint">
 				<div class="footer-inner">
 					<div class="footer-content">
 						<hr style="height:2px;color:gray;background-color:gray">
@@ -252,6 +258,16 @@
 			$(document).ready(function() {
 				$('.select2').select2();
 			});
+
+			function printpage() {
+				var printbutton = $('.noPrint').val();
+				printbutton.style.visibility ='hidden'
+				window.print()
+				printbutton.style.visibility ='visible'
+
+			}
+
+
 				@if(Session::has('sukses'))
 					toastr.success("{{Session::get('sukses')}}", "Sukses",{timeOut: 5000})
 				@endif

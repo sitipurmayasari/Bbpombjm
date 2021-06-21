@@ -129,6 +129,7 @@
   Route::get('/amdk/dupak/edit/{id}','Amdk\DupakController@edit')->name('dupak.edit');
   Route::post('/amdk/dupak/update/{id}','Amdk\DupakController@update')->name('dupak.update');
   Route::get('/amdk/dupak/print/{id}','Amdk\DupakController@print')->name('dupak.print');
+  Route::post('/amdk/rekapdupak/cetak','Amdk\RekDupakController@cetak')->name('rekapdupak.cetak');
 
   //Route untuk masa arsip
   Route::get('/amdk/archive_time/create','Amdk\ArchiveTimeController@create')->name('archive_time.create');

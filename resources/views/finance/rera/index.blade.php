@@ -87,7 +87,7 @@
     <div class="col-sm-12">
         <div class="form-actions right" id="tjawab">
             <div class="form-group col-xs-12 col-sm-3" style="float: left">
-                <input type="submit" value="CETAK" class="btn btn-primary">
+                <input type="submit" value="LIHAT" class="btn btn-primary">
             </div>
         </div>
 

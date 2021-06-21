@@ -104,6 +104,7 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     //Route untuk Rekap
     Route::get('/amdk/rekapdosir','Amdk\DosirController@rekapdosir')->name('rekapdosir');
     Route::get('/amdk/rekappelatihan','Amdk\PelatihanController@rekappelatihan')->name('rekappelatihan');
+    Route::get('/amdk/rekapdupak','Amdk\RekDupakController@index')->name('rekapdupak');
     //Route untuk dupak
     Route::get('/amdk/dupak','Amdk\DupakController@index')->name('dupak');
     //Route untuk Angka Kredit
@@ -112,6 +113,7 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/amdk/archive_time','Amdk\ArchiveTimeController@index')->name('archive_time');
     //Route untuk dinas
     Route::get('/amdk/outstation','Amdk\OutstationController@index')->name('outstation');
+    
 
 
     //--------------------------Finance------------------------------------------

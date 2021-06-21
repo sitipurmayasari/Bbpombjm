@@ -30,3 +30,7 @@
         z-index: -100;
     
  }
+
+ table,tr,td{
+     border: solid black;
+ }

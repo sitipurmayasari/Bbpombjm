@@ -2,7 +2,10 @@
 @section('breadcrumb')
 <form action="">
     <div>
-        <input type="submit" value="print" class="btn btn-primary">
+        <button type="button" class="btn btn-primary no-border btn-sm noPrint" 
+            id="PrintPage" onclick="window.print()">
+            <i class="ace-icon fa fa-print icon-on-right bigger-110"></i> &nbsp; cetak
+        </button>
     </div>
 </form>
     
