@@ -63,13 +63,21 @@
                             @php
                                 $thn="";
                             @endphp
-                            @foreach ($thndupak as $item)
-                                <th colspan="2">
-                                        {{$item->tahun}}
-                                </th>
-                                @php
-                                    $thn = $item->tahun;
-                                @endphp
+                            @foreach ($blndupak as $item)                               
+                                @if ($thn != $item->tahun)
+                                    @php
+                                        $q = $bQuery->jumsmt($item->tahun);
+                                        if ($q==2) {
+                                            echo "<th colspan='2'>$item->tahun</th>";
+                                        }else{
+                                            echo "<th>$item->tahun</th>";
+                                        }
+                                    
+                                    @endphp
+                                @endif
+                            @php
+                                $thn=$item->tahun;
+                            @endphp  
                             @endforeach
                         </tr>
                         <tr>

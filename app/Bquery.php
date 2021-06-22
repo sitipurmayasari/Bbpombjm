@@ -2,6 +2,7 @@
 
 namespace App;
 use App\Dupak;
+use Illuminate\Support\Facades\DB;
 
 class Bquery
 {
@@ -19,6 +20,22 @@ class Bquery
         // }
         // return '';
     }
+
+    public function jumsmt($tahun)
+    {
+        $sql ="SELECT COUNT(bulan) as hitung
+                FROM (SELECT month(dari) AS bulan, YEAR(dari) AS tahun
+                            FROM dupak
+                            GROUP BY dari) ini
+                WHERE tahun = $tahun";
+
+        $smt = DB::select($sql);
+
+        return $smt ? $smt[0]->hitung : '';
+       
+    }
+
+   
 
 
 }

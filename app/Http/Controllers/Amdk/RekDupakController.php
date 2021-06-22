@@ -32,18 +32,15 @@ class RekDupakController extends Controller
                     ->orderBy('dari','asc')
                     ->groupByRaw('dari')
                     ->get();
-            $thndupak= Dupak::selectRaw('YEAR(dari) AS tahun')
-                    ->orderBy('tahun','asc')
-                    ->groupByRaw('tahun')
-                    ->get();
             $peg= Dupak::selectRaw('distinct dupak.users_id')
                     ->groupByRaw('dupak.users_id')
                     ->leftJoin('users','users.id','=','dupak.users_id')
                     ->where('users.aktif','Y')
                     ->orderBy('users_id','asc')
                     ->get();
+            
 
-            $pdf = PDF::loadview('amdk/rekapdupak.umum',compact('thndupak','blndupak','peg'));
+            $pdf = PDF::loadview('amdk/rekapdupak.umum',compact('blndupak','peg'));
             return $pdf->stream();
 
         }else if($request->jenis=="2" && $request->pegawai !=null){
@@ -80,10 +77,6 @@ class RekDupakController extends Controller
                     ->orderBy('dari','asc')
                     ->groupByRaw('dari')
                     ->get();
-            $thndupak= Dupak::selectRaw('YEAR(dari) AS tahun')
-                    ->orderBy('tahun','asc')
-                    ->groupByRaw('tahun')
-                    ->get();
             $peg= User::selectRaw('*')
                     ->Join(DB::raw('(SELECT DISTINCT users_id, MAX(total) AS max FROM dupak GROUP BY users_id) AS tab'),
                             'tab.users_id','=','users.id')
@@ -93,7 +86,7 @@ class RekDupakController extends Controller
                     ->orderBy('users_id','asc')
                     ->get();
                     
-            $pdf = PDF::loadview('amdk/rekapdupak.perpoin',compact('thndupak','blndupak','peg'));
+            $pdf = PDF::loadview('amdk/rekapdupak.perpoin',compact('blndupak','peg'));
                     return $pdf->stream();
 
         }else if($request->jenis=="4" && $request->jabasn !=null){
@@ -104,10 +97,6 @@ class RekDupakController extends Controller
                             ->orderBy('dari','asc')
                             ->groupByRaw('dari')
                             ->get();
-            $thndupak= Dupak::selectRaw('YEAR(dari) AS tahun')
-                            ->orderBy('tahun','asc')
-                            ->groupByRaw('tahun')
-                            ->get();
              $peg= Dupak::selectRaw('distinct dupak.users_id')
                             ->groupByRaw('dupak.users_id')
                             ->leftJoin('users','users.id','=','dupak.users_id')
@@ -115,7 +104,7 @@ class RekDupakController extends Controller
                             ->where('users.jabasn_id',$request->jabasn)
                             ->orderBy('users_id','asc')
                             ->get();
-            $pdf = PDF::loadview('amdk/rekapdupak.perjab',compact('thndupak','blndupak','peg','jab'));
+            $pdf = PDF::loadview('amdk/rekapdupak.perjab',compact('blndupak','peg','jab'));
                             return $pdf->stream();
 
         }else{
