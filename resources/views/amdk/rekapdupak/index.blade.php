@@ -105,27 +105,29 @@
         $("#poin").hide();
         $("#jabatan").hide();
         $("#user").hide();
-    
-        $("#jenis").on("change", function(){
-            var v = $(this).val();
-            if(v=="2"){
-                $("#poin").hide();
+    });
+
+    function myFunction() {
+        var v = $("#jenis").val();
+        if (v=="2") {
+            $("#poin").hide();
                 $("#jabatan").hide();
                 $("#user").show();
-            }else if(v=="3"){
+        }else if(v=="3"){
                 $("#poin").show();
                 $("#jabatan").hide();
                 $("#user").hide();
-            }else if(v=="4"){
+        }else if(v=="4"){
                 $("#poin").hide();
                 $("#jabatan").show();
                 $("#user").hide();
-            }else{
+        }else{
                 $("#poin").hide();
                 $("#jabatan").hide();
                 $("#user").hide();
-            } 
-        });
-    });
+            
+        }
+      
+    }
 </script>
 @endsection
