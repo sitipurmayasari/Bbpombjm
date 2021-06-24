@@ -59,7 +59,7 @@
                 <thead>
                         <tr>
                             <th rowspan="2" style="width: 20%;  vertical-align: center;">Nama</th>
-                            <th rowspan="2" style="width:10%;  vertical-align: center;">NIP</th>
+                            <th rowspan="2" style="width:20%;  vertical-align: center;">Jabatan</th>
                             @php
                                 $thn="";
                             @endphp
@@ -95,8 +95,8 @@
                 <tbody>
                     @foreach($peg as $row)
                         <tr>
-                            <td>{{$row->pegawai->name}}</td>
-                            <td>{{$row->pegawai->no_pegawai}}</td>
+                            <td>{{$row->pegawai->name}} ({{$row->pegawai->no_pegawai}})</td>
+                            <td>{{$row->pegawai->jabasn->nama}}</td>
                             @foreach ($blndupak as $item)
                             <td>
                                 @php
