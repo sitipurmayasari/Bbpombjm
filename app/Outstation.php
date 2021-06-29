@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Outstation extends Model
 {
     protected $table = "outstation";
-    protected $fillable = ['users_id','from','to','type','destination','car_office','driver','car_id'
+    protected $fillable = ['code','name','users_id','from','to','type','destination','car_office','driver','car_id'
     ];
 
     public function user()

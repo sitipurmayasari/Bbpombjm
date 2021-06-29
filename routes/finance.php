@@ -82,3 +82,10 @@
 
    //Route untuk Rekap Anggaran
    Route::post('/finance/rera/cetakrekap','Finance\ReraController@cetakrekap')->name('rera.cetakrekap');
+
+  //Route untuk dinas
+  Route::get('/finance/outstation/create','Finance\OutstationController@create')->name('outstation.create');
+  Route::post('finance/outstation/store','Finance\OutstationController@store')->name('outstation.store');
+  Route::get('finance/outstation/edit/{id}','Finance\OutstationController@edit')->name('outstation.edit');
+  Route::post('finance/outstation/update/{id}','Finance\OutstationController@update')->name('outstation.update');
+

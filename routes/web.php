@@ -111,8 +111,7 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/amdk/dupak/kredit','Amdk\DupakController@kredit')->name('dupak.kredit');
     //Route untuk masa arsip
     Route::get('/amdk/archive_time','Amdk\ArchiveTimeController@index')->name('archive_time');
-    //Route untuk dinas
-    Route::get('/amdk/outstation','Amdk\OutstationController@index')->name('outstation');
+    
     
 
 
@@ -141,6 +140,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/finance/implementation','Finance\ImplementController@index')->name('implementation');
     //Route untuk Rekap Anggaran
     Route::get('/finance/rera','Finance\ReraController@index')->name('rera');
+    //Route untuk dinas
+    Route::get('/finance/outstation','Finance\OutstationController@index')->name('outstation');
 
 
 });
