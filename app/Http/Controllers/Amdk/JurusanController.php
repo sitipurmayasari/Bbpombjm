@@ -46,4 +46,12 @@ class JurusanController extends Controller
         $data->delete();
         return redirect('/amdk/jurusan')->with('sukses','Data Terhapus');
     }
+
+
+    public function getpend(Request $request)
+    {
+        $pendidikan = Jurusan::orderBy('id','asc')->where('pendidikan_id',$request->pendidikan_id)->get();
+        return response()->json([ 'success' => true,'pend'=>$request->pendidikan_id,'data' => $pendidikan],200);
+    }
+
 }

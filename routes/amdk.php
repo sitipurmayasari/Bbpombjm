@@ -60,6 +60,7 @@
   Route::get('/amdk/jurusan/delete/{id}','Amdk\JurusanController@delete')->name('jurusan.delete');
   Route::get('/amdk/jurusan/edit/{id}','Amdk\JurusanController@edit')->name('jurusan.edit');
   Route::post('/amdk/jurusan/update/{id}','Amdk\JurusanController@update')->name('jurusan.update');
+  Route::get('/amdk/jurusan/getpend','Amdk\JurusanController@getpend')->name('jurusan.getpend');
 
   //Route untuk riwayat pendidikan
   Route::get('/amdk/riwayatpend/getData','Amdk\RiwayatPendController@getData')->name('riwayatpend.getData');

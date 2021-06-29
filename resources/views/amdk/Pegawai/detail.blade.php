@@ -263,6 +263,41 @@
 
     } );
 
+    function getpend(){
+         var pendidikan_id = $("#pend").val();
+        $.get(
+            "{{route('jurusan.getpend') }}",
+            {
+                pendidikan_id: pendidikan_id
+            },
+            function(response) {
+               var data = response.data;
+               var string ="<option value=''>Tidak Ada Jurusan</option>";
+                $.each(data, function(index, value) {
+                    string = string + `<option value="` + value.id + `">` + value.jurusan + `</option>`;
+                })
+               $("#isijur").html(string);
+            }
+        );
+    }
+
+    function editgetpend(){
+         var pendidikan_id = $("#editpend").val();
+        $.get(
+            "{{route('jurusan.getpend') }}",
+            {
+                pendidikan_id: pendidikan_id
+            },
+            function(response) {
+               var data = response.data;
+               var string ="<option value=''>Tidak Ada Jurusan</option>";
+                $.each(data, function(index, value) {
+                    string = string + `<option value="` + value.id + `">` + value.jurusan + `</option>`;
+                })
+               $("#editjur").html(string);
+            }
+        );
+    }
 
     function getpeg(){
         var user_id = $("#user_id").val();

@@ -47,8 +47,8 @@
                             for="form-field-1"> Jenjang Pendidikan
                             </label>
                             <div class="col-sm-8">
-                                <select name="pendidikan_id" class="col-xs-10 col-sm-10 required" 
-                                id="jenj" onchange="pend()">
+                                <select name="pendidikan_id" class="col-xs-10 col-sm-10 required getpend" id="pend" 
+                                onchange="getpend()">
                                     <option value="">Pilih Jenjang Pendidikan</option>
                                     @foreach ($jenjang as $item)
                                         <option value="{{$item->id}}">{{$item->jenjang}}</option>
@@ -61,11 +61,11 @@
                             for="form-field-1"> Jurusan
                             </label>
                             <div class="col-sm-8">
-                                <select name="jurusan_id" class="col-xs-10 col-sm-10 required">
+                                <select name="jurusan_id" class="col-xs-10 col-sm-10 required" id="isijur">
                                     <option value="">Pilih Jurusan</option>
-                                    @foreach ($pend as $item)
+                                    {{-- @foreach ($pend as $item)
                                         <option value="{{$item->id}}"> {{$item->jurusan}}</option>
-                                    @endforeach
+                                    @endforeach --}}
                                 </select>
                             </div>
                         </div>
@@ -137,7 +137,7 @@
                             </label>
                             <div class="col-sm-8">
                                 <select name="pendidikan_id" class="col-xs-10 col-sm-10 required" 
-                                id="editjenj" onchange="pend()">
+                                id="editpend" onchange="editgetpend()">
                                     <option value="">Pilih Jenjang Pendidikan</option>
                                     @foreach ($jenjang as $item)
                                         <option value="{{$item->id}}">{{$item->jenjang}}</option>
@@ -152,9 +152,9 @@
                             <div class="col-sm-8">
                                 <select name="jurusan_id" class="col-xs-10 col-sm-10 required" id="editjur">
                                     <option value="">Pilih Jurusan</option>
-                                    @foreach ($pend as $item)
+                                    {{-- @foreach ($pend as $item)
                                         <option value="{{$item->id}}"> {{$item->jurusan}}</option>
-                                    @endforeach
+                                    @endforeach --}}
                                 </select>
                             </div>
                         </div>
