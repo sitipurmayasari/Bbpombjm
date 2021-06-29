@@ -258,7 +258,7 @@
                         for="form-field-1">Start Poin
                         </label>
                         <div class="col-sm-9" >
-                            <input type="number" min="0" class="col-xs-1 col-sm-1 required "  placeholder="0" onkeyup="reskredit()"
+                            <input type="number" step="0.001" min="0" class="col-xs-1 col-sm-1 required "  placeholder="0" onkeyup="reskredit()"
                             name="startpoin" id="darinol" value="{{$data->startpoin}}" step="c" />&nbsp;
                         </div>
                     </div>
