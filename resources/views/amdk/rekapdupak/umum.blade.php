@@ -83,7 +83,7 @@
                         <tr>
                             @foreach ($blndupak as $item)
                             <th>
-                                   @if ($item->bulan==1)
+                                   @if ($item->bulan==6)
                                         SMT 1
                                    @else
                                         SMT 2

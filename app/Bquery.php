@@ -10,8 +10,8 @@ class Bquery
     {
         $dup = Dupak::select('total')
                     ->where('users_id',$userId)
-                    ->whereYear('dari',$tahun)
-                    ->whereMonth('dari',$bulan)
+                    ->whereYear('sampai',$tahun)
+                    ->whereMonth('sampai',$bulan)
                     ->first();
 
         return $dup ? $dup->total : '';
@@ -24,9 +24,9 @@ class Bquery
     public function jumsmt($tahun)
     {
         $sql ="SELECT COUNT(bulan) as hitung
-                FROM (SELECT month(dari) AS bulan, YEAR(dari) AS tahun
+                FROM (SELECT month(sampai) AS bulan, YEAR(sampai) AS tahun
                             FROM dupak
-                            GROUP BY dari) ini
+                            GROUP BY sampai) ini
                 WHERE tahun = $tahun";
 
         $smt = DB::select($sql);

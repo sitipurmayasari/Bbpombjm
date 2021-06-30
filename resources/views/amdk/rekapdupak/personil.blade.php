@@ -93,7 +93,7 @@
                          <td style="text-align: center">{{$no++}}</td>
                          <td>{{$row->dari}} s/d {{$row->sampai}}</td>
                          <td>
-                             @if ($row->bulan==1)
+                             @if ($row->bulan==6)
                                  {{$row->tahun}}  / SMT 1
                              @else
                                  {{$row->tahun}}  / SMT 2

@@ -28,9 +28,9 @@ class RekDupakController extends Controller
     public function cetak(Request $request)
     {
         if($request->jenis=="1"){
-            $blndupak= Dupak::selectRaw('month(dari) AS bulan, YEAR(dari) AS tahun, dari')
-                    ->orderBy('dari','asc')
-                    ->groupByRaw('dari')
+            $blndupak= Dupak::selectRaw('month(sampai) AS bulan, YEAR(sampai) AS tahun, sampai')
+                    ->orderBy('sampai','asc')
+                    ->groupByRaw('sampai')
                     ->get();
             $peg= Dupak::selectRaw('distinct dupak.users_id')
                     ->groupByRaw('dupak.users_id')
@@ -46,7 +46,7 @@ class RekDupakController extends Controller
         }else if($request->jenis=="2" && $request->pegawai !=null){
             $data = User::where('id',$request->pegawai)
                         ->first();
-            $dupak = Dupak::selectRaw('*, month(dari) AS bulan, YEAR(dari) AS tahun')
+            $dupak = Dupak::selectRaw('*, month(sampai) AS bulan, YEAR(sampai) AS tahun')
                         ->where('users_id',$request->pegawai)
                         ->get();
            
@@ -73,9 +73,9 @@ class RekDupakController extends Controller
             }
             
 
-            $blndupak= Dupak::selectRaw('month(dari) AS bulan, YEAR(dari) AS tahun, dari')
-                    ->orderBy('dari','asc')
-                    ->groupByRaw('dari')
+            $blndupak= Dupak::selectRaw('month(sampai) AS bulan, YEAR(sampai) AS tahun, sampai')
+                    ->orderBy('sampai','asc')
+                    ->groupByRaw('sampai')
                     ->get();
             $peg= User::selectRaw('*')
                     ->Join(DB::raw('(SELECT DISTINCT users_id, MAX(total) AS max FROM dupak GROUP BY users_id) AS tab'),
@@ -93,9 +93,9 @@ class RekDupakController extends Controller
        
             $jab = Jabasn::where('id',$request->jabasn)
                             ->first();
-            $blndupak= Dupak::selectRaw('month(dari) AS bulan, YEAR(dari) AS tahun, dari')
-                            ->orderBy('dari','asc')
-                            ->groupByRaw('dari')
+            $blndupak= Dupak::selectRaw('month(sampai) AS bulan, YEAR(sampai) AS tahun, sampai')
+                            ->orderBy('sampai','asc')
+                            ->groupByRaw('sampai')
                             ->get();
              $peg= Dupak::selectRaw('distinct dupak.users_id')
                             ->groupByRaw('dupak.users_id')
