@@ -33,8 +33,6 @@ class Dupak extends Model
         return $this->belongsTo(RiwayatPend::class,'users_id','users_id');
     }
 
-
-
     public function getFIleDupak() 
     {
         return $this->file==null ? 'Tidak Ada File' : asset('images/pegawai').'/'.$this->users_id.'/dupak/'.$this->file;
