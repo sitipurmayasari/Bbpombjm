@@ -311,7 +311,7 @@
         <table class="ttd">
             <tr>
                 <td class="ttd" style="text-align: left;width:300px; ">Asli disampaikan dengan hormat kepada :</td>
-                <td class="ttd" style="text-align: left; width:120px;">Ditetapkan di Banjarmasin</td>
+                <td class="ttd" style="text-align: left; width:200px;">Ditetapkan di Banjarmasin</td>
             </tr>
             <tr>
                 <td class="ttd" style="text-align: left">Kepala BKN di Jakarta</td>
@@ -365,7 +365,7 @@
             </tr>
             <tr>
                 <td></td>
-                <td><u>
+                <td style="text-align: left"><u>
                         @if ($mengetahui !=null)
                         {{$mengetahui->user->name}}
                         @else
@@ -376,7 +376,7 @@
             </tr>
             <tr>
                <td></td>
-                <td class="ttd">
+                <td class="ttd" style="text-align: left">
                     @if ($mengetahui !=null)
                     NIP.  {{$mengetahui->user->no_pegawai}}
                     @else
