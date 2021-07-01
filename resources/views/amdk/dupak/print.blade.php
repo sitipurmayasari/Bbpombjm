@@ -310,12 +310,12 @@
     <div id="ttd" class="isi">
         <table class="ttd">
             <tr>
-                <td class="ttd" style="text-align: left">Asli disampaikan dengan hormat kepada :</td>
-                <td class="ttd">Ditetapkan di Banjarmasin</td>
+                <td class="ttd" style="text-align: left;width:300px; ">Asli disampaikan dengan hormat kepada :</td>
+                <td class="ttd" style="text-align: left; width:120px;">Ditetapkan di Banjarmasin</td>
             </tr>
             <tr>
                 <td class="ttd" style="text-align: left">Kepala BKN di Jakarta</td>
-                <td class="ttd">Pada tanggal 
+                <td class="ttd" style="text-align: left">Pada tanggal 
                     @php
                         $a = $data->tanggal;
 
@@ -344,7 +344,7 @@
             </tr>
             <tr>
                 <td></td>
-                <td class="ttd">
+                <td class="ttd" style="text-align: left">
                               @if ($mengetahui != null)
                                 @if ($mengetahui->pjs != null)
                                 {{$mengetahui->pjs}}
@@ -360,8 +360,8 @@
                 </td>
             </tr>
             <tr >
-                <td style="height: 15%" class="ttd"></td>
-                <td style="height: 15%" class="ttd"></td>
+                <td style="height: 18%" class="ttd"></td>
+                <td style="height: 18%" class="ttd"></td>
             </tr>
             <tr>
                 <td></td>
@@ -387,7 +387,7 @@
             <tr>
                 <td colspan="2" style="text-align: left"><u>Tembusan :</u><br> 
                     1. Yth. Kepala Biro SDM Badan POM <br>
-                    2. Yth. Pejabat yang berwenangn menetapkan Angka kredit <br>
+                    2. Yth. Pejabat yang berwenang menetapkan Angka kredit <br>
                     3. Yth. Ketua Tim Penilai Angka Kredit Balai Besar POM di Banjarmasin
                 </td>
             </tr>

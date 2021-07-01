@@ -11,8 +11,9 @@
 }
 
 .ttd{
-    border:none;
-    border-collapse: collapse;
+    /* border:none;
+    border-collapse: collapse; */
+    border: 1px solid black;
     text-align: center;
     width: 100%;
     margin-left: 10%;
