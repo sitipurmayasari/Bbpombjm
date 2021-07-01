@@ -160,7 +160,7 @@ class DupakController extends Controller
         $mengetahui = Pejabat::
                     where('jabatan_id', '=', 6)
                     ->where('divisi_id', '=', 1)
-                    ->whereRaw("(SELECT tanggal FROM aduan WHERE id=$id) BETWEEN dari AND sampai")
+                    ->whereRaw("(SELECT tanggal FROM dupak WHERE id=$id) BETWEEN dari AND sampai")
                     ->first();
         $pdf = PDF::loadview('amdk/dupak.print',compact('data','mengetahui'));
         return $pdf->stream();
