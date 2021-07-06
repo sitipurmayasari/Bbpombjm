@@ -109,6 +109,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/amdk/dupak','Amdk\DupakController@index')->name('dupak');
     //Route untuk Angka Kredit
     Route::get('/amdk/dupak/kredit','Amdk\DupakController@kredit')->name('dupak.kredit');
+    //Route untuk Rapel Kredit
+    Route::get('/amdk/credit_poin','Amdk\CreditPoinController@index')->name('dupak.credit_poin');
     //Route untuk masa arsip
     Route::get('/amdk/archive_time','Amdk\ArchiveTimeController@index')->name('archive_time');
     

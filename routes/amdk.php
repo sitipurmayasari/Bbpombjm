@@ -146,4 +146,9 @@
   Route::get('/amdk/outstation/edit/{id}','Amdk\OutstationController@edit')->name('outstation.edit');
   Route::post('/amdk/outstation/update/{id}','Amdk\OutstationController@update')->name('outstation.update');
 
-  
+  //Route untuk Rapel Kredit
+  Route::get('/amdk/credit_poin/create','Amdk\CreditPoinController@create')->name('credit_poin.create');
+  Route::post('/amdk/credit_poin/store','Amdk\CreditPoinController@store')->name('credit_poin.store');
+  Route::get('/amdk/credit_poin/delete/{id}','Amdk\CreditPoinController@delete')->name('credit_poin.delete');
+  Route::get('/amdk/credit_poin/edit/{id}','Amdk\CreditPoinController@edit')->name('credit_poin.edit');
+  Route::post('/amdk/credit_poin/update/{id}','Amdk\CreditPoinController@update')->name('credit_poin.update');

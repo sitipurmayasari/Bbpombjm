@@ -32,6 +32,16 @@
                         <div class="col-sm-9">
                             <input type="text"  placeholder="Nomor KP" class="col-xs-8 col-sm-8 required " 
                             name="nomor_kp" required />
+                            <input type="hidden" name="status" value="A">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" 
+                        for="form-field-1">Rapel Kredit
+                        </label>
+                        <div class="col-sm-9" >
+                            <input type="checkbox" id="rapel" name="rapel" value="Y" >&nbsp;
+                            <label class="control-label" for="form-field-1"> Ya </label>
                         </div>
                     </div>
                     <div class="form-group">

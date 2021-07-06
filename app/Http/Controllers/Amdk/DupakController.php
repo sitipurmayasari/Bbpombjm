@@ -9,6 +9,7 @@ use App\Dupak;
 use App\Golongan;
 use App\Pejabat;
 use App\Jabasn;
+use App\Credit_poin;
 use PDF;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -79,6 +80,8 @@ class DupakController extends Controller
 
     public function store(Request $request)
     {
+        $rapel = $request->rapel;
+
         $user_id = $request->users_id;
 
         $this->validate($request,[
@@ -105,6 +108,11 @@ class DupakController extends Controller
             $dokument->save(); 
         }
 
+        if ($rapel == NULL) {
+            Credit_poin::create($request->all());
+        }
+        
+
         return redirect('/amdk/dupak')->with('sukses','Data Tersimpan');
     }
 
@@ -127,6 +135,7 @@ class DupakController extends Controller
 
     public function update(Request $request, $id)
     {
+        $rapel = $request->rapel;
         $user_id = $request->users_id;
         $data = Dupak::find($id);
         $data->update($request->all());
@@ -137,6 +146,19 @@ class DupakController extends Controller
                         ->getClientOriginalName()); 
             $data->file = $request->file('file')->getClientOriginalName(); 
             $data->save(); 
+        }
+
+        if ($rapel == 'Y') {
+            $rap = [
+                'dari' => $request->dari,
+                'sampai' => $request->sampai,
+                'jumlah' => $request->jumlah
+            ];
+            Credit_poin::where('dupak_id',$id)
+            ->update($rap);
+
+        }else{
+            Credit_poin::create($request->all());
         }
 
 
