@@ -72,7 +72,7 @@
 					<a href="/portal" class="navbar-brand">
 						<small>
 						<img src="{{asset('images/bbpom.jpg')}}" alt="" srcset="" style="height:35px">
-							SISTEM KEUANGAN
+							SI ANANG & GALUH
 						</small>
 					</a>
 				</div>
