@@ -313,15 +313,15 @@ h2, a {
         <div style="text-align: center">
           <h3>SELAMAT DATANG DI</h3>
           <h1>SISTEM INFORMASI BBPOM</h1>
-          <div class="social" style="font-size: 120px;">   
+          <div class="social">   
               <a class="social-icon" data-tooltip="AMDK" href="/amdk/dashboard">
-                <i class="fa fa-users fa-10x" aria-hidden="true"></i>
+                <img src="{{asset('images/amdk.png')}}" style="height:100%; width:100%">
               </a>   
               <a class="social-icon" data-tooltip="Inventaris" href="/invent/dashboard">
-                <i class="fa fa-archive fa-10x" aria-hidden="true"></i>
+                <img src="{{asset('images/invent.png')}}" style="height:100%; width:100%">
               </a>
               <a class="social-icon" data-tooltip="Anang & Galuh" href="/finance/dashboard">
-                <i class="fa fa-money fa-10x" aria-hidden="true"></i>
+                <img src="{{asset('images/naga.png')}}" style="height:100%; width:100%">
               </a>
             </div>
          </div>
