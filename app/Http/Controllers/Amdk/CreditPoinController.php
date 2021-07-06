@@ -42,7 +42,7 @@ class CreditPoinController extends Controller
             'users_id' => 'required',
             'dari' => 'required',
             'sampai' => 'required',
-            'poin' => 'required'
+            'jumlah' => 'required'
         ]);
 
         Credit_poin::create($request->all());
