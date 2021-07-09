@@ -80,12 +80,20 @@
   Route::get('finance/implementation/edit/{id}','Finance\ImplementController@edit')->name('implementation.edit');
   Route::post('finance/implementation/update/{id}','Finance\ImplementController@update')->name('implementation.update');
 
-   //Route untuk Rekap Anggaran
-   Route::post('/finance/rera/cetakrekap','Finance\ReraController@cetakrekap')->name('rera.cetakrekap');
+  //Route untuk Revisi Pelaksanaan Anggaran
+  Route::get('/finance/revision/create','Finance\RevisionController@create')->name('revision.create');
+  Route::post('finance/revision/store','Finance\RevisionController@store')->name('revision.store');
+  Route::get('finance/revision/edit/{id}','Finance\RevisionController@edit')->name('revision.edit');
+  Route::post('finance/revision/update/{id}','Finance\RevisionController@update')->name('revision.update');
+  Route::get('finance/revision/getKomponen','Finance\RevisionController@getKomponen')->name('revision.getKomponen');
+  Route::get('finance/revision/getdasarawal','Finance\RevisionController@getdasarawal')->name('revision.getdasarawal');
 
-  //Route untuk dinas
-  Route::get('/finance/outstation/create','Finance\OutstationController@create')->name('outstation.create');
-  Route::post('finance/outstation/store','Finance\OutstationController@store')->name('outstation.store');
-  Route::get('finance/outstation/edit/{id}','Finance\OutstationController@edit')->name('outstation.edit');
-  Route::post('finance/outstation/update/{id}','Finance\OutstationController@update')->name('outstation.update');
+  //Route untuk Rekap Anggaran
+  Route::post('/finance/rera/cetakrekap','Finance\ReraController@cetakrekap')->name('rera.cetakrekap');
+
+  // //Route untuk dinas
+  // Route::get('/finance/outstation/create','Finance\OutstationController@create')->name('outstation.create');
+  // Route::post('finance/outstation/store','Finance\OutstationController@store')->name('outstation.store');
+  // Route::get('finance/outstation/edit/{id}','Finance\OutstationController@edit')->name('outstation.edit');
+  // Route::post('finance/outstation/update/{id}','Finance\OutstationController@update')->name('outstation.update');
 

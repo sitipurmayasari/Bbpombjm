@@ -140,10 +140,15 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/finance/loka','Finance\LokaController@index')->name('loka');
     //Route untuk Pelaksanaan Anggaran
     Route::get('/finance/implementation','Finance\ImplementController@index')->name('implementation');
+    //Route untuk Revisi Pelaksanaan Anggaran
+    Route::get('/finance/revision','Finance\RevisionController@index')->name('revision');
     //Route untuk Rekap Anggaran
     Route::get('/finance/rera','Finance\ReraController@index')->name('rera');
+
+
+
     //Route untuk dinas
-    Route::get('/finance/outstation','Finance\OutstationController@index')->name('outstation');
+    // Route::get('/finance/outstation','Finance\OutstationController@index')->name('outstation');
 
 
 });

@@ -56,6 +56,40 @@
         </div>
       </div>
 </div>
+<div class="col-sm-6" style="text-align: center">
+  <div class="card">
+      <div class="card-header card-header-warning">
+        <h4 class="card-title">Perpanjang Pajak Kendaraan Dinas Bulan ini</h4>
+      </div>
+      <div class="card-body">
+        <table class="table table-hover" style="font-size: 12px;">
+          <thead>
+              <th>Tanggal Pajak</th>
+              <th>Tanggal Plat</th>
+              <th>Nomor Polisi</th>
+              <th>Merk / Type</th>
+              <th>No</th>
+          </thead>
+          <tbody>
+              @foreach($car as $key=>$row)
+              <tr>
+                @if ($row != null)
+                  <td>{{$row->police_number_date}}</td>
+                  <td>{{$row->tax_date}}</td>
+                  <td>{{$row->police_number}}</td>
+                  <td>{{$row->merk}} / {{$row->type}}</td>
+                  <td>{{$car->firstItem() + $key}}</td>
+                @else
+                  <td colspan="5">TIDAK ADA JADWAL MAINTENACE</td>
+                @endif
+              </tr>
+              @endforeach
+          </tbody> 
+        </table>
+      
+      </div>
+    </div>
+</div>
 
 @endsection
 

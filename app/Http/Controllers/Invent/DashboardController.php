@@ -8,6 +8,7 @@ use App\User;
 use App\Aduan;
 use App\JadwalMain;
 use App\Maintenance;
+use App\Car;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
@@ -24,7 +25,11 @@ class DashboardController extends Controller
                 ->WhereRaw("YEAR(tanggal) = YEAR(CURDATE())")
                 ->groupByRaw('MONTH(tanggal)')
                 ->get();
+        $car = Car::orderBy('id','desc')
+                ->whereMonth('tax_date',date('m'))    
+                ->paginate('5');
+
         
-        return view('invent/dashboard.index',compact('jadwal','aduan'));
+        return view('invent/dashboard.index',compact('jadwal','aduan','car'));
     }
 }
