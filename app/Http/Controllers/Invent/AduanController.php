@@ -4,15 +4,18 @@ namespace App\Http\Controllers\Invent;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use PDF;
 use App\Inventaris;
 use App\Aduan;
 use App\User;
 use App\Pejabat;
 use App\Petugas;
-use PDF;
-use Illuminate\Support\Facades\DB;
+
+
 use App\AduanDetail;
-use Carbon\Carbon;
+
 
 class AduanController extends Controller
 {
@@ -20,7 +23,7 @@ class AduanController extends Controller
     {   
         $detail = AduanDetail::all();
         $data = Aduan::orderBy('aduan_status','asc')
-                    ->select('aduan.*','users.name')
+                    ->SelectRaw('aduan.*,users.name')
                     ->leftJoin('users','users.id','=','aduan.pegawai_id')
                     ->where('aduan.jenis','=','U')
                     ->when($request->keyword, function ($query) use ($request) {
