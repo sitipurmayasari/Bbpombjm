@@ -61,7 +61,7 @@
                         </label>
                         <div class="col-sm-8" >
                             <input type="number" step="0.001" min="0" class="col-xs-2 col-sm-2 required "
-                            name="jumlah" value="{{$data->poin}}"/>&nbsp;
+                            name="jumlah" value="{{$data->jumlah}}"/>&nbsp;
                         </div>
                     </div>
                     </fieldset>        

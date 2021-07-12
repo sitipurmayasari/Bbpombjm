@@ -27,6 +27,7 @@ use App\Jendok;
 use App\Jabasn;
 use App\Tukin;
 use App\Dupak;
+use App\credit_poin;
 
 
 class ProfileController extends Controller
@@ -73,12 +74,12 @@ class ProfileController extends Controller
                 ->where('tukin_detail.terima','!=', 0)
                 ->where('tukin_detail.users_id',$id)
                 ->paginate('10');
-        $dupak = Dupak::orderBy('id','asc')
-                        ->selectRaw('*, MONTH(dari) AS bulan')
+        $dupak = credit_poin::orderBy('sampai','asc')
+                        ->selectRaw('*, MONTH(sampai) AS bulan')
                         ->where('users_id',$id)
                         ->get();
 
-        $thndupak= Dupak::selectRaw('YEAR(dari) AS tahun')
+        $thndupak= credit_poin::selectRaw('YEAR(dari) AS tahun')
                         ->where('users_id',$id)
                         ->groupByRaw('tahun')
                         ->orderBy('tahun','asc')

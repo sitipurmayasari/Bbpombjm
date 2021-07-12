@@ -15,7 +15,7 @@
                             <tr>
                                 @foreach($dupak as $row)
                                     <th class="text-left col-md-4"  style="text-align: center; width:30%">
-                                        @if ($row->bulan == '1')
+                                        @if ($row->bulan == '6')
                                             SMT 1
                                         @else
                                             SMT 2
@@ -27,7 +27,7 @@
                         <tbody>
                             <tr>
                                 @foreach($dupak as $row)
-                                    <td style="text-align: center">{{$row->total}}</td>
+                                    <td style="text-align: center">{{$row->jumlah}}</td>
                                 @endforeach
                             </tr>
                         </tbody>

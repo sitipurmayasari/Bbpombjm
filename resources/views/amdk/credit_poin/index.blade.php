@@ -53,7 +53,7 @@
                     <td>{{$row->pegawai->name}} ( {{$row->pegawai->no_pegawai}} )</td>
                     <td>{{$row->dari}}</td>
                     <td>{{$row->sampai}}</td>
-                    <td style="text-align: center">{{$row->poin}}</td>
+                    <td style="text-align: center">{{$row->jumlah}}</td>
                     <td>
                         <a href="/amdk/credit_poin/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>

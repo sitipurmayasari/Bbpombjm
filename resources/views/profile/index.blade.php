@@ -196,10 +196,10 @@
         <li><a href="#tab-riwayat-pendidikan" data-toggle="tab">Riwayat Pendidikan</a></li>
         <li><a href="#tab-dokpeg" data-toggle="tab">Dokumen Kepegawaian</a></li>
 
-        @if (auth()->user()->status=='PNS')
+        {{-- @if (auth()->user()->status=='PNS') --}}
             <li><a href="#tab-tukin" data-toggle="tab">TuKin</a></li>
             <li><a href="#tab-dupak" data-toggle="tab">Angka Kredit</a></li>
-        @endif
+        {{-- @endif --}}
         
     </ul>
 

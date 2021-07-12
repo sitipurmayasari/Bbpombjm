@@ -63,7 +63,7 @@ class CreditPoinController extends Controller
         $this->validate($request,[
             'dari' => 'required',
             'sampai' => 'required',
-            'poin' => 'required'
+            'jumlah' => 'required'
         ]);
         
         $data = Credit_poin::find($id);

@@ -88,7 +88,7 @@ class DupakController extends Controller
             'users_id' => 'required',
             'seri_karpeg' => 'required',
             'tmt' => 'required',
-            'nomor_kp' => 'required',
+            'nomor_kp' => 'required|unique:dupak',
             'dari' => 'required',
             'sampai' => 'required',
             'masa_lama_thn' => 'required',
@@ -97,22 +97,22 @@ class DupakController extends Controller
             'masa_baru_bln' => 'required',
             'tanggal' => 'required'
         ]);
+        DB::beginTransaction();
+            $dokument = Dupak::create($request->all());
+            if($request->hasFile('file')){ // Kalau file ada
+                $request->file('file')
+                            ->move('images/pegawai/'.$dokument->users_id.'/dupak',$request
+                            ->file('file')
+                            ->getClientOriginalName()); 
+                $dokument->file = $request->file('file')->getClientOriginalName(); 
+                $dokument->save(); 
+            }
 
-        $dokument = Dupak::create($request->all());
-        if($request->hasFile('file')){ // Kalau file ada
-            $request->file('file')
-                        ->move('images/pegawai/'.$dokument->users_id.'/dupak',$request
-                        ->file('file')
-                        ->getClientOriginalName()); 
-            $dokument->file = $request->file('file')->getClientOriginalName(); 
-            $dokument->save(); 
-        }
-
-        if ($rapel == NULL) {
-            Credit_poin::create($request->all());
-        }
-        
-
+            if ($rapel != "Y") {
+                $request->merge(['dupak_id' => $dokument->id]);
+                Credit_poin::create($request->all());
+            }
+        DB::commit(); 
         return redirect('/amdk/dupak')->with('sukses','Data Tersimpan');
     }
 
@@ -148,7 +148,7 @@ class DupakController extends Controller
             $data->save(); 
         }
 
-        if ($rapel == 'Y') {
+        if ($rapel != 'Y') {
             $rap = [
                 'dari' => $request->dari,
                 'sampai' => $request->sampai,
