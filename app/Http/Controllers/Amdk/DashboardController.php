@@ -16,9 +16,11 @@ class DashboardController extends Controller
         $peg =auth()->user()->id;
         $jumpeg = User::selectRaw(" COUNT(*) AS total ")
                 ->where('aktif','Y')
+                ->where('id','!=','1')
                 ->first();
         $datapeg = User::selectRaw(" status, COUNT(*) AS jumlah ")
                 ->where('aktif','Y')
+                ->where('id','!=','1')
                 ->groupByRaw('status')
                 ->get();
 
