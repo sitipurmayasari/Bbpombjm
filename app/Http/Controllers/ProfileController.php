@@ -27,7 +27,7 @@ use App\Jendok;
 use App\Jabasn;
 use App\Tukin;
 use App\Dupak;
-use App\credit_poin;
+use App\Credit_poin;
 
 
 class ProfileController extends Controller
