@@ -52,11 +52,11 @@ class PengumumanController extends Controller
         return redirect('/amdk/pengumuman')->with('sukses','Data Diperbaharui');
     }
 
-   
     public function delete($id)
     {
-        $pengumuman = Pengumuman::find($id);
-        $pengumuman->delete();
+        $subdivisi = Pengumuman::find($id);
+        $subdivisi->delete();
         return redirect('/amdk/pengumuman')->with('sukses','Data Terhapus');
+
     }
 }

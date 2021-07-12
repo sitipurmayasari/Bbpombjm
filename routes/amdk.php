@@ -13,6 +13,7 @@
   Route::post('/amdk/pengumuman/store','Amdk\PengumumanController@store')->name('pengumuman.store');
   Route::get('/amdk/pengumuman/edit/{id}','Amdk\PengumumanController@edit')->name('pengumuman.edit');
   Route::post('/amdk/pengumuman/update/{id}','Amdk\PengumumanController@update')->name('pengumuman.update');
+  Route::get('/amdk/pengumuman/delete/{id}','Amdk\PengumumanController@delete')->name('pengumuman.delete');
 
   //Route untuk keluarga
   Route::get('/amdk/keluarga/getKeluarga','Amdk\KeluargaController@getKeluarga')->name('keluarga.getKeluarga');

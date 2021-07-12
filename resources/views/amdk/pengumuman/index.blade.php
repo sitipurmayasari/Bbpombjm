@@ -44,7 +44,7 @@
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
                     <td>{{$row->judul}}</td>
-                    <td>{{$row->dari}}</td>
+                    <td>{{$row->daDri}}</td>
                     <td>{{$row->sampai}}</td>
                     <td>{{$row->user->name}}</td>
                     <td>
@@ -54,7 +54,6 @@
                             r-name="{{$row->judul}}" 
                             r-id="{{$row->id}}">
                             <i class="glyphicon glyphicon-trash"></i></a>
-                        </a>
                     </td>
                 </tr>
               
@@ -70,10 +69,10 @@
    $().ready( function () {
         $(".delete").click(function() {
                 var id = $(this).attr('r-id');
-                var judul = $(this).attr('r-judul');
+                var jenis = $(this).attr('r-name');
                 Swal.fire({
                 title: 'Ingin Menghapus?',
-                text: "Yakin ingin menghapus data  : "+judul+" ini ?" ,
+                text: "Yakin ingin menghapus data  : "+jenis+" ini ?" ,
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
