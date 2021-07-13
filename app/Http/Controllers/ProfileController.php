@@ -93,20 +93,34 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
     {
         $user = Auth::user();
+        // dd($request->all());
         $this->validate($request, [
-            'password_new' => 'required',
-            'oldpass' => 'required',
-            'repassword' => 'required_with:password|same:password_new|min:8'
+            'email' => 'required|unique:users,email,'.$user->id,
+            'telp' => 'required',
         ]);
-        $hashPassword = $user->password;
-        if (Hash::check($request->oldpass, $hashPassword)) {
-            $user->update([
-                'password' => bcrypt($request->password_new)
+
+        $user->update([
+            'email'=>$request->email,
+            'telp'=>$request->telp,
+            'alamat'=>$request->alamat
+        ]);
+
+        if ($request->password_new!=null) {
+            $this->validate($request, [
+                'password_new' => 'required',
+                'oldpass' => 'required',
+                'repassword' => 'required_with:password|same:password_new|min:8'
             ]);
-            return redirect('/profile')->with('sukses','Password Berhasil Diperbaharui');
-        }else{
-            return redirect('/profile')->with('gagal','Password Lama Salah');
+            $hashPassword = $user->password;
+            if (Hash::check($request->oldpass, $hashPassword)) {
+                $user->update([  'password' => bcrypt($request->password_new)]);
+            }else{
+                return redirect('/profile')->with('gagal','Password Lama Salah');
+            }
         }
+        return redirect('/profile')->with('sukses','Profil berhasil diperbaharui');
+
+    
     }
 
 

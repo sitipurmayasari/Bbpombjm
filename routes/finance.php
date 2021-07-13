@@ -91,6 +91,12 @@
   //Route untuk Rekap Anggaran
   Route::post('/finance/rera/cetakrekap','Finance\ReraController@cetakrekap')->name('rera.cetakrekap');
 
+  //Route untuk Realisasi anggaran Anggaran
+  Route::get('/finance/realisasi/create','Finance\RealisasiController@create')->name('realisasi.create');
+  Route::post('finance/realisasi/store','Finance\RealisasiController@store')->name('realisasi.store');
+  Route::get('finance/realisasi/edit/{id}','Finance\RealisasiController@edit')->name('realisasi.edit');
+  Route::post('finance/realisasi/update/{id}','Finance\RealisasiController@update')->name('realisasi.update');
+
   // //Route untuk dinas
   // Route::get('/finance/outstation/create','Finance\OutstationController@create')->name('outstation.create');
   // Route::post('finance/outstation/store','Finance\OutstationController@store')->name('outstation.store');

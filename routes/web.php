@@ -144,6 +144,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/finance/revision','Finance\RevisionController@index')->name('revision');
     //Route untuk Rekap Anggaran
     Route::get('/finance/rera','Finance\ReraController@index')->name('rera');
+    //Route untuk Realisasi anggaran Anggaran
+    Route::get('/finance/realisasi','Finance\RealisasiController@index')->name('realiasi');
 
 
 

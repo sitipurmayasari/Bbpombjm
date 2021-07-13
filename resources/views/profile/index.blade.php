@@ -26,7 +26,6 @@
                       <h4>{{auth()->user()->name}}</h4>
                       <p class="text-secondary mb-1">{{auth()->user()->jabatan->jabatan}}</p>
                       <p class="text-muted font-size-sm">{{auth()->user()->divisi->nama}}</p>
-                      <input type="submit" class="btn btn-primary" value="UPDATE PASSWORD"/>
                     </div>
                   </div>
                 </div>
@@ -34,10 +33,11 @@
               <div class="card mt-3">
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                      <i>isi password jika ingin mengubah password</i>
                     <h6 class="mb-0">
 					            	<span class="text-secondary"> Password Lama</span><br>
                         <input type="password"  value="" id="myInputa"
-                               class="required" minlength="8" required
+                               class="required" minlength="8"
                               name="oldpass"/> &nbsp; 
                         <i class="fa fa-eye" onclick="myFunction()"></i>
                     </h6>
@@ -47,7 +47,7 @@
 					            	<span class="text-secondary"> Password Baru</span><br>
                         <input type="password"  placeholder="password min 8 character" 
                         class="required" minlength="8" id="myInputb"
-                                        name="password_new" required  />
+                                        name="password_new"  />
                         <i class="fa fa-eye" onclick="myFunctionb()"></i>
                     </h6>
                   </li>
@@ -57,7 +57,7 @@
                           <span class="text-secondary"> Ketik ulang password baru </span><br>
                           <input type="password"  placeholder="password min 8 character" 
                           class="required" minlength="8" id="myInputc"
-                                          name="repassword" required  />
+                                          name="repassword"  />
                           <i class="fa fa-eye" onclick="myFunctionc()"></i>
                         </div>
                     </h6>
@@ -143,7 +143,15 @@
                         No. Telp
                     </div>
                     <div class="col-sm-4 text-secondary">
-                      {{auth()->user()->telp}}
+                        <div id="nohape">
+                            <label for="">
+                                {{auth()->user()->telp}}
+                            </label>
+                            <i class="ace-icon fa fa-pencil" onclick="hape()"></i>
+                        </div>
+                        <div id="ubahhape">
+                            <input type="text" name="telp" class="col-xs-10 col-sm-10" value="{{auth()->user()->telp}}">    
+                        </div>
                     </div>
                     <div class="col-sm-2">
                         Kelompok
@@ -155,17 +163,25 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-2">
-                        Email
+                        Email 
                     </div>
                     <div class="col-sm-4 text-secondary">
-                      {{auth()->user()->email}}
+                        <div id="alamatpesan">
+                            <label for="">
+                                {{auth()->user()->email}}
+                            </label>
+                            <i class="ace-icon fa fa-pencil" onclick="pesan()"></i>
+                        </div>
+                        <div id="ubahpesan">
+                            <input type="text" name="email" class="col-xs-10 col-sm-10" value="{{auth()->user()->email}}">    
+                        </div>
                     </div>
                     <div class="col-sm-2">
                         Sub Kelompok
                     </div>
                     <div class="col-sm-4 text-secondary">
                         @if (auth()->user()->subdivisi_id != null)
-                            {{auth()->user()->subdivisi->nama}}
+                            {{auth()->user()->subdivisi->nama_subdiv}}
                         @else
                         -
                         @endif
@@ -177,12 +193,23 @@
                         Alamat
                     </div>
                     <div class="col-sm-10 text-secondary">
-                      {{auth()->user()->alamat}}
+                        <div id="alamatrumah">
+                            <label for="">
+                                {{auth()->user()->alamat}}
+                            </label>
+                            <i class="ace-icon fa fa-pencil" onclick="rumah()"></i>
+                        </div>
+                        <div id="ubahrumah">
+                            <textarea class="col-xs-10 col-sm-10" name="alamat">{{auth()->user()->alamat}}</textarea>    
+                        </div>
                     </div>
                   </div>
                 </div>
               </div>
-              
+              <br>
+              <div class="col-md-12" style="text-align: right" id="updatedinfo">
+                <input type="submit" class="btn btn-primary" value="UPDATE INFORMASI"/>
+              </div>
             </div>
           </div>
         </div>
@@ -242,7 +269,27 @@
         }
     }
 
+    function hape() {
+        $("#ubahhape").show();  
+        $("#nohape").hide();
+        $("#updatedinfo").show();
+    }
+    function rumah() {
+        $("#ubahrumah").show();  
+        $("#alamatrumah").hide();
+        $("#updatedinfo").show();
+    }
+    function pesan() {
+        $("#ubahpesan").show();  
+        $("#alamatpesan").hide();
+        $("#updatedinfo").show();
+    }
+
     $().ready( function () {
+        $("#ubahhape").hide();
+        $("#ubahrumah").hide();
+        $("#ubahpesan").hide();
+
         getKeluarga();
         getRiwayat();
         getDokument();
