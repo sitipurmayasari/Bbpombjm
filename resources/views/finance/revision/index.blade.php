@@ -1,8 +1,7 @@
 @extends('layouts.mon')
 @section('breadcrumb')
-@section('breadcrumb')
     <li>Anggaran</li>
-    <li>Pelaksanaan Anggaran</i></li>
+    <li>POK</i></li>
 @endsection
 @section('content')
 
@@ -13,7 +12,7 @@
                 <div class="form-group col-sm-12">
                     <div class="row">
                         <div class="form-group col-xs-12 col-sm-3" style="float: left">
-                           <a href="{{Route('implementation.create')}}"  class="btn btn-primary">Tambah Data</a>   
+                           <a href="{{Route('revision.create')}}"  class="btn btn-primary">Tambah Data</a>   
                         </div>
                         <div class="form-group col-xs-12 col-sm-5" style="float: right">
                             <div class="input-group">
@@ -37,20 +36,26 @@
             <thead>
                 <th width="40px">No</th>
                 <th>Tahun</th>
-                <th >Kode</th>
+                <th>Revisi Ke-</th>
                 <th>Dibuat Oleh</th>
-                <th  class="col-md-2">Aksi</th>
+                <th>Lihat hasil</th>
             </thead>
             <tbody>   	
                 @foreach($data as $key=>$row)
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
                     <td>{{$row->year}}</td>
-                    <td>{{$row->kro->code}} - {{$row->det->code}} - {{$row->komponen->code}} - {{$row->sub->code}}</td>
+                    <td>
+                        @if ($row->revisi=='0')
+                            Awal
+                        @else
+                            {{$row->revisi}}
+                        @endif
+                    </td>
                     <td>{{$row->pegawai->name}} <br> ({{$row->pegawai->no_pegawai}})</td>
                     <td>
-                        <a href="/finance/implementation/edit/{{$row->id}}" class="btn btn-warning">
-                            <i class="glyphicon glyphicon-edit"></i>
+                        <a href="/finance/revision/view/{{$row->id}}" class="btn btn-warning">
+                            <i class="glyphicon glyphicon-print"></i>
                         </a>
                     </td>
                 </tr>
@@ -63,6 +68,4 @@
 @endsection
 
 @section('footer')
-<script>
-</script>
 @endsection

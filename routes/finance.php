@@ -82,17 +82,20 @@
 
   //Route untuk Revisi Pelaksanaan Anggaran
   Route::get('/finance/revision/create','Finance\RevisionController@create')->name('revision.create');
-  Route::post('finance/revision/store','Finance\RevisionController@store')->name('revision.store');
-  Route::get('finance/revision/edit/{id}','Finance\RevisionController@edit')->name('revision.edit');
-  Route::post('finance/revision/update/{id}','Finance\RevisionController@update')->name('revision.update');
-  Route::get('finance/revision/getKomponen','Finance\RevisionController@getKomponen')->name('revision.getKomponen');
-  Route::get('finance/revision/getdasarawal','Finance\RevisionController@getdasarawal')->name('revision.getdasarawal');
+  Route::post('/finance/revision/impor','Finance\RevisionController@impor')->name('revision.impor');
+  Route::get('finance/revision/view/{id}','Finance\RevisionController@view')->name('revision.view');
+  Route::get('finance/revision/getPokDetail','Finance\RevisionController@getPokDetail')->name('revision.getPokDetail');
 
   //Route untuk Rekap Anggaran
   Route::post('/finance/rera/cetakrekap','Finance\ReraController@cetakrekap')->name('rera.cetakrekap');
 
   //Route untuk Realisasi anggaran Anggaran
   Route::get('/finance/realisasi/create','Finance\RealisasiController@create')->name('realisasi.create');
+  Route::get('finance/realisasi/getAsal','Finance\RealisasiController@getAsal')->name('realisasi.getAsal');
+  Route::get('finance/realisasi/getKomponen','Finance\RealisasiController@getKomponen')->name('realisasi.getKomponen');
+  Route::get('finance/realisasi/getAkunId','Finance\RealisasiController@getAkunId')->name('realisasi.getAkunId');
+  Route::get('finance/realisasi/getLokasi','Finance\RealisasiController@getLokasi')->name('realisasi.getLokasi');
+  Route::get('finance/realisasi/getNilai','Finance\RealisasiController@getNilai')->name('realisasi.getNilai');
   Route::post('finance/realisasi/store','Finance\RealisasiController@store')->name('realisasi.store');
   Route::get('finance/realisasi/edit/{id}','Finance\RealisasiController@edit')->name('realisasi.edit');
   Route::post('finance/realisasi/update/{id}','Finance\RealisasiController@update')->name('realisasi.update');
