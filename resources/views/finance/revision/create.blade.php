@@ -62,9 +62,9 @@
                             for="form-field-1"> Jenis POK
                             </label>
                             <div class="col-sm-8">
-                                <input type="radio" required value="A" checked onclick="respe();"
+                                <input type="radio" required value="AWAL" checked onclick="respe();"
                                 name="jenis" id="A"/> &nbsp; Awal &nbsp;
-                                <input type="radio" required value="R" onclick="respe();"
+                                <input type="radio" required value="REVISI" onclick="respe();"
                                 name="jenis" id="R"/> &nbsp; Revisi
                             </div>
                         </div>

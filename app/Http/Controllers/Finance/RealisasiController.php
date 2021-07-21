@@ -46,29 +46,12 @@ class RealisasiController extends Controller
         $kom = Komponencode::all();
         $akun = Accountcode::all();
         $loka = Loka::all();
-        $no_realisasi = $this->getNoRealisasi();
         return view('finance/realisasi.create',compact('act','kom','sub','akun','loka','no_realisasi'));
     }
 
-    function getNoRealisasi(){
-        $realisasi = Realisasi::orderBy('id','desc')->whereYear('created_at',date('Y'))->get(); // get last no aduan berdasarkan reset per tahun
-        $first = "001";
-        if($realisasi->count()>0){
-          $first = $realisasi->first()->id+1;
-          if($first < 10){
-              $first = "00".$first;
-          }else if($first < 100){
-              $first = "0".$first;
-          }
-        }
-        $no_realisasi = $first."/R-Keu/BBPOM/".date('m')."/".date('Y');
-        return $no_realisasi;
-      }
-
     public function getAsal(Request $request)
       {
-          $data = Pok::SelectRaw('*, case when jenis = "A" then "AWAL" ELSE "REVISI" END AS ini')
-                    ->where('year',$request->year)
+          $data = Pok::where('year',$request->year)
                     ->get();
           return response()->json([ 
               'success' => true,
@@ -163,17 +146,48 @@ class RealisasiController extends Controller
 
     public function edit($id)
     {
-        $data = Realisasi::where('id',$id)->first();
+        $act = Activitycode::all();
+        $kom = Komponencode::all();
+        $akun = Accountcode::all();
+        $loka = Loka::all();
+        $data = Realisasi::where('realisasi.id',$id)
+                        ->SelectRaw('realisasi.*, pok.year, pok_detail.total')
+                        ->LeftJoin('pok_detail','pok_detail.id','=','realisasi.pok_detail_id')
+                        ->LeftJoin('pok','pok.id','=','pok_detail.pok_id')
+                        ->first();
         $detail = RealisasiDetail::where('realisasi_id',$id)->get();
-        return view('finance/realisasi.edit',compact('data','detail'));
+        $total = $data->total;
+        $pok_detail_id = $data->pok_detail_id;
+        $sub=array(
+            'asalpok' => $data->asalpok,
+            'activitycode_id'=>$data->activitycode_id,
+            'subcode_id'=>$data->subcode_id,
+            'accountcode_id'=>$data->accountcode_id,
+            'loka_id'=>$data->loka_id
+        );
+
+        return view('finance/realisasi.edit',compact('data','detail','act','kom','akun','loka','total','pok_detail_id','sub'));
     }
 
    
     public function update(Request $request, $id)
     {
-        $data = Realisasi::find($id);
-        $data->update($request->all());
-        return redirect('/finance/loka')->with('sukses','Data Diperbaharui');
+       
+        DB::beginTransaction(); // kegunaan untuk multiple insert (banyak aksi k database)
+            $realisasi =Realisasi::find($id)->update($request->all());
+            RealisasiDetail::where('realisasi_id',$id)->delete();
+            for ($i = 0; $i < count($request->input('biaya')); $i++){
+                $data = [
+                    'realisasi_id' => $id,
+                    'month' => $request->month[$i] ,
+                    'week' => $request->week[$i] ,
+                    'biaya' => $request->biaya[$i]
+                ];
+                RealisasiDetail::create($data);
+            }
+        DB::commit(); 
+
+        return redirect('/finance/realisasi')->with('sukses','Data Telah diperbaharui');
     }
 
 

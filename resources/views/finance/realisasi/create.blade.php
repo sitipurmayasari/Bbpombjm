@@ -148,6 +148,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <input type="hidden" id="countRow" value="1">
                                 <tr id="cell-1">
                                     <td>
                                         <select id="bulan-1" name="month[]" class="form-control select2" required style="width: 90%">
@@ -253,7 +254,7 @@
                var data = response.data;
                var string ="<option value=''>Pilih</option>";
                 $.each(data, function(index, value) {
-                    string = string + '<option value="'+ value.id +'">'+ value.ini +'('+value.revisi +')</option>';
+                    string = string + '<option value="'+ value.id +'">'+ value.asal_pok +'</option>';
                 })
                $("#asalpok").html(string);
             }
@@ -378,8 +379,8 @@
                 '<td>'+
                     '<input type="number" name="biaya[]" class="form-control hitung" min="0" value="0" style="width: 90%" onkeyup="hitung()" id="biaya-'+new_baris+'">'+                          
                 '</td>'+                       
-                '<td>'                        
-                    '<button type="button" class="form-control btn-default" onclick="addBarisNew()"><i class="glyphicon glyphicon-plus"></i></button>'+
+                '<td>' +                      
+                    // '<button type="button" class="form-control btn-default" onclick="addBarisNew()"><i class="glyphicon glyphicon-plus"></i></button>'+
                     '<button type="button" class="btn btn-danger" onclick="deleteRow('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button>'+
                 '</td>'+
             '</tr>';
@@ -390,7 +391,7 @@
     
        function deleteRow(cell) {
             $("#cell-"+cell).remove();
-            this.hitungTotal();
+            this.hitung();
 
         }
 

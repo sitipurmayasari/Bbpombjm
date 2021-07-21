@@ -45,13 +45,7 @@
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
                     <td>{{$row->year}}</td>
-                    <td>
-                        @if ($row->revisi=='0')
-                            Awal
-                        @else
-                            {{$row->revisi}}
-                        @endif
-                    </td>
+                    <td>{{$row->asal_pok}} </td>
                     <td>{{$row->pegawai->name}} <br> ({{$row->pegawai->no_pegawai}})</td>
                     <td>
                         <a href="/finance/revision/view/{{$row->id}}" class="btn btn-warning">

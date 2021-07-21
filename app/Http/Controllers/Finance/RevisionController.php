@@ -61,7 +61,11 @@ class RevisionController extends Controller
           $nama_file = $file->getClientOriginalName();
   
           $file->move('excel',$nama_file);
-   
+
+          
+          $asal_pok = $request->jenis."(".$request->revisi.")";
+
+          $request->merge([ 'asal_pok' => $asal_pok]);
         //   // import data
         DB::beginTransaction();
             $pok =POK::create($request->all());

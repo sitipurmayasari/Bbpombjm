@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pok extends Model
 {
     protected $table = "pok";
-    protected $fillable = ['users_id','year','activitycode_id','jenis','revisi','asal','kode_asal'
+    protected $fillable = ['users_id','year','activitycode_id','asal_pok','asal','kode_asal'
     ];
 
     public function pegawai()

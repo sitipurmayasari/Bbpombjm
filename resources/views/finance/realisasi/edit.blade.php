@@ -9,7 +9,7 @@
 
 <div class="row">
     <form class="form-horizontal validate-form" role="form" 
-         method="post" action="/finance/realisasi/update/{{$data->id}}"> enctype="multipart/form-data">
+         method="post" action="/finance/realisasi/update/{{$data->id}}" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div class="col-sm-12">
         <div class="widget-box">
@@ -50,13 +50,17 @@
                             </label>
                             <div class="col-sm-8">
                                 <select id="tahun" name="year" class="col-xs-10 col-sm-10 select2" required  onchange="getAsal()">
-                                    <option value="">Pilih Tahun</option>
                                     @php
                                         $now=date('Y');
                                         $a = $now+1;
+                                        if($a==$data->year){ 
+                                                $pilih="selected";
+                                            }else {
+                                                $pilih="";
+                                            }
                                         echo 
-                                        "<option value='$now'>$now</option>
-                                        <option value='$a'>$a</option>";
+                                        "<option value=\"$now\" $pilih>$now</option>
+                                        <option value=\"$a\" $pilih>$a</option>";
                                     @endphp
                                 </select>
                             </div>
@@ -81,7 +85,11 @@
                                 onchange="getKomponen()" required>
                                         <option value="">Pilih Kode</option>
                                     @foreach ($act as $data)
-                                        <option value="{{$data->id}}">{{$data->code}} || {{$data->name}}</option>
+                                        @if ($data->id==$sub['activitycode_id'])
+                                            <option selected value="{{$data->id}}">{{$data->code}} || {{$data->name}}</option>
+                                        @else 
+                                            <option value="{{$data->id}}">{{$data->code}} || {{$data->name}}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>
@@ -148,40 +156,76 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr id="cell-1">
+                                @php
+                                    $noRow = 1;
+                                @endphp
+                                @foreach ($detail as $item)
+                                <tr id="cell-{{$noRow}}">
                                     <td>
                                         <select id="bulan-1" name="month[]" class="form-control select2" required style="width: 90%">
                                             @php
-                                            $bulan = array("", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus",
+                                                $bulan2 = array("","Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus",
                                                             "September", "Oktober", "November", "Desember");
-                                            for($a=1;$a<=12;$a++){
-                                            if($a==date("m")){ 
-                                                $pilih="selected";
-                                            }else {
-                                                $pilih="";
-                                            }
-                                                echo("<option value=\"$a\" $pilih>$bulan[$a]</option>"."\n");
-                                            }
+                                                for($a=1;$a<=12;$a++){
+                                                    if($a == $item->month){ 
+                                                        $pilih="selected";
+                                                    }else {
+                                                        $pilih="";
+                                                    }
+                                                    echo("<option value=\"$a\" $pilih>$bulan2[$a]</option>"."\n");
+                                                }
                                             @endphp
                                         </select>
                                     </td>
                                     <td>
                                         <select name="week[]" id="minggu-1">
-                                            <option value="1">minggu 1</option>
-                                            <option value="2">minggu 2</option>
-                                            <option value="3">minggu 3</option>
-                                            <option value="4">minggu 4</option>
+                                            @if ($item->week == 1)
+                                                <option value="1" selected>minggu 1</option>
+                                                <option value="2">minggu 2</option>
+                                                <option value="3">minggu 3</option>
+                                                <option value="4">minggu 4</option>
+                                            @elseif ($item->week == 2)
+                                                <option value="1" >minggu 1</option>
+                                                <option value="2" selected>minggu 2</option>
+                                                <option value="3">minggu 3</option>
+                                                <option value="4">minggu 4</option>
+                                            @elseif ($item->week == 3)
+                                                <option value="1">minggu 1</option>
+                                                <option value="2">minggu 2</option>
+                                                <option value="3" selected>minggu 3</option>
+                                                <option value="4">minggu 4</option>
+                                            @else
+                                                <option value="1">minggu 1</option>
+                                                <option value="2">minggu 2</option>
+                                                <option value="3">minggu 3</option>
+                                                <option value="4" selected>minggu 4</option>
+                                                
+                                            @endif
                                         </select>
                                     </td>
                                     <td>
-                                        <input type="number" name="biaya[]" class="form-control hitung" min="0" value="0" style="width: 90%"
-                                        onkeyup="hitung()" id="biaya-1">
+                                        <input type="number" name="biaya[]" class="form-control hitung" min="0" style="width: 90%"
+                                        onkeyup="hitung()" id="biaya-1" value="{{$item->biaya}}">
                                     </td>
                                     <td>
-                                        <button type="button" class="form-control btn-default" onclick="addBarisNew()">
-                                        <i class="glyphicon glyphicon-plus"></i></button>
+                                        @if ($noRow==1)
+                                            <button type="button" class="form-control btn-default" onclick="addBarisNew()">
+                                            <i class="glyphicon glyphicon-plus"></i></button>
+                                        @else 
+                                            <button type="button" class="btn btn-danger"
+                                             onclick="deleteRow({{$noRow}})"><i class="glyphicon glyphicon-trash"></i>
+                                            </button>
+
+                                        @endif
+                                       
                                     </td>
                                 </tr>
+                                @php
+                                    $noRow ++
+                                @endphp
+                                @endforeach
+                                <input type="hidden" id="countRow" value="{{$noRow-1}}">
+
                             </tbody>
                         </table>
                     </div>
@@ -192,9 +236,9 @@
                             for="form-field-1">  Anggaran
                             </label>
                             <div class="col-sm-8">
-                                <input type="number" class="col-xs-10 col-sm-10 required " readonly value="0"
+                                <input type="number" class="col-xs-10 col-sm-10 required " readonly value="{{$total}}"
                                    name="asaluang" required  id="asaluang"/>
-                                   <input type="hidden" name="pok_detail_id" id=pok_detail_id>
+                                   <input type="hidden" name="pok_detail_id" id=pok_detail_id value="{{$pok_detail_id}}">
                             </div>
                         </div>
                         <div class="form-group">
@@ -202,7 +246,7 @@
                             for="form-field-1">  realisasi
                             </label>
                             <div class="col-sm-8">
-                                <input type="number" class="col-xs-10 col-sm-10 required " readonly value="0"
+                                <input type="number" class="col-xs-10 col-sm-10 required " readonly 
                                  id="realisasi"  name="asal" required />
                             </div>
                         </div>
@@ -216,7 +260,6 @@
                             </div>
                         </div>
                         </select>
-
                     </div>
                 </fieldset>    
                </div>
@@ -239,6 +282,14 @@
 
     $().ready( function () {
         document.getElementById("simpan").disabled = true;
+
+        var sum = 0;
+        $('.hitung').each(function(){
+            sum += parseFloat(this.value);
+        });
+        $("#realisasi").val(sum);
+        getAsal();
+
     } );
 
     function getAsal(){
@@ -253,9 +304,15 @@
                var data = response.data;
                var string ="<option value=''>Pilih</option>";
                 $.each(data, function(index, value) {
-                    string = string + '<option value="'+ value.id +'">'+ value.ini +'('+value.revisi +')</option>';
+                    var idasal = "<?php echo $sub['asalpok'] ?>";
+                    if(value.id  == idasal){
+                        string = string + '<option selected value="'+ value.id +'">'+ value.asal_pok +'</option>';
+                    }else{
+                        string = string + '<option value="'+ value.id +'">'+ value.asal_pok +'</option>';
+                   }
                 })
                $("#asalpok").html(string);
+               getKomponen();
             }
         );
     }
@@ -273,9 +330,16 @@
                var data = response.data;
                var string ="<option value=''>Pilih Kode</option>";
                 $.each(data, function(index, value) {
-                    string = string + '<option value="'+ value.subcode_id +'">'+ value.kro +'-'+value.ro +'-'+value.kom +'-'+value.sub+'</option>';
+                    var subcode_id = "<?php echo $sub['subcode_id'] ?>";
+                    if( value.subcode_id == subcode_id){
+                        string = string + '<option selected value="'+ value.subcode_id +'">'+ value.kro +'-'+value.ro +'-'+value.kom +'-'+value.sub+'</option>';
+                    }else{
+                        string = string + '<option value="'+ value.subcode_id +'">'+ value.kro +'-'+value.ro +'-'+value.kom +'-'+value.sub+'</option>';
+                    }
+
                 })
                $("#subcode_id").html(string);
+               getAkunId();
             }
         );
     }
@@ -295,9 +359,16 @@
                var data = response.data;
                var string ="<option value=''>Pilih Kode</option>";
                 $.each(data, function(index, value) {
-                    string = string + '<option value="'+ value.id +'">'+ value.code +'('+value.name +')</option>';
+                    var accountcode_id = "<?php echo $sub['accountcode_id'] ?>";
+
+                    if(value.id == accountcode_id){
+                        string = string + '<option selected value="'+ value.id +'">'+ value.code +'('+value.name +')</option>';
+                    }else{
+                        string = string + '<option value="'+ value.id +'">'+ value.code +'('+value.name +')</option>';
+                    }
                 })
                $("#akuncode_id").html(string);
+               getLokasi();
             }
         );
     }
@@ -317,7 +388,13 @@
                var data = response.data;
                var string ="<option value=''>Pilih Lokasi</option>";
                 $.each(data, function(index, value) {
-                    string = string + '<option value="'+ value.id +'">'+ value.nama +'</option>';
+                    var loka_id = "<?php echo $sub['loka_id'] ?>";
+                    if (loka_id == value.id) {
+                        string = string + '<option selected value="'+ value.id +'">'+ value.nama +'</option>';
+                    }else{
+                        string = string + '<option value="'+ value.id +'">'+ value.nama +'</option>';
+                    }
+
                 })
                $("#loka_id").html(string);
             }
@@ -378,8 +455,8 @@
                 '<td>'+
                     '<input type="number" name="biaya[]" class="form-control hitung" min="0" value="0" style="width: 90%" onkeyup="hitung()" id="biaya-'+new_baris+'">'+                          
                 '</td>'+                       
-                '<td>'                        
-                    '<button type="button" class="form-control btn-default" onclick="addBarisNew()"><i class="glyphicon glyphicon-plus"></i></button>'+
+                '<td>'+                        
+                    // '<button type="button" class="form-control btn-default" onclick="addBarisNew()"><i class="glyphicon glyphicon-plus"></i></button>'+
                     '<button type="button" class="btn btn-danger" onclick="deleteRow('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button>'+
                 '</td>'+
             '</tr>';
@@ -390,7 +467,7 @@
     
        function deleteRow(cell) {
             $("#cell-"+cell).remove();
-            this.hitungTotal();
+            this.hitung();
 
         }
 
