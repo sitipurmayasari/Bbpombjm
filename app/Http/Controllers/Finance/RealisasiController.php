@@ -46,7 +46,7 @@ class RealisasiController extends Controller
         $kom = Komponencode::all();
         $akun = Accountcode::all();
         $loka = Loka::all();
-        return view('finance/realisasi.create',compact('act','kom','sub','akun','loka','no_realisasi'));
+        return view('finance/realisasi.create',compact('act','kom','akun','loka'));
     }
 
     public function getAsal(Request $request)
