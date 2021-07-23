@@ -52,12 +52,14 @@
   Route::post('finance/komponencode/update/{id}','Finance\KomponencodeController@update')->name('komponencode.update');
   Route::get('finance/komponencode/getKomponen','Finance\KomponencodeController@getKomponen')->name('komponencode.getKomponen');
 
+
   //Route untuk Kode Sub komponen
   Route::get('/finance/subcode/create','Finance\SubcodeController@create')->name('subcode.create');
   Route::post('finance/subcode/store','Finance\SubcodeController@store')->name('subcode.store');
   Route::get('finance/subcode/delete/{id}','Finance\SubcodeController@delete')->name('subcode.delete');
   Route::get('finance/subcode/edit/{id}','Finance\SubcodeController@edit')->name('subcode.edit');
   Route::post('finance/subcode/update/{id}','Finance\SubcodeController@update')->name('subcode.update');
+  Route::get('/finance/subcode/getKomLengkap','Finance\SubcodeController@getKomLengkap')->name('subcode.getKomLengkap');
   Route::get('/finance/subcode/getSubkom','Finance\SubcodeController@getSubkom')->name('subcode.getSubkom');
 
   //Route untuk Kode Akun

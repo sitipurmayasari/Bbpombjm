@@ -27,26 +27,30 @@ class PokImport implements ToModel,WithStartRow
     }
     public function model(array $row)
     {
-        $kro = Krocode::where('code',$row[0])->first();
-        $ro = Detailcode::where('name',$row[2])->first();
-        $komponen = Komponencode::where('name',$row[4])->first();
-        $sub = Subcode::where('name',$row[6])->first();
-        $akun = Accountcode::where('code',$row[7])->first();
-        $loka = Loka::where('nama',$row[8])->first();
+        $sub = Subcode::where('kodeall',$row[0])
+                        ->SelectRaw('subcode.id AS sub_id, krocode.id AS kro_id, detailcode.id AS det_id, komponencode.id AS kom_id')
+                        ->LeftJoin('komponencode','komponencode.id','=','subcode.komponencode_id')
+                        ->LeftJoin('detailcode','detailcode.id','=','komponencode.detailcode_id')
+                        ->LeftJoin('krocode','krocode.id','=','detailcode.krocode_id')
+                        ->first();
+        $akun = Accountcode::where('code',$row[1])->first();
+        $loka = Loka::where('nama',$row[2])->first();
 
-        if ($kro) {
+        if ($sub) {
             return new Pok_detail([
                 'pok_id' => $this->pok_id,
-                'krocode_id' => $kro->id,
-                'detailcode_id' => $ro->id,
-                'komponencode_id' => $komponen->id,
-                'subcode_id' => $sub->id,
+                'krocode_id' => $sub->kro_id,
+                'detailcode_id' => $sub->det_id,
+                'komponencode_id' => $sub->kom_id,
+                'subcode_id' => $sub->sub_id,
                 'accountcode_id' => $akun->id,
                 'loka_id' => $loka->id,
-                'volume' => $row[9],
-                'price' => $row[10],
-                'total' => $row[11],
-                'sd'=> $row[12]
+                'volume' => $row[3],
+                'price' => $row[4],
+                'total' => $row[5],
+                'sd'=> $row[6],
+                'realisasi'=> $row[7],
+                'sisa'=> $row[8]
             ]);
         }
        

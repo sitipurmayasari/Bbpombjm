@@ -30,7 +30,8 @@
                             for="form-field-1"> Kode Komponen
                             </label>
                             <div class="col-sm-8">
-                                <select name="komponencode_id" class="col-xs-10 col-sm-10 required " required>
+                                <select name="komponencode_id" class="col-xs-10 col-sm-10 required " required id="komponencode_id"
+                                onchange="getKomponen()">
                                     <option value="">Pilih Kode</option>
                                     @foreach ($kode as $peg)
                                         @if ($data->komponencode_id==$peg->id)
@@ -60,6 +61,7 @@
                                 <input type="text"  placeholder="Nama Sub Komponen" value="{{$data->name}}"
                                         class="col-xs-10 col-sm-10 required " 
                                         name="name" required/>
+                                <input type="hidden" name="lengkap" id="lengkap" value="{{$data->kodeall}}">
                             </div>
                         </div>
                         </fieldset>        
@@ -77,4 +79,22 @@
     </form>
 </div>
 
+@endsection
+@section('footer')
+    <script>
+        function getKomponen(){
+            var komponencode_id = $("#komponencode_id").val();
+
+            $.get(
+                "{{route('subcode.getKomLengkap') }}",
+                {
+                    komponencode_id:komponencode_id,
+                },
+                function(response) {
+                var data = response.data.kro + '/'+ response.data.det +'/'+ response.data.kom;
+                $("#lengkap").val(data);
+                }
+            );
+        }
+    </script>
 @endsection

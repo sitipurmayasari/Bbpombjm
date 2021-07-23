@@ -29,8 +29,9 @@
                             <label class="col-sm-3 control-label no-padding-right" 
                             for="form-field-1"> Kode Komponen
                             </label>
-                            <div class="col-sm-8">
-                                <select name="komponencode_id" class="col-xs-10 col-sm-10 required " required>
+                            <div class="col-sm-8"> 
+                                <select name="komponencode_id" class="col-xs-10 col-sm-10 required " required id="komponencode_id"
+                                onchange="getKomponen()">
                                     <option value="">Pilih Kode</option>
                                     @foreach ($kode as $peg)
                                         <option value="{{$peg->id}}">{{$peg->det->unit->code}} - {{$peg->det->code}} - {{$peg->code}}</option>
@@ -56,6 +57,7 @@
                                 <input type="text"  placeholder="Nama Sub Komponen" 
                                         class="col-xs-10 col-sm-10 required " 
                                         name="name" required/>
+                                <input type="hidden" name="lengkap" id="lengkap">
                             </div>
                         </div>
                         </fieldset>        
@@ -74,4 +76,22 @@
     </form>
 </div>
 
+@endsection
+@section('footer')
+    <script>
+        function getKomponen(){
+            var komponencode_id = $("#komponencode_id").val();
+
+            $.get(
+                "{{route('subcode.getKomLengkap') }}",
+                {
+                    komponencode_id:komponencode_id,
+                },
+                function(response) {
+                var data = response.data.kro + '/'+ response.data.det +'/'+ response.data.kom;
+                $("#lengkap").val(data);
+                }
+            );
+        }
+    </script>
 @endsection
