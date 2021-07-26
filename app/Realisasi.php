@@ -20,4 +20,14 @@ class Realisasi extends Model
         return $this->belongsTo(Pok_detail::class,'pok_detail_id','id');
     }
 
+    public function sub()
+    {
+        return $this->belongsTo(Subcode::class,'subcode_id','id');
+    }
+
+    public function akun()
+    {
+        return $this->belongsTo(Accountcode::class,'accountcode_id','id');
+    }
+
 }

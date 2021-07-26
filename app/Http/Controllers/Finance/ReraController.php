@@ -5,14 +5,11 @@ namespace App\Http\Controllers\Finance;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Activitycode;
-use App\Krocode;
-use App\Detailcode;
-use App\Komponencode;
 use App\Subcode;
 use App\Accountcode;
-use App\Implementation;
-use App\Implemen_detail;
 use App\Loka;
+use App\realisasi;
+Use App\RealisasiDetail;
 use PDF;
 
 class ReraController extends Controller
@@ -26,177 +23,77 @@ class ReraController extends Controller
 
     public function cetakrekap(Request $request)
     {
+       
         if($request->jenis=="1"){
-            $head = Implementation::where('year',$request->tahun)
-                                    ->first();
-            $data = Implemen_detail::orderBy('implementation.detailcode_id','asc')
-                                    ->orderBy('implementation.subcode_id','asc')
-                                    ->orderBy('implemen_detail.accountcode_id','asc')
-                                    ->leftJoin('implementation','implementation.id','=','implemen_detail.implementation_id')
-                                    ->where('implementation.year',$request->tahun)
-                                    ->get();
-            $akun = Implemen_detail::SelectRaw('DISTINCT accountcode_id,subcode_id, SUM(total) AS jum')
-                                    ->LeftJoin('implementation','implementation.id','=','implemen_detail.implementation_id')
-                                    ->Where('implementation.year',$request->tahun)
-                                    ->GroupBy('implemen_detail.accountcode_id')
-                                    ->GroupBy('implementation.subcode_id')
-                                    ->get();
-            $komp = Implementation::SelectRaw('DISTINCT komponencode_id, SUM(total) AS jum')
-                                    ->LeftJoin('implemen_detail','implementation.id','=','implemen_detail.implementation_id')
-                                    ->Where('implementation.year',$request->tahun)
-                                    ->GroupBy('komponencode_id')
-                                    ->get();
-            $deta = Implementation::SelectRaw('DISTINCT detailcode_id, SUM(total) AS jum')
-                                    ->LeftJoin('implemen_detail','implementation.id','=','implemen_detail.implementation_id')
-                                    ->Where('implementation.year',$request->tahun)
-                                    ->GroupBy('detailcode_id')
-                                    ->get();
-            $add = Implementation::SelectRaw('DISTINCT krocode_id, SUM(total) AS jum')
-                                    ->LeftJoin('implemen_detail','implementation.id','=','implemen_detail.implementation_id')
-                                    ->Where('implementation.year',$request->tahun)
-                                    ->GroupBy('krocode_id')
-                                    ->get();
-            $activ = Implementation::SelectRaw('DISTINCT activitycode_id, SUM(total) AS jum')
-                                    ->LeftJoin('implemen_detail','implementation.id','=','implemen_detail.implementation_id')
-                                    ->Where('implementation.year',$request->tahun)
-                                    ->GroupBy('activitycode_id')
-                                    ->get();
-            $prog = Implementation::SelectRaw('DISTINCT programcode_id, SUM(total) AS jum')
-                                    ->LeftJoin('implemen_detail','implementation.id','=','implemen_detail.implementation_id')
-                                    ->LeftJoin('activitycode','activitycode.id','=','implementation.activitycode_id')
-                                    ->Where('implementation.year',$request->tahun)
-                                    ->GroupBy('programcode_id')
-                                    ->get();
-            $alokasi = Implementation::SelectRaw('SUM(total) AS jum')
-                                    ->LeftJoin('implemen_detail','implementation.id','=','implemen_detail.implementation_id')
-                                    ->Where('implementation.year',$request->tahun)
-                                    ->first();
-                                    
-            // $pdf = PDF::loadview('finance/rera.rekapumum',compact('data','request','head','akun','komp','deta'));
-            // return $pdf->stream();
-
-            return view('finance/rera.rekapumum',compact('data','request','head','akun','komp','deta','add','activ','prog','alokasi'));
+            $data = RealisasiDetail::orderBy('realisasi_detail.id','asc')
+                                ->SelectRaw('realisasi_detail.*, pok.year, pok.asal_pok, pok.asal, 
+                                            pok.kode_asal, subcode.kodeall, accountcode.code, loka.nama AS lokasi')
+                                ->LeftJoin('realisasi','realisasi.id','=','realisasi_detail.realisasi_id')
+                                ->LeftJoin('pok_detail','pok_detail.id','=','realisasi.pok_detail_id')
+                                ->LeftJoin('pok','pok.id','=','pok_detail.pok_id')
+                                ->LeftJoin('subcode','subcode.id','=','realisasi.subcode_id')
+                                ->LeftJoin('accountcode','accountcode.id','=','realisasi.accountcode_id')
+                                ->LeftJoin('loka','loka.id','=','realisasi.loka_id')
+                                ->where('pok.year',$request->tahun)
+                                ->where('realisasi_detail.month',$request->bulan)
+                                ->where('realisasi_detail.week',$request->minggu)
+                                ->get();
+            $total = RealisasiDetail::SelectRaw('SUM(biaya) AS total')
+                                ->LeftJoin('realisasi','realisasi.id','=','realisasi_detail.realisasi_id')
+                                ->LeftJoin('pok_detail','pok_detail.id','=','realisasi.pok_detail_id')
+                                ->LeftJoin('pok','pok.id','=','pok_detail.pok_id')
+                                ->where('pok.year',$request->tahun)
+                                ->where('realisasi_detail.month',$request->bulan)
+                                ->where('realisasi_detail.week',$request->minggu)
+                                ->first();
+            $pdf = PDF::loadview('finance/rera.rekapminggu',compact('data','request','total'));
+            return $pdf->stream();
 
         }else if($request->jenis=="2"){
-            $head = Implementation::SelectRaw('implementation.*, loka.nama as lokasi')
-                                    ->leftJoin('implemen_detail','implementation.id','=','implemen_detail.implementation_id')
-                                    ->leftJoin('loka','loka.id','=','implemen_detail.loka_id')
-                                    ->where('year',$request->tahun)
-                                    ->where('implemen_detail.loka_id',$request->loka)
-                                    ->first();
-            $data = Implemen_detail::orderBy('implementation.detailcode_id','asc')
-                                    ->orderBy('implementation.subcode_id','asc')
-                                    ->orderBy('implemen_detail.accountcode_id','asc')
-                                    ->leftJoin('implementation','implementation.id','=','implemen_detail.implementation_id')
-                                    ->where('implementation.year',$request->tahun)
-                                    ->where('implemen_detail.loka_id',$request->loka)
-                                    ->get();
-            $akun = Implemen_detail::SelectRaw('DISTINCT accountcode_id,subcode_id, SUM(total) AS jum')
-                                    ->LeftJoin('implementation','implementation.id','=','implemen_detail.implementation_id')
-                                    ->Where('implementation.year',$request->tahun)
-                                    ->where('implemen_detail.loka_id',$request->loka)
-                                    ->GroupBy('implemen_detail.accountcode_id')
-                                    ->GroupBy('implementation.subcode_id')
-                                    ->get();
-            $komp = Implementation::SelectRaw('DISTINCT komponencode_id, SUM(total) AS jum')
-                                    ->LeftJoin('implemen_detail','implementation.id','=','implemen_detail.implementation_id')
-                                    ->Where('implementation.year',$request->tahun)
-                                    ->where('implemen_detail.loka_id',$request->loka)
-                                    ->GroupBy('komponencode_id')
-                                    ->get();
-            $deta = Implementation::SelectRaw('DISTINCT detailcode_id, SUM(total) AS jum')
-                                    ->LeftJoin('implemen_detail','implementation.id','=','implemen_detail.implementation_id')
-                                    ->Where('implementation.year',$request->tahun)
-                                    ->where('implemen_detail.loka_id',$request->loka)
-                                    ->GroupBy('detailcode_id')
-                                    ->get();
-            $add = Implementation::SelectRaw('DISTINCT krocode_id, SUM(total) AS jum')
-                                    ->LeftJoin('implemen_detail','implementation.id','=','implemen_detail.implementation_id')
-                                    ->Where('implementation.year',$request->tahun)
-                                    ->where('implemen_detail.loka_id',$request->loka)
-                                    ->GroupBy('krocode_id')
-                                    ->get();
-            $activ = Implementation::SelectRaw('DISTINCT activitycode_id, SUM(total) AS jum')
-                                    ->LeftJoin('implemen_detail','implementation.id','=','implemen_detail.implementation_id')
-                                    ->Where('implementation.year',$request->tahun)
-                                    ->where('implemen_detail.loka_id',$request->loka)
-                                    ->GroupBy('activitycode_id')
-                                    ->get();
-            $prog = Implementation::SelectRaw('DISTINCT programcode_id, SUM(total) AS jum')
-                                    ->LeftJoin('implemen_detail','implementation.id','=','implemen_detail.implementation_id')
-                                    ->LeftJoin('activitycode','activitycode.id','=','implementation.activitycode_id')
-                                    ->Where('implementation.year',$request->tahun)
-                                    ->where('implemen_detail.loka_id',$request->loka)
-                                    ->GroupBy('programcode_id')
-                                    ->get();
-            $alokasi = Implementation::SelectRaw('SUM(total) AS jum')
-                                    ->LeftJoin('implemen_detail','implementation.id','=','implemen_detail.implementation_id')
-                                    ->Where('implementation.year',$request->tahun)
-                                    ->where('implemen_detail.loka_id',$request->loka)
-                                    ->first();
-            // $pdf = PDF::loadview('finance/rera.rekaploka',compact('data','request','head','akun','komp','deta'));
-            // return $pdf->stream();
-
-            return view('finance/rera.rekaploka',compact('data','request','head','akun','komp','deta','add','activ','prog','alokasi'));
+            $data = RealisasiDetail::orderBy('realisasi_detail.id','asc')
+                                ->SelectRaw('realisasi_detail.*, pok.year, pok.asal_pok, pok.asal, 
+                                            pok.kode_asal, subcode.kodeall, accountcode.code, loka.nama AS lokasi')
+                                ->LeftJoin('realisasi','realisasi.id','=','realisasi_detail.realisasi_id')
+                                ->LeftJoin('pok_detail','pok_detail.id','=','realisasi.pok_detail_id')
+                                ->LeftJoin('pok','pok.id','=','pok_detail.pok_id')
+                                ->LeftJoin('subcode','subcode.id','=','realisasi.subcode_id')
+                                ->LeftJoin('accountcode','accountcode.id','=','realisasi.accountcode_id')
+                                ->LeftJoin('loka','loka.id','=','realisasi.loka_id')
+                                ->where('pok.year',$request->tahun)
+                                ->where('realisasi_detail.month',$request->bulan)
+                                ->get();
+            $total = RealisasiDetail::SelectRaw('SUM(biaya) AS total')
+                                ->LeftJoin('realisasi','realisasi.id','=','realisasi_detail.realisasi_id')
+                                ->LeftJoin('pok_detail','pok_detail.id','=','realisasi.pok_detail_id')
+                                ->LeftJoin('pok','pok.id','=','pok_detail.pok_id')
+                                ->where('pok.year',$request->tahun)
+                                ->where('realisasi_detail.month',$request->bulan)
+                                ->first();
+            $pdf = PDF::loadview('finance/rera.rekapbulan',compact('data','request','total'));
+            return $pdf->stream();
 
         }else if($request->jenis=="3"){
-            $head = Implementation::where('year',$request->tahun)
-                                    ->leftJoin('implemen_detail','implementation.id','=','implemen_detail.implementation_id')
-                                    ->where('implemen_detail.sd',$request->sd)
+            $data = RealisasiDetail::orderBy('realisasi_detail.id','asc')
+                            ->SelectRaw('realisasi_detail.*, pok.year, pok.asal_pok, pok.asal, 
+                                        pok.kode_asal, subcode.kodeall, accountcode.code, loka.nama AS lokasi')
+                            ->LeftJoin('realisasi','realisasi.id','=','realisasi_detail.realisasi_id')
+                            ->LeftJoin('pok_detail','pok_detail.id','=','realisasi.pok_detail_id')
+                            ->LeftJoin('pok','pok.id','=','pok_detail.pok_id')
+                            ->LeftJoin('subcode','subcode.id','=','realisasi.subcode_id')
+                            ->LeftJoin('accountcode','accountcode.id','=','realisasi.accountcode_id')
+                            ->LeftJoin('loka','loka.id','=','realisasi.loka_id')
+                            ->where('pok.year',$request->tahun)
+                            ->where('realisasi_detail.month',$request->bulan)
+                            ->get();
+            $total = RealisasiDetail::SelectRaw('SUM(biaya) AS total')
+                                    ->LeftJoin('realisasi','realisasi.id','=','realisasi_detail.realisasi_id')
+                                    ->LeftJoin('pok_detail','pok_detail.id','=','realisasi.pok_detail_id')
+                                    ->LeftJoin('pok','pok.id','=','pok_detail.pok_id')
+                                    ->where('pok.year',$request->tahun)
+                                    ->where('realisasi_detail.month',$request->bulan)
                                     ->first();
-            $data = Implemen_detail::orderBy('implementation.detailcode_id','asc')
-                                    ->orderBy('implementation.subcode_id','asc')
-                                    ->orderBy('implemen_detail.accountcode_id','asc')
-                                    ->leftJoin('implementation','implementation.id','=','implemen_detail.implementation_id')
-                                    ->where('implementation.year',$request->tahun)
-                                    ->where('implemen_detail.sd',$request->sd)
-                                    ->get();
-            $akun = Implemen_detail::SelectRaw('DISTINCT accountcode_id,subcode_id, SUM(total) AS jum')
-                                    ->LeftJoin('implementation','implementation.id','=','implemen_detail.implementation_id')
-                                    ->Where('implementation.year',$request->tahun)
-                                    ->where('implemen_detail.sd',$request->sd)
-                                    ->GroupBy('implemen_detail.accountcode_id')
-                                    ->GroupBy('implementation.subcode_id')
-                                    ->get();
-            $komp = Implementation::SelectRaw('DISTINCT komponencode_id, SUM(total) AS jum')
-                                    ->LeftJoin('implemen_detail','implementation.id','=','implemen_detail.implementation_id')
-                                    ->Where('implementation.year',$request->tahun)
-                                    ->where('implemen_detail.sd',$request->sd)
-                                    ->GroupBy('komponencode_id')
-                                    ->get();
-            $deta = Implementation::SelectRaw('DISTINCT detailcode_id, SUM(total) AS jum')
-                                    ->LeftJoin('implemen_detail','implementation.id','=','implemen_detail.implementation_id')
-                                    ->Where('implementation.year',$request->tahun)
-                                    ->where('implemen_detail.sd',$request->sd)
-                                    ->GroupBy('detailcode_id')
-                                    ->get();
-            $add = Implementation::SelectRaw('DISTINCT krocode_id, SUM(total) AS jum')
-                                    ->LeftJoin('implemen_detail','implementation.id','=','implemen_detail.implementation_id')
-                                    ->Where('implementation.year',$request->tahun)
-                                    ->where('implemen_detail.sd',$request->sd)
-                                    ->GroupBy('krocode_id')
-                                    ->get();
-            $activ = Implementation::SelectRaw('DISTINCT activitycode_id, SUM(total) AS jum')
-                                    ->LeftJoin('implemen_detail','implementation.id','=','implemen_detail.implementation_id')
-                                    ->Where('implementation.year',$request->tahun)
-                                    ->where('implemen_detail.sd',$request->sd)
-                                    ->GroupBy('activitycode_id')
-                                    ->get();
-            $prog = Implementation::SelectRaw('DISTINCT programcode_id, SUM(total) AS jum')
-                                    ->LeftJoin('implemen_detail','implementation.id','=','implemen_detail.implementation_id')
-                                    ->LeftJoin('activitycode','activitycode.id','=','implementation.activitycode_id')
-                                    ->Where('implementation.year',$request->tahun)
-                                    ->where('implemen_detail.sd',$request->sd)
-                                    ->GroupBy('programcode_id')
-                                    ->get();
-            $alokasi = Implementation::SelectRaw('SUM(total) AS jum')
-                                    ->LeftJoin('implemen_detail','implementation.id','=','implemen_detail.implementation_id')
-                                    ->Where('implementation.year',$request->tahun)
-                                    ->where('implemen_detail.sd',$request->sd)
-                                    ->first();
-            // $pdf = PDF::loadview('finance/rera.rekapsd',compact('data','request','head','akun','komp','deta'));
-            // return $pdf->stream();
-            return view('finance/rera.rekapsd',compact('data','request','head','akun','komp','deta','add','activ','prog','alokasi'));
+            $pdf = PDF::loadview('finance/rera.rekaptw',compact('data','request','total'));
+            return $pdf->stream();
 
         }else{
             dd($request->all());

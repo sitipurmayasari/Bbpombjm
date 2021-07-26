@@ -31,34 +31,9 @@
                             </label>
                             <div class="col-sm-8">
                                 <select name="jenis" id="jenis" class="col-xs-10 col-sm-10" onchange="myFunction()">
-                                    <option value="1">Rekap Tahunan</option>
-                                    <option value="2">Rekap Tahunan Per Lokasi</option>
-                                    <option value="3">Rekap Tahunan Per Sumber Dana</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group" id="lokasi">
-                            <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1">Lokasi
-                            </label>
-                            <div class="col-sm-8">
-                                <select name="loka" class="col-xs-10 col-sm-10 required ">
-                                    <option value="">Pilih Lokasi</option>
-                                    @foreach ($loka as $item)
-                                        <option value="{{$item->id}}">{{$item->nama}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group" id="sd">
-                            <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1">Sumber Dana
-                            </label>
-                            <div class="col-sm-8">
-                                <select name="sd" class="col-xs-10 col-sm-10 required ">
-                                    <option value="">Pilih Sumber</option>
-                                    <option value="RM">RM</option>
-                                    <option value="PNBP">PNBP</option>
+                                    <option value="1">Rekap Per Minggu</option>
+                                    <option value="2">Rekap Per Bulan</option>
+                                    <option value="3">Rekap Per Triwulan</option>
                                 </select>
                             </div>
                         </div>
@@ -78,6 +53,57 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="form-group" id="bulanan">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Bulan
+                            </label>
+                            <div class="col-sm-8">
+                                <select id="bulan" name="bulan"  class="col-xs-10 col-sm-10">
+                                    <option value="">Pilih Bulan</option>
+                                    <option value="1">Januari</option>
+                                    <option value="2">Februari</option>
+                                    <option value="3">Maret</option>
+                                    <option value="4">April</option>
+                                    <option value="5">Mei</option>
+                                    <option value="6">Juni</option>
+                                    <option value="7">Juli</option>
+                                    <option value="8">Agustus</option>
+                                    <option value="9">September</option>
+                                    <option value="10">Oktober</option>
+                                    <option value="11">November</option>
+                                    <option value="12">Desember</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" id="mingguan">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Minggu
+                            </label>
+                            <div class="col-sm-8">
+                                <select name="minggu" id="minggu" class="col-xs-10 col-sm-10">
+                                    <option value="">Pilih Minggu</option>
+                                    <option value="1">minggu 1</option>
+                                    <option value="2">minggu 2</option>
+                                    <option value="3">minggu 3</option>
+                                    <option value="4">minggu 4</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" id="triwulan">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Triwulan
+                            </label>
+                            <div class="col-sm-8">
+                                <select name="triwulan" id="tw" class="col-xs-10 col-sm-10">
+                                    <option value="">Pilih Triwulan</option>
+                                    <option value="I">Januari - Maret (TW. I)</option>
+                                    <option value="II">April - Juni (TW. II)</option>
+                                    <option value="III">Juli - September (TW. III)</option>
+                                    <option value="IV">Oktober - Desember (TW. IV)</option>
+                                </select>
+                            </div>
+                        </div>
+                        
                         </fieldset>        
                     </div>
                </div>
@@ -100,20 +126,22 @@
 @section('footer')
 <script>
      $(document).ready(function(){
-        $("#lokasi").hide();
-        $("#sd").hide();
-    
+        $("#triwulan").hide();
+
         $("#jenis").on("change", function(){
             var v = $(this).val();
             if(v=="2"){
-                $("#lokasi").show();
-                $("#sd").hide();
+                $("#mingguan").hide();
+                $("#bulanan").show();
+                $("#triwulan").hide();
             }else if(v=="3"){
-                $("#lokasi").hide();
-                $("#sd").show();
+                $("#mingguan").hide();
+                $("#bulanan").hide();
+                $("#triwulan").show();
             }else{
-                $("#lokasi").hide();
-                $("#sd").hide();
+                $("#mingguan").show();
+                $("#bulanan").show();
+                $("#triwulan").hide();
             } 
         });
     });
