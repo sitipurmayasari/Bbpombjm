@@ -53,7 +53,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group" id="bulanan">
+                        {{-- <div class="form-group" id="bulanan">
                             <label class="col-sm-3 control-label no-padding-right" 
                             for="form-field-1"> Bulan
                             </label>
@@ -88,22 +88,7 @@
                                     <option value="4">minggu 4</option>
                                 </select>
                             </div>
-                        </div>
-                        <div class="form-group" id="triwulan">
-                            <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Triwulan
-                            </label>
-                            <div class="col-sm-8">
-                                <select name="triwulan" id="tw" class="col-xs-10 col-sm-10">
-                                    <option value="">Pilih Triwulan</option>
-                                    <option value="I">Januari - Maret (TW. I)</option>
-                                    <option value="II">April - Juni (TW. II)</option>
-                                    <option value="III">Juli - September (TW. III)</option>
-                                    <option value="IV">Oktober - Desember (TW. IV)</option>
-                                </select>
-                            </div>
-                        </div>
-                        
+                        </div> --}}
                         </fieldset>        
                     </div>
                </div>
@@ -123,27 +108,9 @@
 
 @endsection
 
-@section('footer')
+@section('footer') 
 <script>
      $(document).ready(function(){
-        $("#triwulan").hide();
-
-        $("#jenis").on("change", function(){
-            var v = $(this).val();
-            if(v=="2"){
-                $("#mingguan").hide();
-                $("#bulanan").show();
-                $("#triwulan").hide();
-            }else if(v=="3"){
-                $("#mingguan").hide();
-                $("#bulanan").hide();
-                $("#triwulan").show();
-            }else{
-                $("#mingguan").show();
-                $("#bulanan").show();
-                $("#triwulan").hide();
-            } 
-        });
     });
 </script>
 @endsection
