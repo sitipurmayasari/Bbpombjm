@@ -8,7 +8,7 @@ use App\Activitycode;
 use App\Subcode;
 use App\Accountcode;
 use App\Loka;
-use App\realisasi;
+use App\Realisasi;
 Use App\RealisasiDetail;
 use PDF;
 
