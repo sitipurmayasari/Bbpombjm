@@ -311,8 +311,9 @@ h2, a {
       </nav>
       <div class="content">
         <div style="text-align: center">
-          <h3>SELAMAT DATANG DI</h3>
-          <h1>SISTEM INFORMASI BBPOM</h1>
+          <h4>SELAMAT DATANG DI</h4>
+          <h1><b>SI-BOB</b></h1>
+          <h5>( SISTEM INFORMASI BBPOM BANJARMASIN )</h5>
           <div class="social">   
               <a class="social-icon" data-tooltip="AMDK" href="/amdk/dashboard">
                 <img src="{{asset('images/amdk.png')}}" style="height:100%; width:100%">
