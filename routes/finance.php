@@ -102,6 +102,22 @@
   Route::get('finance/realisasi/edit/{id}','Finance\RealisasiController@edit')->name('realisasi.edit');
   Route::post('finance/realisasi/update/{id}','Finance\RealisasiController@update')->name('realisasi.update');
 
+   //Route untuk Sasaran Kegiatan
+   Route::get('/finance/ikuTarget/create','Finance\IkuTargetController@create')->name('ikuTarget.create');
+   Route::post('finance/ikuTarget/store','Finance\IkuTargetController@store')->name('ikuTarget.store');
+   Route::get('finance/ikuTarget/delete/{id}','Finance\IkuTargetController@delete')->name('ikuTarget.delete');
+   Route::get('finance/ikuTarget/edit/{id}','Finance\IkuTargetController@edit')->name('ikuTarget.edit');
+   Route::post('finance/ikuTarget/update/{id}','Finance\IkuTargetController@update')->name('ikuTarget.update');
+
+
+   //Route untuk Indikator Kinerja
+   Route::get('/finance/ikuIndicator/create','Finance\IkuIndicatorController@create')->name('ikuIndicator.create');
+   Route::post('finance/ikuIndicator/store','Finance\IkuIndicatorController@store')->name('ikuIndicator.store');
+   Route::get('finance/ikuIndicator/delete/{id}','Finance\IkuIndicatorController@delete')->name('ikuIndicator.delete');
+   Route::get('finance/ikuIndicator/edit/{id}','Finance\IkuIndicatorController@edit')->name('ikuIndicator.edit');
+   Route::post('finance/ikuIndicator/update/{id}','Finance\IkuIndicatorController@update')->name('ikuIndicator.update');
+
+
   // //Route untuk dinas
   // Route::get('/finance/outstation/create','Finance\OutstationController@create')->name('outstation.create');
   // Route::post('finance/outstation/store','Finance\OutstationController@store')->name('outstation.store');

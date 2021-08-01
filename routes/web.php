@@ -146,6 +146,10 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/finance/rera','Finance\ReraController@index')->name('rera');
     //Route untuk Realisasi anggaran Anggaran
     Route::get('/finance/realisasi','Finance\RealisasiController@index')->name('realiasi');
+    //Route untuk Sasaran Kegiatan
+    Route::get('/finance/ikuTarget','Finance\IkuTargetController@index')->name('ikuTarget');
+    //Route untuk Indikator Kinerja
+    Route::get('/finance/ikuIndicator','Finance\IkuIndicatorController@index')->name('ikuIndicator');
 
 
 
