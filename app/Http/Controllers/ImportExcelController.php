@@ -42,7 +42,8 @@ class ImportExcelController extends Controller
 		$file->move('excel',$nama_file);
  
 		// import data
-        Excel::import(new UserImport, public_path('/excel/'.$nama_file));
+        Excel::import(new UserImport, urlStorage().'/excel/'.$nama_file);
+        // Excel::import(new UserImport, public_path('/excel/'.$nama_file));
 
         return redirect()->route('import');
  
@@ -59,7 +60,8 @@ class ImportExcelController extends Controller
 		$file->move('excel',$nama_file);
  
 		// import data
-        Excel::import(new InventImport, public_path('/excel/'.$nama_file));
+        // Excel::import(new InventImport, public_path('/excel/'.$nama_file));
+        Excel::import(new InventImport, urlStorage().'/excel/'.$nama_file);
 
         return redirect()->route('import');
  
