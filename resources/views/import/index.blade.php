@@ -20,7 +20,12 @@
     <form action="{{Route('import.inventaris')}}" method="POST" enctype="multipart/form-data">
         {{ csrf_field() }}
         Excel inventaris : <input type="file" name="inventaris">
-        <input type="submit" value="UPLOAD EXCEL USER">
+        <input type="submit" value="UPLOAD EXCEL INVENTARIS">
+    </form><br><br>
+    <form action="{{Route('import.stok')}}" method="POST" enctype="multipart/form-data">
+        {{ csrf_field() }}
+        Excel stok Barang Sekali Pakai : <input type="file" name="stok">
+        <input type="submit" value="UPLOAD EXCEL STOK">
     </form>
 </body>
 </html>

@@ -8,6 +8,7 @@ use Excel;
 use App\Imports\JabasnImport;
 use App\Imports\UserImport;
 use App\Imports\InventImport;
+use App\Imports\StokImport;
 
 class ImportExcelController extends Controller
 {
@@ -26,6 +27,7 @@ class ImportExcelController extends Controller
  
 		// import data
         Excel::import(new JabasnImport, urlStorage().'/excel/'.$nama_file);
+        // Excel::import(new JabasnImport, public_path('/excel/'.$nama_file));
 
         return redirect()->route('import');
  
@@ -60,8 +62,26 @@ class ImportExcelController extends Controller
 		$file->move('excel',$nama_file);
  
 		// import data
-        // Excel::import(new InventImport, public_path('/excel/'.$nama_file));
         Excel::import(new InventImport, urlStorage().'/excel/'.$nama_file);
+        // Excel::import(new InventImport, public_path('/excel/'.$nama_file));
+
+        return redirect()->route('import');
+ 
+    }
+
+    public function stok(Request $request)
+    {
+        $this->validate($request, [
+            'stok' => 'required|mimes:csv,xls,xlsx'
+        ]);
+        $file = $request->stok;
+        $nama_file = $file->getClientOriginalName();
+
+		$file->move('excel',$nama_file);
+ 
+		// import data
+        // Excel::import(new StokImport, public_path('/excel/'.$nama_file));
+        Excel::import(new StokImport, urlStorage().'/excel/'.$nama_file);
 
         return redirect()->route('import');
  

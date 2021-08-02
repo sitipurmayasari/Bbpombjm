@@ -11,6 +11,7 @@ Route::get('/import','ImportExcelController@index')->name('import');
 Route::post('/import/jabasn','ImportExcelController@jabasn')->name('import.jabasn');
 Route::post('/import/users','ImportExcelController@users')->name('import.users');
 Route::post('/import/inventaris','ImportExcelController@inventaris')->name('import.inventaris');
+Route::post('/import/stok','ImportExcelController@stok')->name('import.stok');
 Route::get('/qR/{id}/inventaris','Invent\InventarisController@detail')->name('inventaris.detail');
 
   Route::group(['middleware' => 'auth'], function(){
