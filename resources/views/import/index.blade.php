@@ -16,6 +16,11 @@
         {{ csrf_field() }}
         Excel pegawai : <input type="file" name="users">
         <input type="submit" value="UPLOAD EXCEL USER">
+    </form><br><br>
+    <form action="{{Route('import.inventaris')}}" method="POST" enctype="multipart/form-data">
+        {{ csrf_field() }}
+        Excel inventaris : <input type="file" name="inventaris">
+        <input type="submit" value="UPLOAD EXCEL USER">
     </form>
 </body>
 </html>
