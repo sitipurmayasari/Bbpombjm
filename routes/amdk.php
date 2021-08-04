@@ -153,3 +153,7 @@
   Route::get('/amdk/credit_poin/delete/{id}','Amdk\CreditPoinController@delete')->name('credit_poin.delete');
   Route::get('/amdk/credit_poin/edit/{id}','Amdk\CreditPoinController@edit')->name('credit_poin.edit');
   Route::post('/amdk/credit_poin/update/{id}','Amdk\CreditPoinController@update')->name('credit_poin.update');
+
+  //Route untuk absen
+  Route::get('/amdk/ttdabsen/create','Amdk\TtdAbsenController@create')->name('ttdabsen.create');
+  Route::post('/amdk/ttdabsen/store','Amdk\TtdAbsenController@store')->name('ttdabsen.store');

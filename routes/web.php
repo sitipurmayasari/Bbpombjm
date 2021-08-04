@@ -115,6 +115,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/amdk/credit_poin','Amdk\CreditPoinController@index')->name('dupak.credit_poin');
     //Route untuk masa arsip
     Route::get('/amdk/archive_time','Amdk\ArchiveTimeController@index')->name('archive_time');
+    //Route untuk absen
+    Route::get('/amdk/ttdabsen','Amdk\TtdAbsenController@index')->name('ttdabsen');
     
     
 

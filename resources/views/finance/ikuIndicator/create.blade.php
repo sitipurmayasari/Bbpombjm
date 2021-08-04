@@ -40,13 +40,13 @@
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Kode Komponen
+                            for="form-field-1"> Kode SubKomponen
                             </label>
                             <div class="col-sm-8">
-                                <select name="komponencode_id" class="col-xs-10 col-sm-10 required " required>
+                                <select name="subcode_id" class="col-xs-10 col-sm-10 required " required>
                                     <option value="">Pilih Kode</option>
                                     @foreach ($komponen as $item)
-                                        <option value="{{$item->id}}">{{$item->det->unit->code}}-{{$item->det->code}}-{{$item->code}}</option>
+                                        <option value="{{$item->id}}">{{$item->kodeall}}</option>
                                     @endforeach
                                 </select>
                             </div>

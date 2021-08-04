@@ -48,7 +48,7 @@
                     <td>{{$data->firstItem() + $key}}</td>
                     <td>{{$row->target->name}}</td>
                     <td>{{$row->indicator}}</td>
-                    <td>{{$row->komponen->det->unit->code}}-{{$row->komponen->det->code}}-{{$row->komponen->code}}</td>
+                    <td>{{$row->sub->kodeall}}</td>
                     <td>{{$row->poin}}</td>
                     <td>
                         <a href="/finance/ikuIndicator/edit/{{$row->id}}" class="btn btn-warning">
