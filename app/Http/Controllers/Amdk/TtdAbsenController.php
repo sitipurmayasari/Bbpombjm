@@ -27,6 +27,7 @@ class TtdAbsenController extends Controller
                 ->selectRaw('users.no_pegawai, users.name')
                 ->leftJoin('jabatan','jabatan.id','=','users.jabatan_id')
                 ->leftJoin('divisi','divisi.id','=','users.divisi_id')
+                ->where ('users.id','!=','1')
                 ->when($request->status != '1', function ($query) use ($request) {
                     $query->where('users.status','=',$request->status);
                     })
