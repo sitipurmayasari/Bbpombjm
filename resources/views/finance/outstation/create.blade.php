@@ -1,7 +1,7 @@
 @extends('layouts.mon')
 @section('breadcrumb')
-    <li>SPPD</li>
-    <li><a href="/finance/outstation">Surat Perintah Perjalanan Dinas</a></li>
+    <li>Surat Tugas</li>
+    <li><a href="/finance/outstation">Surat Tugas</a></li>
     <li>Tambah Baru</li>
 @endsection
 @section('content')
@@ -13,22 +13,22 @@
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-info">
-            <div class="panel-heading"><h3 class="panel-title">Input Surat Perintah Perjalanan Dinas</h3></div>
+            <div class="panel-heading"><h3 class="panel-title">Input Surat Tugas</h3></div>
             <div class="panel-body">
                 <fieldset>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1"> Nomor SPPD
+                        for="form-field-1"> Nomor Surat Tugas
                         </label>
                         <div class="col-sm-8">
                             <input type="text" required
                                     class="col-xs-10 col-sm-10 required " 
-                                    name="code" value="{{$no_sppd}}" readonly/>
+                                    name="code"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1"> Nama Kegiatan
+                        for="form-field-1"> Maksud Tugas
                         </label>
                         <div class="col-sm-8">
                             <input type="text"  placeholder="Nama kegiatan" 
@@ -41,22 +41,24 @@
                         for="form-field-1"> Jenis Dinas
                         </label>
                         <div class="col-sm-8">
-                            <select name="type" class="col-xs-10 col-sm-10 required ">
-                                <option value="Dalam Kota">Dalam Kota</option>
-                                <option value="Luar Kota">Luar Kota</option>
-                                <option value="Luar Provinsi">Luar Provinsi</option>
-                                <option value="Luar Negeri">Luar Negeri</option>
+                            <select name="type" class="col-xs-10 col-sm-10 required">
+                                <option value="DL">Dalam Kota</option>
+                                <option value="LK">Luar Kota</option>
+                                <option value="LN">Luar Negeri</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1"> Tujuan
+                        for="form-field-1"> Kota Tujuan
                         </label>
-                        <div class="col-sm-8">
-                            <input type="text"  placeholder="Tujuan" 
-                                    class="col-xs-10 col-sm-10 required " 
-                                    name="destination" required/>
+                        <div class="col-sm-8"> 
+                            <select name="destination_id" class="col-xs-10 col-sm-10 required select2" required>
+                                <option value="">Pilih Kode Kota</option>
+                                @foreach ($destination as $item)
+                                    <option value="{{$item->id}}">{{$item->code}}-{{$item->capital}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -79,6 +81,15 @@
                             data-date-format="yyyy-mm-dd">
                         </div>
                     </div> 
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Lama hari
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text" name="daylong" class="col-xs-3 col-sm-3 required" 
+                             required readonly>
+                        </div>
+                    </div>
                 </fieldset>   
    
             </div>

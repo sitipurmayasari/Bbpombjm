@@ -154,11 +154,10 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/finance/ikuTarget','Finance\IkuTargetController@index')->name('ikuTarget');
     //Route untuk Indikator Kinerja
     Route::get('/finance/ikuIndicator','Finance\IkuIndicatorController@index')->name('ikuIndicator');
-
-
-
-    //Route untuk dinas
-    // Route::get('/finance/outstation','Finance\OutstationController@index')->name('outstation');
+    //Route untuk Daerah Tujuan
+    Route::get('/finance/destination','Finance\DestinationController@index')->name('destination');
+    //Route untuk surat tugas
+    Route::get('/finance/outstation','Finance\OutstationController@index')->name('outstation');
 
 
 });

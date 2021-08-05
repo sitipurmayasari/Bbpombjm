@@ -117,10 +117,17 @@
    Route::get('finance/ikuIndicator/edit/{id}','Finance\IkuIndicatorController@edit')->name('ikuIndicator.edit');
    Route::post('finance/ikuIndicator/update/{id}','Finance\IkuIndicatorController@update')->name('ikuIndicator.update');
 
+    //Route untuk Daerah Tujuan
+    Route::get('/finance/destination','Finance\DestinationController@index')->name('destination');
+    Route::get('/finance/destination/create','Finance\DestinationController@create')->name('destination.create');
+    Route::post('finance/destination/store','Finance\DestinationController@store')->name('destination.store');
+    Route::get('finance/destination/delete/{id}','Finance\DestinationController@delete')->name('destination.delete');
+    Route::get('finance/destination/edit/{id}','Finance\DestinationController@edit')->name('destination.edit');
+    Route::post('finance/destination/update/{id}','Finance\DestinationController@update')->name('destination.update');
 
-  // //Route untuk dinas
-  // Route::get('/finance/outstation/create','Finance\OutstationController@create')->name('outstation.create');
-  // Route::post('finance/outstation/store','Finance\OutstationController@store')->name('outstation.store');
-  // Route::get('finance/outstation/edit/{id}','Finance\OutstationController@edit')->name('outstation.edit');
-  // Route::post('finance/outstation/update/{id}','Finance\OutstationController@update')->name('outstation.update');
+  //Route untuk surat tugas
+  Route::get('/finance/outstation/create','Finance\OutstationController@create')->name('outstation.create');
+  Route::post('finance/outstation/store','Finance\OutstationController@store')->name('outstation.store');
+  Route::get('finance/outstation/edit/{id}','Finance\OutstationController@edit')->name('outstation.edit');
+  Route::post('finance/outstation/update/{id}','Finance\OutstationController@update')->name('outstation.update');
 
