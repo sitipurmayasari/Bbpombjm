@@ -17,12 +17,17 @@
         <div style="text-align: center;line-height: 20%;">
             <h4>{{$request->kegiatan}}</h4>
             <br>
-            {{$request->tanggal}}
+            <h5>{{Carbon\Carbon::parse($request->tanggal)->translatedFormat('l, d F Y')}}</h5>
         </div>
     </div>
     <div class="isi">
         <div class="table-responsive">
             <br><br>
+            @if ($request->jenis == 3)
+                <h5>Substansi/Bagian : 
+                    {{App\Divisi::where(['id' => $request->divisi])->first()->nama}}
+                </h5>            
+            @endif
             <table id="simple-table" class="table table-bordered" style="font-size: 11px;" >
                 <thead style="text-align: center">
                     <tr>

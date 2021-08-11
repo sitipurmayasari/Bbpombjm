@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Destination;
 use App\Outstation;
+use App\Divisi;
+use App\Pok_detail;
 use PDF;
 
 
@@ -31,25 +33,30 @@ class OutstationController extends Controller
 
     public function create()
     {
-        // $no_sppd = $this->getnosppd();
+        $pok = Pok_detail::selectRaw('DISTINCT(subcode_id),accountcode_id')->get();
+        $div = Divisi::all();
+        $no_st = $this->getnost();
         $user = User::where('id','!=','1')->get();
         $destination = Destination::all();
-        return view('finance/outstation.create',compact('user','destination'));
+        return view('finance/outstation.create',compact('user','destination','no_st','div','pok'));
     }
 
-    // function getnosppd(){
-    //     $sppd = Outstation::orderBy('id','desc')->whereYear('created_at',date('Y'))->get(); 
-    //     $first = "001";
-    //     if($sppd->count()>0){
-    //       $first = $sppd->first()->id+1;
-    //       if($first < 10){
-    //           $first = "00".$first;
-    //       }else if($first < 100){
-    //           $first = "0".$first;
-    //       }
-    //     }
-    //     $no_sppd = $first."/SPPD/BBPOM/".date('m')."/".date('Y');
-    //     return $no_sppd;
-    //   }
+    function getnost(){
+        $sppd = Outstation::orderBy('id','desc')->whereYear('created_at',date('Y'))->get(); 
+        $bidang = Divisi::select('lokasi')->where('id','2')->first();
+        $first = "0001";
+        if($sppd->count()>0){
+          $first = $sppd->first()->id+1;
+          if($first < 10){
+              $first = "000".$first;
+          }else if($first < 100){
+              $first = "00".$first;
+          }else if($first < 1000){
+            $first = "0".$first;
+        }
+        }
+        $no_sppd = "RT.02.01.".$bidang->lokasi.".".date('m').".".date('y').".".$first;
+        return $no_sppd;
+      }
 
 }

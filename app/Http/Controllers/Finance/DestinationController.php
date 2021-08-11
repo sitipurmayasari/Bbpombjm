@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Finance;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Destination;
+use App\Jabatan;
 
 class DestinationController extends Controller
 {
@@ -30,7 +31,8 @@ class DestinationController extends Controller
 
     public function create()
     {
-        return view('finance/destination.create');
+        $jab= Jabatan::WhereRaw('urutan IN (1,2,3,4,5)')->orderBy('urutan','asc')->get();
+        return view('finance/destination.create',compact('jab'));
     }
 
     public function store(Request $request)
@@ -41,8 +43,9 @@ class DestinationController extends Controller
    
     public function edit($id)
     {
+        $jab= Jabatan::WhereRaw('urutan IN (1,2,3,4,5)')->orderBy('urutan','asc')->get();
         $data = Destination::where('id',$id)->first();
-        return view('finance/destination.edit',compact('data'));
+        return view('finance/destination.edit',compact('data','jab'));
     }
 
    

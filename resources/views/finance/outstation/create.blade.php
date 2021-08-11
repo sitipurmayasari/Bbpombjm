@@ -6,6 +6,12 @@
 @endsection
 @section('content')
 @include('layouts.validasi')
+<style>
+    .scrollit {
+    overflow:scroll;
+    height:100px;
+}
+</style>
 
 <form class="form-horizontal validate-form" role="form" 
          method="post" action="{{route('outstation.store')}}" enctype="multipart/form-data">
@@ -18,10 +24,23 @@
                 <fieldset>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Substansi
+                        </label>
+                        <div class="col-sm-8"> 
+                            <select name="from" class="col-xs-10 col-sm-10 required select2" required id="from">
+                                <option value="">Pilih Substansi</option>
+                                @foreach ($div as $item)
+                                    <option value="{{$item->id}}">{{$item->nama}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
                         for="form-field-1"> Nomor Surat Tugas
                         </label>
                         <div class="col-sm-8">
-                            <input type="text" required
+                            <input type="text" required value="{{$no_st}}" readonly
                                     class="col-xs-10 col-sm-10 required " 
                                     name="code"/>
                         </div>
@@ -38,22 +57,49 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Kode Anggaran
+                        </label>
+                        <div class="col-sm-8">
+                            <select name="from" class="col-xs-10 col-sm-10 required select2" required id="from">
+                                <option value="">Pilih Kode Anggaran</option>
+                                @foreach ($pok as $item)
+                                    <option value="{{$item->id}}">{{$item->sub->kodeall}}/{{$item->akun->code}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Kota Asal
+                        </label>
+                        <div class="col-sm-8"> 
+                            <select name="from" class="col-xs-10 col-sm-10 required select2" required id="from">
+                                <option value="">Pilih Kode Kota</option>
+                                @foreach ($destination as $item)
+                                    <option value="{{$item->id}}">{{$item->code}}-{{$item->capital}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
                         for="form-field-1"> Jenis Dinas
                         </label>
                         <div class="col-sm-8">
-                            <select name="type" class="col-xs-10 col-sm-10 required">
+                            <select name="type" class="col-xs-10 col-sm-10 required" onchange="getAsal()" id="jenas">
+                                <option value="">Pilih Jenis</option>
                                 <option value="DL">Dalam Kota</option>
                                 <option value="LK">Luar Kota</option>
                                 <option value="LN">Luar Negeri</option>
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="to">
                         <label class="col-sm-2 control-label no-padding-right" 
                         for="form-field-1"> Kota Tujuan
                         </label>
                         <div class="col-sm-8"> 
-                            <select name="destination_id" class="col-xs-10 col-sm-10 required select2" required>
+                            <select name="to" class="col-xs-10 col-sm-10 required select2" required>
                                 <option value="">Pilih Kode Kota</option>
                                 @foreach ($destination as $item)
                                     <option value="{{$item->id}}">{{$item->code}}-{{$item->capital}}</option>
@@ -97,19 +143,32 @@
     </div>
     <div class="col-md-12">
         <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title">Daftar Pegawai SPPD</h3></div>
+            <div class="panel-heading"><h3 class="panel-title">Daftar Pegawai</h3></div>
             <div class="panel-body">
                <div class="col-md-12">
-                <table id="myTable" class="table table-bordered table-hover">
+                <table id="myTable" class="table table-bordered table-hover scrollit">
                     <thead>
-                        <th class="text-left col-md-1">NO</th>
-                        <th class="text-center col-md-4">Nama</th>
-                        <th class="text-right col-md-5">Keterangan</th>
-                        <th class="text-center col-md-1">Aksi</th>
+                        <tr>
+                            <th rowspan="2" style="text-align: center;">NO</th>
+                            <th  rowspan="2" class="text-center col-md-4">Nama</th>
+                            <th  rowspan="2"> Uang Harian</th>
+                            <th  rowspan="2"> Uang Diklat</th>
+                            <th  rowspan="2"> Uang Makan</th>
+                            <th  rowspan="2"> Taxi</th>
+                            <th colspan="2"> Tiket Pesawat</th>
+                            <th colspan="2"> Penginapan</th>
+                            <th  rowspan="2" class="text-center col-md-1">Aksi</th>
+                        </tr>
+                        <tr>
+                            <th>Pulang</th>
+                            <th>Pergi</th>
+                            <th>Lama</th>
+                            <th>Biaya</th>
+                        </tr>
                     </thead>
                     <tbody>
                         <tr id="cell-1">
-                            <td>
+                            <td style="text-align: center;">
                                 1
                             </td>
                             <td>
@@ -121,7 +180,20 @@
                                 </select>
                             </td>
                             <td>
-                                <input type="text" name="note[]" class="form-control">
+                                <input type="checkbox" name="dailywage" value="Y">
+                                <label> Ya</label><br>
+                            </td>
+                            <td>
+                                <input type="checkbox" name="dailywageDKLT" value="Y">
+                                <label> Ya</label><br>
+                            </td>
+                            <td>
+                                <input type="checkbox" name="dailymeal" value="Y">
+                                <label> Ya</label><br>
+                            </td>
+                            <td>
+                                <input type="checkbox" name="taxi" value="Y">
+                                <label> Ya</label><br>
                             </td>
                             <td>
                                 {{-- <button type="button"  class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button> --}}
@@ -185,6 +257,18 @@
             $("#cell-"+cell).remove();
             this.hitungTotal();
 
+        }
+
+        function getAsal() {
+            d = $("#from").val();
+            e = $("#jenas").val();
+
+            if (e = "DL") {
+                $("#from").val(d);
+                // $("#to").hide();
+            } else {
+                // $("#to").show();
+            }
         }
    </script>
 @endsection
