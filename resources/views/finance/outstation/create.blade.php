@@ -57,6 +57,19 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Beban Anggaran
+                        </label>
+                        <div class="col-sm-8">
+                            <select name="from" class="col-xs-10 col-sm-10 required select2" required id="from">
+                                <option value="">Pilih Anggaran</option>
+                                @foreach ($budget as $item)
+                                    <option value="{{$item->id}}">{{$item->code}}/{{$item->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
                         for="form-field-1"> Kode Anggaran
                         </label>
                         <div class="col-sm-8">
@@ -136,85 +149,39 @@
                              required readonly>
                         </div>
                     </div>
+                    <div class="form-group" id="to">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> PPK
+                        </label>
+                        <div class="col-sm-8"> 
+                            <select name="to" class="col-xs-10 col-sm-10 required select2" required>
+                                <option value="">Pilih Pejabat</option>
+                                @foreach ($ppk as $item)
+                                    <option value="{{$item->id}}">{{$item->user->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                 </fieldset>   
    
             </div>
         </div>
     </div>
-    <div class="col-md-12">
-        <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title">Daftar Pegawai</h3></div>
-            <div class="panel-body">
-               <div class="col-md-12">
-                <table id="myTable" class="table table-bordered table-hover scrollit">
-                    <thead>
-                        <tr>
-                            <th rowspan="2" style="text-align: center;">NO</th>
-                            <th  rowspan="2" class="text-center col-md-4">Nama</th>
-                            <th  rowspan="2"> Uang Harian</th>
-                            <th  rowspan="2"> Uang Diklat</th>
-                            <th  rowspan="2"> Uang Makan</th>
-                            <th  rowspan="2"> Taxi</th>
-                            <th colspan="2"> Tiket Pesawat</th>
-                            <th colspan="2"> Penginapan</th>
-                            <th  rowspan="2" class="text-center col-md-1">Aksi</th>
-                        </tr>
-                        <tr>
-                            <th>Pulang</th>
-                            <th>Pergi</th>
-                            <th>Lama</th>
-                            <th>Biaya</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr id="cell-1">
-                            <td style="text-align: center;">
-                                1
-                            </td>
-                            <td>
-                                <select name="aduan_detail[]" class="form-control select2" required>
-                                    <option value="">-Pilih-</option>
-                                    @foreach ($user as $item)
-                                        <option value="{{$item->id}}">{{$item->name}} | {{$item->no_pegawai}}</option>
-                                    @endforeach
-                                </select>
-                            </td>
-                            <td>
-                                <input type="checkbox" name="dailywage" value="Y">
-                                <label> Ya</label><br>
-                            </td>
-                            <td>
-                                <input type="checkbox" name="dailywageDKLT" value="Y">
-                                <label> Ya</label><br>
-                            </td>
-                            <td>
-                                <input type="checkbox" name="dailymeal" value="Y">
-                                <label> Ya</label><br>
-                            </td>
-                            <td>
-                                <input type="checkbox" name="taxi" value="Y">
-                                <label> Ya</label><br>
-                            </td>
-                            <td>
-                                {{-- <button type="button"  class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button> --}}
-                            </td>
-                        </tr>
-                        <span id="row-new"></span>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="4">
-                                <button type="button" class="form-control btn-default" onclick="addBarisNew()">
-                                    <i class="glyphicon glyphicon-plus"></i>TAMBAH BARIS BARU</button>
-                                <input type="hidden" id="countRow" value="1">
-                            </td>
-                        </tr>
-                        
-                    </tfoot>
-                </table>
-               </div>
-            </div>
-        </div>
+    <div class="clearfix"></div>
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#tab-employee" data-toggle="tab">Pegawai</a></li>
+        <li><a href="#tab-transport" data-toggle="tab">Biaya Transport</a></li>
+        <li><a href="#tab-ticket" data-toggle="tab">Tiket Pesawat</a></li>
+        <li><a href="#tab-inn" data-toggle="tab">Penginapan</a></li>
+        <li><a href="#tab-driver" data-toggle="tab">Kendaraan Dinas</a></li>
+    </ul>
+
+    <div class="tab-content">
+        @include('finance.outstation.partials.employee')
+        @include('finance.outstation.partials.transport')
+        @include('finance.outstation.partials.ticket')
+        @include('finance.outstation.partials.inn')
+        @include('finance.outstation.partials.driver')
     </div>
 </div>
 <div class="col-sm-12">
@@ -230,34 +197,7 @@
 
 @section('footer')
    <script>
-       function addBarisNew(){
-        var last_baris = $("#countRow").val();
-        var new_baris = parseInt(last_baris)+1;
-        $isi =  '<tr id="cell-'+new_baris+'">'+
-            '<td>'+new_baris+'</td>'+
-                    '<td>'+
-                        '<select name="aduan_detail[]" class="form-control select2" required>'+
-                        '<option value="">-Pilih-</option>'+
-                        '@foreach ($user as $item)'+
-                            '<option value="{{$item->id}}">{{$item->name}} | {{$item->no_pegawai}}</option>'+
-                        '@endforeach'+
-                    '</td>'+
-                    '<td>'+
-                        '<input type="text" name="note[]" class="form-control">'+
-                    '</td>'+
-                    '<td><button type="button"  class="btn btn-danger" onclick="deleteRow('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button></td>'+
-                '</tr>';
-        $("#myTable").find('tbody').append($isi);
-        $("#countRow").val(new_baris);
-        $('.select2').select2();
-       }
 
-    
-       function deleteRow(cell) {
-            $("#cell-"+cell).remove();
-            this.hitungTotal();
-
-        }
 
         function getAsal() {
             d = $("#from").val();

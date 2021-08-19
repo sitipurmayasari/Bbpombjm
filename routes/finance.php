@@ -117,13 +117,25 @@
    Route::get('finance/ikuIndicator/edit/{id}','Finance\IkuIndicatorController@edit')->name('ikuIndicator.edit');
    Route::post('finance/ikuIndicator/update/{id}','Finance\IkuIndicatorController@update')->name('ikuIndicator.update');
 
-    //Route untuk Daerah Tujuan
-    Route::get('/finance/destination','Finance\DestinationController@index')->name('destination');
-    Route::get('/finance/destination/create','Finance\DestinationController@create')->name('destination.create');
-    Route::post('finance/destination/store','Finance\DestinationController@store')->name('destination.store');
-    Route::get('finance/destination/delete/{id}','Finance\DestinationController@delete')->name('destination.delete');
-    Route::get('finance/destination/edit/{id}','Finance\DestinationController@edit')->name('destination.edit');
-    Route::post('finance/destination/update/{id}','Finance\DestinationController@update')->name('destination.update');
+  //Route untuk Daerah Tujuan
+  Route::get('/finance/destination/create','Finance\DestinationController@create')->name('destination.create');
+  Route::post('finance/destination/store','Finance\DestinationController@store')->name('destination.store');
+  Route::get('finance/destination/delete/{id}','Finance\DestinationController@delete')->name('destination.delete');
+  Route::get('finance/destination/edit/{id}','Finance\DestinationController@edit')->name('destination.edit');
+  Route::post('finance/destination/update/{id}','Finance\DestinationController@update')->name('destination.update');
+  
+  //Route untuk PPK
+  Route::post('finance/ppk/store','Finance\PPKController@store')->name('ppk.store');
+  Route::get('finance/ppk/delete/{id}','Finance\PPKController@delete')->name('ppk.delete');
+  Route::get('finance/ppk/edit/{id}','Finance\PPKController@edit')->name('ppk.edit');
+  Route::post('finance/ppk/update/{id}','Finance\PPKController@update')->name('ppk.update');
+
+  //Route untuk Maskapai
+  Route::get('/finance/plane/create','Finance\PlaneController@create')->name('plane.create');
+  Route::post('finance/plane/store','Finance\PlaneController@store')->name('plane.store');
+  Route::get('finance/plane/delete/{id}','Finance\PlaneController@delete')->name('plane.delete');
+  Route::get('finance/plane/edit/{id}','Finance\PlaneController@edit')->name('plane.edit');
+  Route::post('finance/plane/update/{id}','Finance\PlaneController@update')->name('plane.update');
 
   //Route untuk surat tugas
   Route::get('/finance/outstation/create','Finance\OutstationController@create')->name('outstation.create');
@@ -131,3 +143,8 @@
   Route::get('finance/outstation/edit/{id}','Finance\OutstationController@edit')->name('outstation.edit');
   Route::post('finance/outstation/update/{id}','Finance\OutstationController@update')->name('outstation.update');
 
+//Route untuk kode anggaran
+  Route::get('/finance/budget/create','Finance\BudgetController@create')->name('budget.create');
+  Route::post('finance/budget/store','Finance\BudgetController@store')->name('budget.store');
+  Route::get('finance/budget/edit/{id}','Finance\BudgetController@edit')->name('budget.edit');
+  Route::post('finance/budget/update/{id}','Finance\BudgetController@update')->name('budget.update');

@@ -201,6 +201,17 @@
                                 </select>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Desk Job
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text"  placeholder="desk job" value={{$data->deskjob}}
+                                        class="col-xs-10 col-sm-10 required " 
+                                        name="deskjob" />
+                            </div>
+                        </div>
                        
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 

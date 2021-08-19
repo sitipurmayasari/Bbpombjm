@@ -156,6 +156,12 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/finance/ikuIndicator','Finance\IkuIndicatorController@index')->name('ikuIndicator');
     //Route untuk Daerah Tujuan
     Route::get('/finance/destination','Finance\DestinationController@index')->name('destination');
+    //Route untuk PPK
+    Route::get('/finance/ppk','Finance\PPKController@index')->name('ppk');
+    //Route untuk Maskapai
+    Route::get('/finance/plane','Finance\PlaneController@index')->name('plane');
+    //Route untuk kode anggaran
+    Route::get('/finance/budget','Finance\BudgetController@index')->name('budget');
     //Route untuk surat tugas
     Route::get('/finance/outstation','Finance\OutstationController@index')->name('outstation');
 

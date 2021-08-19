@@ -11,6 +11,10 @@ use App\Destination;
 use App\Outstation;
 use App\Divisi;
 use App\Pok_detail;
+use App\PPK;
+use App\Plane;
+use App\Car;
+use App\Budget;
 use PDF;
 
 
@@ -33,17 +37,23 @@ class OutstationController extends Controller
 
     public function create()
     {
+        $plane = Plane::all();
+        $car = Car::all();
+        $ppk = PPK::all();
+        $budget = Budget::all();
         $pok = Pok_detail::selectRaw('DISTINCT(subcode_id),accountcode_id')->get();
         $div = Divisi::all();
         $no_st = $this->getnost();
         $user = User::where('id','!=','1')->get();
+        $driver = User::where('deskjob','LIKE','%Sopir%')->get();
         $destination = Destination::all();
-        return view('finance/outstation.create',compact('user','destination','no_st','div','pok'));
+        return view('finance/outstation.create',compact('user','destination','no_st','div','pok','ppk','plane','driver',
+        'car','budget'));
     }
 
     function getnost(){
         $sppd = Outstation::orderBy('id','desc')->whereYear('created_at',date('Y'))->get(); 
-        $bidang = Divisi::select('lokasi')->where('id','2')->first();
+        $bidang = Divisi::select('kode_sppd')->where('id','2')->first();
         $first = "0001";
         if($sppd->count()>0){
           $first = $sppd->first()->id+1;
@@ -55,7 +65,7 @@ class OutstationController extends Controller
             $first = "0".$first;
         }
         }
-        $no_sppd = "RT.02.01.".$bidang->lokasi.".".date('m').".".date('y').".".$first;
+        $no_sppd = "RT.02.01.".$bidang->kode_sppd.".".date('m').".".date('y').".".$first;
         return $no_sppd;
       }
 
