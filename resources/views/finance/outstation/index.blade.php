@@ -1,8 +1,7 @@
 @extends('layouts.mon')
 @section('breadcrumb')
 @section('breadcrumb')
-    <li>SPPD</li>
-    <li>Surat Perintah Perjalanan Dinas</i></li>
+    <li>Surat Tugas</i></li>
 @endsection
 @section('content')
 
@@ -36,9 +35,11 @@
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
                 <th width="40px">No</th>
-                <th class="col-md-2">Nomor SPPD</th>
+                <th class="col-md-2">Nomor Surat Tugas</th>
                 <th>Nama Kegiatan</th>
                 <th>Destinasi</th>
+                <th>Cetak ST</th>
+                <th>Cetak SPPD</th>
                 <th  class="col-md-2">Aksi</th>
             </thead>
             <tbody>   	
@@ -48,6 +49,12 @@
                     <td>{{$row->code}}</td>
                     <td>{{$row->name}}</td>
                     <td>{{$row->destination}}</td>
+                    <td>
+                        <a class="btn btn-primary" href="/finance/outstation/st/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" href="/finance/outstation/sppd/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
+                    </td>
                     <td>
                         <a href="/finance/outstation/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>
