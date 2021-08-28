@@ -14,7 +14,6 @@
                                 <tr>
                                     <th>Tiket Pergi</th>
                                     <th>Tgl Pergi</th>
-                                    <th>Tiket Transit</th>
                                     <th>Tgl Pulang</th>
                                     <th>Tiket Pulang</th>
                                     
@@ -39,16 +38,12 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <input type="date"
-                                        name="godate" required/>
-                                    </td>
-                                    <td>
                                         <input type="number" min="0" value="0"
                                         name="planego" required/>
                                     </td>
                                     <td>
-                                        <input type="number" min="0" value="0"
-                                        name="planetransit" required/>
+                                        <input type="date"
+                                        name="godate" required/>
                                     </td>
                                     <td>
                                         <input type="date" 

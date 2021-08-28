@@ -9,6 +9,10 @@
     <link href="{{asset('assets/css/no_header.css')}}" rel="stylesheet">
     <title>Document</title>
     <style>
+        html{
+            font-family: 'Times New Roman';
+            font-size: 10;
+        }
         .tbl{
             border: 1px solid black;
             width: 100%;

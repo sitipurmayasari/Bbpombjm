@@ -142,6 +142,8 @@
   Route::post('finance/outstation/store','Finance\OutstationController@store')->name('outstation.store');
   Route::get('finance/outstation/edit/{id}','Finance\OutstationController@edit')->name('outstation.edit');
   Route::post('finance/outstation/update/{id}','Finance\OutstationController@update')->name('outstation.update');
+  Route::get('finance/outstation/printST','Finance\OutstationController@printST')->name('outstation.printST');
+  Route::get('finance/outstation/printSppd','Finance\OutstationController@printSppd')->name('outstation.printSppd');
 
 //Route untuk kode anggaran
   Route::get('/finance/budget/create','Finance\BudgetController@create')->name('budget.create');

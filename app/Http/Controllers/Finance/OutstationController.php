@@ -53,7 +53,7 @@ class OutstationController extends Controller
 
     function getnost(){
         $sppd = Outstation::orderBy('id','desc')->whereYear('created_at',date('Y'))->get(); 
-        $bidang = Divisi::select('kode_sppd')->where('id','2')->first();
+        $bidang = Divisi::select('lokasi')->where('id','2')->first();
         $first = "0001";
         if($sppd->count()>0){
           $first = $sppd->first()->id+1;
@@ -65,8 +65,21 @@ class OutstationController extends Controller
             $first = "0".$first;
         }
         }
-        $no_sppd = "RT.02.01.".$bidang->kode_sppd.".".date('m').".".date('y').".".$first;
+        $no_sppd = "RT.02.01.".$bidang->lokasi.".".date('m').".".date('y').".".$first;
         return $no_sppd;
+      }
+
+
+      public function printST()
+      {
+          $pdf = PDF::loadview('finance/outstation.printST');
+          return $pdf->stream();
+      }
+
+      public function printSppd()
+      {
+          $pdf = PDF::loadview('finance/outstation.printSppd');
+          return $pdf->stream();
       }
 
 }

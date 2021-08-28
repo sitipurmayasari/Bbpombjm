@@ -199,6 +199,15 @@
                                 <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0"
                                        name="FBHD5" /></td>    
                             </tr>
+                            <tr>
+                                <td>Uang Representatif</td>
+                                <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0"
+                                     name="representatif" /></td>
+                               <td></td>
+                               <td></td>
+                               <td></td>
+                               <td></td>   
+                            </tr>
                         </tbody>
                     </table>
                     </fieldset>        

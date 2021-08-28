@@ -68,6 +68,19 @@
                             </select>
                         </div>
                     </div>
+                    <div class="form-group" id="to">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> PPK
+                        </label>
+                        <div class="col-sm-8"> 
+                            <select name="to" class="col-xs-10 col-sm-10 required select2" required>
+                                <option value="">Pilih Pejabat</option>
+                                @foreach ($ppk as $item)
+                                    <option value="{{$item->id}}">{{$item->user->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
                         for="form-field-1"> Kode Anggaran
@@ -86,7 +99,7 @@
                         for="form-field-1"> Kota Asal
                         </label>
                         <div class="col-sm-8"> 
-                            <select name="from" class="col-xs-10 col-sm-10 required select2" required id="from">
+                            <select name="city_from" class="col-xs-10 col-sm-10 required select2" required id="city_from">
                                 <option value="">Pilih Kode Kota</option>
                                 @foreach ($destination as $item)
                                     <option value="{{$item->id}}">{{$item->code}}-{{$item->capital}}</option>
@@ -107,12 +120,74 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group" id="to">
-                        <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1"> Kota Tujuan
+                </fieldset>   
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-heading"><h3 class="panel-title">Kota Tujuan</h3></div>
+            <div class="panel-body">
+                <fieldset>
+                    <div class="form-group" id="to_1">
+                        <label class="col-sm-3 control-label no-padding-right" 
+                        for="form-field-1"> Kota Tujuan 1
                         </label>
-                        <div class="col-sm-8"> 
-                            <select name="to" class="col-xs-10 col-sm-10 required select2" required>
+                        <div class="col-sm-9"> 
+                            <select name="city_1" id="city_1" class="col-xs-10 col-sm-10 required select2" required>
+                                <option value="">Pilih Kode Kota</option>
+                                @foreach ($destination as $item)
+                                    <option value="{{$item->id}}">{{$item->code}}-{{$item->capital}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" 
+                        for="form-field-1"> Dari Tanggal
+                        </label>
+                        <div class="col-sm-9">
+                            <input type="date" name="date_from_1" class="col-xs-5 col-sm-5 required" 
+                            value="{{date('Y-m-d')}}" required
+                            data-date-format="yyyy-mm-dd">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" 
+                        for="form-field-1"> Sampai Tanggal
+                        </label>
+                        <div class="col-sm-9">
+                            <input type="date" name="date_to_1" class="col-xs-5 col-sm-5 required" 
+                            value="{{date('Y-m-d')}}" required
+                            data-date-format="yyyy-mm-dd">
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" 
+                        for="form-field-1"> Lama hari
+                        </label>
+                        <div class="col-sm-9">
+                            <input type="text" name="daylong_1" class="col-xs-3 col-sm-3 required" 
+                             required readonly>
+                        </div>
+                    </div>
+                </fieldset>   
+   
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6" id="kotakedua">
+        <div class="panel panel-info">
+            <div class="panel-heading"><h3 class="panel-title">Kota Tujuan</h3></div>
+            <div class="panel-body">
+                <fieldset>
+                    <div class="form-group" id="to">
+                        <label class="col-sm-3 control-label no-padding-right" 
+                        for="form-field-1"> Kota Tujuan 2
+                        </label>
+                        <div class="col-sm-9"> 
+                            <select name="city_2" class="col-xs-10 col-sm-10 required select2" required>
                                 <option value="">Pilih Kode Kota</option>
                                 @foreach ($destination as $item)
                                     <option value="{{$item->id}}">{{$item->code}}-{{$item->capital}}</option>
@@ -121,45 +196,32 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label no-padding-right" 
+                        <label class="col-sm-3 control-label no-padding-right" 
                         for="form-field-1"> Dari Tanggal
                         </label>
-                        <div class="col-sm-8">
-                            <input type="date" name="from" class="col-xs-3 col-sm-3 required" 
+                        <div class="col-sm-9">
+                            <input type="date" name="date_from_2" class="col-xs-5 col-sm-5 required" 
                             value="{{date('Y-m-d')}}" required
                             data-date-format="yyyy-mm-dd">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label no-padding-right" 
+                        <label class="col-sm-3 control-label no-padding-right" 
                         for="form-field-1"> Sampai Tanggal
                         </label>
-                        <div class="col-sm-8">
-                            <input type="date" name="to" class="col-xs-3 col-sm-3 required" 
+                        <div class="col-sm-9">
+                            <input type="date" name="date_to_2" class="col-xs-5 col-sm-5 required" 
                             value="{{date('Y-m-d')}}" required
                             data-date-format="yyyy-mm-dd">
                         </div>
                     </div> 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label no-padding-right" 
+                        <label class="col-sm-3 control-label no-padding-right" 
                         for="form-field-1"> Lama hari
                         </label>
-                        <div class="col-sm-8">
-                            <input type="text" name="daylong" class="col-xs-3 col-sm-3 required" 
+                        <div class="col-sm-9">
+                            <input type="text" name="daylong_2" class="col-xs-3 col-sm-3 required" 
                              required readonly>
-                        </div>
-                    </div>
-                    <div class="form-group" id="to">
-                        <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1"> PPK
-                        </label>
-                        <div class="col-sm-8"> 
-                            <select name="to" class="col-xs-10 col-sm-10 required select2" required>
-                                <option value="">Pilih Pejabat</option>
-                                @foreach ($ppk as $item)
-                                    <option value="{{$item->id}}">{{$item->user->name}}</option>
-                                @endforeach
-                            </select>
                         </div>
                     </div>
                 </fieldset>   
@@ -200,14 +262,14 @@
 
 
         function getAsal() {
-            d = $("#from").val();
+            d = $("#city_from").val();
             e = $("#jenas").val();
 
             if (e = "DL") {
-                $("#from").val(d);
-                // $("#to").hide();
+                $("#kotakedua").hide();
+                $("#city_1").val(d);
             } else {
-                // $("#to").show();
+                $("#kotakedua").show();
             }
         }
    </script>
