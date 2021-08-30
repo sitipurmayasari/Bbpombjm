@@ -8,12 +8,12 @@
                                 <tr>
                                     <th style="text-align: center;">NO</th>
                                     <th class="text-center col-md-4">Nama</th>
-                                    <th> Uang Harian</th>
-                                    <th> Uang Diklat</th>
-                                    <th> Upah Harian FB</th>
-                                    <th> Upah Harian FBHD</th>
-                                    <th> Upah Harian FBFD </th>
-                                    <th>Uang Representatif</th>
+                                    <th style="text-align: center;"> Uang Harian</th>
+                                    <th style="text-align: center;"> Uang Diklat</th>
+                                    <th style="text-align: center;"> Upah Harian FB</th>
+                                    <th style="text-align: center;"> Upah Harian FBHD</th>
+                                    <th style="text-align: center;"> Upah Harian FBFD </th>
+                                    <th style="text-align: center;">Uang Representatif</th>
                                     <th class="text-center col-md-1">Aksi</th>
                                 </tr>
                             </thead>
@@ -51,7 +51,8 @@
                                         <label> Ya</label><br>
                                     </td>
                                     <td>
-                                        <input type="number" min="0" name="representatif" value="0"/>
+                                        <input type="checkbox" name="representatif" value="Y">
+                                        <label> Ya</label><br>
                                     </td>
                                     <td>
                                         {{-- <button type="button"  class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button> --}}

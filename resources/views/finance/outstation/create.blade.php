@@ -24,10 +24,20 @@
                 <fieldset>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1">Tanggal
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="date" required id="st_date"
+                                    class="col-xs-10 col-sm-10 required " 
+                                    name="st_date"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
                         for="form-field-1"> Substansi
                         </label>
                         <div class="col-sm-8"> 
-                            <select name="from" class="col-xs-10 col-sm-10 required select2" required id="from">
+                            <select name="divisi_id" class="col-xs-10 col-sm-10 required select2" required id="div" onchange="getnomor()">
                                 <option value="">Pilih Substansi</option>
                                 @foreach ($div as $item)
                                     <option value="{{$item->id}}">{{$item->nama}}</option>
@@ -42,7 +52,7 @@
                         <div class="col-sm-8">
                             <input type="text" required value="{{$no_st}}" readonly
                                     class="col-xs-10 col-sm-10 required " 
-                                    name="code"/>
+                                    name="number"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -52,7 +62,7 @@
                         <div class="col-sm-8">
                             <input type="text"  placeholder="Nama kegiatan" 
                                     class="col-xs-10 col-sm-10 required " 
-                                    name="name" required/>
+                                    name="purpose" required/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -60,7 +70,7 @@
                         for="form-field-1"> Beban Anggaran
                         </label>
                         <div class="col-sm-8">
-                            <select name="from" class="col-xs-10 col-sm-10 required select2" required id="from">
+                            <select name="budget_id" class="col-xs-10 col-sm-10 required select2" required>
                                 <option value="">Pilih Anggaran</option>
                                 @foreach ($budget as $item)
                                     <option value="{{$item->id}}">{{$item->code}}/{{$item->name}}</option>
@@ -68,12 +78,12 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group" id="to">
+                    <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
                         for="form-field-1"> PPK
                         </label>
                         <div class="col-sm-8"> 
-                            <select name="to" class="col-xs-10 col-sm-10 required select2" required>
+                            <select name="ppk_id" class="col-xs-10 col-sm-10 required select2" required>
                                 <option value="">Pilih Pejabat</option>
                                 @foreach ($ppk as $item)
                                     <option value="{{$item->id}}">{{$item->user->name}}</option>
@@ -86,7 +96,7 @@
                         for="form-field-1"> Kode Anggaran
                         </label>
                         <div class="col-sm-8">
-                            <select name="from" class="col-xs-10 col-sm-10 required select2" required id="from">
+                            <select name="from" class="col-xs-10 col-sm-10 required select2" required >
                                 <option value="">Pilih Kode Anggaran</option>
                                 @foreach ($pok as $item)
                                     <option value="{{$item->id}}">{{$item->sub->kodeall}}/{{$item->akun->code}}</option>
@@ -259,7 +269,24 @@
 
 @section('footer')
    <script>
-
+       function getnomor(){
+           var div = $("#st_date").val();
+           var div = $("#divisi_id").val();
+           $.get(
+            "{{route('realisasi.getAsal') }}",
+            {
+                year:year,
+            },
+            function(response) {
+               var data = response.data;
+               var string ="<option value=''>Pilih</option>";
+                $.each(data, function(index, value) {
+                    string = string + '<option value="'+ value.id +'">'+ value.asal_pok +'</option>';
+                })
+               $("#asalpok").html(string);
+            }
+        );
+       }
 
         function getAsal() {
             d = $("#city_from").val();
