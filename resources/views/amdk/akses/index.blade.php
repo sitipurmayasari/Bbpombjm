@@ -70,7 +70,10 @@
                                                 <thead >
                                                     <th width="5%" style="text-align: center;">No</th>
                                                     <th style="text-align: center;">Menu</th>
-                                                    <th width="20%" style="text-align: center;">Akses</th>
+                                                    <th width="20%" style="text-align: center;">
+                                                        <input type="checkbox" name="amdkCheckAll" id="amdkCheckAll" >
+
+                                                    </th>
                                                 </thead>
                                                 <tbody id="isi_amdk">
                                                     {{-- @php $no=1;  @endphp
@@ -103,7 +106,8 @@
                                                 <thead >
                                                     <th width="5%" style="text-align: center;">No</th>
                                                     <th style="text-align: center;">Menu</th>
-                                                    <th width="20%" style="text-align: center;">Akses</th>
+                                                    <th width="20%" style="text-align: center;"> 
+                                                       <input type="checkbox" name="invCheckAll" id="invCheckAll" ></th>
                                                 </thead>
                                                 <tbody id="isi_inv">
                                                    
@@ -127,7 +131,9 @@
                                                 <thead >
                                                     <th width="5%" style="text-align: center;">No</th>
                                                     <th style="text-align: center;">Menu</th>
-                                                    <th width="20%" style="text-align: center;">Akses</th>
+                                                    <th width="20%" style="text-align: center;">
+                                                        <input type="checkbox" name="financeCheckAll" id="financeCheckAll" >
+                                                    </th>
                                                 </thead>
                                                 <tbody id="isi_fin">
                                                    
@@ -159,6 +165,31 @@
 
 @section('footer')
 <script>
+    $(function() {
+        $('#financeCheckAll').click(function() {
+            if ($(this).prop('checked')) {
+                $('.cekFin').prop('checked', true);
+            } else {
+                $('.cekFin').prop('checked', false);
+            }
+        });
+        
+        $('#invCheckAll').click(function() {
+            if ($(this).prop('checked')) {
+                $('.cekInv').prop('checked', true);
+            } else {
+                $('.cekInv').prop('checked', false);
+            }
+        });
+        
+        $('#amdkCheckAll').click(function() {
+            if ($(this).prop('checked')) {
+                $('.cekAmdk').prop('checked', true);
+            } else {
+                $('.cekAmdk').prop('checked', false);
+            }
+        });
+    });
      function getpeg(){
         var user_id = $("#user_id").val();
     }
@@ -184,7 +215,7 @@
                         '<td style="text-align: center;">'+no+'</td>'+
                         '<td>'+response.amdk[i].nama+'</td>'+
                         '<td style="text-align: center;">'+
-                            '<input type="checkbox" class="menu" name="akses_amdk[]" '+is_check
+                            '<input type="checkbox" class="menu cekAmdk" name="akses_amdk[]" '+is_check
                             +' value="'+response.amdk[i].id+'">'+
                         '</td>'+
                     '</tr>';
@@ -200,7 +231,7 @@
                         '<td style="text-align: center;">'+no+'</td>'+
                         '<td>'+response.inventaris[i].nama+'</td>'+
                         '<td style="text-align: center;">'+
-                            '<input type="checkbox" class="menu" name="akses_inv[]" '+is_check
+                            '<input type="checkbox" class="menu cekInv" name="akses_inv[]" '+is_check
                             +' value="'+response.inventaris[i].id+'">'+
                         '</td>'+
                     '</tr>';
@@ -216,7 +247,7 @@
                         '<td style="text-align: center;">'+no+'</td>'+
                         '<td>'+response.finance[i].nama+'</td>'+
                         '<td style="text-align: center;">'+
-                            '<input type="checkbox" class="menu" name="akses_fin[]" '+is_check
+                            '<input type="checkbox" class="menu cekFin" name="akses_fin[]" '+is_check
                             +' value="'+response.finance[i].id+'">'+
                         '</td>'+
                     '</tr>';

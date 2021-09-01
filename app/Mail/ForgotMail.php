@@ -1,0 +1,40 @@
+<?php
+
+namespace App\Mail;
+
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Mail\Mailable;
+use Illuminate\Queue\SerializesModels;
+
+class ForgotMail extends Mailable
+{
+    use Queueable, SerializesModels;
+
+    /**
+     * Create a new message instance.
+     *
+     * @return void
+     */
+    public function __construct($nama,$linkForm)
+    {
+        $this->nama = $nama;
+        $this->linkForm = $linkForm;
+    }
+
+    /**
+     * Build the message.
+     *
+     * @return $this
+     */
+    public function build()
+    {
+        return $this->from('bpom_banjarmasin@pom.go.id')
+        ->view('layouts.forgotmail')
+        ->with(
+        [
+            'nama' => $this->nama,
+            'linkForm' => $this->linkForm
+        ]);
+    }
+}

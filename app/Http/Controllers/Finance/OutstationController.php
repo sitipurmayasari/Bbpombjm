@@ -25,11 +25,10 @@ class OutstationController extends Controller
     {
         $data = Outstation::orderBy('id','desc')
                 ->select('outstation.*','users.name')
-                ->leftJoin('users','users.id','=','outstation.users_id')
                 ->when($request->keyword, function ($query) use ($request) {
-                    $query->where('outstation.code','LIKE','%'.$request->keyword.'%')
-                            ->orWhere('outstation.name', 'LIKE','%'.$request->keyword.'%')
-                            ->orWhere('destination', 'LIKE','%'.$request->keyword.'%');
+                    $query->where('number','LIKE','%'.$request->keyword.'%')
+                            ->orWhere('purpose', 'LIKE','%'.$request->keyword.'%')
+                            ->orWhere('st_date', 'LIKE','%'.$request->keyword.'%');
                     })
                 ->paginate('10');
         return view('finance/outstation.index',compact('data'));

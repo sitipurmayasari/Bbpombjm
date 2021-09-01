@@ -6,6 +6,10 @@
 Route::get('/','LoginController@index')->name('login');
 Route::post('/login','LoginController@auth')->name('auth');
 Route::get('/logout','LoginController@logout')->name('logout');
+Route::get('/forgot','ForgotController@index')->name('forgot');
+Route::post('/forgot/store','ForgotController@store')->name('forgot.store');
+Route::get('/fgt/{id}/forgot','ForgotController@pageChangePassword')->name('forgot.change');
+Route::post('/forgot/{id}/update','ForgotController@updatePassword')->name('forgot.update');
 
 Route::get('/import','ImportExcelController@index')->name('import');
 Route::post('/import/jabasn','ImportExcelController@jabasn')->name('import.jabasn');
