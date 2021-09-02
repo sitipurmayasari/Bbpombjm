@@ -177,29 +177,41 @@
                 <tr>
                     <td>Surat Tugas Nomor</td>
                     <td>: (No. ST)</td>
-                    <td>&nbsp;&nbsp;Tgl. (tgl ST)</td>
+                    <td style="text-align: right;">Tgl. </td>
+                    <td> &nbsp; (tgl ST)</td>
                 </tr>
                 <tr>
                     <td>Berangkat dari</td>
                     <td>: (Tanggal ST)</td>
+                    <td>Pada tanggal</td>
+                    <td>: (tgl pergi)</td>
                 </tr>
                 <tr>
-                    <td colspan="2">(Jabatan PPK)</td>
+                    <td colspan="2" style="text-align: center;">(Tempat kedudukan)</td>
+                    <td>Tujuan</td>
+                    <td>(Kota Tujuan)</td>
                 </tr>
                 <tr>
-                    <td style="height: 5%"></td>
+                    <td colspan="4" style="text-align: left;">Kepala bagian Tata Usaha</td>
                 </tr>
                 <tr>
-                    <td>
-                        <u><b> (Nama PPK) </b></u>
+                    <td style="height: 5%" colspan="4" style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="text-align: left;">
+                        <u><b> (Nama kepala TU) </b></u>
                     </td>
                 </tr>
                 <tr>
-                    <td>(no pegawai ppk)</td>
+                    <td colspan="4" style="text-align: left;">
+                        (no pegawai)
+                    </td>
                 </tr>
                </table>
-
            </td>
+       </tr>
+       <tr>
+           <td></td>
        </tr>
    </table>
 </body>

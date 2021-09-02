@@ -22,6 +22,8 @@ class ForgotController extends Controller
         if ($user->count() == 1) {
             //Send Email
             $this->sendEmail($user->first());
+            
+            return redirect()->route('login')->with('Sukses','Email Terkirim');
         }else  if ($user->count() > 1) {
             return redirect()->route('forgot')->with('gagal','Email Tidak Valid');
         }

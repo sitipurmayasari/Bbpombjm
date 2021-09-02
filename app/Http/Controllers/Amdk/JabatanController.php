@@ -39,7 +39,7 @@ class JabatanController extends Controller
         $divisi = Divisi::all();
         $user = User::all()
                 ->where('id','!=','1');
-        return view('amdk/jabatan.create',compact('data','subdivisi','divisi','user','jabatan'));
+        return view('amdk/jabatan.create',compact('subdivisi','divisi','user','jabatan'));
     }
 
     public function store(Request $request)

@@ -168,7 +168,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/finance/budget','Finance\BudgetController@index')->name('budget');
     //Route untuk surat tugas
     Route::get('/finance/outstation','Finance\OutstationController@index')->name('outstation');
-
+    //Route untuk Kuitansi
+    Route::get('/finance/travelexpenses','Finance\TravelexpensesController@index')->name('travelexpenses');
 
 });
 

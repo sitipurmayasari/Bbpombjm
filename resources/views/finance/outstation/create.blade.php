@@ -242,17 +242,11 @@
     <div class="clearfix"></div>
     <ul class="nav nav-tabs">
         <li class="active"><a href="#tab-employee" data-toggle="tab">Pegawai</a></li>
-        <li><a href="#tab-transport" data-toggle="tab">Biaya Transport</a></li>
-        <li><a href="#tab-ticket" data-toggle="tab">Tiket Pesawat</a></li>
-        <li><a href="#tab-inn" data-toggle="tab">Penginapan</a></li>
         <li><a href="#tab-driver" data-toggle="tab">Kendaraan Dinas</a></li>
     </ul>
 
     <div class="tab-content">
         @include('finance.outstation.partials.employee')
-        @include('finance.outstation.partials.transport')
-        @include('finance.outstation.partials.ticket')
-        @include('finance.outstation.partials.inn')
         @include('finance.outstation.partials.driver')
     </div>
 </div>
