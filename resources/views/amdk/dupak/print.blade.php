@@ -174,10 +174,10 @@
                     @endif
                 </td>
                 <td class="tbl" style="width: 10%; text-align:center;" >
-                    @if ($data->sa1=='0')
+                    @if ($data->sa2=='0')
                         -
                     @else
-                        {{$data->sa1}}
+                        {{$data->sa2}}
                     @endif
                 </td>
             </tr>

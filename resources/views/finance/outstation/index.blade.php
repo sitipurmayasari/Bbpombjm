@@ -33,6 +33,7 @@
 
     <div class="table-responsive">
         <table id="simple-table" class="table  table-bordered table-hover">
+        {{-- <table id="simple-table" class="table  table-bordered table-hover datatable"> --}}
             <thead>
                 <th width="40px">No</th>
                 <th class="col-md-2">Nomor Surat Tugas</th>
@@ -43,17 +44,24 @@
                 <th  class="col-md-2">Aksi</th>
             </thead>
             <tbody>   	
+                @php
+                    $no=1;
+                @endphp
                 @foreach($data as $key=>$row)
                 <tr>
-                    <td>{{$data->firstItem() + $key}}</td>
-                    <td>{{$row->code}}</td>
-                    <td>{{$row->name}}</td>
-                    <td>{{$row->destination}}</td>
+                    <td>{{$no++}}</td>
+                    <td>{{$row->number}}</td>
+                    <td>{{$row->purpose}}</td>
                     <td>
-                        <a class="btn btn-primary" href="/finance/outstation/st/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
+                        @foreach ($row->outst_destiny as $item)
+                            <li>{{$item->destiny->capital}}</li>
+                        @endforeach
                     </td>
                     <td>
-                        <a class="btn btn-primary" href="/finance/outstation/sppd/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
+                        <a class="btn btn-primary" href="/finance/outstation/printST/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" href="/finance/outstation/printSppd/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
                     </td>
                     <td>
                         <a href="/finance/outstation/edit/{{$row->id}}" class="btn btn-warning">
@@ -70,7 +78,6 @@
             </tbody>
         </table>
     </div>
-{{$data->appends(Request::all())->links()}}
 @endsection
 
 @section('footer')

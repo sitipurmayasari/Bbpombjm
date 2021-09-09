@@ -138,12 +138,14 @@
   Route::post('finance/plane/update/{id}','Finance\PlaneController@update')->name('plane.update');
 
   //Route untuk surat tugas
+  Route::get('finance/outstation/getnost','Finance\OutstationController@getnost')->name('outstation.getnost');
   Route::get('/finance/outstation/create','Finance\OutstationController@create')->name('outstation.create');
   Route::post('finance/outstation/store','Finance\OutstationController@store')->name('outstation.store');
   Route::get('finance/outstation/edit/{id}','Finance\OutstationController@edit')->name('outstation.edit');
   Route::post('finance/outstation/update/{id}','Finance\OutstationController@update')->name('outstation.update');
-  Route::get('finance/outstation/printST','Finance\OutstationController@printST')->name('outstation.printST');
-  Route::get('finance/outstation/printSppd','Finance\OutstationController@printSppd')->name('outstation.printSppd');
+  Route::get('finance/outstation/printST/{id}','Finance\OutstationController@printST')->name('outstation.printST');
+  Route::get('finance/outstation/printSppd/{id}','Finance\OutstationController@printSppd')->name('outstation.printSppd');
+  
 
 //Route untuk kode anggaran
   Route::get('/finance/budget/create','Finance\BudgetController@create')->name('budget.create');

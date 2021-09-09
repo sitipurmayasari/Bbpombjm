@@ -41,7 +41,7 @@
   		<link href="{{asset('assets/sweetalert/sweetalert.hack.css')}}" rel="stylesheet">
   		<link rel="stylesheet" href="{{asset('assets/toastr/toastr.min.css')}}">
 		<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-
+		<link rel="stylesheet" href="http://cdn.datatables.net/1.11.1/css/jquery.dataTables.min.css">
 
 		@yield('header')
 
@@ -246,10 +246,12 @@
 		<script src="{{asset('assets/js/dataTables.select.min.js')}}"></script>
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 		<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+		<script src="http://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script>
 
 		<script>
 			$(document).ready(function() {
 				$('.select2').select2();
+				$('.datatable').DataTable();
 			});
 				@if(Session::has('sukses'))
 					toastr.success("{{Session::get('sukses')}}", "Sukses",{timeOut: 5000})

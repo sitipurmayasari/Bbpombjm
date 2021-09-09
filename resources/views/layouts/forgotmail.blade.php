@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        body{
+            text-align: justify;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
 </head>
 <body>
     <table>
@@ -16,8 +22,12 @@
     Jika anda ingin mengganti password <b>SIBOB</b> anda, silahkan klik
     <button> <a href="{{$linkForm}}">di sini</a> </button> <br>
     
-    Atau anda juga bisa dapat melakukannya dengan cara klik link ini : <br>
+    Atau anda juga bisa dapat melakukannya dengan cara klik link dibawah ini : <br><br>
      <a href="{{$linkForm}}">{{$linkForm}}</a></p>
+     <br>
+     <br>
+     <br>
+     <br>
      <br>
 
     -Terimakasih-
@@ -32,8 +42,12 @@
     If you want to change <b>SIBOB</b> password, please click
     <button> <a href="{{$linkForm}}">here</a> </button> <br>
     
-    Or you can also do it by click this link : <br>
+    Or you can also do it by click on the link below : <br><br>
      <a href="{{$linkForm}}">{{$linkForm}}</a></p>
+     <br>
+     <br>
+     <br>
+     <br>
      <br>
 
     -Thankyou-

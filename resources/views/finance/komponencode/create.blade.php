@@ -31,7 +31,7 @@
                             for="form-field-1"> Kode Rincian Output
                             </label>
                             <div class="col-sm-8">
-                                <select name="detailcode_id" class="col-xs-10 col-sm-10 required " required>
+                                <select name="detailcode_id" class="col-xs-10 col-sm-10 required select2" required>
                                     <option value="">Pilih Kode</option>
                                     @foreach ($detail as $peg)
                                         <option value="{{$peg->id}}">{{$peg->unit->code}} - {{$peg->code}}

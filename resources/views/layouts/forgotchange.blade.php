@@ -27,6 +27,7 @@
     	<img src="{{asset('images/bbpom.jpg')}}" style="height:100px">
         <br><br> 
         <div class="clearfix"></div>
+        <h5>MASUKKAN PASSWORD BARU ANDA</h5>
         @if($errors->any())
         <div class="col-xs-12">
                 <div class="alert alert-warning alert-dismissible" role="alert">

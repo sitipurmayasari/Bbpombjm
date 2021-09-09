@@ -27,8 +27,8 @@
                         for="form-field-1">Tanggal
                         </label>
                         <div class="col-sm-8">
-                            <input type="date" required id="st_date"
-                                    class="col-xs-10 col-sm-10 required " 
+                            <input type="date" required id="st_date" value="{{date('Y-m-d')}}"
+                                    class="col-xs-3 col-sm-3 required " 
                                     name="st_date"/>
                         </div>
                     </div>
@@ -50,7 +50,7 @@
                         for="form-field-1"> Nomor Surat Tugas
                         </label>
                         <div class="col-sm-8">
-                            <input type="text" required value="{{$no_st}}" readonly
+                            <input type="text" required readonly id="nost"
                                     class="col-xs-10 col-sm-10 required " 
                                     name="number"/>
                         </div>
@@ -96,11 +96,36 @@
                         for="form-field-1"> Kode Anggaran
                         </label>
                         <div class="col-sm-8">
-                            <select name="from" class="col-xs-10 col-sm-10 required select2" required >
-                                <option value="">Pilih Kode Anggaran</option>
-                                @foreach ($pok as $item)
-                                    <option value="{{$item->id}}">{{$item->sub->kodeall}}/{{$item->akun->code}}</option>
+                            <select name="activitycode_id" class="col-xs-3 col-sm-3 required select2" required>
+                                <option value="">Aktivitas</option>
+                                @foreach ($act as $item)
+                                    <option value="{{$item->id}}">{{$item->prog->unit->klcode->code}}.{{$item->prog->unit->code}}.
+                                                                    {{$item->prog->code}}.{{$item->code}}</option>
                                 @endforeach
+                            </select>
+                            <select name="subcode_id" class="col-xs-4 col-sm-4 required select2" required>
+                                <option value="">Subakun</option>
+                                @foreach ($sub as $item)
+                                    <option value="{{$item->id}}">{{$item->kodeall}}</option>
+                                @endforeach
+                            </select>
+                            <select name="accountcode_id" class="col-xs-3 col-sm-3 required select2" required>
+                                <option value="">Akun</option>
+                                @foreach ($akun as $item)
+                                    <option value="{{$item->id}}">{{$item->code}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Transportasi
+                        </label>
+                        <div class="col-sm-8">
+                            <select name="transport" class="col-xs-10 col-sm-10 required select2" required >
+                                <option value="Transportasi Darat">Transportasi Darat</option>
+                                <option value="Transportasi Laut">Transportasi Laut</option>
+                                <option value="Transportasi Udara">Transportasi Udara</option>
                             </select>
                         </div>
                     </div>
@@ -134,121 +159,112 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
         <div class="panel panel-info">
-            <div class="panel-heading"><h3 class="panel-title">Kota Tujuan</h3></div>
+            <div class="panel-heading"><h3 class="panel-title">Pilih Pegawai</h3></div>
             <div class="panel-body">
                 <fieldset>
-                    <div class="form-group" id="to_1">
-                        <label class="col-sm-3 control-label no-padding-right" 
-                        for="form-field-1"> Kota Tujuan 1
-                        </label>
-                        <div class="col-sm-9"> 
-                            <select name="city_1" id="city_1" class="col-xs-10 col-sm-10 required select2" required>
-                                <option value="">Pilih Kode Kota</option>
-                                @foreach ($destination as $item)
-                                    <option value="{{$item->id}}">{{$item->code}}-{{$item->capital}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" 
-                        for="form-field-1"> Dari Tanggal
-                        </label>
-                        <div class="col-sm-9">
-                            <input type="date" name="date_from_1" class="col-xs-5 col-sm-5 required" 
-                            value="{{date('Y-m-d')}}" required
-                            data-date-format="yyyy-mm-dd">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" 
-                        for="form-field-1"> Sampai Tanggal
-                        </label>
-                        <div class="col-sm-9">
-                            <input type="date" name="date_to_1" class="col-xs-5 col-sm-5 required" 
-                            value="{{date('Y-m-d')}}" required
-                            data-date-format="yyyy-mm-dd">
-                        </div>
-                    </div> 
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" 
-                        for="form-field-1"> Lama hari
-                        </label>
-                        <div class="col-sm-9">
-                            <input type="text" name="daylong_1" class="col-xs-3 col-sm-3 required" 
-                             required readonly>
-                        </div>
-                    </div>
+                    <table id="myTable" class="table table-bordered table-hover scrollit">
+                        <thead>
+                            <tr>
+                                <th style="text-align: center;">NO</th>
+                                <th class="text-center">Nama</th>
+                                <th class="text-center">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr id="cell-1">
+                                <td style="text-align: center;">
+                                    1
+                                </td>
+                                <td>
+                                    <select name="users_id[]" class="form-control select2">
+                                        <option value="">Pilih Pegawai</option>
+                                        @foreach ($user as $peg)
+                                            <option value="{{$peg->id}}">{{$peg->name}} | {{$peg->no_pegawai}}</option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                                <td>
+                                    {{-- <button type="button"  class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button> --}}
+                                </td>
+                            </tr>
+                            <span id="row-new"></span>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3">
+                                    <button type="button" class="form-control btn-default" onclick="addBarisNew()">
+                                        <i class="glyphicon glyphicon-plus"></i>TAMBAH BARIS BARU</button>
+                                    <input type="hidden" id="countRow" value="1">
+                                </td>
+                            </tr>
+                            
+                        </tfoot>
+                    </table>
                 </fieldset>   
    
             </div>
         </div>
     </div>
-    <div class="col-md-6" id="kotakedua">
+    <div class="col-md-8">
         <div class="panel panel-info">
             <div class="panel-heading"><h3 class="panel-title">Kota Tujuan</h3></div>
             <div class="panel-body">
                 <fieldset>
-                    <div class="form-group" id="to">
-                        <label class="col-sm-3 control-label no-padding-right" 
-                        for="form-field-1"> Kota Tujuan 2
-                        </label>
-                        <div class="col-sm-9"> 
-                            <select name="city_2" class="col-xs-10 col-sm-10 required select2" required>
-                                <option value="">Pilih Kode Kota</option>
-                                @foreach ($destination as $item)
-                                    <option value="{{$item->id}}">{{$item->code}}-{{$item->capital}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" 
-                        for="form-field-1"> Dari Tanggal
-                        </label>
-                        <div class="col-sm-9">
-                            <input type="date" name="date_from_2" class="col-xs-5 col-sm-5 required" 
-                            value="{{date('Y-m-d')}}" required
-                            data-date-format="yyyy-mm-dd">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" 
-                        for="form-field-1"> Sampai Tanggal
-                        </label>
-                        <div class="col-sm-9">
-                            <input type="date" name="date_to_2" class="col-xs-5 col-sm-5 required" 
-                            value="{{date('Y-m-d')}}" required
-                            data-date-format="yyyy-mm-dd">
-                        </div>
-                    </div> 
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" 
-                        for="form-field-1"> Lama hari
-                        </label>
-                        <div class="col-sm-9">
-                            <input type="text" name="daylong_2" class="col-xs-3 col-sm-3 required" 
-                             required readonly>
-                        </div>
-                    </div>
+                    <table id="DesTable" class="table table-bordered table-hover scrollit">
+                        <thead>
+                            <tr>
+                                <th style="text-align: center;">NO</th>
+                                <th class="text-center col-md-4">Kota Tujuan</th>
+                                <th>Dari Tanggal</th>
+                                <th>Sampai Tanggal</th>
+                                <th class="text-center col-md-1">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr id="cell-1">
+                                <td style="text-align: center;">
+                                    1
+                                </td>
+                                <td>
+                                    <select name="destination_id[]" id="destination_id" class="required select2" required>
+                                        <option value="">Pilih Kode Kota</option>
+                                        @foreach ($destination as $item)
+                                            <option value="{{$item->id}}">{{$item->code}}-{{$item->capital}}</option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="date" name="go_date[]" id="date_from" class="required" 
+                                    value="{{date('Y-m-d')}}" required>
+                                </td>
+                                <td>
+                                    <input type="date" name="return_date[]" id="date_to" class="required" 
+                                    value="{{date('Y-m-d')}}" required>
+                                </td>
+                                <td>
+                                    {{-- <button type="button"  class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button> --}}
+                                </td>
+                            </tr>
+                            <span id="row-new"></span>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="5">
+                                    <button type="button" class="form-control btn-default" onclick="addBarisDes()">
+                                        <i class="glyphicon glyphicon-plus"></i>TAMBAH BARIS BARU</button>
+                                    <input type="hidden" id="countRow" value="1">
+                                </td>
+                            </tr>
+                            
+                        </tfoot>
+                    </table>
                 </fieldset>   
-   
             </div>
         </div>
     </div>
     <div class="clearfix"></div>
-    <ul class="nav nav-tabs">
-        <li class="active"><a href="#tab-employee" data-toggle="tab">Pegawai</a></li>
-        <li><a href="#tab-driver" data-toggle="tab">Kendaraan Dinas</a></li>
-    </ul>
-
-    <div class="tab-content">
-        @include('finance.outstation.partials.employee')
-        @include('finance.outstation.partials.driver')
-    </div>
 </div>
 <div class="col-sm-12">
     <div class="form-actions right">
@@ -263,35 +279,82 @@
 
 @section('footer')
    <script>
+
        function getnomor(){
-           var div = $("#st_date").val();
-           var div = $("#divisi_id").val();
+           var date = $("#st_date").val();
+           var divisi_id = $("#div").val();
+
            $.get(
-            "{{route('realisasi.getAsal') }}",
+            "{{route('outstation.getnost') }}",
             {
-                year:year,
+                date:date,
+                divisi_id,divisi_id
             },
             function(response) {
-               var data = response.data;
-               var string ="<option value=''>Pilih</option>";
-                $.each(data, function(index, value) {
-                    string = string + '<option value="'+ value.id +'">'+ value.asal_pok +'</option>';
-                })
-               $("#asalpok").html(string);
+                document.getElementsByName("number")[0].value = response.no_sppd ;
             }
         );
        }
 
-        function getAsal() {
-            d = $("#city_from").val();
-            e = $("#jenas").val();
+        function addBarisNew(){
+        var last_baris = $("#countRow").val();
+        var new_baris = parseInt(last_baris)+1;
+        $isi =  '<tr id="cell-'+new_baris+'">'+
+            '<td>'+new_baris+'</td>'+
+                '<td>'+
+                    '<select name="users_id[]" class="form-control select2">'+
+                        '<option value="">-Pilih Pegawai-</option>'+
+                        '@foreach ($user as $item)'+
+                            '<option value="{{$item->id}}">{{$item->name}} | {{$item->no_pegawai}}</option>'+
+                        '@endforeach'+
+                    '</select>'+                
+                '</td>'+
+                '<td><button type="button"  class="btn btn-danger" onclick="deleteRow('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button></td>'+
+            '</tr>';
+        $("#myTable").find('tbody').append($isi);
+        $("#countRow").val(new_baris);
+        $('.select2').select2();
+       }
 
-            if (e = "DL") {
-                $("#kotakedua").hide();
-                $("#city_1").val(d);
-            } else {
-                $("#kotakedua").show();
-            }
+       function deleteRow(cell) {
+            $("#cell-"+cell).remove();
+            this.hitungTotal();
+
         }
-   </script>
+
+        function addBarisDes(){
+        var last_baris = $("#countRow").val();
+        var new_baris = parseInt(last_baris)+1;
+        $isi =  '<tr id="cell-'+new_baris+'">'+
+            '<td>'+new_baris+'</td>'+
+            '<td>'+
+                '<select name="destination_id[]" id="destination_id" class="required select2" required>'+
+                    '<option value="">Pilih Kode Kota</option>'+
+                    '@foreach ($destination as $item)'+
+                        '<option value="{{$item->id}}">{{$item->code}}-{{$item->capital}}</option>'+
+                    '@endforeach'+
+                '</select>'+
+            '</td>'+
+            '<td>'+
+                '<input type="date" name="go_date[]" id="date_from" class="required" value="{{date('Y-m-d')}}" required>'+ 
+            '</td>'+
+            '<td>'+
+                '<input type="date" name="return_date[]" id="date_to" class="required" value="{{date('Y-m-d')}}" required>'+ 
+            '</td>'+
+            '<td><button type="button"  class="btn btn-danger" onclick="deleteRow('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button></td>'+
+            '</tr>';
+        $("#DesTable").find('tbody').append($isi);
+        $("#countRow").val(new_baris);
+        $('.select2').select2();
+       }
+
+       function deleteRowwil(cell) {
+            $("#cell-"+cell).remove();
+            this.hitungTotal();
+
+        }
+
+        
+
+   </script>``
 @endsection

@@ -116,6 +116,19 @@
                             </thead>
                             <tbody>
                                 <tr>
+                                    <td>Uang Transport</td>
+                                    <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0" value="{{$data->trans1}}"
+                                         name="trans1" /></td>
+                                    <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0" value="{{$data->trans2}}"
+                                        name="trans2" /></td>
+                                    <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0" value="{{$data->trans3}}"
+                                            name="trans3" /></td>
+                                    <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0" value="{{$data->trans4}}"
+                                           name="trans4" /></td>
+                                    <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0" value="{{$data->trans5}}"
+                                           name="trans5" /></td>    
+                                </tr>
+                                <tr>
                                     <td>Upah Harian LK</td>
                                     <td> <input type="number"  placeholder="Rp. 0,-" min="0" value="{{$data->dailywageLK1}}"
                                          name="dailywageLK1" /></td>
@@ -168,20 +181,7 @@
                                            name="FBDK5" /></td>    
                                 </tr>
                                 <tr>
-                                    <td>Upah Harian FB LK</td>
-                                    <td> <input type="number"  placeholder="Rp. 0,-" min="0" value="{{$data->FBLK1}}"
-                                         name="FBLK1" /></td>
-                                    <td> <input type="number"  placeholder="Rp. 0,-" min="0" value="{{$data->FBLK2}}"
-                                        name="FBLK2" /></td>
-                                    <td> <input type="number"  placeholder="Rp. 0,-" min="0" value="{{$data->FBLK3}}"
-                                            name="FBLK3" /></td>
-                                    <td> <input type="number"  placeholder="Rp. 0,-" min="0" value="{{$data->FBLK4}}"
-                                           name="FBLK4" /></td>
-                                    <td> <input type="number"  placeholder="Rp. 0,-" min="0" value="{{$data->FBLK5}}"
-                                           name="FBLK5" /></td>    
-                                </tr>
-                                <tr>
-                                    <td>Upah Harian FB Full Day</td>
+                                    <td>Upah Harian FullDay/HalfDay</td>
                                     <td> <input type="number"  placeholder="Rp. 0,-" min="0" value="{{$data->FBFD1}}"
                                          name="FBFD1" /></td>
                                     <td> <input type="number"  placeholder="Rp. 0,-" min="0" value="{{$data->FBFD2}}"
@@ -192,19 +192,6 @@
                                            name="FBFD4" /></td>
                                     <td> <input type="number"  placeholder="Rp. 0,-" min="0" value="{{$data->FBFD5}}"
                                            name="FBFD5" /></td>    
-                                </tr>
-                                <tr>
-                                    <td>Upah Harian FB Half Day</td>
-                                    <td> <input type="number"  placeholder="Rp. 0,-" min="0" value="{{$data->FBHD1}}"
-                                         name="FBHD1" /></td>
-                                    <td> <input type="number"  placeholder="Rp. 0,-" min="0" value="{{$data->FBHD2}}"
-                                        name="FBHD2" /></td>
-                                    <td> <input type="number"  placeholder="Rp. 0,-" min="0" value="{{$data->FBHD3}}"
-                                            name="FBHD3" /></td>
-                                    <td> <input type="number"  placeholder="Rp. 0,-" min="0" value="{{$data->FBHD4}}"
-                                           name="FBHD4" /></td>
-                                    <td> <input type="number"  placeholder="Rp. 0,-" min="0" value="{{$data->FBHD5}}"
-                                           name="FBHD5" /></td>    
                                 </tr>
                             </tbody>
                         </table>

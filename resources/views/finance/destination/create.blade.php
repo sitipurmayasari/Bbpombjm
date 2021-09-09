@@ -101,7 +101,7 @@
                     <table id="myTable" class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th style="text-align: center;" class="col-md3">Jenis</th>
+                                <th style="text-align: center;" class="col-sm-2">Jenis</th>
                                 @foreach ($jab  as $key=>$row)
                                     <th class="col-md2">{{$row->jabatan}}</th>
                                 @endforeach
@@ -109,7 +109,20 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Upah Harian LK</td>
+                                <td>Uang Transport</td>
+                                <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0" 
+                                     name="trans1" /></td>
+                                <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0"
+                                    name="trans2" /></td>
+                                <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0"
+                                        name="trans3" /></td>
+                                <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0" 
+                                       name="trans4" /></td>
+                                <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0" 
+                                       name="trans5" /></td>    
+                            </tr>
+                            <tr>
+                                <td>Uang Harian LK</td>
                                 <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0"
                                      name="dailywageLK1" /></td>
                                 <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0"
@@ -122,7 +135,7 @@
                                        name="dailywageLK5" /></td>    
                             </tr>
                             <tr>
-                                <td>Upah Harian DK > 8 jam</td>
+                                <td>Uang Harian DK > 8 jam</td>
                                 <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0"
                                      name="dailywageDK1" /></td>
                                 <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0"
@@ -135,7 +148,7 @@
                                        name="dailywageDK5" /></td>    
                             </tr>
                             <tr>
-                                <td>Upah Harian Diklat</td>
+                                <td>Uang Harian Diklat</td>
                                 <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0"
                                      name="diklat1" /></td>
                                 <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0"
@@ -148,7 +161,7 @@
                                        name="diklat5" /></td>    
                             </tr>
                             <tr>
-                                <td>Upah Harian FB DK</td>
+                                <td>Uang Harian FullBoard</td>
                                 <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0"
                                      name="FBDK1" /></td>
                                 <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0"
@@ -161,20 +174,7 @@
                                        name="FBDK5" /></td>    
                             </tr>
                             <tr>
-                                <td>Upah Harian FB LK</td>
-                                <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0"
-                                     name="FBLK1" /></td>
-                                <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0"
-                                    name="FBLK2" /></td>
-                                <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0"
-                                        name="FBLK3" /></td>
-                                <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0"
-                                       name="FBLK4" /></td>
-                                <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0"
-                                       name="FBLK5" /></td>    
-                            </tr>
-                            <tr>
-                                <td>Upah Harian FB Full Day</td>
+                                <td>Uang Harian FullDay/HalfDay</td>
                                 <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0"
                                      name="FBFD1" /></td>
                                 <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0"
@@ -185,19 +185,6 @@
                                        name="FBFD4" /></td>
                                 <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0"
                                        name="FBFD5" /></td>    
-                            </tr>
-                            <tr>
-                                <td>Upah Harian FB Half Day</td>
-                                <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0"
-                                     name="FBHD1" /></td>
-                                <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0"
-                                    name="FBHD2" /></td>
-                                <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0"
-                                        name="FBHD3" /></td>
-                                <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0"
-                                       name="FBHD4" /></td>
-                                <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0"
-                                       name="FBHD5" /></td>    
                             </tr>
                             <tr>
                                 <td>Uang Representatif</td>
