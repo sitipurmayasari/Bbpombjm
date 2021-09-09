@@ -88,7 +88,9 @@
             <tr>
                 <td class="tbl" style="width: 5%; text-align: center;">5</td>
                 <td class="tnt" colspan="4">Pendidikan yang telah diperhitungkan angka kreditnya</td>
-                <td class="tnt" style="width: 10%;" colspan="5">:  {{$data->ripend->jur->jurusan}}</td>
+                <td class="tnt" style="width: 10%;" colspan="5">:  
+                    {{$pend->jur->jurusan}}
+                </td>
             </tr>
             <tr>
                 <td class="tbl" style="width: 5%; text-align: center;">6</td>

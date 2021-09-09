@@ -10,6 +10,7 @@ use App\Golongan;
 use App\Pejabat;
 use App\Jabasn;
 use App\Credit_poin;
+use App\RiwayatPend;
 use PDF;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -178,13 +179,14 @@ class DupakController extends Controller
     public function print($id)
     {
         $data = Dupak::where('id',$id)->first();
-
+        $pend = RiwayatPend::orderBy('id','desc')
+                ->whereRaw("users_id = (SELECT users_id FROM dupak WHERE id = $id)")->first();
         $mengetahui = Pejabat::
                     where('jabatan_id', '=', 6)
                     ->where('divisi_id', '=', 1)
                     ->whereRaw("(SELECT tanggal FROM dupak WHERE id=$id) BETWEEN dari AND sampai")
                     ->first();
-        $pdf = PDF::loadview('amdk/dupak.print',compact('data','mengetahui'));
+        $pdf = PDF::loadview('amdk/dupak.print',compact('data','mengetahui','pend'));
         return $pdf->stream();
     }
 
