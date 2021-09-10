@@ -22,49 +22,7 @@
                                     <th class="text-center">Klaim</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr id="cell-1">
-                                    <td style="text-align: center;">
-                                        1
-                                    </td>
-                                    <td>
-                                        <input type="text" readonly id="nama2"
-                                        name="nama2" required/>
-                                    </td>
-                                    <td>
-                                        <input type="text"
-                                        name="innname_1" required/>
-                                    </td>
-                                    <td>
-                                        <input type="number" min="0" value="0"
-                                        name="inn_fee_1" required/>
-                                    </td>
-                                    <td>
-                                        <input type="number" min="0" value="0"
-                                        name="long_stay_1" required/>
-                                    </td>
-                                    <td>
-                                        <input type="number" min="0" value="0"
-                                        name="klaim_1" required/>
-                                    </td>
-                                    <td>
-                                        <input type="text"
-                                        name="innname_2" required/>
-                                    </td>
-                                    <td>
-                                        <input type="number" min="0" value="0"
-                                        name="inn_fee_2" required/>
-                                    </td>
-                                    <td>
-                                        <input type="number" min="0" value="0"
-                                        name="long_stay_2" required/>
-                                    </td>
-                                    <td>
-                                        <input type="number" min="0" value="0"
-                                        name="klaim_2" required/>
-                                    </td>
-                                </tr>
-                                <span id="row-new"></span>
+                            <tbody id="nginap">
                             </tbody>
                         </table>
                    </div>

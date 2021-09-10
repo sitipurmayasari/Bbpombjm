@@ -142,6 +142,7 @@
   Route::get('/finance/outstation/create','Finance\OutstationController@create')->name('outstation.create');
   Route::post('finance/outstation/store','Finance\OutstationController@store')->name('outstation.store');
   Route::get('finance/outstation/edit/{id}','Finance\OutstationController@edit')->name('outstation.edit');
+  Route::get('finance/outstation/getNomorSPPD','Finance\OutstationController@getNomorSPPD')->name('outstation.getNomorSPPD');
   Route::post('finance/outstation/update/{id}','Finance\OutstationController@update')->name('outstation.update');
   Route::get('finance/outstation/printST/{id}','Finance\OutstationController@printST')->name('outstation.printST');
   Route::get('finance/outstation/printSppd/{id}','Finance\OutstationController@printSppd')->name('outstation.printSppd');
@@ -154,6 +155,7 @@
   Route::post('finance/budget/update/{id}','Finance\BudgetController@update')->name('budget.update');
 
   //Route untuk Kuitansi
+  Route::get('finance/travelexpenses/getMaksud','Finance\TravelexpensesController@getMaksud')->name('travelexpenses.getMaksud');
   Route::get('/finance/travelexpenses/create','Finance\TravelexpensesController@create')->name('travelexpenses.create');
   Route::post('finance/travelexpenses/store','Finance\TravelexpensesController@store')->name('travelexpenses.store');
   Route::get('finance/travelexpenses/edit/{id}','Finance\TravelexpensesController@edit')->name('travelexpenses.edit');

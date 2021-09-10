@@ -35,7 +35,7 @@
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
                 <th width="40px">No</th>
-                <th>Tanggal Ppengeluaran</th>
+                <th>Tanggal Pengeluaran</th>
                 <th class="col-md-2">Nomor Surat Tugas</th>
                 <th>Nama Kegiatan</th>
                 <th>Cetak Kuitansi</th>
@@ -50,10 +50,10 @@
                     <td>{{$row->name}}</td>
                     <td>{{$row->destination}}</td>
                     <td>
-                        <a class="btn btn-primary" href="/finance/travelexpenses/st/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
+                        <a class="btn btn-primary" href="/finance/travelexpenses/receipt/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
                     </td>
                     <td>
-                        <a class="btn btn-primary" href="/finance/travelexpenses/sppd/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
+                        <a class="btn btn-primary" href="/finance/travelexpenses/riil/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
                     </td>
                     <td>
                         <a href="/finance/travelexpenses/edit/{{$row->id}}" class="btn btn-warning">

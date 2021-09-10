@@ -26,8 +26,9 @@
                                         1
                                     </td>
                                     <td>
-                                        <input type="text" readonly id="nama2"
+                                        <input type="text" readonly class="nama2"
                                         name="nama2" required/>
+                                        <input type="hidden" name="outstation_id" class="outid">
                                     </td>
                                     <td>
                                         <select name="plane_id" class="col-xs-10 col-sm-10 required select2" required>

@@ -188,10 +188,55 @@ class OutstationController extends Controller
 
       public function edit($id)
       {
-          $data = Outstation::where('id',$id)->first();
-          $petugas = Outst_employee::where('outstation_id',$id)->get();
-          $kota = Outst_destiny::where('outstation_id',$id)->egt();
-          return view('finance/loka.edit',compact('data','petugas','kota'));
+          $ppk            = PPK::all();
+          $budget         = Budget::all();
+          $act            = Activitycode::all();
+          $sub            = Subcode::all();
+          $akun           = Accountcode::all();
+          $div            = Divisi::all();
+          $user           = User::where('id','!=','1')->get();
+          $destination    = Destination::all();
+          $data           = Outstation::where('id',$id)->first();
+          $petugas        = Outst_employee::where('outstation_id',$id)->get();
+          $kota           = Outst_destiny::where('outstation_id',$id)->get();
+          return view('finance/outstation.edit',compact('data','petugas','kota','ppk','budget','act','sub','akun','div','user','destination'));
+      }
+
+      function getNomorSPPD(Request $request){
+
+        $sppd = Outst_employee::orderBy('id','desc')->whereYear('created_at',date('Y'))->get(); 
+        $bidang = Divisi::select('kode_sppd')->where('id',$request->divisi_id)->first();
+        $first = "0001";
+        if($sppd->count()>0){
+          $first = $sppd->first()->id+1;
+            if($first < 10){
+              $first = "000".$first;
+            }else if($first < 100){
+              $first = "00".$first;
+            }else if($first < 1000){
+            $first = "0".$first;
+            }
+        }
+        $nomorbaru = $first."/".$bidang->kode_sppd."/SPPD/BBPOM"."/".date('Y');
+
+        return response()->json([ 
+            'success' => true,
+            'nomorbaru' => $nomorbaru],200
+        );
+    }
+
+      public function update(Request $request, $id)
+      {
+        $data = Outstation::find($id);
+        $data->update($request->all());
+
+        $petugas = Outst_employee::where('outstation_id',$id)->get();
+        $petugas->update($request->all());
+
+        $kota = Outst_destiny::where('outstation_id',$id)->get();
+        $kota->update($request->all());
+
+        return redirect('/finance/outstation')->with('sukses','Data Diperbaharui');
       }
 
 

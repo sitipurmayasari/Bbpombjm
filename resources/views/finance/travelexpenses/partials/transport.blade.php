@@ -24,8 +24,9 @@
                                         1
                                     </td>
                                     <td>
-                                        <input type="text" readonly id="nama2"
+                                        <input type="text" readonly class="nama2"
                                         name="nama2" required/>
+                                        <input type="hidden" name="outstation_id" class="outid">
                                     </td>
                                     <td>
                                         <input type="number" min="0" value="0"
