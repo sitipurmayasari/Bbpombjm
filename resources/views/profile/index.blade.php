@@ -21,7 +21,11 @@
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
-                    <img src="{{auth()->user()->getFoto()}}" class="rounded-circle" width="150">
+                    <img src="{{auth()->user()->getFoto()}}" class="rounded-circle" width="150"><br>
+                  
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        <i class="ace-icon fa fa-pencil"></i>
+                      </button>
                     <div class="mt-3">
                       <h4>{{auth()->user()->name}}</h4>
                       <p class="text-secondary mb-1">{{auth()->user()->jabatan->jabatan}}</p>
@@ -240,10 +244,45 @@
         @include('profile.partials.dupak')
       
     </div>
+
+{{-- Modal --}}
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ubah Foto</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="{{Route('profile.updatefoto')}}" method="post" enctype="multipart/form-data">
+            {{ csrf_field() }}
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" 
+                    for="form-field-1"> File Foto
+                    </label>
+                    <div class="col-sm-9">
+                        <input type="file"  class="col-xs-8 col-sm-8 required " 
+                        name="foto_new" required />
+                    </div>
+                    <i>** File foto support jpeg, png</i>
+                </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
 @endsection
 
 @section('footer')
 <script>
+ 
+
     function myFunction() {
     var x = document.getElementById("myInputa");
         if (x.type === "password") {

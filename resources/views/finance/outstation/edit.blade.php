@@ -381,20 +381,6 @@
         );
        }
 
-       function getNomorSPPD(){
-           var divisi_id = $("#div").val();
-
-           $.get(
-            "{{route('outstation.getNomorSPPD') }}",
-            {
-                divisi_id,divisi_id
-            },
-            function(response) {
-                document.getElementsByName("number")[0].value = response.no_sppd ;
-            }
-        );
-       }
-
 
         function addBarisNew(){
         var last_baris = $("#countRow").val();
@@ -402,14 +388,14 @@
         $isi =  '<tr id="cell-'+new_baris+'">'+
             '<td>'+new_baris+'</td>'+
                 '<td>'+
-                    '<select name="users_id[]" class="form-control select2" onchange="getNomorSPPD()">'+
+                    '<select name="users_id[]" class="form-control select2">'+
                         '<option value="">-Pilih Pegawai-</option>'+
                         '@foreach ($user as $item)'+
                             '<option value="{{$item->id}}">{{$item->name}} | {{$item->no_pegawai}}</option>'+
                         '@endforeach'+
                     '</select>'+                
                 '</td>'+
-                '<td><input type="text" name="no_sppd[]" readonly id="nosppd" required </td>'+
+                '<td><input type="text" name="no_sppd[]" readonly required </td>'+
                 '<td><button type="button"  class="btn btn-danger" onclick="deleteRow('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button></td>'+
             '</tr>';
         $("#myTable").find('tbody').append($isi);

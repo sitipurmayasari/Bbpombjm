@@ -1,4 +1,5 @@
 <?php
+  //Profile
 
   //Route untuk pegawai
   Route::get('/amdk/pegawai/create','Amdk\PegawaiController@create')->name('pegawai.create');

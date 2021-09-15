@@ -51,6 +51,7 @@ class DestinationController extends Controller
    
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         $data = Destination::find($id);
         $data->update($request->all());
         return redirect('/finance/destination')->with('sukses','Data Diperbaharui');

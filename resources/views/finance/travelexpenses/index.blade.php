@@ -46,7 +46,7 @@
                 @foreach($data as $key=>$row)
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
-                    <td>{{$row->code}}</td>
+                    <td>{{$row->date}}</td>
                     <td>{{$row->name}}</td>
                     <td>{{$row->destination}}</td>
                     <td>

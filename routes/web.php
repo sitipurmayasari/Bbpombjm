@@ -41,6 +41,8 @@ Route::get('/qR/{id}/inventaris','Invent\InventarisController@detail')->name('in
   Route::get('/profile/deletedok/{id}','ProfileController@deletedok')->name('profile.deletedok');
   Route::get('/profile/deletepengalaman/{id}','ProfileController@deletepengalaman')->name('profile.deletepengalaman');
   Route::get('/profile/deletedokpeg/{id}','ProfileController@deletedokpeg')->name('profile.deletedokpeg');
+  Route::post('/profile/updateFotoProfile','ProfileController@updateFoto')->name('profile.updatefoto');
+
   //--------------------------Invent------------------------------------------
   require __DIR__.'/invent.php';
   //--------------------------AMDK------------------------------------------

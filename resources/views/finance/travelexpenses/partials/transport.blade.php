@@ -12,48 +12,13 @@
                                     <th class="text-center" colspan="4">Taxi</th>
                                 </tr>
                                 <tr>
-                                    <th class="text-center col-md-2">Taxi Kota Asal</th>
+                                    <th class="text-center col-md-2">Taxi Kota Asal (trip)</th>
                                     <th>Biaya taxi Kota Asal</th>
-                                    <th class="text-center col-md-2">Taxi Kota Tujuan</th>
+                                    <th class="text-center col-md-2">Taxi Kota Tujuan (trip)</th>
                                     <th>Biaya Taxi Kota Tujuan</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr id="cell-1">
-                                    <td style="text-align: center;">
-                                        1
-                                    </td>
-                                    <td>
-                                        <input type="text" readonly class="nama2"
-                                        name="nama2" required/>
-                                        <input type="hidden" name="outstation_id" class="outid">
-                                    </td>
-                                    <td>
-                                        <input type="number" min="0" value="0"
-                                        name="bbm" required/>
-                                    </td>
-                                    <td>
-                                        <input type="number" min="0" value="0"
-                                        name="bbm" required/>
-                                    </td>
-                                    <td>
-                                        <input type="number" min="0" value="0"
-                                        name="taxy_count_from" required/>
-                                    </td>
-                                    <td>
-                                        <input type="number" min="0" value="0"
-                                        name="taxy_fee_from" required/>
-                                    </td>
-                                    <td>
-                                        <input type="number" min="0" value="0"
-                                        name="taxy_count_to" required/>
-                                    </td>
-                                    <td>
-                                        <input type="number" min="0" value="0"
-                                        name="taxy_fee_to" required/>
-                                    </td>
-                                </tr>
-                                <span id="row-new"></span>
+                            <tbody id="transport">
                             </tbody>
                         </table>
                    </div>

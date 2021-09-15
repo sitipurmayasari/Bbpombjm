@@ -8,7 +8,7 @@
                                 <tr>
                                     <th rowspan="2" style="text-align: center;">NO</th>
                                     <th  rowspan="2" class="text-center col-md-4">Nama</th>
-                                    <th  rowspan="2" class="text-center">Nama Maskapai</th>
+                                    <th  rowspan="2" style="width: 30%" class="text-center">Nama Maskapai</th>
                                     <th colspan="5"  class="text-center"> Tiket Pesawat</th>
                                 </tr>
                                 <tr>
@@ -20,42 +20,7 @@
                                    
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr id="cell-1">
-                                    <td style="text-align: center;">
-                                        1
-                                    </td>
-                                    <td>
-                                        <input type="text" readonly class="nama2"
-                                        name="nama2" required/>
-                                        <input type="hidden" name="outstation_id" class="outid">
-                                    </td>
-                                    <td>
-                                        <select name="plane_id" class="col-xs-10 col-sm-10 required select2" required>
-                                            <option value="">Pilih Pejabat</option>
-                                            @foreach ($plane as $item)
-                                                <option value="{{$item->id}}">{{$item->code}} - {{$item->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <input type="number" min="0" value="0"
-                                        name="planego" required/>
-                                    </td>
-                                    <td>
-                                        <input type="date"
-                                        name="godate" required/>
-                                    </td>
-                                    <td>
-                                        <input type="date" 
-                                        name="returndate" required/>
-                                    </td>
-                                    <td>
-                                        <input type="number" min="0" value="0"
-                                        name="planereturn" required/>
-                                    </td>
-                                </tr>
-                                <span id="row-new"></span>
+                            <tbody id="pesawat">
                             </tbody>
                         </table>
                    </div>

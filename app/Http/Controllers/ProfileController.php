@@ -168,5 +168,24 @@ class ProfileController extends Controller
         return redirect('/profile')->with('sukses','Data Diperbaharui');
     }
 
+    public function updateFoto(Request $request)
+    {
+        $this->validate($request,[
+            'foto_new' => 'required|mimes:jpg,png,jpeg|max:2048'
+        ]);
+        if($request->hasFile('foto_new')){
+            $request->file('foto_new')
+                        ->move('images/pegawai/'.auth()->user()->id,$request
+                        ->file('foto_new')
+                        ->getClientOriginalName());
+            $filename = $request->file('foto_new')->getClientOriginalName();
+            $user = User::find(auth()->user()->id);
+            $user->update([
+                'foto' => $filename
+            ]);
+        }
+        return redirect('/profile')->with('sukses','Data Diperbaharui');
+    }
+
 
 }

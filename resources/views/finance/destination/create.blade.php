@@ -198,7 +198,34 @@
                         </tbody>
                     </table>
                     </fieldset>        
-                   
+               </div>
+           </div>
+        </div>
+        <div class="widget-box">
+            <div class="widget-header">
+                <h4 class="widget-title"> Supir</h4>
+                <div class="widget-toolbar">
+                    <a href="#" data-action="collapse">
+                        <i class="ace-icon fa fa-chevron-down"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="widget-body">
+                <div class="widget-main no-padding">
+                    <fieldset>
+                    <table id="myTable" class="table table-bordered table-hover">
+                            <tr>
+                                <td style="width: 16.5%">Uang Harian Dalam Kota</td>
+                                <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0"
+                                     name="DKDriver" /></td>
+                            </tr>
+                            <tr>
+                                <td>Uang Harian Luar Kota</td>
+                                <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0"
+                                     name="LKDriver" /></td>
+                            </tr>
+                    </table>
+                    </fieldset>        
                </div>
            </div>
         </div>

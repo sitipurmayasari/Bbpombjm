@@ -20,7 +20,7 @@ use App\Outst_destiny;
 use App\Pejabat;
 use PDF;
 use DateTime;
-
+use Carbon\Carbon;
 
 class OutstationController extends Controller
 {
@@ -227,15 +227,43 @@ class OutstationController extends Controller
 
       public function update(Request $request, $id)
       {
-        $data = Outstation::find($id);
-        $data->update($request->all());
+        $outstation_id = $id;
+        DB::beginTransaction(); 
+            $data = Outstation::find($id);
+            $data->update($request->all());
+            for ($j = 0; $j < count($request->destination_id); $j++){
+                $tgl1 = new DateTime($request->go_date[$j]);
+                $tgl2 = new DateTime($request->return_date[$j]);
+                $daylong = $tgl2->diff($tgl1)->days + 1;
+                
+                $destination = [
+                  'destination_id'=> $request->destination_id[$j],
+                  'go_date' => $request->go_date[$j],
+                  'return_date'  => $request->return_date[$j],
+                  'longday' => $daylong,
+                  'created_at' => Carbon::now()
+                ];
+                DB::table('outst_destiny')->updateOrInsert([
+                  'outstation_id'=>$outstation_id,
+                  'destination_id' =>$request->destination_id[$j]
+                ],$destination);
+            }
+    
+            for ($i = 0; $i < count($request->input('users_id')); $i++){
+              $nomornya = $request->no_sppd[$i] == "" ?  $this->getnosppd($request->divisi_id) :  $request->no_sppd[$i];
+             
+              $pegawai = [
+                    'outstation_id' => $outstation_id,
+                    'users_id'      => $request->users_id[$i],
+                    'no_sppd'        =>$nomornya,
+                    'created_at' => Carbon::now()
+              ];
 
-        $petugas = Outst_employee::where('outstation_id',$id)->get();
-        $petugas->update($request->all());
-
-        $kota = Outst_destiny::where('outstation_id',$id)->get();
-        $kota->update($request->all());
-
+              DB::table('outst_employee')->updateOrInsert([
+                'no_sppd'=>$nomornya
+              ],$pegawai);
+            }
+        DB::commit();
         return redirect('/finance/outstation')->with('sukses','Data Diperbaharui');
       }
 
