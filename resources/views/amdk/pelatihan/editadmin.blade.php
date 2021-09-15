@@ -50,22 +50,16 @@
                         for="form-field-1"> Jenis Kegiatan
                         </label>
                         <div class="col-sm-10">
-                            <select name="jenis" id="" class="col-xs-10 col-sm-10">
-                                    @if ($data->jenis=="pelatihan/bimtek")
-                                        <option value="pelatihan/bimtek" selected>pelatihan/bimtek</option>
-                                        <option value="seminar/workshop">seminar/workshop</option>
-                                        <option value="lokakarya">lokakarya</option>
-                                    @elseif ($data->jenis=="seminar/workshop")
-                                        <option value="pelatihan/bimtek">pelatihan/bimtek</option>
-                                        <option value="seminar/workshop" selected>seminar/workshop</option>
-                                        <option value="lokakarya">lokakarya</option>
-                                    @else 
-                                        <option value="pelatihan/bimtek">pelatihan/bimtek</option>
-                                        <option value="seminar/workshop">seminar/workshop</option>
-                                        <option value="lokakarya">lokakarya</option>
-                                    @endif
-                           </select>
-                            
+                            <select name="jenis_kegiatan_id" id="" class="col-xs-10 col-sm-10 select2">
+                                <option value="">Pilih Jenis</option>
+                                @foreach ($jenis as $item)
+                                     @if ($item->id==$data->jenis_kegiatan_id)
+                                        <option value="{{$item->id}}" selected >{{$item->name}}</option>
+                                     @else
+                                        <option value="{{$item->id}}" >{{$item->name}}</option>
+                                     @endif
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">

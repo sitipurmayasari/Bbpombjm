@@ -49,6 +49,7 @@
                          <th width="10px">No</th>
                          <th>Jenis</th>
                          <th>Nama Pelatihan</th>
+                         <th>Penyelenggara</th>
                          <th>Tanggal Pelatihan</th>
                          <th>Total Jam</th>
                      </thead>
@@ -58,8 +59,9 @@
                              @foreach($data as $key=>$row)
                              <tr>
                              <td style="text-align: center">{{$no++}}</td>
-                             <td>{{$row->jenis}}</td>
+                             <td>{{$row->jenis->name}}</td>
                              <td>{{$row->nama}}</td>
+                             <td>{{$row->penyelenggara}}</td>
                              <td>{{$row->dari}} s/d {{$row->sampai}}</td>
                              <td style="text-align: center;">{{$row->lama}}</td>
                          </tr>

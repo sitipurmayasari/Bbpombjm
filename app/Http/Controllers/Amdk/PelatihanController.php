@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Pelatihan;
+use App\Jenis_pelatihan;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use PDF;
@@ -16,6 +17,7 @@ class PelatihanController extends Controller
     public function index(Request $request)
     {
         $peg =auth()->user()->id;
+        $jenis = Jenis_pelatihan::all();
         $data = Pelatihan::orderBy('id','desc')
                 ->where('users_id','=',$peg)
                 ->when($request->keyword, function ($query) use ($request) {
@@ -26,13 +28,14 @@ class PelatihanController extends Controller
                             ->orWhere('lama', 'LIKE','%'.$request->keyword.'%');
                     })
                 ->paginate('10');
-        return view('amdk/pelatihan.index',compact('data'));
+        return view('amdk/pelatihan.index',compact('data','jenis'));
     }
 
     public function rekappelatihan(Request $request)
     {
        
         $user = User::all();
+        $jenis = Jenis_pelatihan::all();
         $data = Pelatihan::orderBy('id','desc')
                 ->select('pelatihan.*','users.name')
                 ->leftJoin('users','users.id','=','pelatihan.users_id')
@@ -45,27 +48,29 @@ class PelatihanController extends Controller
                             ->orWhere('lama', 'LIKE','%'.$request->keyword.'%');
                     })
                 ->paginate('10');
-        return view('amdk/pelatihan.rekappelatihan',compact('data','user'));
+        return view('amdk/pelatihan.rekappelatihan',compact('data','user','jenis'));
     }
 
     public function create()
     {
         $user = User::all();
-        return view('amdk/pelatihan.create',compact('user'));
+        $jenis = Jenis_pelatihan::all();
+        return view('amdk/pelatihan.create',compact('user','jenis'));
     }
 
     public function createadmin()
     {
         $user = User::all()
                 ->where('id','!=','1');
-        return view('amdk/pelatihan.createadmin',compact('user'));
+        $jenis = Jenis_pelatihan::all();
+        return view('amdk/pelatihan.createadmin',compact('user','jenis'));
     }
 
     public function rekap()
     {
         $user = User::all();
-                // ->where('id','!=','1');
-        return view('amdk/pelatihan.rekap',compact('user'));
+        $jenis = Jenis_pelatihan::all();
+        return view('amdk/pelatihan.rekap',compact('user','jenis'));
     }
 
 
@@ -102,14 +107,16 @@ class PelatihanController extends Controller
     public function edit($id)
     {
         $data = Pelatihan::where('id',$id)->first();
-        return view('amdk/pelatihan.edit',compact('data'));
+        $jenis = Jenis_pelatihan::all();
+        return view('amdk/pelatihan.edit',compact('data','jenis'));
     }
 
     public function editadmin($id)
     {
         $user = User::all();
         $data = Pelatihan::where('id',$id)->first();
-        return view('amdk/pelatihan.editadmin',compact('data','user'));
+        $jenis = Jenis_pelatihan::all();
+        return view('amdk/pelatihan.editadmin',compact('data','user','jenis'));
     }
 
 

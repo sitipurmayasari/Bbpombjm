@@ -38,10 +38,12 @@
             <thead>
                 <th width="40px">No</th>
                 <th>Nama Pegawai</th>
-                <th>Jenis</th>
                 <th>Nama Kegiatan</th>
+                <th>Jenis</th>
+                <th>Penyelenggara</th>
                 <th>Tanggal pelatihan</th>
                 <th>Jumlah Jam</th>
+                <th>Terekam di SIASN</th>
                 <th>Sertifikat</th>
                 <th>Aksi</th>
             <thead>
@@ -51,9 +53,17 @@
                     <td>{{$data->firstItem() + $key}}</td>
                     <td>{{$row->user->name}} ({{$row->user->no_pegawai}})</td>
                     <td>{{$row->nama}}</td>
-                    <td>{{$row->jenis}}</td>
+                    <td>{{$row->jenis->name}}</td>
+                    <td>{{$row->penyelenggara}}</td>
                     <td>{{$row->dari}} s/d  {{$row->sampai}} </td>
                     <td>{{$row->lama}}</td>
+                    <td>
+                        @if ($row->terekam=="Y")
+                            Sudah
+                        @else
+                            Belum
+                        @endif
+                    </td>
                     <td><a href="{{$row->getFIleSert()}}" target="_blank" >{{$row->file}}</a></td>
                     <td>
                         <a href="/amdk/pelatihan/editadmin/{{$row->id}}" class="btn btn-warning">
