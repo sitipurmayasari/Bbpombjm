@@ -1,7 +1,7 @@
 @extends('amdk/layouts_amdk.app')
 @section('breadcrumb')
     <li><a href="/amdk/pelatihan"> Kompetensi Pegawai</a></li>
-    <li>Tambah Baru</li>
+    <li>Ubah data</li>
 @endsection
 @section('content')
 @include('layouts.validasi')
@@ -30,13 +30,13 @@
                         for="form-field-1"> Jenis Kegiatan
                         </label>
                         <div class="col-sm-10">
-                            <select name="jenis_kegiatan_id" id="" class="col-xs-10 col-sm-10 select2">
+                            <select name="jenis_pelatihan_id" class="col-xs-10 col-sm-10 select2">
                                 <option value="">Pilih Jenis</option>
-                                @foreach ($jenis as $item)
-                                     @if ($item->id==$data->jenis_kegiatan_id)
-                                        <option value="{{$item->id}}" selected >{{$item->name}}</option>
+                                @foreach ($jenis as $isi)
+                                     @if ($isi->id==$data->jenis_pelatihan_id)
+                                        <option value="{{$isi->id}}" selected >{{$isi->name}}</option>
                                      @else
-                                        <option value="{{$item->id}}" >{{$item->name}}</option>
+                                        <option value="{{$isi->id}}" >{{$isi->name}}</option>
                                      @endif
                                 @endforeach
                             </select>
