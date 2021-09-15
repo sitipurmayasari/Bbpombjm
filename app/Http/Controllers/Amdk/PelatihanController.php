@@ -81,7 +81,7 @@ class PelatihanController extends Controller
         $this->validate($request,[
             'users_id' => 'required',
             'nama' => 'required',
-            'jenis' => 'required',
+            'jenis_pelatihan_id' => 'required',
             'dari' => 'required',
             'sampai' => 'required',
             'lama' => 'required'
