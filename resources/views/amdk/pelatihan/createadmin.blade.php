@@ -65,6 +65,16 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Penyelenggara
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="text"  placeholder="nama penyelenggara" class="col-xs-10 col-sm-10 required " 
+                                    name="penyelenggara" required />
+                            
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
                         for="form-field-1"> Tanggal Mulai
                         </label>
                         <div class="col-sm-10">
@@ -93,6 +103,18 @@
                                     <label class="control-label" 
                                     for="form-field-1"> Jam
                                     </label>
+                            
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Terekam di SIASN BPOM
+                        </label>
+                        <div class="col-sm-10" style="vertical-align: middle;" >
+                            <input type="radio" required value="N" checked 
+                            name="terekam" id="N"/> &nbsp; Belum  &nbsp;
+                            <input type="radio" required value="Y"
+                            name="terekam" id="Y"/> &nbsp; Sudah
                             
                         </div>
                     </div>

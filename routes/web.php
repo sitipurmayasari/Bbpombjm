@@ -66,8 +66,10 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
      Route::get('/invent/barangkeluar','Invent\BarangkeluarController@index')->name('barangkeluar');
     //Route untuk aduan
     Route::get('/invent/aduan','Invent\AduanController@index')->name('aduan');
+    Route::get('/invent/aduan/create','Invent\AduanController@create')->name('aduan.create');
     //Route untuk aduanTIK
     Route::get('/invent/aduantik','Invent\AduanTikController@index')->name('aduantik');
+    Route::get('/invent/aduantik/create','Invent\AduanTikController@create')->name('aduantik.create');
     //Route untuk Pengajuan
     Route::get('/invent/pengajuan','Invent\PengajuanController@index')->name('pengajuan');
     //Route untuk Laporan
@@ -78,6 +80,9 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('invent/lokasi','Invent\LokasiController@index')->name('lokasi');
     //Route untuk petugas
     Route::get('/invent/petugas','Invent\PetugasController@index')->name('petugas');
+    //Route untuk Pinjam Mobil
+    Route::get('/invent/carrent','Invent\CarrentController@index')->name('carrent');
+    Route::get('/invent/carrent/create','Invent\CarrentController@create')->name('carrent.create');
 
 
     //--------------------------AMDK------------------------------------------

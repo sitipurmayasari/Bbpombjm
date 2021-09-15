@@ -41,14 +41,12 @@
   Route::get('/invent/maintenance/delete/{id}','Invent\MaintenanceController@delete')->name('maintenance.delete');
 
   //Route untuk aduan
-  Route::get('/invent/aduan/create','Invent\AduanController@create')->name('aduan.create');
   Route::post('/invent/aduan/store','Invent\AduanController@store')->name('aduan.store');
   Route::post('/invent/aduan/update/{id}','Invent\AduanController@update')->name('aduan.update');
   Route::get('/invent/aduan/print/{id}','Invent\AduanController@print')->name('aduan.print');
   Route::get('/invent/aduan/detail/{id}','Invent\AduanController@detail')->name('aduan.detail');
 
   //Route untuk aduan TIK
-  Route::get('/invent/aduantik/create','Invent\AduanTikController@create')->name('aduantik.create');
   Route::post('/invent/aduantik/store','Invent\AduanTikController@store')->name('aduantik.store');
   Route::post('/invent/aduantik/update/{id}','Invent\AduanTikController@update')->name('aduantik.update');
   Route::get('/invent/aduantik/print/{id}','Invent\AduanTikController@print')->name('aduantik.print');
@@ -77,3 +75,9 @@
   Route::get('invent/vehicle/delete/{id}','Invent\VehicleController@delete')->name('vehicle.delete');
   Route::get('invent/vehicle/edit/{id}','Invent\VehicleController@edit')->name('vehicle.edit');
   Route::post('invent/vehicle/update/{id}','Invent\VehicleController@update')->name('vehicle.update');
+
+  //Route untuk Pinjam Mobil
+  Route::post('invent/carrent/store','Invent\CarrentController@store')->name('carrent.store');
+  Route::get('invent/carrent/delete/{id}','Invent\CarrentController@delete')->name('carrent.delete');
+  Route::get('invent/carrent/edit/{id}','Invent\CarrentController@edit')->name('carrent.edit');
+  Route::post('invent/carrent/update/{id}','Invent\CarrentController@update')->name('carrent.update');
