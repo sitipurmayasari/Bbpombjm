@@ -104,16 +104,22 @@
           <h4 class="card-title">Pengajuan Peminjaman Kendaraan Dinas</h4>
         </div>
         <div class="card-body">
-          Tanggal {{$dinas->date_from}} s/d {{$dinas->date_to}}
-          <h1 class="card-title">
-            @if ($dinas->status==null)
-                Menunggu
-            @elseif($dinas->status=='Y')
-                Disetujui
-            @else
-                Ditolak
-            @endif
-          </h1>
+          @if ($dinas!= null)
+            Tanggal {{$dinas->date_from}} s/d {{$dinas->date_to}}
+            <h1 class="card-title">
+              @if ($dinas->status==null)
+                  Menunggu
+              @elseif($dinas->status=='Y')
+                  Disetujui
+              @else
+                  Ditolak
+              @endif
+            </h1>
+          @else
+              <h1 class="card-title">Belum Ada Pengajuan </h1>
+          @endif
+          
+          
         </div>
       </div>
   </div>
@@ -124,38 +130,40 @@
           <h4 class="card-title">Pengajuan Barang baru</h4>
         </div>
         <div class="card-body">
-          <h5>Pengajuan :
-            @php
-              $a = $tglaju->tgl_ajuan;
-              echo tgl_indo($a); 
-            @endphp
-          </h5>
-          <table class="table table-hover" style="font-size: 12px;">
-            <thead>
-                <th>Status</th>
-                <th>Nama Barang</th>
-            </thead>
-            <tbody>
-                @foreach($aju as $key=>$row)
-                <tr>
-                  @if ($row != null)
-                    <td>
-                      @if ($row->status==1)
-                        Disetujui
-                      @elseif($row->status==2)   
-                        Ditolak 
-                      @else
-                          Menunggu
-                      @endif
-                    </td>
-                    <td>{{$row->nama_barang}}</td>
-                  @else
-                    <td colspan="5">TIDAK ADA PENGAJUAN</td>
-                  @endif
-                </tr>
-                @endforeach
-            </tbody> 
-          </table>
+         
+           @if ($tglaju != null)
+            <h5>Pengajuan :
+              @php
+                $a = $tglaju->tgl_ajuan;
+                echo tgl_indo($a); 
+              @endphp
+            </h5>
+              <table class="table table-hover" style="font-size: 12px;">
+                <thead>
+                    <th>Status</th>
+                    <th>Nama Barang</th>
+                </thead>
+                <tbody>
+                    @foreach($aju as $key=>$row)
+                    <tr>
+                        <td>
+                          @if ($row->status==1)
+                            Disetujui
+                          @elseif($row->status==2)   
+                            Ditolak 
+                          @else
+                              Menunggu
+                          @endif
+                        </td>
+                        <td>{{$row->nama_barang}}</td>
+                    </tr>
+                    @endforeach
+                </tbody> 
+              </table>
+           @else
+              <h1>Belum Ada Pengajuan</h1>
+           @endif
+       
         </div>
       </div>
   </div>

@@ -39,10 +39,16 @@ class DashboardController extends Controller
         $tglaju = Pengajuan::orderBy('id','desc')
                         ->where('pegawai_id',$peg)
                         ->first();
-        $aju    =  PengajuanDetail::orderBy('id','asc')
-                        ->where('pengajuan_id',$tglaju->id)
-                        ->get();
+        if ($tglaju !=null) {
+                    $aju    =  PengajuanDetail::orderBy('id','asc')
+                    ->where('pengajuan_id',$tglaju->id)
+                    ->get();
+
+            return view('invent/dashboard.index',compact('jadwal','aduan','car','dinas','tglaju','aju'));
+        }else{
+            return view('invent/dashboard.index',compact('jadwal','aduan','car','dinas','tglaju'));
+        }
         
-        return view('invent/dashboard.index',compact('jadwal','aduan','car','dinas','tglaju','aju'));
+        
     }
 }
