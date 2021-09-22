@@ -59,6 +59,26 @@
                                         name="jenis"/>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right" 
+                            for="form-field-1"> Tujuan
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text" readonly id="tujuan"
+                                        class="col-xs-10 col-sm-10 required " 
+                                        name="tujuan"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right" 
+                            for="form-field-1"> lama hari
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="number"  readonly id="lama"
+                                        class="col-xs-10 col-sm-10 required " 
+                                        name="lama"/>
+                            </div>
+                        </div>
                        
                     </fieldset>   
                 </div>
@@ -111,7 +131,6 @@
                 }
                 $("#jenis").val(r);
 
-
                  // ------uang harian--------------//
                 var centanguang="";
                 for (let i = 0; i < response.peg.length; i++) {
@@ -123,7 +142,7 @@
                         '<td>'+response.peg[i].name+
                             '<input type="hidden" name="outst_employee_id[]" class="outid" value='+response.peg[i].id+'>'+
                         '</td>'+
-                        '<td><input type="checkbox" name="transport[]" > </td>'+
+                        '<td><input type="checkbox" name="transport[]" ></td>'+
                         '<td><input type="checkbox" name="dailywage[]" ></td>'+
                         '<td><input type="checkbox" name="diklat[]" ></td>'+            
                         '<td><input type="checkbox" name="fullboard[]" ></td>'+             

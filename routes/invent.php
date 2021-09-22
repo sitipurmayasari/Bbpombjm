@@ -77,6 +77,7 @@
   Route::post('invent/vehicle/update/{id}','Invent\VehicleController@update')->name('vehicle.update');
 
   //Route untuk Pinjam Mobil
+  Route::get('/invent/carrent/getCar','Invent\CarrentController@getCar')->name('carrent.getCar');
   Route::post('invent/carrent/store','Invent\CarrentController@store')->name('carrent.store');
   Route::get('invent/carrent/delete/{id}','Invent\CarrentController@delete')->name('carrent.delete');
   Route::get('invent/carrent/edit/{id}','Invent\CarrentController@edit')->name('carrent.edit');

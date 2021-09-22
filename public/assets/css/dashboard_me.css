@@ -44,6 +44,17 @@
   border-bottom: 1px solid #eeeeee;
 }
 
+.card-header-success {
+  background: linear-gradient(60deg, #66bb6a, #43a047);
+}
+
+.card .card-header-success .card-icon,
+.card .card-header-success:not(.card-header-icon):not(.card-header-text),
+.card .card-header-success .card-text {
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(76, 175, 80, 0.4);
+}
+
+
 .card-header-warning {
   background: linear-gradient(60deg, #ffa726, #fb8c00);
 }
