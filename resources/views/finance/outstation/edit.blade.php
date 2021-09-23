@@ -95,7 +95,7 @@
                                 <option value="">Pilih Pejabat</option>
                                 @foreach ($ppk as $item)
                                     @if ($data->ppk_id == $item->id)
-                                        <option value="{{$item->id}}">{{$item->user->name}}</option>
+                                        <option value="{{$item->id}}" selected>{{$item->user->name}}</option>
                                     @else
                                         <option value="{{$item->id}}">{{$item->user->name}}</option>
                                     @endif
@@ -257,7 +257,7 @@
                                         value="{{$item->no_sppd}}" required>
                                     </td>
                                     <td>
-                                        <button type="button"  class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
+                                        <button type="button" class="btn btn-danger" onclick="deleteRow({{$no}})"><i class="glyphicon glyphicon-trash"></i></button>
                                     </td>
                                 </tr>
                                 @php
@@ -300,12 +300,12 @@
                         </thead>
                         <tbody>
                             @php
-                                $no=1;
+                                $nomor=1;
                             @endphp
                             @foreach ($kota as $item)
-                                <tr id="cell-{{$no}}">
+                                <tr id="cell-{{$nomor}}">
                                     <td style="text-align: center;">
-                                        {{$no}}
+                                        {{$nomor}}
                                     </td>
                                     <td>
                                         <select name="destination_id[]" id="destination_id" class="required select2" required>
@@ -328,7 +328,7 @@
                                         value="{{$item->return_date}}" required>
                                     </td>
                                     <td>
-                                        <button type="button"  class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
+                                        <button type="button" onclick="deleteRowwil($nomor)"  class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -428,7 +428,7 @@
             '<td>'+
                 '<input type="date" name="return_date[]" id="date_to" class="required" value="{{date('Y-m-d')}}" required>'+ 
             '</td>'+
-            '<td><button type="button"  class="btn btn-danger" onclick="deleteRow('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button></td>'+
+            '<td><button type="button"  class="btn btn-danger" onclick="deleteRowwil('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button></td>'+
             '</tr>';
         $("#DesTable").find('tbody').append($isi);
         $("#countRow").val(new_baris);

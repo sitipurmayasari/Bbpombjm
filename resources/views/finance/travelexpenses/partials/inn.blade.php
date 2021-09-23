@@ -12,14 +12,14 @@
                                     <th class="text-center" colspan="4">Penginapan 2</th>
                                 </tr>
                                 <tr>
-                                    <th class="text-center">Nama</th>
+                                    <th class="text-center">Nama Penginapan</th>
                                     <th class="text-center">Tarif</th>
                                     <th class="text-center">Lama (hari)</th>
-                                    <th class="text-center">Klaim</th>
-                                    <th class="text-center">Nama</th>
+                                    <th class="text-center">isi/kamar</th>
+                                    <th class="text-center">Nama Penginapan</th>
                                     <th class="text-center">Tarif</th>
                                     <th class="text-center">Lama (hari)</th>
-                                    <th class="text-center">Klaim</th>
+                                    <th class="text-center">isi/kamar</th>
                                 </tr>
                             </thead>
                             <tbody id="nginap">

@@ -165,22 +165,24 @@ class OutstationController extends Controller
 
       public function printSppd($id)
       {
-        $data = Outstation::where('id',$id)->first();
-        $isian = Outst_employee::orderBy('id','asc')
+        $data       = Outstation::where('id',$id)->first();
+        $isian      = Outst_employee::orderBy('id','asc')
                             ->where('outstation_id','=',$id)
                             ->get();
         $menyetujui = Pejabat::where('jabatan_id', '=', 11)
                             ->whereRaw("(SELECT st_date FROM outstation WHERE id=$id) BETWEEN dari AND sampai")
                             ->first();
-        $destinys = Outst_destiny::orderBy('id','asc')
+        $destinys   = Outst_destiny::orderBy('id','asc')
                             ->where('outstation_id','=',$id)
                             ->get();    
-        
+        $lama       = Outst_destiny::selectRaw('sum(longday) as hitung')
+                            ->where('outstation_id','=',$id)
+                            ->first();
         
         if ($data->type=='DL') {
           $pdf = PDF::loadview('finance/outstation.inside',compact('data','isian','destinys'));
         } else {
-          $pdf = PDF::loadview('finance/outstation.printSppd',compact('data','isian','menyetujui','destinys'));
+          $pdf = PDF::loadview('finance/outstation.printSppd',compact('data','isian','menyetujui','destinys','lama'));
         }
         return $pdf->stream();
       }

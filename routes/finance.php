@@ -146,6 +146,7 @@
   Route::post('finance/outstation/update/{id}','Finance\OutstationController@update')->name('outstation.update');
   Route::get('finance/outstation/printST/{id}','Finance\OutstationController@printST')->name('outstation.printST');
   Route::get('finance/outstation/printSppd/{id}','Finance\OutstationController@printSppd')->name('outstation.printSppd');
+  Route::get('finance/outstation/delete/{id}','Finance\OutstationController@delete')->name('outstation.delete');
   
 
 //Route untuk kode anggaran
@@ -162,3 +163,10 @@
   Route::post('finance/travelexpenses/update/{id}','Finance\TravelexpensesController@update')->name('travelexpenses.update');
   Route::get('finance/travelexpenses/receipt','Finance\TravelexpensesController@receipt')->name('travelexpenses.receipt');
   Route::get('finance/travelexpenses/riil','Finance\TravelexpensesController@riil')->name('travelexpenses.riil');
+  Route::get('finance/travelexpenses/super','Finance\TravelexpensesController@super')->name('travelexpenses.super');
+
+  //Route untuk petugas
+  Route::post('/finance/petugas/store','Finance\PetugasController@store')->name('petugasmon.store');
+  Route::get('/finance/petugas/delete/{id}','Finance\PetugasController@delete')->name('petugasmon.delete');
+  Route::get('/finance/petugas/edit/{id}','Finance\PetugasController@edit')->name('petugasmon.edit');
+  Route::post('/finance/petugas/update/{id}','Finance\PetugasController@update')->name('petugasmon.update');

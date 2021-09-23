@@ -101,7 +101,7 @@
     <div class="card">
         <div class="card-header card-header-warning">
           <i class="material-icons">commute</i> 
-          <h4 class="card-title">Pengajuan Peminjaman Kendaraan Dinas</h4>
+          <h4 class="card-title">Peminjaman Kendaraan Dinas</h4>
         </div>
         <div class="card-body">
           @if ($dinas!= null)

@@ -142,8 +142,8 @@
                         '<td>'+response.peg[i].name+
                             '<input type="hidden" name="outst_employee_id[]" class="outid" value='+response.peg[i].id+'>'+
                         '</td>'+
-                        '<td><input type="checkbox" name="transport[]" ></td>'+
                         '<td><input type="checkbox" name="dailywage[]" ></td>'+
+                        '<td><input type="checkbox" name="transport[]" ></td>'+
                         '<td><input type="checkbox" name="diklat[]" ></td>'+            
                         '<td><input type="checkbox" name="fullboard[]" ></td>'+             
                         '<td><input type="checkbox" name="fullday[]" ></td>'+
@@ -166,11 +166,11 @@
                         '<td><input type="text" name="innname_1[]" required/></td>'+
                         '<td><input type="number" min="0" value="0" name="inn_fee_1[]" required/></td>'+
                         '<td><input type="number" min="0" value="0"name="long_stay_1[]" required/></td>'+
-                        '<td><input type="number" min="0" value="0"name="klaim_1[]" required/></td>'+
+                        '<td><input type="number" min="0" value="0"name="klaim_1[]" required style="width: 100%"/>org</td>'+
                         '<td><input type="text" name="innname_2[]" required/></td>'+
                         '<td><input type="number" min="0" value="0" name="inn_fee_2" required/></td>'+
                         '<td><input type="number" min="0" value="0" name="long_stay_2" required/></td>'+
-                        '<td><input type="number" min="0" value="0" name="klaim_2" required/></td>'+   
+                        '<td><input type="number" min="0" value="0" name="klaim_2" required style="width: 100%"/>org</td>'+   
                     '</tr>';
                 }
                 $("#nginap").html(nginap);

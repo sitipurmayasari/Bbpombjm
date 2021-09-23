@@ -68,7 +68,7 @@
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
                         <a href="#" class="btn btn-danger delete"
-                            r-name="{{$row->name}}" 
+                            r-name="{{$row->number}}" 
                             r-id="{{$row->id}}">
                             <i class="glyphicon glyphicon-trash"></i></a>
                     </td>
@@ -88,7 +88,7 @@
                 var name = $(this).attr('r-name');
                 Swal.fire({
                 title: 'Ingin Menghapus?',
-                text: "Yakin ingin menghapus data  : "+name+" ini ?" ,
+                text: "Yakin ingin menghapus ST  : "+name+" ini ?" ,
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
