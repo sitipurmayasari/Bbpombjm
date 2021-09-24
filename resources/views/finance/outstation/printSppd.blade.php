@@ -204,7 +204,7 @@
             &nbsp; &nbsp; c. Tanggal harus kembali / tiba di tempat baru
             {{tgl_indo(date('Y-m-d'))}}
         </td>
-        <td class="isi"> {{$lama->hitung}} (terbilang) Hari
+        <td class="isi"> {{$lama->hitung}} ({{terbilang($lama->hitung)}}) Hari
             <br>
                 @foreach ($data->outst_destiny as $key=>$item)
                     @if ($loop->first)
