@@ -178,11 +178,22 @@ class OutstationController extends Controller
         $lama       = Outst_destiny::selectRaw('sum(longday) as hitung')
                             ->where('outstation_id','=',$id)
                             ->first();
+        $hit       = Outst_destiny::selectRaw('count(*) as jum')
+                            ->where('outstation_id','=',$id)
+                            ->first();
         
         if ($data->type=='DL') {
+
           $pdf = PDF::loadview('finance/outstation.inside',compact('data','isian','destinys'));
+
         } else {
-          $pdf = PDF::loadview('finance/outstation.printSppd',compact('data','isian','menyetujui','destinys','lama'));
+
+          if ($hit->jum==3) {
+            $pdf = PDF::loadview('finance/outstation.printSppd3',compact('data','isian','menyetujui','destinys','lama'));
+          }else{
+            $pdf = PDF::loadview('finance/outstation.printSppd',compact('data','isian','menyetujui','destinys','lama'));
+          }
+
         }
         return $pdf->stream();
       }

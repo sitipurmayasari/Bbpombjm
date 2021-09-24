@@ -202,9 +202,9 @@
             7. a. Lama perjalanan dinas <br>
             &nbsp; &nbsp; b. Tanggal berangkat <br>
             &nbsp; &nbsp; c. Tanggal harus kembali / tiba di tempat baru
-            {{tgl_indo(date('Y-m-d'))}}
+            
         </td>
-        <td class="isi">     {{-- {{sum($data->outst_destiny->longday)}}  --}} lama hari
+        <td class="isi"> {{$lama->hitung}} ({{terbilang($lama->hitung)}}) Hari
             <br>
                 @foreach ($data->outst_destiny as $key=>$item)
                     @if ($loop->first)
@@ -347,7 +347,7 @@
                     </td>
                 </tr>
                 <tr>
-                        <td colspan="2"  style="height: 10%"></td>
+                        <td colspan="2"  style="height:5%;"></td>
                 </tr>
             </table>
         </td>
@@ -364,21 +364,11 @@
                     </td>
                     <td style="width: 5%">Ke</td>
                     <td>:
-                        @if (count($data->outst_destiny) == 1)
-                            {{$data->cityfrom->capital}}
-                        @elseif (count($data->outst_destiny) == 2)
-                            @foreach ($data->outst_destiny as $key=>$item)
-                                @if ($loop->last)
-                                    {{$item->destiny->capital}} 
-                                @endif
-                            @endforeach
-                        @else
-                            @foreach ($data->outst_destiny as $key=>$item)
-                                @if ($loop->last-1)
-                                    {{$item->destiny->capital}} 
-                                @endif
-                            @endforeach
-                        @endif
+                        @foreach ($data->outst_destiny as $key=>$item)
+                            @if ($loop->index == 1)
+                                    {{$item->destiny->capital}}
+                            @endif
+                        @endforeach
                     </td>
                 </tr>
                 <tr>
@@ -392,7 +382,7 @@
                     </td>
                 </tr>
                 <tr>
-                        <td colspan="4"  style="height: 10%"></td>
+                        <td colspan="4"  style="height: 5%"></td>
                 </tr>
             </table>
         </td>
@@ -404,7 +394,7 @@
                     <td>Tiba di</td>
                     <td>:
                         @foreach ($data->outst_destiny as $key=>$item)
-                            @if ($loop->last)
+                            @if ($loop->index == 1)
                                 {{$item->destiny->capital}} 
                             @endif
                         @endforeach
@@ -414,14 +404,14 @@
                     <td>Pada tanggal</td>
                     <td>:
                         @foreach ($data->outst_destiny as $key=>$item)
-                            @if ($loop->last)
+                            @if ($loop->index == 1)
                                 {{$item->go_date}} 
                             @endif
                         @endforeach
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2"  style="height: 10%"></td>
+                        <td colspan="2"  style="height: 5%"></td>
                 </tr>
             </table>
         </td>
@@ -430,49 +420,103 @@
                 <tr>
                     <td style="width: 20%">Berangkat dari</td>
                     <td style="width: 40%">:
-                        @if (count($data->outst_destiny) == 2)
                             @foreach ($data->outst_destiny as $key=>$item)
-                                @if ($loop->last)
-                                    {{$item->destiny->capital}} 
-                                @endif
-                            @endforeach
-                        @elseif (count($data->outst_destiny) ==3)
-                            @foreach ($data->outst_destiny as $key=>$item)
-                                @if ($loop->last-1)
+                                @if ($loop->index == 1)
                                     {{$item->destiny->capital}}
                                 @endif
-                            @endforeach
-                        @else
-                            &nbsp;
-                        @endif 
+                            @endforeach 
                     </td>
                     <td style="width: 5%">Ke</td>
                     <td>: 
-                        @if (count($data->outst_destiny) == 1)
-                                &nbsp;
-                        @elseif (count($data->outst_destiny) == 2)
-                            {{$data->cityfrom->capital}}
-                        @else
                             @foreach ($data->outst_destiny as $key=>$item)
                                 @if ($loop->last)
                                     {{$item->destiny->capital}}
                                 @endif
                             @endforeach
-                        @endif 
                     </td>
                 </tr>
                 <tr>
                     <td>Pada tanggal</td>
                     <td>:
                         @foreach ($data->outst_destiny as $key=>$item)
-                            @if ($loop->last-1)
+                            @if ($loop->index == 1)
                                 {{$item->go_date}} 
                             @endif
                         @endforeach
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="4"  style="height: 10%"></td>
+                        <td colspan="2"  style="height: 5%"></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td class="isi">
+            <table class="didalam">
+                <tr>
+                    <td>Tiba di</td>
+                    <td>:
+                        @if (count($data->outst_destiny) == 3)
+                            @foreach ($data->outst_destiny as $key=>$item)
+                                @if ($loop->last)
+                                    {{$item->destiny->capital}} 
+                                @endif
+                            @endforeach
+                        @endif
+                    </td>
+                </tr>
+                <tr>
+                    <td>Pada tanggal</td>
+                    <td>:
+                        @if (count($data->outst_destiny) == 3)
+                            @foreach ($data->outst_destiny as $key=>$item)
+                                @if ($loop->last)
+                                    {{$item->go_date}} 
+                                @endif
+                            @endforeach
+                        @endif
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"  style="height: 5%"></td>
+                </tr>
+            </table>
+        </td>
+        <td class="isi">
+            <table class="didalam" style="width: 100%">
+                <tr>
+                    <td style="width: 20%">Berangkat dari</td>
+                    <td style="width: 40%">:
+                        @if (count($data->outst_destiny) == 3)
+                            @foreach ($data->outst_destiny as $key=>$item)
+                                @if ($loop->last)
+                                    {{$item->destiny->capital}} 
+                                @endif
+                            @endforeach
+                        @endif
+                    </td>
+                    <td style="width: 5%">Ke</td>
+                    <td>: 
+                        @if (count($data->outst_destiny) == 3)
+                            {{$data->cityfrom->capital}}
+                        @endif
+                    </td>
+                </tr>
+                <tr>
+                    <td>Pada tanggal</td>
+                    <td>:
+                        @if (count($data->outst_destiny) == 3)
+                        @foreach ($data->outst_destiny as $key=>$item)
+                            @if ($loop->last)
+                                {{$item->go_date}} 
+                            @endif
+                        @endforeach
+                        @endif
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4"  style="height: 5%"></td>
                 </tr>
             </table>
         </td>
@@ -534,7 +578,7 @@
     </tr>
     <tr>
         <td colspan="2">
-            <b>CATATAN LAIN - LAIN</b>
+            <b>CATATAN LAIN - LAIN</b>  
         </td>
     </tr>
     <tr>

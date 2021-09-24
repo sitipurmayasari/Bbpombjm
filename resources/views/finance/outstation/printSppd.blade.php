@@ -202,7 +202,6 @@
             7. a. Lama perjalanan dinas <br>
             &nbsp; &nbsp; b. Tanggal berangkat <br>
             &nbsp; &nbsp; c. Tanggal harus kembali / tiba di tempat baru
-            {{tgl_indo(date('Y-m-d'))}}
         </td>
         <td class="isi"> {{$lama->hitung}} ({{terbilang($lama->hitung)}}) Hari
             <br>
