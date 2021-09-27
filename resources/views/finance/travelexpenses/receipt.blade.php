@@ -68,6 +68,11 @@
         </style>
 
 </head>
+@php
+    $no=1;
+@endphp
+@foreach ($pegawai as $item)
+    
 <body>
     <table style="width: 100%; padding" class="kepala">
         <tr>
@@ -85,7 +90,7 @@
         <tr>
             <td colspan="2" style="text-align: center;  font-size: 10; font-style: normal;">BALAI BESAR PENGAWAS OBAT DAN MAKANAN</td>
             <td style="width: 18%">Akun</td>
-            <td style="width: 20%">: (komponen / akun )</td>
+            <td style="width: 25%">: {{$item->out->sub->komponen->code}} / {{$item->out->akun->code}} )</td>
         </tr>
         <tr>
             <td colspan="2" style="text-align: center;  font-size: 10;" > Di Banjarmasin</td>
@@ -111,23 +116,49 @@
         </tr>
         <tr>
             <td>Untuk Pembayaran</td>
-            <td colspan="3">: <b>(Nama Kegiatan)</b></td>
+            <td colspan="3">: <b>{{$data->st->purpose}}</b></td>
         </tr>
    </table>
    <br>
    <table style="width: 100%; padding" class="kepala">
         <tr>
             <td style="width: 20%">Berdasarkan SPPD Nomor </td>
-            <td>: (No SPPD)</td>
-            <td></td>
-            <td colspan="2">Tanggal SPPD : (Tanggal ST)</td>
+            <td colspan="2">: {{$item->no_sppd}}</td>
+            <td colspan="2">Tanggal SPPD : {{tgl_indo($item->out->st_date)}}</td>
         </tr>
         <tr>
             <td>Untuk Perjalanan Dinas</td>
-            <td>: dari &nbsp; <b>(ASAL)</b></td>
-            <td>ke  &nbsp;&nbsp; <b>(TUJUAN)</b></td>
-            <td style="width: 18%"></td>
-            <td style="width: 20%"></td>
+            <td style="width: 20%">: dari &nbsp; <b>{{$item->out->cityfrom->capital}}</b></td>
+            <td colspan="3">ke <b>
+                @if (count($item->out->outst_destiny) == 1)
+                     @foreach ($tujuan as $key=>$kota)
+                         @if ($loop->first)
+                             {{$kota->destiny->capital}} 
+                         @endif
+                         
+                     @endforeach
+
+                 @elseif (count($item->out->outst_destiny) == 2)
+                     @foreach ($tujuan as $key=>$kota)
+                         {{$kota->destiny->capital}}
+                         @if ($tujuan->count()-1 != $key)
+                             {{' dan '}}
+                         @endif
+                     @endforeach
+
+                 @else
+                     @foreach ($tujuan as $key=>$kota)
+                         @if ($loop->last-1)
+                             {{$kota->destiny->capital}}{{','}} 
+                         @endif
+                         @if ($loop->last)
+                             {{' dan '}} {{$kota->destiny->capital}}
+                         @endif
+                         
+                     @endforeach
+                 @endif
+            
+                </b></td>
         </tr>
         <tr>
             <td>Terbilang</td>
@@ -139,24 +170,26 @@
         <tr>
             <td colspan="2" style="text-align: center;" > Yang Menerima : <br><br><br></td>
             <td></td>
-            <td>
+            <td style="width: 18%">
                 Program/Kegiatan <br>
                 KRO/RO/Komponen <br>
                 Sub Komponen/Akun <br>
                 No. Surat Tugas
             </td>
-            <td>
-                : (063.01.DR/3165) <br>
-                : (CAB / 003 / 054) <br>
-                : ( A / 533111) <br>
-                : (RT.bsjakdkdsk)
+            <td style="width: 25%">
+                : {{$item->out->act->prog->unit->klcode->code}}.{{$item->out->act->prog->unit->code}}.
+                    {{$item->out->act->prog->code}} / {{$item->out->act->code}}<br>
+                : {{$item->out->sub->komponen->det->unit->code}} / {{$item->out->sub->komponen->det->code}} / 
+                    {{$item->out->sub->komponen->code}} <br>
+                : {{$item->out->sub->code}} / {{$item->out->akun->code}} <br>
+                : {{$item->out->number}}
             </td>
         </tr>
         <tr>
-            <td colspan="2" style="text-align: center;" > <u>(Nama)</u>
+            <td colspan="2" style="text-align: center;" > <u>{{$item->pegawai->name}}</u>
             <td></td>
             <td >Petugas</td>
-            <td>: 1 </td>
+            <td>: {{$no++}} </td>
         </tr>
    </table>
    <hr style="border:1px solid black;">
@@ -176,7 +209,7 @@
         <tr>
             <td></td>
             <td>Bendahara Pengeluaran, <br><br><br><br></td>
-            <td>(Jabatan PPK) <br><br><br><br></td>
+            <td>{{$item->out->ppk->jabatan}} <br><br><br><br></td>
         </tr>
         <tr>
             <td></td>
@@ -185,8 +218,8 @@
                 NIP. {{$petugas->user->no_pegawai}}
             </td>
             <td style="line-height: 1.3;">
-                <u>(Nama Pejabat)</u> <br>
-                NIP. (no_pegawai)
+                <u>{{$item->out->ppk->user->name}}</u> <br>
+                NIP. {{$item->out->ppk->user->no_pegawai}}
             </td>
         </tr>
    </table>
@@ -195,10 +228,10 @@
    <table class="isi" style="width: 100%">
         <thead>
             <tr>
-                <th class="isi">No.</th>
+                <th class="isi" style="width: 5%">No.</th>
                 <th class="isi">Daftar Perincian</th>
-                <th class="isi">Jumlah</th>
-                <th class="isi">Keterangan</th>
+                <th class="isi" style="width: 12%">Jumlah</th>
+                <th class="isi" style="width: 15%">Keterangan</th>
             </tr>
         </thead>
         <tbody>
@@ -227,7 +260,7 @@
                         <tr>
                             <td colspan="2">- Asal </td>
                             <td>:</td>
-                            <td style="text-align: right;">
+                            <td style="text-align: right; width:5%;">
                                 (kali)
                             </td>
                             <td>kali x Rp.</td>
@@ -237,7 +270,35 @@
                         </tr>
                         <tr>
                             <td style="width: 15%">- Tujuan </td>
-                            <td style="width: 20%">(Kota Tujuan)</td>
+                            <td style="width: 20%;">
+                                @if (count($item->out->outst_destiny) == 1)
+                                    @foreach ($tujuan as $key=>$kota)
+                                        @if ($loop->first)
+                                            {{$kota->destiny->capital}} 
+                                        @endif
+                                        
+                                    @endforeach
+
+                                @elseif (count($item->out->outst_destiny) == 2)
+                                    @foreach ($tujuan as $key=>$kota)
+                                        {{$kota->destiny->capital}}
+                                        @if ($tujuan->count()-1 != $key)
+                                            {{' dan '}}
+                                        @endif
+                                    @endforeach
+
+                                @else
+                                    @foreach ($tujuan as $key=>$kota)
+                                        @if ($loop->last-1)
+                                            {{$kota->destiny->capital}}{{','}} 
+                                        @endif
+                                        @if ($loop->last)
+                                            {{' dan '}} {{$kota->destiny->capital}}
+                                        @endif
+                                        
+                                    @endforeach
+                                @endif
+                            </td>
                             <td>:</td>
                             <td style="text-align: right;">
                                 (kali)
@@ -260,7 +321,34 @@
                         </tr>
                         <tr>
                             <td colspan="2">
-                                Transport Lokal (Kota Tujuan)
+                                Transport Lokal 
+                                @if (count($item->out->outst_destiny) == 1)
+                                    @foreach ($tujuan as $key=>$kota)
+                                        @if ($loop->first)
+                                            {{$kota->destiny->capital}} 
+                                        @endif
+                                        
+                                    @endforeach
+
+                                @elseif (count($item->out->outst_destiny) == 2)
+                                    @foreach ($tujuan as $key=>$kota)
+                                        {{$kota->destiny->capital}}
+                                        @if ($tujuan->count()-1 != $key)
+                                            {{' dan '}}
+                                        @endif
+                                    @endforeach
+
+                                @else
+                                    @foreach ($tujuan as $key=>$kota)
+                                        @if ($loop->last-1)
+                                            {{$kota->destiny->capital}}{{','}} 
+                                        @endif
+                                        @if ($loop->last)
+                                            {{' dan '}} {{$kota->destiny->capital}}
+                                        @endif
+                                        
+                                    @endforeach
+                                @endif
                             </td>
                             <td colspan="6">:</td>
                         </tr>
@@ -268,7 +356,7 @@
                 </td>
                 <td class="isi">Rp. &nbsp;&nbsp;
                 </td>
-                <td class="isi"></td>
+                <td class="isi">{{$item->out->transport}}</td>
             </tr>
             <tr>
                 <td class="isi" style="text-align: center">2</td>
@@ -387,7 +475,9 @@
                 <td class="isi">Rp. &nbsp;&nbsp;
 
                 </td>
-                <td class="isi"></td>
+                <td class="isi">
+                    1 Kamar 2 orang
+                </td>
             </tr>
             <tr>
                 <td class="isi" style="text-align: center">5</td>
@@ -432,7 +522,7 @@
     <tr>
         <td style="width: 30%"></td>
         <td style="width: 30%"></td>
-        <td style="width: 40%"><br> Banjarmasin, (tgl indo kwitansi)</td>
+        <td style="width: 40%"><br> Banjarmasin, {{tgl_indo($data->date)}}</td>
     </tr>
     <tr>
         <td></td>
@@ -451,7 +541,7 @@
             NIP. {{$petugas->user->no_pegawai}}
         </td>
         <td style="text-align: center; ">
-            <u>(Nama Pejabat)</u> <br>
+            <u>{{$item->pegawai->name}}</u> <br>
         </td>
     </tr>
    </table>
@@ -463,7 +553,7 @@
             <td style="width: 23%">Ditetapkan sejumlah</td>
             <td  style="width: 3%"><b>Rp. </b></td>
             <td class="isi" style="text-align: right">(total all)</td>
-            <td style="text-align: center; width:40%">(Nama Jabatan PPK)</td>
+            <td style="text-align: center; width:40%">{{$item->out->ppk->jabatan}}</td>
         </tr>
         <tr>
             <td></td>
@@ -485,8 +575,8 @@
             <td></td>
             <td></td>
             <td style="text-align: center; line-height: 1.3;">
-                <u>(Nama PPK)</u> <br>
-                NIP. (No. Pegawai)
+                <u>{{$item->out->ppk->user->name}}</u> <br>
+                NIP. {{$item->out->ppk->user->no_pegawai}}
             </td>
         </tr>
         <tr>
@@ -498,4 +588,7 @@
         </tr>
    </table>
 </body>
+
+@endforeach
+
 </html>

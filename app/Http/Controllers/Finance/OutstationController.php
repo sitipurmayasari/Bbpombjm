@@ -116,7 +116,7 @@ class OutstationController extends Controller
             $outstation = Outstation::create($request->all());
             $outstation_id = $outstation->id;
             for ($i = 0; $i < count($request->input('users_id')); $i++){
-                // $dailywage = $request->dailywage != null ?  $request->dailywage[$i] : 'N';
+               
                 $nomorsppd = $this->getnosppd($request->divisi_id);
                 $data = [
                     'outstation_id' => $outstation_id,

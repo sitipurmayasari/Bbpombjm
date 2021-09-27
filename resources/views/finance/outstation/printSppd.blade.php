@@ -135,7 +135,6 @@
                          @if ($loop->first)
                              {{$item->destiny->capital}} 
                          @endif
-                         
                      @endforeach
 
                  @elseif (count($data->outst_destiny) == 2)
@@ -168,7 +167,7 @@
         <td class="isi">
              {{$data->transport}} <br>
              {{$data->cityfrom->capital}} <br>
-             @if (count($data->outst_destiny) == 1)
+                @if (count($data->outst_destiny) == 1)
                      @foreach ($data->outst_destiny as $key=>$item)
                          @if ($loop->first)
                              {{$item->destiny->capital}} 
@@ -207,19 +206,13 @@
             <br>
                 @foreach ($data->outst_destiny as $key=>$item)
                     @if ($loop->first)
-                        @php
-                            $go = $item->go_date;
-                            echo tgl_indo($go); 
-                        @endphp 
+                         {{tgl_indo($item->go_date)}}
                     @endif
                 @endforeach
             <br>
                 @foreach ($data->outst_destiny as $key=>$item)
                     @if ($loop->last)
-                        @php
-                            $ret = $item->return_date;
-                            echo tgl_indo($ret); 
-                        @endphp 
+                        {{tgl_indo($item->return_date)}}
                     @endif
                 @endforeach
         </td>
@@ -243,11 +236,7 @@
                  </tr>
                  <tr>
                     <td>Pada tanggal </td>
-                    <td> : 
-                        @php
-                            $st = $data->st_date;
-                            echo tgl_indo($st); 
-                        @endphp
+                    <td> : {{tgl_indo(data->st_date)}}
                     </td>
                  </tr>
                  <tr>
@@ -273,10 +262,7 @@
                      <td > :{{$data->number}}</td>
                      <td style="text-align: right;">Tgl. </td>
                      <td >
-                        @php
-                            $st = $data->st_date;
-                            echo tgl_indo($st); 
-                        @endphp 
+                        {{tgl_indo($data->st_date)}}
                     </td>
                  </tr>
                  <tr>

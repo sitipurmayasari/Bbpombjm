@@ -6,12 +6,15 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use DateTime;
+use Carbon\Carbon;
 use App\Travelexpenses;
 use App\Expenses;
 use App\User;
 use App\Destination;
 use App\Outstation;
 use App\Outst_employee;
+use App\Outst_destiny;
 use App\Pok_detail;
 use App\PPK;
 use App\Plane;
@@ -43,71 +46,110 @@ class TravelexpensesController extends Controller
     }
 
     function getMaksud(Request $request){
-        $st = Outstation::where('id',$request->id)->first();
-        $peg = Outst_employee::selectRaw('outst_employee.*, users.name,jabatan_id,deskjob')
-                ->leftJoin('users','users.id','=','outst_employee.users_id')
-                ->where('outst_employee.outstation_id',$request->id)->get();
+        $st     = Outstation::where('id',$request->id)->first();
+        $peg    = Outst_employee::selectRaw('outst_employee.*, users.name,jabatan_id,deskjob')
+                                ->leftJoin('users','users.id','=','outst_employee.users_id')
+                                ->where('outst_employee.outstation_id',$request->id)
+                                ->get();
+        $tujuan = Outst_destiny::selectRaw('outst_destiny.*, destination.capital')
+                                ->leftJoin('destination','destination.id','=','outst_destiny.destination_id')
+                                ->where('outst_destiny.outstation_id',$request->id)
+                                ->get();
+        $lama = Outst_destiny::selectRaw('sum(longday) as lawas')
+                                ->where('outstation_id',$request->id)
+                                ->first(); 
 
         return response()->json([ 
             'success'   => true,
             'st'        =>$st,
-            'peg'       =>$peg
+            'peg'       =>$peg,
+            'lama'     =>$lama
         ],200);
     }
 
-    // public function store(Request $request)
-    // { 
+    public function store(Request $request)
+    { 
     //   dd($request->all());
-    //   $this->validate($request,[
-    //       'outstation_id'  => 'required|unique:outstation',
-    //       'date'    => 'required'
-    //   ]);
+      $this->validate($request,[
+          'outstation_id'   => 'required',
+          'date'            => 'required'
+      ]);
 
-    //   DB::beginTransaction(); 
-    //       $kuitansi = Expenses::create($request->all());
-    //       $expenses_id = $kuitansi->id;
-    //       for ($i = 0; $i < count($request->input('users_id')); $i++){
-              
-    //           $nomorsppd = $this->getnosppd($request->divisi_id);
-    //           $data = [
-    //               'outstation_id' => $outstation_id,
-    //               'users_id'      => $request->users_id[$i],
-    //               'no_sppd'        =>$nomorsppd
-    //           ];
-    //           Outst_employee::create($data);
-    //       }
-          
-    //       for ($i = 0; $i < count($request->input('destination_id')); $i++){
-    //         $tgl1 = new DateTime($request->go_date[$i]);
-    //         $tgl2 = new DateTime($request->return_date[$i]);
-    //         $daylong_1 = $tgl2->diff($tgl1)->days + 1;
-    //         $request->merge(['daylong_1'=>$daylong_1]);
-            
-    //         $data = [
-    //             'outstation_id'   => $outstation_id,
-    //             'destination_id'  => $request->destination_id[$i],
-    //             'go_date'         =>$request->go_date[$i],
-    //             'return_date'     =>$request->go_date[$i],
-    //             'longday'         =>$daylong_1
-    //         ];
-    //         Outst_destiny::create($data);
-    //       }
+      DB::beginTransaction(); 
+            $expenses = Expenses::create($request->all());
+            $expenses_id = $expenses->id;
+            for ($i = 0; $i < count($request->input('outst_employee_id')); $i++){
+                $transport = $request->transport != null ?  $request->transport[$i] : 'N';
+                $dailywage = $request->dailywage != null ?  $request->dailywage[$i] : 'N';
+                $diklat = $request->diklat != null ?  $request->diklat[$i] : 'N';
+                $fullboard = $request->fullboard != null ?  $request->fullboard[$i] : 'N';
+                $fullday = $request->fullday != null ?  $request->fullday[$i] : 'N';
+                $representatif = $request->representatif != null ?  $request->representatif[$i] : 'N';
 
-    //       DB::commit();
+                $data = [
+                    'expenses_id'       => $expenses_id,
+                    'outst_employee_id' => $request->outst_employee_id[$i],
+                    'transport'         => $transport,
+                    'dailywage'         => $dailywage,
+                    'diklat'            => $diklat,
+                    'fullboard'         => $fullboard,
+                    'fullday'           => $fullday,
+                    'representatif'     => $representatif,
+                    'innname_1'         => $request->innname_1[$i],
+                    'inn_fee_1'         => $request->inn_fee_1[$i],
+                    'long_stay_1'       => $request->long_stay_1[$i],
+                    'klaim_1'           => $request->klaim_1[$i],
+                    'isi_1'             => $request->isi_1[$i],
+                    'innname_2'         => $request->innname_2[$i],
+                    'inn_fee_2'         => $request->inn_fee_2[$i],
+                    'long_stay_2'       => $request->long_stay_2[$i],
+                    'klaim_2'           => $request->klaim_2[$i],
+                    'isi_2'             => $request->isi_2[$i],
+                    'plane_id'          => $request->plane_id[$i],
+                    'planego'           => $request->planego[$i],
+                    'godate'            => $request->godate[$i],
+                    'returndate'        => $request->returndate[$i],
+                    'planereturn'       => $request->planereturn[$i],
+                    'bbm'               => $request->bbm[$i],
+                    'taxy_count_from'   => $request->taxy_count_from[$i],
+                    'taxy_fee_from'     => $request->taxy_fee_from[$i],
+                    'taxy_count_to'     => $request->taxy_count_to[$i],
+                    'taxy_fee_to'       => $request->taxy_fee_to[$i]
 
-    //     return redirect('/finance/outstation');
+                ];
+                Travelexpenses::create($data);
+            }
+            DB::commit();
 
-    // }
 
 
-    public function receipt()
+        return redirect('/finance/travelexpenses');
+
+    }
+
+
+    public function receipt($id)
     {
-        $petugas = Petugas::where('id', '=', 5)->first();
-        $pdf = PDF::loadview('finance/travelexpenses.receipt',compact('petugas'));
+        $data       = Expenses::where('id',$id)->first();
+        $pegawai    = Outst_employee::SelectRaw('outst_employee.* ')
+                                    ->leftJoin('outstation','outstation.id','=','outst_employee.outstation_id')
+                                    ->leftJoin('expenses','expenses.outstation_id','=','outstation.id')
+                                    ->where('expenses.id',$id)
+                                    ->get();
+        $tujuan    = Outst_destiny::SelectRaw('outst_destiny.* ')
+                                    ->leftJoin('outstation','outstation.id','=','outst_destiny.outstation_id')
+                                    ->leftJoin('expenses','expenses.outstation_id','=','outstation.id')
+                                    ->where('expenses.id',$id)
+                                    ->get();
+        $tr         = Travelexpenses::where('expenses_id',$id)
+                                    ->get();
+        
+        $petugas    = Petugas::where('id', '=', 5)->first();
+        $pdf        = PDF::loadview('finance/travelexpenses.receipt',compact('petugas','data','pegawai','tujuan','tr'));
         return $pdf->stream();
     }
 
-    public function riil()
+    public function riil($id)
     {
         $petugas = Petugas::where('id', '=', 5)->first();
         $pdf = PDF::loadview('finance/travelexpenses.riil',compact('petugas'));
