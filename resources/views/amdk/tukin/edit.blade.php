@@ -97,7 +97,7 @@
                                       onkeyup="hitung({{$no}})"/>
                                 </td>
                                 <td><input type="number"
-                                    name="potongan[]" 
+                                    name="potongan[]"  step="0.001"
                                     id="potongan-{{$no}}"
                                     value="{{$item->potongan}}"
                                      onkeyup="hitung({{$no}})"/></td>

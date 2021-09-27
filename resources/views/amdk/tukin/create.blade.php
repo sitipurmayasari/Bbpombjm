@@ -158,7 +158,7 @@
                         '<input type="text" name="users_id[]" hidden value="'+response.asn[i].id+'">'+
                         response.asn[i].name+' &nbsp; ('+response.asn[i].no_pegawai+')</td>'+
                         '<td><input type="number" name="nilai[]" class="nilai"  id="nilai-'+i+'" value="0" onkeyup="hitung('+i+')"></td>'+
-                        '<td><input type="number" name="potongan[]"  id="potongan-'+i+'"  class="potongan"  onkeyup="hitung('+i+')"  value="0"></td>'+
+                        '<td><input type="number" name="potongan[]"  id="potongan-'+i+'"  class="potongan"  onkeyup="hitung('+i+')"  value="0" step="0.001"></td>'+
                         '<td><input type="number" name="potonganRp[]"  id="potrp-'+i+'" readonly value="0"></td>'+
                         '<td><input type="number" name="terima[]" id="terima-'+i+'" readonly value="0"></td>'+
                     '</tr>';
