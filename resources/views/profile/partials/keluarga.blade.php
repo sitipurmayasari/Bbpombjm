@@ -725,8 +725,8 @@
                                                         <th class="text-center ">Tempat Lahir</th>
                                                         <th class="text-center ">Tanggal Lahir</th>
                                                         <th class="text-center ">L/P</th>
-                                                        <th class="text-center ">Alamat</th>
                                                         <th class="text-center ">Pekerjaan</th>
+                                                        <th class="text-center ">Alamat</th>
                                                         <th class="text-center ">No. Telp</th>
                                                         <th class="text-center">Aksi</th>
                                                     </thead>
