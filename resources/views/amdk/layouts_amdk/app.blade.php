@@ -64,7 +64,7 @@
 					<a href="/portal" class="navbar-brand">
 						<small>
 						<img src="{{asset('images/bbpom.jpg')}}" alt="" srcset="" style="height:35px">
-							APLIKASI MANAGEMENT DATA KEPEGAWAIAN
+							APLIKASI MANAJEMEN DATA KEPEGAWAIAN
 						</small>
 					</a>
 				</div>
