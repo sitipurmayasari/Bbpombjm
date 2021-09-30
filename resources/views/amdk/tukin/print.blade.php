@@ -9,6 +9,10 @@
     <link href="{{asset('assets/css/no_header.css')}}" rel="stylesheet">
     <title>Document</title>
     <style>
+        @page {
+            size: A4;
+            margin: 170px 0px 100px 0px;
+        }
         html, table{
             font-family: Arial;
         }
