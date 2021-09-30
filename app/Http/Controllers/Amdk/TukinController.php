@@ -40,10 +40,12 @@ class TukinController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'nomor' => 'required|unique:tukin',
-            'tanggal' => 'required|date',
-            'bulan'=> 'required',
-            'tahun'=> 'required'
+            'nomor'     => 'required|unique:tukin',
+            'tanggal'   => 'required|date',
+            'bulan'     => 'required',
+            'tahun'     => 'required',
+            'blnkasih'  => 'required',
+            'thnkasih'  => 'required'
         ]);
 
         DB::beginTransaction();
@@ -72,14 +74,13 @@ class TukinController extends Controller
    
     public function edit($id)
     {
-        $user = User::all()
-                ->where('id','!=','1');
-        $detail = TukinDetail::where('tukin_id',$id)
-                    ->get();
-        $data = Tukin::where('id',$id)
-                ->first();
-        $bulan =$data->bulan;
-        return view('amdk/tukin.edit',compact('data','detail','user','bulan'));
+        $user       = User::all()
+                        ->where('id','!=','1');
+        $detail     = TukinDetail::where('tukin_id',$id)
+                        ->get();
+        $data       = Tukin::where('id',$id)
+                        ->first();
+        return view('amdk/tukin.edit',compact('data','detail','user'));
     }
 
     public function update(Request $request,$id)
@@ -87,8 +88,10 @@ class TukinController extends Controller
         // dd($request->all());
 
         $this->validate($request,[
-            'bulan'=> 'required',
-            'tahun'=> 'required'
+            'bulan'     => 'required',
+            'tahun'     => 'required',
+            'blnkasih'  => 'required',
+            'thnkasih'  => 'required'
         ]);
 
         DB::beginTransaction();
@@ -99,7 +102,12 @@ class TukinController extends Controller
                     'potonganRp' => $request->potonganRp[$i],
                     'terima' => $request->terima[$i]
                 ];
-                Tukin::where('id',$id)->update(['bulan'=>$request->bulan, 'tahun'=>$request->tahun]);
+                Tukin::where('id',$id)->update([
+                                                    'bulan'     =>$request->bulan, 
+                                                    'tahun'     =>$request->tahun,
+                                                    'blnkasih'  =>$request->blnkasih,
+                                                    'thnkasih'  =>$request->thnkasih
+                                                ]);
                 TukinDetail::where('tukin_id',$id)
                             ->where('users_id', $request->users_id[$i])
                             ->update($data);
@@ -158,7 +166,22 @@ class TukinController extends Controller
                                                 WHEN bulan= 10  THEN "Oktober"
                                                 WHEN bulan= 11  THEN "November"
                                                 ELSE "Desember"
-                                            END bln')
+                                            END bln , 
+                                            CASE
+                                                WHEN blnkasih= 1 THEN "Januari"
+                                                WHEN blnkasih= 2 THEN "Februari"
+                                                WHEN blnkasih= 3  THEN "Maret"
+                                                WHEN blnkasih= 4  THEN "April"
+                                                WHEN blnkasih= 5  THEN "Mei"
+                                                WHEN blnkasih= 6  THEN "Juni"
+                                                WHEN blnkasih= 7  THEN "Juli"
+                                                WHEN blnkasih= 8  THEN "Agustus"
+                                                WHEN blnkasih= 9  THEN "September"
+                                                WHEN blnkasih= 10  THEN "Oktober"
+                                                WHEN blnkasih= 11  THEN "November"
+                                                ELSE "Desember"
+                                            END bulankasih'
+                                            )
                         )
                 ->first();
           $isi = TukinDetail::where('tukin_id',$id)

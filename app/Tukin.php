@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Tukin extends Model
 {
     protected $table = "tukin";
-    protected $fillable = ['nomor','tanggal','bulan','tahun'];
+    protected $fillable = ['nomor','tanggal','bulan','tahun','blnkasih','thnkasih'
+];
 
 
 }

@@ -40,6 +40,7 @@
                 <th>Nama Kegiatan</th>
                 <th>Cetak Kuitansi</th>
                 <th>Cetak Riil</th>
+                <th>Cetak Surat Pernyataan</th>
                 <th  class="col-md-2">Aksi</th>
             </thead>
             <tbody>   	
@@ -50,10 +51,16 @@
                     <td>{{$row->st->number}}</td>
                     <td>{{$row->st->purpose}}</td>
                     <td>
-                        <a class="btn btn-primary" href="/finance/travelexpenses/receipt/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
+                        <a class="btn btn-primary" href="/finance/travelexpenses/receipt/{{$row->id}}" target="_blank" 
+                            rel="noopener noreferrer">CETAK</a>
                     </td>
                     <td>
-                        <a class="btn btn-primary" href="/finance/travelexpenses/riil/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
+                        <a class="btn btn-primary" href="/finance/travelexpenses/riil/{{$row->id}}" target="_blank" 
+                            rel="noopener noreferrer">CETAK</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" href="/finance/travelexpenses/super/{{$row->id}}" target="_blank" 
+                            rel="noopener noreferrer">CETAK</a>
                     </td>
                     <td>
                         <a href="/finance/travelexpenses/edit/{{$row->id}}" class="btn btn-warning">

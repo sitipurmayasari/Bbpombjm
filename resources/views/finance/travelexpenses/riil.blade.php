@@ -74,6 +74,11 @@
         </style>
 
 </head>
+
+@php
+    $no=1;
+@endphp
+@foreach ($pegawai as $item)
 <body>
     <table style="width: 100%;" class="kepala">
         <tr>
@@ -113,35 +118,343 @@
         <tr>
             <td colspan="3">Yang bertanda tangan di bawah ini :</td>
             <td>Program / Kegiatan</td>
-            <td> : (063.01.WA.6384)</td>
+            <td> : 
+                {{$item->out->act->prog->unit->klcode->code}}.{{$item->out->act->prog->unit->code}}.
+                    {{$item->out->act->prog->code}} / {{$item->out->act->code}}
+            </td>
         </tr>
         <tr>
             <td style="width: 8%" >Nama</td>
-            <td colspan="2"> : (Nama)</td>
+            <td colspan="2"> : {{$item->pegawai->name}}</td>
             <td>KRO/RO/Komponen</td>
-            <td> : (EAA/004/002)</td>
+            <td> :
+                {{$item->out->sub->komponen->det->unit->code}} / {{$item->out->sub->komponen->det->code}} / 
+                    {{$item->out->sub->komponen->code}}
+            </td>
         </tr>
         <tr>
             <td>NIP</td>
-            <td colspan="2"> : (no_pegawai)</td>
+            <td colspan="2"> : 
+                @if ($item->pegawai->status=='PNS')
+                    {{$item->pegawai->no_pegawai}}
+                @else
+                    -
+                @endif
+            </td>
             <td>Sub Komponen / Akun</td>
-            <td> : (sub / akun)</td>
+            <td> : 
+                {{$item->out->sub->code}} / {{$item->out->akun->code}}
+            </td>
         </tr>
         <tr>
             <td>Jabatan</td>
-            <td colspan="2"> : (deskjob) </td>
+            <td colspan="2"> : {{$item->pegawai->deskjob}} </td>
             <td>No. Surat Tugas</td>
-            <td> : (NOST)</td>
+            <td> : 
+                {{$item->out->number}}
+            </td>
         </tr>
         <tr>
             <td colspan="2"> <br>   Berdasarkan SPPD Nomor</td>
-            <td  style="width: 40%"> <br> : (NOSPPD)</td>
-            <td colspan="2"> <br> Tanggal SPPD : (TGL)</td>
+            <td  style="width: 40%"> <br> : 
+                {{$item->no_sppd}}
+            </td>
+            <td colspan="2"> <br> Tanggal SPPD : 
+                {{tgl_indo($item->out->st_date)}}
+            </td>
         </tr>
         <tr>
             <td colspan="2">Untuk Perjalanan Dinas</td>
             <td colspan="3">
-                : dari <b>(ASAL)</b> ke <b>(TUJUAN)</b> selama (hari) hari, dengan ini menyatakan dengan sesungguhnya bahwa : 
+                : dari 
+                <b>{{$item->out->cityfrom->capital}}</b> 
+                ke 
+                <b>
+                    @if (count($item->out->outst_destiny) == 1)
+                        @foreach ($tujuan as $key=>$kota)
+                            @if ($loop->first)
+                                {{$kota->destiny->capital}} 
+                            @endif 
+                        @endforeach
+                    @elseif (count($item->out->outst_destiny) == 2)
+                        @foreach ($tujuan as $key=>$kota)
+                            {{$kota->destiny->capital}}
+                            @if ($tujuan->count()-1 != $key)
+                                {{' dan '}}
+                            @endif
+                        @endforeach
+                    @else
+                        @foreach ($tujuan as $key=>$kota)
+                            @if ($loop->last-1)
+                                {{$kota->destiny->capital}}{{','}} 
+                            @endif
+                            @if ($loop->last)
+                                {{' dan '}} {{$kota->destiny->capital}}
+                            @endif
+                        @endforeach
+                    @endif
+                </b> 
+                selama (hari) hari, dengan ini menyatakan dengan sesungguhnya bahwa : 
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5">
+                1. Biaya transport pegawai dan atau biaya penginapan di bawah ini yang tidak dapat diperoleh 
+                bukti - bukti pengeluarannya, meliputi :
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5">
+                <table style="width: 100%" class="isi">
+                    <thead>
+                        <tr>
+                            <th class="isi">No.</th>
+                            <th class="isi">Uraian</th>
+                            <th class="isi">Jumlah</th>
+                            <th class="isi">Keterangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align: center" class="isi">1</td>
+                            <td class="isi" style="line-height: 1;">Biaya Transport : <br>
+                                <b>(ASAL)
+                                    &nbsp;&nbsp;&nbsp;
+                                    @if (count($item->out->outst_destiny) == 1)
+                                        @foreach ($tujuan as $key=>$kota)
+                                            @if ($loop->first)
+                                                {{$kota->destiny->capital}} 
+                                            @endif
+                                            
+                                        @endforeach
+
+                                    @elseif (count($item->out->outst_destiny) == 2)
+                                        @foreach ($tujuan as $key=>$kota)
+                                            {{$kota->destiny->capital}}
+                                            @if ($tujuan->count()-1 != $key)
+                                                {{' dan '}}
+                                            @endif
+                                        @endforeach
+
+                                    @else
+                                        @foreach ($tujuan as $key=>$kota)
+                                            @if ($loop->last-1)
+                                                {{$kota->destiny->capital}}{{','}} 
+                                            @endif
+                                            @if ($loop->last)
+                                                {{' dan '}} {{$kota->destiny->capital}}
+                                            @endif
+                                            
+                                        @endforeach
+                                    @endif
+                                </b>
+
+                            </td>
+                            <td class="isi" >Rp. </td>
+                            <td class="isi" style="text-align: center">{{$item->out->transport}}</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center" class="isi">2</td>
+                            <td class="isi">Biaya Penginapan : 
+                                (jumhari) hari &nbsp;&nbsp; x Rp. nominal 
+                            </td>
+                            <td class="isi">Rp. </td>
+                            <td class="isi"></td>
+                        </tr>
+                        <tr>
+                            <td class="isi"></td>
+                            <td class="isi"><b>Jumlah pengeluaran riil :</b></td>
+                            <td class="isi">Rp. </td>
+                            <td class="isi"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5">
+                2. Jumlah uang tersebut pada angka 1 di atas benar - benar di keluarkan untuk pelaksanaan perjalanan dinas dimaksud
+                dan apabila di kemudian <br> &nbsp;&nbsp;&nbsp;
+                hari terdapat kelebihan atas pembayaran, kami bersedia untuk menyetorkan kelebihan tersebut
+                ke Kas Negara.
+            </td>
+        </tr>     
+   </table>
+   <table style="width: 100%;" class="dalem">
+        <tr>
+            <td colspan="3">
+                
+                Demikian pernyataan ini kami buat dengan sebenarnya, untuk dipergunakan sebagaimana mestinya
+                <br><br>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td style="text-align:center;">Banjarmasin, {{tgl_indo($data->date)}}</td>
+        </tr>
+        <tr>
+            <td style="text-align:center;">Setuju dibayar</td>
+            <td></td>
+            <td style="text-align:center;">Pejabat Negara / Pegawai Negeri</td>
+        </tr>
+        <tr>
+            <td style="text-align:center;">{{$item->out->ppk->jabatan}}</td>
+            <td></td>
+            <td style="text-align:center;">yang melakukan perjalanan dinas :</td>
+        </tr>
+        <tr>
+            <td style="height: 3%"></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="line-height: 1; text-align:center;">
+                <u>{{$item->out->ppk->user->name}}</u> <br>
+                NIP. {{$item->out->ppk->user->no_pegawai}}
+            </td>
+            <td></td>
+            <td style="line-height: 1; text-align:center;">
+                <u>{{$item->pegawai->name}}</u> <br>
+                @if ($item->pegawai->status=='PNS')
+                    NIP. {{$item->pegawai->no_pegawai}}
+                @else
+                    &nbsp;
+                @endif
+            </td>
+            <tr>
+                <td colspan="3" style="text-align:center; letter-spacing: 2px; line-height: 1; "><br>
+                    BALAI BESAR PENGAWAS OBAT DAN MAKANAN DI BANJARMASIN</td>
+            </tr>
+            <tr>
+                <td colspan ="3" style="text-align:center; font-size:6; line-height: 1; ">almagfghfghfgh</td>
+            </tr>
+            <tr>
+                <td style="text-align: left; font-size:6; line-height: 1; "> hari, tanggal kuitansi</td>
+                <td></td>
+                <td style="text-align: right; line-height: 1; " > Page 1 of 1</td>
+            </tr>
+        </tr>
+   </table>
+
+    <br>
+    <br>
+    <br>
+    <table style="width: 100%;" class="kepala">
+        <tr>
+            <td style="vertical-align: bottom; text-align: center;"  colspan="3">
+                <img src="{{asset('images/BBRI.jpg')}}" style="height:50px">
+            </td>
+            <td colspan="2" style=" font-size: 6; line-height: 1;">
+                Lampiran<br>
+                Peraturan Direktur Jenderal Perbendaharaan Nomor Per 37/PB/2007<br>
+                tentang Petunjuk Pelaksanaan Perjalanan Dinas Jabatan Dalam Negeri <br>
+                Bagi Pejabat Negara Pegawai Negeri Sipil dan pejabatn Tidak Tetap <br>
+                Nomor 113/PMK.05/2012 &nbsp;&nbsp;&nbsp; Tgl. 23 Juli 2012
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" style="text-align: center;  font-size: 10; font-style: normal; line-height: 1;">
+                BALAI BESAR PENGAWAS OBAT DAN MAKANAN</td>
+            <td style="width: 20%">Beban MAK</td>
+            <td style="width: 20%">
+                 : (subakun / akun )
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" style="text-align: center;  font-size: 10; line-height: 1;" > Di Banjarmasin</td>
+            <td>Tahun Anggaran</td>
+            <td> : TA</td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <div id="border">
+                   <b> DAFTAR PENGELUARAN RIIL</b><br>
+                </div>
+            </td>
+            <td style="vertical-align: top;" >Bukti Kas</td>
+            <td> : ...............................</td>
+        </tr>
+        <tr>
+            <td colspan="3">Yang bertanda tangan di bawah ini :</td>
+            <td>Program / Kegiatan</td>
+            <td> : 
+                {{$item->out->act->prog->unit->klcode->code}}.{{$item->out->act->prog->unit->code}}.
+                    {{$item->out->act->prog->code}} / {{$item->out->act->code}}
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 8%" >Nama</td>
+            <td colspan="2"> : {{$item->pegawai->name}}</td>
+            <td>KRO/RO/Komponen</td>
+            <td> :
+                {{$item->out->sub->komponen->det->unit->code}} / {{$item->out->sub->komponen->det->code}} / 
+                    {{$item->out->sub->komponen->code}}
+            </td>
+        </tr>
+        <tr>
+            <td>NIP</td>
+            <td colspan="2"> : 
+                @if ($item->pegawai->status=='PNS')
+                    {{$item->pegawai->no_pegawai}}
+                @else
+                    -
+                @endif
+            </td>
+            <td>Sub Komponen / Akun</td>
+            <td> : 
+                {{$item->out->sub->code}} / {{$item->out->akun->code}}
+            </td>
+        </tr>
+        <tr>
+            <td>Jabatan</td>
+            <td colspan="2"> : {{$item->pegawai->deskjob}} </td>
+            <td>No. Surat Tugas</td>
+            <td> : 
+                {{$item->out->number}}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"> <br>   Berdasarkan SPPD Nomor</td>
+            <td  style="width: 40%"> <br> : 
+                {{$item->no_sppd}}
+            </td>
+            <td colspan="2"> <br> Tanggal SPPD : 
+                {{tgl_indo($item->out->st_date)}}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">Untuk Perjalanan Dinas</td>
+            <td colspan="3">
+                : dari 
+                <b>{{$item->out->cityfrom->capital}}</b> 
+                ke 
+                <b>
+                    @if (count($item->out->outst_destiny) == 1)
+                        @foreach ($tujuan as $key=>$kota)
+                            @if ($loop->first)
+                                {{$kota->destiny->capital}} 
+                            @endif 
+                        @endforeach
+                    @elseif (count($item->out->outst_destiny) == 2)
+                        @foreach ($tujuan as $key=>$kota)
+                            {{$kota->destiny->capital}}
+                            @if ($tujuan->count()-1 != $key)
+                                {{' dan '}}
+                            @endif
+                        @endforeach
+                    @else
+                        @foreach ($tujuan as $key=>$kota)
+                            @if ($loop->last-1)
+                                {{$kota->destiny->capital}}{{','}} 
+                            @endif
+                            @if ($loop->last)
+                                {{' dan '}} {{$kota->destiny->capital}}
+                            @endif
+                        @endforeach
+                    @endif
+                </b> 
+                selama (hari) hari, dengan ini menyatakan dengan sesungguhnya bahwa : 
             </td>
         </tr>
         <tr>
@@ -205,14 +518,14 @@
         <tr>
             <td colspan="3">
                 
-                Demikian pernyataan ini kami buat dengan sebenarnya, untuk dipergunakan sebagaaimana mestinya
+                Demikian pernyataan ini kami buat dengan sebenarnya, untuk dipergunakan sebagaimana mestinya
                 <br><br>
             </td>
         </tr>
         <tr>
             <td></td>
             <td></td>
-            <td style="text-align:center;">Banjarmasin, (tgl Kuitansi)</td>
+            <td style="text-align:center;">Banjarmasin, {{tgl_indo($data->date)}}</td>
         </tr>
         <tr>
             <td style="text-align:center;">Setuju dibayar</td>
@@ -220,7 +533,7 @@
             <td style="text-align:center;">Pejabat Negara / Pegawai Negeri</td>
         </tr>
         <tr>
-            <td style="text-align:center;">(JAbatan PPK)</td>
+            <td style="text-align:center;">{{$item->out->ppk->jabatan}}</td>
             <td></td>
             <td style="text-align:center;">yang melakukan perjalanan dinas :</td>
         </tr>
@@ -231,13 +544,17 @@
         </tr>
         <tr>
             <td style="line-height: 1; text-align:center;">
-                <u>(nama pejabat)</u> <br>
-                NIP. (no_pegawai)
+                <u>{{$item->out->ppk->user->name}}</u> <br>
+                NIP. {{$item->out->ppk->user->no_pegawai}}
             </td>
             <td></td>
             <td style="line-height: 1; text-align:center;">
-                <u>Nama pegawai</u> <br>
-                NIP> (no_pegawai)
+                <u>{{$item->pegawai->name}}</u> <br>
+                @if ($item->pegawai->status=='PNS')
+                    NIP. {{$item->pegawai->no_pegawai}}
+                @else
+                    &nbsp;
+                @endif
             </td>
             <tr>
                 <td colspan="3" style="text-align:center; letter-spacing: 2px; line-height: 1; "><br>
@@ -253,187 +570,6 @@
             </tr>
         </tr>
    </table>
-
-    <br>
-    <br>
-    <br>
-    <table style="width: 100%;" class="kepala">
-        <tr>
-            <td style="vertical-align: bottom; text-align: center;"  colspan="3">
-                <img src="{{asset('images/BBRI.jpg')}}" style="height:50px">
-            </td>
-            <td colspan="2" style=" font-size: 6;">
-                Lampiran<br>
-                Peraturan Direktur Jenderal Perbendaharaan Nomor Per 37/PB/2007<br>
-                tentang Petunjuk Pelaksanaan Perjalanan Dinas Jabatan Dalam Negeri <br>
-                Bagi Pejabat Negara Pegawai Negeri Sipil dan pejabatn Tidak Tetap <br>
-                Nomor 113/PMK.05/2012 &nbsp;&nbsp;&nbsp; Tgl. 23 Juli 2012
-            </td>
-        </tr>
-        <tr>
-            <td colspan="3" style="text-align: center;  font-size: 10; font-style: normal; line-height: 1;">
-                BALAI BESAR PENGAWAS OBAT DAN MAKANAN</td>
-            <td style="width: 20%">Beban MAK</td>
-            <td style="width: 20%">
-                 : (subakun / akun )
-            </td>
-        </tr>
-        <tr>
-            <td colspan="3" style="text-align: center;  font-size: 10; line-height: 1;" > Di Banjarmasin</td>
-            <td>Tahun Anggaran</td>
-            <td> : TA</td>
-        </tr>
-        <tr>
-            <td colspan="3">
-                <div id="border">
-                   <b> DAFTAR PENGELUARAN RIIL</b><br>
-                </div>
-            </td>
-            <td style="vertical-align: top;" >Bukti Kas</td>
-            <td> : ...............................</td>
-        </tr>
-        <tr>
-            <td colspan="3">Yang bertanda tangan di bawah ini :</td>
-            <td>Program / Kegiatan</td>
-            <td> : (063.01.WA.6384)</td>
-        </tr>
-        <tr>
-            <td style="width: 8%">Nama</td>
-            <td colspan="2"> : (Nama)</td>
-            <td>KRO/RO/Komponen</td>
-            <td> : (EAA/004/002)</td>
-        </tr>
-        <tr>
-            <td>NIP</td>
-            <td colspan="2"> : (no_pegawai)</td>
-            <td>Sub Komponen / Akun</td>
-            <td> : (sub / akun)</td>
-        </tr>
-        <tr>
-            <td>Jabatan</td>
-            <td colspan="2"> : (deskjob) </td>
-            <td>No. Surat Tugas</td>
-            <td> : (NOST)</td>
-        </tr>
-        <tr>
-            <td colspan="2"> <br>   Berdasarkan SPPD Nomor</td>
-            <td  style="width: 40%"> <br> : (NOSPPD)</td>
-            <td colspan="2"> <br> Tanggal SPPD : (TGL)</td>
-        </tr>
-        <tr>
-            <td colspan="2">Untuk Perjalanan Dinas</td>
-            <td colspan="3">
-                : dari <b>(ASAL)</b> ke <b>(TUJUAN)</b> selama (hari) hari, dengan ini menyatakan dengan sesungguhnya bahwa : 
-            </td>
-        </tr>
-        <tr>
-            <td colspan="5">
-                1. Biaya transport pegawai dan atau biaya penginapan di bawah ini yang tidak dapat diperoleh 
-                bukti - bukti pengeluarannya, meliputi :
-            </td>
-        </tr>
-        <tr>
-            <td colspan="5">
-                <table style="width: 100%" class="isi">
-                    <thead>
-                        <tr>
-                            <th class="isi">No.</th>
-                            <th class="isi">Uraian</th>
-                            <th class="isi">Jumlah</th>
-                            <th class="isi">Keterangan</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td style="text-align: center" class="isi">1</td>
-                            <td class="isi" style="line-height: 1;">Biaya Transport : <br>
-                                <b>(ASAL)
-                                    &nbsp;&nbsp;&nbsp;
-                                    (TUJUAN)
-                                </b>
-
-                            </td>
-                            <td class="isi" >Rp. </td>
-                            <td class="isi" style="text-align: center">(jenis transpoprtasi</td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center" class="isi">2</td>
-                            <td class="isi">Biaya Penginapan : 
-                                (jumhari) hari &nbsp;&nbsp; x Rp. nominal 
-                            </td>
-                            <td class="isi">Rp. </td>
-                            <td class="isi"></td>
-                        </tr>
-                        <tr>
-                            <td class="isi"></td>
-                            <td class="isi"><b>Jumlah pengeluaran riil :</b></td>
-                            <td class="isi">Rp. </td>
-                            <td class="isi"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="5">
-                2. Jumlah uang tersebut pada angka 1 di atas benar - benar di keluarkan untuk pelaksanaan perjalanan dinas dimaksud
-                dan apabila di kemudian <br> &nbsp;&nbsp;&nbsp;
-                hari terdapat kelebihan atas pembayaran, kami bersedia untuk menyetorkan kelebihan tersebut
-                ke Kas Negara.
-            </td>
-        </tr>     
-   </table>
-   <table style="width: 100%;" class="kepala">
-        <tr>
-            <td colspan="3">
-                
-                Demikian pernyataan ini kami buat dengan sebenarnya, untuk dipergunakan sebagaaimana mestinya
-                <br><br>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td style="text-align:center;">Banjarmasin, (tgl Kuitansi)</td>
-        </tr>
-        <tr>
-            <td style="text-align:center;">Setuju dibayar</td>
-            <td></td>
-            <td style="text-align:center;">Pejabat Negara / Pegawai Negeri</td>
-        </tr>
-        <tr>
-            <td style="text-align:center;">(JAbatan PPK)</td>
-            <td></td>
-            <td style="text-align:center;">yang melakukan perjalanan dinas :</td>
-        </tr>
-        <tr>
-            <td style="height: 3%"></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td style="line-height: 1; text-align:center;">
-                <u>(nama pejabat)</u> <br>
-                NIP. (no_pegawai)
-            </td>
-            <td></td>
-            <td style="line-height: 1; text-align:center;">
-                <u>Nama pegawai</u> <br>
-                NIP> (no_pegawai)
-            </td>
-            <tr>
-                <td colspan="3" style="text-align:center; letter-spacing: 2px; line-height: 1; "><br>
-                    BALAI BESAR PENGAWAS OBAT DAN MAKANAN DI BANJARMASIN</td>
-            </tr>
-            <tr>
-                <td colspan ="3" style="text-align:center; font-size:6; line-height: 1; ">almagfghfghfgh</td>
-            </tr>
-            <tr>
-                <td style="text-align: left; font-size:6; line-height: 1; "> hari, tanggal kuitansi</td>
-                <td></td>
-                <td style="text-align: right; line-height: 1; "> Page 1 of 1</td>
-            </tr>
-        </tr>
-   </table>
 </body>
+@endforeach
 </html>

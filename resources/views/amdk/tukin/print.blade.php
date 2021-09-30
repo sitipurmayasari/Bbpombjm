@@ -102,7 +102,7 @@
         <table>
             <tr>
                 <td style="text-align: center;">Banjarmasin, &nbsp; &nbsp; &nbsp; 
-                    {{$data->bln}} {{$data->tahun}}
+                    {{$data->bulankasih}} {{$data->thnkasih}}
                 </td>
             </tr>
             <tr>

@@ -1,3 +1,4 @@
+@inject('injectQuery', 'App\InjectQuery')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,6 +75,11 @@
 @foreach ($pegawai as $item)
     
 <body>
+
+    @php
+        $totalPerjalanan = 0;
+    @endphp
+
     <table style="width: 100%; padding" class="kepala">
         <tr>
             <td style="vertical-align: bottom; text-align: center;"  colspan="2">
@@ -112,7 +118,7 @@
         </tr>
         <tr>
             <td>Uang Sebesar</td>
-            <td colspan="3">: <b>Rp.  &nbsp;&nbsp;&nbsp; (Nominal)</b></td>
+            <td colspan="3">: <b>Rp.  &nbsp;&nbsp;&nbsp; {{number_format($totalPerjalanan)}}</b></td>
         </tr>
         <tr>
             <td>Untuk Pembayaran</td>
@@ -162,7 +168,7 @@
         </tr>
         <tr>
             <td>Terbilang</td>
-            <td>: <b>(TERBILANG)</b></td>
+            <td>: <b>{{terbilang($totalPerjalanan)}}</b></td>
             <td></td>
             <td></td>
             <td></td>
@@ -226,6 +232,7 @@
    <hr style="border:1px solid black;">
    <p style="font-size: 10; text-align:center;"><b>RINCIAN BIAYA PERJALANAN DINAS</b></p>
    <table class="isi" style="width: 100%">
+
         <thead>
             <tr>
                 <th class="isi" style="width: 5%">No.</th>
@@ -359,60 +366,159 @@
                 <td class="isi">{{$item->out->transport}}</td>
             </tr>
             <tr>
+                @php
+                    $hari=0;
+                    $destinId = 0;
+                    $subTotal = 0;
+                @endphp
+                @foreach ($tujuan as $key=>$hr)
+                    @php
+                        $hari += $hr->longday;
+                        $destinId = $hr->destination_id;
+                    @endphp
+                @endforeach
                 <td class="isi" style="text-align: center">2</td>
                 <td class="isi">
+                   
                     <table style="width: 100%;" class="kepala">
+                        
                         <tr>
-                            <td colspan="7">Uang Harian di Kota (Kota Tujuan) (Provinsi Kota Tujuan)</td>
+                            <td colspan="7">Uang Harian di Kota
+                                @if (count($item->out->outst_destiny) == 1)
+                                    @foreach ($tujuan as $key=>$kota)
+                                        @if ($loop->first)
+                                            {{$kota->destiny->capital}} 
+                                        @endif
+                                        
+                                    @endforeach
+
+                                @elseif (count($item->out->outst_destiny) == 2)
+                                    @foreach ($tujuan as $key=>$kota)
+                                        {{$kota->destiny->capital}}
+                                        @if ($tujuan->count()-1 != $key)
+                                            {{' dan '}}
+                                        @endif
+                                    @endforeach
+
+                                @else
+                                    @foreach ($tujuan as $key=>$kota)
+                                        @if ($loop->last-1)
+                                            {{$kota->destiny->capital}}{{','}} 
+                                        @endif
+                                        @if ($loop->last)
+                                            {{' dan '}} {{$kota->destiny->capital}}
+                                        @endif
+                                        
+                                    @endforeach
+                                @endif 
+
+                                Provinsi 
+                                @foreach ($tujuan as $key=>$kota)
+                                        @if ($loop->first)
+                                            {{$kota->destiny->province}} 
+                                        @endif        
+                                @endforeach
+
+                            </td>
                         </tr>
                         <tr>
                             <td>- Penuh</td>
                             <td>:</td>
                             <td style="text-align: right;">
-                                (hari)
+                                @foreach ($tr as $isi)
+                                    @if ($isi->outst_employee_id == $item->users_id && $isi->dailywage=='Y')
+                                        {{$hari}}
+                                    @else
+                                        {{ "-" }}
+                                    @endif
+                                @endforeach
                             </td>
                             <td>hari x Rp.</td>
-                            <td style="text-align: right;">(nominal)</td>
+                            <td style="text-align: right;">
+                                @php
+                                    $destinMoney = $injectQuery->getDestinationMoney($item->users_id,$destinId,$data->st->type)
+                                @endphp
+                                {{number_format($destinMoney)}}
+                            </td>
                             <td>- Rp.</td>
-                            <td style="text-align: right;">(Total)</td>
+                             @php
+                                 $subTotalHarian = $hari*$destinMoney;    
+                             @endphp
+                            <td style="text-align: right;">
+                                {{number_format($subTotalHarian)}}
+                            </td>
                         </tr>
                         <tr>
                             <td>- Diklat</td>
                             <td>:</td>
                             <td style="text-align: right;">
-                                (hari)
+                                @foreach ($tr as $isi)
+                                    @if ($isi->outst_employee_id == $item->users_id && $isi->diklat=='Y')
+                                        {{$hari}}
+                                    @else
+                                        {{ '-' }}
+                                    @endif
+                                @endforeach
                             </td>
                             <td>hari x Rp.</td>
-                            <td style="text-align: right;">(nominal)</td>
+                            <td style="text-align: right;">
+                                @php
+                                    $diklatMoney = $injectQuery->getDiklatMoney($item->users_id,$destinId,$data->st->type)
+                                @endphp
+                                {{number_format($diklatMoney)}}
+                            </td>
                             <td>- Rp.</td>
-                            <td style="text-align: right;">(Total)</td>
+                                @php
+                                    $subTotalHarian = $hari*$diklatMoney;    
+                                @endphp
+                            <td style="text-align: right;">
+                                {{number_format($subTotalHarian)}}
+                            </td>
                         </tr>
                         <tr>
                             <td>- Paket Halfday / Fullday</td>
                             <td>:</td>
                             <td style="text-align: right;">
-                                (hari)
+                                {{$hari}}
                             </td>
                             <td>hari x Rp.</td>
-                            <td style="text-align: right;">(nominal)</td>
+                            <td style="text-align: right;">
+                                @php
+                                    $halfdayMoney = $injectQuery->getHalfdayMoney($item->users_id,$destinId,$data->st->type)
+                                @endphp
+                                {{number_format($halfdayMoney)}}
+                            </td>
                             <td>- Rp.</td>
-                            <td style="text-align: right;">(Total)</td>
+                            @php
+                                 $subTotalHarian = $hari*$halfdayMoney;    
+                             @endphp
+                            <td style="text-align: right;">{{number_format($subTotalHarian)}}</td>
                         </tr>
                         <tr>
                             <td>- Paket Fullboard</td>
                             <td>:</td>
                             <td style="text-align: right;">
-                                (hari)
+                                {{$hari}}
                             </td>
                             <td>hari x Rp.</td>
-                            <td style="text-align: right;">(nominal)</td>
+                            <td style="text-align: right;">
+                                @php
+                                    $fullboardMoney = $injectQuery->getFullBoardMoney($item->users_id,$destinId,$data->st->type)
+                                @endphp
+                                {{number_format($fullboardMoney)}}
+                            </td>
                             <td>- Rp.</td>
-                            <td style="text-align: right;">(Total)</td>
+                            @php
+                                 $subTotalHarian = $hari*$fullboardMoney;    
+                             @endphp
+                            <td style="text-align: right;">{{number_format($subTotalHarian)}}</td>
                         </tr>
                     </table>
                 </td>
-                <td class="isi">Rp. &nbsp;&nbsp; 
-
+                @php
+                    $subTotal += $subTotalHarian;
+                @endphp
+                <td class="isi">Rp. {{number_format($subTotal)}}&nbsp;&nbsp; agagga
                 </td>
                 <td class="isi"></td>
             </tr>
@@ -421,7 +527,42 @@
                 <td class="isi">
                     <table style="width: 100%;" class="kepala">
                         <tr>
-                            <td colspan="7">Biaya Pertemuan di Kota (Kota Tujuan) (Provinsi Kota Tujuan)</td>
+                            <td colspan="7">Biaya Pertemuan di Kota
+                                @if (count($item->out->outst_destiny) == 1)
+                                    @foreach ($tujuan as $key=>$kota)
+                                        @if ($loop->first)
+                                            {{$kota->destiny->capital}} 
+                                        @endif
+                                        
+                                    @endforeach
+
+                                @elseif (count($item->out->outst_destiny) == 2)
+                                    @foreach ($tujuan as $key=>$kota)
+                                        {{$kota->destiny->capital}}
+                                        @if ($tujuan->count()-1 != $key)
+                                            {{' dan '}}
+                                        @endif
+                                    @endforeach
+
+                                @else
+                                    @foreach ($tujuan as $key=>$kota)
+                                        @if ($loop->last-1)
+                                            {{$kota->destiny->capital}}{{','}} 
+                                        @endif
+                                        @if ($loop->last)
+                                            {{' dan '}} {{$kota->destiny->capital}}
+                                        @endif
+                                        
+                                    @endforeach
+                                @endif 
+
+                                Provinsi 
+                                @foreach ($tujuan as $key=>$kota)
+                                        @if ($loop->first)
+                                            {{$kota->destiny->province}} 
+                                        @endif        
+                                @endforeach
+                            </td>
                         </tr>
                         <tr>
                             <td>- Paket Halfday / Fullday</td>
@@ -457,7 +598,42 @@
                 <td class="isi">
                     <table style="width: 100%;" class="kepala">
                         <tr>
-                            <td colspan="7">Biaya Penginapan di Kota (Kota Tujuan) (Provinsi Kota Tujuan)</td>
+                            <td colspan="7">Biaya Penginapan di kota
+                                @if (count($item->out->outst_destiny) == 1)
+                                    @foreach ($tujuan as $key=>$kota)
+                                        @if ($loop->first)
+                                            {{$kota->destiny->capital}} 
+                                        @endif
+                                        
+                                    @endforeach
+
+                                @elseif (count($item->out->outst_destiny) == 2)
+                                    @foreach ($tujuan as $key=>$kota)
+                                        {{$kota->destiny->capital}}
+                                        @if ($tujuan->count()-1 != $key)
+                                            {{' dan '}}
+                                        @endif
+                                    @endforeach
+
+                                @else
+                                    @foreach ($tujuan as $key=>$kota)
+                                        @if ($loop->last-1)
+                                            {{$kota->destiny->capital}}{{','}} 
+                                        @endif
+                                        @if ($loop->last)
+                                            {{' dan '}} {{$kota->destiny->capital}}
+                                        @endif
+                                        
+                                    @endforeach
+                                @endif 
+
+                                Provinsi 
+                                @foreach ($tujuan as $key=>$kota)
+                                        @if ($loop->first)
+                                            {{$kota->destiny->province}} 
+                                        @endif        
+                                @endforeach
+                            </td>
                         </tr>
                         <tr>
                             <td>- (Nama Penginapan)</td>
@@ -484,36 +660,71 @@
                 <td class="isi">
                     <table style="width: 100%;" class="kepala">
                         <tr>
+                            @php
+                                $hari=0;
+                                $destinId = 0;
+                                $subTotal = 0;
+                            @endphp
+                            @foreach ($tujuan as $key=>$hr)
+                                @php
+                                    $hari += $hr->longday;
+                                    $destinId = $hr->destination_id;
+                                @endphp
+                            @endforeach
                             <td>Uang Representatif Eselon II</td>
                             <td>:</td>
                             <td style="text-align: right;">
-                                (hari)
+                                @foreach ($tr as $isian)
+                                    @if ($isian->outst_employee_id==$item->users_id)
+                                        @if ($isian->Representatif=='Y')
+                                            {{$hari}}
+                                        @else
+                                            hghgj
+                                        @endif
+                                    @endif
+                                @endforeach
                             </td>
                             <td>hari x Rp.</td>
-                            <td style="text-align: right;">(nominal)</td>
+                            <td style="text-align: right;">
+                                @php
+                                    $eselonMoney = $injectQuery->getEselonMoney($item->users_id,$destinId,$data->st->type)
+                                @endphp
+                                {{number_format($eselonMoney)}}
+                            </td>
                             <td>- Rp.</td>
-                            <td style="text-align: right;">(Total)</td>
+                            @php
+                                 $subTotalHarian = $hari*$eselonMoney;    
+                             @endphp
+                            <td style="text-align: right;">
+                                {{number_format($subTotalHarian)}}
+                            </td>
                         </tr>
                     </table>
                 </td>
                 <td class="isi">Rp. &nbsp;&nbsp;
-
+                    @php
+                        $subTotal += $subTotalHarian;
+                    @endphp
+                    {{number_format($subTotal)}}
                 </td>
                 <td class="isi"></td>
             </tr>
             <tr>
                 <td class="isi"></td>
-                <td class="isi"><b>Jumlah Biaya Perjalanan :</b>
+                <td class="isi"><b><i>Jumlah Biaya Perjalanan :</i></b>
                 </td>
-                <td class="isi">Rp. &nbsp;&nbsp;
-
+                    @php
+                        $totalPerjalanan += $subTotal;
+                    @endphp
+                <td class="isi">Rp. 
+                    {{number_format($totalPerjalanan)}}
                 </td>
                 <td class="isi"> </td>
             </tr>
             <tr>
                 <td class="isi"></td>
-                <td class="isi" colspan="3">
-                    Terblang : <b>(Terbilang)</b>
+                <td class="isi" colspan="3" style = "text-transform:capitalize";>
+                   <i> Terblang : <b>{{terbilang($totalPerjalanan)}} Rupiah</b></i>
                 </td>
             </tr>
         </tbody>
@@ -526,8 +737,8 @@
     </tr>
     <tr>
         <td></td>
-        <td>Telah di bayar sejumlah : Rp. (NOMINAL)</td>
-        <td>Telah menerima jumlah uang sebesar : Rp. (NOMINAL)</td>
+        <td>Telah di bayar sejumlah : Rp. {{number_format($totalPerjalanan)}}</td>
+        <td>Telah menerima jumlah uang sebesar : Rp. {{number_format($totalPerjalanan)}}</td>
     </tr>
     <tr>
         <td></td>
@@ -552,14 +763,14 @@
             <td style="width: 20%"></td>
             <td style="width: 23%">Ditetapkan sejumlah</td>
             <td  style="width: 3%"><b>Rp. </b></td>
-            <td class="isi" style="text-align: right">(total all)</td>
+            <td class="isi" style="text-align: right">{{number_format($totalPerjalanan)}}</td>
             <td style="text-align: center; width:40%">{{$item->out->ppk->jabatan}}</td>
         </tr>
         <tr>
             <td></td>
             <td>Yang telah dibayar semula</td>
             <td><b>Rp. </b></td>
-            <td class="isi" style="text-align: right">(total all)</td>
+            <td class="isi" style="text-align: right">{{number_format($totalPerjalanan)}}</td>
             <td></td>
         </tr>
         <tr>

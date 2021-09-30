@@ -127,6 +127,22 @@ class TravelexpensesController extends Controller
 
     }
 
+    public function edit($id)
+    {
+        $st     = Outstation::all();
+        $pok    = Pok_detail::selectRaw('DISTINCT(subcode_id),accountcode_id')->get();
+        $plane  = Plane::all();
+        $user   = User::where('id','!=','1')->get();
+        $driver = User::where('deskjob','LIKE','%Sopir%')->get();
+
+        $data   = Expenses::where('id',$id)->first();
+        $biaya  = Travelexpenses::where('expenses_id',$id)
+                    ->get();
+
+        return view('finance/travelexpenses.edit',compact('user','st','plane','driver','pok', 'data','biaya'));
+    }
+
+
 
     public function receipt($id)
     {
@@ -143,16 +159,40 @@ class TravelexpensesController extends Controller
                                     ->get();
         $tr         = Travelexpenses::where('expenses_id',$id)
                                     ->get();
-        
+    
         $petugas    = Petugas::where('id', '=', 5)->first();
-        $pdf        = PDF::loadview('finance/travelexpenses.receipt',compact('petugas','data','pegawai','tujuan','tr'));
-        return $pdf->stream();
+        return view('finance/travelexpenses.receipt',compact('petugas','data','pegawai','tujuan','tr'));
+        // $pdf        = PDF::loadview('finance/travelexpenses.receipt',compact('petugas','data','pegawai','tujuan','tr'));
+        // return $pdf->stream();
     }
+
 
     public function riil($id)
     {
+        $petugas    = Petugas::where('id', '=', 5)->first();
+
+        $data       = Expenses::where('id',$id)->first();
+        
+        $pegawai    = Outst_employee::SelectRaw('outst_employee.* ')
+                        ->leftJoin('outstation','outstation.id','=','outst_employee.outstation_id')
+                        ->leftJoin('expenses','expenses.outstation_id','=','outstation.id')
+                        ->where('expenses.id',$id)
+                        ->get();
+        $tujuan    = Outst_destiny::SelectRaw('outst_destiny.* ')
+                        ->leftJoin('outstation','outstation.id','=','outst_destiny.outstation_id')
+                        ->leftJoin('expenses','expenses.outstation_id','=','outstation.id')
+                        ->where('expenses.id',$id)
+                        ->get();
+        $tr         = Travelexpenses::where('expenses_id',$id)
+                        ->get();
+        $pdf = PDF::loadview('finance/travelexpenses.riil',compact('petugas','data','pegawai','tujuan','tr'));
+        return $pdf->stream();
+    }
+
+    public function super($id)
+    {
         $petugas = Petugas::where('id', '=', 5)->first();
-        $pdf = PDF::loadview('finance/travelexpenses.riil',compact('petugas'));
+        $pdf = PDF::loadview('finance/travelexpenses.super',compact('petugas'));
         return $pdf->stream();
     }
 

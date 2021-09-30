@@ -15,21 +15,21 @@
             <div class="panel-heading"><h3 class="panel-title"></h3></div>
             <div class="panel-body">
                <div class="col-md-12">
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <label for="">NO. TUKIN*</label>
                     <input type="text" id="no_adu" readonly required
-                    class="col-xs-10 col-sm-10 required " 
+                    class="col-xs-12 col-sm-12 required " 
                     name="no_aduan"
                     value="{{$data->nomor}}"/>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <label for="">TANGGAL *</label>
                     <input type="text" name="tanggal" readonly 
                                 class="col-xs-10 col-sm-10 required" value="{{$data->tanggal}}" required
                                 data-date-format="yyyy-mm-dd" data-provide="datepicker">
                 </div>
-                <div class="col-md-3">
-                    <label > Bulan Terima *</label>
+                <div class="col-md-2">
+                    <label > Bulan *</label>
                     <select id="bulan" name="bulan" class="col-xs-10 col-sm-10 select2" required>
                         @php
                             $bulan2 = array("","Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus",
@@ -45,13 +45,47 @@
                         @endphp
                     </select>
                 </div>
-                <div class="col-md-3">
-                    <label > Tahun Terima *</label>
+                <div class="col-md-2">
+                    <label > Tahun *</label>
                     <select id="tahun" name="tahun" class="col-xs-10 col-sm-10" required>
                         @php
                             $now=date('Y');
                             $a = $now+1;
                             if($a==$data->tahun){ 
+                                    $pilih="selected";
+                                }else {
+                                    $pilih="";
+                                }
+                             echo 
+                             "<option value=\"$now\" $pilih>$now</option>
+                             <option value=\"$a\" $pilih>$a</option>";
+                        @endphp
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label > Bulan Terima *</label>
+                    <select id="bulan" name="blnkasih" class="col-xs-10 col-sm-10 select2" required>
+                        @php
+                            $bulan2 = array("","Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus",
+                                         "September", "Oktober", "November", "Desember");
+                            for($a=1;$a<=12;$a++){
+                                if($a == $data->blnkasih){ 
+                                    $pilih="selected";
+                                }else {
+                                    $pilih="";
+                                }
+                                echo("<option value=\"$a\" $pilih>$bulan2[$a]</option>"."\n");
+                            }
+                        @endphp
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label > Tahun Terima *</label>
+                    <select id="tahun" name="thnkasih" class="col-xs-10 col-sm-10" required>
+                        @php
+                            $now=date('Y');
+                            $a = $now+1;
+                            if($a==$data->thnkasih){ 
                                     $pilih="selected";
                                 }else {
                                     $pilih="";
