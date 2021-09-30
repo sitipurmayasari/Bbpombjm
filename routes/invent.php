@@ -68,7 +68,6 @@
 
   //Route untuk Laporan
   Route::post('/invent/laporan/cetak','Invent\LaporanController@cetak')->name('laporan.cetak');
-  Route::post('/invent/lapaduan/cetak','Invent\LapAduanController@cetak')->name('lapaduan.cetak');
   Route::post('/invent/lappinjam/cetak','Invent\LapPinjamController@cetak')->name('lappinjam.cetak');
   Route::post('/invent/lapajuan/cetak','Invent\LapAjuController@cetak')->name('lapajuan.cetak');
 

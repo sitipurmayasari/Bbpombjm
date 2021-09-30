@@ -223,7 +223,7 @@
 
         </div><br><br>
 
-        <div class="col-sm-3" style="float: right">
+        <div class="col-sm-4" style="float: right">
             <table class="ttd">
                 <tr>
                     <td class="ttd">Diserahkan</td>

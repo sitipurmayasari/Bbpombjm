@@ -85,8 +85,6 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     //Route untuk Laporan
     Route::get('/invent/laporan','Invent\LaporanController@index')->name('laporan');
     //Route untuk Laporan Aduan
-    Route::get('/invent/lapaduan','Invent\LapAduanController@index')->name('lapaduan');
-    //Route untuk Laporan Peminjaman
     Route::get('/invent/lappinjam','Invent\LapPinjamController@index')->name('lappinjam');
     //Route untuk Laporan Pengajuan
     Route::get('/invent/lapajuan','Invent\LapAjuController@index')->name('lapajuan');

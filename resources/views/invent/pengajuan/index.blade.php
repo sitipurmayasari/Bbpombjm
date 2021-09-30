@@ -50,6 +50,8 @@
                             Menunggu
                         @elseif($row->status==1)
                             Pengecekkan
+                        @else 
+                            Selesai
                         @endif
 
                     </td>

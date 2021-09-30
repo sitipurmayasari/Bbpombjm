@@ -39,7 +39,6 @@
                             </div>
                         </div>
                         <br>
-                        <br>
                         <div class="form-group" id="ruang">
                             <label class="col-sm-3 control-label no-padding-right" 
                             for="form-field-1"> Ruangan
@@ -62,6 +61,19 @@
                                 <select name="inventaris_id" class="col-xs-10 col-sm-10">
                                         <option value="">Pilih Barang</option>
                                     @foreach ($data as $isi)
+                                        <option value="{{$isi->id}}">{{$isi->nama_barang}} || {{$isi->merk}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group barang" id="brgmain">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Nama Barang
+                            </label>
+                            <div class="col-sm-8">
+                                <select name="invent_id" class="col-xs-10 col-sm-10">
+                                        <option value="">Pilih Barang</option>
+                                    @foreach ($dataman as $isi)
                                         <option value="{{$isi->id}}">{{$isi->nama_barang}} || {{$isi->merk}}</option>
                                     @endforeach
                                 </select>
@@ -141,8 +153,9 @@
                 $("#brg").hide();
                 $("#ruang").show();
             }else if(v=="Main"){
-                $("#brg").show();
+                $("#brg").hide();
                 $("#ruang").hide();
+                $("#brgmain").show();
             }else{
                 $("#brg").hide();
                 $("#ruang").show();

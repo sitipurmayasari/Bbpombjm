@@ -16,12 +16,11 @@ class LaporanController extends Controller
 {
     public function index()
     {
-        $jadwal     = JadwalMain::all();
-        $aduan      = Aduan::all();
-        $lokasi     = Lokasi::all();
-        $data       = Inventaris::all();
-        $dataman    = Inventaris::where('kind','R')->get();
-        return view('invent/laporan.index',compact('aduan','jadwal','lokasi','data','dataman'));
+        $jadwal = JadwalMain::all();
+        $aduan = Aduan::all();
+        $lokasi = Lokasi::all();
+        $data = Inventaris::all();
+        return view('invent/laporan.index',compact('aduan','jadwal','lokasi','data'));
     }
     public function cetak(Request $request)
     {
@@ -47,17 +46,15 @@ class LaporanController extends Controller
         }else if($request->jenis_Laporan=="Main"){
             $lokasi = Lokasi::all();
             $user = User::all();
-            $inv = Inventaris::where('id',$request->invent_id)->where('kind','R')
-                            ->first();
+            $inv = Inventaris::where('id',$request->inventaris_id)->first();
             $petugas = Petugas::where('id', '=', 2)->first();
             $data = Maintenance::orderBy('id','desc')
                                 ->when($request->inventaris_id, function ($query) use ($request) {
-                                   $query->where('inventaris_id',$request->invent_id);
+                                   $query->where('inventaris_id',$request->inventaris_id);
                                 })
                                 ->when($request->tahun, function ($query) use ($request) {
                                     if($request->tahun==2){
-                                        $query->whereYear('tgl_pelihara',$request->daftartahun)
-                                        ->where('kind','R');
+                                        $query->whereYear('tgl_pelihara',$request->daftartahun);
                                     }
                                  })
                     ->get();

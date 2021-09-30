@@ -25,9 +25,10 @@ method="post" action="/invent/pengajuan/update/{{$ajuan->id}}">
                     <select name="aduan_status"  class="form-control">
                         <option value="0" {{$ajuan->status==0 ? 'selected' : ''}}>Menunggu</option>
                         <option value="1" {{$ajuan->status==1 ? 'selected' : ''}}>Pengecekkan</option>
+                        <option value="2" {{$ajuan->status==2 ? 'selected' : ''}}>Selesai</option>
                     </select>                        
                 @else
-                    <input type="hidden" name="aduan_status" value="{{$ajuan->status}}">Pengecekkan
+                    <input type="hidden" name="aduan_status" value="{{$ajuan->status}}">
                 @endif
             </td>
         </tr>
