@@ -109,7 +109,7 @@
                 <td style="text-align: center;">Yang membuat pernyataan,</td>
             </tr>
             <tr>
-                <td style="height: 25%"></td>
+                <td style="height: 20%"></td>
             </tr>
             <tr>
                 <td style="text-align: center; line-height: 0;">
