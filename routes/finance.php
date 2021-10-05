@@ -27,6 +27,7 @@
   Route::get('finance/activitycode/delete/{id}','Finance\ActivitycodeController@delete')->name('activitycode.delete');
   Route::get('finance/activitycode/edit/{id}','Finance\ActivitycodeController@edit')->name('activitycode.edit');
   Route::post('finance/activitycode/update/{id}','Finance\ActivitycodeController@update')->name('activitycode.update');
+  Route::get('/finance/activitycode/getprogLengkap','Finance\ActivitycodeController@getprogLengkap')->name('activitycode.getprogLengkap');
 
   //Route untuk Kode KRO
   Route::get('/finance/krocode/create','Finance\KrocodeController@create')->name('krocode.create');

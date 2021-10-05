@@ -31,7 +31,9 @@ class ActivitycodeController extends Controller
 
     public function store(Request $request)
     {
-        
+        $lengkap = $request->lengkap."/".$request->code;
+        $request->merge([ 'lengkap' => $lengkap]);
+
         Activitycode::create($request->all());
         return redirect('/finance/activitycode')->with('sukses','Data Tersimpan');
     }
@@ -47,6 +49,10 @@ class ActivitycodeController extends Controller
     public function update(Request $request, $id)
     {
         $data = Activitycode::find($id);
+
+        $lengkap = $request->lengkap."/".$request->code;
+        $request->merge([ 'lengkap' => $lengkap]);
+
         $data->update($request->all());
         return redirect('/finance/activitycode')->with('sukses','Data Diperbaharui');
     }
@@ -57,5 +63,18 @@ class ActivitycodeController extends Controller
         $petugas = Activitycode::find($id);
         $petugas->delete();
         return redirect('/finance/activitycode')->with('sukses','Data Terhapus');
+    }
+
+    public function getprogLengkap(Request $request)
+    {
+
+        $data = Programcode::SelectRaw('programcode.code AS prog, unitcode.code AS unit, klcode.code AS kl')
+                ->leftJoin('unitcode','unitcode.id','=','programcode.unitcode_id')
+                ->leftJoin('klcode','klcode.id','=','unitcode.klcode_id')
+                ->Where('programcode.id',$request->programcode_id)->first();
+        return response()->json([ 
+            'success' => true,
+            'data' => $data],200
+        );
     }
 }

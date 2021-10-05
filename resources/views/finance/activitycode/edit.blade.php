@@ -31,7 +31,8 @@
                             for="form-field-1"> Kode Program Lembaga
                             </label>
                             <div class="col-sm-8">
-                                <select name="programcode_id" class="col-xs-10 col-sm-10 required " required>
+                                <select name="programcode_id" class="col-xs-10 col-sm-10 required " required 
+                                onchange="getProgram()" id="programcode_id">
                                     <option value="">Pilih Kode</option>
                                     @foreach ($program as $peg)
                                         @if ($data->programcode_id==$peg->id)
@@ -61,6 +62,7 @@
                                 <input type="text"  placeholder="Nama kegiatan"  value="{{$data->name}}"
                                         class="col-xs-10 col-sm-10 required "
                                         name="name" />
+                                <input type="hidden" name="lengkap" id="lengkap" value="{{$data->lengkap}}">
                             </div>
                         </div>
                         </fieldset>        
@@ -79,4 +81,22 @@
     </form>
 </div>
 
+@endsection
+@section('footer')
+    <script>
+        function getProgram(){
+            var programcode_id = $("#programcode_id").val();
+
+            $.get(
+                "{{route('activitycode.getprogLengkap') }}",
+                {
+                    programcode_id:programcode_id,
+                },
+                function(response) {
+                var data = response.data.prog + '/'+ response.data.unit +'/'+ response.data.kl;
+                $("#lengkap").val(data);
+                }
+            );
+        }
+    </script>
 @endsection
