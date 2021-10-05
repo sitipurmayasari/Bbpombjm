@@ -72,7 +72,7 @@
             </tr>
             <tr class="tbl">
                 <td class="tbl"><b>ALOKASI</b></td>
-                <td class="tbl">
+                <td class="tbl" colspan="2">
                     @php
                         $angka = $alokasi->jum;
                         echo "Rp. " . number_format($angka, 2, ".", ",");
@@ -131,7 +131,7 @@
                                 </td>
                                 <td></td>
                                 <td></td>
-                                <td style="text-align: right; color: navy;">
+                                <td style="text-align: right; color: navy; font-size: 10px;">
                                     <b>
                                         @foreach ($prog as $ini)
                                             @if ($item->pok->act->programcode_id == $ini->programcode_id)
@@ -159,7 +159,7 @@
                                 </td>
                                 <td></td>
                                 <td></td>
-                                <td style="text-align: right; color: blue;">
+                                <td style="text-align: right; color: blue; font-size: 10px;">
                                     <b>
                                         @foreach ($activ as $ini)
                                             @if ($item->pok->activitycode_id == $ini->activitycode_id)
@@ -187,7 +187,8 @@
                                 </td>
                                 <td style="border-bottom:dashed; color: red; border-bottom-color: black;"> 1.0 Lembaga</td>
                                 <td style="border-bottom:dashed;"></td>
-                                <td style="text-align: right; border-bottom:dashed; color: red; border-bottom-color: black;">
+                                <td style="text-align: right; border-bottom:dashed; color: red; 
+                                            border-bottom-color: black; font-size: 10px;">
                                     <b>
                                         @foreach ($add as $ini)
                                             @if ($item->krocode_id == $ini->krocode_id)
@@ -215,7 +216,7 @@
                                 </td>
                                 <td></td>
                                 <td></td>
-                                <td style="text-align: right;">
+                                <td style="text-align: right; font-size: 10px;">
                                     <b>
                                         @foreach ($deta as $ini)
                                             @if ($item->detailcode_id == $ini->detailcode_id)
@@ -243,7 +244,7 @@
                                 </td>
                                 <td></td>
                                 <td></td>
-                                <td style="text-align: right;">
+                                <td style="text-align: right; font-size: 10px;">
                                     <b>
                                         @foreach ($komp as $ini)
                                             @if ($item->komponencode_id == $ini->komponencode_id)
@@ -287,7 +288,7 @@
                                 </td>
                                 <td></td>
                                 <td></td>
-                                <td style="text-align: right;">
+                                <td style="text-align: right; font-size: 10px;">
                                     @foreach ($akun as $ini)
                                         @if ($item->accountcode_id == $ini->accountcode_id and $item->subcode_id == $ini->subcode_id)
                                             @php
@@ -311,28 +312,28 @@
                                 {{$item->loka->nama}}
                             </td>
                             <td style="text-align: center;">{{$item->volume}}</td>
-                            <td style="text-align: right;">
+                            <td style="text-align: right; font-size: 10px;">
                                 @php
                                     $angka = $item->price ;
                                     echo "Rp. " . number_format($angka, 2, ".", ",");
                                 @endphp
                                 &nbsp;
                             </td>
-                            <td style="text-align: right;">
+                            <td style="text-align: right; font-size: 10px;">
                                 @php
                                     $angka = $item->total ;
                                     echo "Rp. " . number_format($angka, 2, ".", ",");
                                 @endphp
                                 &nbsp;
                             </td>
-                            <td style="text-align: right;">
+                            <td style="text-align: right; font-size: 10px;">
                                 @php
                                     $angka = $item->realisasi ;
                                     echo "Rp. " . number_format($angka, 2, ".", ",");
                                 @endphp
                                 &nbsp;
                             </td>
-                            <td style="text-align: right;">
+                            <td style="text-align: right; font-size: 10px;">
                                 @php
                                     $angka = $item->sisa ;
                                     echo "Rp. " . number_format($angka, 2, ".", ",");
