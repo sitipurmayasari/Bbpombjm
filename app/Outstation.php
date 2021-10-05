@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Outstation extends Model
 {
     protected $table = "outstation";
-    protected $fillable = ['divisi_id','st_date','number','purpose','budget_id','ppk_id','subcode_id','accountcode_id','city_from'
-    ,'type','transport','activitycode_id'
-    ];
+    protected $fillable = ['divisi_id','st_date','number','purpose','budget_id','ppk_id','pok_detail_id',
+                            'subcode_id','accountcode_id','city_from','type','transport','activitycode_id'
+                        ];
 
     public function divisi()
     {
@@ -18,6 +18,10 @@ class Outstation extends Model
     public function budget()
     {
         return $this->belongsTo(Budget::class,'budget_id','id');
+    }
+    public function pok()
+    {
+        return $this->belongsTo(Pok_detail::class,'pok_detail_id','id');
     }
     public function act()
     {

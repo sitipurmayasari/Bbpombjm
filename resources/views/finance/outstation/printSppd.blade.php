@@ -51,8 +51,9 @@
         <tr>
             <td style="width: 11%">Program/kegiatan</td>
             <td style="width: 18%">:
-                {{$data->act->prog->unit->klcode->code}}.{{$data->act->prog->unit->code}}.
-                {{$data->act->prog->code}} / {{$data->act->code}}
+                {{$data->pok->pok->act->prog->unit->klcode->code}}.{{$data->pok->pok->act->prog->unit->code}}.
+                {{$data->pok->pok->act->prog->code}}
+                 / {{$data->pok->pok->act->code}}
             </td>
             <td rowspan="5" style="vertical-align: bottom; text-align: center;" ><img src="{{asset('images/BBRI.jpg')}}" style="height:80px"></td>
             <td style="width: 28%">Lampiran VI (4 dari 4)</td>
@@ -60,14 +61,16 @@
         <tr>
             <td>KRO/RO/komponen</td>
             <td>:
-                {{$data->sub->komponen->det->unit->code}} / {{$data->sub->komponen->det->code}} / {{$data->sub->komponen->code}}
+                {{$data->pok->sub->komponen->det->unit->code}}
+                 / {{$data->pok->sub->komponen->det->code}}
+                 / {{$data->pok->sub->komponen->code}}
             </td>
             <td>Peraturan Menteri Keuangan tentang Perjalanan Dinas</td>
         </tr>
         <tr>
             <td>Sub Komponen/Akun</td>
             <td>:
-                {{$data->sub->code}} / {{$data->akun->code}}
+                {{$data->pok->sub->code}} / {{$data->pok->akun->code}}
             </td>
             <td>Dalam Negeri bagi Pejabat Negara Pegawai Negeri Sipil</td>
         </tr>
@@ -223,7 +226,7 @@
             </td>
             <td class="isi">     Hanya instansi yang dikuasainya <br>
                  {{$data->budget->name}} <br>
-                 {{$data->sub->komponen->code}} / {{$data->akun->code}}
+                 {{$data->pok->sub->komponen->code}} / {{$data->pok->akun->code}}
             </td>
         </tr>
         <tr>
@@ -236,7 +239,7 @@
                  </tr>
                  <tr>
                     <td>Pada tanggal </td>
-                    <td> : {{tgl_indo(data->st_date)}}
+                    <td> : {{tgl_indo($data->st_date)}}
                     </td>
                  </tr>
                  <tr>

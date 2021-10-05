@@ -108,35 +108,19 @@
                         for="form-field-1"> Kode Anggaran
                         </label>
                         <div class="col-sm-8">
-                            <select name="activitycode_id" class="col-xs-3 col-sm-3 required select2" required>
-                                <option value="">Aktivitas</option>
-                                @foreach ($act as $item)
-                                    @if ($data->activitycode_id == $item->id)
-                                        <option value="{{$item->id}}" selected>{{$item->prog->unit->klcode->code}}.{{$item->prog->unit->code}}.
-                                        {{$item->prog->code}}.{{$item->code}}</option>
+                            <select name="pok_detail_id" class="col-xs-10 col-sm-10 required select2" required>
+                                <option value="">Kode Anggaran</option>
+                                @foreach ($pok as $item)
+                                    @if ($item->id==$data->pok_detail_id)
+                                        <option value="{{$item->id}}" selected>{{$item->pok->act->lengkap}}/{{$item->sub->kodeall}}/
+                                            {{$item->akun->code}} 
+                                            ( Tersisa Rp. {{number_format($item->sisa)}} )
+                                        </option>
                                     @else
-                                        <option value="{{$item->id}}">{{$item->prog->unit->klcode->code}}.{{$item->prog->unit->code}}.
-                                        {{$item->prog->code}}.{{$item->code}}</option>
-                                    @endif
-                                @endforeach
-                            </select>
-                            <select name="subcode_id" class="col-xs-4 col-sm-4 required select2" required>
-                                <option value="">Subakun</option>
-                                @foreach ($sub as $item)
-                                   @if ($data->subcode_id==$item->id)
-                                        <option value="{{$item->id}}" selected>{{$item->kodeall}}</option>
-                                   @else
-                                        <option value="{{$item->id}}">{{$item->kodeall}}</option>
-                                   @endif
-                                @endforeach
-                            </select>
-                            <select name="accountcode_id" class="col-xs-3 col-sm-3 required select2" required>
-                                <option value="">Akun</option>
-                                @foreach ($akun as $item)
-                                    @if ($data->accountcode_id==$item->id)
-                                        <option value="{{$item->id}}" selected>{{$item->code}}</option>
-                                    @else
-                                        <option value="{{$item->id}}">{{$item->code}}</option>
+                                        <option value="{{$item->id}}">{{$item->pok->act->lengkap}}/{{$item->sub->kodeall}}/
+                                            {{$item->akun->code}} 
+                                            ( Tersisa Rp. {{number_format($item->sisa)}} )
+                                        </option>
                                     @endif
                                 @endforeach
                             </select>

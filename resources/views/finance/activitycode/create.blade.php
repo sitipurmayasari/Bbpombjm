@@ -88,7 +88,7 @@
                     programcode_id:programcode_id,
                 },
                 function(response) {
-                var data = response.data.prog + '/'+ response.data.unit +'/'+ response.data.kl;
+                var data = response.data.kl + '/'+ response.data.unit +'/'+ response.data.prog;
                 $("#lengkap").val(data);
                 }
             );

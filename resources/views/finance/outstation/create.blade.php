@@ -96,23 +96,13 @@
                         for="form-field-1"> Kode Anggaran
                         </label>
                         <div class="col-sm-8">
-                            <select name="activitycode_id" class="col-xs-3 col-sm-3 required select2" required>
-                                <option value="">Aktivitas</option>
-                                @foreach ($act as $item)
-                                    <option value="{{$item->id}}">{{$item->prog->unit->klcode->code}}.{{$item->prog->unit->code}}.
-                                                                    {{$item->prog->code}}.{{$item->code}}</option>
-                                @endforeach
-                            </select>
-                            <select name="subcode_id" class="col-xs-4 col-sm-4 required select2" required>
-                                <option value="">Subakun</option>
-                                @foreach ($sub as $item)
-                                    <option value="{{$item->id}}">{{$item->kodeall}}</option>
-                                @endforeach
-                            </select>
-                            <select name="accountcode_id" class="col-xs-3 col-sm-3 required select2" required>
-                                <option value="">Akun</option>
-                                @foreach ($akun as $item)
-                                    <option value="{{$item->id}}">{{$item->code}}</option>
+                            <select name="pok_detail_id" class="col-xs-10 col-sm-10 required select2" required>
+                                <option value="">Kode Anggaran</option>
+                                @foreach ($pok as $item)
+                                    <option value="{{$item->id}}">{{$item->pok->act->lengkap}}/{{$item->sub->kodeall}}/
+                                                                {{$item->akun->code}} 
+                                                                ( Tersisa Rp. {{number_format($item->sisa)}} )
+                                    </option>
                                 @endforeach
                             </select>
                         </div>

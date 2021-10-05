@@ -215,10 +215,11 @@
                     @if ($data->budget_id == 3)
                         {{' - '}}
                     @else
-                        {{$data->act->prog->unit->klcode->code}}.{{$data->act->prog->unit->code}}.
-                        {{$data->act->prog->code}}.{{$data->act->code}}.
-                        {{$data->sub->komponen->det->unit->code}}.{{$data->sub->komponen->det->code}}.
-                        {{$data->sub->komponen->code}}.{{$data->sub->code}}.{{$data->akun->code}}
+                        {{$data->pok->pok->act->prog->unit->klcode->code}}.{{$data->pok->pok->act->prog->unit->code}}.
+                        {{$data->pok->pok->act->prog->code}}.{{$data->pok->pok->act->code}}.
+                        {{$data->pok->sub->komponen->det->unit->code}}.{{$data->pok->sub->komponen->det->code}}.
+                        {{$data->pok->sub->komponen->code}}.{{$data->pok->sub->code}}.{{$data->pok->akun->code}}
+
                     @endif
                 </td>
             </tr>

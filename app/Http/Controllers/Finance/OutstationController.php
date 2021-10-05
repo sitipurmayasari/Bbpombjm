@@ -21,6 +21,7 @@ use App\Pejabat;
 use PDF;
 use DateTime;
 use Carbon\Carbon;
+use App\Pok_detail;
 
 class OutstationController extends Controller
 {
@@ -39,6 +40,7 @@ class OutstationController extends Controller
 
     public function create()
     {
+        $thn            = Carbon::now()->year;
         $ppk            = PPK::all();
         $budget         = Budget::all();
         $act            = Activitycode::all();
@@ -47,7 +49,13 @@ class OutstationController extends Controller
         $div            = Divisi::all();
         $user           = User::where('id','!=','1')->get();
         $destination    = Destination::all();
-        return view('finance/outstation.create',compact('user','destination','div','ppk', 'sub', 'akun','act','budget'));
+        $pok            = Pok_detail::SelectRaw('pok_detail.*')
+                                    ->leftjoin('pok','pok.id','=','pok_detail.pok_id')
+                                    ->where('pok.year','=',$thn)
+                                    ->get();
+        
+        return view('finance/outstation.create',compact('user','destination','div','ppk', 'sub', 'akun','act','budget','pok'
+      ));
     }
 
     function getnost(Request $request){
@@ -103,14 +111,9 @@ class OutstationController extends Controller
             'purpose'=> 'required',
             'ppk_id'=> 'required',
             'budget_id'=> 'required',
-            // 'activitycode_id'=> 'required',
-            // 'subcode_id'=> 'required',
-            // 'accountcode_id'=> 'required',
             'city_from'=> 'required',
             'type'=> 'required',
         ]);
-
-       
           
         DB::beginTransaction(); 
             $outstation = Outstation::create($request->all());
@@ -201,6 +204,7 @@ class OutstationController extends Controller
 
       public function edit($id)
       {
+          $thn            = Carbon::now()->year;
           $ppk            = PPK::all();
           $budget         = Budget::all();
           $act            = Activitycode::all();
@@ -212,7 +216,13 @@ class OutstationController extends Controller
           $data           = Outstation::where('id',$id)->first();
           $petugas        = Outst_employee::where('outstation_id',$id)->get();
           $kota           = Outst_destiny::where('outstation_id',$id)->get();
-          return view('finance/outstation.edit',compact('data','petugas','kota','ppk','budget','act','sub','akun','div','user','destination'));
+          $pok            = Pok_detail::SelectRaw('pok_detail.*')
+                          ->leftjoin('pok','pok.id','=','pok_detail.pok_id')
+                          ->where('pok.year','=',$thn)
+                          ->get();
+          return view('finance/outstation.edit',compact('data','petugas','kota','ppk','budget','act','sub',
+                      'akun','div','user','destination','pok'
+                    ));
       }
 
       function getNomorSPPD(Request $request){
