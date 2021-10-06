@@ -507,8 +507,8 @@
                         '<td>'+response.saudara[i].tempat_lhr_saudara+'</td>'+
                         '<td>'+response.saudara[i].tgl_lhr_saudara+'</td>'+
                         '<td>'+response.saudara[i].jkel_saudara+'</td>'+
-                        '<td>'+response.saudara[i].pekerjaan_saudara+'</td>'+
                         '<td>'+response.saudara[i].alamat_saudara+'</td>'+
+                        '<td>'+response.saudara[i].pekerjaan_saudara+'</td>'+
                         '<td>'+response.saudara[i].telp_saudara+'</td>'+
                         '<td>'+
                             '<a href="#" class="btn btn-warning ubah-saudara"'+

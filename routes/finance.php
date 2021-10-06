@@ -164,7 +164,7 @@
   Route::post('finance/travelexpenses/update/{id}','Finance\TravelexpensesController@update')->name('travelexpenses.update');
   Route::get('finance/travelexpenses/receipt/{id}','Finance\TravelexpensesController@receipt')->name('travelexpenses.receipt');
   Route::get('finance/travelexpenses/riil/{id}','Finance\TravelexpensesController@riil')->name('travelexpenses.riil');
-  Route::get('finance/travelexpenses/super','Finance\TravelexpensesController@super')->name('travelexpenses.super');
+  Route::get('finance/travelexpenses/super{id}','Finance\TravelexpensesController@super')->name('travelexpenses.super');
 
   //Route untuk petugas
   Route::post('/finance/petugas/store','Finance\PetugasController@store')->name('petugasmon.store');

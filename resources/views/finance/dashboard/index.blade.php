@@ -32,14 +32,12 @@
           </i>
         </div>
         <p class="card-category">Penggunaan Anggaran Tahun ini</p>
-        <h1 class="card-title">
-          Rp. 
-          {{-- {{$latih->waktu}} --}} 500.000,-
-        
-        </h1>
+        <h2 class="card-title">
+          Rp. {{number_format($sisa)}}
+        </h2>
       </div>
       <div class="card-footer">
-       <label for="">Dari Rp. 10.00000,-</label>
+       <label for="">Dari Rp. {{number_format($tot)}}</label>
       </div>
     </div>
   </div>
