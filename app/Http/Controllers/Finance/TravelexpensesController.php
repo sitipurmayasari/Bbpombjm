@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use DateTime;
 use Carbon\Carbon;
 use App\Travelexpenses;
+use App\Travelexpenses1;
 use App\Expenses;
 use App\User;
 use App\Destination;
@@ -40,9 +41,7 @@ class TravelexpensesController extends Controller
         $pok = Pok_detail::selectRaw('DISTINCT(subcode_id),accountcode_id')->get();
         $plane = Plane::all();
         $user = User::where('id','!=','1')->get();
-        $driver = User::where('deskjob','LIKE','%Sopir%')->get();
-
-        return view('finance/travelexpenses.create',compact('user','st','plane','driver','pok'));
+        return view('finance/travelexpenses.create',compact('user','st','plane','pok'));
     }
 
     function getMaksud(Request $request){
@@ -55,15 +54,19 @@ class TravelexpensesController extends Controller
                                 ->leftJoin('destination','destination.id','=','outst_destiny.destination_id')
                                 ->where('outst_destiny.outstation_id',$request->id)
                                 ->get();
-        $lama = Outst_destiny::selectRaw('sum(longday) as lawas')
+        $lama   = Outst_destiny::selectRaw('sum(longday) as lawas')
                                 ->where('outstation_id',$request->id)
-                                ->first(); 
+                                ->first();
+        $dest   = Destination::WhereRaw('id = (SELECT destination_id FROM outst_destiny WHERE outstation_id ='.$request->id.'
+                                        ORDER BY id DESC limit 1) ')
+                                ->first();
 
         return response()->json([ 
             'success'   => true,
             'st'        =>$st,
             'peg'       =>$peg,
-            'lama'     =>$lama
+            'lama'      =>$lama,
+            'dest'      =>$dest
         ],200);
     }
 
@@ -79,45 +82,64 @@ class TravelexpensesController extends Controller
             $expenses = Expenses::create($request->all());
             $expenses_id = $expenses->id;
             for ($i = 0; $i < count($request->input('outst_employee_id')); $i++){
-                $transport = $request->transport != null ?  $request->transport[$i] : 'N';
-                $dailywage = $request->dailywage != null ?  $request->dailywage[$i] : 'N';
-                $diklat = $request->diklat != null ?  $request->diklat[$i] : 'N';
-                $fullboard = $request->fullboard != null ?  $request->fullboard[$i] : 'N';
-                $fullday = $request->fullday != null ?  $request->fullday[$i] : 'N';
-                $representatif = $request->representatif != null ?  $request->representatif[$i] : 'N';
+                $dailywage      = $request->dailywage != null ?  $request->dailywage[$i] : 'N';
+                $diklat         = $request->diklat != null ?  $request->diklat[$i] : 'N';
+                $fullboard      = $request->fullboard != null ?  $request->fullboard[$i] : 'N';
+                $fullday        = $request->fullday != null ?  $request->fullday[$i] : 'N';
+                $representatif  = $request->representatif != null ?  $request->representatif[$i] : 'N';
 
-                $data = [
+                $dataone = [
                     'expenses_id'       => $expenses_id,
                     'outst_employee_id' => $request->outst_employee_id[$i],
-                    'transport'         => $transport,
                     'dailywage'         => $dailywage,
                     'diklat'            => $diklat,
                     'fullboard'         => $fullboard,
                     'fullday'           => $fullday,
                     'representatif'     => $representatif,
-                    'innname_1'         => $request->innname_1[$i],
-                    'inn_fee_1'         => $request->inn_fee_1[$i],
-                    'long_stay_1'       => $request->long_stay_1[$i],
-                    'klaim_1'           => $request->klaim_1[$i],
-                    'isi_1'             => $request->isi_1[$i],
-                    'innname_2'         => $request->innname_2[$i],
-                    'inn_fee_2'         => $request->inn_fee_2[$i],
-                    'long_stay_2'       => $request->long_stay_2[$i],
-                    'klaim_2'           => $request->klaim_2[$i],
-                    'isi_2'             => $request->isi_2[$i],
-                    'plane_id'          => $request->plane_id[$i],
-                    'planego'           => $request->planego[$i],
-                    'godate'            => $request->godate[$i],
-                    'returndate'        => $request->returndate[$i],
-                    'planereturn'       => $request->planereturn[$i],
-                    'bbm'               => $request->bbm[$i],
-                    'taxy_count_from'   => $request->taxy_count_from[$i],
-                    'taxy_fee_from'     => $request->taxy_fee_from[$i],
-                    'taxy_count_to'     => $request->taxy_count_to[$i],
-                    'taxy_fee_to'       => $request->taxy_fee_to[$i]
-
+                    'hitdaily'          => $request->hitdaily[$i],
+                    'hitdiklat'         => $request->hitdiklat[$i],
+                    'hitfullb'          => $request->hitfullb[$i],
+                    'hithalf'           => $request->hithalf[$i],
+                    'hitrep'            => $request->hitrep[$i]
                 ];
-                Travelexpenses::create($data);
+                Travelexpenses::create($dataone);
+            }
+                for ($i = 0; $i < count($request->input('outst_employee_id')); $i++){
+                   
+                    $datatwo = [
+                        'expenses_id'       => $expenses_id,
+                        'outst_employee_id' => $request->outst_employee_id[$i],
+                        'innname_1'         => $request->innname_1[$i],
+                        'inn_fee_1'         => $request->inn_fee_1[$i],
+                        'long_stay_1'       => $request->long_stay_1[$i],
+                        'isi_1'             => $request->isi_1[$i],
+                        'innname_2'         => $request->innname_2[$i],
+                        'inn_fee_2'         => $request->inn_fee_2[$i],
+                        'long_stay_2'       => $request->long_stay_2[$i],
+                        'isi_2'             => $request->isi_2[$i],
+                        'bbm'               => $request->bbm[$i],
+                        'taxy_count_from'   => $request->taxy_count_from[$i],
+                        'taxy_fee_from'     => $request->taxy_fee_from[$i],
+                        'taxy_count_to'     => $request->taxy_count_to[$i],
+                        'plane_id1'         => $request->plane_id1[$i],
+                        'plane_id2'         => $request->plane_id2[$i],
+                        'plane_id3'         => $request->plane_id3[$i],
+                        'plane_idreturn'    => $request->plane_idreturn[$i],
+                        'planenumber1'      => $request->planenumber1[$i],
+                        'planenumber2'      => $request->planenumber2[$i],
+                        'planenumber3'      => $request->planenumber3[$i],
+                        'planenumberreturn' => $request->planenumberreturn[$i],
+                        'planefee1'         => $request->planefee1[$i],
+                        'planefee2'         => $request->planefee2[$i],
+                        'planefee3'         => $request->planefee3[$i],
+                        'planereturnfee'    => $request->planereturnfee[$i],
+                        'godate1'           => $request->godate1[$i],
+                        'godate2'           => $request->godate2[$i],
+                        'godate3'           => $request->godate3[$i],
+                        'returndate'        => $request->returndate[$i]
+    
+                    ];
+                    Travelexpenses1::create($datatwo);
             }
             DB::commit();
 
@@ -159,9 +181,11 @@ class TravelexpensesController extends Controller
                                     ->get();
         $tr         = Travelexpenses::where('expenses_id',$id)
                                     ->get();
+        $lain         = Travelexpenses1::where('expenses_id',$id)
+                                    ->get();
     
         $petugas    = Petugas::where('id', '=', 5)->first();
-        return view('finance/travelexpenses.receipt',compact('petugas','data','pegawai','tujuan','tr'));
+        return view('finance/travelexpenses.receipt',compact('petugas','data','pegawai','tujuan','tr','lain'));
         // $pdf        = PDF::loadview('finance/travelexpenses.receipt',compact('petugas','data','pegawai','tujuan','tr'));
         // return $pdf->stream();
     }
@@ -191,8 +215,12 @@ class TravelexpensesController extends Controller
 
     public function super($id)
     {
-        $petugas = Petugas::where('id', '=', 5)->first();
-        $pdf = PDF::loadview('finance/travelexpenses.super',compact('petugas'));
+        $pegawai    = Outst_employee::SelectRaw('outst_employee.* ')
+                        ->leftJoin('outstation','outstation.id','=','outst_employee.outstation_id')
+                        ->leftJoin('expenses','expenses.outstation_id','=','outstation.id')
+                        ->where('expenses.id',$id)
+                        ->get();
+        $pdf = PDF::loadview('finance/travelexpenses.super',compact('pegawai'));
         return $pdf->stream();
     }
 

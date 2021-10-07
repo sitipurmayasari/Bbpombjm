@@ -145,6 +145,17 @@
                             </select>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Petugas External
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="radio" required value="N" checked
+                            name="external"/> &nbsp; Tidak &nbsp;
+                            <input type="radio" required value="Y"
+                            name="external"/> &nbsp; Ya
+                        </div>
+                    </div>
                 </fieldset>   
             </div>
         </div>

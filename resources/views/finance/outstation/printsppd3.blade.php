@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>SPPD</title>
     <style>
         @page {
             size: A4;
@@ -296,7 +296,7 @@
                 </tr>
                 <tr>
                     <td  colspan="2" style="text-align: center;">(Tempat kedudukan)</td>
-                    <td >Pada tanggal </td>
+                    <td >Tujuan </td>
                     <td > :
                         @foreach ($data->outst_destiny as $key=>$item)
                             @if ($loop->first)

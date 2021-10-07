@@ -8,7 +8,7 @@ class Outstation extends Model
 {
     protected $table = "outstation";
     protected $fillable = ['divisi_id','st_date','number','purpose','budget_id','ppk_id','pok_detail_id',
-                            'subcode_id','accountcode_id','city_from','type','transport','activitycode_id'
+                            'subcode_id','accountcode_id','city_from','type','transport','activitycode_id','external'
                         ];
 
     public function divisi()

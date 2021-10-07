@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>SPPD</title>
+    <title>SPPD EXTERNAL</title>
     <style>
         @page {
             size: A4;
@@ -292,19 +292,19 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="text-align: left;">Kepala bagian Tata Usaha</td>
+                    <td colspan="4" style="text-align: left;"></td>
                 </tr>
                 <tr>
                     <td style="height: 5%" colspan="4" style="text-align: left;"></td>
                 </tr>
                 <tr>
                     <td colspan="4" style="text-align: left;">
-                        <u><b> {{$menyetujui->user->name}} </b></u>
+                       
                     </td>
                 </tr>
                 <tr>
                     <td colspan="4" style="text-align: left;">
-                        NIP. {{$menyetujui->user->no_pegawai}}
+                       
                     </td>
                 </tr>
              
@@ -567,18 +567,18 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2"> {{$data->ppk->jabatan}}</td>
+                    <td colspan="2"> </td>
                 </tr>
                 <tr>
                     <td  style="height: 5%"></td>
                 </tr>
                 <tr>
                     <td  colspan="2">
-                        <u><b> {{$data->ppk->user->name}} </b></u>
+                        
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2">{{$data->ppk->user->no_pegawai}}</td>
+                    <td colspan="2"></td>
                 </tr>
             </table>
         </td>

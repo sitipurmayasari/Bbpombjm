@@ -191,11 +191,20 @@ class OutstationController extends Controller
 
         } else {
 
-          if ($hit->jum==3) {
-            $pdf = PDF::loadview('finance/outstation.printSppd3',compact('data','isian','menyetujui','destinys','lama'));
-          }else{
-            $pdf = PDF::loadview('finance/outstation.printSppd',compact('data','isian','menyetujui','destinys','lama'));
+          if ($data->external=='N') {
+            if ($hit->jum==3) {
+              $pdf = PDF::loadview('finance/outstation.printSppd3',compact('data','isian','menyetujui','destinys','lama'));
+            }else{
+              $pdf = PDF::loadview('finance/outstation.printSppd',compact('data','isian','menyetujui','destinys','lama'));
+            }
+          } else {
+            if ($hit->jum==3) {
+              $pdf = PDF::loadview('finance/outstation.printSppd3ex',compact('data','isian','menyetujui','destinys','lama'));
+            }else{
+              $pdf = PDF::loadview('finance/outstation.printSppdex',compact('data','isian','menyetujui','destinys','lama'));
+            }
           }
+          
 
         }
         return $pdf->stream();

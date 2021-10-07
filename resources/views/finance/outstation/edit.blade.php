@@ -195,6 +195,24 @@
                             </select>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Petugas External
+                        </label>
+                        <div class="col-sm-8">
+                           @if ($data->external=='N')
+                                <input type="radio" required value="N" checked
+                                name="external"/> &nbsp; Tidak &nbsp;
+                                <input type="radio" required value="Y"
+                                name="external"/> &nbsp; Ya
+                           @else
+                                <input type="radio" required value="N"
+                                name="external"/> &nbsp; Tidak &nbsp;
+                                <input type="radio" required value="Y" checked
+                                name="external"/> &nbsp; Ya
+                           @endif
+                        </div>
+                    </div>
                 </fieldset>   
             </div>
         </div>

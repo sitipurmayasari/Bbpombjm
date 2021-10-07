@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>DALAM KOTA</title>
     <style>
          @page {
             size: A4 landscape;
@@ -49,21 +49,21 @@
             <tr>
                 <td style="width: 11%">Program/kegiatan</td>
                 <td style="width: 18%">:
-                    {{$data->act->prog->unit->klcode->code}}.{{$data->act->prog->unit->code}}.
-                    {{$data->act->prog->code}} / {{$data->act->code}}
+                    {{$data->pok->pok->act->prog->unit->klcode->code}}.{{$data->pok->pok->act->prog->unit->code}}.
+                    {{$data->pok->pok->act->prog->code}} / {{$data->pok->pok->act->code}}
                 </td>
             </tr>
             <tr>
                 <td>KRO/RO/komponen</td>
                 <td>:
-                    {{$data->sub->komponen->det->unit->code}} / {{$data->sub->komponen->det->code}} / {{$data->sub->komponen->code}}
+                    {{$data->pok->sub->komponen->det->unit->code}} / {{$data->pok->sub->komponen->det->code}} / {{$data->pok->sub->komponen->code}}
                 </td>
                
             </tr>
             <tr>
                 <td>Sub Komponen/Akun</td>
                 <td>:
-                    {{$data->sub->code}} / {{$data->akun->code}}
+                    {{$data->pok->sub->code}} / {{$data->pok->akun->code}}
                 </td>
                 
             </tr>
@@ -106,7 +106,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td class="detail" style="text-align: center">
+                    <td class="detail" style="text-align: center; height">
                         @php
                             $no= 1;
                         @endphp
@@ -119,7 +119,7 @@
                             {{$row->pegawai->name}} <br>
                         @endforeach
                     </td>
-                    <td class="detail">
+                    <td class="detail" style="text-align:center;">
                         @php
                         $a = strtotime($item->go_date);
                         $c = date('D', $a);
@@ -143,31 +143,7 @@
                         echo $days; 
                     @endphp
                     </td class="detail">
-                    <td class="detail">
-                        @php
-                        $a = $item->go_date;
-
-                        function tgl_indo($tanggal){
-                            $bulan = array (
-                                1 =>   'Januari',
-                                'Februari',
-                                'Maret',
-                                'April',
-                                'Mei',
-                                'Juni',
-                                'Juli',
-                                'Agustus',
-                                'September',
-                                'Oktober',
-                                'November',
-                                'Desember'
-                            );
-                            $pecahkan = explode('-', $tanggal);
-                            return $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
-                        }
-
-                        echo tgl_indo($a); 
-                    @endphp
+                    <td class="detail" style="height:60%; text-align:center;" >{{tgl_indo($item->go_date)}}
                     </td>
                     <td class="detail"></td>
                     <td class="detail"></td>

@@ -10,7 +10,6 @@
                                         <th style="text-align: center;">NO</th>
                                         <th style="text-align: center;">Nama</th>
                                         <th style="text-align: center;">Harian</th>
-                                        <th style="text-align: center;">Transport</th>
                                         <th style="text-align: center;">Diklat</th>
                                         <th style="text-align: center;">Fullboard</th>
                                         <th style="text-align: center;">Fullday/ Halfday</th>

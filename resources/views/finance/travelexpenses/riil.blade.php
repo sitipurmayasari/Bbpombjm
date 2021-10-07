@@ -98,7 +98,7 @@
                 BALAI BESAR PENGAWAS OBAT DAN MAKANAN</td>
             <td style="width: 20%">Beban MAK</td>
             <td style="width: 20%">
-                 : (subakun / akun )
+                 : {{$item->out->pok->sub->code}} / {{$item->out->pok->akun->code}}
             </td>
         </tr>
         <tr>
@@ -119,8 +119,8 @@
             <td colspan="3">Yang bertanda tangan di bawah ini :</td>
             <td>Program / Kegiatan</td>
             <td> : 
-                {{$item->out->act->prog->unit->klcode->code}}.{{$item->out->act->prog->unit->code}}.
-                    {{$item->out->act->prog->code}} / {{$item->out->act->code}}
+                {{$item->out->pok->pok->act->prog->unit->klcode->code}}.{{$item->out->pok->pok->act->prog->unit->code}}.
+                    {{$item->out->pok->pok->act->prog->code}} / {{$item->out->pok->pok->act->code}}
             </td>
         </tr>
         <tr>
@@ -128,8 +128,8 @@
             <td colspan="2"> : {{$item->pegawai->name}}</td>
             <td>KRO/RO/Komponen</td>
             <td> :
-                {{$item->out->sub->komponen->det->unit->code}} / {{$item->out->sub->komponen->det->code}} / 
-                    {{$item->out->sub->komponen->code}}
+                {{$item->out->pok->sub->komponen->det->unit->code}} / {{$item->out->pok->sub->komponen->det->code}} / 
+                    {{$item->out->pok->sub->komponen->code}}
             </td>
         </tr>
         <tr>
@@ -143,7 +143,7 @@
             </td>
             <td>Sub Komponen / Akun</td>
             <td> : 
-                {{$item->out->sub->code}} / {{$item->out->akun->code}}
+                {{$item->out->pok->sub->code}} / {{$item->out->pok->akun->code}}
             </td>
         </tr>
         <tr>
@@ -358,7 +358,7 @@
                 BALAI BESAR PENGAWAS OBAT DAN MAKANAN</td>
             <td style="width: 20%">Beban MAK</td>
             <td style="width: 20%">
-                 : (subakun / akun )
+                 : {{$item->out->pok->sub->code}} / {{$item->out->pok->akun->code}}
             </td>
         </tr>
         <tr>
@@ -379,8 +379,8 @@
             <td colspan="3">Yang bertanda tangan di bawah ini :</td>
             <td>Program / Kegiatan</td>
             <td> : 
-                {{$item->out->act->prog->unit->klcode->code}}.{{$item->out->act->prog->unit->code}}.
-                    {{$item->out->act->prog->code}} / {{$item->out->act->code}}
+                {{$item->out->pok->pok->act->prog->unit->klcode->code}}.{{$item->out->pok->pok->act->prog->unit->code}}.
+                    {{$item->out->pok->pok->act->prog->code}} / {{$item->out->pok->pok->act->code}}
             </td>
         </tr>
         <tr>
@@ -388,8 +388,8 @@
             <td colspan="2"> : {{$item->pegawai->name}}</td>
             <td>KRO/RO/Komponen</td>
             <td> :
-                {{$item->out->sub->komponen->det->unit->code}} / {{$item->out->sub->komponen->det->code}} / 
-                    {{$item->out->sub->komponen->code}}
+                {{$item->out->pok->sub->komponen->det->unit->code}} / {{$item->out->pok->sub->komponen->det->code}} / 
+                    {{$item->out->pok->sub->komponen->code}}
             </td>
         </tr>
         <tr>
@@ -403,7 +403,7 @@
             </td>
             <td>Sub Komponen / Akun</td>
             <td> : 
-                {{$item->out->sub->code}} / {{$item->out->akun->code}}
+                {{$item->out->pok->sub->code}} / {{$item->out->pok->akun->code}}
             </td>
         </tr>
         <tr>
