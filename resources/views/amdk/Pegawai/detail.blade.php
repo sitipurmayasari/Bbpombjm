@@ -39,7 +39,7 @@
     </tr>
     <tr>
         <td>Tempat/Tgl Lahir</td>
-        <td>{{$data->tempat_lhr}}, {{\Carbon\Carbon::parse($data->tgl_lahir)->format('d M Y')}}</td>
+        <td>{{$data->tempat_lhr}}, {{tgl_indo($data->tgl_lhr)}}</td>
         <td>Sub Kelompok</td>
         <td>
             @if ($data->subdivisi_id != null)

@@ -78,7 +78,7 @@
                       Tempat/ Tanggal Lahir
                     </div>
                     <div class="col-sm-4 text-secondary">
-                      {{auth()->user()->tempat_lhr}}, {{auth()->user()->tgl_lhr}}
+                      {{auth()->user()->tempat_lhr}}, {{tgl_indo(auth()->user()->tgl_lhr)}}
                     </div>
                     <div class="col-sm-2">
                         Status Kepegawaian
