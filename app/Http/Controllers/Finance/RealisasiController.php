@@ -41,17 +41,20 @@ class RealisasiController extends Controller
 
     public function create()
     {
-       
-        $act = Activitycode::all();
-        $kom = Komponencode::all();
-        $akun = Accountcode::all();
+        $thn  = Carbon::now()->year;
         $loka = Loka::all();
-        return view('finance/realisasi.create',compact('act','kom','akun','loka'));
+        $pok  = Pok_detail::SelectRaw('pok_detail.*')
+                ->leftjoin('pok','pok.id','=','pok_detail.pok_id')
+                ->where('pok.year','=',$thn)
+                ->get();
+        return view('finance/realisasi.create',compact('loka','pok'));
     }
 
     public function getAsal(Request $request)
       {
-          $data = Pok::where('year',$request->year)
+          $data = Pok::SelectRaw('pok.*, activitycode.lengkap AS act')
+                    ->Leftjoin('activitycode','activitycode.id','=','pok.activitycode_id')
+                    ->where('year',$request->year)
                     ->get();
           return response()->json([ 
               'success' => true,
@@ -61,15 +64,15 @@ class RealisasiController extends Controller
 
     public function getKomponen(Request $request)
     {
-        $data = Pok_detail::SelectRaw('DISTINCT subcode_id, subcode.code AS sub, komponencode.code AS kom, detailcode.code AS ro, krocode.code AS kro')
-                    ->LeftJoin('pok','pok.id','=','pok_detail.pok_id')
-                    ->LeftJoin('krocode','krocode.id','=','pok_detail.krocode_id')
-                    ->LeftJoin('detailcode','detailcode.id','=','pok_detail.detailcode_id')
-                    ->LeftJoin('komponencode','komponencode.id','=','pok_detail.komponencode_id')
-                    ->LeftJoin('subcode','subcode.id','=','pok_detail.subcode_id')
-                    ->where('pok.id',$request->pok_id)
-                    ->where('pok.activitycode_id',$request->activitycode_id)
-                    ->get();
+        $data = Pok_detail::SelectRaw('pok_detail.id, activitycode.lengkap AS act, subcode.kodeall AS sub, 
+                                        accountcode.code AS akun, loka.nama')
+                        ->leftjoin('pok','pok.id','=','pok_detail.pok_id')
+                        ->leftjoin('activitycode','activitycode.id','=','pok.activitycode_id')
+                        ->leftjoin('subcode','subcode.id','=','pok_detail.subcode_id')
+                        ->leftjoin('accountcode','accountcode.id','=','pok_detail.accountcode_id')
+                        ->leftjoin('loka','loka.id','=','pok_detail.loka_id')
+                        ->where('pok.id','=',$request->pok_id)
+                        ->get();
         return response()->json([ 
             'success' => true,
             'data' => $data],200
@@ -91,27 +94,10 @@ class RealisasiController extends Controller
         );
     }
 
-    public function getLokasi(Request $request)
-    {
-        $data = Pok_detail::SelectRaw('distinct loka.id, loka.nama')
-                    ->LeftJoin('pok','pok.id','=','pok_detail.pok_id')
-                    ->LeftJoin('loka','loka.id','=','pok_detail.loka_id')
-                    ->where('pok.id',$request->pok_id)
-                    ->where('pok_detail.accountcode_id',$request->accountcode_id)
-                    ->where('pok_detail.subcode_id',$request->subcode_id)
-                    ->get();
-        return response()->json([ 
-            'success' => true,
-            'data' => $data],200
-        );
-    }
 
     public function getNilai(Request $request)
     {
-        $data = Pok_detail::where('pok_id',$request->pok_id)
-                    ->where('accountcode_id',$request->accountcode_id)
-                    ->where('subcode_id',$request->subcode_id)
-                    ->where('loka_id',$request->loka_id)
+        $data = Pok_detail::where('id',$request->pok_detail_id)
                     ->first();
         return response()->json([ 
             'success' => true,

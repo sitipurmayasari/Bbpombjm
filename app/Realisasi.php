@@ -7,8 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Realisasi extends Model
 {
     protected $table = "realisasi";
-    protected $fillable = ['number','users_id','pok_detail_id','keterangan','asalpok',
-    'activitycode_id','subcode_id','accountcode_id','loka_id'];
+    protected $fillable = ['number','users_id','pok_detail_id','keterangan','asalpok'];
 
     public function pegawai()
     {
@@ -18,16 +17,6 @@ class Realisasi extends Model
     public function pokdetail()
     {
         return $this->belongsTo(Pok_detail::class,'pok_detail_id','id');
-    }
-
-    public function sub()
-    {
-        return $this->belongsTo(Subcode::class,'subcode_id','id');
-    }
-
-    public function akun()
-    {
-        return $this->belongsTo(Accountcode::class,'accountcode_id','id');
     }
 
 }

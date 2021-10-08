@@ -66,7 +66,7 @@
                             for="form-field-1"> Asal POK
                             </label>
                             <div class="col-sm-8">
-                                <select id="asalpok" name="asalpok" class="col-xs-10 col-sm-10 select2"  
+                                <select id="asalpok" name="asalpok" class="col-xs-10 col-sm-10 select2" onchange="getKomponen()" 
                                     required>
                                     <option value="">Pilih</option>
                                 </select>
@@ -74,47 +74,12 @@
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label no-padding-right" 
-                            for="form-field-1">  Kode Kegiatan *
+                            for="form-field-1">  Kode Anggaran *
                             </label>
                             <div class="col-sm-8">
-                                <select id="activitycode_id" name="activitycode_id" class="col-xs-10 col-sm-10 select2" 
-                                onchange="getKomponen()" required>
-                                        <option value="">Pilih Kode</option>
-                                    @foreach ($act as $data)
-                                        <option value="{{$data->id}}">{{$data->code}} || {{$data->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label no-padding-right" 
-                            for="form-field-1">  Kode Sub Komponen *
-                            </label>
-                            <div class="col-sm-8">
-                                <select id="subcode_id" name="subcode_id" class="col-xs-10 col-sm-10 select2" onchange="getAkunId()">
-                                    <option value="">Pilih Kode</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label no-padding-right" 
-                            for="form-field-1">  Kode Akun *
-                            </label>
-                            <div class="col-sm-8">
-                                <select id="akuncode_id" name="accountcode_id" class="col-xs-10 col-sm-10 select2" onchange="getLokasi()">
-                                    <option value="">Pilih Kode</option>
-                                    {{-- getakun --}}
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label no-padding-right" 
-                            for="form-field-1">  Lokasi *
-                            </label>
-                            <div class="col-sm-8">
-                                <select id="loka_id" name="loka_id" class="col-xs-10 col-sm-10 select2" onchange="getNilai()">
-                                        <option value="">Pilih Lokasi</option>
-                                        {{-- getloka --}}
+                                <select name="pok_detail_id"  class="col-xs-10 col-sm-10 select2" id="pok_detail_id" onchange="getNilai()">
+                                    <option value="">Kode Anggaran</option>
+                                       {{-- getAgg --}}
                                 </select>
                             </div>
                         </div>
@@ -195,7 +160,7 @@
                             <div class="col-sm-8">
                                 <input type="number" class="col-xs-10 col-sm-10 required " readonly value="0"
                                    name="asaluang" required  id="asaluang"/>
-                                   <input type="hidden" name="pok_detail_id" id=pok_detail_id>
+                                   <input type="hidden" name="pok_detail_id" id=id_pok_detail>
                             </div>
                         </div>
                         <div class="form-group">
@@ -243,18 +208,18 @@
     } );
 
     function getAsal(){
-         var activitycode_id = $("#activitycode_id").val();
          var year = $("#tahun").val();
+
         $.get(
             "{{route('realisasi.getAsal') }}",
             {
-                year:year,
+                year:year
             },
             function(response) {
                var data = response.data;
                var string ="<option value=''>Pilih</option>";
                 $.each(data, function(index, value) {
-                    string = string + '<option value="'+ value.id +'">'+ value.asal_pok +'</option>';
+                    string = string + '<option value="'+ value.id +'">'+ value.asal_pok +' ( '+value.act+' )</option>';
                 })
                $("#asalpok").html(string);
             }
@@ -262,91 +227,45 @@
     }
 
     function getKomponen(){
-         var activitycode_id = $("#activitycode_id").val();
          var pok_id = $("#asalpok").val();
+
         $.get(
             "{{route('realisasi.getKomponen') }}",
             {
-                pok_id:pok_id,
-                activitycode_id: activitycode_id
+                pok_id:pok_id
             },
             function(response) {
-               var data = response.data;
-               var string ="<option value=''>Pilih Kode</option>";
+                var data = response.data;
+
+                var string ="<option value=''>Pilih Kode Anggaran</option>";
                 $.each(data, function(index, value) {
-                    string = string + '<option value="'+ value.subcode_id +'">'+ value.kro +'-'+value.ro +'-'+value.kom +'-'+value.sub+'</option>';
+                    string = string + '<option value="'+ value.id +'">'+ value.act +'/'+value.sub +'/'+value.akun+' ( '+value.nama+' )'+
+                    '</option>';
                 })
-               $("#subcode_id").html(string);
+                $("#pok_detail_id").html(string);
             }
         );
     }
 
-    function getAkunId(){
-         var activitycode_id = $("#activitycode_id").val();
-         var pok_id = $("#asalpok").val();
-         var subcode_id = $("#subcode_id").val();
-        $.get(
-            "{{route('realisasi.getAkunId') }}",
-            {
-                pok_id:pok_id,
-                activitycode_id:activitycode_id,
-                subcode_id:subcode_id
-            },
-            function(response) {
-               var data = response.data;
-               var string ="<option value=''>Pilih Kode</option>";
-                $.each(data, function(index, value) {
-                    string = string + '<option value="'+ value.id +'">'+ value.code +'('+value.name +')</option>';
-                })
-               $("#akuncode_id").html(string);
-            }
-        );
-    }
+    function getNilai() {  
+        var pok_detail_id = $('#pok_detail_id').val();
 
-    function getLokasi(){
-        var pok_id = $("#asalpok").val();
-         var subcode_id = $("#subcode_id").val();
-         var accountcode_id = $("#akuncode_id").val();
-        $.get(
-            "{{route('realisasi.getLokasi') }}",
-            {
-                pok_id:pok_id,
-                accountcode_id:accountcode_id,
-                subcode_id:subcode_id
-            },
-            function(response) {
-               var data = response.data;
-               var string ="<option value=''>Pilih Lokasi</option>";
-                $.each(data, function(index, value) {
-                    string = string + '<option value="'+ value.id +'">'+ value.nama +'</option>';
-                })
-               $("#loka_id").html(string);
-            }
-        );
-    }
-
-    function getNilai(){
-        var pok_id = $("#asalpok").val();
-        var subcode_id = $("#subcode_id").val();
-        var accountcode_id = $("#akuncode_id").val();
-        var loka_id = $("#loka_id").val();
         $.get(
             "{{route('realisasi.getNilai') }}",
             {
-                pok_id:pok_id,
-                accountcode_id:accountcode_id,
-                subcode_id:subcode_id,
-                loka_id:loka_id
+                pok_detail_id:pok_detail_id
             },
             function(response) {
-                var id = response.data.id
-                var nilai = response.data.total
+		        var id = response.data.id;
+		        var nilai = response.data.total;
 
-                $("#asaluang").val(nilai);
-                $("#pok_detail_id").val(id);
+		        $("#asaluang").val(nilai);
+		        $("#id_pok_detail").val(id);
             }
         );
+
     }
+
 
     function addBarisNew(){
         var last_baris = $("#countRow").val();
