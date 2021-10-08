@@ -115,8 +115,8 @@
                                     {{$row->asal_pok}} - {{$row->asal}}({{$row->kode_asal}})
                                 @endif
                                  </td>
-                             <td>{{$row->kodeall}}/{{$row->code}} </td>
-                             <td>{{$row->lokasi}}</td>
+                             <td>{{$row->act}}/{{$row->sub}}/{{$row->akun}} </td>
+                             <td>{{$row->nama}}</td>
                                 @foreach ($bulan as $item)
                                 <td>
                                     @php

@@ -26,13 +26,14 @@ class ReraController extends Controller
        
         if($request->jenis=="1"){
             $data = Realisasi::orderBy('realisasi.id','asc')
-                                ->SelectRaw('realisasi.*, pok.year, pok.asal_pok, pok.asal, 
-                                            pok.kode_asal, subcode.kodeall, accountcode.code, loka.nama AS lokasi')
+                                ->SelectRaw('realisasi.*, pok.year, pok.asal_pok, activitycode.lengkap AS act, 
+                                            subcode.kodeall AS sub, accountcode.code AS akun, loka.nama')
                                 ->LeftJoin('pok_detail','pok_detail.id','=','realisasi.pok_detail_id')
                                 ->LeftJoin('pok','pok.id','=','pok_detail.pok_id')
-                                ->LeftJoin('subcode','subcode.id','=','realisasi.subcode_id')
-                                ->LeftJoin('accountcode','accountcode.id','=','realisasi.accountcode_id')
-                                ->LeftJoin('loka','loka.id','=','realisasi.loka_id')
+                                ->LeftJoin('accountcode','accountcode.id','=','pok_detail.accountcode_id')
+                                ->LeftJoin('subcode','subcode.id','=','pok_detail.subcode_id')
+                                ->LeftJoin('activitycode','activitycode.id','=','pok.activitycode_id')
+                                ->leftJoin('loka','loka.id','=','pok_detail.loka_id')
                                 ->where('pok.year',$request->tahun)
                                 ->get();
             $total = RealisasiDetail::SelectRaw('SUM(biaya) AS total')
@@ -54,13 +55,14 @@ class ReraController extends Controller
 
         }else if($request->jenis=="2"){
             $data = Realisasi::orderBy('realisasi.id','asc')
-                                ->SelectRaw('realisasi.*, pok.year, pok.asal_pok, pok.asal, 
-                                            pok.kode_asal, subcode.kodeall, accountcode.code, loka.nama AS lokasi')
+                                ->SelectRaw('realisasi.*, pok.year, pok.asal_pok, activitycode.lengkap AS act, 
+                                            subcode.kodeall AS sub, accountcode.code AS akun, loka.nama')
                                 ->LeftJoin('pok_detail','pok_detail.id','=','realisasi.pok_detail_id')
                                 ->LeftJoin('pok','pok.id','=','pok_detail.pok_id')
-                                ->LeftJoin('subcode','subcode.id','=','realisasi.subcode_id')
-                                ->LeftJoin('accountcode','accountcode.id','=','realisasi.accountcode_id')
-                                ->LeftJoin('loka','loka.id','=','realisasi.loka_id')
+                                ->LeftJoin('accountcode','accountcode.id','=','pok_detail.accountcode_id')
+                                ->LeftJoin('subcode','subcode.id','=','pok_detail.subcode_id')
+                                ->LeftJoin('activitycode','activitycode.id','=','pok.activitycode_id')
+                                ->leftJoin('loka','loka.id','=','pok_detail.loka_id')
                                 ->where('pok.year',$request->tahun)
                                 ->get();
             $bulan = RealisasiDetail::SelectRaw('distinct(month)')
@@ -75,13 +77,14 @@ class ReraController extends Controller
 
         }else if($request->jenis=="3"){
             $data = Realisasi::orderBy('realisasi.id','asc')
-                                ->SelectRaw('realisasi.*, pok.year, pok.asal_pok, pok.asal, 
-                                            pok.kode_asal, subcode.kodeall, accountcode.code, loka.nama AS lokasi')
+                                ->SelectRaw('realisasi.*, pok.year, pok.asal_pok, activitycode.lengkap AS act, 
+                                            subcode.kodeall AS sub, accountcode.code AS akun, loka.nama')
                                 ->LeftJoin('pok_detail','pok_detail.id','=','realisasi.pok_detail_id')
                                 ->LeftJoin('pok','pok.id','=','pok_detail.pok_id')
-                                ->LeftJoin('subcode','subcode.id','=','realisasi.subcode_id')
-                                ->LeftJoin('accountcode','accountcode.id','=','realisasi.accountcode_id')
-                                ->LeftJoin('loka','loka.id','=','realisasi.loka_id')
+                                ->LeftJoin('accountcode','accountcode.id','=','pok_detail.accountcode_id')
+                                ->LeftJoin('subcode','subcode.id','=','pok_detail.subcode_id')
+                                ->LeftJoin('activitycode','activitycode.id','=','pok.activitycode_id')
+                                ->leftJoin('loka','loka.id','=','pok_detail.loka_id')
                                 ->where('pok.year',$request->tahun)
                                 ->get();
             $bulan = RealisasiDetail::SelectRaw('distinct(month)')

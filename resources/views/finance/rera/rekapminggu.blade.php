@@ -122,9 +122,13 @@
                                     {{$row->asal_pok}} - {{$row->asal}}({{$row->kode_asal}})
                                 @endif
                                  </td>
-                             <td>{{$row->kodeall}}/{{$row->code}} </td>
-                             <td>{{$row->lokasi}}</td>
-                                 @foreach ($bulan as $item)
+                             <td>
+                                {{$row->act}}/{{$row->sub}}/{{$row->akun}}
+                             </td>
+                             <td>
+                                {{$row->nama}}
+                             </td>
+                             @foreach ($bulan as $item)
                                     @php $totMinggu = $bulan->count() * 2; $weekIn=1; @endphp
                                     @for ($j = 0; $j < $totMinggu; $j++)
                                         @php
