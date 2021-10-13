@@ -118,7 +118,9 @@
         </tr>
         <tr>
             <td>Uang Sebesar</td>
-            <td colspan="3">: <b>Rp.  &nbsp;&nbsp;&nbsp; {{number_format($totalPerjalanan)}}</b></td>
+            <td colspan="3">: <b>Rp.  &nbsp;&nbsp;&nbsp; 
+                <span id="uangSebesar"></span>
+            </b></td>
         </tr>
         <tr>
             <td>Untuk Pembayaran</td>
@@ -192,10 +194,10 @@
             </td>
         </tr>
         <tr>
-            <td colspan="2" style="text-align: center;" > <u>{{$item->pegawai->name}}</u>
+            <td colspan="2" style="text-align: center; vertical-align:bottom;" > <u>{{$item->pegawai->name}}</u>
             <td></td>
-            <td >Petugas</td>
-            <td>: {{$no++}} </td>
+            <td >Petugas <br></td>
+            <td>: {{$no++}} <br></td>
         </tr>
    </table>
    <hr style="border:1px solid black;">
@@ -214,8 +216,8 @@
         </tr>
         <tr>
             <td></td>
-            <td>Bendahara Pengeluaran, <br><br><br><br></td>
-            <td>{{$item->out->ppk->jabatan}} <br><br><br><br></td>
+            <td>Bendahara Pengeluaran, <br><br><br><br><br></td>
+            <td>{{$item->out->ppk->jabatan}} <br><br><br><br><br></td>
         </tr>
         <tr>
             <td></td>
@@ -249,28 +251,54 @@
                             <td colspan="8">Biaya Transport</td>
                         </tr>
                         <tr>
+                            @php
+                                $subtrans = 0;
+                                $subTotal1 = 0;
+                            @endphp
                             <td colspan="3">Tiket Pesawat / Kereta</td>
                             <td colspan="3"> Pergi</td>
-                            <td>. Rp. (disum dari 3 kota)</td>
+                            <td>. Rp. </td>
                             <td style="text-align: right;">
-                            &nbsp;
+                                @php
+                                        $nilai = $injectQuery->getDetail($item->id)
+                                    @endphp
+
+                                    @if ($nilai->planefee1 != '0')
+                                        @php
+                                            $fee1 = $nilai->planefee1;
+                                            $fee2 = $nilai->planefee2;
+                                            $fee3 = $nilai->planefee3;
+                                            $subtrans = $fee1+$fee2+$fee3;
+                                        @endphp
+                                        {{number_format($subtrans)}} 
+
+                                    @else
+                                       {{ '-' }}
+                                    @endif
+                                &nbsp;
                             </td>
                         </tr>
                         <tr>
+                            @php
+                                $subtrans = 0;
+                            @endphp
                             <td colspan="3"></td>
                             <td colspan="3"> Kembali</td>
                             <td>. Rp.</td>
                             <td style="text-align: right;">
-                                @foreach ($lain as $nom)
-                                    @if ($nom->planereturnfee != null)
-                                        @php
-                                            $subtrans = $nom->planereturnfee;
-                                        @endphp
-                                        {{number_format($subtrans)}} 
-                                    @else
-                                        {{ '-' }}
-                                    @endif
-                                @endforeach
+                                @php
+                                    $nilai = $injectQuery->getDetail($item->id)
+                                @endphp
+
+                                @if ($nilai->planereturnfee != '0')
+                                    @php
+                                        $subtrans =$nilai->planereturnfee;
+                                    @endphp
+                                    {{number_format($subtrans)}} 
+
+                                @else
+                                    {{ '-' }}
+                                @endif
                                 &nbsp;
                             </td>
                         </tr>
@@ -281,48 +309,55 @@
                             @php
                                 $jum=0;
                                 $nilai=0;
+                                $subtrans = 0;
                             @endphp
                             <td colspan="2">- Asal </td>
                             <td>:</td>
                             <td style="text-align: right; width:5%;">
-                                @foreach ($lain as $nom)
-                                    @if ($nom->taxy_count_from != null)
-                                        @php
-                                            $jum = $nom->taxy_count_from;
-                                        @endphp
-                                        {{$jum}}
-                                    @else
-                                        {{ '-' }}
-                                    @endif
-                                @endforeach
+                                @php
+                                    $nilai = $injectQuery->getDetail($item->id)
+                                @endphp
+
+                                @if ($nilai->taxy_count_from != '0')
+                                    @php
+                                        $jum =$nilai->taxy_count_from;
+                                    @endphp
+                                    {{$jum}}
+
+                                @else
+                                    {{ '-' }}
+                                @endif
                                 &nbsp;
                             </td>
                             <td>kali &nbsp; x &nbsp; Rp.</td>
                             <td style="text-align: right;">
-                                @foreach ($lain as $nom)
-                                    @if ($nom->taxy_count_from != null)
-                                        @php
-                                            $nilai = $nom->taxy_fee_from;
-                                        @endphp
-                                        {{number_format($nilai)}} 
-                                    @else
-                                        {{ '-' }}
-                                    @endif
-                                @endforeach
+                                @php
+                                    $taxi = 0;
+                                    $nilai = $injectQuery->getDetail($item->id)
+                                @endphp
+
+                                @if ($nilai->taxy_count_from != '0')
+                                    @php
+                                        $taxi = $nilai->taxy_fee_from;
+                                    @endphp
+                                    {{number_format($taxi)}} 
+
+                                @else
+                                    {{ '-' }}
+                                @endif
                                 &nbsp;
                             </td>
                             <td>. Rp.</td>
                             <td style="text-align: right;">
                                 @php
-                                    $subtrans = $jum*$nilai;    
+                                    $subtrans = $jum*$taxi;    
                                 @endphp
-                                @foreach ($lain as $nom)
-                                    @if ($nom->taxy_count_from != null)
-                                        {{number_format($subtrans)}} 
-                                    @else
-                                        {{ '-' }}
-                                    @endif
-                                @endforeach
+                                
+                                @if ($subtrans !='0')
+                                    {{$subtrans}}
+                                @else
+                                    {{'-'}}
+                                @endif
                             &nbsp;
                             </td>
                         </tr>
@@ -330,6 +365,7 @@
                             @php
                                 $jum=0;
                                 $bbm=0;
+                                $subtrans = 0;
                             @endphp
                             <td style="width: 15%">- Tujuan </td>
                             <td style="width: 20%;">
@@ -363,40 +399,47 @@
                             </td>
                             <td>:</td>
                             <td style="text-align: right;">
-                                @foreach ($lain as $nom)
-                                    @if ($nom->bbm != null)
+                                    @php
+                                        $nilai = $injectQuery->getDetail($item->id)
+                                    @endphp
+
+                                    @if ($nilai->bbm != '0')
                                         @php
                                             $jum = 1;
                                         @endphp
                                         {{$jum}}
-                                    @elseif($nom->taxy_count_to != null)
+
+                                    @elseif($nilai->taxy_count_to != null)
                                         @php
-                                            $jum = $nom->taxy_count_to;
+                                            $jum = $nilai->taxy_count_to;
                                         @endphp
                                         {{$jum}}
                                     @else
                                         -
                                     @endif
-                                @endforeach
                                 &nbsp;
+
                             </td>
                             <td>kali x Rp.</td>
                             <td style="text-align: right;">
-                                @foreach ($lain as $nom)
-                                    @if ($nom->bbm != null)
-                                        @php
-                                            $bbm = $nom->bbm;
-                                        @endphp
-                                         {{number_format($bbm)}} 
-                                    @elseif($nom->taxy_count_to != null)
-                                        @php
-                                            $bbm = $nom->taxy_fee_to;
-                                        @endphp
-                                         {{number_format($bbm)}} 
-                                    @else
-                                        -
-                                    @endif
-                                @endforeach
+                                @php
+                                    $nilai = $injectQuery->getDetail($item->id)
+                                @endphp
+
+                                @if ($nilai->bbm != '0')
+                                    @php
+                                        $bbm = $nilai->bbm;
+                                    @endphp
+                                    {{number_format($bbm)}}
+
+                                @elseif($nilai->taxy_count_to != null)
+                                    @php
+                                        $bbm = $nilai->taxy_fee_to;
+                                    @endphp
+                                    {{number_format($bbm)}}
+                                @else
+                                    {{ '-' }}
+                                @endif
                                 &nbsp;
                             </td>
                             <td>. Rp.</td>
@@ -404,15 +447,11 @@
                                 @php
                                     $subtrans = $jum*$bbm;    
                                 @endphp
-                                @foreach ($lain as $nom)
-                                    @if ($nom->bbm != null)
-                                        {{number_format($subtrans)}} 
-                                    @elseif($nom->taxy_count_to != null)
-                                        {{number_format($subtrans)}} 
-                                    @else
-                                        -
-                                    @endif
-                                @endforeach
+                                @if ($subtrans !='0')
+                                    {{$subtrans}}
+                                @else
+                                    {{'-'}}
+                                @endif
                             &nbsp;
                             </td>
                         </tr>
@@ -462,25 +501,23 @@
                         </tr>
                     </table>
                 </td>
-                <td class="isi">Rp. &nbsp;&nbsp;
+                <td class="isi">Rp. &nbsp;&nbsp;&nbsp;&nbsp;
+                    @php
+                        $subTotal1 += $subtrans;
+                    @endphp
+                    @if ($subTotal1=='0')
+                        {{'-'}}
+                    @else
+                        {{number_format($subTotal1)}}
+                    @endif
                 </td>
                 <td class="isi">{{$item->out->transport}}</td>
             </tr>
             <tr>
-                @php
-                    $hari=0;
-                    $subTotal = 0;
-                @endphp
-                @foreach ($tujuan as $key=>$hr)
-                    @php
-                        $hari += $hr->longday;
-                    @endphp
-                @endforeach
                 <td class="isi" style="text-align: center">2</td>
                 <td class="isi">
                     <table style="width: 100%;" class="kepala">
-                      
-                        <tr>
+                        <tr> 
                             <td colspan="7">Uang Harian di Kota
                                 @if (count($item->out->outst_destiny) == 1)
                                     @foreach ($tujuan as $key=>$kota)
@@ -519,180 +556,222 @@
 
                             </td>
                         </tr>
-                        <tr>
-                            <td>- Penuh</td>
-                            <td>:</td>
-                            <td style="text-align: right;">
-                                @foreach ($tr as $isi)
-                                    @if ($isi->dailywage=='Y')
-                                        {{$hari}}
-                                    @else
-                                        {{ "-" }}
-                                    @endif
+                        <span id="nomor-2">
+                            @php
+                                $hari=0;
+                                $destinMoney = 0;
+                                $subTotalHarian = 0;
+                                $subTotal2 = 0;
+                            @endphp
+                            <tr>
+                                @foreach ($tujuan as $key=>$hr)
+                                    @php
+                                        $hari += $hr->longday;
+                                    @endphp
                                 @endforeach
-                            </td>
-                            <td>hari &nbsp; x &nbsp;Rp.</td>
-                            <td style="text-align: right;">
-                                @php
-                                    $destinMoney = $isi->hitdaily;
-                                @endphp
-
-                                @foreach ($tr as $isi)
-                                    @if ($isi->dailywage=='Y')
-                                        {{number_format($destinMoney)}} 
-                                    @else
-                                        {{ "-" }}
-                                    @endif
-                                @endforeach
-                                
-                                &nbsp;
-                            </td>
-                            <td>. Rp.</td>
-                             @php
-                                 $subTotalHarian = $hari*$destinMoney;    
-                             @endphp
-                            <td style="text-align: right;">
-                                @foreach ($tr as $isi)
-                                    @if ($isi->dailywage=='Y')
-                                        {{number_format($subTotalHarian)}} 
-                                    @else
-                                        {{ "-" }}
-                                    @endif
-                                @endforeach
-                               &nbsp;
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>- Diklat</td>
-                            <td>:</td>
-                            <td style="text-align: right;">
-                                @foreach ($tr as $isi)
-                                    @if ($isi->diklat=='Y')
+    
+                                <td>- Penuh</td>
+                                <td>:</td>
+                                <td style="text-align: right;">
+    
+                                    @php
+                                        $daily = $injectQuery->getDetail($item->id)
+                                    @endphp
+                                    {{$hari}}
+                                    {{-- @if ($daily->dailywage == 'Y')
                                         {{$hari}}
                                     @else
                                         {{ '-' }}
-                                    @endif
-                                @endforeach
-                            </td>
-                            <td>hari &nbsp; x &nbsp;Rp.</td>
-                            <td style="text-align: right;">
-                                @php
-                                    $diklatMoney = $isi->hitdiklat;
-                                @endphp
+                                    @endif --}}
+                                    &nbsp;
+                                </td>
+                                <td>hari &nbsp; x &nbsp;Rp.</td>
+                                <td style="text-align: right;">
+                                        @php
+                                            $daily = $injectQuery->getTr($item->id)
+                                        @endphp
+                                        @if ($daily->dailywage == 'Y')
+                                            @php
+                                                $destinMoney = $daily->hitdaily;
+                                            @endphp
+                                            {{number_format($destinMoney)}} 
+                                        @else
+                                           {{ '-' }}
+                                        @endif
+                                    &nbsp;
+                                </td>
+                                <td>. Rp.</td>
+                                 @php
+                                     $subTotalHarian = $hari*$destinMoney;  
+                                     $subTotal2 +=  $subTotalHarian;
+                                 @endphp
+                                <td style="text-align: right;">
+                                        @if ($subTotalHarian != '0')
+                                            {{number_format($subTotalHarian)}} 
+                                        @else
+                                            {{ "-" }}
+                                        @endif
+                                   &nbsp;
+                                </td>
+                            </tr>
 
-                                @foreach ($tr as $isi)
-                                    @if ($isi->diklat=='Y')
+                            <tr>
+                                @php
+                                    $diklatMoney = 0;
+                                    $subTotalHarian = 0;
+                                @endphp
+                                <td>- Diklat</td>
+                                <td>:</td>
+                                <td style="text-align: right;">
+                                    @php
+                                        $daily = $injectQuery->getTr($item->id)
+                                    @endphp
+    
+                                    @if ($daily->diklat == 'Y')
+                                        {{$hari}} 
+                                    @else
+                                        {{ '-' }}
+                                    @endif
+                                    &nbsp;
+                                </td>
+                                <td>hari &nbsp; x &nbsp;Rp.</td>
+                                <td style="text-align: right;">
+                                    @php
+                                        $daily = $injectQuery->getTr($item->id)
+                                    @endphp
+                                    @if ($daily->diklat == 'Y')
+                                        @php
+                                            $diklatMoney = $daily->hitdaily;
+                                        @endphp
                                         {{number_format($diklatMoney)}} 
                                     @else
-                                        {{ '-' }}
+                                    {{ '-' }}
                                     @endif
-                                @endforeach
-                               
-                                &nbsp;
-                            </td>
-                            <td>. Rp.</td>
-                                @php
-                                    $subTotalHarian = $hari*$diklatMoney;    
-                                @endphp
-                            <td style="text-align: right;">
-                                @foreach ($tr as $isi)
-                                    @if ($isi->diklat=='Y')
+                                    &nbsp;
+                                </td>
+                                <td>. Rp.</td>
+                                    @php
+                                        $subTotalHarian = $hari*$diklatMoney; 
+                                        $subTotal2 +=  $subTotalHarian;
+   
+                                    @endphp
+                                <td style="text-align: right;">
+                                    @if ($subTotalHarian!='0')
                                         {{number_format($subTotalHarian)}} 
                                     @else
                                         {{ '-' }}
                                     @endif
-                                @endforeach
-                                &nbsp;
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>- Paket Halfday / Fullday</td>
-                            <td>:</td>
-                            <td style="text-align: right;">
-                                @foreach ($tr as $isi)
-                                    @if ($isi->fullday=='Y')
+                                    &nbsp;
+                                </td>
+                            </tr>
+
+                            <tr>
+                                @php
+                                    $halfdayMoney = 0;
+                                    $subTotalHarian = 0;
+                                @endphp
+                                <td>- Paket Halfday / Fullday</td>
+                                <td>:</td>
+                                <td style="text-align: right;">
+                                    @php
+                                        $daily = $injectQuery->getTr($item->id)
+                                    @endphp
+                                    @if ($daily->fullday == 'Y')
                                         {{$hari}}
                                     @else
-                                        {{ '-' }}
+                                    {{ '-' }}
                                     @endif
-                                @endforeach
-                            </td>
-                            <td>hari &nbsp; x &nbsp;Rp.</td>
-                            <td style="text-align: right;">
-                                @php
-                                    $halfdayMoney = $isi->hithalf;
-                                @endphp
-                                
-                                @foreach ($tr as $isi)
-                                    @if ($isi->fullday=='Y')
+                                    &nbsp;
+                                </td>
+                                <td>hari &nbsp; x &nbsp;Rp.</td>
+                                <td style="text-align: right;">
+                                    @php
+                                        $daily = $injectQuery->getTr($item->id)
+                                    @endphp
+                                    @if ($daily->fullday == 'Y')
+                                        @php
+                                            $halfdayMoney = $daily->hithalf;
+                                        @endphp
                                         {{number_format($halfdayMoney)}}
                                     @else
                                         {{ '-' }}
-                                    @endif  
-                                @endforeach
-                                &nbsp;
-                            </td>
-                            <td>. Rp.</td>
-                            @php
-                                 $subTotalHarian = $hari*$halfdayMoney;    
-                             @endphp
-                            <td style="text-align: right;">
-                                @foreach ($tr as $isi)
-                                    @if ($isi->fullday=='Y')
+                                    @endif
+                                    &nbsp;
+                                </td>
+                                <td>. Rp.</td>
+                                @php
+                                     $subTotalHarian = $hari*$halfdayMoney;   
+                                     $subTotal2 +=  $subTotalHarian;
+ 
+                                 @endphp
+                                <td style="text-align: right;">
+                                     @if ($subTotalHarian !='0')
                                         {{number_format($subTotalHarian)}}
                                     @else
                                         {{ '-' }}
                                     @endif  
-                                @endforeach
-                                &nbsp;
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>- Paket Fullboard</td>
-                            <td>:</td>
-                            <td style="text-align: right;">
-                                @foreach ($tr as $isi)
-                                    @if ($isi->fullboard=='Y')
+                                    &nbsp;
+                                </td>
+                            </tr>
+
+                            <tr>
+                                @php
+                                    $fullboardMoney = 0;
+                                    $subTotalHarian = 0;
+                                @endphp
+                                <td>- Paket Fullboard</td>
+                                <td>:</td>
+                                <td style="text-align: right;">
+                                    @php
+                                        $daily = $injectQuery->getTr($item->id)
+                                    @endphp
+                                    @if ($daily->fullboard == 'Y')
                                         {{$hari}}
                                     @else
                                         {{ '-' }}
                                     @endif
-                                @endforeach
-                            </td>
-                            <td>hari &nbsp; x &nbsp;Rp.</td>
-                            <td style="text-align: right;">
+                                    &nbsp;
+                                </td>
+                                <td>hari &nbsp; x &nbsp;Rp.</td>
+                                <td style="text-align: right;">
+                                    @php
+                                        $daily = $injectQuery->getTr($item->id)
+                                    @endphp
+                                    @if ($daily->fullboard == 'Y')
+                                        @php
+                                            $fullboardMoney = $daily->hitfullb;
+                                        @endphp
+                                        {{$fullboardMoney}}
+                                    @else
+                                        {{ '-' }}
+                                    @endif
+                                    &nbsp;
+                                </td>
+                                <td>. Rp.</td>
                                 @php
-                                    $fullboardMoney = $isi->hitfullb;
-                                @endphp
-                                @if ($isi->fullboard=='Y')
-                                    {{number_format($fullboardMoney)}}
-                                @else
-                                    {{ '-' }}
-                                @endif
-                                &nbsp;
-                            </td>
-                            <td>. Rp.</td>
-                            @php
-                                 $subTotalHarian = $hari*$fullboardMoney;    
-                             @endphp
-                            <td style="text-align: right;">
-                               @foreach ($tr as $isi)
-                                    @if ($isi->fullboard=='Y')
+                                     $subTotalHarian = $hari*$fullboardMoney;    
+                                     $subTotal2 +=  $subTotalHarian;
+
+                                 @endphp
+                                <td style="text-align: right;">
+                                    @if ($subTotalHarian !='0')
                                         {{number_format($subTotalHarian)}}
                                     @else
                                         {{ '-' }}
                                     @endif
-                               @endforeach
-                                &nbsp;
-                            </td>
-                        </tr>
+                                    &nbsp;
+                                </td>
+                            </tr>
+                        </span>
                     </table>
                 </td>
-                @php
-                    $subTotal += $subTotalHarian;
-                @endphp
-                <td class="isi">Rp. 
-                    {{number_format($subTotal)}}&nbsp;&nbsp;
+                
+                <td class="isi">Rp. &nbsp;&nbsp;&nbsp;&nbsp;
+                    @if ($subTotal2 =='0')
+                        {{'-'}}
+                    @else
+                        {{number_format($subTotal2)}}
+                    @endif
                 </td>
                 <td class="isi"></td>
             </tr>
@@ -739,41 +818,54 @@
                             </td>
                         </tr>
                         <tr>
+                            @php
+                                $biaya =0;
+                                $subBiaya = 0;
+                                $subTotal3 = 0;
+                            @endphp
                             <td>- Paket Halfday / Fullday</td>
                             <td>:</td>
                             <td style="text-align: right;">
-                                @foreach ($tr as $isi)
-                                    @if ($isi->dayshalf!=null)
-                                        {{$hari}}
-                                    @else
-                                        {{ '-' }}
-                                    @endif
-                                @endforeach
-                                &nbsp;
+                                @php
+                                    $daily = $injectQuery->getTr($item->id)
+                                @endphp
+
+                                @if ($daily->dayshalf != '0')
+                                    @php
+                                        $days = $daily->dayshalf;
+                                    @endphp
+                                    {{$days}} &nbsp;
+                                @else
+                                    {{ '-' }}
+                                @endif
                             </td>
                             <td>hari . Rp.</td>
                             <td style="text-align: right;">
-                                @foreach ($tr as $isi)
-                                    @if ($isi->dayshalf!=null)
-                                        @php
-                                            $biaya = $isi->feehalf;
-                                        @endphp
-                                        {{$biaya}}
-                                    @else
-                                        {{ '-' }}
-                                    @endif
-                                @endforeach
+                                @php
+                                    $daily = $injectQuery->getTr($item->id)
+                                @endphp
+
+                                @if ($daily->dayshalf != '0')
+                                    @php
+                                        $biaya = $daily->feehalf;
+                                    @endphp
+                                    {{number_format($biaya)}} &nbsp;
+                                @else
+                                    {{ '-' }}
+                                @endif
                                 &nbsp;
                             </td>
                             <td>. Rp.</td>
                             <td style="text-align: right;">
-                                @foreach ($tr as $isi)
-                                    @if ($isi->dayshalf!=null)
-                                        {{$biaya}}
-                                    @else
-                                        {{ '-' }}
-                                    @endif
-                                @endforeach
+                                @php
+                                    $subBiaya = $biaya*$days;
+                                @endphp
+
+                                @if ($subBiaya != '0')
+                                    {{number_format($subBiaya)}}
+                                @else
+                                    {{ '-' }}
+                                @endif
                                 &nbsp;
                             </td>
                         </tr>
@@ -781,45 +873,63 @@
                             <td>- Paket Fullboard</td>
                             <td>:</td>
                             <td style="text-align: right;">
-                                @foreach ($tr as $isi)
-                                    @if ($isi->daysfull!=null)
-                                        {{$hari}}
-                                    @else
-                                        {{ '-' }}
-                                    @endif
-                                @endforeach
+                                @php
+                                    $daily = $injectQuery->getTr($item->id)
+                                @endphp
+
+                                @if ($daily->daysfull != '0')
+                                    @php
+                                        $days = $daily->daysfull;
+                                    @endphp
+                                    {{$days}} 
+                                @else
+                                    {{ '-' }}
+                                @endif
                                 &nbsp;
                             </td>
                             <td>hari x Rp.</td>
-                            <td style="text-align: right;">
-                                @foreach ($tr as $isi)
-                                    @if ($isi->daysfull!=null)
-                                        @php
-                                            $biaya = $isi->feefull;
-                                        @endphp
-                                        {{$biaya}}
-                                    @else
-                                        {{ '-' }}
-                                    @endif
-                                @endforeach
+                            <td style="text-align: right;">  
+                                @php
+                                    $biayaFB = 0;
+                                    $dailyFb = $injectQuery->getTr($item->id)
+                                @endphp
+
+                                @if ($dailyFb->daysfull != '0')
+                                    @php
+                                        $biayaFB = $dailyFb->feefull;
+                                    @endphp
+                                    {{number_format($biayaFB)}} 
+                                @else
+                                    {{ '-' }}
+                                @endif
+                                &nbsp;
                                 &nbsp;
                             </td>
                             <td>. Rp.</td>
                             <td style="text-align: right;">
-                                @foreach ($tr as $isi)
-                                    @if ($isi->daysfull!=null)
-                                        {{$biaya}}
-                                    @else
-                                        {{ '-' }}
-                                    @endif
-                                @endforeach
+                                @php
+                                    $subBiayaFullboard = $biayaFB*$days;
+                                @endphp
+
+                                @if ($subBiayaFullboard != '0')
+                                    {{number_format($subBiayaFullboard)}}
+                                @else
+                                    {{ '-' }}
+                                @endif
                                 &nbsp;
                             </td>
                         </tr>
                     </table>
                 </td>
                 <td class="isi">Rp. &nbsp;&nbsp;
-
+                    @php
+                        $subTotal3 += $subBiaya;
+                    @endphp
+                    @if ($subTotal3=='0')
+                        {{'-'}}
+                    @else
+                        {{number_format($subTotal3)}}
+                    @endif
                 </td>
                 <td class="isi"></td>
             </tr>
@@ -867,87 +977,104 @@
                         </tr>
                         <tr>
                             @php
-                                $subTotal = 0;
+                                $jum1 =0;
+                                $jum2 = 0;
+                                $subTotal4 = 0;
                             @endphp
-
-
                             <td>
-                                @foreach ($lain as $nom)
-                                    @if ($nom->innname_1 != null)
-                                        - {{$nom->innname_1}} &nbsp;
-                                    @elseif($nom->innname_2 != null)
-                                        - {{$nom->innname_1}} &nbsp;<br>
-                                        - {{$nom->innname_2}} &nbsp;
-                                    @else
-                                        - &nbsp;
-                                    @endif
-                                @endforeach
+                                @php
+                                    $nilai = $injectQuery->getDetail($item->id);
+                                    $inap1 = $nilai->innname_1;
+                                    $inap2 = $nilai->innname_2;
+                                @endphp
+
+                                @if ($inap2 != null)
+                                    - {{$inap1}} &nbsp; <br>
+                                    - {{$inap2}}
+                                @elseif($inap1 != null && $inap2 == null)
+                                    - {{$inap1}} &nbsp; 
+                                @else
+                                    - &nbsp; <br>
+                                @endif
+                                &nbsp;
                             </td>
                             <td>:</td>
                             <td style="text-align: right;">
-                                @foreach ($lain as $nom)
-                                    @if ($nom->innname_1 != null)
-                                        @php
-                                            $long1 = $nom->long_stay_1;
-                                            $long2 = $nom->long_stay_2;
-                                            $fee1 = $nom->inn_fee_1;
-                                            $fee2 = $nom->inn_fee_2;
-                                        @endphp
-                                        
-                                        - {{$long1}} &nbsp;
-                                    @elseif($nom->innname_2 != null)
-                                        - {{$long1}} &nbsp; <br>
-                                        - {{$long2}} &nbsp;
-                                    @else
-                                        - &nbsp;
-                                    @endif
-                                @endforeach
+                                @php
+                                    $long1 = $nilai->long_stay_1;
+                                    $long2 = $nilai->long_stay_2;
+                                @endphp
+                                @if ($nilai->innname_2 != null)
+                                    {{$long1}} &nbsp; <br>
+                                    {{$long2}}
+                                @elseif($nilai->innname_2 == null && $nilai->innname_1 != null)
+                                    {{$long1}} &nbsp;
+                                @else
+                                    - &nbsp; <br>
+                                    
+                                @endif
+                                &nbsp;
                             </td>
-                            <td>hari x Rp. <br> hari x Rp. </td>
-                            <td style="text-align: right;">
-                                @foreach ($lain as $nom)
-                                    @if ($nom->innname_1 != null)
-                                        - {{$fee1}} &nbsp;
-                                    @elseif($nom->innname_2 != null)
-                                        - {{$fee1}} &nbsp; <br>
-                                        - {{$fee2}} &nbsp;
-                                    @else
-                                        - &nbsp;
-                                    @endif
-                                @endforeach
+                            <td>hari x Rp. <br>
+                                @if ($nilai->innname_2 != null)
+                                hari x Rp.  
+                                @endif
                             </td>
-                            <td>. Rp. <br> Rp.  </td>
                             <td style="text-align: right;">
                                 @php
-                                    $jum1 = $long1*$fee1;
+                                    $fee1 = $nilai->inn_fee_1;
+                                    $fee2 = $nilai->inn_fee_2;
+                                @endphp
+                                @if ($nilai->innname_2 != null)
+                                    {{$fee1}} &nbsp; <br>
+                                    {{$fee2}}
+                                @elseif($nilai->innname_2 == null && $nilai->innname_1 != null)
+                                    {{$fee1}} &nbsp;
+                                @else
+                                    - &nbsp; <br>
+                                    
+                                @endif
+                                &nbsp;
+                            </td>
+                            <td>. Rp. <br>
+                                @if ($nilai->innname_2 != null)
+                                . Rp.   
+                                @endif
+                            </td>
+                            <td style="text-align: right;">
+                                @php
+                                    $jum1 = $long1*$fee1; 
                                     $jum2 = $long2*$fee2;
                                 @endphp
-                                @foreach ($lain as $nom)
-                                    @if ($nom->innname_1 != null)
-                                        {{number_format($jum1)}} &nbsp;
-                                    @elseif($nom->innname_2 != null)
-                                        {{number_format($jum1)}} &nbsp; <br>
-                                        {{number_format($jum2)}}  &nbsp;
-                                    @else
-                                        - &nbsp;
-                                    @endif
-                            @endforeach  
+                                @if ($jum2 != '0')
+                                    {{$jum1}} &nbsp; <br>
+                                    {{$jum2}} 
+                                @elseif($jum2 =='0' && $jum1 != '0')
+                                    {{$jum1}} &nbsp; <br>
+                                @else
+                                    - &nbsp; <br>
+                                @endif
                             </td>
                         </tr>
                     </table>
                 </td>
-                <td class="isi">Rp. &nbsp;&nbsp;
+                <td class="isi">Rp. &nbsp;&nbsp;&nbsp;&nbsp;
                     @php
-                        $subTotal = $jum1+$jum2;
+                        $subTotal4 = $jum1+$jum2;
                     @endphp
-                        {{number_format($subTotal)}}
-                </td>
-                <td class="isi">
-                    @foreach ($lain as $nom)
-                        @if ($nom->innname_1 != null)
-                           1 Kamar {{$nom->isi_1}} orang
+                        @if ($subTotal4=='0')
+                            {{'-'}}
+                        @else
+                            {{number_format($subTotal4)}}
                         @endif
-                    @endforeach
+                </td>
+                <td class="isi" style="vertical-align: middle;">
+                    @php
+                        $nilai = $injectQuery->getDetail($item->id)
+                    @endphp
+                   @if ($nilai->isi_1 != '0')
+                        1 kamar untuk {{$nilai->isi_1}} orang
+                   @endif
                 </td>
             </tr>
             <tr>
@@ -956,31 +1083,31 @@
                     <table style="width: 100%;" class="kepala">
                         <tr>
                             @php
-                                $subTotal = 0;
+                                $subTotal5 = 0;
+                                $eselonMoney = 0;
                             @endphp
-                            @foreach ($tujuan as $key=>$hr)
-                                @php
-                                    $hari += $hr->longday;
-                                    $destinId = $hr->destination_id;
-                                @endphp
-                            @endforeach
                             <td>Uang Representatif Eselon II</td>
                             <td>:</td>
                             <td style="text-align: right;">
-                                @foreach ($tr as $isian)
-                                        @if ($isian->representatif=='Y')
-                                            {{$hari}}
-                                        @else
-                                            {{ '-' }}
-                                        @endif
-                                @endforeach
+                                @php
+                                    $daily = $injectQuery->getTr($item->id)
+                                @endphp
+                                @if ($daily->representatif == 'Y')
+                                    {{$hari}}
+                                @else
+                                    {{ '-' }}
+                                @endif
+                                &nbsp;
                             </td>
                             <td>hari x Rp.</td>
                             <td style="text-align: right;">
                                 @php
-                                    $eselonMoney = $isi->hitrep;
+                                    $daily = $injectQuery->getTr($item->id)
                                 @endphp
-                                @if ($isian->representatif=='Y')
+                                @if ($daily->representatif == 'Y')
+                                    @php
+                                        $eselonMoney = $daily->hitrep;
+                                    @endphp
                                     {{number_format($eselonMoney)}}
                                 @else
                                     {{ '-' }}
@@ -992,7 +1119,7 @@
                                  $subTotalHarian = $hari*$eselonMoney;    
                              @endphp
                             <td style="text-align: right;">
-                                @if ($isian->representatif=='Y')
+                                @if ($subTotalHarian != '0')
                                     {{number_format($subTotalHarian)}}
                                 @else
                                     {{ '-' }}
@@ -1002,12 +1129,12 @@
                         </tr>
                     </table>
                 </td>
-                <td class="isi">Rp. &nbsp;&nbsp;
+                <td class="isi">Rp. &nbsp;&nbsp;&nbsp;&nbsp;
                     @php
-                        $subTotal += $subTotalHarian;
+                        $subTotal5 += $subTotalHarian;
                     @endphp
-                    @if ($isian->representatif=='Y')
-                        {{number_format($subTotal)}}
+                    @if ($subTotal5 != '0')
+                        {{number_format($subTotal5)}}
                     @else
                         {{ '-' }}
                     @endif
@@ -1021,10 +1148,9 @@
                 <td class="isi"><b><i>Jumlah Biaya Perjalanan :</i></b>
                 </td>
                     @php
-                        $totalPerjalanan += $subTotal;
+                        $totalPerjalanan = $subTotal1+$subTotal2+$subTotal3+$subTotal4+$subTotal5;
                     @endphp
-                <td class="isi">Rp. 
-                    {{number_format($totalPerjalanan)}}
+                <td class="isi">Rp. {{number_format($totalPerjalanan)}}
                 </td>
                 <td class="isi"> </td>
             </tr>
@@ -1032,6 +1158,7 @@
                 <td class="isi"></td>
                 <td class="isi" colspan="3" style = "text-transform:capitalize";>
                    <i> Terblang : <b>{{terbilang($totalPerjalanan)}} Rupiah</b></i>
+                   <input type="hidden" id="total_terbilang" value="{{number_format($totalPerjalanan)}}">
                 </td>
             </tr>
         </tbody>
@@ -1108,5 +1235,13 @@
 </body>
 
 @endforeach
+
+<script>
+   
+    var total = document.getElementById("total_terbilang").value;
+    document.getElementById("uangSebesar").innerHTML = total;
+
+
+</script>
 
 </html>

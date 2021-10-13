@@ -100,7 +100,11 @@ class TravelexpensesController extends Controller
                     'hitdiklat'         => $request->hitdiklat[$i],
                     'hitfullb'          => $request->hitfullb[$i],
                     'hithalf'           => $request->hithalf[$i],
-                    'hitrep'            => $request->hitrep[$i]
+                    'hitrep'            => $request->hitrep[$i],
+                    'dayshalf'          => $request->dayshalf[$i],
+                    'feehalf'           => $request->feehalf[$i],
+                    'daysfull'          => $request->daysfull[$i],
+                    'feefull'           => $request->feefull[$i]
                 ];
                 Travelexpenses::create($dataone);
             }
@@ -169,7 +173,7 @@ class TravelexpensesController extends Controller
     public function receipt($id)
     {
         $data       = Expenses::where('id',$id)->first();
-        $pegawai    = Outst_employee::SelectRaw('outst_employee.* ')
+        $pegawai    = Outst_employee::SelectRaw('outst_employee.*, outstation.type')
                                     ->leftJoin('outstation','outstation.id','=','outst_employee.outstation_id')
                                     ->leftJoin('expenses','expenses.outstation_id','=','outstation.id')
                                     ->where('expenses.id',$id)
@@ -179,15 +183,24 @@ class TravelexpensesController extends Controller
                                     ->leftJoin('expenses','expenses.outstation_id','=','outstation.id')
                                     ->where('expenses.id',$id)
                                     ->get();
-        $tr         = Travelexpenses::where('expenses_id',$id)
-                                    ->get();
-        $lain         = Travelexpenses1::where('expenses_id',$id)
-                                    ->get();
+        $tipe       = Outst_employee::SelectRaw('outst_employee.*, outstation.type')
+                        ->leftJoin('outstation','outstation.id','=','outst_employee.outstation_id')
+                        ->leftJoin('expenses','expenses.outstation_id','=','outstation.id')
+                        ->where('expenses.id',$id)
+                        ->first();
     
         $petugas    = Petugas::where('id', '=', 5)->first();
-        return view('finance/travelexpenses.receipt',compact('petugas','data','pegawai','tujuan','tr','lain'));
-        // $pdf        = PDF::loadview('finance/travelexpenses.receipt',compact('petugas','data','pegawai','tujuan','tr'));
-        // return $pdf->stream();
+
+        if ($tipe->type=="DL") {
+            $pdf        = PDF::loadview('finance/travelexpenses.receiptDL',compact('petugas','data','pegawai','tujuan'));
+            return $pdf->stream();
+
+        } else {
+            return view('finance/travelexpenses.receipt',compact('petugas','data','pegawai','tujuan'));
+            // $pdf        = PDF::loadview('finance/travelexpenses.receipt',compact('petugas','data','pegawai','tujuan','tr'));
+            // return $pdf->stream();
+        }
+        
     }
 
 
@@ -215,13 +228,20 @@ class TravelexpensesController extends Controller
 
     public function super($id)
     {
+        $data       = Expenses::where('id',$id)->first();
         $pegawai    = Outst_employee::SelectRaw('outst_employee.* ')
                         ->leftJoin('outstation','outstation.id','=','outst_employee.outstation_id')
                         ->leftJoin('expenses','expenses.outstation_id','=','outstation.id')
                         ->where('expenses.id',$id)
                         ->get();
-        $pdf = PDF::loadview('finance/travelexpenses.super',compact('pegawai'));
+        $tujuan    = Outst_destiny::SelectRaw('outst_destiny.* ')
+                        ->leftJoin('outstation','outstation.id','=','outst_destiny.outstation_id')
+                        ->leftJoin('expenses','expenses.outstation_id','=','outstation.id')
+                        ->where('expenses.id',$id)
+                        ->get();
+        $pdf = PDF::loadview('finance/travelexpenses.super',compact('data','pegawai','tujuan'));
         return $pdf->stream();
+        // return view('finance/travelexpenses.super',compact('pegawai'));
     }
 
 }

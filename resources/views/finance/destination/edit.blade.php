@@ -195,7 +195,7 @@
                                 </tr>
                                 <tr>
                                     <td>Uang Representatif</td>
-                                    <td> <input type="number"  placeholder="Rp. 0,-" value="{{$data->representatif}} min="0"
+                                    <td> <input type="number"  placeholder="Rp. 0,-" value="{{$data->representatif}}" min="0"
                                          name="representatif" /></td>
                                    <td></td>
                                    <td></td>
