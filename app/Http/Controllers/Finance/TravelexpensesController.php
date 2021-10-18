@@ -196,9 +196,9 @@ class TravelexpensesController extends Controller
             return $pdf->stream();
 
         } else {
-            return view('finance/travelexpenses.receipt',compact('petugas','data','pegawai','tujuan'));
-            // $pdf        = PDF::loadview('finance/travelexpenses.receipt',compact('petugas','data','pegawai','tujuan','tr'));
-            // return $pdf->stream();
+            // return view('finance/travelexpenses.receipt',compact('petugas','data','pegawai','tujuan'));
+            $pdf        = PDF::loadview('finance/travelexpenses.receipt',compact('petugas','data','pegawai','tujuan','tr'));
+            return $pdf->stream();
         }
         
     }

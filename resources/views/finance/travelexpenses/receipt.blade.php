@@ -119,7 +119,10 @@
         <tr>
             <td>Uang Sebesar</td>
             <td colspan="3">: <b>Rp.  &nbsp;&nbsp;&nbsp; 
-                <span id="uangSebesar"></span>
+                @php
+                    $total = $injectQuery->totalHarga($item->id)
+                @endphp
+               {{number_format($total)}} 
             </b></td>
         </tr>
         <tr>
@@ -170,7 +173,13 @@
         </tr>
         <tr>
             <td>Terbilang</td>
-            <td>: <b>{{terbilang($totalPerjalanan)}}</b></td>
+            <td style="text-transform: capitalize;">: 
+                @php
+                    $total = $injectQuery->totalHarga($item->id)
+                @endphp
+
+                <b>{{terbilang($total)}}</b>
+            </td>
             <td></td>
             <td></td>
             <td></td>
@@ -1158,7 +1167,7 @@
                 <td class="isi"></td>
                 <td class="isi" colspan="3" style = "text-transform:capitalize";>
                    <i> Terblang : <b>{{terbilang($totalPerjalanan)}} Rupiah</b></i>
-                   <input type="hidden" id="total_terbilang" value="{{number_format($totalPerjalanan)}}">
+                   {{-- <input type="hidden" id="total_terbilang" value="{{number_format($totalPerjalanan)}}"> --}}
                 </td>
             </tr>
         </tbody>
