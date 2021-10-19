@@ -94,21 +94,6 @@ class CarrentController extends Controller
     }
     
 
-    // function getCar(Request $request){
-    //     $car = Car::WhereRaw("id NOT IN (SELECT car_id from vehiclerent WHERE '".$request->tgl."' BETWEEN date_from AND date_to and status='Y') ")
-    //                 ->get();
-    //     $driver =User::where("deskjob","LIKE","%Sopir%")
-    //                 ->WhereRaw("id NOT IN (SELECT driver_id from vehiclerent WHERE '".$request->tgl."' BETWEEN date_from AND date_to and status='Y') ")
-    //                 ->get();
-        
-    //     return response()->json([ 
-    //         'success'   => true,
-    //         'car'       => $car,
-    //         'driver'    =>$driver
-    //         ],200
-    //     );
-    // }
-
     public function update(Request $request, $id)
     {
         $data = Vehiclerent::find($id);
