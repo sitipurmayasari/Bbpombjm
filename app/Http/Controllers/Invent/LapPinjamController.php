@@ -24,7 +24,8 @@ class LapPinjamController extends Controller
             return $pdf->stream();
 
         }elseif($request->jenis_Laporan=="pinjam"){
-            $data   = Vehiclerent::orderBy('update_at','desc')
+            $data   = Vehiclerent::orderBy('created_at','desc')
+                                ->where('status','=','Y')
                                 ->when($request->tahun, function ($query) use ($request) {
                                     if($request->tahun==2){
                                         $query->whereYear('date_from',$request->daftartahun);
