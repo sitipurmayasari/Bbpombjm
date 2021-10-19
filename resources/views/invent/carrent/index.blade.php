@@ -56,8 +56,8 @@
                             {{$row->pegawai->divisi->nama}}
                         @endif
                     </td>
-                    <td>
-                        {{$row->date_from}} s/d {{$row->date_to}}
+                    <td style="text-align: center">
+                        {{tgl_indo($row->date_from)}} <br> s/d <br> {{tgl_indo($row->date_to)}}
                     </td>
                     <td>
                         {{$row->destination}}
@@ -84,7 +84,7 @@
                         @elseif($row->status == 'N')
                             <a href="#" class="btn btn-danger">Ditolak</a>
                         @else 
-                            <a href="#" class="btn btn-success">Diterima</a>
+                            <a href="/invent/carrent/edit/{{$row->id}}" class="btn btn-success">Diterima</a>
                         @endif
 
                 </td>
