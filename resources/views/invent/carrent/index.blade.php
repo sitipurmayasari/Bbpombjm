@@ -37,9 +37,9 @@
                 <th width="40px">No</th>
                 <th>Kode Peminjaman</th>
                 <th>Nama Peminjam</th>
-                <th>Kendaraan Dinas</th>
                 <th>Tanggal Peminjaman</th>
                 <th>Tujuan</th>
+                <th>Kendaraan Dinas</th>
                 <th>Supir</th>
                 <th>Aksi</th>
             </head>
@@ -57,19 +57,23 @@
                         @endif
                     </td>
                     <td>
-                        {{$row->car->merk}} - {{$row->car->police_number}}
-                    </td>
-                    <td>
                         {{$row->date_from}} s/d {{$row->date_to}}
                     </td>
                     <td>
                         {{$row->destination}}
                     </td>
                     <td>
-                        @if ($row->driver_id != null)
-                            {{$row->supir->name}}
-                        @else
-                            -
+                        @if ($row->status=='Y')
+                            {{$row->car->merk}} - {{$row->car->police_number}}
+                        @endif
+                    </td>
+                    <td>
+                        @if ($row->status =='Y')
+                            @if ($row->driver_id != null)
+                                {{$row->supir->name}}
+                            @else
+                                -
+                            @endif
                         @endif
                     </td>
                     <td>

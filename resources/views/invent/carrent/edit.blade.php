@@ -66,52 +66,12 @@
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label no-padding-right" 
-                            for="form-field-1"> Kendaraan
-                            </label>
-                            <div class="col-sm-9">
-                                <input type="text" value="{{$data->car->merk}} ({{$data->car->police_number}})" readonly
-                                class="col-xs-10 col-sm-10 required " 
-                                name="car_name"/> 
-                                <input type="hidden" value="{{$data->car_id}})"
-                                name="car-id"/>  
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label no-padding-right" 
                             for="form-field-1"> Tujuan
                             </label>
                             <div class="col-sm-9">
                                 <input type="text" value="{{$data->destination}}" readonly
                                 class="col-xs-10 col-sm-10 required " 
                                 name="destination"/>  
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label no-padding-right" 
-                            for="form-field-1"> Supir
-                            </label>
-                            <div class="col-sm-9">
-                                @if ($data->driver_id != '0')
-                                    <input type="text" value="{{$data->supir->name}}" readonly
-                                    class="col-xs-10 col-sm-10 required " 
-                                    name="nama_driver"/>  
-                                    <input type="hidden" value="{{$data->driver_id}}"
-                                    name="driver_id"/>  
-                                @else
-                                    <input type="text" value="Tidak Menggunakan Supir" readonly
-                                    class="col-xs-10 col-sm-10 required " 
-                                    name="nama_driver"/>  
-                                @endif
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label no-padding-right" 
-                            for="form-field-1"> Status
-                            </label>
-                            <div class="col-sm-9">
-                                <input type="radio" required value="Y" 
-                                name="status" id="Y"/> &nbsp; Disetujui  &nbsp;
-                                <input type="radio" required value="N"
-                                name="status" id="N"/> &nbsp; Ditolak
                             </div>
                         </div>
                         <div class="form-group">
@@ -126,6 +86,45 @@
                                 @endif
                             </div>
                         </div>
+                        <hr>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right" 
+                            for="form-field-1"> Kendaraan
+                            </label>
+                            <div class="col-sm-9">
+                                <select name="car_id" class="col-xs-10 col-sm-10 required select2" id="car_id" required>
+                                    <option value="">Pilih Kendaraan</option>
+                                    @foreach ($car as $item)
+                                        <option value="{{$item->id}}">{{$item->merk}} ( {{$item->police_number}} )</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right" 
+                            for="form-field-1"> Supir
+                            </label>
+                            <div class="col-sm-9">
+                                <select name="driver_id" id="driver_id" class="col-xs-10 col-sm-10 required select2" required>
+                                    <option value="">Pilih Supir</option> 
+                                    @foreach ($driver as $item)
+                                        <option value="{{$item->id}}">{{$item->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right" 
+                            for="form-field-1"> Status
+                            </label>
+                            <div class="col-sm-9">
+                                <input type="radio" required value="Y" 
+                                name="status" id="Y"/> &nbsp; Disetujui  &nbsp;
+                                <input type="radio" required value="N"
+                                name="status" id="N"/> &nbsp; Ditolak
+                            </div>
+                        </div>
+                        
                         </fieldset>
                     </div>
                 </div>

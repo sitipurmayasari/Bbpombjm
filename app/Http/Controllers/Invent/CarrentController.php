@@ -58,8 +58,6 @@ class CarrentController extends Controller
         $this->validate($request,[
             'date_from'     => 'required|date',
             'date_to'       => 'required|date',
-            'car_id'        => 'required',
-            'driver_id'     => 'required',
             'destination'   => 'required'
         ]);
 
@@ -83,24 +81,33 @@ class CarrentController extends Controller
     public function edit($id)
     {
         $data = Vehiclerent::where('id',$id)->first();
-        return view('invent/carrent.edit',compact('data'));
+
+        $car = Car::WhereRaw("id NOT IN (SELECT car_id from vehiclerent WHERE '".$data->date_from."' BETWEEN date_from AND date_to and status='Y') ")
+                    ->get();
+        $driver =User::where("deskjob","LIKE","%Sopir%")
+                    ->WhereRaw("id NOT IN (SELECT driver_id from vehiclerent WHERE '".$data->date_from."' BETWEEN date_from AND date_to and status='Y') ")
+                    ->get();
+
+
+
+        return view('invent/carrent.edit',compact('data','car','driver'));
     }
     
 
-    function getCar(Request $request){
-        $car = Car::WhereRaw("id NOT IN (SELECT car_id from vehiclerent WHERE '".$request->tgl."' BETWEEN date_from AND date_to and status='Y') ")
-                    ->get();
-        $driver =User::where("deskjob","LIKE","%Sopir%")
-                    ->WhereRaw("id NOT IN (SELECT driver_id from vehiclerent WHERE '".$request->tgl."' BETWEEN date_from AND date_to and status='Y') ")
-                    ->get();
+    // function getCar(Request $request){
+    //     $car = Car::WhereRaw("id NOT IN (SELECT car_id from vehiclerent WHERE '".$request->tgl."' BETWEEN date_from AND date_to and status='Y') ")
+    //                 ->get();
+    //     $driver =User::where("deskjob","LIKE","%Sopir%")
+    //                 ->WhereRaw("id NOT IN (SELECT driver_id from vehiclerent WHERE '".$request->tgl."' BETWEEN date_from AND date_to and status='Y') ")
+    //                 ->get();
         
-        return response()->json([ 
-            'success'   => true,
-            'car'       => $car,
-            'driver'    =>$driver
-            ],200
-        );
-    }
+    //     return response()->json([ 
+    //         'success'   => true,
+    //         'car'       => $car,
+    //         'driver'    =>$driver
+    //         ],200
+    //     );
+    // }
 
     public function update(Request $request, $id)
     {
