@@ -35,7 +35,7 @@
     
     /* The Close Button */
     .close {
-      color: #aaaaaa;
+      color: #332e2e;
       float: right;
       font-size: 28px;
       font-weight: bold;
@@ -109,8 +109,8 @@
                                 </label>
                             </div>
                             <div class="col-sm-2">
-                                <input type="date" value="{{date('Y-m-d')}}"
-                                class="col-xs-10 col-sm-10 required " 
+                                <input type="date"  onchange="getLong()"
+                                class="col-xs-10 col-sm-10 required " id="date_to"
                                 name="date_to" required />
                             </div>
                         </div>
@@ -148,9 +148,23 @@
             <div class="col-sm-1" style="font-size: 35px;">
                 <i class="fa fa-exclamation-triangle fa-10x"  aria-hidden="true"></i>
             </div>
-            <div class="col-sm-9" style="text-align: center"> 
+            <div class="col-sm-9" style="text-align: center; font-size:18px"> 
                 <p>Anda hanya bisa mengajukan peminjaman kendaraan
                 paling cepat 5 hari sebelum tanggal keberangkatan</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="Modalkedua" class="cobamodal">
+        <!-- Modal content -->
+        <div class="cobamodal-content">
+            <span class="close">&times;</span>
+            <br><br>
+            <div class="col-sm-1" style="font-size: 35px;">
+                <i class="fa fa-exclamation-triangle fa-10x"  aria-hidden="true"></i>
+            </div>
+            <div class="col-sm-9" style="text-align: center; font-size:20px"> 
+                <p>Tanggal Pulang tidak boleh kurang dari Tanggal Berangkat</p>
             </div>
         </div>
     </div>
@@ -162,6 +176,8 @@
             </button>
         </div>
     </div>
+
+    
     </form>
 </div>
 
@@ -169,12 +185,13 @@
 
 @section('footer')
 <script>
-    var cobamodal = document.getElementById("Modalku");
-
+    var modalsatu = document.getElementById("Modalku");
+    var modaldua    = document.getElementById("Modalkedua");
+    var spans = document.getElementsByClassName("close")[0];
+   
 
     function getCar(){
         var dates = $("#date_from").val();
-        
         var today = new Date();   
         today.setHours(0,0,0,0);
         today.setDate(today.getDate() + 5);
@@ -182,23 +199,47 @@
         var batas = today.toISOString().substring(0, 10);
 
         if (dates > batas) { 
-            cobamodal.style.display = "block";
+            modalsatu.style.display = "block";
             document.getElementById("simpan").disabled = true;      
         }else{
             document.getElementById("simpan").disabled = false;
         }
     }
         // When the user clicks anywhere outside of the cobamodal, close it
-        window.onclick = function(event) {
-            if (event.target == cobamodal) {
-                cobamodal.style.display = "none";
+    window.onclick = function(event) {
+            if (event.target == modalsatu) {
+                modalsatu.style.display = "none";
             }
-        }
+
+            if (event.target == modaldua) {
+                modaldua.style.display = "none";
+            }
+    }
 
     //    When the user clicks on <span> (x), close the cobamodal
-        var spans = document.getElementsByClassName("close")[0];
-        spans.onclick = function() {
-            cobamodal.style.display = "none";
+    spans.onclick = function() {
+            modalsatu.style.display = "none";
+            modaldua.style.display = "none";
+
+            // if (event.target == modalsatu) {
+            //     modalsatu.style.display = "none";
+            // }
+
+            // if (event.target == modaldua) {
+            //     modaldua.style.display = "none";
+            // }
+    }
+
+    function getLong(){
+        var datedari    = $("#date_from").val();
+        var datesampai   = $("#date_to").val();
+
+        if(datedari > datesampai){
+            modaldua.style.display = "block";
+            document.getElementById("simpan").disabled = true;      
+        }else{
+            document.getElementById("simpan").disabled = false;  
         }
+    }
 </script>
 @endsection

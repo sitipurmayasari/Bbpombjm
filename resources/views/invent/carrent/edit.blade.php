@@ -51,7 +51,7 @@
                             for="form-field-1"> Tanggal Peminjaman
                             </label>
                             <div class="col-sm-2">
-                                <input type="text" value="{{tgl_indo($data->date_from)}}" readonly
+                                <input type="text" value="{{$data->date_from}}" readonly
                                 class="col-xs-10 col-sm-10 required " 
                                 name="date_from" required id="date_from" />  
                                 <label class="col-sm-2 control-label no-padding-right" 
@@ -59,7 +59,7 @@
                                 </label>
                             </div>
                             <div class="col-sm-2">
-                                <input type="text" value="{{tgl_indo($data->date_to)}}" readonly
+                                <input type="text" value="{{$data->date_to}}" readonly
                                 class="col-xs-10 col-sm-10 required " 
                                 name="date_to" required />
                             </div>
@@ -105,7 +105,7 @@
                             for="form-field-1"> Supir
                             </label>
                             <div class="col-sm-9">
-                                <select name="driver_id" id="driver_id" class="col-xs-10 col-sm-10 required select2" required>
+                                <select name="driver_id" id="driver_id" class="col-xs-10 col-sm-10 required select2">
                                     <option value="">Pilih Supir</option> 
                                     @foreach ($driver as $item)
                                         <option value="{{$item->id}}">{{$item->name}}</option>

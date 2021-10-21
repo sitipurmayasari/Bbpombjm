@@ -106,15 +106,21 @@
         <div class="card-body">
           @if ($dinas!= null)
             Tanggal {{$dinas->date_from}} s/d {{$dinas->date_to}}
-            <h1 class="card-title">
+            
               @if ($dinas->status==null)
-                  Menunggu
+                <h1 class="card-title">Menunggu</h1>
               @elseif($dinas->status=='Y')
-                  Disetujui
+                <h1 class="card-title">Disetujui</h1>
+                @if ($dinas->driver_id != null)
+                    <h5>Mobil : {{$dinas->car->merk}} ( {{$dinas->car->police_number}} )</h5>
+                    <h5>Supir : {{$dinas->supir->name}}</h5>
+                @else
+                  <h5>Mobil : {{$dinas->car->merk}} ( {{$dinas->car->police_number}} )</h5>
+                @endif
               @else
-                  Ditolak
+                <h1 class="card-title">Ditolak</h1>
               @endif
-            </h1>
+            
           @else
               <h1 class="card-title">Belum Ada Pengajuan </h1>
           @endif
