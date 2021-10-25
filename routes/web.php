@@ -21,6 +21,7 @@ Route::get('/qR/{id}/inventaris','Invent\InventarisController@detail')->name('in
   Route::group(['middleware' => 'auth'], function(){
   Route::get('/portal','PortalController@index')->name('dashboard');
   Route::get('/profile','ProfileController@index')->name('profile');
+  Route::get('/notifications','NotifController@index')->name('notif');
   Route::get('/carousel','CarouselController@index')->name('carousel');
 
   //Route untuk dashboard
@@ -30,7 +31,6 @@ Route::get('/qR/{id}/inventaris','Invent\InventarisController@detail')->name('in
   Route::get('/finance/dashboard','Finance\DashboardController@index')->name('dashboard');
   //--------------------------AMDK------------------------------------------
   Route::get('/amdk/dashboard','Amdk\DashboardController@index')->name('dashboard');
-
 
 
   //Route untuk Profile
@@ -185,6 +185,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/finance/travelexpenses','Finance\TravelexpensesController@index')->name('travelexpenses');
     //Route untuk petugas
     Route::get('/finance/petugas','Finance\PetugasController@index')->name('petugasmon');
+    //Route untuk laporan DL
+    Route::get('/finance/outreport','Finance\OutReportController@index')->name('outreport');
 
 });
 

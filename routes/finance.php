@@ -171,3 +171,6 @@
   Route::get('/finance/petugas/delete/{id}','Finance\PetugasController@delete')->name('petugasmon.delete');
   Route::get('/finance/petugas/edit/{id}','Finance\PetugasController@edit')->name('petugasmon.edit');
   Route::post('/finance/petugas/update/{id}','Finance\PetugasController@update')->name('petugasmon.update');
+
+  //Route untuk laporan DL
+  Route::post('/finance/outreport/cetak','Finance\OutReportController@cetak')->name('outreport.cetak');

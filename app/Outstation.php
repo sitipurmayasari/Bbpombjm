@@ -59,4 +59,9 @@ class Outstation extends Model
         return $this->belongsTo(Destination::class,'city_2','id');
     }
 
+    public function petugas()
+    {
+        return $this->hasMany(Outst_employee::class,'outstation_id','id');
+    }
+
 }
