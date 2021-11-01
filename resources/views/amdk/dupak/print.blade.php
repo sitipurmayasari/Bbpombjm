@@ -44,7 +44,7 @@
        <table>
            <tr>
                <td>Masa Penilaian Tanggal</td>
-               <td >: {{$data->dari}}  s/d {{$data->sampai}} </td>
+               <td >: {{tgl_indo($data->dari)}}  s/d {{tgl_indo($data->sampai)}} </td>
            </tr>
            <tr>
             <td>Unit Kerja</td>
