@@ -11,7 +11,7 @@
     <style>
         html{
             font-family: 'Times New Roman';
-            font-size: 10;
+            font-size: 9;
         }
         .tbl{
             border: 1px solid black;
