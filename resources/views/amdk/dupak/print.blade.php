@@ -95,7 +95,7 @@
             <tr>
                 <td class="tbl" style="width: 5%; text-align: center;">6</td>
                 <td class="tnt" colspan="4">Pangkat / Gol. Ruang / TMT</td>
-                <td class="tnt" style="width: 10%;" colspan="5">:  {{$data->pegawai->gol->golongan}} / {{$data->pegawai->gol->ruang}} ({{$data->tmt}})</td>
+                <td class="tnt" style="width: 10%;" colspan="5">: {{$data->pegawai->gol->jenis}} / Gol.{{$data->pegawai->gol->golongan}}/{{$data->pegawai->gol->ruang}} ({{$data->tmt}})</td>
             </tr>
             <tr>
                 <td class="tbl" style="width: 5%; text-align: center;">7</td>
