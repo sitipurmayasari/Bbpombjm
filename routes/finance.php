@@ -174,3 +174,12 @@
 
   //Route untuk laporan DL
   Route::post('/finance/outreport/cetak','Finance\OutReportController@cetak')->name('outreport.cetak');
+
+  //Route untuk Tagging
+  Route::get('/finance/ikutagging/create','Finance\IkuTaggingController@create')->name('ikutagging.create');
+  Route::post('finance/ikutagging/impor','Finance\IkuTaggingController@impor')->name('ikutagging.impor');
+  Route::get('/finance/ikutagging/taging/{id}','Finance\IkuTaggingController@taging')->name('ikutagging.taging');
+  Route::post('finance/ikutagging/store','Finance\IkuTaggingController@store')->name('ikutagging.store');
+  Route::get('finance/ikutagging/delete/{id}','Finance\IkuTaggingController@delete')->name('ikutagging.delete');
+  Route::get('finance/ikutagging/edit/{id}','Finance\IkuTaggingController@edit')->name('plane.edit');
+  Route::post('finance/ikutagging/update/{id}','Finance\IkuTaggingController@update')->name('ikutagging.update');

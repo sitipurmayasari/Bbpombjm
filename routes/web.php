@@ -187,6 +187,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/finance/petugas','Finance\PetugasController@index')->name('petugasmon');
     //Route untuk laporan DL
     Route::get('/finance/outreport','Finance\OutReportController@index')->name('outreport');
+    //Route untuk Tagging
+    Route::get('/finance/ikutagging','Finance\IkuTaggingController@index')->name('ikutagging');
 
 });
 

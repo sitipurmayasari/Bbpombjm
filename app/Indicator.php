@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Indicator extends Model
 {
     protected $table = "indicator";
-    protected $fillable = ["target_id","subcode_id","indicator","poin"];
+    protected $fillable = ["target_id","indicator"];
 
     public function target()
     {

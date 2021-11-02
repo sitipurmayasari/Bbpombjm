@@ -1,6 +1,6 @@
 @extends('layouts.mon')
 @section('breadcrumb')
-    <li>Setup</li>
+    <li>Indikator Kinerja</li>  
     <li><a href="/finance/ikuIndicator">Indikator Kinerja Utama</a></li>
     <li>Edit</li>
 @endsection
@@ -26,11 +26,11 @@
                         <fieldset>
                         <br>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
+                            <label class="col-sm-2 control-label no-padding-right" 
                             for="form-field-1"> Sasaran Kegiatan
                             </label>
-                            <div class="col-sm-8">
-                                <select name="target_id" class="col-xs-10 col-sm-10 required " required>
+                            <div class="col-sm-10">
+                                <select name="target_id" class="col-xs-10 col-sm-10 required select2" required>
                                     <option value="">Pilih</option>
                                     @foreach ($target as $item)
                                     @if ($data->target_id==$item->id)
@@ -44,40 +44,13 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Kode SubKomponen
-                            </label>
-                            <div class="col-sm-8">
-                                <select name="subcode_id" class="col-xs-10 col-sm-10 required " required>
-                                    <option value="">Pilih Kode</option>
-                                    @foreach ($komponen as $item)
-                                        @if ($data->subcode_id==$item->id)
-                                            <option value="{{$item->id}}" selected>{{$item->kodeall}}</option>
-                                        @else
-                                            <option value="{{$item->id}}">{{$item->kodeall}}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
+                            <label class="col-sm-2 control-label no-padding-right" 
                             for="form-field-1"> Indikator Kinerja
                             </label>
-                            <div class="col-sm-8">
+                            <div class="col-sm-10">
                                 <input type="text"  placeholder="Indikator" value="{{$data->indicator}}"
                                         class="col-xs-10 col-sm-10 required " 
                                         name="indicator" required />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Target
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="number"  min="0"  step="0.01" placeholder="0.00" 
-                                        class="col-xs-2 col-sm-2 required "  value="{{$data->poin}}"
-                                        name="poin" required/>
                             </div>
                         </div>
                         </fieldset>        

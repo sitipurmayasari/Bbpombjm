@@ -2,7 +2,7 @@
 @section('breadcrumb')
 @section('breadcrumb')
     <li>Indikator Kinerja</li>
-    <li>Indikator Kinerja Utama</li>
+    <li>Tangging Angaran</li>
 @endsection
 @section('content')
 
@@ -13,7 +13,7 @@
                 <div class="form-group col-sm-12">
                     <div class="row">
                         <div class="form-group col-xs-12 col-sm-3" style="float: left">
-                           <a href="{{Route('ikuIndicator.create')}}"  class="btn btn-primary">Tambah Data</a>   
+                           <a href="{{Route('ikutagging.create')}}"  class="btn btn-primary">Tambah Data</a>   
                         </div>
                         <div class="form-group col-xs-12 col-sm-5" style="float: right">
                             <div class="input-group">
@@ -36,18 +36,16 @@
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
                 <th width="40px">No</th>
-                <th>Sasaran Kegiatan</th>
-                <th>Indikator</th>
+                <th>Nama Pagu</th>
                 <th  class="col-md-2">Aksi</th>
             </thead>
             <tbody>   	
                 @foreach($data as $key=>$row)
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
-                    <td>{{$row->target->name}}</td>
-                    <td>{{$row->indicator}}</td>
+                    <td>{{$row->name}}</td>
                     <td>
-                        <a href="/finance/ikuIndicator/edit/{{$row->id}}" class="btn btn-warning">
+                        <a href="/finance/ikutagging/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
                         <a href="#" class="btn btn-danger delete"
@@ -66,25 +64,25 @@
 
 @section('footer')
 <script>
-    $().ready( function () {
-        $(".delete").click(function() {
-                var id = $(this).attr('r-id');
-                var name = $(this).attr('r-name');
-                Swal.fire({
-                title: 'Ingin Menghapus?',
-                text: "Yakin ingin menghapus data  : "+name+" ini ?" ,
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, hapus !'
-            }).then((result) => {
-                console.log(result);
-                if (result.value) {
-                    window.location = "/finance/ikuIndicator/delete/"+id;
-                }
-            });
-        });
-    } );
+    // $().ready( function () {
+    //     $(".delete").click(function() {
+    //             var id = $(this).attr('r-id');
+    //             var name = $(this).attr('r-name');
+    //             Swal.fire({
+    //             title: 'Ingin Menghapus?',
+    //             text: "Yakin ingin menghapus data  : "+name+" ini ?" ,
+    //             type: 'warning',
+    //             showCancelButton: true,
+    //             confirmButtonColor: '#3085d6',
+    //             cancelButtonColor: '#d33',
+    //             confirmButtonText: 'Yes, hapus !'
+    //         }).then((result) => {
+    //             console.log(result);
+    //             if (result.value) {
+    //                 window.location = "/finance/ikutagging/delete/"+id;
+    //             }
+    //         });
+    //     });
+    // } );
 </script>
 @endsection

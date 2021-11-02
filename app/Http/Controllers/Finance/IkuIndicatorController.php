@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Target;
 use App\Indicator;
-use App\Subcode;
 
 class IkuIndicatorController extends Controller
 {
@@ -26,8 +25,7 @@ class IkuIndicatorController extends Controller
     public function create()
     {
         $target = Target::all();
-        $komponen = Subcode::all();
-        return view('finance/ikuIndicator.create',compact('target','komponen'));
+        return view('finance/ikuIndicator.create',compact('target'));
     }
 
     public function store(Request $request)
@@ -40,9 +38,8 @@ class IkuIndicatorController extends Controller
     public function edit($id)
     {
         $target = Target::all();
-        $komponen = Subcode::all();
         $data = Indicator::where('id',$id)->first();
-        return view('finance/ikuIndicator.edit',compact('data','target','komponen'));
+        return view('finance/ikuIndicator.edit',compact('data','target'));
     }
 
    
