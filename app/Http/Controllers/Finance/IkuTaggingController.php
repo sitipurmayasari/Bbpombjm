@@ -59,8 +59,8 @@ class IkuTaggingController extends Controller
           $pagu =Pagu::create($request->all());
           $pagu_id = $pagu->id;
 
-        //   Excel::import(new PaguImport($pagu_id), urlStorage().'/excel/'.$nama_file);
-          Excel::import(new PaguImport($pagu_id), public_path('/excel/'.$nama_file));
+          Excel::import(new PaguImport($pagu_id), urlStorage().'/excel/'.$nama_file);
+        //   Excel::import(new PaguImport($pagu_id), public_path('/excel/'.$nama_file));
       
         DB::commit();
 
