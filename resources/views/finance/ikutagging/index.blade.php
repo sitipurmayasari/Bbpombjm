@@ -37,6 +37,7 @@
             <thead>
                 <th width="40px">No</th>
                 <th>Nama Pagu</th>
+                <th>Tanggal Upload</th>
                 <th  class="col-md-2">Aksi</th>
             </thead>
             <tbody>   	
@@ -44,15 +45,14 @@
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
                     <td>{{$row->name}}</td>
+                    <th>{{tgl_indo($row->tanggal)}}</th>
                     <td>
-                        <a href="/finance/ikutagging/edit/{{$row->id}}" class="btn btn-warning">
+                        <a href="/finance/ikutagging/taging/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
-                        <a href="#" class="btn btn-danger delete"
-                            r-name="{{$row->name}}" 
-                            r-id="{{$row->id}}">
-                            <i class="glyphicon glyphicon-trash"></i></a>
-                    </td>
+                        <a href="/finance/ikutagging/cetak/{{$row->id}}" class="btn btn-warning">
+                            <i class="glyphicon glyphicon-print"></i>
+                        </a>
                 </tr>
               
                 @endforeach
@@ -62,27 +62,3 @@
 {{$data->appends(Request::all())->links()}}
 @endsection
 
-@section('footer')
-<script>
-    // $().ready( function () {
-    //     $(".delete").click(function() {
-    //             var id = $(this).attr('r-id');
-    //             var name = $(this).attr('r-name');
-    //             Swal.fire({
-    //             title: 'Ingin Menghapus?',
-    //             text: "Yakin ingin menghapus data  : "+name+" ini ?" ,
-    //             type: 'warning',
-    //             showCancelButton: true,
-    //             confirmButtonColor: '#3085d6',
-    //             cancelButtonColor: '#d33',
-    //             confirmButtonText: 'Yes, hapus !'
-    //         }).then((result) => {
-    //             console.log(result);
-    //             if (result.value) {
-    //                 window.location = "/finance/ikutagging/delete/"+id;
-    //             }
-    //         });
-    //     });
-    // } );
-</script>
-@endsection

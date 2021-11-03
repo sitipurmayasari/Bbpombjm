@@ -180,6 +180,7 @@
   Route::post('finance/ikutagging/impor','Finance\IkuTaggingController@impor')->name('ikutagging.impor');
   Route::get('/finance/ikutagging/taging/{id}','Finance\IkuTaggingController@taging')->name('ikutagging.taging');
   Route::post('finance/ikutagging/store','Finance\IkuTaggingController@store')->name('ikutagging.store');
-  Route::get('finance/ikutagging/delete/{id}','Finance\IkuTaggingController@delete')->name('ikutagging.delete');
-  Route::get('finance/ikutagging/edit/{id}','Finance\IkuTaggingController@edit')->name('plane.edit');
   Route::post('finance/ikutagging/update/{id}','Finance\IkuTaggingController@update')->name('ikutagging.update');
+  Route::get('/finance/addagging/{pagu_id}/{id}','Finance\IkuTaggingController@add')->name('ikutagging.add');
+  Route::get('/finance/editagging/{pagu_id}/{id}','Finance\IkuTaggingController@ubah')->name('ikutagging.ubah');
+  Route::get('finance/ikutagging/cetak/{id}','Finance\IkuTaggingController@cetak')->name('ikutagging.cetak');

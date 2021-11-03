@@ -138,7 +138,9 @@
                 @endphp
                 <td  class="isi">Berangkat</td>
                 <td  class="isi">
-
+                    @if ($pesawat1 != null)
+                        {{$berangkat1->plane_id1}}
+                    @endif
                 </td>
                 <td  class="isi">
                     @if ($pesawat1 != null)
@@ -176,7 +178,9 @@
                 @endphp
                <td  class="isi">Berangkat</td>
                <td  class="isi">
-
+                    @if ($pesawat1 != null)
+                        {{$berangkat2->plane_id2}}
+                    @endif
                </td>
                <td  class="isi">
                    @if ($pesawat2 != null)
@@ -197,12 +201,14 @@
             </tr>
             <tr>
                 @php
-                    $pulang = $injectQuery->getDetail($item->id);
-                    $pulang = $berangkat2->planenumberreturn;
+                    $bulik = $injectQuery->getDetail($item->id);
+                    $pulang = $bulik->planenumberreturn;
                 @endphp
                 <td  class="isi"><b>Kembali</b></td>
                 <td  class="isi">
-
+                    @if ($pulang != null)
+                        {{$bulik->plane_idreturn}}
+                    @endif
                 </td>
                 <td  class="isi">
                     @if ($pulang != null)
@@ -211,13 +217,13 @@
                 </td>
                 <td  class="isi">
                     @if ($pulang != null)
-                        {{tgl_indo($pulang->returndate)}}
+                        {{tgl_indo($bulik->returndate)}}
                     @endif
                     
                 </td>
                 <td  class="isi">
                     @if ($pulang != null)
-                        {{number_format($pulang->planereturnfee)}}
+                        {{number_format($bulik->planereturnfee)}}
                     @endif
                 </td>
             </tr>

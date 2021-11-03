@@ -8,6 +8,7 @@ use App\AduanDetail;
 use App\Travelexpenses;
 use App\Travelexpenses1;
 use App\Outst_destiny;
+use App\Tagging;
 use Illuminate\Support\Facades\DB;
 
 class InjectQuery
@@ -102,5 +103,30 @@ class InjectQuery
         $daftarajuan = PengajuanDetail::where('pengajuan_id',$ajuanId)->get();
             return $daftarajuan;
     }
+
+//------------------------------TAGGING ANGGARAN------------------------------------------------------------------------  
+    public function getTag($pagu_id, $subcode_id){
+        $tag = Tagging::Where('pagu_id',$pagu_id)
+                        ->Where('subcode_id',$subcode_id)
+                        ->first();
+        return $tag;
+    }
+
+    public function getDetailPagu($pagu_id, $subcode_id){
+        $detail = PaguDetail::leftJoin('pagu','pagu.id','=','pagudetail.pagu_id')
+                            ->Where('pagudetail.pagu_id',$pagu_id)
+                            ->Where('pagudetail.subcode_id',$subcode_id)
+                            ->first();
+        return $detail;
+    }
+
+    public function getIndi($pagu_id, $indicator_id){
+        $hitung = Tagging::SelectRaw('COUNT(indicator_id) AS jum')
+                            ->Where('pagu_id',$pagu_id)
+                            ->Where('indicator_id',$indicator_id)
+                            ->first();
+        return $hitung;
+    }
+
    
 }

@@ -18,6 +18,16 @@
                     <div class="col-md-12">
                         <br>
                         <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right" 
+                            for="form-field-1">Tanggal
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text" name="tanggal" readonly 
+                                class="col-xs-10 col-sm-10 required" value="{{tgl_indo(date('Y-m-d'))}}" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
                             
                             <label class="col-sm-2 control-label no-padding-right" 
                             for="form-field-1"> Tahun Pagu *

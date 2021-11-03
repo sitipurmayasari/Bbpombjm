@@ -21,11 +21,6 @@
 
         }
 
-        /* table, tr, td, th {
-            padding-top: 3px;
-            padding-bottom: 3px;
-        } */
-
         .kepala {
             text-align: left;
             font-style: italic;
@@ -174,10 +169,6 @@
         <tr>
             <td>Terbilang</td>
             <td style="text-transform: capitalize;">: 
-                @php
-                    $total = $injectQuery->totalHarga($item->id)
-                @endphp
-
                 <b>{{terbilang($total)}}</b>
             </td>
             <td></td>
@@ -243,594 +234,441 @@
    <hr style="border:1px solid black;">
    <p style="font-size: 10; text-align:center;"><b>RINCIAN BIAYA PERJALANAN DINAS</b></p>
    <table class="isi" style="width: 100%">
-        <thead>
-            <tr>
-                <th class="isi" style="width: 5%">No.</th>
-                <th class="isi">Daftar Perincian</th>
-                <th class="isi" style="width: 12%">Jumlah</th>
-                <th class="isi" style="width: 15%">Keterangan</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="isi" style="text-align: center">1</td>
-                <td class="isi">
-                    <table style="width: 100%;" class="kepala">
-                        <tr>
-                            <td colspan="8">Biaya Transport</td>
-                        </tr>
-                        <tr>
+    <thead>
+        <tr>
+            <th class="isi" style="width: 5%">No.</th>
+            <th class="isi">Daftar Perincian</th>
+            <th class="isi" style="width: 12%">Jumlah</th>
+            <th class="isi" style="width: 15%">Keterangan</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="isi" style="text-align: center">1</td>
+            <td class="isi">
+                <table style="width: 100%">
+                    <tr>
+                        <td colspan="8">Biaya Transport</td>
+                    </tr>
+                    <tr>
+                        @php
+                            $subtrans = 0;
+                            $subTotal1 = 0;
+                        @endphp
+                        <td colspan="3">Tiket Pesawat / Kereta</td>
+                        <td colspan="3"> Pergi</td>
+                        <td>. Rp. </td>
+                        <td style="text-align: right;">
                             @php
-                                $subtrans = 0;
-                                $subTotal1 = 0;
-                            @endphp
-                            <td colspan="3">Tiket Pesawat / Kereta</td>
-                            <td colspan="3"> Pergi</td>
-                            <td>. Rp. </td>
-                            <td style="text-align: right;">
-                                @php
-                                        $nilai = $injectQuery->getDetail($item->id)
+                                    $nilai = $injectQuery->getDetail($item->id)
+                                @endphp
+    
+                                @if ($nilai->planefee1 != '0')
+                                    @php
+                                        $fee1 = $nilai->planefee1;
+                                        $fee2 = $nilai->planefee2;
+                                        $fee3 = $nilai->planefee3;
+                                        $subtrans = $fee1+$fee2+$fee3;
                                     @endphp
+                                    {{number_format($subtrans)}} 
+    
+                                @else
+                                   {{ '-' }}
+                                @endif
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        @php
+                            $subtrans = 0;
+                        @endphp
+                        <td colspan="3"></td>
+                        <td colspan="3"> Kembali</td>
+                        <td>. Rp.</td>
+                        <td style="text-align: right;">
+                            @php
+                                $nilai = $injectQuery->getDetail($item->id)
+                            @endphp
+    
+                            @if ($nilai->planereturnfee != '0')
+                                @php
+                                    $subtrans =$nilai->planereturnfee;
+                                @endphp
+                                {{number_format($subtrans)}} 
+    
+                            @else
+                                {{ '-' }}
+                            @endif
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="8">Taxi Kota</td>
+                    </tr>
+                    <tr>
+                        @php
+                            $jum=0;
+                            $nilai=0;
+                            $subtrans = 0;
+                        @endphp
+                        <td colspan="2">- Asal </td>
+                        <td>:</td>
+                        <td style="text-align: right; width:5%;">
+                            @php
+                                $nilai = $injectQuery->getDetail($item->id)
+                            @endphp
+    
+                            @if ($nilai->taxy_count_from != '0')
+                                @php
+                                    $jum =$nilai->taxy_count_from;
+                                @endphp
+                                {{$jum}}
+    
+                            @else
+                                {{ '-' }}
+                            @endif
+                            &nbsp;
+                        </td>
+                        <td>kali &nbsp; x &nbsp; Rp.</td>
+                        <td style="text-align: right;">
+                            @php
+                                $taxi = 0;
+                                $nilai = $injectQuery->getDetail($item->id)
+                            @endphp
+    
+                            @if ($nilai->taxy_count_from != '0')
+                                @php
+                                    $taxi = $nilai->taxy_fee_from;
+                                @endphp
+                                {{number_format($taxi)}} 
+    
+                            @else
+                                {{ '-' }}
+                            @endif
+                            &nbsp;
+                        </td>
+                        <td>. Rp.</td>
+                        <td style="text-align: right;">
+                            @php
+                                $subtrans = $jum*$taxi;    
+                            @endphp
+                            
+                            @if ($subtrans !='0')
+                                {{$subtrans}}
+                            @else
+                                {{'-'}}
+                            @endif
+                        &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        @php
+                            $jum=0;
+                            $bbm=0;
+                            $subtrans = 0;
+                        @endphp
+                        <td style="width: 15%">- Tujuan </td>
+                        <td style="width: 20%;">
+                            @if (count($item->out->outst_destiny) == 1)
+                                @foreach ($tujuan as $key=>$kota)
+                                    @if ($loop->first)
+                                        {{$kota->destiny->capital}} 
+                                    @endif
+                                    
+                                @endforeach
+    
+                            @elseif (count($item->out->outst_destiny) == 2)
+                                @foreach ($tujuan as $key=>$kota)
+                                    {{$kota->destiny->capital}}
+                                    @if ($tujuan->count()-1 != $key)
+                                        {{' dan '}}
+                                    @endif
+                                @endforeach
+    
+                            @else
+                                @foreach ($tujuan as $key=>$kota)
+                                    @if ($loop->last-1)
+                                        {{$kota->destiny->capital}}{{','}} 
+                                    @endif
+                                    @if ($loop->last)
+                                        {{' dan '}} {{$kota->destiny->capital}}
+                                    @endif
+                                    
+                                @endforeach
+                            @endif
+                        </td>
+                        <td>:</td>
+                        <td style="text-align: right;">
+                                @php
+                                    $nilai = $injectQuery->getDetail($item->id)
+                                @endphp
+    
+                                @if ($nilai->bbm != '0')
+                                    @php
+                                        $jum = 1;
+                                    @endphp
+                                    {{$jum}}
+    
+                                @elseif($nilai->taxy_count_to != null)
+                                    @php
+                                        $jum = $nilai->taxy_count_to;
+                                    @endphp
+                                    {{$jum}}
+                                @else
+                                    -
+                                @endif
+                            &nbsp;
+    
+                        </td>
+                        <td>kali x Rp.</td>
+                        <td style="text-align: right;">
+                            @php
+                                $nilai = $injectQuery->getDetail($item->id)
+                            @endphp
+    
+                            @if ($nilai->bbm != '0')
+                                @php
+                                    $bbm = $nilai->bbm;
+                                @endphp
+                                {{number_format($bbm)}}
+    
+                            @elseif($nilai->taxy_count_to != null)
+                                @php
+                                    $bbm = $nilai->taxy_fee_to;
+                                @endphp
+                                {{number_format($bbm)}}
+                            @else
+                                {{ '-' }}
+                            @endif
+                            &nbsp;
+                        </td>
+                        <td>. Rp.</td>
+                        <td style="text-align: right;">
+                            @php
+                                $subtrans = $jum*$bbm;    
+                            @endphp
+                            @if ($subtrans !='0')
+                                {{$subtrans}}
+                            @else
+                                {{'-'}}
+                            @endif
+                        &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">- kembali </td>
+                        <td>:</td>
+                        <td style="text-align: right;">
+                            - &nbsp;
+                        </td>
+                        <td>kali x Rp.</td>
+                        <td style="text-align: right;">- &nbsp;</td>
+                        <td>. Rp.</td>
+                        <td style="text-align: right;">- &nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            Transport Lokal 
+                            @if (count($item->out->outst_destiny) == 1)
+                                @foreach ($tujuan as $key=>$kota)
+                                    @if ($loop->first)
+                                        {{$kota->destiny->capital}} 
+                                    @endif
+                                    
+                                @endforeach
+    
+                            @elseif (count($item->out->outst_destiny) == 2)
+                                @foreach ($tujuan as $key=>$kota)
+                                    {{$kota->destiny->capital}}
+                                    @if ($tujuan->count()-1 != $key)
+                                        {{' dan '}}
+                                    @endif
+                                @endforeach
+    
+                            @else
+                                @foreach ($tujuan as $key=>$kota)
+                                    @if ($loop->last-1)
+                                        {{$kota->destiny->capital}}{{','}} 
+                                    @endif
+                                    @if ($loop->last)
+                                        {{' dan '}} {{$kota->destiny->capital}}
+                                    @endif
+                                    
+                                @endforeach
+                            @endif
+                        </td>
+                        <td colspan="6">:</td>
+                    </tr>
+                </table>
+            </td>
+            <td class="isi">Rp. &nbsp;&nbsp;&nbsp;&nbsp;
+                @php
+                    $subTotal1 += $subtrans;
+                @endphp
+                @if ($subTotal1=='0')
+                    {{'-'}}
+                @else
+                    {{number_format($subTotal1)}}
+                @endif
+            </td>
+            <td class="isi">{{$item->out->transport}}</td>
+        </tr>
+        <tr>
+            <td class="isi" style="text-align: center">2</td>
+            <td class="isi">
+                <table style="width: 100%">
+                    <tr> 
+                        <td colspan="7">Uang Harian di Kota
+                            @if (count($item->out->outst_destiny) == 1)
+                                @foreach ($tujuan as $key=>$kota)
+                                    @if ($loop->first)
+                                        {{$kota->destiny->capital}} 
+                                    @endif
+                                    
+                                @endforeach
 
-                                    @if ($nilai->planefee1 != '0')
+                            @elseif (count($item->out->outst_destiny) == 2)
+                                @foreach ($tujuan as $key=>$kota)
+                                    {{$kota->destiny->capital}}
+                                    @if ($tujuan->count()-1 != $key)
+                                        {{' dan '}}
+                                    @endif
+                                @endforeach
+
+                            @else
+                                @foreach ($tujuan as $key=>$kota)
+                                    @if ($loop->last-1)
+                                        {{$kota->destiny->capital}}{{','}} 
+                                    @endif
+                                    @if ($loop->last)
+                                        {{' dan '}} {{$kota->destiny->capital}}
+                                    @endif
+                                    
+                                @endforeach
+                            @endif 
+
+                            Provinsi 
+                            @foreach ($tujuan as $key=>$kota)
+                                    @if ($loop->first)
+                                        {{$kota->destiny->province}} 
+                                    @endif        
+                            @endforeach
+
+                        </td>
+                    </tr>
+                    <span id="nomor-2">
+                        @php
+                            $hari=0;
+                            $destinMoney = 0;
+                            $subTotalHarian = 0;
+                            $subTotal2 = 0;
+                        @endphp
+                        <tr>
+                            @foreach ($tujuan as $key=>$hr)
+                                @php
+                                    $hari += $hr->longday;
+                                @endphp
+                            @endforeach
+
+                            <td>- Penuh</td>
+                            <td>:</td>
+                            <td style="text-align: right;">
+
+                                @php
+                                    $daily = $injectQuery->getDetail($item->id)
+                                @endphp
+                                {{$hari}}
+                                {{-- @if ($daily->dailywage == 'Y')
+                                    {{$hari}}
+                                @else
+                                    {{ '-' }}
+                                @endif --}}
+                                &nbsp;
+                            </td>
+                            <td>hari &nbsp; x &nbsp;Rp.</td>
+                            <td style="text-align: right;">
+                                    @php
+                                        $daily = $injectQuery->getTr($item->id)
+                                    @endphp
+                                    @if ($daily->dailywage == 'Y')
                                         @php
-                                            $fee1 = $nilai->planefee1;
-                                            $fee2 = $nilai->planefee2;
-                                            $fee3 = $nilai->planefee3;
-                                            $subtrans = $fee1+$fee2+$fee3;
+                                            $destinMoney = $daily->hitdaily;
                                         @endphp
-                                        {{number_format($subtrans)}} 
-
+                                        {{number_format($destinMoney)}} 
                                     @else
                                        {{ '-' }}
                                     @endif
                                 &nbsp;
                             </td>
-                        </tr>
-                        <tr>
-                            @php
-                                $subtrans = 0;
-                            @endphp
-                            <td colspan="3"></td>
-                            <td colspan="3"> Kembali</td>
                             <td>. Rp.</td>
+                             @php
+                                 $subTotalHarian = $hari*$destinMoney;  
+                                 $subTotal2 +=  $subTotalHarian;
+                             @endphp
                             <td style="text-align: right;">
-                                @php
-                                    $nilai = $injectQuery->getDetail($item->id)
-                                @endphp
-
-                                @if ($nilai->planereturnfee != '0')
-                                    @php
-                                        $subtrans =$nilai->planereturnfee;
-                                    @endphp
-                                    {{number_format($subtrans)}} 
-
-                                @else
-                                    {{ '-' }}
-                                @endif
-                                &nbsp;
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="8">Taxi Kota</td>
-                        </tr>
-                        <tr>
-                            @php
-                                $jum=0;
-                                $nilai=0;
-                                $subtrans = 0;
-                            @endphp
-                            <td colspan="2">- Asal </td>
-                            <td>:</td>
-                            <td style="text-align: right; width:5%;">
-                                @php
-                                    $nilai = $injectQuery->getDetail($item->id)
-                                @endphp
-
-                                @if ($nilai->taxy_count_from != '0')
-                                    @php
-                                        $jum =$nilai->taxy_count_from;
-                                    @endphp
-                                    {{$jum}}
-
-                                @else
-                                    {{ '-' }}
-                                @endif
-                                &nbsp;
-                            </td>
-                            <td>kali &nbsp; x &nbsp; Rp.</td>
-                            <td style="text-align: right;">
-                                @php
-                                    $taxi = 0;
-                                    $nilai = $injectQuery->getDetail($item->id)
-                                @endphp
-
-                                @if ($nilai->taxy_count_from != '0')
-                                    @php
-                                        $taxi = $nilai->taxy_fee_from;
-                                    @endphp
-                                    {{number_format($taxi)}} 
-
-                                @else
-                                    {{ '-' }}
-                                @endif
-                                &nbsp;
-                            </td>
-                            <td>. Rp.</td>
-                            <td style="text-align: right;">
-                                @php
-                                    $subtrans = $jum*$taxi;    
-                                @endphp
-                                
-                                @if ($subtrans !='0')
-                                    {{$subtrans}}
-                                @else
-                                    {{'-'}}
-                                @endif
-                            &nbsp;
-                            </td>
-                        </tr>
-                        <tr>
-                            @php
-                                $jum=0;
-                                $bbm=0;
-                                $subtrans = 0;
-                            @endphp
-                            <td style="width: 15%">- Tujuan </td>
-                            <td style="width: 20%;">
-                                @if (count($item->out->outst_destiny) == 1)
-                                    @foreach ($tujuan as $key=>$kota)
-                                        @if ($loop->first)
-                                            {{$kota->destiny->capital}} 
-                                        @endif
-                                        
-                                    @endforeach
-
-                                @elseif (count($item->out->outst_destiny) == 2)
-                                    @foreach ($tujuan as $key=>$kota)
-                                        {{$kota->destiny->capital}}
-                                        @if ($tujuan->count()-1 != $key)
-                                            {{' dan '}}
-                                        @endif
-                                    @endforeach
-
-                                @else
-                                    @foreach ($tujuan as $key=>$kota)
-                                        @if ($loop->last-1)
-                                            {{$kota->destiny->capital}}{{','}} 
-                                        @endif
-                                        @if ($loop->last)
-                                            {{' dan '}} {{$kota->destiny->capital}}
-                                        @endif
-                                        
-                                    @endforeach
-                                @endif
-                            </td>
-                            <td>:</td>
-                            <td style="text-align: right;">
-                                    @php
-                                        $nilai = $injectQuery->getDetail($item->id)
-                                    @endphp
-
-                                    @if ($nilai->bbm != '0')
-                                        @php
-                                            $jum = 1;
-                                        @endphp
-                                        {{$jum}}
-
-                                    @elseif($nilai->taxy_count_to != null)
-                                        @php
-                                            $jum = $nilai->taxy_count_to;
-                                        @endphp
-                                        {{$jum}}
-                                    @else
-                                        -
-                                    @endif
-                                &nbsp;
-
-                            </td>
-                            <td>kali x Rp.</td>
-                            <td style="text-align: right;">
-                                @php
-                                    $nilai = $injectQuery->getDetail($item->id)
-                                @endphp
-
-                                @if ($nilai->bbm != '0')
-                                    @php
-                                        $bbm = $nilai->bbm;
-                                    @endphp
-                                    {{number_format($bbm)}}
-
-                                @elseif($nilai->taxy_count_to != null)
-                                    @php
-                                        $bbm = $nilai->taxy_fee_to;
-                                    @endphp
-                                    {{number_format($bbm)}}
-                                @else
-                                    {{ '-' }}
-                                @endif
-                                &nbsp;
-                            </td>
-                            <td>. Rp.</td>
-                            <td style="text-align: right;">
-                                @php
-                                    $subtrans = $jum*$bbm;    
-                                @endphp
-                                @if ($subtrans !='0')
-                                    {{$subtrans}}
-                                @else
-                                    {{'-'}}
-                                @endif
-                            &nbsp;
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">- kembali </td>
-                            <td>:</td>
-                            <td style="text-align: right;">
-                                - &nbsp;
-                            </td>
-                            <td>kali x Rp.</td>
-                            <td style="text-align: right;">- &nbsp;</td>
-                            <td>. Rp.</td>
-                            <td style="text-align: right;">- &nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                Transport Lokal 
-                                @if (count($item->out->outst_destiny) == 1)
-                                    @foreach ($tujuan as $key=>$kota)
-                                        @if ($loop->first)
-                                            {{$kota->destiny->capital}} 
-                                        @endif
-                                        
-                                    @endforeach
-
-                                @elseif (count($item->out->outst_destiny) == 2)
-                                    @foreach ($tujuan as $key=>$kota)
-                                        {{$kota->destiny->capital}}
-                                        @if ($tujuan->count()-1 != $key)
-                                            {{' dan '}}
-                                        @endif
-                                    @endforeach
-
-                                @else
-                                    @foreach ($tujuan as $key=>$kota)
-                                        @if ($loop->last-1)
-                                            {{$kota->destiny->capital}}{{','}} 
-                                        @endif
-                                        @if ($loop->last)
-                                            {{' dan '}} {{$kota->destiny->capital}}
-                                        @endif
-                                        
-                                    @endforeach
-                                @endif
-                            </td>
-                            <td colspan="6">:</td>
-                        </tr>
-                    </table>
-                </td>
-                <td class="isi">Rp. &nbsp;&nbsp;&nbsp;&nbsp;
-                    @php
-                        $subTotal1 += $subtrans;
-                    @endphp
-                    @if ($subTotal1=='0')
-                        {{'-'}}
-                    @else
-                        {{number_format($subTotal1)}}
-                    @endif
-                </td>
-                <td class="isi">{{$item->out->transport}}</td>
-            </tr>
-            <tr>
-                <td class="isi" style="text-align: center">2</td>
-                <td class="isi">
-                    <table style="width: 100%;" class="kepala">
-                        <tr> 
-                            <td colspan="7">Uang Harian di Kota
-                                @if (count($item->out->outst_destiny) == 1)
-                                    @foreach ($tujuan as $key=>$kota)
-                                        @if ($loop->first)
-                                            {{$kota->destiny->capital}} 
-                                        @endif
-                                        
-                                    @endforeach
-
-                                @elseif (count($item->out->outst_destiny) == 2)
-                                    @foreach ($tujuan as $key=>$kota)
-                                        {{$kota->destiny->capital}}
-                                        @if ($tujuan->count()-1 != $key)
-                                            {{' dan '}}
-                                        @endif
-                                    @endforeach
-
-                                @else
-                                    @foreach ($tujuan as $key=>$kota)
-                                        @if ($loop->last-1)
-                                            {{$kota->destiny->capital}}{{','}} 
-                                        @endif
-                                        @if ($loop->last)
-                                            {{' dan '}} {{$kota->destiny->capital}}
-                                        @endif
-                                        
-                                    @endforeach
-                                @endif 
-
-                                Provinsi 
-                                @foreach ($tujuan as $key=>$kota)
-                                        @if ($loop->first)
-                                            {{$kota->destiny->province}} 
-                                        @endif        
-                                @endforeach
-
-                            </td>
-                        </tr>
-                        <span id="nomor-2">
-                            @php
-                                $hari=0;
-                                $destinMoney = 0;
-                                $subTotalHarian = 0;
-                                $subTotal2 = 0;
-                            @endphp
-                            <tr>
-                                @foreach ($tujuan as $key=>$hr)
-                                    @php
-                                        $hari += $hr->longday;
-                                    @endphp
-                                @endforeach
-    
-                                <td>- Penuh</td>
-                                <td>:</td>
-                                <td style="text-align: right;">
-    
-                                    @php
-                                        $daily = $injectQuery->getDetail($item->id)
-                                    @endphp
-                                    {{$hari}}
-                                    {{-- @if ($daily->dailywage == 'Y')
-                                        {{$hari}}
-                                    @else
-                                        {{ '-' }}
-                                    @endif --}}
-                                    &nbsp;
-                                </td>
-                                <td>hari &nbsp; x &nbsp;Rp.</td>
-                                <td style="text-align: right;">
-                                        @php
-                                            $daily = $injectQuery->getTr($item->id)
-                                        @endphp
-                                        @if ($daily->dailywage == 'Y')
-                                            @php
-                                                $destinMoney = $daily->hitdaily;
-                                            @endphp
-                                            {{number_format($destinMoney)}} 
-                                        @else
-                                           {{ '-' }}
-                                        @endif
-                                    &nbsp;
-                                </td>
-                                <td>. Rp.</td>
-                                 @php
-                                     $subTotalHarian = $hari*$destinMoney;  
-                                     $subTotal2 +=  $subTotalHarian;
-                                 @endphp
-                                <td style="text-align: right;">
-                                        @if ($subTotalHarian != '0')
-                                            {{number_format($subTotalHarian)}} 
-                                        @else
-                                            {{ "-" }}
-                                        @endif
-                                   &nbsp;
-                                </td>
-                            </tr>
-
-                            <tr>
-                                @php
-                                    $diklatMoney = 0;
-                                    $subTotalHarian = 0;
-                                @endphp
-                                <td>- Diklat</td>
-                                <td>:</td>
-                                <td style="text-align: right;">
-                                    @php
-                                        $daily = $injectQuery->getTr($item->id)
-                                    @endphp
-    
-                                    @if ($daily->diklat == 'Y')
-                                        {{$hari}} 
-                                    @else
-                                        {{ '-' }}
-                                    @endif
-                                    &nbsp;
-                                </td>
-                                <td>hari &nbsp; x &nbsp;Rp.</td>
-                                <td style="text-align: right;">
-                                    @php
-                                        $daily = $injectQuery->getTr($item->id)
-                                    @endphp
-                                    @if ($daily->diklat == 'Y')
-                                        @php
-                                            $diklatMoney = $daily->hitdaily;
-                                        @endphp
-                                        {{number_format($diklatMoney)}} 
-                                    @else
-                                    {{ '-' }}
-                                    @endif
-                                    &nbsp;
-                                </td>
-                                <td>. Rp.</td>
-                                    @php
-                                        $subTotalHarian = $hari*$diklatMoney; 
-                                        $subTotal2 +=  $subTotalHarian;
-   
-                                    @endphp
-                                <td style="text-align: right;">
-                                    @if ($subTotalHarian!='0')
+                                    @if ($subTotalHarian != '0')
                                         {{number_format($subTotalHarian)}} 
                                     @else
-                                        {{ '-' }}
+                                        {{ "-" }}
                                     @endif
-                                    &nbsp;
-                                </td>
-                            </tr>
-
-                            <tr>
-                                @php
-                                    $halfdayMoney = 0;
-                                    $subTotalHarian = 0;
-                                @endphp
-                                <td>- Paket Halfday / Fullday</td>
-                                <td>:</td>
-                                <td style="text-align: right;">
-                                    @php
-                                        $daily = $injectQuery->getTr($item->id)
-                                    @endphp
-                                    @if ($daily->fullday == 'Y')
-                                        {{$hari}}
-                                    @else
-                                    {{ '-' }}
-                                    @endif
-                                    &nbsp;
-                                </td>
-                                <td>hari &nbsp; x &nbsp;Rp.</td>
-                                <td style="text-align: right;">
-                                    @php
-                                        $daily = $injectQuery->getTr($item->id)
-                                    @endphp
-                                    @if ($daily->fullday == 'Y')
-                                        @php
-                                            $halfdayMoney = $daily->hithalf;
-                                        @endphp
-                                        {{number_format($halfdayMoney)}}
-                                    @else
-                                        {{ '-' }}
-                                    @endif
-                                    &nbsp;
-                                </td>
-                                <td>. Rp.</td>
-                                @php
-                                     $subTotalHarian = $hari*$halfdayMoney;   
-                                     $subTotal2 +=  $subTotalHarian;
- 
-                                 @endphp
-                                <td style="text-align: right;">
-                                     @if ($subTotalHarian !='0')
-                                        {{number_format($subTotalHarian)}}
-                                    @else
-                                        {{ '-' }}
-                                    @endif  
-                                    &nbsp;
-                                </td>
-                            </tr>
-
-                            <tr>
-                                @php
-                                    $fullboardMoney = 0;
-                                    $subTotalHarian = 0;
-                                @endphp
-                                <td>- Paket Fullboard</td>
-                                <td>:</td>
-                                <td style="text-align: right;">
-                                    @php
-                                        $daily = $injectQuery->getTr($item->id)
-                                    @endphp
-                                    @if ($daily->fullboard == 'Y')
-                                        {{$hari}}
-                                    @else
-                                        {{ '-' }}
-                                    @endif
-                                    &nbsp;
-                                </td>
-                                <td>hari &nbsp; x &nbsp;Rp.</td>
-                                <td style="text-align: right;">
-                                    @php
-                                        $daily = $injectQuery->getTr($item->id)
-                                    @endphp
-                                    @if ($daily->fullboard == 'Y')
-                                        @php
-                                            $fullboardMoney = $daily->hitfullb;
-                                        @endphp
-                                        {{$fullboardMoney}}
-                                    @else
-                                        {{ '-' }}
-                                    @endif
-                                    &nbsp;
-                                </td>
-                                <td>. Rp.</td>
-                                @php
-                                     $subTotalHarian = $hari*$fullboardMoney;    
-                                     $subTotal2 +=  $subTotalHarian;
-
-                                 @endphp
-                                <td style="text-align: right;">
-                                    @if ($subTotalHarian !='0')
-                                        {{number_format($subTotalHarian)}}
-                                    @else
-                                        {{ '-' }}
-                                    @endif
-                                    &nbsp;
-                                </td>
-                            </tr>
-                        </span>
-                    </table>
-                </td>
-                
-                <td class="isi">Rp. &nbsp;&nbsp;&nbsp;&nbsp;
-                    @if ($subTotal2 =='0')
-                        {{'-'}}
-                    @else
-                        {{number_format($subTotal2)}}
-                    @endif
-                </td>
-                <td class="isi"></td>
-            </tr>
-            <tr>
-                <td class="isi" style="text-align: center">3</td>
-                <td class="isi">
-                    <table style="width: 100%;" class="kepala">
-                        <tr>
-                            <td colspan="7">Biaya Pertemuan di Kota
-                                @if (count($item->out->outst_destiny) == 1)
-                                    @foreach ($tujuan as $key=>$kota)
-                                        @if ($loop->first)
-                                            {{$kota->destiny->capital}} 
-                                        @endif
-                                        
-                                    @endforeach
-
-                                @elseif (count($item->out->outst_destiny) == 2)
-                                    @foreach ($tujuan as $key=>$kota)
-                                        {{$kota->destiny->capital}}
-                                        @if ($tujuan->count()-1 != $key)
-                                            {{' dan '}}
-                                        @endif
-                                    @endforeach
-
-                                @else
-                                    @foreach ($tujuan as $key=>$kota)
-                                        @if ($loop->last-1)
-                                            {{$kota->destiny->capital}}{{','}} 
-                                        @endif
-                                        @if ($loop->last)
-                                            {{' dan '}} {{$kota->destiny->capital}}
-                                        @endif
-                                        
-                                    @endforeach
-                                @endif 
-
-                                Provinsi 
-                                @foreach ($tujuan as $key=>$kota)
-                                        @if ($loop->first)
-                                            {{$kota->destiny->province}} 
-                                        @endif        
-                                @endforeach
+                               &nbsp;
                             </td>
                         </tr>
+
                         <tr>
                             @php
-                                $biaya =0;
-                                $subBiaya = 0;
-                                $subTotal3 = 0;
+                                $diklatMoney = 0;
+                                $subTotalHarian = 0;
+                            @endphp
+                            <td>- Diklat</td>
+                            <td>:</td>
+                            <td style="text-align: right;">
+                                @php
+                                    $daily = $injectQuery->getTr($item->id)
+                                @endphp
+
+                                @if ($daily->diklat == 'Y')
+                                    {{$hari}} 
+                                @else
+                                    {{ '-' }}
+                                @endif
+                                &nbsp;
+                            </td>
+                            <td>hari &nbsp; x &nbsp;Rp.</td>
+                            <td style="text-align: right;">
+                                @php
+                                    $daily = $injectQuery->getTr($item->id)
+                                @endphp
+                                @if ($daily->diklat == 'Y')
+                                    @php
+                                        $diklatMoney = $daily->hitdaily;
+                                    @endphp
+                                    {{number_format($diklatMoney)}} 
+                                @else
+                                {{ '-' }}
+                                @endif
+                                &nbsp;
+                            </td>
+                            <td>. Rp.</td>
+                                @php
+                                    $subTotalHarian = $hari*$diklatMoney; 
+                                    $subTotal2 +=  $subTotalHarian;
+
+                                @endphp
+                            <td style="text-align: right;">
+                                @if ($subTotalHarian!='0')
+                                    {{number_format($subTotalHarian)}} 
+                                @else
+                                    {{ '-' }}
+                                @endif
+                                &nbsp;
+                            </td>
+                        </tr>
+
+                        <tr>
+                            @php
+                                $halfdayMoney = 0;
+                                $subTotalHarian = 0;
                             @endphp
                             <td>- Paket Halfday / Fullday</td>
                             <td>:</td>
@@ -838,286 +676,72 @@
                                 @php
                                     $daily = $injectQuery->getTr($item->id)
                                 @endphp
-
-                                @if ($daily->dayshalf != '0')
-                                    @php
-                                        $days = $daily->dayshalf;
-                                    @endphp
-                                    {{$days}} &nbsp;
+                                @if ($daily->fullday == 'Y')
+                                    {{$hari}}
                                 @else
-                                    {{ '-' }}
+                                {{ '-' }}
                                 @endif
+                                &nbsp;
                             </td>
-                            <td>hari . Rp.</td>
+                            <td>hari &nbsp; x &nbsp;Rp.</td>
                             <td style="text-align: right;">
                                 @php
                                     $daily = $injectQuery->getTr($item->id)
                                 @endphp
-
-                                @if ($daily->dayshalf != '0')
+                                @if ($daily->fullday == 'Y')
                                     @php
-                                        $biaya = $daily->feehalf;
+                                        $halfdayMoney = $daily->hithalf;
                                     @endphp
-                                    {{number_format($biaya)}} &nbsp;
+                                    {{number_format($halfdayMoney)}}
                                 @else
                                     {{ '-' }}
                                 @endif
                                 &nbsp;
                             </td>
                             <td>. Rp.</td>
-                            <td style="text-align: right;">
-                                @php
-                                    $subBiaya = $biaya*$days;
-                                @endphp
+                            @php
+                                 $subTotalHarian = $hari*$halfdayMoney;   
+                                 $subTotal2 +=  $subTotalHarian;
 
-                                @if ($subBiaya != '0')
-                                    {{number_format($subBiaya)}}
+                             @endphp
+                            <td style="text-align: right;">
+                                 @if ($subTotalHarian !='0')
+                                    {{number_format($subTotalHarian)}}
                                 @else
                                     {{ '-' }}
-                                @endif
+                                @endif  
                                 &nbsp;
                             </td>
                         </tr>
+
                         <tr>
+                            @php
+                                $fullboardMoney = 0;
+                                $subTotalHarian = 0;
+                            @endphp
                             <td>- Paket Fullboard</td>
                             <td>:</td>
                             <td style="text-align: right;">
                                 @php
                                     $daily = $injectQuery->getTr($item->id)
                                 @endphp
-
-                                @if ($daily->daysfull != '0')
-                                    @php
-                                        $days = $daily->daysfull;
-                                    @endphp
-                                    {{$days}} 
-                                @else
-                                    {{ '-' }}
-                                @endif
-                                &nbsp;
-                            </td>
-                            <td>hari x Rp.</td>
-                            <td style="text-align: right;">  
-                                @php
-                                    $biayaFB = 0;
-                                    $dailyFb = $injectQuery->getTr($item->id)
-                                @endphp
-
-                                @if ($dailyFb->daysfull != '0')
-                                    @php
-                                        $biayaFB = $dailyFb->feefull;
-                                    @endphp
-                                    {{number_format($biayaFB)}} 
-                                @else
-                                    {{ '-' }}
-                                @endif
-                                &nbsp;
-                                &nbsp;
-                            </td>
-                            <td>. Rp.</td>
-                            <td style="text-align: right;">
-                                @php
-                                    $subBiayaFullboard = $biayaFB*$days;
-                                @endphp
-
-                                @if ($subBiayaFullboard != '0')
-                                    {{number_format($subBiayaFullboard)}}
-                                @else
-                                    {{ '-' }}
-                                @endif
-                                &nbsp;
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-                <td class="isi">Rp. &nbsp;&nbsp;
-                    @php
-                        $subTotal3 += $subBiaya;
-                    @endphp
-                    @if ($subTotal3=='0')
-                        {{'-'}}
-                    @else
-                        {{number_format($subTotal3)}}
-                    @endif
-                </td>
-                <td class="isi"></td>
-            </tr>
-            <tr>
-                <td class="isi" style="text-align: center">4</td>
-                <td class="isi">
-                    <table style="width: 100%;" class="kepala">
-                        <tr>
-                            <td colspan="7">Biaya Penginapan di kota
-                                @if (count($item->out->outst_destiny) == 1)
-                                    @foreach ($tujuan as $key=>$kota)
-                                        @if ($loop->first)
-                                            {{$kota->destiny->capital}} 
-                                        @endif
-                                        
-                                    @endforeach
-
-                                @elseif (count($item->out->outst_destiny) == 2)
-                                    @foreach ($tujuan as $key=>$kota)
-                                        {{$kota->destiny->capital}}
-                                        @if ($tujuan->count()-1 != $key)
-                                            {{' dan '}}
-                                        @endif
-                                    @endforeach
-
-                                @else
-                                    @foreach ($tujuan as $key=>$kota)
-                                        @if ($loop->last-1)
-                                            {{$kota->destiny->capital}}{{','}} 
-                                        @endif
-                                        @if ($loop->last)
-                                            {{' dan '}} {{$kota->destiny->capital}}
-                                        @endif
-                                        
-                                    @endforeach
-                                @endif 
-
-                                Provinsi 
-                                @foreach ($tujuan as $key=>$kota)
-                                        @if ($loop->first)
-                                            {{$kota->destiny->province}} 
-                                        @endif        
-                                @endforeach
-                            </td>
-                        </tr>
-                        <tr>
-                            @php
-                                $jum1 =0;
-                                $jum2 = 0;
-                                $subTotal4 = 0;
-                            @endphp
-                            <td>
-                                @php
-                                    $nilai = $injectQuery->getDetail($item->id);
-                                    $inap1 = $nilai->innname_1;
-                                    $inap2 = $nilai->innname_2;
-                                @endphp
-
-                                @if ($inap2 != null)
-                                    - {{$inap1}} &nbsp; <br>
-                                    - {{$inap2}}
-                                @elseif($inap1 != null && $inap2 == null)
-                                    - {{$inap1}} &nbsp; 
-                                @else
-                                    - &nbsp; <br>
-                                @endif
-                                &nbsp;
-                            </td>
-                            <td>:</td>
-                            <td style="text-align: right;">
-                                @php
-                                    $long1 = $nilai->long_stay_1;
-                                    $long2 = $nilai->long_stay_2;
-                                @endphp
-                                @if ($nilai->innname_2 != null)
-                                    {{$long1}} &nbsp; <br>
-                                    {{$long2}}
-                                @elseif($nilai->innname_2 == null && $nilai->innname_1 != null)
-                                    {{$long1}} &nbsp;
-                                @else
-                                    - &nbsp; <br>
-                                    
-                                @endif
-                                &nbsp;
-                            </td>
-                            <td>hari x Rp. <br>
-                                @if ($nilai->innname_2 != null)
-                                hari x Rp.  
-                                @endif
-                            </td>
-                            <td style="text-align: right;">
-                                @php
-                                    $fee1 = $nilai->inn_fee_1;
-                                    $fee2 = $nilai->inn_fee_2;
-                                @endphp
-                                @if ($nilai->innname_2 != null)
-                                    {{$fee1}} &nbsp; <br>
-                                    {{$fee2}}
-                                @elseif($nilai->innname_2 == null && $nilai->innname_1 != null)
-                                    {{$fee1}} &nbsp;
-                                @else
-                                    - &nbsp; <br>
-                                    
-                                @endif
-                                &nbsp;
-                            </td>
-                            <td>. Rp. <br>
-                                @if ($nilai->innname_2 != null)
-                                . Rp.   
-                                @endif
-                            </td>
-                            <td style="text-align: right;">
-                                @php
-                                    $jum1 = $long1*$fee1; 
-                                    $jum2 = $long2*$fee2;
-                                @endphp
-                                @if ($jum2 != '0')
-                                    {{$jum1}} &nbsp; <br>
-                                    {{$jum2}} 
-                                @elseif($jum2 =='0' && $jum1 != '0')
-                                    {{$jum1}} &nbsp; <br>
-                                @else
-                                    - &nbsp; <br>
-                                @endif
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-                <td class="isi">Rp. &nbsp;&nbsp;&nbsp;&nbsp;
-                    @php
-                        $subTotal4 = $jum1+$jum2;
-                    @endphp
-                        @if ($subTotal4=='0')
-                            {{'-'}}
-                        @else
-                            {{number_format($subTotal4)}}
-                        @endif
-                </td>
-                <td class="isi" style="vertical-align: middle;">
-                    @php
-                        $nilai = $injectQuery->getDetail($item->id)
-                    @endphp
-                   @if ($nilai->isi_1 != '0')
-                        1 kamar untuk {{$nilai->isi_1}} orang
-                   @endif
-                </td>
-            </tr>
-            <tr>
-                <td class="isi" style="text-align: center">5</td>
-                <td class="isi">
-                    <table style="width: 100%;" class="kepala">
-                        <tr>
-                            @php
-                                $subTotal5 = 0;
-                                $eselonMoney = 0;
-                            @endphp
-                            <td>Uang Representatif Eselon II</td>
-                            <td>:</td>
-                            <td style="text-align: right;">
-                                @php
-                                    $daily = $injectQuery->getTr($item->id)
-                                @endphp
-                                @if ($daily->representatif == 'Y')
+                                @if ($daily->fullboard == 'Y')
                                     {{$hari}}
                                 @else
                                     {{ '-' }}
                                 @endif
                                 &nbsp;
                             </td>
-                            <td>hari x Rp.</td>
+                            <td>hari &nbsp; x &nbsp;Rp.</td>
                             <td style="text-align: right;">
                                 @php
                                     $daily = $injectQuery->getTr($item->id)
                                 @endphp
-                                @if ($daily->representatif == 'Y')
+                                @if ($daily->fullboard == 'Y')
                                     @php
-                                        $eselonMoney = $daily->hitrep;
+                                        $fullboardMoney = $daily->hitfullb;
                                     @endphp
-                                    {{number_format($eselonMoney)}}
+                                    {{$fullboardMoney}}
                                 @else
                                     {{ '-' }}
                                 @endif
@@ -1125,10 +749,12 @@
                             </td>
                             <td>. Rp.</td>
                             @php
-                                 $subTotalHarian = $hari*$eselonMoney;    
+                                 $subTotalHarian = $hari*$fullboardMoney;    
+                                 $subTotal2 +=  $subTotalHarian;
+
                              @endphp
                             <td style="text-align: right;">
-                                @if ($subTotalHarian != '0')
+                                @if ($subTotalHarian !='0')
                                     {{number_format($subTotalHarian)}}
                                 @else
                                     {{ '-' }}
@@ -1136,41 +762,408 @@
                                 &nbsp;
                             </td>
                         </tr>
-                    </table>
-                </td>
-                <td class="isi">Rp. &nbsp;&nbsp;&nbsp;&nbsp;
-                    @php
-                        $subTotal5 += $subTotalHarian;
-                    @endphp
-                    @if ($subTotal5 != '0')
-                        {{number_format($subTotal5)}}
+                    </span>
+                </table>
+            </td>
+            <td class="isi">Rp. &nbsp;&nbsp;&nbsp;&nbsp;
+                @if ($subTotal2 =='0')
+                    {{'-'}}
+                @else
+                    {{number_format($subTotal2)}}
+                @endif
+            </td>
+            <td class="isi"></td>
+        </tr>
+        <tr>
+            <td class="isi" style="text-align: center">3</td>
+            <td class="isi">
+                <table style="width: 100%;" class="kepala">
+                    <tr>
+                        <td colspan="7">Biaya Pertemuan di Kota
+                            @if (count($item->out->outst_destiny) == 1)
+                                @foreach ($tujuan as $key=>$kota)
+                                    @if ($loop->first)
+                                        {{$kota->destiny->capital}} 
+                                    @endif
+                                    
+                                @endforeach
+
+                            @elseif (count($item->out->outst_destiny) == 2)
+                                @foreach ($tujuan as $key=>$kota)
+                                    {{$kota->destiny->capital}}
+                                    @if ($tujuan->count()-1 != $key)
+                                        {{' dan '}}
+                                    @endif
+                                @endforeach
+
+                            @else
+                                @foreach ($tujuan as $key=>$kota)
+                                    @if ($loop->last-1)
+                                        {{$kota->destiny->capital}}{{','}} 
+                                    @endif
+                                    @if ($loop->last)
+                                        {{' dan '}} {{$kota->destiny->capital}}
+                                    @endif
+                                    
+                                @endforeach
+                            @endif 
+
+                            Provinsi 
+                            @foreach ($tujuan as $key=>$kota)
+                                    @if ($loop->first)
+                                        {{$kota->destiny->province}} 
+                                    @endif        
+                            @endforeach
+                        </td>
+                    </tr>
+                    <tr>
+                        @php
+                            $days =0;
+                            $biaya =0;
+                            $subBiaya = 0;
+                            $subTotal3 = 0;
+                        @endphp
+                        <td>- Paket Halfday / Fullday</td>
+                        <td>:</td>
+                        <td style="text-align: right;">
+                            @php
+                                $daily = $injectQuery->getTr($item->id)
+                            @endphp
+
+                            @if ($daily->dayshalf != '0')
+                                @php
+                                    $days = $daily->dayshalf;
+                                @endphp
+                                {{$days}} &nbsp;
+                            @else
+                                {{ '-' }}
+                            @endif
+                        </td>
+                        <td>hari . Rp.</td>
+                        <td style="text-align: right;">
+                            @php
+                                $daily = $injectQuery->getTr($item->id)
+                            @endphp
+
+                            @if ($daily->dayshalf != '0')
+                                @php
+                                    $biaya = $daily->feehalf;
+                                @endphp
+                                {{number_format($biaya)}} &nbsp;
+                            @else
+                                {{ '-' }}
+                            @endif
+                            &nbsp;
+                        </td>
+                        <td>. Rp.</td>
+                        <td style="text-align: right;">
+                            @php
+                                $subBiaya = $biaya*$days;
+                            @endphp
+
+                            @if ($subBiaya != '0')
+                                {{number_format($subBiaya)}}
+                            @else
+                                {{ '-' }}
+                            @endif
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        @php
+                            $daysF = 0;
+                            $biayaF =0;
+                            $subBiaya = 0;
+                        @endphp
+                        <td>- Paket Fullboard</td>
+                        <td>:</td>
+                        <td style="text-align: right;">
+                            @php
+                                $daily = $injectQuery->getTr($item->id)
+                            @endphp
+
+                            @if ($daily->daysfull != '0')
+                                @php
+                                    $daysF = $daily->daysfull;
+                                @endphp
+                                {{$daysF}} &nbsp;
+                            @else
+                                {{ '-' }}
+                            @endif
+                        </td>
+                        <td>hari . Rp.</td>
+                        <td style="text-align: right;">
+                            @php
+                                $daily = $injectQuery->getTr($item->id)
+                            @endphp
+
+                            @if ($daily->daysfull != '0')
+                                @php
+                                    $biayaF = $daily->feefull;
+                                @endphp
+                                {{number_format($biayaF)}} &nbsp;
+                            @else
+                                {{ '-' }}
+                            @endif
+                            &nbsp;
+                        </td>
+                        <td>. Rp.</td>
+                        <td style="text-align: right;">
+                            @php
+                                $subBiaya = $biayaF*$daysF;
+                            @endphp
+
+                            @if ($subBiaya != '0')
+                                {{number_format($subBiaya)}}
+                            @else
+                                {{ '-' }}
+                            @endif
+                            &nbsp;
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td class="isi">Rp. &nbsp;&nbsp;
+                @php
+                    $subTotal3 += $subBiaya;
+                @endphp
+                @if ($subTotal3=='0')
+                    {{'-'}}
+                @else
+                    {{number_format($subTotal3)}}
+                @endif
+            </td>
+            <td class="isi"></td>
+        </tr>
+        <tr>
+            <td class="isi" style="text-align: center">4</td>
+            <td class="isi">
+                <table style="width: 100%;" class="kepala">
+                    <tr>
+                        <td colspan="7">Biaya Penginapan di kota
+                            @if (count($item->out->outst_destiny) == 1)
+                                @foreach ($tujuan as $key=>$kota)
+                                    @if ($loop->first)
+                                        {{$kota->destiny->capital}} 
+                                    @endif
+                                    
+                                @endforeach
+
+                            @elseif (count($item->out->outst_destiny) == 2)
+                                @foreach ($tujuan as $key=>$kota)
+                                    {{$kota->destiny->capital}}
+                                    @if ($tujuan->count()-1 != $key)
+                                        {{' dan '}}
+                                    @endif
+                                @endforeach
+
+                            @else
+                                @foreach ($tujuan as $key=>$kota)
+                                    @if ($loop->last-1)
+                                        {{$kota->destiny->capital}}{{','}} 
+                                    @endif
+                                    @if ($loop->last)
+                                        {{' dan '}} {{$kota->destiny->capital}}
+                                    @endif
+                                    
+                                @endforeach
+                            @endif 
+
+                            Provinsi 
+                            @foreach ($tujuan as $key=>$kota)
+                                    @if ($loop->first)
+                                        {{$kota->destiny->province}} 
+                                    @endif        
+                            @endforeach
+                        </td>
+                    </tr>
+                    <tr>
+                        @php
+                            $jum1 =0;
+                            $jum2 = 0;
+                            $subTotal4 = 0;
+                        @endphp
+                        <td>
+                            @php
+                                $nilai = $injectQuery->getDetail($item->id);
+                                $inap1 = $nilai->innname_1;
+                                $inap2 = $nilai->innname_2;
+                            @endphp
+
+                            @if ($inap2 != null)
+                                - {{$inap1}} &nbsp; <br>
+                                - {{$inap2}}
+                            @elseif($inap1 != null && $inap2 == null)
+                                - {{$inap1}} &nbsp; 
+                            @else
+                                - &nbsp; <br>
+                            @endif
+                            &nbsp;
+                        </td>
+                        <td>:</td>
+                        <td style="text-align: right;">
+                            @php
+                                $long1 = $nilai->long_stay_1;
+                                $long2 = $nilai->long_stay_2;
+                            @endphp
+                            @if ($nilai->innname_2 != null)
+                                {{$long1}} &nbsp; <br>
+                                {{$long2}}
+                            @elseif($nilai->innname_2 == null && $nilai->innname_1 != null)
+                                {{$long1}} &nbsp;
+                            @else
+                                - &nbsp; <br>
+                                
+                            @endif
+                            &nbsp;
+                        </td>
+                        <td>hari x Rp. <br>
+                            @if ($nilai->innname_2 != null)
+                            hari x Rp.  
+                            @endif
+                        </td>
+                        <td style="text-align: right;">
+                            @php
+                                $fee1 = $nilai->inn_fee_1;
+                                $fee2 = $nilai->inn_fee_2;
+                            @endphp
+                            @if ($nilai->innname_2 != null)
+                                {{$fee1}} &nbsp; <br>
+                                {{$fee2}}
+                            @elseif($nilai->innname_2 == null && $nilai->innname_1 != null)
+                                {{$fee1}} &nbsp;
+                            @else
+                                - &nbsp; <br>
+                                
+                            @endif
+                            &nbsp;
+                        </td>
+                        <td>. Rp. <br>
+                            @if ($nilai->innname_2 != null)
+                            . Rp.   
+                            @endif
+                        </td>
+                        <td style="text-align: right;">
+                            @php
+                                $jum1 = $long1*$fee1; 
+                                $jum2 = $long2*$fee2;
+                            @endphp
+                            @if ($jum2 != '0')
+                                {{$jum1}} &nbsp; <br>
+                                {{$jum2}} 
+                            @elseif($jum2 =='0' && $jum1 != '0')
+                                {{$jum1}} &nbsp; <br>
+                            @else
+                                - &nbsp; <br>
+                            @endif
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td class="isi">Rp. &nbsp;&nbsp;&nbsp;&nbsp;
+                @php
+                    $subTotal4 = $jum1+$jum2;
+                @endphp
+                    @if ($subTotal4=='0')
+                        {{'-'}}
                     @else
-                        {{ '-' }}
+                        {{number_format($subTotal4)}}
                     @endif
-                    &nbsp;
-                    
-                </td>
-                <td class="isi"></td>
-            </tr>
-            <tr>
-                <td class="isi"></td>
-                <td class="isi"><b><i>Jumlah Biaya Perjalanan :</i></b>
-                </td>
-                    @php
-                        $totalPerjalanan = $subTotal1+$subTotal2+$subTotal3+$subTotal4+$subTotal5;
-                    @endphp
-                <td class="isi">Rp. {{number_format($totalPerjalanan)}}
-                </td>
-                <td class="isi"> </td>
-            </tr>
-            <tr>
-                <td class="isi"></td>
-                <td class="isi" colspan="3" style = "text-transform:capitalize";>
-                   <i> Terblang : <b>{{terbilang($totalPerjalanan)}} Rupiah</b></i>
-                   {{-- <input type="hidden" id="total_terbilang" value="{{number_format($totalPerjalanan)}}"> --}}
-                </td>
-            </tr>
-        </tbody>
+            </td>
+            <td class="isi" style="vertical-align: middle;">
+                @php
+                    $nilai = $injectQuery->getDetail($item->id)
+                @endphp
+               @if ($nilai->isi_1 != '0')
+                    1 kamar untuk {{$nilai->isi_1}} orang
+               @endif
+            </td>
+        </tr>
+        <tr>
+            <td class="isi" style="text-align: center">5</td>
+            <td class="isi">
+                <table style="width: 100%;" class="kepala">
+                    <tr>
+                        @php
+                            $subTotal5 = 0;
+                            $eselonMoney = 0;
+                        @endphp
+                        <td>Uang Representatif Eselon II</td>
+                        <td>:</td>
+                        <td style="text-align: right;">
+                            @php
+                                $daily = $injectQuery->getTr($item->id)
+                            @endphp
+                            @if ($daily->representatif == 'Y')
+                                {{$hari}}
+                            @else
+                                {{ '-' }}
+                            @endif
+                            &nbsp;
+                        </td>
+                        <td>hari x Rp.</td>
+                        <td style="text-align: right;">
+                            @php
+                                $daily = $injectQuery->getTr($item->id)
+                            @endphp
+                            @if ($daily->representatif == 'Y')
+                                @php
+                                    $eselonMoney = $daily->hitrep;
+                                @endphp
+                                {{number_format($eselonMoney)}}
+                            @else
+                                {{ '-' }}
+                            @endif
+                            &nbsp;
+                        </td>
+                        <td>. Rp.</td>
+                        @php
+                             $subTotalHarian = $hari*$eselonMoney;    
+                         @endphp
+                        <td style="text-align: right;">
+                            @if ($subTotalHarian != '0')
+                                {{number_format($subTotalHarian)}}
+                            @else
+                                {{ '-' }}
+                            @endif
+                            &nbsp;
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td class="isi">Rp. &nbsp;&nbsp;&nbsp;&nbsp;
+                @php
+                    $subTotal5 += $subTotalHarian;
+                @endphp
+                @if ($subTotal5 != '0')
+                    {{number_format($subTotal5)}}
+                @else
+                    {{ '-' }}
+                @endif
+                &nbsp;
+                
+            </td>
+            <td class="isi"></td>
+        </tr>
+        <tr>
+            <td class="isi"></td>
+            <td class="isi"><b><i>Jumlah Biaya Perjalanan :</i></b>
+            </td>
+                @php
+                    $totalPerjalanan = $subTotal1+$subTotal2+$subTotal3+$subTotal4+$subTotal5;
+                @endphp
+            <td class="isi">Rp. {{number_format($totalPerjalanan)}}
+            </td>
+            <td class="isi"> </td>
+        </tr>
+        <tr>
+            <td class="isi"></td>
+            <td class="isi" colspan="3" style = "text-transform:capitalize";>
+               <i> Terblang : <b>{{terbilang($totalPerjalanan)}} Rupiah</b></i>
+               {{-- <input type="hidden" id="total_terbilang" value="{{number_format($totalPerjalanan)}}"> --}}
+            </td>
+        </tr>
+    </tbody>
    </table>
    <table style="width: 100%;" class="kepala">
     <tr>
@@ -1179,9 +1172,12 @@
         <td style="width: 40%"><br> Banjarmasin, {{tgl_indo($data->date)}}</td>
     </tr>
     <tr>
+        @php
+            $total = $injectQuery->totalHarga($item->id)
+        @endphp
         <td></td>
-        <td>Telah di bayar sejumlah : Rp. {{number_format($totalPerjalanan)}}</td>
-        <td>Telah menerima jumlah uang sebesar : Rp. {{number_format($totalPerjalanan)}}</td>
+        <td>Telah di bayar sejumlah : Rp. {{number_format($total)}}</td>
+        <td>Telah menerima jumlah uang sebesar : Rp. {{number_format($total)}}</td>
     </tr>
     <tr>
         <td></td>
@@ -1206,14 +1202,14 @@
             <td style="width: 20%"></td>
             <td style="width: 23%">Ditetapkan sejumlah</td>
             <td  style="width: 3%"><b>Rp. </b></td>
-            <td class="isi" style="text-align: right">{{number_format($totalPerjalanan)}}</td>
+            <td class="isi" style="text-align: right">{{number_format($total)}}</td>
             <td style="text-align: center; width:40%">{{$item->out->ppk->jabatan}}</td>
         </tr>
         <tr>
             <td></td>
             <td>Yang telah dibayar semula</td>
             <td><b>Rp. </b></td>
-            <td class="isi" style="text-align: right">{{number_format($totalPerjalanan)}}</td>
+            <td class="isi" style="text-align: right">{{number_format($total)}}</td>
             <td></td>
         </tr>
         <tr>

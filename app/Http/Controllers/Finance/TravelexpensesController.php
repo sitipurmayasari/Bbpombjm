@@ -188,11 +188,11 @@ class TravelexpensesController extends Controller
                         ->leftJoin('expenses','expenses.outstation_id','=','outstation.id')
                         ->where('expenses.id',$id)
                         ->first();
-    
+        $tr         = Travelexpenses::where('expenses_id',$id)->get();
         $petugas    = Petugas::where('id', '=', 5)->first();
 
         if ($tipe->type=="DL") {
-            $pdf        = PDF::loadview('finance/travelexpenses.receiptDL',compact('petugas','data','pegawai','tujuan'));
+            $pdf        = PDF::loadview('finance/travelexpenses.receiptDL',compact('petugas','data','pegawai','tujuan','tr'));
             return $pdf->stream();
 
         } else {
