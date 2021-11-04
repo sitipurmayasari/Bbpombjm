@@ -185,3 +185,4 @@
   Route::get('/finance/editagging/{pagu_id}/{id}','Finance\IkuTaggingController@ubah')->name('ikutagging.ubah');
   Route::get('finance/ikutagging/cetak/{id}','Finance\IkuTaggingController@cetak')->name('ikutagging.cetak');
   Route::get('finance/ikutagging/excel/{id}','Finance\IkuTaggingController@excel')->name('ikutagging.excel');
+  Route::get('finance/ikutagging/getdatalama','Finance\IkuTaggingController@getdatalama')->name('ikutagging.getdatalama');

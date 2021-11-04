@@ -59,8 +59,8 @@ class IkuTaggingController extends Controller
           $pagu =Pagu::create($request->all());
           $pagu_id = $pagu->id;
 
-        //   Excel::import(new PaguImport($pagu_id), urlStorage().'/excel/'.$nama_file);
-          Excel::import(new PaguImport($pagu_id), public_path('/excel/'.$nama_file));
+          Excel::import(new PaguImport($pagu_id), urlStorage().'/excel/'.$nama_file);
+        //   Excel::import(new PaguImport($pagu_id), public_path('/excel/'.$nama_file));
       
         DB::commit();
 
@@ -180,4 +180,17 @@ class IkuTaggingController extends Controller
         $pagu   = Pagu::SelectRaw('pagu.*, DATE(created_at) AS tanggal')->Where('id',$id)->first();
         return view('finance/ikutagging.excel',compact('data','pagu'));
     }
+
+
+    public function getdatalama(Request $request)
+    {
+        $data = Tagging::where('subcode_id',$request->subcode_id)
+                  ->get();
+
+        return response()->json([ 
+            'success' => true,
+            'data' => $data],200
+        );
+    }
+
 }
