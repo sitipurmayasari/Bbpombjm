@@ -112,18 +112,25 @@ class InjectQuery
         return $tag;
     }
 
-    public function getDetailPagu($pagu_id, $subcode_id){
-        $detail = PaguDetail::leftJoin('pagu','pagu.id','=','pagudetail.pagu_id')
-                            ->Where('pagudetail.pagu_id',$pagu_id)
-                            ->Where('pagudetail.subcode_id',$subcode_id)
-                            ->first();
-        return $detail;
-    }
-
     public function getIndi($pagu_id, $indicator_id){
         $hitung = Tagging::SelectRaw('COUNT(indicator_id) AS jum')
                             ->Where('pagu_id',$pagu_id)
                             ->Where('indicator_id',$indicator_id)
+                            ->first();
+        return $hitung;
+    }
+    public function getjumbar($pagu_id, $subcode_id){
+        $hitung = Tagging::SelectRaw('COUNT(indicator_id) AS jum')
+                            ->Where('pagu_id',$pagu_id)
+                            ->Where('subcode_id',$subcode_id)
+                            ->first();
+        return $hitung;
+    }
+
+    public function getDaftarTag($subcode_id){
+        $hitung = Tagging::SelectRaw('tagging.*')
+                            ->Where('pagu.year',$tahun)
+                            ->Where('subcode_id',$subcode_id)
                             ->first();
         return $hitung;
     }

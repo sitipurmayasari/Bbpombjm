@@ -22,8 +22,8 @@
                             for="form-field-1">Tanggal
                             </label>
                             <div class="col-sm-8">
-                                <input type="text" name="tanggal" readonly 
-                                class="col-xs-10 col-sm-10 required" value="{{tgl_indo(date('Y-m-d'))}}" required>
+                                <input type="date" name="tgl_pagu" 
+                                class="col-xs-3 col-sm-3 required" value="{{date('Y-m-d')}}" required>
                             </div>
                         </div>
                         

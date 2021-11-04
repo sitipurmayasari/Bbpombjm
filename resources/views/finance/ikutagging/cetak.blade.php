@@ -2,10 +2,10 @@
 @inject('injectQuery', 'App\InjectQuery')
 @section('breadcrumb')
     <div>
-        <button type="button" class="btn btn-primary no-border btn-sm noPrint" 
-            id="PrintPage" onclick="window.print();">
+        <a class="btn btn-primary" target="__BLANK" href="{{Route('ikutagging.excel',Request::segment(4))}}">
             <i class="ace-icon fa fa-print icon-on-right bigger-110"></i> &nbsp; cetak
-        </button>
+        </a>
+      
     </div>
     
 @endsection
@@ -50,7 +50,7 @@
     <br>
     <div class="header"  style="text-align: center">
         <h3>TAGGING ANGGARAN</h3>
-        <h5>Update : {{tgl_indo($pagu->tanggal)}}
+        <h5>Update : {{tgl_indo($pagu->tgl_pagu)}}
         </h5>
     </div>
     <table id="isi">
@@ -86,12 +86,8 @@
                     {{$item->sub->kodeall}}
                 </td>
                 <td style="border-bottom:solid ; border-bottom-color: black;">  &nbsp;
-                    @php
-                        $cek = $injectQuery->getDetailPagu($item->pagu_id,$item->subcode_id);
-                        $det = $cek->detail;
-                    @endphp
-                    {{$det}}
-                </td style="border-bottom:solid ; border-bottom-color: black;">
+                    {{$item->sub->name}}
+                </td>
                 <td style="text-align: right; border-bottom:solid ; border-bottom-color: black;">
                     {{number_format($item->pagusub)}} &nbsp;
                 </td>

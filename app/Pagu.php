@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pagu extends Model
 {
     protected $table = "pagu";
-    protected $fillable = ["users_id","year","name","month"];
+    protected $fillable = ["users_id","year","name","month","tgl_pagu"];
 
     public function pegawai()
     {

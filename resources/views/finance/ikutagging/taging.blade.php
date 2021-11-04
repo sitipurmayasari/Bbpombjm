@@ -15,7 +15,7 @@
         <div class="col-md-12">
             <div class="panel panel-info">
                 <div class="panel-heading"><h3 class="panel-title">B. Tagging Anggaran {{$pagu->name}} 
-                    ({{tgl_indo($pagu->tanggal)}})
+                    ({{tgl_indo($pagu->tgl_pagu)}})
                 </h3></div>
                 <div class="panel-body">
                     <table id="simple-table" class="table  table-bordered table-hover">

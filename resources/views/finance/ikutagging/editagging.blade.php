@@ -1,4 +1,5 @@
 @extends('layouts.mon')
+@inject('injectQuery', 'App\InjectQuery')
 @section('breadcrumb')
     <li>Indikator Kinerja</li>
     <li><a href="/finance/ikutagging">Tagging Anggaran</a></li>
@@ -15,7 +16,6 @@
             <div class="panel panel-info">
                 <div class="panel-heading"><h3 class="panel-title">B. Tagging Anggaran {{$nilaisub->sub->kodeall}}</h3></div>
                 <div class="panel-body">
-                    {{-- <fieldset> --}}
                         <div class="col-md-4">
                             <label for="">PAGU Rp.</label>
                             <input type="number" id="pagusub" value="{{$nilaisub->pagusub}}" 
@@ -32,7 +32,6 @@
                                 class="col-xs-12 col-sm-12" readonly id="realisasisub"
                                 name="realisasisub" />
                         </div>
-                    {{-- </fieldset>      --}}
                 </div>
             </div>
         </div>
@@ -55,9 +54,9 @@
                         $no=1;
                     @endphp
                     @foreach ($data as $key=>$ini)
-                    <tr id="{{$no++}}">
+                    <tr id="{{$no}}">
                         <td>
-                            <input type="hidden" name="id[]" value="{{$ini->id}}">
+                            <input type="hidden" id="id-{{$no}}" name="id[]" value="{{$ini->id}}">
                             <select name="indicator_id[]" id="indicator_id-1"  class="col-xs-12 col-sm-12 select2">
                                 <option value="">Pilih Indikator</option>
                                     @foreach ($iku as $item)
@@ -68,26 +67,30 @@
                                         @endif
                                     @endforeach
                             </select>
-                            
                         </td>
                         <td>
-                            <input type="number" id="ikupersen-{{$ini->id}}"  name="ikupersen[]" min="0" onkeyup="hitung({{$ini->id}})"  
+                            <input type="number" id="ikupersen-{{$no}}"  name="ikupersen[]" min="0" onkeyup="hitung({{$no}})"  
                                 class="col-xs-12 col-sm-12 persen" value="{{$ini->ikupersen}}">
                         </td>
-                        <td><input type="text" readonly id="paguiku-{{$ini->id}}" name="paguiku[]" class="col-xs-12 col-sm-12 pagu" 
+                        <td><input type="text" readonly id="paguiku-{{$no}}" name="paguiku[]" class="col-xs-12 col-sm-12 pagu" 
                                 value="{{$ini->paguiku}}"></td>
-                        <td><input type="text" readonly id="realisasiiku-{{$ini->id}}" name="realisasiiku[]" 
+                        <td><input type="text" readonly id="realisasiiku-{{$no}}" name="realisasiiku[]" 
                                 class="col-xs-12 col-sm-12 real" value="{{$ini->realisasiiku}}"></td>
                     </tr>
+                    @php  $no++; @endphp
                     @endforeach
                 <span id="row-new"></span>
                 </tbody>
                 <tfoot>
                     <tr>
                         <td colspan="4">
+                            @php
+                                $cek = $injectQuery->getjumbar($nilaisub->pagu_id,$nilaisub->subcode_id);
+                                $baris=$cek->jum;
+                            @endphp
                             <button type="button" class="form-control btn-default" onclick="addBarisNew()">
                                 <i class="glyphicon glyphicon-plus"></i>TAMBAH BARIS BARU</button>
-                            <input type="hidden" id="countRow" value="1">
+                            <input type="hidden" id="countRow" value="{{$baris}}">
                         </td>
                     </tr>
                     <tr>

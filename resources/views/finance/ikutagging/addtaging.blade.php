@@ -78,7 +78,7 @@
                     </tr>
                     <tr>
                         <td style="text-align: right;">TOTAL</td>
-                        <td><input type="number" id="totalpersen" value="" readonly></td>
+                        <td><input type="number" id="totalpersen" value="0" readonly></td>
                         <td><input type="number" id="totalpagu" value="0" readonly></td>
                         <td><input type="number" id="totalrealisasi" value="0" readonly></td>
                     </tr>

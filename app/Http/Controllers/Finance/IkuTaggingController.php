@@ -59,8 +59,8 @@ class IkuTaggingController extends Controller
           $pagu =Pagu::create($request->all());
           $pagu_id = $pagu->id;
 
-          Excel::import(new PaguImport($pagu_id), urlStorage().'/excel/'.$nama_file);
-        //   Excel::import(new PaguImport($pagu_id), public_path('/excel/'.$nama_file));
+        //   Excel::import(new PaguImport($pagu_id), urlStorage().'/excel/'.$nama_file);
+          Excel::import(new PaguImport($pagu_id), public_path('/excel/'.$nama_file));
       
         DB::commit();
 
@@ -70,6 +70,7 @@ class IkuTaggingController extends Controller
 
     public function taging($id)
     {   
+
         $iku    = Indicator::all();
         $pagu   = Pagu::SelectRaw('pagu.*, DATE(created_at) AS tanggal')
                         ->where('id',$id)->first();
@@ -132,20 +133,35 @@ class IkuTaggingController extends Controller
    
     public function update(Request $request,$id)
     {
-       
+    //    dd($request->all());
         DB::beginTransaction();
+            Tagging::where('pagu_id', $request->pagu_id)
+                    ->where('subcode_id', $request->subcode_id)
+                    ->where('pagusub', $request->pagusub)
+                    ->delete();
             for ($i = 0; $i < count($request->input('indicator_id')); $i++){
                 $data = [
+                    'pagu_id'      => $request->pagu_id,
+                    'subcode_id'   => $request->subcode_id,
+                    'pagusub'      => $request->pagusub,
+                    'realisasisub' => $request->realisasisub,
                     'indicator_id' => $request->indicator_id[$i],
                     'ikupersen'    => $request->ikupersen[$i],
                     'paguiku'      => $request->paguiku[$i],
                     'realisasiiku' => $request->realisasiiku[$i]
                 ];
-                Tagging::where('pagu_id',$request->pagu_id)
-                        ->where('id', $request->id[$i])
-                        ->update($data);
+                    // Tagging::where('pagu_id',$request->pagu_id)
+                    //     ->where('id', $request->id[$i])
+                    //     ->update($data);
+                    Tagging::create($data);
+                    // DB::table('tagging')->updateOrInsert([
+                    //     'pagu_id'      => $request->pagu_id,
+                    //     'subcode_id'   => $request->subcode_id,
+                    //     'pagusub'      => $request->pagusub
+                    // ], $data);
+                
             }
-        DB::commit(); 
+        DB::commit();
 
         return redirect('/finance/ikutagging/taging/'.$id)->with('sukses','Data Berhasil Diperbaharui');
 
@@ -156,5 +172,12 @@ class IkuTaggingController extends Controller
         $data   = Tagging::Where('pagu_id',$id)->orderBy('indicator_id','asc')->orderBy('subcode_id','asc')->get();
         $pagu   = Pagu::SelectRaw('pagu.*, DATE(created_at) AS tanggal')->Where('id',$id)->first();
         return view('finance/ikutagging.cetak',compact('data','pagu'));
+    }
+
+    public function excel($id)
+    {
+        $data   = Tagging::Where('pagu_id',$id)->orderBy('indicator_id','asc')->orderBy('subcode_id','asc')->get();
+        $pagu   = Pagu::SelectRaw('pagu.*, DATE(created_at) AS tanggal')->Where('id',$id)->first();
+        return view('finance/ikutagging.excel',compact('data','pagu'));
     }
 }

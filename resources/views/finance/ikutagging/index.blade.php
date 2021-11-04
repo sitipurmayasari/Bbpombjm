@@ -45,7 +45,7 @@
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
                     <td>{{$row->name}}</td>
-                    <th>{{tgl_indo($row->tanggal)}}</th>
+                    <th>{{tgl_indo($row->tgl_pagu)}}</th>
                     <td>
                         <a href="/finance/ikutagging/taging/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>
