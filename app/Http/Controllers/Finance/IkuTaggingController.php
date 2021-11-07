@@ -80,7 +80,6 @@ class IkuTaggingController extends Controller
                             ->orderBy('subcode_id','asc')
                             ->get();
 
-
         $sub    = Subcode::all();
         return view('finance/ikutagging.taging',compact('pagu','data','iku','sub'));
     }
@@ -94,7 +93,11 @@ class IkuTaggingController extends Controller
                             ->GroupBy('accountcode_id','subcode_id')
                             ->orderBy('subcode_id','asc')
                             ->first();
-        return view('finance/ikutagging.addtaging',compact('data','iku','pagu'));
+        $akhir  = Pagu::where('id','!=',$pagu_id)->OrderBy('id','desc')->first();
+        $last   = Tagging::Where('subcode_id',$subcode_id)
+                            ->Where('pagu_id',$akhir->id)
+                            ->get();
+        return view('finance/ikutagging.addtaging',compact('data','iku','pagu','last'));
 
     }
 
@@ -171,14 +174,22 @@ class IkuTaggingController extends Controller
     {
         $data   = Tagging::Where('pagu_id',$id)->orderBy('indicator_id','asc')->orderBy('subcode_id','asc')->get();
         $pagu   = Pagu::SelectRaw('pagu.*, DATE(created_at) AS tanggal')->Where('id',$id)->first();
-        return view('finance/ikutagging.cetak',compact('data','pagu'));
+        $totalakhir   = Tagging::SelectRaw('SUM(pagusub) AS totpagusub, SUM(realisasisub) AS totrealsub, 
+                                    SUM(paguiku) AS totpagu, SUM(realisasiiku) AS totreal')
+                        ->Where('pagu_id',$id)->orderBy('indicator_id','asc')
+                        ->first();
+        return view('finance/ikutagging.cetak',compact('data','pagu','totalakhir'));
     }
 
     public function excel($id)
     {
         $data   = Tagging::Where('pagu_id',$id)->orderBy('indicator_id','asc')->orderBy('subcode_id','asc')->get();
         $pagu   = Pagu::SelectRaw('pagu.*, DATE(created_at) AS tanggal')->Where('id',$id)->first();
-        return view('finance/ikutagging.excel',compact('data','pagu'));
+        $totalakhir   = Tagging::SelectRaw('SUM(pagusub) AS totpagusub, SUM(realisasisub) AS totrealsub, 
+                                    SUM(paguiku) AS totpagu, SUM(realisasiiku) AS totreal')
+                        ->Where('pagu_id',$id)->orderBy('indicator_id','asc')
+                        ->first();
+        return view('finance/ikutagging.excel',compact('data','pagu','totalakhir'));
     }
 
 

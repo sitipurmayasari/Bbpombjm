@@ -1,0 +1,130 @@
+<?php
+
+namespace App\Http\Controllers\Finance;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\View;
+use Carbon\Carbon;
+use App\Eselontwo;
+use App\Eselontwo_detail;
+use App\Target;
+use App\Indicator;
+use App\Renstrakal;
+use App\Renstrakal_detail;
+use App\User;
+use Excel;
+use PDF;
+use DateTime;
+
+
+class EselonTwoController extends Controller
+{
+    public function index(Request $request)
+    {
+        $data = Eselontwo::orderBy('id','desc')
+                        ->when($request->keyword, function ($query) use ($request) {
+                            $query->where('dates','LIKE','%'.$request->keyword.'%')
+                                    ->orWhere('year', 'LIKE','%'.$request->keyword.'%');
+                            })
+        ->paginate('10');
+        return view('finance/eselontwo.index',compact('data'));
+    }
+
+    public function create()
+    {
+        $renstra = Renstrakal::all();
+        $user = User::where('aktif','=','Y')->whereRaw('jabatan_id IN ("6","7","11")')->get();
+        $kapom = User::where('aktif','=','Y')->where('jabatan_id','=','1')->get();
+        return view('finance/eselontwo.create',compact('renstra','user','kapom'));
+    }
+
+    public function generate(Request $request)
+    {
+        $data = Eselontwo::create($request->all());
+        $rens = $data->id;
+
+        return redirect('/finance/eselontwo/entrydata/'.$rens);
+    }
+
+    public function entrydata($id)
+    {
+        $data = Eselontwo::where('id',$id)->first();
+        $indi = Indicator::all();
+        return view('finance/eselontwo/entrydata',compact('indi','data'));
+    }
+
+    public function store(Request $request)
+    {
+        DB::beginTransaction();
+            for ($i = 0; $i < count($request->input('indicator_id')); $i++){
+                $data = [
+                    'indicator_id'  => $request->indicator_id[$i],
+                    'eselontwo_id'  => $request->eselontwo_id[$i],
+                    'twI'           => $request->twI[$i],
+                    'twII'          => $request->twII[$i],
+                    'twIII'         => $request->twIII[$i],
+                    'twIV'          => $request->twIV[$i]
+                ];
+                Eselontwo_detail::create($data);
+            }
+        DB::commit(); 
+        return redirect('/finance/eselontwo')->with('sukses','Data Tersimpan');
+    }
+   
+    public function edit($id)
+    {
+        $data = Eselontwo::where('id',$id)->first();
+        $indi = Indicator::all();
+        $ese = Eselontwo_detail::where('eselontwo_id',$id)
+                                    ->get();
+        return view('finance/eselontwo/edit',compact('indi','data','ese'));
+    }
+
+   
+    public function update(Request $request, $id)
+    {
+        DB::beginTransaction();
+        for ($i = 0; $i < count($request->input('indicator_id')); $i++){
+            $data = [
+                'indicator_id' => $request->indicator_id[$i],
+                'twI'          => $request->twI[$i],
+                'twII'         => $request->twII[$i],
+                'twIII'        => $request->twIII[$i],
+                'twIV'         => $request->twIV[$i]
+            ];
+            Eselontwo_detail::where('id', $request->id[$i])
+                                ->update($data);
+            
+        }
+    DB::commit();
+
+    return redirect('/finance/eselontwo')->with('sukses','Data Berhasil Diperbaharui');
+    }
+
+
+    public function agree($id)
+    {
+        $data = Eselontwo::where('id',$id)->first();
+        $renstra = Renstrakal::where('id',$data->renstrakal_id)->first();
+        $isi = Renstrakal_detail::where('renstrakal_id',$data->renstrakal_id)
+                                ->where('years',$data->years)
+                                ->get();
+        $pdf = PDF::loadview('finance/eselontwo/agree',compact('data','renstra','isi'));
+      
+        return $pdf->stream();
+    }
+
+    public function detail($id)
+    {
+        $data = Eselontwo::where('id',$id)->first();
+        $indi = Indicator::all();
+        $ese = Eselontwo_detail::where('eselontwo_id',$id)
+                                    ->get();
+        $pdf = PDF::loadview('finance/eselontwo/detail',compact('indi','data','ese'));
+      
+        return $pdf->stream();
+    }
+
+}

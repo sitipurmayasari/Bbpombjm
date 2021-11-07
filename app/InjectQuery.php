@@ -135,5 +135,53 @@ class InjectQuery
         return $hitung;
     }
 
+    // public function getAllIndi($subcode_id, $pagu_id){
+    //     $last = $pagu_id - 1;
+    //     $list = Tagging::Where('subcode_id',$subcode_id)
+    //                     ->Where('pagu_id',$last)
+    //                     ->get();
+    //     return $list;
+    // }
+
+//--------------------------------------------Renstra------------------------------------------------------------------
+    public function getRenstra($id, $year,$indi){
+        $isi = Renstranas_detail::where('years',$year)
+                                ->where('renstranas_id',$id)
+                                ->where('indicator_id',$indi)
+                                ->first();
+        return $isi;
+    }
+
+    public function getNasional($year,$indi){
+        $isi = Renstranas_detail::where('years',$year)
+                                ->where('indicator_id',$indi)
+                                ->OrderBy('id','desc')
+                                ->first();
+        return $isi;
+    }
+
+    public function getRenstrakal($id, $year,$indi){
+        $isi = Renstrakal_detail::where('years',$year)
+                                ->where('renstrakal_id',$id)
+                                ->where('indicator_id',$indi)
+                                ->first();
+        return $isi;
+    }
+
+    public function getTarget($id){
+        $hitung = Indicator::SelectRaw('COUNT(*) AS rows')
+                            ->Where('target_id',$id)
+                            ->first();
+        return $hitung;
+    }
+
+    public function getPers($id){
+        $hitung = indicator::SelectRaw('COUNT(*) AS rows')
+                            ->LeftJoin('target','target.id','=','indicator.target_id')
+                            ->Where('target.perspective_id',$id)
+                            ->first();
+        return $hitung;
+    }
+
    
 }

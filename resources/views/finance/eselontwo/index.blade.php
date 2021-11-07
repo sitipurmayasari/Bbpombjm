@@ -1,8 +1,7 @@
 @extends('layouts.mon')
 @section('breadcrumb')
-@section('breadcrumb')
-    <li>Indikator Kinerja</li>
-    <li>Sasaran Kegiatan</li>
+    <li>Perjanjian Kinerja</li>
+    <li>PK Eselon II</li>
 @endsection
 @section('content')
 
@@ -13,7 +12,7 @@
                 <div class="form-group col-sm-12">
                     <div class="row">
                         <div class="form-group col-xs-12 col-sm-3" style="float: left">
-                           <a href="{{Route('ikuTarget.create')}}"  class="btn btn-primary">Tambah Data</a>   
+                           <a href="{{Route('eselontwo.create')}}"  class="btn btn-primary">Tambah Data</a>   
                         </div>
                         <div class="form-group col-xs-12 col-sm-5" style="float: right">
                             <div class="input-group">
@@ -35,25 +34,37 @@
     <div class="table-responsive">
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
-                <th width="40px">No</th>
-                <th>perspektif</th>
-                <th>Sasaran Kegiatan</th>
-                <th  class="col-md-2">Aksi</th>
+                <th width="40px" style="text-align: center">No</th>
+                <th class="col-md-1" style="text-align: center">Tahun</th>
+                <th style="text-align: center">Dasar</th>
+                <th style="text-align: center">Dibuat Tanggal</th>
+                <th style="text-align: center">Pejabat Eselon II</th>
+                <th>Cetak</th>
+                <th  class="col-md-1" style="text-align: center">Aksi</th>
             </thead>
             <tbody>   	
                 @foreach($data as $key=>$row)
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
-                    <td>{{$row->pers->name}}</td>
-                    <td>{{$row->name}}</td>
+                    <td>{{$row->years}}</td>
+                    <td>{{$row->renstrakal->filename}} ({{$row->renstrakal->yearfrom}}-{{$row->renstrakal->yearto}})
+                    </td>
+                    <td>{{$row->dates}}
+                    </td>
+                    <td>{{$row->pejabat->name}}</td>
                     <td>
-                        <a href="/finance/ikuTarget/edit/{{$row->id}}" class="btn btn-warning">
+                        <a href="/finance/eselontwo/agree/{{$row->id}}" class="btn btn-warning">
+                            <i class="glyphicon glyphicon-print"> Perjanjian</i>
+                        </a>
+                        <a href="/finance/eselontwo/detail/{{$row->id}}" class="btn btn-warning">
+                            <i class="glyphicon glyphicon-print"> Lampiran</i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/finance/eselontwo/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
-                        {{-- <a href="#" class="btn btn-danger delete"
-                            r-name="{{$row->name}}" 
-                            r-id="{{$row->id}}">
-                            <i class="glyphicon glyphicon-trash"></i></a> --}}
+                        
                     </td>
                 </tr>
               
@@ -62,29 +73,4 @@
         </table>
     </div>
 {{$data->appends(Request::all())->links()}}
-@endsection
-
-@section('footer')
-<script>
-    // $().ready( function () {
-    //     $(".delete").click(function() {
-    //             var id = $(this).attr('r-id');
-    //             var name = $(this).attr('r-name');
-    //             Swal.fire({
-    //             title: 'Ingin Menghapus?',
-    //             text: "Yakin ingin menghapus data  : "+name+" ini ?" ,
-    //             type: 'warning',
-    //             showCancelButton: true,
-    //             confirmButtonColor: '#3085d6',
-    //             cancelButtonColor: '#d33',
-    //             confirmButtonText: 'Yes, hapus !'
-    //         }).then((result) => {
-    //             console.log(result);
-    //             if (result.value) {
-    //                 window.location = "/finance/ikuTarget/delete/"+id;
-    //             }
-    //         });
-    //     });
-    // } );
-</script>
 @endsection

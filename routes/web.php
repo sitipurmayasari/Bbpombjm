@@ -189,6 +189,14 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/finance/outreport','Finance\OutReportController@index')->name('outreport');
     //Route untuk Tagging
     Route::get('/finance/ikutagging','Finance\IkuTaggingController@index')->name('ikutagging');
+    //Route untuk Renstra Nasional
+    Route::get('/finance/renstranas','Finance\RenstranasController@index')->name('renstranas');
+    //Route untuk Renstra Lokal
+    Route::get('/finance/renstrakal','Finance\RenstrakalController@index')->name('renstrakal');
+    //Route untuk laporan Renstra
+    Route::get('/finance/renstrapot','Finance\RenstraPotController@index')->name('renstrapot');
+    //Route untuk Eselon II
+    Route::get('/finance/eselontwo','Finance\EselonTwoController@index')->name('eselontwo');
 
 });
 

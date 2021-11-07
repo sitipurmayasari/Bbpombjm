@@ -110,6 +110,13 @@
                 @endphp
             @endforeach
         </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="6" style="text-align: right; font-weight: bold;">Total &nbsp; &nbsp;</td>j
+                <td style="text-align: right">{{number_format($totalakhir->totpagu)}}</td>
+                <td style="text-align: right">{{number_format($totalakhir->totreal)}}</td>
+            </tr>
+        </tfoot>
     </table>
 </div>
 

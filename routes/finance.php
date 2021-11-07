@@ -186,3 +186,33 @@
   Route::get('finance/ikutagging/cetak/{id}','Finance\IkuTaggingController@cetak')->name('ikutagging.cetak');
   Route::get('finance/ikutagging/excel/{id}','Finance\IkuTaggingController@excel')->name('ikutagging.excel');
   Route::get('finance/ikutagging/getdatalama','Finance\IkuTaggingController@getdatalama')->name('ikutagging.getdatalama');
+
+   //Route untuk renstranas
+  Route::get('/finance/renstranas/create','Finance\RenstranasController@create')->name('renstranas.create');
+  Route::post('finance/renstranas/generate','Finance\RenstranasController@generate')->name('renstranas.generate');
+  Route::get('/finance/renstranas/entrynas/{id}','Finance\RenstranasController@entrynas')->name('renstranas.entrynas');
+  Route::post('finance/renstranas/store','Finance\RenstranasController@store')->name('renstranas.store');
+  Route::get('finance/renstranas/edit/{id}','Finance\RenstranasController@edit')->name('renstranas.edit');
+  Route::post('finance/renstranas/update/{id}','Finance\RenstranasController@update')->name('renstranas.update');
+
+  //Route untuk renstrakal
+  Route::get('/finance/renstrakal/create','Finance\RenstrakalController@create')->name('renstrakal.create');
+  Route::post('finance/renstrakal/generate','Finance\RenstrakalController@generate')->name('renstrakal.generate');
+  Route::get('/finance/renstrakal/entrynas/{id}','Finance\RenstrakalController@entrynas')->name('renstrakal.entrynas');
+  Route::post('finance/renstrakal/store','Finance\RenstrakalController@store')->name('renstrakal.store');
+  Route::get('finance/renstrakal/edit/{id}','Finance\RenstrakalController@edit')->name('renstrakal.edit');
+  Route::post('finance/renstrakal/update/{id}','Finance\RenstrakalController@update')->name('renstrakal.update');
+
+
+   //Route untuk laporan Renstra
+   Route::post('/finance/renstrapot/cetak','Finance\RenstraPotController@cetak')->name('renstrapot.cetak');
+
+    //Route untuk Eselon II
+    Route::get('/finance/eselontwo/create','Finance\EselonTwoController@create')->name('eselontwo.create');
+    Route::post('finance/eselontwo/generate','Finance\EselonTwoController@generate')->name('eselontwo.generate');
+    Route::get('/finance/eselontwo/entrydata/{id}','Finance\EselonTwoController@entrydata')->name('eselontwo.entrydata');
+    Route::post('finance/eselontwo/store','Finance\EselonTwoController@store')->name('eselontwo.store');
+    Route::get('finance/eselontwo/edit/{id}','Finance\EselonTwoController@edit')->name('eselontwo.edit');
+    Route::post('finance/eselontwo/update/{id}','Finance\EselonTwoController@update')->name('eselontwo.update');
+    Route::get('finance/eselontwo/agree/{id}','Finance\EselonTwoController@agree')->name('eselontwo.agree');
+    Route::get('finance/eselontwo/detail/{id}','Finance\EselonTwoController@detail')->name('eselontwo.detail');

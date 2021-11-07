@@ -1,8 +1,7 @@
 @extends('layouts.mon')
 @section('breadcrumb')
-@section('breadcrumb')
-    <li>Indikator Kinerja</li>
-    <li>Sasaran Kegiatan</li>
+    <li>Rencana Strategi</li>
+    <li>Renstra Nasional</li>
 @endsection
 @section('content')
 
@@ -13,7 +12,7 @@
                 <div class="form-group col-sm-12">
                     <div class="row">
                         <div class="form-group col-xs-12 col-sm-3" style="float: left">
-                           <a href="{{Route('ikuTarget.create')}}"  class="btn btn-primary">Tambah Data</a>   
+                           <a href="{{Route('renstranas.create')}}"  class="btn btn-primary">Tambah Data</a>   
                         </div>
                         <div class="form-group col-xs-12 col-sm-5" style="float: right">
                             <div class="input-group">
@@ -36,24 +35,27 @@
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
                 <th width="40px">No</th>
-                <th>perspektif</th>
-                <th>Sasaran Kegiatan</th>
+                <th class="col-md-2">Judul</th>
+                <th>Tahun</th>
+                <th>No. SK</th>
                 <th  class="col-md-2">Aksi</th>
             </thead>
             <tbody>   	
                 @foreach($data as $key=>$row)
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
-                    <td>{{$row->pers->name}}</td>
-                    <td>{{$row->name}}</td>
+                    <td>{{$row->filename}}</td>
+                    <td>{{$row->yearfrom}} s/d {{$row->yearto}}</td>
+                    <td>@if ($row->sknumber != null)
+                            {{$row->sknumber}}
+                        @else
+                            {{' - '}}
+                        @endif
+                    </td>
                     <td>
-                        <a href="/finance/ikuTarget/edit/{{$row->id}}" class="btn btn-warning">
+                        <a href="/finance/renstranas/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
-                        {{-- <a href="#" class="btn btn-danger delete"
-                            r-name="{{$row->name}}" 
-                            r-id="{{$row->id}}">
-                            <i class="glyphicon glyphicon-trash"></i></a> --}}
                     </td>
                 </tr>
               
@@ -62,29 +64,4 @@
         </table>
     </div>
 {{$data->appends(Request::all())->links()}}
-@endsection
-
-@section('footer')
-<script>
-    // $().ready( function () {
-    //     $(".delete").click(function() {
-    //             var id = $(this).attr('r-id');
-    //             var name = $(this).attr('r-name');
-    //             Swal.fire({
-    //             title: 'Ingin Menghapus?',
-    //             text: "Yakin ingin menghapus data  : "+name+" ini ?" ,
-    //             type: 'warning',
-    //             showCancelButton: true,
-    //             confirmButtonColor: '#3085d6',
-    //             cancelButtonColor: '#d33',
-    //             confirmButtonText: 'Yes, hapus !'
-    //         }).then((result) => {
-    //             console.log(result);
-    //             if (result.value) {
-    //                 window.location = "/finance/ikuTarget/delete/"+id;
-    //             }
-    //         });
-    //     });
-    // } );
-</script>
 @endsection
