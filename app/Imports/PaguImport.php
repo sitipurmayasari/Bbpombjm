@@ -11,11 +11,11 @@ use App\Accountcode;
 
 class PaguImport implements ToModel,WithStartRow
 {
-    private $pok_id;
+    private $pagu_id;
 
-    public function  __construct($pokId)
+    public function  __construct($paguId)
     {
-        $this->pok_id= $pokId;
+        $this->pagu_id = $paguId;
     }
 
     public function startRow(): int
@@ -34,7 +34,7 @@ class PaguImport implements ToModel,WithStartRow
 
         if ($subcode) {
             return new PaguDetail([
-                'pagu_id'           => $this->pok_id,
+                'pagu_id'           => $this->pagu_id,
                 'activitycode_id'   => $activity->id,
                 'subcode_id'        => $subcode->id,
                 'accountcode_id'    => $akun->id,
