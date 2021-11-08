@@ -12,7 +12,7 @@ use App\Indicator;
 use App\Pagu;
 use App\PaguDetail;
 use App\Subcode;
-use App\Tagging;
+use App\Tagging; 
 use Excel;
 use App\Imports\PaguImport;
 
