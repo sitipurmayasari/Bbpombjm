@@ -24,7 +24,7 @@
       </div>
     </div>
   </div>
-  <div class="col-md-4">
+  {{-- <div class="col-md-4">
     <div class="card card-stats">
         <div class="card-header card-header-success card-header-icon">
         <div class="card-icon">
@@ -42,7 +42,7 @@
     </div>
   </div>
   <div class="col-md-4">
-  </div>
+  </div> --}}
 </div>
 
 
@@ -74,7 +74,7 @@
         }),
         low: 0,
         high: 
-        30,
+        70,
          // creative tim: we recommend you to set the high sa the biggest value + something for a better look
         chartPadding: {
           top: 0,
