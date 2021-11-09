@@ -120,9 +120,13 @@ class EselonTwoController extends Controller
     {
         $data = Eselontwo::where('id',$id)->first();
         $indi = Indicator::all();
-        $ese = Eselontwo_detail::where('eselontwo_id',$id)
+        $renstra = Renstrakal::where('id',$data->renstrakal_id)->first();
+        $ese = Eselontwo_detail::SelectRaw('eselontwo_detail.*, persentages')
+                                    ->where('eselontwo_id',$id)
+                                    ->leftJoin('renstrakal_detail','renstrakal_detail.indicator_id','=','eselontwo_detail.indicator_id')
+                                    ->where('years',$data->years)
                                     ->get();
-        $pdf = PDF::loadview('finance/eselontwo/detail',compact('indi','data','ese'));
+        $pdf = PDF::loadview('finance/eselontwo/detail',compact('indi','data','ese','renstra'));
       
         return $pdf->stream();
     }
