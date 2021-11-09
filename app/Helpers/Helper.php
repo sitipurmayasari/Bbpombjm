@@ -79,6 +79,7 @@ function terbilang($nilai) {
 		$hasil = trim(penyebut($nilai));
 	}
 	return $hasil;
+    
 }
 
 ?>

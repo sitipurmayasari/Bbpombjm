@@ -99,9 +99,10 @@
                             <select name="pok_detail_id" class="col-xs-10 col-sm-10 required select2" required>
                                 <option value="">Kode Anggaran</option>
                                 @foreach ($pok as $item)
-                                    <option value="{{$item->id}}">{{$item->pok->act->lengkap}}/{{$item->sub->kodeall}}/
+                                    <option value="{{$item->id}}">
+                                        {{$item->pok->act->lengkap}}/{{$item->sub->kodeall}}/
                                                                 {{$item->akun->code}} 
-                                                                ( Tersisa Rp. {{number_format($item->sisa)}} )
+                                                                ( Tersisa Rp. {{number_format($item->sisa)}} )                           
                                     </option>
                                 @endforeach
                             </select>
@@ -116,6 +117,7 @@
                                 <option value="Transportasi Darat">Transportasi Darat</option>
                                 <option value="Transportasi Laut">Transportasi Laut</option>
                                 <option value="Transportasi Udara">Transportasi Udara</option>
+                                <option value="Non Transportasi">Non Transportasi</option>
                             </select>
                         </div>
                     </div>
