@@ -205,7 +205,7 @@
             &nbsp; &nbsp; b. Tanggal berangkat <br>
             &nbsp; &nbsp; c. Tanggal harus kembali / tiba di tempat baru
         </td>
-        <td class="isi"> {{$lama->hitung}} ({{terbilang($lama->hitung)}}) Hari
+        <td class="isi"> {{$lama->hitung}} ( {{terbilang($lama->hitung)}} ) Hari
             <br>
                 @foreach ($data->outst_destiny as $key=>$item)
                     @if ($loop->first)

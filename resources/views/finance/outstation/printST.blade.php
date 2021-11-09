@@ -175,27 +175,20 @@
                     @if (count($data->outst_destiny) == 1)
                         @foreach ($data->outst_destiny as $key=>$item)
                             @if ($loop->first)
-                                @php
-                                    $go = $item->go_date;
-                                    $ret = $item->return_date;
-                                    echo tgl_indo($go.' s/d '.$ret ); 
-                                @endphp 
+
+                                {{tgl_indo($item->go_date)}} s/d {{tgl_indo($item->return_date)}}
+                            
                             @endif
                         @endforeach
                     @else
                         @foreach ($data->outst_destiny as $key=>$item)
                             @if ($loop->first)
-                                @php
-                                    $go2 = $item->go_date;
-                                    echo tgl_indo($go2); 
-                                @endphp
+                              
+                                {{tgl_indo($item->go_date)}}
                                 s/d
                             @endif
                             @if ($loop->last)
-                                @php
-                                    $ret2 = $item->return_date;
-                                    echo tgl_indo($ret2); 
-                                @endphp
+                            {{tgl_indo($item->return_date)}}
                             @endif
                         @endforeach
                     @endif
