@@ -10,6 +10,7 @@ class Outst_employee extends Model
     protected $fillable = ['outstation_id','users_id', 'no_sppd'
     ];
 
+    
     public function pegawai()
     {
         return $this->belongsTo(User::class,'users_id','id');
