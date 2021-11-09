@@ -59,8 +59,8 @@ class IkuTaggingController extends Controller
           $pagu =Pagu::create($request->all());
           $pagu_id = $pagu->id;
 
-        Excel::import(new PaguImport($pagu_id), urlStorage().'/excel/'.$nama_file);
-        //   Excel::import(new PaguImport($pagu_id), public_path('/excel/'.$nama_file));
+        // Excel::import(new PaguImport($pagu_id), urlStorage().'/excel/'.$nama_file);
+          Excel::import(new PaguImport($pagu_id), public_path('/excel/'.$nama_file));
       
         DB::commit();
 
@@ -95,7 +95,7 @@ class IkuTaggingController extends Controller
                             ->first();
         $akhir  = Pagu::where('id','!=',$pagu_id)->OrderBy('id','desc')->first();
         $last   = Tagging::Where('subcode_id',$subcode_id)
-                            ->Where('pagu_id',$akhir->id)
+                            // ->Where('pagu_id',$akhir->id)
                             ->get();
         return view('finance/ikutagging.addtaging',compact('data','iku','pagu','last'));
 
