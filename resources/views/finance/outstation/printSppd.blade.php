@@ -55,7 +55,9 @@
                 {{$data->pok->pok->act->prog->code}}
                  / {{$data->pok->pok->act->code}}
             </td>
-            <td rowspan="5" style="vertical-align: bottom; text-align: center;" ><img src="{{asset('images/BBRI.jpg')}}" style="height:80px"></td>
+            {{-- <td rowspan="5" style="vertical-align: bottom; text-align: center;" ><img src="{{asset('images/BBRI.jpg')}}" style="height:80px"></td>
+            <td style="width: 28%">Lampiran VI (4 dari 4)</td> --}}
+            <td rowspan="5" style="vertical-align: bottom; text-align: center;" ><img src="{{urlStorage('images/BBRI.jpg')}}" style="height:80px"></td>
             <td style="width: 28%">Lampiran VI (4 dari 4)</td>
         </tr>
         <tr>
@@ -205,7 +207,9 @@
             &nbsp; &nbsp; b. Tanggal berangkat <br>
             &nbsp; &nbsp; c. Tanggal harus kembali / tiba di tempat baru
         </td>
-        <td class="isi"> {{$lama->hitung}} ( {{$lama->hitung}} ) Hari
+        <td class="isi"> 
+            {{$lama->hitung}} ( {{terbilang($lama->hitung)}} ) Hari
+            {{$lama->hitung}} Hari
             <br>
                 @foreach ($data->outst_destiny as $key=>$item)
                     @if ($loop->first)
