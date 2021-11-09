@@ -103,16 +103,17 @@ class RenstrakalController extends Controller
     return redirect('/finance/renstrakal')->with('sukses','Data Berhasil Diperbaharui');
     }
 
-    // public function cetak($id)
-    // {
-    //     $data   = Tagging::Where('pagu_id',$id)->orderBy('indicator_id','asc')->orderBy('subcode_id','asc')->get();
-    //     $pagu   = Pagu::SelectRaw('pagu.*, DATE(created_at) AS tanggal')->Where('id',$id)->first();
-    //     $totalakhir   = Tagging::SelectRaw('SUM(pagusub) AS totpagusub, SUM(realisasisub) AS totrealsub, 
-    //                                 SUM(paguiku) AS totpagu, SUM(realisasiiku) AS totreal')
-    //                     ->Where('pagu_id',$id)->orderBy('indicator_id','asc')
-    //                     ->first();
-    //     return view('finance/ikutagging.cetak',compact('data','pagu','totalakhir'));
-    // }
+    public function editmeta($id)
+    {
+        $data = Renstrakal::where('id',$id)->first();
+        return view('finance/renstrakal/editmeta',compact('data'));
+    }
 
+    public function updatemeta(Request $request, $id)
+    {
+        $data = Renstrakal::find($id);
+        $data->update($request->all());
+        return redirect('/finance/renstrakal')->with('sukses','Data Diperbaharui');
+    }
 
 }

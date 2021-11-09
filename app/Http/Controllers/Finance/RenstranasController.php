@@ -100,4 +100,19 @@ class RenstranasController extends Controller
 
     return redirect('/finance/renstranas')->with('sukses','Data Berhasil Diperbaharui');
     }
+
+    public function editmeta($id)
+    {
+        $data = Renstranas::where('id',$id)->first();
+        return view('finance/renstranas/editmeta',compact('data'));
+    }
+
+    public function updatemeta(Request $request, $id)
+    {
+        $data = Renstranas::find($id);
+        $data->update($request->all());
+        return redirect('/finance/renstranas')->with('sukses','Data Diperbaharui');
+    }
+
+
 }

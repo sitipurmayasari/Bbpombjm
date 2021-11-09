@@ -103,6 +103,23 @@ class EselonTwoController extends Controller
     return redirect('/finance/eselontwo')->with('sukses','Data Berhasil Diperbaharui');
     }
 
+    public function editmeta($id)
+    {
+        $data = Eselontwo::where('id',$id)->first();
+        $renstra = Renstrakal::all();
+        $user = User::where('aktif','=','Y')->whereRaw('jabatan_id IN ("6","7","11")')->get();
+        $kapom = User::where('aktif','=','Y')->where('jabatan_id','=','1')->get();
+        return view('finance/eselontwo/editmeta',compact('data','renstra','user','kapom'));
+    }
+
+
+    public function updatemeta(Request $request, $id)
+    {
+        $data = Eselontwo::find($id);
+        $data->update($request->all());
+        return redirect('/finance/eselontwo')->with('sukses','Data Diperbaharui');
+    }
+
 
     public function agree($id)
     {

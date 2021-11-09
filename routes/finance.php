@@ -194,6 +194,8 @@
   Route::post('finance/renstranas/store','Finance\RenstranasController@store')->name('renstranas.store');
   Route::get('finance/renstranas/edit/{id}','Finance\RenstranasController@edit')->name('renstranas.edit');
   Route::post('finance/renstranas/update/{id}','Finance\RenstranasController@update')->name('renstranas.update');
+  Route::get('finance/renstranas/editmeta/{id}','Finance\RenstranasController@editmeta')->name('renstranas.editmeta');
+  Route::post('finance/renstranas/updatemeta/{id}','Finance\RenstranasController@updatemeta')->name('renstranas.updatemeta');
 
   //Route untuk renstrakal
   Route::get('/finance/renstrakal/create','Finance\RenstrakalController@create')->name('renstrakal.create');
@@ -202,6 +204,8 @@
   Route::post('finance/renstrakal/store','Finance\RenstrakalController@store')->name('renstrakal.store');
   Route::get('finance/renstrakal/edit/{id}','Finance\RenstrakalController@edit')->name('renstrakal.edit');
   Route::post('finance/renstrakal/update/{id}','Finance\RenstrakalController@update')->name('renstrakal.update');
+  Route::get('finance/renstrakal/editmeta/{id}','Finance\RenstrakalController@editmeta')->name('renstrakal.editmeta');
+  Route::post('finance/renstrakal/updatemeta/{id}','Finance\RenstrakalController@updatemeta')->name('renstrakal.updatemeta');
 
 
    //Route untuk laporan Renstra
@@ -216,3 +220,5 @@
     Route::post('finance/eselontwo/update/{id}','Finance\EselonTwoController@update')->name('eselontwo.update');
     Route::get('finance/eselontwo/agree/{id}','Finance\EselonTwoController@agree')->name('eselontwo.agree');
     Route::get('finance/eselontwo/detail/{id}','Finance\EselonTwoController@detail')->name('eselontwo.detail');
+    Route::get('finance/eselontwo/editmeta/{id}','Finance\EselonTwoController@editmeta')->name('eselontwo.editmeta');
+    Route::post('finance/eselontwo/updatemeta/{id}','Finance\EselonTwoController@updatemeta')->name('eselontwo.updatemeta');

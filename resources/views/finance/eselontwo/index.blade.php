@@ -61,7 +61,7 @@
                         </a>
                     </td>
                     <td>
-                        <a href="/finance/eselontwo/edit/{{$row->id}}" class="btn btn-warning">
+                        <a href="/finance/eselontwo/editmeta/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
                         

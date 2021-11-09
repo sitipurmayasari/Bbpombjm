@@ -53,7 +53,7 @@
                         @endif
                     </td>
                     <td>
-                        <a href="/finance/renstrakal/edit/{{$row->id}}" class="btn btn-warning">
+                        <a href="/finance/renstrakal/editmeta/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
                     </td>
