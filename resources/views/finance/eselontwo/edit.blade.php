@@ -48,10 +48,10 @@ method="post" action="/finance/eselontwo/update/{{$data->id}}">
                                 $isi = $injectQuery->getRenstrakal($data->renstrakal_id, $data->years,$row->indicator_id);
                             @endphp
                             <td><input type="text" name="target[]" readonly value="{{$isi->persentages}}" class="col-sm-6"></td>
-                            <td><input type="number" name="twI[]" value="{{$row->twI}}" step="0.1" class="col-sm-6"></td>
-                            <td><input type="number" name="twII[]" value="{{$row->twII}}" step="0.1" class="col-sm-6"></td>
-                            <td><input type="number" name="twIII[]" value="{{$row->twIII}}" step="0.1" class="col-sm-6"></td>
-                            <td><input type="number" name="twIV[]" value="{{$row->twIV}}" step="0.1" class="col-sm-6"></td>
+                            <td><input type="number" name="twI[]" value="{{$row->twI}}" step="0.01" class="col-sm-6"></td>
+                            <td><input type="number" name="twII[]" value="{{$row->twII}}" step="0.01" class="col-sm-6"></td>
+                            <td><input type="number" name="twIII[]" value="{{$row->twIII}}" step="0.01" class="col-sm-6"></td>
+                            <td><input type="number" name="twIV[]" value="{{$row->twIV}}" step="0.01" class="col-sm-6"></td>
                         </tr>
                     @endforeach
                </tbody>

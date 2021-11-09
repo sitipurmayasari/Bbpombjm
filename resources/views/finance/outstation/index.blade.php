@@ -78,7 +78,9 @@
             </tbody>
         </table>
     </div>
+    {{$data->appends(Request::all())->links()}}
 @endsection
+
 
 @section('footer')
 <script>

@@ -56,7 +56,7 @@ method="post" action="{{route('renstrakal.store')}}" enctype="multipart/form-dat
                                 $isi = $injectQuery->getNasional($tahun,$row->id);
                             @endphp
                             <td><input type="text" name="targetnas[]" readonly value="{{$isi->persentages}}"></td>
-                            <td><input type="number" name="persentages[]" value="0" step="0.1"></td>
+                            <td><input type="number" name="persentages[]" value="0" step="0.01"></td>
                         </tr>
                         @endforeach
                     </tbody>

@@ -50,7 +50,7 @@
                                     $isi = $injectQuery->getRenstrakal($data->id,$item->years,$row->id);
                                 @endphp
                                 <input type="hidden" name="id[]" value="{{$isi->id}}">
-                                <input type="number" name="persentages[]" value={{$isi->persentages}} step="0.1">
+                                <input type="number" name="persentages[]" value={{$isi->persentages}} step="0.01">
                             </td>
                         </tr>
                         @endforeach

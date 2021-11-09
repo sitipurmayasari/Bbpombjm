@@ -50,7 +50,7 @@ method="post" action="{{route('renstranas.store')}}" enctype="multipart/form-dat
                                 <input type="hidden" name="renstranas_id[]" value="{{$data->id}}">
                                 {{$row->indicator}}
                             </td>
-                            <td><input type="number" name="persentages[]" value="0" step="0.1"></td>
+                            <td><input type="number" name="persentages[]" value="0" step="0.01"></td>
                         </tr>
                         @endforeach
                     </tbody>
