@@ -208,7 +208,7 @@
             &nbsp; &nbsp; c. Tanggal harus kembali / tiba di tempat baru
         </td>
         <td class="isi"> 
-            {{$lama->hitung}} ( {{terbilang($lama->hitung)}} ) Hari
+            {{-- {{$lama->hitung}} ( {{terbilang($lama->hitung)}} ) Hari --}}
             {{$lama->hitung}} Hari
             <br>
                 @foreach ($data->outst_destiny as $key=>$item)
