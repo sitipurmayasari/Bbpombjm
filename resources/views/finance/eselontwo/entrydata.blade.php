@@ -47,10 +47,10 @@ method="post" action="{{route('eselontwo.store')}}" enctype="multipart/form-data
                                 $isi = $injectQuery->getRenstrakal($data->renstrakal_id, $data->years,$row->id);
                             @endphp
                             <td><input type="text" name="target[]" readonly value="{{$isi->persentages}}" class="col-sm-6"></td>
-                            <td><input type="number" name="twI[]" value="0" step="0.01" class="col-sm-6"></td>
-                            <td><input type="number" name="twII[]" value="0" step="0.01" class="col-sm-6"></td>
-                            <td><input type="number" name="twIII[]" value="0" step="0.01" class="col-sm-6"></td>
-                            <td><input type="number" name="twIV[]" value="0" step="0.01" class="col-sm-6"></td>
+                            <td><input type="number" name="twI[]" value="0" step="0.01" class="col-sm-10"></td>
+                            <td><input type="number" name="twII[]" value="0" step="0.01" class="col-sm-10"></td>
+                            <td><input type="number" name="twIII[]" value="0" step="0.01" class="col-sm-10"></td>
+                            <td><input type="number" name="twIV[]" value="0" step="0.01" class="col-sm-10"></td>
                         </tr>
                     @endforeach
                </tbody>
