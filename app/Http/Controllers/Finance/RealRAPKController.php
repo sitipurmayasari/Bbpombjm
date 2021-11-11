@@ -93,34 +93,31 @@ class RealRAPKController extends Controller
     }
 
 
-    // public function edit($id)
-    // {
-    //     $data = Eselontwo::where('id',$id)->first();
-    //     $indi = Indicator::all();
-    //     $ese = Eselontwo_detail::where('eselontwo_id',$id)
-    //                                 ->get();
-    //     return view('finance/realRAPK/edit',compact('indi','data','ese'));
-    // }
+    public function edit($id)
+    {
+        $data = RealRAPK::where('id',$id)->first();
+        $indi = Indicator::all();
+        $rapk = Realrapk_detail::where('realRAPK_id',$id)
+                                    ->get();
+        return view('finance/realRAPK/edit',compact('indi','data','rapk'));
+    }
 
    
-    // public function update(Request $request, $id)
-    // {
-    //     DB::beginTransaction();
-    //     for ($i = 0; $i < count($request->input('indicator_id')); $i++){
-    //         $data = [
-    //             'indicator_id' => $request->indicator_id[$i],
-    //             'twI'          => $request->twI[$i],
-    //             'twII'         => $request->twII[$i],
-    //             'twIII'        => $request->twIII[$i],
-    //             'twIV'         => $request->twIV[$i]
-    //         ];
-    //         Eselontwo_detail::where('id', $request->id[$i])
-    //                             ->update($data);
+    public function update(Request $request, $id)
+    {
+        DB::beginTransaction();
+        for ($i = 0; $i < count($request->input('indicator_id')); $i++){
+            $data = [
+                'indicator_id' => $request->indicator_id[$i],
+                'eselontwo_id' => $request->eselontwo_id[$i],
+                'realisasi'    => $request->realisasi[$i]
+            ];
+            Realrapk_detail::where('id', $request->id[$i])
+                                ->update($data);
             
-    //     }
-    // DB::commit();
-
-    // return redirect('/finance/realRAPK')->with('sukses','Data Berhasil Diperbaharui');
-    // }
+        }
+    DB::commit();
+    return redirect('/finance/realRAPK')->with('sukses','Data Berhasil Diperbaharui');
+    }
 
 }

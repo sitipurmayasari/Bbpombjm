@@ -1,20 +1,21 @@
+
 @extends('layouts.mon')
 @inject('injectQuery', 'App\InjectQuery')
 @section('breadcrumb')
     <li>RAPK</li>
     <li><a href="/finance/realRAPK">Realisasi Capaian</a></li>
-    <li>Tambah Baru</li>
+    <li>Ubah Data </li>
 @endsection
 @section('content')
 @include('layouts.validasi')
 
 <form class="form-horizontal validate-form" role="form" 
-method="post" action="{{route('realRAPK.store')}}" enctype="multipart/form-data"   >
+method="post" action="/finance/realRAPK/update/{{$data->id}}">
 {{ csrf_field() }}
 <div class="row">
 <div class="col-md-12">
    <div class="panel panel-info">
-       <div class="panel-heading"><h3 class="panel-title">Tambah RAPK tahun {{$data->years}} - {{$data->triwulan}}</h3></div>
+       <div class="panel-heading"><h3 class="panel-title">Ubah RAPK tahun {{$data->years}} - {{$data->triwulan}}</h3></div>
        <div class="panel-body">
            <table  id="simple-table" class="table  table-bordered table-hover">
                <thead>
@@ -29,15 +30,15 @@ method="post" action="{{route('realRAPK.store')}}" enctype="multipart/form-data"
                    @php
                        $no = 1;
                    @endphp
-                    @foreach ($indi as $key=>$row)
+                    @foreach ($rapk as $key=>$row)
                         <tr>
                             <td style="text-align: center">{{$no++}}</td>
                             <td>
-                                <input type="hidden" name="indicator_id[]" value="{{$row->id}}">
-                                {{$row->indicator}}
+                                <input type="hidden" name="indicator_id[]" value="{{$row->indicator_id}}">
+                                {{$row->indi->indicator}}
                             </td>
                             @php
-                                $isi = $injectQuery->geteselontw($data->years, $row->id);
+                                $isi = $injectQuery->geteselontw($data->years, $row->indicator_id);
 
                                 if ($data->triwulan=="TWI") {
                                     $tw = $isi->twI;
@@ -51,9 +52,10 @@ method="post" action="{{route('realRAPK.store')}}" enctype="multipart/form-data"
                                 
 
                             @endphp
+                            <input type="hidden" name="id[]" readonly  class="col-sm-10" value={{$row->id}}>
                             <input type="hidden" name="eselontwo_id[]" readonly  class="col-sm-10" value={{$row->eselontwo_id}}>
                             <td><input type="text" name="isi" readonly class="col-sm-10" value={{$tw}}></td>
-                            <td><input type="number" name="realisasi[]" value="0" step="0.01" class="col-sm-10" ></td>
+                            <td><input type="number" name="realisasi[]" value="{{$row->realisasi}}" step="0.01" class="col-sm-10" ></td>
                         </tr>
                     @endforeach
                </tbody>

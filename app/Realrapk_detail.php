@@ -7,7 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Realrapk_detail extends Model
 {
     protected $table = "realrapk_detail";
-    protected $fillable = ['eselontwo_id','indicator_id','realtwI','realtwII','realtwIII','realtwIV'];
+    protected $fillable = ['eselontwo_id','indicator_id','realisasi','realrapk_id'];
+
+    public function rapk()
+    {
+        return $this->belongsTo(Realrapk::class,'realrapk_id','id');
+    }
 
     public function eselon()
     {

@@ -8,7 +8,7 @@ class RealRAPK extends Model
 {
   
     protected $table = "realrapk";
-    protected $fillable = [ 'dates','years','filename','users_id','kapom_id'
+    protected $fillable = [ 'dates','years','filename','users_id','kapom_id','triwulan'
     ];
 
     public function pejabat()

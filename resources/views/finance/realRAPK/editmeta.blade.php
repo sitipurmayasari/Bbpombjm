@@ -107,7 +107,7 @@ method="post" action="/finance/realRAPK/updatemeta/{{$data->id}}">
                 <i class="ace-icon fa fa-check bigger-110"></i>UPDATE
             </button>
         </form>
-            <a href="/finance/eselontwo/edit/{{$data->id}}" class="btn btn-sm">
+            <a href="/finance/realRAPK/edit/{{$data->id}}" class="btn btn-sm">
                 <i class="glyphicon glyphicon-arrow-right"> UPDATE PER TW</i>
             </a>
         </div>

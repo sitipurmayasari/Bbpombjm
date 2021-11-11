@@ -48,6 +48,19 @@ method="post" action="{{route('realRAPK.generate')}}" enctype="multipart/form-da
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label no-padding-right" 
+                    for="form-field-1"> Periode Triwulan
+                    </label>
+                    <div class="col-sm-8">
+                        <select name="triwulan" class="col-xs-10 col-sm-10 select2">
+                            <option value="TWI">Triwulan I</option>
+                            <option value="TWII">Triwulan II</option>
+                            <option value="TWIII">Triwulan III</option>
+                            <option value="TWIV">Triwulan IV</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" 
                     for="form-field-1"> Nama Dokumen
                     </label>
                     <div class="col-sm-8">
