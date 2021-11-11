@@ -13,12 +13,17 @@
            border: solid black;
         }
 
+        .judul{
+            border: none;
+            border-collapse: collapse;
+        }
+
     </style>
 </head>
 <body>
-    <header>
+    {{-- <header>
         <img src="{{asset('images/kopsurat1.jpg')}}" style="width: 100%"> <br>
-    </header>
+    </header> --}}
     <main>
         <div class="col-sm-12 isi" style="text-align: center">
             <div style="align=center font-size: 18px">
@@ -26,18 +31,18 @@
             </div>
             <br>
             <div>
-                <table style="font-size: 12px;" >
-                    <tr>
-                        <td>Nama</td>
-                        <td> : {{$atas->user->name}}</td>
+                <table style="font-size: 12px;" class="judul" >
+                    <tr class="judul">
+                        <td class="judul">Nama</td>
+                        <td class="judul"> : {{$atas->user->name}}</td>
                     </tr>
-                    <tr>
-                        <td>NIP</td>
-                        <td> : {{$atas->user->no_pegawai}}</td>
+                    <tr class="judul">
+                        <td class="judul">NIP</td>
+                        <td class="judul"> : {{$atas->user->no_pegawai}}</td>
                     </tr>
-                    <tr>
-                         <td>Tahun</td>
-                         <td> : {{$request->daftartahun}}</td>
+                    <tr class="judul">
+                         <td class="judul">Tahun</td>
+                         <td class="judul"> : {{$request->daftartahun}}</td>
                      </tr>
                 </table>
             </div>
@@ -69,7 +74,7 @@
                      </tbody>
                      <tfoot>
                          <tr>
-                             <td colspan="4" style="text-align: right;">Total Jam Pembelajaran</td>
+                             <td colspan="5" style="text-align: right;">Total Jam Pembelajaran</td>
                              <td style="text-align: center;">{{$total->jumlah}}</td>
                          </tr>
                      </tfoot>

@@ -10,9 +10,9 @@
     <title>Document</title>
 </head>
 <body>
-    <header>
+    {{-- <header>
         <img src="{{asset('images/kopsurat1.jpg')}}" style="width: 100%">
-    </header>
+    </header> --}}
     <main>
         <div class="col-sm-12 isi" style="text-align: center">
             <div style="align=center font-size: 18px">
@@ -48,6 +48,6 @@
     </main>
     {{-- <footer>
         {{-- <img src="{{asset('images/kopsurat2.jpg')}}" style="width: 100%" alt="background"> --}}
-    </footer> --}}
+    {{-- </footer> --}}
 </body>
 </html>
