@@ -197,6 +197,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/finance/renstrapot','Finance\RenstraPotController@index')->name('renstrapot');
     //Route untuk Eselon II
     Route::get('/finance/eselontwo','Finance\EselonTwoController@index')->name('eselontwo');
+    //Route untuk Realisasi RAPK
+    Route::get('/finance/realRAPK','Finance\RealRAPKController@index')->name('realRAPK');
 
 });
 

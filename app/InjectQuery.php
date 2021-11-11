@@ -9,6 +9,8 @@ use App\Travelexpenses;
 use App\Travelexpenses1;
 use App\Outst_destiny;
 use App\Tagging;
+use App\Eselontwo;
+use App\Eselontwo_detail;
 use Illuminate\Support\Facades\DB;
 
 class InjectQuery
@@ -181,6 +183,16 @@ class InjectQuery
                             ->Where('target.perspective_id',$id)
                             ->first();
         return $hitung;
+    }
+
+//--------------------------------------------RAPK------------------------------------------------------------------    //
+
+    public function geteselontw($year,$indi){
+        $ese = Eselontwo::where('years',$year)->OrderBy('id','desc')->first();
+        $isi = Eselontwo_detail::where('indicator_id',$indi)
+                                ->where('eselontwo_id',$ese->id)
+                                ->first();
+        return $isi;
     }
 
    

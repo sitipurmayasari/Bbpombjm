@@ -261,6 +261,12 @@ h2, a {
 .sidebar{
   overflow: auto;
 }
+
+.atas-notif{
+  width: 100%;
+  color: white;
+  background: blue;
+}
 </style>
 
 
@@ -290,6 +296,28 @@ h2, a {
         <div class="container-fluid">
           <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
+              <li class="nav-item ">
+                <li class="nav-item dropdown">
+                  <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="material-icons">notifications</i>
+                    <span class="notification">!</span>
+                    <p class="d-lg-none d-md-block">
+                      Some Actions
+                    </p>
+                  </a>
+                  <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                      <div class="alert alert-info ">
+                        {{-- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <i class="material-icons">close</i>
+                        </button>
+                          <span>
+                            <b> Info - </b> This is a regular notification made with ".alert-info"
+                          </span> --}}
+                          this is info
+                      </div>
+                  </div> 
+                </li>
+              </li>
               <li class="nav-item dropdown">
                 <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <b>{{auth()->user()->name}}</b>

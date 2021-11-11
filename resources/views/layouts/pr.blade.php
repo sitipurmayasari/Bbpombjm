@@ -75,7 +75,9 @@
 				<div class="navbar-buttons navbar-header pull-right" role="navigation">
 
 					<ul class="nav ace-nav">
+						<li class="green dropdown-modal">
 
+						</li>
 						<li class="green dropdown-modal">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
 								<span class="user-info">
@@ -85,7 +87,6 @@
 
 								<i class="ace-icon fa fa-caret-down"></i>
 							</a>
-
 							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
 								<li>
 									<a href="/profile">
@@ -93,9 +94,7 @@
 										Profile
 									</a>
 								</li>
-
 								<li class="divider"></li>
-
 								<li>
 									<a href="/logout">
 										<i class="ace-icon fa fa-power-off"></i>
@@ -130,6 +129,13 @@
 							<a href="/profile">
 								<i class="menu-icon fa fa-user"></i>
 								<span class="menu-text"> Profile </span>
+							</a>
+							<b class="arrow"></b>
+						</li>
+						<li class=" ">
+							<a href="/notifications">
+								<i class="menu-icon fa fa-user"></i>
+								<span class="menu-text"> Notifications </span>
 							</a>
 							<b class="arrow"></b>
 						</li>

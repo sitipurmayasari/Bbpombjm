@@ -1,14 +1,15 @@
 @inject('injectQuery', 'App\InjectQuery')
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Document</title>
-
+@extends('layouts.mon')
+@section('breadcrumb')
+    <div>
+        <button type="button" class="btn btn-primary no-border btn-sm noPrint" 
+            id="PrintPage" onclick="window.print();">
+            <i class="ace-icon fa fa-print icon-on-right bigger-110"></i> &nbsp; cetak
+        </button>
+    </div>
+    
+@endsection
+@section('content')
     <style>
         @page {
             size: A4;
@@ -1241,6 +1242,10 @@
 
 @endforeach
 
+@endsection
+
+@section('footer')
+
 <script>
    
     var total = document.getElementById("total_terbilang").value;
@@ -1248,5 +1253,4 @@
 
 
 </script>
-
-</html>
+@endsection

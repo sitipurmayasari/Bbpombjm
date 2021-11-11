@@ -1,7 +1,7 @@
 @extends('layouts.mon')
 @section('breadcrumb')
-@section('breadcrumb')
-    <li>Biaya Perjalanan Dinas</i></li>
+    <li>RAPK</li>
+    <li>Realisasi Capaian</li>
 @endsection
 @section('content')
 
@@ -12,7 +12,7 @@
                 <div class="form-group col-sm-12">
                     <div class="row">
                         <div class="form-group col-xs-12 col-sm-3" style="float: left">
-                           <a href="{{Route('travelexpenses.create')}}"  class="btn btn-primary">Tambah Data</a>   
+                           <a href="{{Route('realRAPK.create')}}"  class="btn btn-primary">Tambah Data</a>   
                         </div>
                         <div class="form-group col-xs-12 col-sm-5" style="float: right">
                             <div class="input-group">
@@ -35,35 +35,20 @@
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
                 <th width="40px">No</th>
-                <th>Tanggal Pengeluaran</th>
-                <th class="col-md-2">Nomor Surat Tugas</th>
-                <th>Nama Kegiatan</th>
-                <th>Cetak Kuitansi</th>
-                <th>Cetak Riil</th>
-                <th>Cetak Surat Pernyataan</th>
+                <th class="col-md-2">Judul</th>
+                <th>Tahun</th>
+                <th>Nama Pejabat</th>
                 <th  class="col-md-2">Aksi</th>
             </thead>
             <tbody>   	
                 @foreach($data as $key=>$row)
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
-                    <td>{{$row->date}}</td>
-                    <td>{{$row->st->number}}</td>
-                    <td>{{$row->st->purpose}}</td>
+                    <td>{{$row->filename}}</td>
+                    <td>{{$row->years}}</td>
+                    <td>{{$row->pejabat->name}}</td>
                     <td>
-                        <a class="btn btn-primary" href="/finance/travelexpenses/receipt/{{$row->id}}" target="_blank" 
-                            rel="noopener noreferrer">CETAK</a>
-                    </td>
-                    <td>
-                        <a class="btn btn-primary" href="/finance/travelexpenses/riil/{{$row->id}}" target="_blank" 
-                            rel="noopener noreferrer">CETAK</a>
-                    </td>
-                    <td>
-                        <a class="btn btn-primary" href="/finance/travelexpenses/super/{{$row->id}}" target="_blank" 
-                            rel="noopener noreferrer">CETAK</a>
-                    </td>
-                    <td>
-                        <a href="/finance/travelexpenses/edit/{{$row->id}}" class="btn btn-warning">
+                        <a href="/finance/realRAPK/editmeta/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
                     </td>
@@ -74,9 +59,4 @@
         </table>
     </div>
 {{$data->appends(Request::all())->links()}}
-@endsection
-
-@section('footer')
-<script>
-</script>
 @endsection
