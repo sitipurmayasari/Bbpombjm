@@ -28,6 +28,20 @@ method="post" action="{{route('realRAPK.generate')}}" enctype="multipart/form-da
                                 name="dates"/>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" 
+                    for="form-field-1"> Perjanjian Kinerja
+                    </label>
+                    <div class="col-sm-8">
+                        <select name="eselontwo_id" class="col-xs-10 col-sm-10 select2">
+                           @foreach ($rapk as $item)
+                               <option value="{{$item->id}}"> Tahun {{$item->years}} 
+                                (dasar renstra : {{$item->renstrakal->filename}}-
+                                {{$item->renstrakal->yearfrom}}s/d{{$item->renstrakal->yearto}})</option>
+                           @endforeach
+                        </select>
+                    </div>
+                </div>
                <div class="form-group">
                     <label class="col-sm-2 control-label no-padding-right" 
                     for="form-field-1"> Periode Tahun

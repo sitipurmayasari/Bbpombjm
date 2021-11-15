@@ -8,7 +8,7 @@ class RealRAPK extends Model
 {
   
     protected $table = "realrapk";
-    protected $fillable = [ 'dates','years','filename','users_id','kapom_id','triwulan'
+    protected $fillable = [ 'dates','years','filename','users_id','kapom_id','triwulan','eselontwo_id'
     ];
 
     public function pejabat()
@@ -19,5 +19,10 @@ class RealRAPK extends Model
     public function kapom()
     {
         return $this->belongsTo(User::class,'kapom_id','id');
+    }
+
+    public function eselon()
+    {
+        return $this->belongsTo(Eselontwo::class,'eselontwo_id','id');
     }
 }

@@ -11,6 +11,9 @@ use App\Outst_destiny;
 use App\Tagging;
 use App\Eselontwo;
 use App\Eselontwo_detail;
+use App\Setuprenker;
+use App\Realrapk;
+use App\Realrapk_detail;
 use Illuminate\Support\Facades\DB;
 
 class InjectQuery
@@ -187,11 +190,41 @@ class InjectQuery
 
 //--------------------------------------------RAPK------------------------------------------------------------------    //
 
-    public function geteselontw($year,$indi){
-        $ese = Eselontwo::where('years',$year)->OrderBy('id','desc')->first();
+    public function geteselontw($id, $indi){
         $isi = Eselontwo_detail::where('indicator_id',$indi)
-                                ->where('eselontwo_id',$ese->id)
+                                ->where('eselontwo_id',$id)
                                 ->first();
+        return $isi;
+    }
+//-----------------------------------------REALISASI RAPK-----------------------------------------------------------
+
+    public function getRealTW($tw, $year,$indi){
+        $data= Realrapk::where('years',$year)->where('triwulan',$tw)->first();
+        $isi = Realrapk_detail::where('realrapk_id',$data->id)
+                            ->where('indicator_id',$indi)
+                            ->first();
+        return $isi;
+    }
+
+    public function getKriteriaTW($nilai){
+        $isi = Setuprenker::where('jenis','Lapkin')
+                            ->whereRaw("$nilai BETWEEN rentang_awal AND rentang_akhir")
+                            ->first();
+        return $isi;
+    }
+
+    public function getKriteriaTH($nilai){
+        $isi = Setuprenker::where('jenis','Lapkin')
+                            ->whereRaw("$nilai BETWEEN rentang_awal AND rentang_akhir")
+                            ->first();
+        return $isi;
+    }
+
+    public function getAVGSK($target){
+        $isi = Realrapk_detail::SelectRaw('AVG(nps) as hasil')
+                            ->LeftJoin('indicator','indicator.id','=','realrapk_detail.indicator_id')
+                            ->where('target_id',$target)
+                            ->first();
         return $isi;
     }
 

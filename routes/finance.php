@@ -227,11 +227,18 @@
 
 
      //Route untuk Realisasi RAPK
-     Route::get('/finance/realRAPK/create','Finance\RealRAPKController@create')->name('realRAPK.create');
-     Route::post('finance/realRAPK/generate','Finance\RealRAPKController@generate')->name('realRAPK.generate');
-     Route::get('/finance/realRAPK/entrydata/{id}','Finance\RealRAPKController@entrydata')->name('realRAPK.entrydata');
-     Route::post('finance/realRAPK/store','Finance\RealRAPKController@store')->name('realRAPK.store');
-     Route::get('finance/realRAPK/edit/{id}','Finance\RealRAPKController@edit')->name('realRAPK.edit');
-     Route::post('finance/realRAPK/update/{id}','Finance\RealRAPKController@update')->name('realRAPK.update');
-     Route::get('finance/realRAPK/editmeta/{id}','Finance\RealRAPKController@editmeta')->name('realRAPK.editmeta');
+    Route::get('/finance/realRAPK/create','Finance\RealRAPKController@create')->name('realRAPK.create');
+    Route::post('finance/realRAPK/generate','Finance\RealRAPKController@generate')->name('realRAPK.generate');
+    Route::get('/finance/realRAPK/entrydata/{id}','Finance\RealRAPKController@entrydata')->name('realRAPK.entrydata');
+    Route::post('finance/realRAPK/store','Finance\RealRAPKController@store')->name('realRAPK.store');
+    Route::get('finance/realRAPK/edit/{id}','Finance\RealRAPKController@edit')->name('realRAPK.edit');
+    Route::post('finance/realRAPK/update/{id}','Finance\RealRAPKController@update')->name('realRAPK.update');
+    Route::get('finance/realRAPK/editmeta/{id}','Finance\RealRAPKController@editmeta')->name('realRAPK.editmeta');
     Route::post('finance/realRAPK/updatemeta/{id}','Finance\RealRAPKController@updatemeta')->name('realRAPK.updatemeta');
+
+    //Route untuk Setup RAPK
+    Route::post('/finance/setupRAPK/update','Finance\SetupRAPKController@update')->name('renstrapot.update');
+
+    //Route untuk laporan RAPK
+    Route::post('/finance/lapRAPK/cetak','Finance\LapRAPKController@cetak')->name('lapRAPK.cetak');
+  

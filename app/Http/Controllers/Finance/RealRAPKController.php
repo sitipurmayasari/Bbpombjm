@@ -35,10 +35,11 @@ class RealRAPKController extends Controller
 
     public function create()
     {
+        $rapk = Eselontwo::all();
         $user = User::where('aktif','=','Y')->whereRaw('jabatan_id IN ("6","7","11")')->get();
         $kapom = User::where('aktif','=','Y')->where('jabatan_id','=','1')->get();
 
-        return view('finance/realRAPK.create',compact('user','kapom'));
+        return view('finance/realRAPK.create',compact('user','kapom','rapk'));
     }
 
     public function generate(Request $request)
@@ -63,11 +64,10 @@ class RealRAPKController extends Controller
             for ($i = 0; $i < count($request->input('indicator_id')); $i++){
                 $data = [
                     'indicator_id'  => $request->indicator_id[$i],
-                    'eselontwo_id'  => $request->eselontwo_id[$i],
-                    'realtwI'       => $request->realtwI[$i],
-                    'realtwII'      => $request->realtwII[$i],
-                    'realtwIII'     => $request->realtwIII[$i],
-                    'realtwIV'      => $request->realtwIV[$i]
+                    'realisasi'     => $request->realisasi[$i],
+                    'hasil'         => $request->hasil[$i],
+                    'hasiltahun'    => $request->hasiltahun[$i],
+                    'nps'           => $request->nps[$i]
                 ];
                 Realrapk_detail::create($data);
             }
@@ -78,10 +78,11 @@ class RealRAPKController extends Controller
 
     public function editmeta($id)
     {
+        $rapk = Eselontwo::all();
         $data = RealRAPK::where('id',$id)->first();
         $user = User::where('aktif','=','Y')->whereRaw('jabatan_id IN ("6","7","11")')->get();
         $kapom = User::where('aktif','=','Y')->where('jabatan_id','=','1')->get();
-        return view('finance/realRAPK/editmeta',compact('data','user','kapom'));
+        return view('finance/realRAPK/editmeta',compact('data','user','kapom','rapk'));
     }
 
 
@@ -108,9 +109,11 @@ class RealRAPKController extends Controller
         DB::beginTransaction();
         for ($i = 0; $i < count($request->input('indicator_id')); $i++){
             $data = [
-                'indicator_id' => $request->indicator_id[$i],
-                'eselontwo_id' => $request->eselontwo_id[$i],
-                'realisasi'    => $request->realisasi[$i]
+                'indicator_id'  => $request->indicator_id[$i],
+                'realisasi'     => $request->realisasi[$i],
+                'hasil'         => $request->hasil[$i],
+                'hasiltahun'    => $request->hasiltahun[$i],
+                'nps'           => $request->nps[$i]
             ];
             Realrapk_detail::where('id', $request->id[$i])
                                 ->update($data);

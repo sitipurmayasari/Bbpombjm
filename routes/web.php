@@ -199,6 +199,10 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/finance/eselontwo','Finance\EselonTwoController@index')->name('eselontwo');
     //Route untuk Realisasi RAPK
     Route::get('/finance/realRAPK','Finance\RealRAPKController@index')->name('realRAPK');
+    //Route untuk Setup RAPK
+    Route::get('/finance/setupRAPK','Finance\SetupRAPKController@index')->name('setupRAPK');
+    //Route untuk laporan RAPK
+    Route::get('/finance/lapRAPK','Finance\LapRAPKController@index')->name('lapRAPK');
 
 });
 

@@ -28,6 +28,26 @@ method="post" action="/finance/realRAPK/updatemeta/{{$data->id}}">
                                 name="dates"/>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" 
+                    for="form-field-1"> Perjanjian Kinerja
+                    </label>
+                    <div class="col-sm-8">
+                        <select name="eselontwo_id" class="col-xs-10 col-sm-10 select2">
+                           @foreach ($rapk as $item)
+                               @if ($data->eselontwo_id==$item->id)
+                                    <option value="{{$item->id}}" selected> Tahun {{$item->years}} 
+                                        (dasar renstra : {{$item->renstrakal->filename}}-
+                                        {{$item->renstrakal->yearfrom}}s/d{{$item->renstrakal->yearto}})</option>
+                               @else
+                                    <option value="{{$item->id}}"> Tahun {{$item->years}} 
+                                        (dasar renstra : {{$item->renstrakal->filename}}-
+                                        {{$item->renstrakal->yearfrom}}s/d{{$item->renstrakal->yearto}})</option>
+                               @endif
+                           @endforeach
+                        </select>
+                    </div>
+                </div>
                <div class="form-group">
                     <label class="col-sm-2 control-label no-padding-right" 
                     for="form-field-1"> Periode Tahun
