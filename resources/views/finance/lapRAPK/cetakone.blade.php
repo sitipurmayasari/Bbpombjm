@@ -133,9 +133,10 @@
                     </td>
                     <td>
                         @php
-                            $kriteriaTW =$injectQuery->getKriteriaTW($row->hasil);
+                            $hsl = $row->hasil;
+                            $KriteriaTW =$injectQuery->getKriteriaTW($hsl);
                         @endphp
-                        {{$kriteriaTW->kriteria}}
+                          {{$KriteriaTW->kriteria}}
                     </td>
                     <td>
                         {{$row->hasiltahun}}
