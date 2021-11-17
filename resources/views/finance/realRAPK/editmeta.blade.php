@@ -73,6 +73,59 @@ method="post" action="/finance/realRAPK/updatemeta/{{$data->id}}">
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label no-padding-right" 
+                    for="form-field-1"> Periode Triwulan
+                    </label>
+                    <div class="col-sm-8">
+                        <select name="triwulan" class="col-xs-10 col-sm-10 select2">
+                            @if ($data->triwulan=="TWI")
+                                <option value="TWI" selected>Triwulan I</option>
+                                <option value="TWII">Triwulan II</option>
+                                <option value="TWIII">Triwulan III</option>
+                                <option value="TWIV">Triwulan IV</option>
+                            @elseif ($data->triwulan=="TWII")
+                                <option value="TWI" >Triwulan I</option>
+                                <option value="TWII" selected>Triwulan II</option>
+                                <option value="TWIII">Triwulan III</option>
+                                <option value="TWIV">Triwulan IV</option>
+                            @elseif ($data->triwulan=="TWIII")
+                                <option value="TWI" >Triwulan I</option>
+                                <option value="TWII" >Triwulan II</option>
+                                <option value="TWIII" selected>Triwulan III</option>
+                                <option value="TWIV">Triwulan IV</option>
+                            @elseif ($data->triwulan=="TWIV")
+                                <option value="TWI" >Triwulan I</option>
+                                <option value="TWII" >Triwulan II</option>
+                                <option value="TWIII">Triwulan III</option>
+                                <option value="TWIV" selected>Triwulan IV</option>
+                            @else
+                                <option value="TWI">Triwulan I</option>
+                                <option value="TWII">Triwulan II</option>
+                                <option value="TWIII">Triwulan III</option>
+                                <option value="TWIV">Triwulan IV</option>
+                            @endif
+                            
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" 
+                    for="form-field-1"> Pilih Pagu
+                    </label>
+                    <div class="col-sm-8">
+                        <select name="pagu_id" class="col-xs-10 col-sm-10 select2">
+                            <option value="">Pilih Pagu</option>
+                            @foreach ($pagu as $item)
+                                @if ($item->id==$data->pagu_id)
+                                    <option value="{{$item->id}}" selected>{{$item->name}} ( {{tgl_indo($item->tgl_pagu)}} )</option>
+                                @else
+                                    <option value="{{$item->id}}">{{$item->name}} ( {{tgl_indo($item->tgl_pagu)}} )</option>
+                                @endif
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" 
                     for="form-field-1"> Nama Dokumen
                     </label>
                     <div class="col-sm-8">

@@ -75,6 +75,19 @@ method="post" action="{{route('realRAPK.generate')}}" enctype="multipart/form-da
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label no-padding-right" 
+                    for="form-field-1"> Pilih Pagu
+                    </label>
+                    <div class="col-sm-8">
+                        <select name="pagu_id" class="col-xs-10 col-sm-10 select2">
+                            <option value="">Pilih Pagu</option>
+                            @foreach ($pagu as $item)
+                                <option value="{{$item->id}}">{{$item->name}} ( {{tgl_indo($item->tgl_pagu)}} )</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" 
                     for="form-field-1"> Nama Dokumen
                     </label>
                     <div class="col-sm-8">

@@ -224,9 +224,35 @@ class InjectQuery
         $isi = Realrapk_detail::SelectRaw('AVG(nps) as hasil')
                             ->LeftJoin('indicator','indicator.id','=','realrapk_detail.indicator_id')
                             ->where('target_id',$target)
+                            ->where('nps','!=','0')
                             ->first();
         return $isi;
     }
 
+    public function getAVGPers($pers){
+        $isi = Realrapk_detail::SelectRaw('AVG(nps) as hasil')
+                            ->LeftJoin('indicator','indicator.id','=','realrapk_detail.indicator_id')
+                            ->LeftJoin('target','target.id','=','indicator.target_id')
+                            ->where('perspective_id',$pers)
+                            ->where('nps','!=','0')
+                            ->first();
+        return $isi;
+    }
+
+    public function getPaguRAPK($indi,$pagu){
+        $isi = Tagging::SelectRaw('SUM(pagusub) AS pagu, SUM(realisasisub) AS realisasi')
+                            ->LeftJoin('realrapk_detail','realrapk_detail.indicator_id','=','tagging.indicator_id')
+                            ->where('tagging.indicator_id',$indi)
+                            ->where('tagging.pagu_id',$pagu)
+                            ->first();
+        return $isi;
+    }
+    
+    public function getKriteriaTE($nilai){
+        $isi = Setuprenker::where('jenis','TE')
+                            ->whereRaw("$nilai BETWEEN rentang_awal AND rentang_akhir")
+                            ->first();
+        return $isi;
+    }
    
 }

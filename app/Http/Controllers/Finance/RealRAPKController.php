@@ -14,6 +14,7 @@ use App\Indicator;
 use App\User;
 use App\RealRAPK;
 use App\Realrapk_detail;
+use App\Pagu;
 use Excel;
 use PDF;
 use DateTime;
@@ -35,11 +36,12 @@ class RealRAPKController extends Controller
 
     public function create()
     {
+        $pagu = Pagu::all();
         $rapk = Eselontwo::all();
         $user = User::where('aktif','=','Y')->whereRaw('jabatan_id IN ("6","7","11")')->get();
         $kapom = User::where('aktif','=','Y')->where('jabatan_id','=','1')->get();
 
-        return view('finance/realRAPK.create',compact('user','kapom','rapk'));
+        return view('finance/realRAPK.create',compact('user','kapom','rapk','pagu'));
     }
 
     public function generate(Request $request)
@@ -78,11 +80,12 @@ class RealRAPKController extends Controller
 
     public function editmeta($id)
     {
+        $pagu = Pagu::all();
         $rapk = Eselontwo::all();
         $data = RealRAPK::where('id',$id)->first();
         $user = User::where('aktif','=','Y')->whereRaw('jabatan_id IN ("6","7","11")')->get();
         $kapom = User::where('aktif','=','Y')->where('jabatan_id','=','1')->get();
-        return view('finance/realRAPK/editmeta',compact('data','user','kapom','rapk'));
+        return view('finance/realRAPK/editmeta',compact('data','user','kapom','rapk','pagu'));
     }
 
 

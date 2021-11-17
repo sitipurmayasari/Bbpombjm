@@ -149,14 +149,26 @@
                                 $hitung = $injectQuery->getPers($row->indi->target->perspective_id);
                                 $cell = $hitung->rows;
 
-                                $avgPers=$injectQuery->getAVGPers($row->indi->target_id);
+                                $avgPers=$injectQuery->getAVGPers($row->indi->target->perspective_id);
                                 $nilaiPers = round($avgPers->hasil,2);
                             @endphp
 
                             <td rowspan="{{$cell}}" style="text-align: left">
-                                {{$row->indi->target->pers->name}}
+                                {{$nilaiPers}}
                             </td>
                         @endif
+                        <td rowspan="{{$cell}}" style="text-align: center">
+                            @php
+                                 $sesuaiPers = $nilaiPers <= '120' ? $nilaiPers : '120';
+                            @endphp
+                             {{$sesuaiPers}}
+                         </td>
+                         <td rowspan="{{$cell}}" style="text-align: center">
+                            @php
+                                $kriteriaPers =$injectQuery->getKriteriaTW($sesuaiPers);
+                            @endphp
+                                {{$kriteriaPers->kriteria}}
+                        </td>
                     @endif
                     
                 </tr>
