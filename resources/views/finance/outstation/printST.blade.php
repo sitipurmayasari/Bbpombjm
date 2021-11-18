@@ -30,7 +30,7 @@
             line-height: 1;
             text-align: justify;
         }
-        
+
         table, td, tr {
             text-align: justify;
             vertical-align: top;
@@ -60,6 +60,19 @@
             text-align: center;
             line-height: 1;
         }
+
+        #gratis{
+            font-family: "Bookman Old Style";
+            font-size: 12;
+            color: brown;
+            line-height: 1;
+            text-align: center;
+            border: 2px solid brown;
+            margin: auto;
+            
+        }
+        
+
 </style>
 <body>
     <div class="col-sm-12" style="text-align: center">
@@ -246,7 +259,21 @@
                 <td><b>{{$menyetujui->user->name}}</b></td>
             </tr>
         </table>
+        <br>
+        <br>
+        <br>
+        <br><br><br><br><br><br><br><br>
+        <table style="width: 100%">
+            <tr><td style="width: 20%"></td>
+                <td id="gratis"> <br><br>
+                    <b>Tidak Menerima Gratifikasi/KKN</b> <br>
+                        Pengaduan Gratifikasi/KKN ditujukan kepada Kepala BBPOM di <br>
+                        Banjarmasin Hp : 082149000821
+                        <br><br>
+                </td>
+                <td></td>
+            </tr>
+        </table>
     </div>
-    
 </body>
 </html>
