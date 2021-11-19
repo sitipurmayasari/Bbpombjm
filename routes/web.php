@@ -88,6 +88,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/invent/lappinjam','Invent\LapPinjamController@index')->name('lappinjam');
     //Route untuk Laporan Pengajuan
     Route::get('/invent/lapajuan','Invent\LapAjuController@index')->name('lapajuan');
+     //Route untuk Laporan stok barang
+     Route::get('/invent/kartustok','Invent\KartuStokController@index')->name('kartustok');
     
 
 

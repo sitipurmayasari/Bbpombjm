@@ -84,3 +84,7 @@
   Route::get('invent/carrent/delete/{id}','Invent\CarrentController@delete')->name('carrent.delete');
   Route::get('invent/carrent/edit/{id}','Invent\CarrentController@edit')->name('carrent.edit');
   Route::post('invent/carrent/update/{id}','Invent\CarrentController@update')->name('carrent.update');
+
+    //Route untuk Laporan stok barang
+    Route::post('/invent/kartustok/cetak','Invent\KartuStokController@cetak')->name('kartustok.cetak');
+    

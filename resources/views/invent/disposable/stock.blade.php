@@ -61,7 +61,8 @@
                             for="form-field-1"> Jumlah Barang
                             </label>
                             <div class="col-sm-8">
-                                <input type="number" name="stock" class="col-xs-2 col-sm-2" required>&nbsp;&nbsp;
+                                <input type="number" name="stock" class="col-xs-2 col-sm-2" required  id="stok" onkeyup="hitung()">&nbsp;&nbsp;
+                                <input type="hidden" name="stockawal" class="col-xs-2 col-sm-2" id="awal">
                                 <label>{{$data->satuan->satuan}}</label> 
                             </div>
                         </div>
@@ -104,7 +105,7 @@
                     @php $no=1; @endphp
                     @foreach($stok as $key=>$row)
                     <tr>
-                        <td align="center">{{$no++}}</td>
+                        <td style="text-align: center">{{$no++}}</td>
                         <td>{{$row->entry_date}}</td>
                         <td>{{$row->stock}}</td>
                         <td>{{$row->exp_date}}</td>
@@ -118,4 +119,12 @@
         </div>
     </div>
 </div>
+@endsection
+@section('footer')
+    <script>
+        function hitung() {
+            var a = $("#stok").val();
+            $("#awal").val(a);
+        }
+    </script>
 @endsection
