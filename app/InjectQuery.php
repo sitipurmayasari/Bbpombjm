@@ -14,10 +14,27 @@ use App\Eselontwo_detail;
 use App\Setuprenker;
 use App\Realrapk;
 use App\Realrapk_detail;
+use App\Outst_employee;
+use App\Outstation;
 use Illuminate\Support\Facades\DB;
 
 class InjectQuery
 {
+//---------------------------CAROUSEL---------------------------------------------------------------------------
+    public function getTujuan($id){
+        $nilai = Outst_destiny::Where('outstation_id',$id)
+                                ->LeftJoin('destination','destination.id','=','outst_destiny.destination_id')
+                                ->get();
+        return $nilai;
+    }
+
+    public function getPetugas($id){
+        $nilai = Outst_employee::Where('outstation_id',$id)
+                                ->LeftJoin('users','users.id','=','outst_employee.users_id')
+                                ->get();
+        return $nilai;
+    }
+
 
 //---------------------------KUITANSI---------------------------------------------------------------------------
     public function getDetail($id){

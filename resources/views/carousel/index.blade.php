@@ -40,10 +40,10 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
       <div class="item active">
-        <img src="{{asset('images/kopsurat2.jpg')}}" style="width: 100%;height: 100%";  alt="First slide">
+        @include('carousel.partials.perjadin')
       </div>
       <div class="item">
-        <img src="{{asset('images/kopsurat1.jpg')}}" style="width: 100%" alt="second slide">
+        @include('carousel.partials.peminjamankendaraan')
       </div>
       @if ($annc != null)
         <div class="item">
@@ -69,7 +69,7 @@
 <script>
     $(document).ready(function() {
         $('.carousel').carousel({
-            interval: 500
+            interval: 1500
         })
 
 
