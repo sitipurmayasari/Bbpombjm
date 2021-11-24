@@ -3,7 +3,7 @@
       <h4 class="card-title">Peminjaman Kendaraan Dinas</h4>
     </div>
     <div style=" margin-left: 10%; margin-right: 10%; ">
-        <table style="width: 100%; font-size: 16px;text-align: center;">
+        <table style="width: 100%; font-size: 20px;text-align: center;">
             <thead>
                 <tr>
                     <th width="40px" style="text-align: center">No</th>

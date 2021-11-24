@@ -113,8 +113,7 @@ class OutstationController extends Controller
             'budget_id'=> 'required',
             'city_from'=> 'required',
             'type'=> 'required',
-        ]);
-          
+        ]);          
         DB::beginTransaction(); 
             $outstation = Outstation::create($request->all());
             $outstation_id = $outstation->id;
@@ -148,6 +147,8 @@ class OutstationController extends Controller
             DB::commit();
   
           return redirect('/finance/outstation');
+
+
   
       }
   
@@ -231,7 +232,7 @@ class OutstationController extends Controller
                           ->get();
           return view('finance/outstation.edit',compact('data','petugas','kota','ppk','budget','act','sub',
                       'akun','div','user','destination','pok'
-                    ));
+          ));
       }
 
       function getNomorSPPD(Request $request){
@@ -261,8 +262,21 @@ class OutstationController extends Controller
       {
         $outstation_id = $id;
         DB::beginTransaction(); 
+          //---------------outstation----------------------
             $data = Outstation::find($id);
             $data->update($request->all());
+
+            if($request->hasFile('file')){ // Kalau file ada
+              $request->file('file')
+                          ->move('images/ST/'.$outstation_id,$request
+                          ->file('file')
+                          ->getClientOriginalName()); // pindah file user manual k inventaris folder id file
+              $data->file = $request->file('file')->getClientOriginalName(); // update isi kolum file user dengan origin gambar
+              $data->save(); // save ke database
+          }
+
+          
+          //---------------outst_destiny----------------------
             for ($j = 0; $j < count($request->destination_id); $j++){
                 $tgl1 = new DateTime($request->go_date[$j]);
                 $tgl2 = new DateTime($request->return_date[$j]);
@@ -275,11 +289,14 @@ class OutstationController extends Controller
                   'longday' => $daylong,
                   'created_at' => Carbon::now()
                 ];
+                
                 DB::table('outst_destiny')->updateOrInsert([
                   'outstation_id'=>$outstation_id,
                   'destination_id' =>$request->destination_id[$j]
                 ],$destination);
             }
+
+              //---------------outst_employee----------------------
     
             for ($i = 0; $i < count($request->input('users_id')); $i++){
               $nomornya = $request->no_sppd[$i] == "" ?  $this->getnosppd($request->divisi_id) :  $request->no_sppd[$i];
@@ -295,7 +312,9 @@ class OutstationController extends Controller
                 'no_sppd'=>$nomornya
               ],$pegawai);
             }
+
         DB::commit();
+
         return redirect('/finance/outstation')->with('sukses','Data Diperbaharui');
       }
 

@@ -8,7 +8,7 @@ class Outstation extends Model
 {
     protected $table = "outstation";
     protected $fillable = ['divisi_id','st_date','number','purpose','budget_id','ppk_id','pok_detail_id',
-                            'subcode_id','accountcode_id','city_from','type','transport','activitycode_id','external'
+                            'subcode_id','accountcode_id','city_from','type','transport','activitycode_id','external','file'
                         ];
 
     public function divisi()
@@ -62,6 +62,11 @@ class Outstation extends Model
     public function petugas()
     {
         return $this->hasMany(Outst_employee::class,'outstation_id','id');
+    }
+
+    public function getFIleST() 
+    {
+        return $this->file==null ? 'Tidak Ada File' : asset('images/ST').'/'.$this->id.'/'.$this->file;
     }
 
 }

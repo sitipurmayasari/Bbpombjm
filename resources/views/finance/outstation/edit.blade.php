@@ -213,6 +213,15 @@
                            @endif
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1">  Upload Scan ST
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="file" name="file" class="btn btn-default btn-sm" id="" value="Upload File">      
+                            <label><i>ex:Lorem_ipsum.pdf</i></label>
+                        </div>
+                    </div>
                 </fieldset>   
             </div>
         </div>

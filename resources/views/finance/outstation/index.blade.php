@@ -41,6 +41,7 @@
                 <th>Destinasi</th>
                 <th>Cetak ST</th>
                 <th>Cetak SPPD</th>
+                <th>Scan ST</th>
                 <th  class="col-md-2">Aksi</th>
             </thead>
             <tbody>   	
@@ -62,6 +63,9 @@
                     </td>
                     <td>
                         <a class="btn btn-primary" href="/finance/outstation/printSppd/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
+                    </td>
+                    <td>
+                        <a href="{{$row->getFIleST()}}" target="_blank" >{{$row->file}}</a>
                     </td>
                     <td>
                         <a href="/finance/outstation/edit/{{$row->id}}" class="btn btn-warning">
