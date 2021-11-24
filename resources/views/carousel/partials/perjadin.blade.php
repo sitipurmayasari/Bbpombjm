@@ -1,7 +1,7 @@
 @inject('injectQuery', 'App\InjectQuery')
 <div class="card col-sm-12">
   <div class="card-header card-header-warning">
-    <h4 class="card-title">Perjalanan dinas</h4>
+    <h4 class="card-title">PERJALANAN DINAS</h4>
   </div>
   <div style=" margin-left: 10%; margin-right: 10%; ">
       <table style="width: 100%; font-size: 20px;text-align: center;">
