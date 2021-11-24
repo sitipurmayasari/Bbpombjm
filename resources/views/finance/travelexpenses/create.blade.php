@@ -125,6 +125,7 @@
                 // ------DATA ST--------------//
                 $("#maksud").val(response.st.purpose);
                 $("#lamahari").val(response.lama.lawas);
+                $("#tujuan").val(response.dest.capital);
 
                 if (response.st.type=='DL') {
                     var r = 'Dalam Kota';
