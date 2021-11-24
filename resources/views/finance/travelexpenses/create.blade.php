@@ -143,7 +143,7 @@
                 
                 if (response.st.type=='DL') {
                     if (response.peg[i].deskjob='Non ASN / Sopir') {
-                        var daily = response.dest.LKDriver;
+                        var daily = response.dest.DKDriver;
                     } else {
                         if (response.peg[i].jabatan_id=='6') { //kabalai
                             var daily = response.dest.dailywageDK1;
@@ -158,17 +158,21 @@
                         }
                     }
                 } else{
-                    if (response.peg[i].jabatan_id=='6') { //kabalai
-                        var daily = response.dest.dailywageLK1;
-                    } else if(response.peg[i].jabatan_id=='11') { //kabag
-                        var daily = response.dest.dailywageLK2;
-                    } else if(response.peg[i].jabatan_id=='7') { //koor
-                        var daily = response.dest.dailywageLK3;
-                    } else if(response.peg[i].jabatan_id=='5') { //sub
-                        var daily = response.dest.dailywageLK4;
+                    if (response.peg[i].deskjob='Non ASN / Sopir') {
+                        var daily = response.dest.LKDriver;
                     } else {
-                        var daily = response.dest.dailywageLK5;
-                    }   
+                        if (response.peg[i].jabatan_id=='6') { //kabalai
+                            var daily = response.dest.dailywageLK1;
+                        } else if(response.peg[i].jabatan_id=='11') { //kabag
+                            var daily = response.dest.dailywageLK2;
+                        } else if(response.peg[i].jabatan_id=='7') { //koor
+                            var daily = response.dest.dailywageLK3;
+                        } else if(response.peg[i].jabatan_id=='5') { //sub
+                            var daily = response.dest.dailywageLK4;
+                        } else {
+                            var daily = response.dest.dailywageLK5;
+                        }
+                    }  
                 }
 
                 if (response.peg[i].jabatan_id=='6') { //kabalai

@@ -2,7 +2,7 @@
     <div class="card-header card-header-warning">
       <h4 class="card-title">PEMINJAMAN KENDARAAN DINAS</h4>
     </div>
-    <div style=" margin-left: 10%; margin-right: 10%; ">
+    <div style=" margin-left: 3%; margin-right: 3%; ">
         <table style="width: 100%; font-size: 20px;text-align: center;">
             <thead>
                 <tr>

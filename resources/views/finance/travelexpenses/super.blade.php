@@ -50,8 +50,10 @@
         <tr>
             <td>Pangkat / Gol.</td>
             <td colspan="2"> : 
-                {{$item->pegawai->gol->jenis}} / 
-                {{$item->pegawai->gol->golongan}} {{$item->pegawai->gol->ruang}}
+                @if ($item->pegawai->status=="PNS")
+                    {{$item->pegawai->gol->jenis}} / 
+                    {{$item->pegawai->gol->golongan}} {{$item->pegawai->gol->ruang}}
+                @endif
             </td>
         </tr>
         <tr>
