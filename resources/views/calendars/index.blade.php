@@ -1,0 +1,132 @@
+@extends('layouts.pr')
+@section('breadcrumb')
+<nav aria-label="breadcrumb" class="main-breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">Kalender Agenda</li>
+    </ol>
+  </nav>
+{{-------------------------------------- kalender -------------------------------------------------------}}
+<link rel="stylesheet" href="{{asset('assets/css/fullcalendar/packages/core/main.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/css/fullcalendar/packages/daygrid/main.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/css/icomoon.css')}}" />
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
+<style>
+a {
+  -webkit-transition: .3s all ease;
+  -o-transition: .3s all ease;
+  transition: .3s all ease; }
+  a, a:hover {
+    text-decoration: none !important; }
+
+.content {
+  padding: 7rem 0; }
+
+h2 {
+  font-size: 20px; }
+
+.form-control:active, .form-control:focus {
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none; }
+
+#calendar {
+  margin: 0 auto; }
+  #calendar .fc-view-container {
+    background-color: #fff;
+    -webkit-box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.2); }
+  #calendar .fc-toolbar.fc-header-toolbar .fc-center {
+    display: block; }
+
+/* #calendar-container {
+  position: fixed;
+  top: 0;
+  left: 20px;
+  right: 20px;
+  bottom: 20px; } */
+
+.fc-header-toolbar {
+  /*
+    the calendar will be butting up against the edges,
+    but let's scoot in the header's buttons
+    */
+  padding-top: 1em;
+  padding-left: 1em;
+  padding-right: 1em; }
+
+@media (max-width: 767.98px) {
+  .fc-toolbar {
+    display: block !important;
+    text-align: center; }
+    .fc-toolbar .fc-center {
+      display: block;
+      margin-top: 20px;
+      margin-bottom: 20px; } }
+
+</style>
+@endsection
+@section('content')
+    <div id='calendar-container'>
+        <div id='calendar'></div>
+    </div>
+@endsection
+
+@section('footer')
+{{-- calendar script --}}
+<script src="{{asset('assets/css/fullcalendar/packages/core/main.js')}}"></script>
+<script src="{{asset('assets/css/fullcalendar/packages/interaction/main.js')}}"></script>
+<script src="{{asset('assets/css/fullcalendar/packages/daygrid/main.js')}}"></script>
+<script src="{{asset('assets/css/fullcalendar/packages/timegrid/main.js')}}"></script>
+<script src="{{asset('assets/css/fullcalendar/packages/list/main.js')}}"></script>
+
+<script>
+     document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
+      height: 'parent',
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek'
+      },
+      defaultView: 'dayGridMonth',
+    //   defaultDate: '2020-02-12',
+      defaultDate: new Date(),
+    //   navLinks: true, // can click day/week names to navigate views
+      editable: true,
+      eventLimit: true, // allow "more" link when too many events
+      events: [
+         
+        //   array.forEach($data => {
+        //     title: $data->titles,
+        //     start: $data->date_from,
+        //     end: $data->date_to
+        //   });
+        {
+          title: 'Long Event',
+          url: 'http://google.com/',
+          start: '2021-11-01',
+          end: '2021-11-01'
+        },
+        {
+          title: 'Long Event',
+          start: '2021-11-07',
+          end: '2021-11-10'
+        },
+     
+        {
+          title: 'Click for Google',
+          url: 'http://google.com/',
+          start: '2021-11-28'
+        }
+      ]
+    });
+
+    calendar.render();
+  });
+
+</script>
+@endsection

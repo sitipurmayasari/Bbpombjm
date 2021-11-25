@@ -266,7 +266,23 @@ h2, a {
   width: 100%;
   color: white;
   background: blue;
+
 }
+
+.tgl{
+  width: 18%;
+  float: right;
+  background: #00a1b2;
+  color: white;
+  margin-right: 3%;
+}
+
+.hari{
+  background:#ecf0f1;
+  color: #00a1b2;
+  
+}
+
 </style>
 
 
@@ -297,7 +313,7 @@ h2, a {
           <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
               <li class="nav-item ">
-                <li class="nav-item dropdown">
+                {{-- <li class="nav-item dropdown">
                   <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="material-icons">notifications</i>
                     <span class="notification">!</span>
@@ -307,16 +323,15 @@ h2, a {
                   </a>
                   <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                       <div class="alert alert-info ">
-                        {{-- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                           <i class="material-icons">close</i>
                         </button>
                           <span>
                             <b> Info - </b> This is a regular notification made with ".alert-info"
-                          </span> --}}
-                          this is info
+                          </span>
                       </div>
                   </div> 
-                </li>
+                </li> --}}
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -338,10 +353,27 @@ h2, a {
         </div>
       </nav>
       <div class="content">
-        <div style="text-align: center">
-          <h4>SELAMAT DATANG DI</h4>
-          <h1><b>SI-BOB</b></h1>
-          <h5>( SISTEM INFORMASI BBPOM BANJARMASIN )</h5>
+        <a href="/calendars">
+          <div class="tgl">
+            <div class="tgl_det">{{$hari}}</div>
+            <div class="hari">
+              <h1>{{$tgl}}</h1>
+              @if ($keterangan != null)
+                  @foreach ($keterangan as $item)
+                    <i class="material-icons">notifications</i>  {{$item->titles}} <br>
+                  @endforeach
+              @endif
+            </div>
+            <div class="tgl_det">{{$bulan}} {{$tahun}}</div>
+          </div>
+        </a>   
+        
+        <div style="text-align: center;">
+          <div style="padding-left: 18%;">
+            <h4>SELAMAT DATANG DI</h4>
+            <h1><b>SI-BOB</b></h1>
+            <h5>( SISTEM INFORMASI BBPOM BANJARMASIN )</h5>
+          </div>
           <div class="social">   
               <a class="social-icon" data-tooltip="AMDK" href="/amdk/dashboard">
                 <img src="{{asset('images/amdk.png')}}" style="height:100%; width:100%">

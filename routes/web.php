@@ -24,6 +24,12 @@ Route::get('/qR/{id}/inventaris','Invent\InventarisController@detail')->name('in
   Route::get('/notifications','NotifController@index')->name('notif');
   Route::get('/carousel','CarouselController@index')->name('carousel');
 
+
+  //Route untuk Kalender
+  Route::get('/calendars','CalendarController@index')->name('calendars');
+  Route::get('/calendars/lihat/{id}','CalendarController@lihat')->name('agenda.lihat');
+
+
   //Route untuk dashboard
   //--------------------------Invent------------------------------------------
   Route::get('/invent/dashboard','Invent\DashboardController@index')->name('dashboard');

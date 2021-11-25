@@ -133,9 +133,9 @@
 							<b class="arrow"></b>
 						</li>
 						<li class=" ">
-							<a href="/notifications">
+							<a href="/calendars">
 								<i class="menu-icon fa fa-user"></i>
-								<span class="menu-text"> Notifications </span>
+								<span class="menu-text"> Kalender Agenda </span>
 							</a>
 							<b class="arrow"></b>
 						</li>
