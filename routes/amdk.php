@@ -158,3 +158,15 @@
   //Route untuk absen
   Route::get('/amdk/ttdabsen/create','Amdk\TtdAbsenController@create')->name('ttdabsen.create');
   Route::post('/amdk/ttdabsen/store','Amdk\TtdAbsenController@store')->name('ttdabsen.store');
+
+  //Route agenda
+  Route::get('/amdk/agenda/create','Amdk\AgendaController@create')->name('agenda.create');
+  Route::post('/amdk/agenda/store','Amdk\AgendaController@store')->name('agenda.store');
+  Route::get('/amdk/agenda/delete/{id}','Amdk\AgendaController@delete')->name('agenda.delete');
+  Route::get('/amdk/agenda/edit/{id}','Amdk\AgendaController@edit')->name('agenda.edit');
+  Route::post('/amdk/agenda/update/{id}','Amdk\AgendaController@update')->name('agenda.update');
+
+  //Route untuk kategori
+  Route::post('/amdk/kategori/store','Amdk\KategoriController@store')->name('kategori.store');
+  Route::get('/amdk/kategori/edit/{id}','Amdk\KategoriController@edit')->name('kategori.edit');
+  Route::post('/amdk/kategori/update/{id}','Amdk\KategoriController@update')->name('kategori.update');

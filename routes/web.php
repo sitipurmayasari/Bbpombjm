@@ -136,6 +136,10 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/amdk/archive_time','Amdk\ArchiveTimeController@index')->name('archive_time');
     //Route untuk absen
     Route::get('/amdk/ttdabsen','Amdk\TtdAbsenController@index')->name('ttdabsen');
+    //Route agenda
+    Route::get('/amdk/agenda','Amdk\AgendaController@index')->name('agenda');
+    //Route untuk jurusan
+    Route::get('/amdk/kategori','Amdk\KategoriController@index')->name('kategori');
     
     
 
