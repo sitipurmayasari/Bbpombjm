@@ -143,9 +143,8 @@
                   var no = i+1;
                 
                 if (response.st.type=='DL') {
-                    if (response.peg[i].deskjob='Non ASN / Sopir') {
-                        var daily = response.dest.DKDriver;
-                    } else {
+                    if (response.peg[i].deskjob != 'Non ASN / Sopir') {
+                        
                         if (response.peg[i].jabatan_id=='6') { //kabalai
                             var daily = response.dest.dailywageDK1;
                         } else if(response.peg[i].jabatan_id=='11') { //kabag
@@ -157,11 +156,11 @@
                         } else {
                             var daily = response.dest.dailywageDK5;
                         }
+                    } else {
+                        var daily = response.dest.DKDriver;
                     }
                 } else{
-                    if (response.peg[i].deskjob='Non ASN / Sopir') {
-                        var daily = response.dest.LKDriver;
-                    } else {
+                    if (response.peg[i].deskjob !='Non ASN / Sopir') {
                         if (response.peg[i].jabatan_id=='6') { //kabalai
                             var daily = response.dest.dailywageLK1;
                         } else if(response.peg[i].jabatan_id=='11') { //kabag
@@ -173,6 +172,8 @@
                         } else {
                             var daily = response.dest.dailywageLK5;
                         }
+                    } else {
+                        var daily = response.dest.LKDriver;
                     }  
                 }
 
