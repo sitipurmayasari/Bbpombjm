@@ -97,7 +97,7 @@
                     @if ($target!=$row->indi->target_id)
                         @php
                             $hitung =$injectQuery->getTarget($row->indi->target_id);
-                            $cell = $hitung->rows;
+                            $cell = $hitung->rowing;
                         @endphp
                         <td rowspan="{{$cell}}" style="text-align: left">
                             {{$row->indi->target->name}}

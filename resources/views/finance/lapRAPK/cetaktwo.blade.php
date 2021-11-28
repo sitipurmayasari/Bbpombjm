@@ -101,7 +101,7 @@
                     @if ($target!=$row->indi->target_id)
                         @php
                             $hitung =$injectQuery->getTarget($row->indi->target_id);
-                            $cell = $hitung->rows;
+                            $cell = $hitung->rowing;
                         @endphp
                         <td rowspan="{{$cell}}" style="text-align: left">
                             {{$row->indi->target->name}}
@@ -123,7 +123,7 @@
                     @if ($target!=$row->indi->target_id)
                         @php
                             $hitung =$injectQuery->getTarget($row->indi->target_id);
-                            $cell = $hitung->rows;
+                            $cell = $hitung->rowing;
 
                             $avgSK=$injectQuery->getAVGSK($row->indi->target_id);
                             $nilaiSK = round($avgSK->hasil,2);
@@ -147,7 +147,7 @@
                         @if ($pers!=$row->indi->target->perspective_id)
                             @php
                                 $hitung = $injectQuery->getPers($row->indi->target->perspective_id);
-                                $cell = $hitung->rows;
+                                $cell = $hitung->rowing;
 
                                 $avgPers=$injectQuery->getAVGPers($row->indi->target->perspective_id);
                                 $nilaiPers = round($avgPers->hasil,2);
