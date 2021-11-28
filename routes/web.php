@@ -27,7 +27,8 @@ Route::get('/qR/{id}/inventaris','Invent\InventarisController@detail')->name('in
 
   //Route untuk Kalender
   Route::get('/calendars','CalendarController@index')->name('calendars');
-  Route::get('/calendars/lihat/{id}','CalendarController@lihat')->name('agenda.lihat');
+  Route::get('/calendars/lihat/{id}','CalendarController@lihat')->name('calendars.lihat');
+  Route::get('/calendars/getData','CalendarController@getData')->name('calendars.getData');
 
 
   //Route untuk dashboard

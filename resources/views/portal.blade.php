@@ -275,6 +275,8 @@ h2, a {
   background: #00a1b2;
   color: white;
   margin-right: 3%;
+  border-radius: 20px;
+  box-shadow: 3px 6px #888888;
 }
 
 .hari{
@@ -357,7 +359,7 @@ h2, a {
           <div class="tgl">
             <div class="tgl_det">{{$hari}}</div>
             <div class="hari">
-              <h1>{{$tgl}}</h1>
+              <h1><b>{{$tgl}}</b></h1>
               @if ($keterangan != null)
                   @foreach ($keterangan as $item)
                     <i class="material-icons">notifications</i>  {{$item->titles}} <br>

@@ -8,9 +8,10 @@
 {{-------------------------------------- kalender -------------------------------------------------------}}
 <link rel="stylesheet" href="{{asset('assets/css/fullcalendar/packages/core/main.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/css/fullcalendar/packages/daygrid/main.css')}}" />
-<link rel="stylesheet" href="{{asset('assets/css/icomoon.css')}}" />
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 <style>
 a {
   -webkit-transition: .3s all ease;
@@ -81,9 +82,9 @@ h2 {
 <script src="{{asset('assets/css/fullcalendar/packages/list/main.js')}}"></script>
 
 <script>
-     document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
-
+    
     var calendar = new FullCalendar.Calendar(calendarEl, {
       plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
       height: 'parent',
@@ -93,35 +94,47 @@ h2 {
         right: 'dayGridMonth,timeGridWeek'
       },
       defaultView: 'dayGridMonth',
-    //   defaultDate: '2020-02-12',
       defaultDate: new Date(),
     //   navLinks: true, // can click day/week names to navigate views
       editable: true,
       eventLimit: true, // allow "more" link when too many events
       events: [
-         
-        //   array.forEach($data => {
-        //     title: $data->titles,
-        //     start: $data->date_from,
-        //     end: $data->date_to
-        //   });
-        {
-          title: 'Long Event',
-          url: 'http://google.com/',
-          start: '2021-11-01',
-          end: '2021-11-01'
-        },
-        {
-          title: 'Long Event',
-          start: '2021-11-07',
-          end: '2021-11-10'
-        },
-     
-        {
-          title: 'Click for Google',
-          url: 'http://google.com/',
-          start: '2021-11-28'
-        }
+        // $.get(
+        //   "{{route('calendars.getData') }}",
+        //   function(response) {
+        //     var data = response.data;
+        //     $.each(data, function(index, value) {
+        //       title = value.titles,
+        //       url = '{{route("calendars.lihat", ['value.id']) }}',
+        //       start = value.date_from,
+        //       end = value.date_to  
+        //     })
+        //   }
+        // );
+        // {
+        //   title: '2 events in 1 day',
+        //   url: '{{ route('calendars.lihat', ['1']) }}',
+        //   start: '2021-11-01',
+        //   end: '2021-11-01'
+        // },
+        // {
+        //   title: '1 day Event',
+        //   url: '{{ route('calendars.lihat', ['1']) }}',
+        //   start: '2021-11-03',
+        //   end: '2021-11-03'
+        // },
+        // {
+        //   title: '2 events in 1 day',
+        //   url: '{{ route('calendars.lihat', ['2']) }}',
+        //   start: '2021-11-01',
+        //   end: '2021-11-01'
+        // },
+        // {
+        //   title: 'Long Event',
+        //   url: '{{ route('calendars.lihat', ['2']) }}',
+        //   start: '2021-11-07',
+        //   end: '2021-11-10'
+        // },
       ]
     });
 

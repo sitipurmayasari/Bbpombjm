@@ -84,7 +84,7 @@
                     @if ($pers!=$row->target->perspective_id)
                         @php
                             $hitung = $injectQuery->getPers($row->target->perspective_id);
-                            $cell = $hitung->rows;
+                            $cell = $hitung->rowing;
                         @endphp
                         <td rowspan="{{$cell}}" style="text-align: left">
                             {{$row->target->pers->name}}
@@ -93,7 +93,7 @@
                     @if ($target!=$row->target_id)
                         @php
                             $hitung =$injectQuery->getTarget($row->target_id);
-                            $cell = $hitung->rows;
+                            $cell = $hitung->rowing;
                         @endphp
                         <td rowspan="{{$cell}}" style="text-align: left">
                             {{$row->target->name}}

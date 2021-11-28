@@ -191,14 +191,14 @@ class InjectQuery
     }
 
     public function getTarget($id){
-        $hitung = Indicator::SelectRaw('COUNT(*) AS rows')
+        $hitung = Indicator::SelectRaw('COUNT(*) AS rowing')
                             ->Where('target_id',$id)
                             ->first();
         return $hitung;
     }
 
     public function getPers($id){
-        $hitung = indicator::SelectRaw('COUNT(*) AS rows')
+        $hitung = indicator::SelectRaw('COUNT(*) AS rowing')
                             ->LeftJoin('target','target.id','=','indicator.target_id')
                             ->Where('target.perspective_id',$id)
                             ->first();
