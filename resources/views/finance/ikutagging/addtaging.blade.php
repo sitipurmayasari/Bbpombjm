@@ -52,34 +52,52 @@
                     <th class="text-center col-md-3">Realisasi Iku</th>
                 </thead>
                 <tbody id="auto">
-                    @php
-                        $no = 1
-                    @endphp
-                    @foreach ($last as $daftar)
-                        <tr id="{{$no}}">
+                    @if ($last != null)
+                        @php
+                            $no = 1
+                        @endphp
+                        @foreach ($last as $daftar)
+                            <tr id="{{$no}}">
+                                <td>
+                                    <select name="indicator_id[]" id="indicator_id-{{$no}}"  class="col-xs-12 col-sm-12 select2">
+                                        <option value="">Pilih Indikator</option>
+                                            @foreach ($iku as $item)
+                                                @if ($item->id == $daftar->indicator_id)
+                                                    <option value="{{$item->id}}" selected>{{$item->indicator}}</option>
+                                                @else
+                                                    <option value="{{$item->id}}">{{$item->indicator}}</option>
+                                                @endif
+                                            @endforeach
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="number" id="ikupersen-{{$no}}"  name="ikupersen[]" min="0" value={{$daftar->ikupersen}}  onkeyup="hitung({{$no}})"  class="col-xs-12 col-sm-12 persen">
+                                </td>
+                                <td><input type="text" readonly id="paguiku-{{$no}}" name="paguiku[]" class="col-xs-12 col-sm-12 pagu"></td>
+                                <td><input type="text" readonly id="realisasiiku-{{$no}}" name="realisasiiku[]" class="col-xs-12 col-sm-12 real"></td>
+                            </tr>
+                            @php
+                                $no++;
+                            @endphp
+                        @endforeach
+                   @else
+                        <tr id="cell-1">
                             <td>
-                                <select name="indicator_id[]" id="indicator_id-{{$no}}"  class="col-xs-12 col-sm-12 select2">
+                                <select name="indicator_id[]" id="indicator_id-1"  class="col-xs-12 col-sm-12 select2">
                                     <option value="">Pilih Indikator</option>
                                         @foreach ($iku as $item)
-                                            @if ($item->id == $daftar->indicator_id)
-                                                <option value="{{$item->id}}" selected>{{$item->indicator}}</option>
-                                            @else
-                                                <option value="{{$item->id}}">{{$item->indicator}}</option>
-                                            @endif
+                                            <option value="{{$item->id}}">{{$item->indicator}}</option>
                                         @endforeach
                                 </select>
                             </td>
                             <td>
-                                <input type="number" id="ikupersen-{{$no}}"  name="ikupersen[]" min="0" value={{$daftar->ikupersen}}  onkeyup="hitung(1)"  class="col-xs-12 col-sm-12 persen">
+                                <input type="number" id="ikupersen-1"  name="ikupersen[]" min="0" onkeyup="hitung(1)"  class="col-xs-12 col-sm-12 persen">
                             </td>
-                            <td><input type="text" readonly id="paguiku-{{$no}}" name="paguiku[]" class="col-xs-12 col-sm-12 pagu"></td>
-                            <td><input type="text" readonly id="realisasiiku-{{$no}}" name="realisasiiku[]" class="col-xs-12 col-sm-12 real"></td>
+                            <td><input type="text" readonly id="paguiku-1" name="paguiku[]" class="col-xs-12 col-sm-12 pagu"></td>
+                            <td><input type="text" readonly id="realisasiiku-1" name="realisasiiku[]" class="col-xs-12 col-sm-12 real"></td>
                         </tr>
-                        @php
-                            $no++;
-                        @endphp
-                    @endforeach
-                <span id="row-new"></span>
+                    @endif
+                    <span id="row-new"></span>
                 </tbody>
                 <tfoot>
                     <tr>
@@ -229,6 +247,6 @@
     //             $("#auto").html(isi);
     //         }
     //     );
-    }
+    // }
 </script>
 @endsection
