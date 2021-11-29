@@ -75,30 +75,36 @@
         <tbody class="tbl">
             @php 
                 $no=1;
-                $target="";
-                $pers="";
+                // $target="";
+                // $pers="";
             @endphp
             @foreach ($indi as $key=>$row)
                 <tr style="text-align: center">
-                    <td style="text-align: center">{{$no++}}</td>
-                    @if ($pers!=$row->target->perspective_id)
-                        @php
+                     <td style="text-align: center">{{$no++}}</td>
+                    {{-- @if ($pers!=$row->target->perspective_id) --}}
+                        {{-- @php
                             $hitung = $injectQuery->getPers($row->target->perspective_id);
                             $cell = $hitung->rowing;
                         @endphp
                         <td rowspan="{{$cell}}" style="text-align: left">
                             {{$row->target->pers->name}}
+                        </td> --}}
+                        <td style="text-align: left">
+                            {{$row->target->pers->name}}
                         </td>
-                    @endif
-                    @if ($target!=$row->target_id)
-                        @php
+                    {{-- @endif
+                    @if ($target!=$row->target_id) --}}
+                        {{-- @php
                             $hitung =$injectQuery->getTarget($row->target_id);
                             $cell = $hitung->rowing;
                         @endphp
                         <td rowspan="{{$cell}}" style="text-align: left">
                             {{$row->target->name}}
+                        </td> --}}
+                        <td style="text-align: left">
+                            {{$row->target->name}}
                         </td>
-                    @endif
+                    {{-- @endif --}}
                     <td style="text-align: left">{{$row->indicator}}</td>
                     @foreach ($thn as $item)
                         @php
@@ -107,10 +113,10 @@
                         <td style="vertical-align: middle;">{{$nilai->persentages}}</td>
                     @endforeach
                 </tr>
-                @php
+                {{-- @php
                     $target=$row->target_id;
                     $pers=$row->target->perspective_id;
-                @endphp
+                @endphp --}}
             @endforeach
         </tbody>
     </table>

@@ -173,24 +173,25 @@
                 </tr>
             </thead>
             <tbody>
-                @php
+                {{-- @php
                     $target="";
-                @endphp
+                @endphp --}}
                 @foreach ($isi as $item)
-                    <tr>
-                        @if ($target!=$item->indi->target_id)
+                     <tr>
+                        {{-- @if ($target!=$item->indi->target_id)
                             @php
                                 $hitung =$injectQuery->getTarget($item->indi->target_id);
                                 $cell = $hitung->rows;
                             @endphp
                             <td class="tabelisi" rowspan="{{$cell}}">{{$item->indi->target->name}}</td>
-                        @endif
+                        @endif --}}
+                        <td class="tabelisi" >{{$item->indi->target->name}}</td>
                         <td class="tabelisi">{{$item->indi->indicator}}</td>
                         <td class="tabelisi" style="text-align: center;">{{$item->persentages}}</td>
                     </tr>
-                @php
+                {{-- @php
                     $target=$item->indi->target_id;
-                @endphp
+                @endphp --}}
                 @endforeach
             </tbody>
         </table>
