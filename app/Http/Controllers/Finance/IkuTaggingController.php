@@ -76,7 +76,7 @@ class IkuTaggingController extends Controller
                         ->where('id',$id)->first();
         $data   = PaguDetail::SelectRaw('DISTINCT subcode_id,SUM(paguakhir) AS pagusub, SUM(realisasi) AS realisasisub')
                             ->Where('pagu_id',$id)
-                            ->GroupBy('accountcode_id','subcode_id')
+                            ->GroupBy('subcode_id')
                             ->orderBy('subcode_id','asc')
                             ->get();
 
@@ -90,7 +90,7 @@ class IkuTaggingController extends Controller
         $data   = PaguDetail::SelectRaw('DISTINCT subcode_id,SUM(paguakhir) AS pagusub, SUM(realisasi) AS realisasisub')
                             ->Where('subcode_id',$subcode_id)
                             ->Where('pagu_id',$pagu_id)
-                            ->GroupBy('accountcode_id','subcode_id')
+                            ->GroupBy('subcode_id')
                             ->orderBy('subcode_id','asc')
                             ->first();
         $akhir  = Pagu::where('id','!=',$pagu_id)->OrderBy('id','desc')->first();
