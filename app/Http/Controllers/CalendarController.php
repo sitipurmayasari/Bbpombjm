@@ -22,8 +22,8 @@ class CalendarController extends Controller
 
     public function getData(Request $request)
     {
-        $data = Agenda::get();    
-        return response()->json([ 'success' => true,'data' => $data],200);
+        $appointments = Agenda::get();    
+        return response()->json([ 'success' => true,'appointments' => $appointments],200);
     }
 
 }

@@ -95,8 +95,7 @@ class IkuTaggingController extends Controller
                             ->first();
         $akhir  = Pagu::where('id','!=',$pagu_id)->OrderBy('id','desc')->first();
         $last   = Tagging::Where('subcode_id',$subcode_id)
-                            // ->Where('pagu_id',$akhir->id)
-                            ->Where('pagu_id','=','11')
+                            ->Where('pagu_id',$akhir->id)
                             ->get();
         return view('finance/ikutagging.addtaging',compact('data','iku','pagu','last'));
 
