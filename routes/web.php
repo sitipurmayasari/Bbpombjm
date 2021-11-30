@@ -147,6 +147,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/amdk/agenda','Amdk\AgendaController@index')->name('agenda');
     //Route untuk jurusan
     Route::get('/amdk/kategori','Amdk\KategoriController@index')->name('kategori');
+    //Route untuk rekaman personel
+    Route::get('/amdk/record','Amdk\RecordController@index')->name('record');
     
     
 

@@ -16,7 +16,7 @@ class DosirController extends Controller
     public function index(Request $request)
     {
         $peg =auth()->user()->id;
-        $data = Dosir::SelectRaw('Dosir.* , archive_time.masa_aktif, CURDATE() AS hari_ini,
+        $data = Dosir::SelectRaw('dosir.* , archive_time.masa_aktif, CURDATE() AS hari_ini,
                             DATE_ADD(DATE(dosir.created_at),INTERVAL archive_time.masa_aktif YEAR) batas_aktif')
                     ->orderBy('dosir.id','desc')
                     ->leftJoin('archive_time','archive_time.id','=','dosir.archive_time_id')
@@ -37,7 +37,7 @@ class DosirController extends Controller
 
         $masa = Archive_time::all();
         $user = User::all();
-        $data = Dosir::SelectRaw('Dosir.*,
+        $data = Dosir::SelectRaw('dosir.*,
                     CASE
                         WHEN 
                             curdate() > DATE_ADD(dosir.created_at,INTERVAL archive_time.masa_aktif YEAR) 

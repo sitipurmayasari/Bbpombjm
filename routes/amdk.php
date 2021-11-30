@@ -170,3 +170,6 @@
   Route::post('/amdk/kategori/store','Amdk\KategoriController@store')->name('kategori.store');
   Route::get('/amdk/kategori/edit/{id}','Amdk\KategoriController@edit')->name('kategori.edit');
   Route::post('/amdk/kategori/update/{id}','Amdk\KategoriController@update')->name('kategori.update');
+
+  //Route untuk rekaman personel
+  Route::post('/amdk/record/cetak','Amdk\RecordController@cetak')->name('record.cetak');
