@@ -28,6 +28,7 @@ use App\Jabasn;
 use App\Tukin;
 use App\Dupak;
 use App\Credit_poin;
+use App\Pengalaman;
 
 
 class ProfileController extends Controller
@@ -65,6 +66,10 @@ class ProfileController extends Controller
                 ->where('users_id',$id)
                 ->get();
 
+        $pengalaman = Pengalaman::orderBy('tgl_mulai','asc')
+                ->where('users_id',$id)
+                ->get();
+
         $riwayatpend = RiwayatPend::orderBy('id','asc')
                                     ->paginate('10');
 
@@ -87,7 +92,7 @@ class ProfileController extends Controller
 
         
         return view('profile.index',compact('data','ortu','anak','mertua','istri','saudara','pend','jenjang','riwayatpend',
-        'jenis','gol','jabasn','tukin','dupak','thndupak'));
+        'jenis','gol','jabasn','tukin','dupak','thndupak','pengalaman'));
     }
    
     public function update(Request $request, $id)

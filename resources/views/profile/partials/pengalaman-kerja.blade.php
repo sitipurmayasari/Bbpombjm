@@ -61,6 +61,16 @@
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label no-padding-right" 
+                            for="form-field-1"> Tanggal Akhir Kerja
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="date"  placeholder="nama" class="col-xs-3 col-sm-3 required " 
+                                name="tgl_selesai"/>
+                            </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right" 
                             for="form-field-1"> Jabatan Terakhir
                             </label>
                             <div class="col-sm-8">
@@ -122,6 +132,15 @@
                             <div class="col-sm-8">
                                 <input type="date"  placeholder="nama" class="col-xs-10 col-sm-10 required " id="edittmk"
                                 name="tgl_mulai"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right" 
+                            for="form-field-1"> Tanggal Akhir Kerja
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="date"  placeholder="nama" class="col-xs-10 col-sm-10 required " id="edittsk"
+                                name="tgl_selesai"/>
                             </div>
                         </div>
                         <div class="form-group">

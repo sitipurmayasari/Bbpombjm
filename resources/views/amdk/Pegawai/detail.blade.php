@@ -733,7 +733,7 @@
 
                   isi+='<tr>'+
                         '<td>'+no+'</td>'+
-                        '<td>'+response.kerja[i].tgl_mulai+'</td>'+
+                        '<td>'+response.kerja[i].tgl_mulai+' s/d '+response.kerja[i].tgl_selesai+'</td>'+
                         '<td>'+response.kerja[i].instansi+'</td>'+
                         '<td>'+response.kerja[i].jabatan+' </td>'+
                         '<td>'+response.kerja[i].lama_thn+'</td>'+
@@ -784,6 +784,7 @@
                         function(response) {
                             $(".jenjuser").val(response.data.users_id);
                             $("#edittmk").val(response.data.tgl_mulai);
+                            $("#edittsk").val(response.data.tgl_selesai);
                             $("#editjab").val(response.data.jabatan);
                             $("#editins").val(response.data.instansi);
                             $("#edittahun").val(response.data.lama_thn);

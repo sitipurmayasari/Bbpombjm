@@ -251,7 +251,7 @@
 
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1">Jabatan Fungsional
+                            for="form-field-1">Jabatan Fungsional*
                             </label>
                             <div class="col-sm-8">
                                 <select name="jabasn_id" id="jabasn_id" class="col-xs-10 col-sm-10 select2">
@@ -269,7 +269,7 @@
 
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Pangkat & Golongan
+                            for="form-field-1"> Pangkat & Golongan*
                             </label>
                             <div class="col-sm-8">
                                 <select name="golongan_id" id="golongan_id" class="col-xs-10 col-sm-10 select2">
@@ -286,11 +286,20 @@
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Nomor Seri Karpeg
+                            for="form-field-1"> Nomor Seri Karpeg*
                             </label>
                             <div class="col-sm-8">
                                 <input type="text"  class="col-xs-10 col-sm-10 required " 
                                 name="seri_karpeg"  value="{{$data->seri_karpeg}}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> TMT Capeg*
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="date" name="TMT_Capeg" readonly class="col-xs-10 col-sm-10 required" value="{{$data->TMT_Capeg}}"
+                                data-date-format="yyyy-mm-dd" data-provide="datepicker" required>
                             </div>
                         </div>
                         {{-- <div class="form-group">
@@ -347,6 +356,7 @@
     </div><!-- /.col -->
     
     <div class="col-sm-12">
+       
         <div class="form-actions right">
             <button class="btn btn-success btn-sm " type="submit">
                 <i class="ace-icon fa fa-check bigger-110"></i>Update
