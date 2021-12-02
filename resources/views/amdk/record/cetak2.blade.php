@@ -163,7 +163,7 @@
                                 </td>
                                 <td>
                                     @foreach ($pelatihan as $item)
-                                    @if ($file != null)
+                                    @if ($item->file != null)
                                         Ada
                                     @else
                                         Tidak Ada

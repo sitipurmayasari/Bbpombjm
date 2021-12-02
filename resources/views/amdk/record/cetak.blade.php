@@ -177,7 +177,7 @@
                                 </td>
                                 <td>
                                     @foreach ($pelatihan as $item)
-                                    @if ($terekam == 'Y')
+                                    @if ($item->terekam == 'Y')
                                         Ada
                                     @else
                                         Tidak Ada
