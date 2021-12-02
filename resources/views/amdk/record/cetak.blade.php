@@ -61,7 +61,7 @@
                             @if ($pend != null)
                                 {{$pend->jur->jurusan}}
                             @else
-                                {{$pend->jur->jurusan}}
+                                (Data Belum Terecord)
                             @endif
                         </td>
                     </tr>
