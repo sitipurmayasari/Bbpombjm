@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Document</title>
+    <title>Rekaman Personel PPNPN</title>
     <style>
         @page {
             size: A4 landscape;
@@ -23,17 +23,35 @@
             border-collapse: collapse;
             font-weight: bold;
         }
+        table, th, td{
+            border: 1px solid black;
+            
+        }
 
-        table,tr,td{
-            border: solid black;
+        th{
+            text-align: center;
+        }
+        td{
+            padding-left: 3px;
+            border-bottom: 0;
+            border-top: 0;
+            vertical-align: top;
+        }
+
+        .tbl{
+            border-collapse: collapse;
+            border: none;
+        }
+
+        .isi{
+            height: 35px;
         }
         
 
     </style>
 </head>
 <body>
-    <main>
-        <div class="col-sm-12 isi" style="text-align: center">
+        <div class="col-sm-12" style="text-align: center">
             <div style="align=center font-size: 18px">
                <h1><u><b>Rekaman Personil</b></u></h1>
                <h3 style="text-transform: uppercase;">Bidang/Subbagian : 
@@ -83,118 +101,137 @@
             </div>
          </div>
          <br>
-             <div class="table-responsive isi">
-                 <table id="simple-table" class="table  table-bordered " style="font-size: 11px;" >
-                     <thead style="text-align: center; font-size: 12px;">
-                        <tr>
-                            <th colspan="3">Pengalaman Kerja</th>
-                            <th colspan="3">Pendidikan Formal Tambahan</th>
-                            <th colspan="4">Pelatihan</th>
-                            <th rowspan="2" style="vertical-align: middle;">Ket</th>
-                        </tr>
-                        <tr>
-                            <th>No</th>
-                            <th>Jabatan</th>
-                            <th>Tahun</th>
-                            <th>No</th>
-                            <th>Jenis Pendidikan / Tempat</th>
-                            <th>Tahun Lulus</th>
-                            <th>No</th>
-                            <th>Jenis dan Tempat</th>
-                            <th>Waktu</th>
-                            <th>Sertifikat</th>
-                        </tr>
-                     </thead>
-                     <tbody>
-                        <tr>
-                             @if ($pengalaman != null)
-                                <td>
-                                    @foreach ($pengalaman as $item)
+        <div>
+            <table style="font-size: 11px; width:100%"; >
+                <thead style="font-size: 12px;">
+                   <tr>
+                       <th colspan="3">Pengalaman Kerja</th>
+                       <th colspan="3">Pendidikan Formal Tambahan</th>
+                       <th colspan="4">Pelatihan</th>
+                       <th rowspan="2" style="vertical-align: middle;">Ket</th>
+                   </tr>
+                   <tr>
+                       <th>No</th>
+                       <th>Jabatan</th>
+                       <th>Tahun</th>
+                       <th>No</th>
+                       <th>Jenis Pendidikan / Tempat</th>
+                       <th>Tahun Lulus</th>
+                       <th>No</th>
+                       <th>Jenis dan Tempat</th>
+                       <th>Waktu</th>
+                       <th>Sertifikat</th>
+                   </tr>
+                </thead>
+                <tbody class="tbl">
+                   <tr>
+                        @if ($pengalaman != null)
+                           <td style="text-align: center;">
+                                @php
+                                    $no = 1;
+                                @endphp
+                                @foreach ($pengalaman as $item)
+                                    <div class="isi">
+                                        {{$no++}} 
+                                    </div ><br>
+                                @endforeach
+                           </td>
+                           <td>
+                                @foreach ($pengalaman as $item)
+                                    <div  class="isi">
+                                        {{$item->jabatan}} - {{$item->instansi}} 
+                                    </div><br>
+                                @endforeach
+                               
+                           </td>
+                           <td>
+                                @foreach ($pengalaman as $item)
+                                   <div  class="isi">
+                                        {{tgl_indo($item->tgl_mulai)}} s/d  {{tgl_indo($item->tgl_mulai)}}
+                                   </div> <br>
+                                @endforeach
+                           </td>
+                        @else
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        @endif
+                        @if ($pendidikan != null)
+                           <td style="text-align: center;">
+                               @foreach ($pendidikan as $item)
                                     @php
-                                        $no = 1;
+                                        $noa = 1;
                                     @endphp
-                                    {{$no}} <br>
-                                    @endforeach
-                                </td>
-                                <td>
-                                    @foreach ($pengalaman as $item)
-                                    {{$item->jabatan}} - {{$item->instansi}} <br>
-                                    @endforeach
-                                </td>
-                                <td>
-                                    @foreach ($pengalaman as $item)
-                                    {{tgl_indo($item->tgl_mulai)}} s/d  {{tgl_indo($item->tgl_mulai)}}  <br>
-                                    @endforeach
-                                </td>
-                        
-                             @else
-                                 <td></td>
-                                 <td></td>
-                                 <td></td>
-                             @endif
-                             @if ($pendidikan != null)
-                                <td>
-                                    @foreach ($pendidikan as $item)
-                                    @php
-                                        $no = 1;
-                                    @endphp
-                                    {{$no}} <br>
-                                    @endforeach
-                                </td>
-                                <td>
-                                    @foreach ($pendidikan as $item)
-                                    {{$item->jur->jurusan}} {{$item->nama_sekolah}} <br>
-                                    @endforeach
-                                </td>
-                                <td>
-                                    @foreach ($pendidikan as $item)
-                                    {{$item->thn_lulus}} <br>
-                                    @endforeach
-                                </td>
-                            @else
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            @endif
-                            @if ($pelatihan != null)
-                                <td>
-                                    @foreach ($pelatihan as $item)
-                                    @php
-                                        $no = 1;
-                                    @endphp
-                                    {{$no}} <br>
-                                    @endforeach
-                                </td>
-                                <td>
-                                    @foreach ($pelatihan as $item)
-                                    {{$item->nama}} <br>
-                                    @endforeach
-                                </td>
-                                <td>
-                                    @foreach ($pelatihan as $item)
-                                    {{tgl_indo($item->dari)}} s/d {{tgl_indo($item->sampai)}} <br>
-                                    @endforeach
-                                </td>
-                                <td>
-                                    @foreach ($pelatihan as $item)
+                                    <div class="isi">
+                                        {{$noa++}} 
+                                    </div><br>
+                               @endforeach
+                           </td>
+                           <td>
+                               @foreach ($pendidikan as $item)
+                                <div class="isi">
+                                    {{$item->jur->jurusan}} {{$item->nama_sekolah}} 
+                                </div><br>
+                               @endforeach
+                           </td>
+                           <td style="text-align: center">
+                               @foreach ($pendidikan as $item)
+                                <div class="isi">
+                                    {{$item->thn_lulus}}
+                                </div> <br>
+                               @endforeach
+                           </td>
+                       @else
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                       @endif
+                       @if ($pelatihan != null)
+                           <td style="text-align: center">
+                               @foreach ($pelatihan as $item)
+                               @php
+                                   $nob = 1;
+                               @endphp
+                                <div class="isi">
+                                    {{$nob++}} 
+                                </div><br>
+                               @endforeach
+                           </td>
+                           <td>
+                               @foreach ($pelatihan as $item)
+                                <div class="isi">
+                                    {{$item->nama}} 
+                                </div><br>
+                               @endforeach
+                           </td>
+                           <td>
+                               @foreach ($pelatihan as $item)
+                                <div class="isi">
+                                    {{tgl_indo($item->dari)}} s/d {{tgl_indo($item->sampai)}} 
+                                </div><br>
+                               @endforeach
+                           </td>
+                           <td>
+                               @foreach ($pelatihan as $item)
+                               <div class="isi">
                                     @if ($item->terekam == 'Y')
                                         Ada
                                     @else
                                         Tidak Ada
                                     @endif
-                                    @endforeach
-                                </td>
-                            @else
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            @endif
-                            <td></td>
-                        </tr>
-                     </tbody>
-                 </table>
-             </div>
-    </main>
+                               </div><br>
+                               @endforeach
+                           </td>
+                       @else
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                       @endif
+                       <td></td>
+                   </tr>
+                </tbody>
+            </table>
+        </div>
 </body>
 </html>

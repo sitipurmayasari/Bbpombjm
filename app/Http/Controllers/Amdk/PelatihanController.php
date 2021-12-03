@@ -98,7 +98,7 @@ class PelatihanController extends Controller
         }
 
         if ($request->admin=='true') {
-            return redirect('/amdk/pelatihan/rekappelatihan')->with('sukses','Data Tersimpan');
+            return redirect('/amdk/rekappelatihan')->with('sukses','Data Tersimpan');
         }
             return redirect('/amdk/pelatihan')->with('sukses','Data Tersimpan');
         
