@@ -139,11 +139,11 @@
   Route::post('finance/plane/update/{id}','Finance\PlaneController@update')->name('plane.update');
 
   //Route untuk surat tugas
-  Route::get('finance/outstation/getnost','Finance\OutstationController@getnost')->name('outstation.getnost');
   Route::get('/finance/outstation/create','Finance\OutstationController@create')->name('outstation.create');
+  Route::get('finance/outstation/getnomorst','Finance\OutstationController@getnomorst')->name('outstation.getnomorst');
+  Route::get('finance/outstation/getnomorsppd','Finance\OutstationController@getnomorsppd')->name('outstation.getnomorsppd');
   Route::post('finance/outstation/store','Finance\OutstationController@store')->name('outstation.store');
   Route::get('finance/outstation/edit/{id}','Finance\OutstationController@edit')->name('outstation.edit');
-  Route::get('finance/outstation/getNomorSPPD','Finance\OutstationController@getNomorSPPD')->name('outstation.getNomorSPPD');
   Route::post('finance/outstation/update/{id}','Finance\OutstationController@update')->name('outstation.update');
   Route::get('finance/outstation/printST/{id}','Finance\OutstationController@printST')->name('outstation.printST');
   Route::get('finance/outstation/printSppd/{id}','Finance\OutstationController@printSppd')->name('outstation.printSppd');
@@ -241,4 +241,15 @@
 
     //Route untuk laporan RAPK
     Route::post('/finance/lapRAPK/cetak','Finance\LapRAPKController@cetak')->name('lapRAPK.cetak');
+
+    //Route untuk buku ST
+    Route::get('/finance/stbook/create','Finance\STBookController@create')->name('stbook.create');
+    Route::post('finance/stbook/store','Finance\STBookController@store')->name('stbook.store');
+    Route::get('finance/stbook/edit/{id}','Finance\STBookController@edit')->name('stbook.edit');
+    Route::post('finance/stbook/update/{id}','Finance\STBookController@update')->name('stbook.update');
+    Route::post('finance/stbook/delete/{id}','Finance\STBookController@update')->name('stbook.delete');
+    Route::get('finance/stbook/getnost','Finance\STBookController@getnost')->name('stbook.getnost');
+    Route::get('finance/stbook/getnosppd','Finance\STBookController@getnosppd')->name('stbook.getnosppd');
+    Route::get('finance/stbook/getnosppdnext','Finance\STBookController@getnosppdnext')->name('stbook.getnosppdnext');
+
   

@@ -218,6 +218,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/finance/setupRAPK','Finance\SetupRAPKController@index')->name('setupRAPK');
     //Route untuk laporan RAPK
     Route::get('/finance/lapRAPK','Finance\LapRAPKController@index')->name('lapRAPK');
+    //Route untuk buku ST
+    Route::get('/finance/stbook','Finance\STBookController@index')->name('stbook');
 
 });
 

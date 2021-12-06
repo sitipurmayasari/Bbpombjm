@@ -18,6 +18,8 @@ use App\Budget;
 use App\Outst_employee;
 use App\Outst_destiny;
 use App\Pejabat;
+use App\STbook;
+use App\STbook_sppd;
 use PDF;
 use DateTime;
 use Carbon\Carbon;
@@ -54,59 +56,14 @@ class OutstationController extends Controller
                                     ->where('pok.year','=',$thn)
                                     ->get();
         
-        return view('finance/outstation.create',compact('user','destination','div','ppk', 'sub', 'akun','act','budget','pok'
-      ));
+        return view('finance/outstation.create',compact('user','destination','div','ppk', 'sub', 'akun','act','budget'
+        ,'pok'));
     }
-
-    function getnost(Request $request){
-
-        $sppd = Outstation::orderBy('id','desc')->whereYear('created_at',date('Y'))->get(); 
-        $bidang = Divisi::select('lokasi')->where('id',$request->divisi_id)->first();
-        $bulan = $request->date;
-        $first = "0001";
-        if($sppd->count()>0){
-          $first = $sppd->first()->id+1;
-            if($first < 10){
-              $first = "000".$first;
-            }else if($first < 100){
-              $first = "00".$first;
-            }else if($first < 1000){
-            $first = "0".$first;
-            }
-        }
-        $no_sppd = "RT.02.01.".$bidang->lokasi.".".date('m').".".date('y').".".$first;
-
-        return response()->json([ 
-            'success' => true,
-            'no_sppd' => $no_sppd],200
-        );
-    }
-
-    function getnosppd($id){
-
-      $sppd = Outst_employee::orderBy('id','desc')->whereYear('created_at',date('Y'))->get(); 
-      $bidang = Divisi::select('kode_sppd')->where('id',$id)->first();
-      $first = "0001";
-      if($sppd->count()>0){
-        $first = $sppd->first()->id+1;
-          if($first < 10){
-            $first = "000".$first;
-          }else if($first < 100){
-            $first = "00".$first;
-          }else if($first < 1000){
-          $first = "0".$first;
-          }
-      }
-      $no_sppd = $first."/".$bidang->kode_sppd."/SPPD/BBPOM"."/".date('Y');
-
-      return $no_sppd;
-  }
-
       public function store(Request $request)
       { 
         // dd($request->all());
         $this->validate($request,[
-            'number' => 'required|unique:outstation',
+            'number' => 'required',
             'divisi_id' => 'required',
             'purpose'=> 'required',
             'ppk_id'=> 'required',
@@ -118,12 +75,10 @@ class OutstationController extends Controller
             $outstation = Outstation::create($request->all());
             $outstation_id = $outstation->id;
             for ($i = 0; $i < count($request->input('users_id')); $i++){
-               
-                $nomorsppd = $this->getnosppd($request->divisi_id);
                 $data = [
                     'outstation_id' => $outstation_id,
                     'users_id'      => $request->users_id[$i],
-                    'no_sppd'        =>$nomorsppd
+                    'no_sppd'       => $request->no_sppd[$i],
                 ];
                 Outst_employee::create($data);
             }
@@ -151,8 +106,6 @@ class OutstationController extends Controller
 
   
       }
-  
-
 
       public function printST($id)
       {
@@ -230,33 +183,11 @@ class OutstationController extends Controller
                           ->leftjoin('pok','pok.id','=','pok_detail.pok_id')
                           ->where('pok.year','=',$thn)
                           ->get();
+          $hitpeserta     = Outst_employee::SelectRaw('COUNT(id) AS jumpes')->where('outstation_id',$id)->first();
           return view('finance/outstation.edit',compact('data','petugas','kota','ppk','budget','act','sub',
-                      'akun','div','user','destination','pok'
+                      'akun','div','user','destination','pok','hitpeserta'
           ));
       }
-
-      function getNomorSPPD(Request $request){
-
-        $sppd = Outst_employee::orderBy('id','desc')->whereYear('created_at',date('Y'))->get(); 
-        $bidang = Divisi::select('kode_sppd')->where('id',$request->divisi_id)->first();
-        $first = "0001";
-        if($sppd->count()>0){
-          $first = $sppd->first()->id+1;
-            if($first < 10){
-              $first = "000".$first;
-            }else if($first < 100){
-              $first = "00".$first;
-            }else if($first < 1000){
-            $first = "0".$first;
-            }
-        }
-        $nomorbaru = $first."/".$bidang->kode_sppd."/SPPD/BBPOM"."/".date('Y');
-
-        return response()->json([ 
-            'success' => true,
-            'nomorbaru' => $nomorbaru],200
-        );
-    }
 
       public function update(Request $request, $id)
       {
@@ -299,17 +230,16 @@ class OutstationController extends Controller
               //---------------outst_employee----------------------
     
             for ($i = 0; $i < count($request->input('users_id')); $i++){
-              $nomornya = $request->no_sppd[$i] == "" ?  $this->getnosppd($request->divisi_id) :  $request->no_sppd[$i];
              
               $pegawai = [
                     'outstation_id' => $outstation_id,
                     'users_id'      => $request->users_id[$i],
-                    'no_sppd'        =>$nomornya,
+                    'no_sppd'        =>$request->no_sppd[$i],
                     'created_at' => Carbon::now()
               ];
 
               DB::table('outst_employee')->updateOrInsert([
-                'no_sppd'=>$nomornya
+                'no_sppd'=>$request->no_sppd[$i]
               ],$pegawai);
             }
 
@@ -328,6 +258,33 @@ class OutstationController extends Controller
         $kota = Outst_destiny::where('outstation_id',$id)->get();
         $kota->delete();
         return redirect('/finance/outstation')->with('sukses','Data Terhapus');
+    }
+
+
+    public function getnomorst(Request $request)
+    {
+        $nost = STbook::WhereRaw('stbook_number NOT IN ("select number from outstation")')
+                        ->where('divisi_id',$request->divisi_id)
+                        ->get();
+        return response()->json([ 
+            'success' => true,
+            'nost' => $nost
+          ],200
+        );
+    }
+    
+    public function getnomorsppd(Request $request)
+    {
+        $nosppd = STbook_sppd::SelectRaw('stbook_sppd.*')
+                              ->LeftJoin('stbook','stbook.id','=','stbook_sppd.stbook_id')
+                              ->WhereRaw('stbook_sppd.nomor_sppd NOT IN ("select no_sppd from outst_employee")')
+                              ->where('stbook.stbook_number',$request->stbook_number)
+                              ->get();
+        return response()->json([ 
+            'success' => true,
+            'nosppd' => $nosppd
+          ],200
+        );
     }
 
 }

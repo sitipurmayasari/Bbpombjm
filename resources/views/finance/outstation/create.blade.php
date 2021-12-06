@@ -37,7 +37,7 @@
                         for="form-field-1"> Substansi
                         </label>
                         <div class="col-sm-8"> 
-                            <select name="divisi_id" class="col-xs-10 col-sm-10 required select2" required id="div" onchange="getnomor()">
+                            <select name="divisi_id" class="col-xs-10 col-sm-10 required select2" required id="div" onchange="getnomorst()">
                                 <option value="">Pilih Substansi</option>
                                 @foreach ($div as $item)
                                     <option value="{{$item->id}}">{{$item->nama}}</option>
@@ -50,9 +50,9 @@
                         for="form-field-1"> Nomor Surat Tugas
                         </label>
                         <div class="col-sm-8">
-                            <input type="text" required readonly id="nost"
-                                    class="col-xs-10 col-sm-10 required " 
-                                    name="number"/>
+                            <select name="number" class="col-xs-10 col-sm-10 required select2" required id="nomorst" onchange="getnomorsppd()">
+                                <option value="">Pilih Nomor Surat</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -162,7 +162,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-12">
         <div class="panel panel-info">
             <div class="panel-heading"><h3 class="panel-title">Pilih Pegawai</h3></div>
             <div class="panel-body">
@@ -170,14 +170,15 @@
                     <table id="myTable" class="table table-bordered table-hover scrollit">
                         <thead>
                             <tr>
-                                <th style="text-align: center;">NO</th>
-                                <th class="text-center">Nama</th>
-                                <th class="text-center">Aksi</th>
+                                <th class="text-center col-md-1">NO</th>
+                                <th class="text-center col-md-5" >Nama</th>
+                                <th class="text-center  col-md-5">Nomor SPPD</th>
+                                <th class="text-center col-md-1">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr id="cell-1">
-                                <td style="text-align: center;">
+                                <td class="text-center">
                                     1
                                 </td>
                                 <td>
@@ -186,6 +187,11 @@
                                         @foreach ($user as $peg)
                                             <option value="{{$peg->id}}">{{$peg->name}} | {{$peg->no_pegawai}}</option>
                                         @endforeach
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="no_sppd[]" class="form-control select2 penomoransppd">
+                                        <option value="">Pilih no SPPD</option>
                                     </select>
                                 </td>
                                 <td>
@@ -210,7 +216,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-12">
         <div class="panel panel-info">
             <div class="panel-heading"><h3 class="panel-title">Kota Tujuan</h3></div>
             <div class="panel-body">
@@ -218,10 +224,10 @@
                     <table id="DesTable" class="table table-bordered table-hover scrollit">
                         <thead>
                             <tr>
-                                <th style="text-align: center;">NO</th>
+                                <th class="text-center col-md-1">NO</th>
                                 <th class="text-center col-md-4">Kota Tujuan</th>
-                                <th>Dari Tanggal</th>
-                                <th>Sampai Tanggal</th>
+                                <th class="text-center col-md-3">Dari Tanggal</th>
+                                <th class="text-center col-md-3">Sampai Tanggal</th>
                                 <th class="text-center col-md-1">Aksi</th>
                             </tr>
                         </thead>
@@ -231,7 +237,7 @@
                                     1
                                 </td>
                                 <td>
-                                    <select name="destination_id[]" id="destination_id" class="required select2" required>
+                                    <select name="destination_id[]" id="destination_id" class=" form-control required select2" required>
                                         <option value="">Pilih Kode Kota</option>
                                         @foreach ($destination as $item)
                                             <option value="{{$item->id}}">{{$item->code}}-{{$item->capital}}</option>
@@ -239,11 +245,11 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <input type="date" name="go_date[]" id="date_from" class="required" 
+                                    <input type="date" name="go_date[]" id="date_from" class="required form-control" 
                                     value="{{date('Y-m-d')}}" required>
                                 </td>
                                 <td>
-                                    <input type="date" name="return_date[]" id="date_to" class="required" 
+                                    <input type="date" name="return_date[]" id="date_to" class="required form-control" 
                                     value="{{date('Y-m-d')}}" required>
                                 </td>
                                 <td>
@@ -282,22 +288,42 @@
 
 @section('footer')
    <script>
+        function getnomorst(){
+            var divisi_id = $("#div").val();
 
-       function getnomor(){
-           var date = $("#st_date").val();
-           var divisi_id = $("#div").val();
+            $.get(
+                "{{route('outstation.getnomorst') }}",
+                {
+                        divisi_id:divisi_id
+                },
+                function(response) {
+                    var data = response.nost;
+                    var string ="<option value=''>Pilih</option>";
+                        $.each(data, function(index, value) {
+                            string = string + '<option value="'+ value.stbook_number +'">'+ value.stbook_number +'</option>';
+                        })
+                    $("#nomorst").html(string);
+                }
+            );
+        }
 
-           $.get(
-            "{{route('outstation.getnost') }}",
-            {
-                date:date,
-                divisi_id,divisi_id
-            },
-            function(response) {
-                document.getElementsByName("number")[0].value = response.no_sppd ;
-            }
-        );
-       }
+        function getnomorsppd(){
+            var stbook_number = $("#nomorst").val();
+            $.get(
+                "{{route('outstation.getnomorsppd') }}",
+                {
+                    stbook_number:stbook_number
+                },
+                function(response) {
+                    var data2 = response.nosppd;
+                    var string ="<option value=''>Pilih</option>";
+                        $.each(data2, function(index, value) {
+                            string = string + '<option value="'+ value.nomor_sppd +'">'+ value.nomor_sppd +'</option>';
+                        })
+                    $(".penomoransppd").html(string);
+                }
+            );
+        }
 
         function addBarisNew(){
         var last_baris = $("#countRow").val();
@@ -312,17 +338,23 @@
                         '@endforeach'+
                     '</select>'+                
                 '</td>'+
+                    '<td>'+
+                        '<select name="no_sppd[]" class="form-control select2 penomoransppd">'+
+                            '<option value="">Pilih no SPPD</option>'+
+                            '</select>'+
+                    '</td>'+
                 '<td><button type="button"  class="btn btn-danger" onclick="deleteRow('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button></td>'+
             '</tr>';
         $("#myTable").find('tbody').append($isi);
         $("#countRow").val(new_baris);
         $('.select2').select2();
+        getnomorsppd();
+
        }
 
        function deleteRow(cell) {
             $("#cell-"+cell).remove();
             this.hitungTotal();
-
         }
 
         function addBarisDes(){
@@ -356,8 +388,6 @@
             this.hitungTotal();
 
         }
-
         
-
-   </script>``
+   </script>
 @endsection

@@ -1,7 +1,7 @@
 @extends('layouts.mon')
 @section('breadcrumb')
-    <li>Setup</li>
-    <li>Kode Unit Lembaga</i></li>
+    <li>Surat Tugas</li>
+    <li>Nomor ST & SPPD</i></li>
 @endsection
 @section('content')
 
@@ -12,7 +12,7 @@
                 <div class="form-group col-sm-12">
                     <div class="row">
                         <div class="form-group col-xs-12 col-sm-3" style="float: left">
-                           <a href="{{Route('unitcode.create')}}"  class="btn btn-primary">Tambah Data</a>   
+                           <a href="{{Route('stbook.create')}}"  class="btn btn-primary">Tambah Data</a>   
                         </div>
                         <div class="form-group col-xs-12 col-sm-5" style="float: right">
                             <div class="input-group">
@@ -35,24 +35,28 @@
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
                 <th width="40px">No</th>
-                <th class="col-md-2">Kode K/L</th>
-                <th class="col-md-2">Kode Unit</th>
-                <th>Nama Unit</th>
+                <th class="col-md-2">Bagian</th>
+                <th class="col-md-2">tanggal pengajuan</th>
+                <th>Nomor ST</th>
+                <th>Nomor SPPD</th>
                 <th  class="col-md-2">Aksi</th>
             </thead>
             <tbody>   	
                 @foreach($data as $key=>$row)
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
-                    <td>{{$row->kl}}</td>
-                    <td>{{$row->code}}</td>
-                    <td>{{$row->name}}</td>
+                    <td>{{$row->divisi->nama}}</td>
+                    <td>{{$row->stbook_date}}</td>
+                    <td>{{$row->stbook_number}}</td>
                     <td>
-                        <a href="/finance/unitcode/edit/{{$row->id}}" class="btn btn-warning">
+                        
+                    </td>
+                    <td>
+                        <a href="/finance/stbook/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
                         <a href="#" class="btn btn-danger delete"
-                            r-name="{{$row->name}}" 
+                            r-name="{{$row->stbook_number}}" 
                             r-id="{{$row->id}}">
                             <i class="glyphicon glyphicon-trash"></i></a>
                     </td>
@@ -82,7 +86,7 @@
             }).then((result) => {
                 console.log(result);
                 if (result.value) {
-                    window.location = "/finance/unitcode/delete/"+id;
+                    window.location = "/finance/stbook/delete/"+id;
                 }
             });
         });
