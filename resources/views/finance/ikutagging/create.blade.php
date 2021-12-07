@@ -69,6 +69,20 @@
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label no-padding-right" 
+                            for="form-field-1"> Pilih POK
+                            </label>
+                            <div class="col-sm-8">
+                                <select id="tahun" name="pok_id" class="col-xs-10 col-sm-10 select2" required>
+                                    <option value="">Pilih POK</option>
+                                    @foreach ($pok as $item)
+                                        <option value="{{$item->id}}">{{$item->asal_pok}} Tahun {{$item->year}} 
+                                            (Upload: {{tgl_indo($item->created_at->format('Y-m-d'))}} )</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right" 
                             for="form-field-1"> Dibuat Oleh
                             </label>
                             <div class="col-sm-8">
@@ -81,7 +95,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12">
+        {{-- <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading"><h3 class="panel-title">Impor Excel</h3></div>
                 <div class="panel-body">
@@ -90,7 +104,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
 <div class="panel-footer">

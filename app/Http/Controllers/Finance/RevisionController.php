@@ -42,8 +42,13 @@ class RevisionController extends Controller
 
     public function create()
     {
+        $kro = Krocode::all();
+        $ro = Detailcode::all();
+        $komp = Komponencode::all();
+        $sub = Subcode::all();
+        $acc = Accountcode::all();
         $act = Activitycode::all();
-        return view('finance/revision.create',compact('act'));
+        return view('finance/revision.create',compact('act','kro','ro','komp','sub','acc'));
     }
 
     public function impor(Request $request)
@@ -72,13 +77,62 @@ class RevisionController extends Controller
             $pok =POK::create($request->all());
             $pok_id = $pok->id;
 
-            Excel::import(new PokImport($pok_id), urlStorage().'/excel/'.$nama_file);
-            // Excel::import(new PokImport($pok_id), public_path('/excel/'.$nama_file));
+            // Excel::import(new PokImport($pok_id), urlStorage().'/excel/'.$nama_file);
+            Excel::import(new PokImport($pok_id), public_path('/excel/'.$nama_file));
         
         DB::commit();
   
           return redirect('/finance/revision');
    
+      }
+
+      public function store(Request $request)
+      {
+        // dd($request->all());
+        $this->validate($request, [
+            'activitycode_id' => 'required',
+            'year' => 'required',
+            'users_id'=> 'required',
+            'jenis'=> 'required',
+            'revisi'=> 'required'
+        ]);
+
+            $asal_pok = $request->jenis."(".$request->revisi.")";
+
+            $request->merge([ 'asal_pok' => $asal_pok]);
+  
+          DB::beginTransaction();
+              $pok =POK::create($request->all());
+              $pok_id = $pok->id;
+              for ($i = 0; $i < count($request->input('subcode_id')); $i++){
+                $sub = Subcode::where('subcode.id',$request->subcode_id[$i])
+                        ->SelectRaw('subcode.id AS sub_id, krocode.id AS kro_id, detailcode.id AS det_id, komponencode.id AS kom_id')
+                        ->LeftJoin('komponencode','komponencode.id','=','subcode.komponencode_id')
+                        ->LeftJoin('detailcode','detailcode.id','=','komponencode.detailcode_id')
+                        ->LeftJoin('krocode','krocode.id','=','detailcode.krocode_id')
+                        ->first();
+                  $data = [
+                      'pok_id'          => $pok_id,
+                      'krocode_id'      => $sub->kro_id,
+                      'detailcode_id'   => $sub->det_id,
+                      'komponencode_id' => $sub->kom_id,
+                      'subcode_id'      => $request->subcode_id[$i],
+                      'accountcode_id'  => $request->accountcode_id[$i],
+                      'loka_id'         => $request->loka_id[$i],
+                      'price'           => $request->price[$i],
+                      'volume'          => $request->volume[$i],
+                      'total'           => $request->total[$i],
+                      'sd'              => $request->sd[$i]
+                  ];
+                  if ($request->total[$i]!=0) {
+                    Pok_detail::create($data);
+                  }
+                 
+              }
+          DB::commit(); 
+  
+          return redirect('/finance/revision');
+  
       }
 
 

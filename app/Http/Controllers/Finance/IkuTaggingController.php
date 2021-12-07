@@ -13,6 +13,8 @@ use App\Pagu;
 use App\PaguDetail;
 use App\Subcode;
 use App\Tagging; 
+use App\Pok;
+Use App\Pok_detail;
 use Excel;
 use App\Imports\PaguImport;
 
@@ -33,23 +35,25 @@ class IkuTaggingController extends Controller
 
     public function create()
     {
+        $pok    = Pok::all();
         $target = Target::all();
-        return view('finance/ikutagging.create',compact('target'));
+        return view('finance/ikutagging.create',compact('target','pok'));
     }
 
     public function impor(Request $request)
     {
         $this->validate($request, [
-            'diimpor' => 'required|mimes:csv,xls,xlsx',
+        //     'diimpor' => 'required|mimes:csv,xls,xlsx',
             'year' => 'required',
             'month' => 'required',
+            'pok_id' => 'required',
             'users_id'=> 'required'
         ]);
 
-        $file = $request->diimpor;
-        $nama_file = $file->getClientOriginalName();
+        // $file = $request->diimpor;
+        // $nama_file = $file->getClientOriginalName();
         
-        $file->move('excel',$nama_file);
+        // $file->move('excel',$nama_file);
 
         $nama = "Pagu".$request->month.$request->year;
         $request->merge([ 'name' => $nama]);
@@ -59,9 +63,28 @@ class IkuTaggingController extends Controller
           $pagu =Pagu::create($request->all());
           $pagu_id = $pagu->id;
 
-        Excel::import(new PaguImport($pagu_id), urlStorage().'/excel/'.$nama_file);
-        //   Excel::import(new PaguImport($pagu_id), public_path('/excel/'.$nama_file));
-      
+        // Excel::import(new PaguImport($pagu_id), urlStorage().'/excel/'.$nama_file);
+        // //   Excel::import(new PaguImport($pagu_id), public_path('/excel/'.$nama_file));
+            $jum = Pok_detail::where('pok_id',$request->pok_id)->get();
+
+            for ($i = 0; $i < count($jum); $i++){
+                $pok = Pok::where('id',$request->pok_id)->first();
+                $detail = Pok_detail::where('pok_id',$request->pok_id)->first();
+                $data = [
+                    'pagu_id'         => $pagu_id,
+                    'activitycode_id' => $pok->activitycode_id,
+                    'subcode_id'      => $detail->subcode_id,
+                    'accountcode_id'  => $detail->accountcode_id,
+                    'paguakhir'       => $detail->total,
+                    'realisasi'       => $detail->realisasi,
+                    'sisa'            => $detail->sisa,
+                    'detail'          => $detail->detail,
+                ];
+                // if ($request->paguakhir[$i]!=0) {
+                    PaguDetail::create($data);
+                // }
+            }
+
         DB::commit();
 
         return redirect('/finance/ikutagging/taging/'.$pagu_id);

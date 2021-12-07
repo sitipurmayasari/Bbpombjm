@@ -6,7 +6,7 @@
 @endsection
 @section('content')
 @include('layouts.validasi')
- <form class="form-horizontal validate-form" role="form" 
+ <form class="form-horizontal validate-form" role="form" id="form_id"
          method="post" action="{{route('revision.impor')}}" enctype="multipart/form-data"   >
     {{ csrf_field() }}
 <div class="row">
@@ -101,11 +101,85 @@
         </div>
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading"><h3 class="panel-title">Impor Excel</h3></div>
+                <div class="panel-heading"><h3 class="panel-title">DATA POK</h3></div>
                 <div class="panel-body">
-                    <div class="col-md-12">
+                   <div class="col-md-12">
+    
+                    <button type="button"  class="btn btn-danger" onclick="myFunction()" id="aut">
+                        <i class="ace-icon fa fa-check bigger-110"></i>Import From Excel</button>
+                    <button type="button"  class="btn btn-danger" onclick="getAsn()" id="man">
+                        <i class="ace-icon fa fa-check bigger-110"></i>Manual</button>
+                    
+    
+                    <br><br>
+                    <div id="manual">
+                        <table id="myTable" class="table table-bordered table-hover">
+                            <thead>
+                                <th class="text-center">NO</th>
+                                <th class="text-center col-md-3">Subkomponen</th>
+                                <th class="text-center col-md-2">Akun</th>
+                                <th class="text-center col-md-1">Volume</th>
+                                <th class="text-center col-md-2">Harga</th>
+                                <th class="text-center col-md-2">Total</th>
+                                <th class="text-center col-md-1">Sumber</th>
+                                <th>Aksi</th>
+                            </thead>
+                            <tbody id="isi">
+                                <tr  id="cell-1">
+                                    <td class="center">1</td>
+                                    <td>
+                                        <select id="subcode_id" name="subcode_id[]" class="select2 form-control">
+                                            <option value="">Pilih Kode</option>
+                                            @foreach ($sub as $data)
+                                                <option value="{{$data->id}}">{{$data->kodeall}}</option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select id="accountcode_id" name="accountcode_id[]" class="select2 form-control">
+                                            <option value="">Pilih Kode</option>
+                                            @foreach ($acc as $data)
+                                                <option value="{{$data->id}}">{{$data->code}} - {{$data->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input type="hidden" name="loka_id[]" value="1">
+                                        <input type="number" name="volume[]" id="volume-1" value="0" class="form-control">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="price[]" id="price-1"  value="0" class="form-control" onkeyup="hitung(1)">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="total[]" id="total-1"  value="0" class="form-control" readonly>
+                                    </td>
+                                    <td>
+                                        <select id="sd" name="sd[]" class="select2 form-control">
+                                            <option value="RM">RM</option>
+                                            <option value="PNBP">PNBP</option>
+                                        </select>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <span id="row-new"></span>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="10">
+                                        <button type="button" class="form-control btn-default" onclick="addBarisNew()">
+                                            <i class="glyphicon glyphicon-plus"></i>TAMBAH BARIS BARU</button>
+                                        <input type="hidden" id="countRow" value="1">
+                                    </td>
+                                </tr>
+                                
+                            </tfoot>
+                        </table>
+                    </div>
+                    <br>
+                    <div id="auto">
                         <input type="file" name="diimpor" class="btn btn-default btn-sm" id="" value="Upload File">
                     </div>
+                   </div>
                 </div>
             </div>
         </div>
@@ -127,7 +201,10 @@
         $("#revke").hide();
         $("#asalasal").hide();
         $("#kodeasal").hide();
+        $("#manual").hide();
+        myFunction();
     } );
+
 
     function respe(){
         if (document.getElementById('R').checked) 
@@ -143,6 +220,88 @@
             $("#revke").val(c);
             $("#kodeasal").val(c);
         }
+    }
+
+    function myFunction() {
+        document.getElementById("aut").classList.remove('btn-danger');  
+        document.getElementById("aut").classList.add('btn-success');
+
+        document.getElementById("man").classList.remove('btn-success');
+        document.getElementById("man").classList.add('btn-danger');
+        
+        document.getElementById("form_id").action = "{{route('revision.impor')}}";
+
+        $("#manual").hide();
+        $("#auto").show()
+             
+    }
+
+    function getAsn(){
+        document.getElementById("man").classList.remove('btn-danger');  
+        document.getElementById("man").classList.add('btn-success');
+        document.getElementById("aut").classList.remove('btn-success');
+        document.getElementById("aut").classList.add('btn-danger');
+        document.getElementById("form_id").action = "{{route('revision.store')}}";
+
+        $("#manual").show();
+        $("#auto").hide()
+    }
+
+    function addBarisNew(){
+        var last_baris = $("#countRow").val();
+        var new_baris = parseInt(last_baris)+1;
+        $isi =  '<tr id="cell-'+new_baris+'">'+
+            '<td class="center">'+new_baris+'</td>'+
+            '<td>'+
+                '<select id="subcode_id" name="subcode_id[]" class="select2 form-control">'+
+                    '<option value="">Pilih Kode</option>'+
+                        '@foreach ($sub as $data)'+
+                            '<option value="{{$data->id}}">{{$data->kodeall}}</option>'+
+                        '@endforeach'+
+                '</select>'+
+            '</td>'+
+            '<td>'+
+                '<select id="accountcode_id" name="accountcode_id[]" class="select2 form-control">'+
+                    '<option value="">Pilih Kode</option>'+
+                        '@foreach ($acc as $data)'+
+                            '<option value="{{$data->id}}">{{$data->code}} - {{$data->name}}</option>'+
+                        '@endforeach'+
+                '</select>'+
+            '</td>'+
+            '<td>'+
+                '<input type="hidden" name="loka_id[]" value="1">'+
+                '<input type="number" name="volume[]" id="volume-'+new_baris+'" value="0" class="form-control">'+
+            '</td>'+
+            '<td>'+
+                '<input type="number" name="price[]" id="price-'+new_baris+'"  value="0" class="form-control" onkeyup="hitung('+new_baris+')">'+                        
+            '</td>'+
+            '<td>'+
+                '<input type="number" name="total[]" id="total-'+new_baris+'"  value="0" class="form-control" readonly>'+
+            '</td>'+
+            '<td>'+
+                '<select id="sd" name="sd[]" class="select2 form-control">'+
+                    '<option value="RM">RM</option>'+
+                    '<option value="PNBP">PNBP</option>'+
+                '</select>'+
+            '</td>'+   
+                '<td><button type="button"  class="btn btn-danger" onclick="deleteRow('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button></td>'+
+            '</tr>';
+        $("#myTable").find('tbody').append($isi);
+        $("#countRow").val(new_baris);
+        $('.select2').select2();
+
+       }
+
+    function hitung(i) {
+        var a = $("#volume-"+i).val();
+        var b =  $("#price-"+i).val();
+        var c = a * b;
+        var hasil = parseFloat(c).toFixed(2);
+        $("#total-"+i).val(hasil);
+    }
+
+    function deleteRow(cell) {
+        $("#cell-"+cell).remove();
     }
 
 </script>

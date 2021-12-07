@@ -8,7 +8,7 @@ class Pok_detail extends Model
 {
     protected $table = "pok_detail";
     protected $fillable = ['pok_id','krocode_id','detailcode_id','komponencode_id','subcode_id','accountcode_id',
-                            'loka_id','volume','price','total','sd','realisasi','sisa'
+                            'loka_id','volume','price','total','sd','realisasi','sisa','detail'
     ];
 
     public function pok()

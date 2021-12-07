@@ -27,14 +27,18 @@ class PokImport implements ToModel,WithStartRow
     }
     public function model(array $row)
     {
-        $sub = Subcode::where('kodeall',$row[0])
+        $subcode = $row[12]."/".$row[13]."/".$row[14]."/".$row[15];
+        $sub = Subcode::where('kodeall',$subcode)
                         ->SelectRaw('subcode.id AS sub_id, krocode.id AS kro_id, detailcode.id AS det_id, komponencode.id AS kom_id')
                         ->LeftJoin('komponencode','komponencode.id','=','subcode.komponencode_id')
                         ->LeftJoin('detailcode','detailcode.id','=','komponencode.detailcode_id')
                         ->LeftJoin('krocode','krocode.id','=','detailcode.krocode_id')
                         ->first();
-        $akun = Accountcode::where('code',$row[1])->first();
-        $loka = Loka::where('nama',$row[2])->first();
+        
+        $akun   = Accountcode::where('code',$row[21])->first();
+        $loka   = "1";
+        $sd     = "RM";
+        $vol    = "1";
 
         if ($sub) {
             return new Pok_detail([
@@ -44,13 +48,14 @@ class PokImport implements ToModel,WithStartRow
                 'komponencode_id' => $sub->kom_id,
                 'subcode_id'      => $sub->sub_id,
                 'accountcode_id'  => $akun->id,
-                'loka_id'         => $loka->id,
-                'volume'          => $row[3],
-                'price'           => $row[4],
-                'total'           => $row[5],
-                'sd'              => $row[6],
-                'realisasi'       => $row[7],
-                'sisa'            => $row[8]
+                'loka_id'         => $loka,
+                'volume'          => $vol,
+                'price'           => $row[22],
+                'total'           => $row[22],
+                'sd'              => $sd,
+                'realisasi'       => $row[28],
+                'sisa'            => $row[29],
+                'detail'          => $row[34]
 
             ]);
         }

@@ -86,6 +86,7 @@
   //Route untuk Revisi Pelaksanaan Anggaran
   Route::get('/finance/revision/create','Finance\RevisionController@create')->name('revision.create');
   Route::post('/finance/revision/impor','Finance\RevisionController@impor')->name('revision.impor');
+  Route::post('/finance/revision/store','Finance\RevisionController@store')->name('revision.store');
   Route::get('finance/revision/view/{id}','Finance\RevisionController@view')->name('revision.view');
   Route::get('finance/revision/getPokDetail','Finance\RevisionController@getPokDetail')->name('revision.getPokDetail');
 
