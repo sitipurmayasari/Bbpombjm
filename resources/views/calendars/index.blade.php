@@ -98,32 +98,87 @@ h2 {
     //   navLinks: true, // can click day/week names to navigate views
       editable: true,
       eventLimit: true, // allow "more" link when too many events
-      events: function(start, end, callback) {
-            // var mydata = {
-            //   action: "fw_ajax_callback",
-            //   subaction: "get_myappointments",
-            // };
-            $.ajax({
-              url: "{{route('calendars.getData') }}",
-              type: 'GET',
-              // data: mydata,
-              dataType: 'json',
-              success: function(appointments) {
-                  var events = [];
-                  if (!!appointments) {
-                    $.map(appointments, function(r) {
-                        events.push({
-                          title: r.titles,
-                          start: r.date_from,
-                          end: r.date_to
-                        });
-                    });
-                  }
-                  callback(events);
-              }
+      events: 
+      [
+        { title: '2 events in 1 day',
+        url: '{{ route('calendars.lihat', ['1']) }}',
+        start: '2021-11-01',
+        end: '2021-11-01'
+      },
+      {
+        title: '1 day Event',
+        url: '{{ route('calendars.lihat', ['1']) }}',
+        start: '2021-11-03',
+        end: '2021-11-03'
+      },
+      {
+        title: '2 events in 1 day',
+        url: '{{ route('calendars.lihat', ['2']) }}',
+        start: '2021-11-01',
+        end: '2021-11-01'
+      },
+      {
+        title: 'Long Event',
+        url: '{{ route('calendars.lihat', ['2']) }}',
+        start: '2021-11-07',
+        end: '2021-11-10'
+      },
+    ]
+      // function(start, end, callback) {
+      //       // var mydata = {
+      //       //   action: "fw_ajax_callback",
+      //       //   subaction: "get_myappointments",
+      //       // };
+      //       $.ajax({
+      //         url: "{{route('calendars.getData') }}",
+      //         type: 'GET',
+      //         // data: mydata,
+      //         dataType: 'json',
+      //         success: function(response) {
+      //             var events =   
+      //                                 [
+      //                     { title: '2 events in 1 day',
+      //                     url: '{{ route('calendars.lihat', ['1']) }}',
+      //                     start: '2021-11-01',
+      //                     end: '2021-11-01'
+      //                   },
+      //                   {
+      //                     title: '1 day Event',
+      //                     url: '{{ route('calendars.lihat', ['1']) }}',
+      //                     start: '2021-11-03',
+      //                     end: '2021-11-03'
+      //                   },
+      //                   {
+      //                     title: '2 events in 1 day',
+      //                     url: '{{ route('calendars.lihat', ['2']) }}',
+      //                     start: '2021-11-01',
+      //                     end: '2021-11-01'
+      //                   },
+      //                   {
+      //                     title: 'Long Event',
+      //                     url: '{{ route('calendars.lihat', ['2']) }}',
+      //                     start: '2021-11-07',
+      //                     end: '2021-11-10'
+      //                   },
+      //                 ];
+      //             if (!!response) {
+      //               for (let index = 0; index < response.length; index++) {
+      //                 // alert(response[index]['date_from']);
+      //                 // events.push({
+      //                 //     title: response[index]['titles'],
+      //                 //     start: response[index]['date_from'],
+      //                 //     end: response[index]['date_to']
+      //                 //   });
+                      
+      //               }
+                    
+      //             }
+      //             console.log("Haloo events "+events);
+      //             callback(events);
+      //         }
 
-            })
-      }
+      //       });
+      //   }
     });
 
     calendar.render();

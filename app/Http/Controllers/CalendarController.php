@@ -10,8 +10,10 @@ class CalendarController extends Controller
 {
     public function index()
     {
-        $data = Agenda::get();    
-        return view('calendars.index',compact('data'));
+        $data = Agenda::get();  
+        $events  = Agenda::get();    
+  
+        return view('calendars.index',compact('data','events'));
     }
 
     public function lihat($id)
@@ -23,7 +25,7 @@ class CalendarController extends Controller
     public function getData(Request $request)
     {
         $appointments = Agenda::get();    
-        return response()->json([ 'success' => true,'appointments' => $appointments],200);
+        return response()->json($appointments,200);
     }
 
 }

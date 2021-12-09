@@ -65,26 +65,27 @@ class IkuTaggingController extends Controller
 
         // Excel::import(new PaguImport($pagu_id), urlStorage().'/excel/'.$nama_file);
         // //   Excel::import(new PaguImport($pagu_id), public_path('/excel/'.$nama_file));
-            $jum = Pok_detail::where('pok_id',$request->pok_id)->get();
+            $juma = Pok_detail::where('pok_id',$request->pok_id)->get();
 
-            for ($i = 0; $i < count($jum); $i++){
+            foreach ($juma as $jum) {
+                # code...
                 $pok = Pok::where('id',$request->pok_id)->first();
-                $detail = Pok_detail::where('pok_id',$request->pok_id)->first();
                 $data = [
                     'pagu_id'         => $pagu_id,
                     'activitycode_id' => $pok->activitycode_id,
-                    'subcode_id'      => $detail->subcode_id,
-                    'accountcode_id'  => $detail->accountcode_id,
-                    'paguakhir'       => $detail->total,
-                    'realisasi'       => $detail->realisasi,
-                    'sisa'            => $detail->sisa,
-                    'detail'          => $detail->detail,
+                    'subcode_id'      => $jum->subcode_id,
+                    'accountcode_id'  => $jum->accountcode_id,
+                    'paguakhir'       => $jum->total,
+                    'realisasi'       => $jum->realisasi,
+                    'sisa'            => $jum->sisa,
+                    'detail'          => $jum->detail,
                 ];
                 // if ($request->paguakhir[$i]!=0) {
                     PaguDetail::create($data);
                 // }
             }
 
+           
         DB::commit();
 
         return redirect('/finance/ikutagging/taging/'.$pagu_id);
