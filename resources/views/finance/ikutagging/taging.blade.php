@@ -21,10 +21,10 @@
                     <table id="simple-table" class="table  table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th rowspan="2" style="text-align: center">No</th>
-                                <th rowspan="2" style="text-align: center" class="col-sm-3" >SubKomponen</th>
-                                <th colspan="2" style="text-align: center">Pagu</th>
-                                <th rowspan="2" style="text-align: center">Taging</th>
+                                <th rowspan="2" style="text-align: center" class="col-md-1" >No</th>
+                                <th rowspan="2" style="text-align: center" class="col-md-6" >SubKomponen</th>
+                                <th colspan="2" style="text-align: center"  class="col-md-4">Pagu</th>
+                                <th rowspan="2" style="text-align: center"  class="col-md-1" >Taging</th>
                             </tr>
                             <tr>
                                 <th style="text-align: center">Pagu Akhir</th>
@@ -39,7 +39,7 @@
                                 <tr>
                                     <td style="text-align: center">{{$no++}}</td>
                                     <td class="col-sm-2">
-                                        <input type="text" value="{{$row->sub->kodeall}}" 
+                                        <input type="text" value="{{$row->sub->kodeall}} ({{$row->sub->name}})" 
                                         class="col-xs-12 col-sm-12" readonly
                                         name="sub" />
                                         <input type="hidden" name="subocode_id" value="{{$row->pagu_id}}">
