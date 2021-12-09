@@ -45,6 +45,7 @@ class AgendaController extends Controller
    
     public function edit($id)
     {
+        $kategori = Agenda_kategori::All();
         $data = Agenda::where('id',$id)->first();
         return view('amdk/agenda.edit',compact('data','kategori'));
     }

@@ -13,7 +13,7 @@
 
 <div class="row">
     <form class="form-horizontal validate-form" role="form" 
-    method="post" action="/amdk/pengumuman/update/{{$data->id}}" enctype="multipart/form-data">
+    method="post" action="/amdk/agenda/update/{{$data->id}}" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div class="col-sm-12">
         <div class="widget-box">
