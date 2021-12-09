@@ -69,14 +69,28 @@
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label no-padding-right" 
-                            for="form-field-1"> Pilih POK
+                            for="form-field-1"> Pilih POK (DR)
                             </label>
                             <div class="col-sm-8">
-                                <select id="tahun" name="pok_id" class="col-xs-10 col-sm-10 select2" required>
-                                    <option value="">Pilih POK</option>
-                                    @foreach ($pok as $item)
-                                        <option value="{{$item->id}}">{{$item->asal_pok}} Tahun {{$item->year}} 
-                                            (Upload: {{tgl_indo($item->created_at->format('Y-m-d'))}} )</option>
+                                <select name="pok_id_dr" class="col-xs-10 col-sm-10 select2" required>
+                                    <option value="">Pilih aktivitas DR</option>
+                                    @foreach ($dr as $item)
+                                        <option value="{{$item->id}}">{{$item->nama}}
+                                            ({{$item->asal_pok}} Tahun {{$item->year}}  )</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right" 
+                            for="form-field-1"> Pilih POK (WA)
+                            </label>
+                            <div class="col-sm-8">
+                                <select name="pok_id_wa" class="col-xs-10 col-sm-10 select2" required>
+                                    <option value="">Pilih aktivitas WA</option>
+                                    @foreach ($wa as $item)
+                                        <option value="{{$item->id}}">{{$item->nama}}
+                                            ({{$item->asal_pok}} Tahun {{$item->year}}  )</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -95,16 +109,6 @@
                 </div>
             </div>
         </div>
-        {{-- <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading"><h3 class="panel-title">Impor Excel</h3></div>
-                <div class="panel-body">
-                    <div class="col-md-12">
-                        <input type="file" name="diimpor" class="btn btn-default btn-sm" id="" value="Upload File">
-                    </div>
-                </div>
-            </div>
-        </div> --}}
     </div>
 </div>
 <div class="panel-footer">

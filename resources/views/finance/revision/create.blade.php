@@ -22,6 +22,14 @@
                             for="form-field-1">  Kode Kegiatan *
                             </label>
                             <div class="col-sm-8">
+                                <input type="text" name="nama" class="col-xs-10 col-sm-10" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right" 
+                            for="form-field-1">  Kode Kegiatan *
+                            </label>
+                            <div class="col-sm-8">
                                 <select id="activitycode_id" name="activitycode_id" class="col-xs-10 col-sm-10 select2" required>
                                         <option value="">Pilih Kode</option>
                                     @foreach ($act as $data)

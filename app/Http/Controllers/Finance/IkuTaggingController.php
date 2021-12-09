@@ -35,9 +35,10 @@ class IkuTaggingController extends Controller
 
     public function create()
     {
-        $pok    = Pok::all();
+        $dr    = Pok::where('activitycode_id','2')->get();
+        $wa    = Pok::where('activitycode_id','3')->get();
         $target = Target::all();
-        return view('finance/ikutagging.create',compact('target','pok'));
+        return view('finance/ikutagging.create',compact('target','dr','wa'));
     }
 
     public function impor(Request $request)
@@ -46,7 +47,6 @@ class IkuTaggingController extends Controller
         //     'diimpor' => 'required|mimes:csv,xls,xlsx',
             'year' => 'required',
             'month' => 'required',
-            'pok_id' => 'required',
             'users_id'=> 'required'
         ]);
 
@@ -62,17 +62,16 @@ class IkuTaggingController extends Controller
         DB::beginTransaction();
           $pagu =Pagu::create($request->all());
           $pagu_id = $pagu->id;
-
-        // Excel::import(new PaguImport($pagu_id), urlStorage().'/excel/'.$nama_file);
-        // //   Excel::import(new PaguImport($pagu_id), public_path('/excel/'.$nama_file));
-            $juma = Pok_detail::where('pok_id',$request->pok_id)->get();
+            
+          if ($request->pok_id_dr != null) {
+            $juma = Pok_detail::where('pok_id',$request->pok_id_dr)->get();
 
             foreach ($juma as $jum) {
                 # code...
-                $pok = Pok::where('id',$request->pok_id)->first();
+                $poka = Pok::where('id',$request->pok_id_dr)->first();
                 $data = [
                     'pagu_id'         => $pagu_id,
-                    'activitycode_id' => $pok->activitycode_id,
+                    'activitycode_id' => $poka->activitycode_id,
                     'subcode_id'      => $jum->subcode_id,
                     'accountcode_id'  => $jum->accountcode_id,
                     'paguakhir'       => $jum->total,
@@ -84,8 +83,28 @@ class IkuTaggingController extends Controller
                     PaguDetail::create($data);
                 // }
             }
+          }
 
-           
+
+            if ($request->pok_id_wa != null) {
+                $jumb = Pok_detail::where('pok_id',$request->pok_id_wa)->get();
+                foreach ($jumb as $jum) {
+                    $pokb = Pok::where('id',$request->pok_id_wa)->first();
+                    $data = [
+                        'pagu_id'         => $pagu_id,
+                        'activitycode_id' => $pokb->activitycode_id,
+                        'subcode_id'      => $jum->subcode_id,
+                        'accountcode_id'  => $jum->accountcode_id,
+                        'paguakhir'       => $jum->total,
+                        'realisasi'       => $jum->realisasi,
+                        'sisa'            => $jum->sisa,
+                        'detail'          => $jum->detail,
+                    ];
+                    // if ($request->paguakhir[$i]!=0) {
+                        PaguDetail::create($data);
+                    // }
+                }
+            }
         DB::commit();
 
         return redirect('/finance/ikutagging/taging/'.$pagu_id);

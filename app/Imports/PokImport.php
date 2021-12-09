@@ -27,6 +27,10 @@ class PokImport implements ToModel,WithStartRow
     }
     public function model(array $row)
     {
+
+        $act = $row[4]."/".$row[5]."/".$row[8]."/".$row[9];
+        $activity = Activitycode::where('lengkap',$act)->first();
+
         $subcode = $row[12]."/".$row[13]."/".$row[14]."/".$row[15];
         $sub = Subcode::where('kodeall',$subcode)
                         ->SelectRaw('subcode.id AS sub_id, krocode.id AS kro_id, detailcode.id AS det_id, komponencode.id AS kom_id')
@@ -43,6 +47,7 @@ class PokImport implements ToModel,WithStartRow
         if ($sub) {
             return new Pok_detail([
                 'pok_id'          => $this->pok_id,
+                'activitycode_id' => $activity->id,
                 'krocode_id'      => $sub->kro_id,
                 'detailcode_id'   => $sub->det_id,
                 'komponencode_id' => $sub->kom_id,

@@ -36,7 +36,7 @@
             <thead>
                 <th width="40px">No</th>
                 <th>Tahun</th>
-                <th>Kode Aktivitas</th>
+                <th>Nama Dokumen</th>
                 <th>Revisi Ke-</th>
                 <th>Dibuat Oleh</th>
                 <th>Lihat hasil</th>
@@ -46,7 +46,7 @@
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
                     <td>{{$row->year}}</td>
-                    <td>{{$row->act->lengkap}}</td>
+                    <td>{{$row->nama}}</td>
                     <td>{{$row->asal_pok}} </td>
                     <td>{{$row->pegawai->name}} <br> ({{$row->pegawai->no_pegawai}})</td>
                     <td>
