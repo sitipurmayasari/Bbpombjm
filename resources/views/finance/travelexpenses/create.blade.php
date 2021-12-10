@@ -217,19 +217,29 @@
                             '<input type="hidden" name="jabatan[]" value='+response.peg[i].jabatan_id+'>'+
                         '</td>'+
                         '<td><input type="checkbox" name="dailywage[]" value="Y">'+
-                            '<input type="text" name="hitdaily[]" value='+daily+' readonly style="width:50%">/hr'+
+                            '<input type="number" name="hitdaily[]"  min="0" value='+daily+' style="width: 50%;"  id="hitdaily-'+no+'"> X '+
+                            '<input type="number" name="jumdaily[]"  min="0" value="0" style="width:25%"  id="jumdaily-'+no+'" onkeyup="totdaily('+no+')">'+
+                            ' = <input type="text" name="totdaily[]"  min="0" value="0" readonly style="width: 85%;" id="totdaily-'+no+'">'+
                         '</td>'+
                         '<td><input type="checkbox" name="diklat[]" value="Y">'+
-                            '<input type="text" name="hitdiklat[]" value='+diklat+' readonly style="width:50%">/hr'+
+                            '<input type="number" name="hitdiklat[]"  min="0" value='+diklat+' style="width: 50%;"  id="hitdiklat-'+no+'"> X '+
+                            '<input type="number" name="jumdiklat[]"  min="0" value="0" style="width:25%"  id="jumdiklat-'+no+'" onkeyup="totdiklat('+no+')">'+
+                            ' = <input type="text" name="totdiklat[]"  min="0" value="0" readonly style="width: 85%;" id="totdiklat-'+no+'">'+
                         '</td>'+            
                         '<td><input type="checkbox" name="fullboard[]" value="Y">'+
-                            '<input type="text" name="hitfullb[]" value='+fullb+' readonly style="width:50%">/hr'+
+                            '<input type="number" name="hitfullb[]"   min="0"value='+fullb+' style="width: 50%;"  id="hitfullb-'+no+'"> X '+
+                            '<input type="number" name="jumfullb[]"   min="0"value="0" style="width:25%"  id="jumfullb-'+no+'" onkeyup="totfullb('+no+')">'+
+                            ' = <input type="text" name="totfullb[]"  min="0" value="0" readonly style="width: 85%;" id="totfullb-'+no+'">'+
                         '</td>'+             
                         '<td><input type="checkbox" name="fullday[]" value="Y">'+
-                            '<input type="text" name="hithalf[]" value='+half+' readonly style="width:50%">/hr'+
+                            '<input type="number" name="hithalf[]" value='+half+' style="width: 50%;"  id="hithalf-'+no+'"> X '+
+                            '<input type="number" name="jumhalf[]"  min="0" value="0" style="width:25%"  id="jumhalf-'+no+'" onkeyup="tothalf('+no+')">'+
+                            ' = <input type="text" name="tothalf[]"  min="0" value="0" readonly style="width: 85%;" id="tothalf-'+no+'">'+
                         '</td>'+
                         '<td><input type="checkbox" name="representatif[]" value="Y">'+
-                            '<input type="text" name="hitrep[]" value='+rep+' readonly style="width:50%">/hr'+
+                            '<input type="number" name="hitrep[]"   min="0" value='+rep+' style="width: 50%;"  id="hitrep-'+no+'"> X '+
+                            '<input type="number" name="jumrep[]"   min="0"value="0" style="width:25%"  id="jumrep-'+no+'" onkeyup="totrep('+no+')">'+
+                            ' = <input type="text" name="totrep[]"  min="0" value="0" readonly style="width: 85%;" id="totrep-'+no+'">'+
                         '</td>'+
                     '</tr>';
                 }
@@ -247,15 +257,15 @@
                             '<input type="hidden" name="idpeg[]" class="outid" value='+response.peg[i].id+'>'+
                         '</td>'+
                         '<td><input type="text" name="innname_1[]" /></td>'+
-                        '<td><input type="number" min="0" value="0" name="inn_fee_1[]" /></td>'+
-                        '<td><input type="number" min="0" value="0" name="long_stay_1[]" /></td>'+
-                        '<td><input type="number" min="0" value="0" name="isi_1[]" style="width: 70%"/>org'+
-                        '</td>'+
+                        '<td><input type="number" min="0" value="0" name="inn_fee_1[]" id="innfee1-'+no+'"/></td>'+
+                        '<td><input type="number" min="0" value="0" name="long_stay_1[]" id="longstay1-'+no+'" style="width: 50px"/></td>' +
+                        '<td><input type="number" min="0" value="0" name="isi_1[]" style="width: 50px"  id="isi1-'+no+'" onkeyup="longstay1('+no+')"/>org</td>'+
+                        '<td><input type="number" min="0" value="0" name="klaim_1[]"  id="klaim1-'+no+'"/></td>'+
                         '<td><input type="text" name="innname_2[]" /></td>'+
-                        '<td><input type="number" min="0" value="0" name="inn_fee_2[]" /></td>'+
-                        '<td><input type="number" min="0" value="0" name="long_stay_2[]" /></td>'+
-                        '<td><input type="number" min="0" value="0" name="isi_2[]" style="width: 70%"/>org'+
-                        '</td>'+   
+                        '<td><input type="number" min="0" value="0" name="inn_fee_2[]" id="innfee2-'+no+'"/></td>'+
+                        '<td><input type="number" min="0" value="0" name="long_stay_2[]" id="longstay2-'+no+'" style="width: 50px"/></td>'+
+                        '<td><input type="number" min="0" value="0" name="isi_2[]" style="width: 50px" id="isi2-'+no+'" onkeyup="longstay2('+no+')"/>org </td>'+ 
+                        '<td><input type="number" min="0" value="0" name="klaim_2[]" id="klaim2-'+no+'"/></td>'+
                     '</tr>';
                 }
                 $("#nginap").html(nginap);
@@ -351,15 +361,82 @@
                         '<td>'+response.peg[i].name+
                             '<input type="hidden" name="idpeg[]" class="outid" value='+response.peg[i].id+'>'+
                         '</td>'+
-                        '<td><input type="number" min="0" value="0" name="dayshalf[]" /></td>'+       
-                        '<td><input type="number" min="0" value="0" name="feehalf[]" /></td>'+                   
-                        '<td><input type="number" min="0" value="0" name="daysfull[]" /></td>'+  
-                        '<td><input type="number" min="0" value="0" name="feefull[]" /></td>'+                 
+                        '<td><input type="number" min="0" value="0" name="dayshalf[]" style="width:50px;" id="dayshalf-'+no+'"/></td>'+       
+                        '<td><input type="number" min="0" value="0" name="feehalf[]" id="feehalf-'+no+'" onkeyup="feehalf('+no+')"/></td>'+    
+                        '<td><input type="number" min="0" value="0" name="totdayshalf[]" readonly id="totdayshalf-'+no+'"/></td>'+                   
+                        '<td><input type="number" min="0" value="0" name="daysfull[]" style="width:50px;" id="daysfull-'+no+'"/></td>'+  
+                        '<td><input type="number" min="0" value="0" name="feefull[]" id="feefull-'+no+'" onkeyup="feefull('+no+')"/></td>'+   
+                        '<td><input type="number" min="0" value="0" name="totdaysfull[]" readonly id="totdaysfull-'+no+'"/></td>'+                  
                     '</tr>';
                 }
                 $("#meeting").html(meeting);
             }
         );
        }
+        function totdaily(i) {
+            var a = $("#hitdaily-"+i).val();
+            var b =  $("#jumdaily-"+i).val();
+            var c = a * b;
+            var hasil = parseFloat(c).toFixed(2);
+            $("#totdaily-"+i).val(hasil);
+        }
+        function totdiklat(i) {
+            var a = $("#hitdiklat-"+i).val();
+            var b =  $("#jumdiklat-"+i).val();
+            var c = a * b;
+            var hasil = parseFloat(c).toFixed(2);
+            $("#totdiklat-"+i).val(hasil);
+        }
+        function totfullb(i) {
+            var a = $("#hitfullb-"+i).val();
+            var b =  $("#jumfullb-"+i).val();
+            var c = a * b;
+            var hasil = parseFloat(c).toFixed(2);
+            $("#totfullb-"+i).val(hasil);
+        }
+        function tothalf(i) {
+            var a = $("#hithalf-"+i).val();
+            var b =  $("#jumhalf-"+i).val();
+            var c = a * b;
+            var hasil = parseFloat(c).toFixed(2);
+            $("#tothalf-"+i).val(hasil);
+        }
+        function totrep(i) {
+            var a = $("#hitrep-"+i).val();
+            var b =  $("#jumrep-"+i).val();
+            var c = a * b;
+            var hasil = parseFloat(c).toFixed(2);
+            $("#totrep-"+i).val(hasil);
+        }
+        function longstay1(i) {
+            var a = $("#longstay1-"+i).val();
+            var b =  $("#isi1-"+i).val();
+            var c = $("#innfee1-"+i).val();
+            var d = ((c*a)/b);
+            var hasil = parseFloat(d).toFixed(2);
+            $("#klaim1-"+i).val(hasil);
+        }
+        function longstay2(i) {
+            var a = $("#longstay2-"+i).val();
+            var b =  $("#isi2-"+i).val();
+            var c = $("#innfee2-"+i).val();
+            var d = ((c*a)/b);
+            var hasil = parseFloat(d).toFixed(2);
+            $("#klaim2-"+i).val(hasil);
+        }
+        function feehalf(i) {
+            var a = $("#dayshalf-"+i).val();
+            var b =  $("#feehalf-"+i).val();
+            var c = a * b;
+            var hasil = parseFloat(c).toFixed(2);
+            $("#totdayshalf-"+i).val(hasil);
+        }
+        function feefull(i) {
+            var a = $("#daysfull-"+i).val();
+            var b =  $("#feefull-"+i).val();
+            var c = a * b;
+            var hasil = parseFloat(c).toFixed(2);
+            $("#totdaysfull-"+i).val(hasil);
+        }
    </script>
 @endsection

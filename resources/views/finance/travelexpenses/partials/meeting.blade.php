@@ -8,14 +8,16 @@
                                 <tr>
                                     <th style="text-align: center;" rowspan="2">NO</th>
                                     <th style="text-align: center;" rowspan="2">Nama</th>
-                                    <th class="text-center" colspan="2">Paket Halfday / Fullday</th>
-                                    <th class="text-center" colspan="2">Paket FullBoard</th>
+                                    <th class="text-center" colspan="3">Paket Halfday / Fullday</th>
+                                    <th class="text-center" colspan="3">Paket FullBoard</th>
                                 </tr>
                                 <tr>
                                     <th class="text-center col-md-2">Lama (hari) </th>
                                     <th>Biaya</th>
+                                    <th>Total</th>
                                     <th class="text-center col-md-2">Lama (hari)</th>
                                     <th>Biaya</th>
+                                    <th>Total</th>
                                 </tr>
                             </thead>
                             <tbody id="meeting">

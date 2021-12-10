@@ -32,7 +32,7 @@
 
         }
         .isi{
-            font-size: 8;
+            font-size: 7;
             font-family: 'Times New Roman';
             border: 1px solid black;
             vertical-align : top;
@@ -245,6 +245,9 @@
     </thead>
     <tbody>
         <tr>
+            @php
+                $nilai = $injectQuery->getDetail($item->id)
+            @endphp
             <td class="isi" style="text-align: center">1</td>
             <td class="isi">
                 <table style="width: 100%">
@@ -260,10 +263,6 @@
                         <td colspan="3"> Pergi</td>
                         <td>. Rp. </td>
                         <td style="text-align: right;">
-                            @php
-                                    $nilai = $injectQuery->getDetail($item->id)
-                                @endphp
-    
                                 @if ($nilai->planefee1 != '0')
                                     @php
                                         $fee1 = $nilai->planefee1;
@@ -271,8 +270,7 @@
                                         $fee3 = $nilai->planefee3;
                                         $subtrans = $fee1+$fee2+$fee3;
                                     @endphp
-                                    {{number_format($subtrans)}} 
-    
+                                    {{number_format($subtrans)}}
                                 @else
                                    {{ '-' }}
                                 @endif
@@ -287,10 +285,6 @@
                         <td colspan="3"> Kembali</td>
                         <td>. Rp.</td>
                         <td style="text-align: right;">
-                            @php
-                                $nilai = $injectQuery->getDetail($item->id)
-                            @endphp
-    
                             @if ($nilai->planereturnfee != '0')
                                 @php
                                     $subtrans =$nilai->planereturnfee;
@@ -308,23 +302,17 @@
                     </tr>
                     <tr>
                         @php
-                            $jum=0;
-                            $nilai=0;
-                            $subtrans = 0;
+                            $jumtaxi=0;
+                            $hartaxi=0;
                         @endphp
                         <td colspan="2">- Asal </td>
                         <td>:</td>
                         <td style="text-align: right; width:5%;">
-                            @php
-                                $nilai = $injectQuery->getDetail($item->id)
-                            @endphp
-    
                             @if ($nilai->taxy_count_from != '0')
                                 @php
-                                    $jum =$nilai->taxy_count_from;
+                                    $jumtaxi =$nilai->taxy_count_from;
                                 @endphp
-                                {{$jum}}
-    
+                                {{number_format($jumtaxi)}} 
                             @else
                                 {{ '-' }}
                             @endif
@@ -332,17 +320,11 @@
                         </td>
                         <td>kali &nbsp; x &nbsp; Rp.</td>
                         <td style="text-align: right;">
-                            @php
-                                $taxi = 0;
-                                $nilai = $injectQuery->getDetail($item->id)
-                            @endphp
-    
                             @if ($nilai->taxy_count_from != '0')
                                 @php
-                                    $taxi = $nilai->taxy_fee_from;
+                                    $hartaxi =$nilai->taxy_fee_from;
                                 @endphp
-                                {{number_format($taxi)}} 
-    
+                                {{number_format($hartaxi)}} 
                             @else
                                 {{ '-' }}
                             @endif
@@ -351,15 +333,14 @@
                         <td>. Rp.</td>
                         <td style="text-align: right;">
                             @php
-                                $subtrans = $jum*$taxi;    
+                                $subtrans = $jumtaxi*$hartaxi;    
                             @endphp
-                            
                             @if ($subtrans !='0')
                                 {{$subtrans}}
                             @else
                                 {{'-'}}
                             @endif
-                        &nbsp;
+                            &nbsp;
                         </td>
                     </tr>
                     <tr>
@@ -400,10 +381,6 @@
                         </td>
                         <td>:</td>
                         <td style="text-align: right;">
-                                @php
-                                    $nilai = $injectQuery->getDetail($item->id)
-                                @endphp
-    
                                 @if ($nilai->bbm != '0')
                                     @php
                                         $jum = 1;
@@ -423,10 +400,6 @@
                         </td>
                         <td>kali x Rp.</td>
                         <td style="text-align: right;">
-                            @php
-                                $nilai = $injectQuery->getDetail($item->id)
-                            @endphp
-    
                             @if ($nilai->bbm != '0')
                                 @php
                                     $bbm = $nilai->bbm;
@@ -559,105 +532,37 @@
                     </tr>
                     <span id="nomor-2">
                         @php
-                            $hari=0;
-                            $destinMoney = 0;
                             $subTotalHarian = 0;
                             $subTotal2 = 0;
+                            $daily = $injectQuery->getTr($item->id)
                         @endphp
                         <tr>
-                            @foreach ($tujuan as $key=>$hr)
-                                @php
-                                    $hari += $hr->longday;
-                                @endphp
-                            @endforeach
-
                             <td>- Penuh</td>
                             <td>:</td>
                             <td style="text-align: right;">
-
-                                @php
-                                    $daily = $injectQuery->getDetail($item->id)
-                                @endphp
-                                {{$hari}}
-                                {{-- @if ($daily->dailywage == 'Y')
-                                    {{$hari}}
+                                @if ($daily->dailywage == 'Y')
+                                    {{$daily->jumdaily}} 
                                 @else
-                                    {{ '-' }}
-                                @endif --}}
-                                &nbsp;
-                            </td>
-                            <td>hari &nbsp; x &nbsp;Rp.</td>
-                            <td style="text-align: right;">
-                                    @php
-                                        $daily = $injectQuery->getTr($item->id)
-                                    @endphp
-                                    @if ($daily->dailywage == 'Y')
-                                        @php
-                                            $destinMoney = $daily->hitdaily;
-                                        @endphp
-                                        {{number_format($destinMoney)}} 
-                                    @else
-                                       {{ '-' }}
-                                    @endif
-                                &nbsp;
-                            </td>
-                            <td>. Rp.</td>
-                             @php
-                                 $subTotalHarian = $hari*$destinMoney;  
-                                 $subTotal2 +=  $subTotalHarian;
-                             @endphp
-                            <td style="text-align: right;">
-                                    @if ($subTotalHarian != '0')
-                                        {{number_format($subTotalHarian)}} 
-                                    @else
-                                        {{ "-" }}
-                                    @endif
-                               &nbsp;
-                            </td>
-                        </tr>
-
-                        <tr>
-                            @php
-                                $diklatMoney = 0;
-                                $subTotalHarian = 0;
-                            @endphp
-                            <td>- Diklat</td>
-                            <td>:</td>
-                            <td style="text-align: right;">
-                                @php
-                                    $daily = $injectQuery->getTr($item->id)
-                                @endphp
-
-                                @if ($daily->diklat == 'Y')
-                                    {{$hari}} 
-                                @else
-                                    {{ '-' }}
+                                    {{ '-' }} 
                                 @endif
                                 &nbsp;
                             </td>
                             <td>hari &nbsp; x &nbsp;Rp.</td>
                             <td style="text-align: right;">
-                                @php
-                                    $daily = $injectQuery->getTr($item->id)
-                                @endphp
-                                @if ($daily->diklat == 'Y')
-                                    @php
-                                        $diklatMoney = $daily->hitdaily;
-                                    @endphp
-                                    {{number_format($diklatMoney)}} 
+                                @if ($daily->dailywage == 'Y')
+                                    {{number_format($daily->hitdaily)}} 
                                 @else
-                                {{ '-' }}
+                                    {{ '-' }} 
                                 @endif
                                 &nbsp;
                             </td>
                             <td>. Rp.</td>
+                            <td style="text-align: right;">
                                 @php
-                                    $subTotalHarian = $hari*$diklatMoney; 
+                                    $subTotalHarian = $daily->totdaily;
                                     $subTotal2 +=  $subTotalHarian;
-
                                 @endphp
-                            <td style="text-align: right;">
-                                @if ($subTotalHarian!='0')
+                                @if ($subTotalHarian != 0)
                                     {{number_format($subTotalHarian)}} 
                                 @else
                                     {{ '-' }}
@@ -667,67 +572,81 @@
                         </tr>
 
                         <tr>
-                            @php
-                                $halfdayMoney = 0;
-                                $subTotalHarian = 0;
-                            @endphp
-                            <td>- Paket Halfday / Fullday</td>
+                            <td>- Diklat</td>
                             <td>:</td>
                             <td style="text-align: right;">
-                                @php
-                                    $daily = $injectQuery->getTr($item->id)
-                                @endphp
-                                @if ($daily->fullday == 'Y')
-                                    {{$hari}}
+                                @if ($daily->diklat == 'Y')
+                                    {{$daily->jumdiklat}} 
                                 @else
-                                {{ '-' }}
+                                    {{ '-' }} 
                                 @endif
                                 &nbsp;
                             </td>
                             <td>hari &nbsp; x &nbsp;Rp.</td>
                             <td style="text-align: right;">
-                                @php
-                                    $daily = $injectQuery->getTr($item->id)
-                                @endphp
-                                @if ($daily->fullday == 'Y')
-                                    @php
-                                        $halfdayMoney = $daily->hithalf;
-                                    @endphp
-                                    {{number_format($halfdayMoney)}}
+                                @if ($daily->diklat == 'Y')
+                                    {{number_format($daily->hitdiklat)}} 
                                 @else
-                                    {{ '-' }}
+                                    {{ '-' }} 
                                 @endif
                                 &nbsp;
                             </td>
                             <td>. Rp.</td>
-                            @php
-                                 $subTotalHarian = $hari*$halfdayMoney;   
-                                 $subTotal2 +=  $subTotalHarian;
-
-                             @endphp
                             <td style="text-align: right;">
-                                 @if ($subTotalHarian !='0')
+                                @php
+                                    $subTotalHarian = $daily->totdiklat;
+                                    $subTotal2 +=  $subTotalHarian;
+                                @endphp
+                                @if ($subTotalHarian != 0)
                                     {{number_format($subTotalHarian)}}
                                 @else
-                                    {{ '-' }}
-                                @endif  
+                                    {{ '-' }} 
+                                @endif
                                 &nbsp;
                             </td>
                         </tr>
 
                         <tr>
-                            @php
-                                $fullboardMoney = 0;
-                                $subTotalHarian = 0;
-                            @endphp
+                            <td>- Paket Halfday / Fullday</td>
+                            <td>:</td>
+                            <td style="text-align: right;">
+                                @if ($daily->fullday == 'Y')
+                                    {{$daily->jumhalf}} 
+                                @else
+                                    {{ '-' }} 
+                                @endif
+                                &nbsp;
+                            </td>
+                            <td>hari &nbsp; x &nbsp;Rp.</td>
+                            <td style="text-align: right;">
+                                @if ($daily->fullday == 'Y')
+                                    {{number_format($daily->hithalf)}} 
+                                @else
+                                    {{ '-' }} 
+                                @endif
+                                &nbsp;
+                            </td>
+                            <td>. Rp.</td>
+                            <td style="text-align: right;">
+                                @php
+                                    $subTotalHarian = $daily->tothalf;
+                                    $subTotal2 +=  $subTotalHarian;
+                                @endphp
+                                @if ($subTotalHarian != 0)
+                                    {{number_format($subTotalHarian)}} 
+                                @else
+                                    {{ '-' }}
+                                @endif
+                                &nbsp;
+                            </td>
+                        </tr>
+
+                        <tr>
                             <td>- Paket Fullboard</td>
                             <td>:</td>
                             <td style="text-align: right;">
-                                @php
-                                    $daily = $injectQuery->getTr($item->id)
-                                @endphp
                                 @if ($daily->fullboard == 'Y')
-                                    {{$hari}}
+                                    {{$daily->jumfullb}} 
                                 @else
                                     {{ '-' }}
                                 @endif
@@ -735,32 +654,25 @@
                             </td>
                             <td>hari &nbsp; x &nbsp;Rp.</td>
                             <td style="text-align: right;">
-                                @php
-                                    $daily = $injectQuery->getTr($item->id)
-                                @endphp
                                 @if ($daily->fullboard == 'Y')
-                                    @php
-                                        $fullboardMoney = $daily->hitfullb;
-                                    @endphp
-                                    {{$fullboardMoney}}
+                                    {{number_format($daily->hitfullb)}} 
                                 @else
                                     {{ '-' }}
                                 @endif
                                 &nbsp;
                             </td>
                             <td>. Rp.</td>
-                            @php
-                                 $subTotalHarian = $hari*$fullboardMoney;    
-                                 $subTotal2 +=  $subTotalHarian;
-
-                             @endphp
                             <td style="text-align: right;">
-                                @if ($subTotalHarian !='0')
-                                    {{number_format($subTotalHarian)}}
-                                @else
-                                    {{ '-' }}
-                                @endif
-                                &nbsp;
+                                @php
+                                $subTotalHarian = $daily->totfullb;
+                                $subTotal2 +=  $subTotalHarian;
+                            @endphp
+                            @if ($subTotalHarian != 0)
+                                {{number_format($subTotalHarian)}} 
+                            @else
+                                {{ '-' }}
+                            @endif
+                            &nbsp;
                             </td>
                         </tr>
                     </span>
@@ -772,6 +684,7 @@
                 @else
                     {{number_format($subTotal2)}}
                 @endif
+                &nbsp;
             </td>
             <td class="isi"></td>
         </tr>
@@ -819,47 +732,33 @@
                     </tr>
                     <tr>
                         @php
-                            $days =0;
-                            $biaya =0;
-                            $subBiaya = 0;
                             $subTotal3 = 0;
+                            $subBiaya = 0;
                         @endphp
                         <td>- Paket Halfday / Fullday</td>
                         <td>:</td>
                         <td style="text-align: right;">
-                            @php
-                                $daily = $injectQuery->getTr($item->id)
-                            @endphp
-
                             @if ($daily->dayshalf != '0')
-                                @php
-                                    $days = $daily->dayshalf;
-                                @endphp
-                                {{$days}} &nbsp;
+                               {{$daily->dayshalf}}
                             @else
-                                {{ '-' }}
+                                {{ '-' }} 
                             @endif
+                            &nbsp;
                         </td>
                         <td>hari . Rp.</td>
                         <td style="text-align: right;">
-                            @php
-                                $daily = $injectQuery->getTr($item->id)
-                            @endphp
-
                             @if ($daily->dayshalf != '0')
-                                @php
-                                    $biaya = $daily->feehalf;
-                                @endphp
-                                {{number_format($biaya)}} &nbsp;
+                                {{number_format($daily->feehalf)}} &nbsp;
                             @else
-                                {{ '-' }}
+                                {{ '-' }} &nbsp;
                             @endif
                             &nbsp;
                         </td>
                         <td>. Rp.</td>
                         <td style="text-align: right;">
                             @php
-                                $subBiaya = $biaya*$days;
+                                $subBiaya = $daily->totdayshalf;
+                                $subTotal3 += $subBiaya;
                             @endphp
 
                             @if ($subBiaya != '0')
@@ -872,37 +771,22 @@
                     </tr>
                     <tr>
                         @php
-                            $daysF = 0;
-                            $biayaF =0;
-                            $subBiaya = 0;
+                         $subBiaya = 0;
                         @endphp
                         <td>- Paket Fullboard</td>
                         <td>:</td>
                         <td style="text-align: right;">
-                            @php
-                                $daily = $injectQuery->getTr($item->id)
-                            @endphp
-
                             @if ($daily->daysfull != '0')
-                                @php
-                                    $daysF = $daily->daysfull;
-                                @endphp
-                                {{$daysF}} &nbsp;
+                                {{$daily->daysfull}}
                             @else
                                 {{ '-' }}
                             @endif
+                            &nbsp;
                         </td>
                         <td>hari . Rp.</td>
                         <td style="text-align: right;">
-                            @php
-                                $daily = $injectQuery->getTr($item->id)
-                            @endphp
-
                             @if ($daily->daysfull != '0')
-                                @php
-                                    $biayaF = $daily->feefull;
-                                @endphp
-                                {{number_format($biayaF)}} &nbsp;
+                                {{number_format($daily->feefull)}} &nbsp;
                             @else
                                 {{ '-' }}
                             @endif
@@ -911,7 +795,8 @@
                         <td>. Rp.</td>
                         <td style="text-align: right;">
                             @php
-                                $subBiaya = $biayaF*$daysF;
+                                $subBiaya = $daily->totdaysfull;
+                                $subTotal3 += $subBiaya;
                             @endphp
 
                             @if ($subBiaya != '0')
@@ -928,15 +813,24 @@
                 @php
                     $subTotal3 += $subBiaya;
                 @endphp
-                @if ($subTotal3=='0')
+                @if ($subTotal3!= '0')
+                     {{number_format($subTotal3)}}
+                @else 
                     {{'-'}}
-                @else
-                    {{number_format($subTotal3)}}
                 @endif
+                &nbsp;
             </td>
             <td class="isi"></td>
         </tr>
         <tr>
+            @php
+            $hari=0;
+            @endphp
+            @foreach ($tujuan as $key=>$hr)
+                @php
+                    $hari += $hr->longday;
+                @endphp
+            @endforeach
             <td class="isi" style="text-align: center">4</td>
             <td class="isi">
                 <table style="width: 100%;" class="kepala">
@@ -1046,10 +940,11 @@
                         </td>
                         <td style="text-align: right;">
                             @php
-                                $jum1 = $long1*$fee1; 
-                                $jum2 = $long2*$fee2;
+                                $jum1 = $nilai->klaim_1; 
+                                $jum2 = $nilai->klaim_2;
+                                $subTotal4 = $jum1 + $jum2;
                             @endphp
-                            @if ($jum2 != '0')
+                            @if ($jum2 != '0' && $jum1 != '0')
                                 {{$jum1}} &nbsp; <br>
                                 {{$jum2}} 
                             @elseif($jum2 =='0' && $jum1 != '0')
@@ -1062,13 +957,10 @@
                 </table>
             </td>
             <td class="isi">Rp. &nbsp;&nbsp;&nbsp;&nbsp;
-                @php
-                    $subTotal4 = $jum1+$jum2;
-                @endphp
-                    @if ($subTotal4=='0')
-                        {{'-'}}
-                    @else
+                    @if ($subTotal4!='0')
                         {{number_format($subTotal4)}}
+                    @else
+                        {{'-'}}
                     @endif
             </td>
             <td class="isi" style="vertical-align: middle;">
@@ -1092,11 +984,8 @@
                         <td>Uang Representatif Eselon II</td>
                         <td>:</td>
                         <td style="text-align: right;">
-                            @php
-                                $daily = $injectQuery->getTr($item->id)
-                            @endphp
                             @if ($daily->representatif == 'Y')
-                                {{$hari}}
+                                {{$daily->jumrep}}
                             @else
                                 {{ '-' }}
                             @endif
@@ -1104,14 +993,8 @@
                         </td>
                         <td>hari x Rp.</td>
                         <td style="text-align: right;">
-                            @php
-                                $daily = $injectQuery->getTr($item->id)
-                            @endphp
                             @if ($daily->representatif == 'Y')
-                                @php
-                                    $eselonMoney = $daily->hitrep;
-                                @endphp
-                                {{number_format($eselonMoney)}}
+                                {{number_format($daily->hitrep)}}
                             @else
                                 {{ '-' }}
                             @endif
@@ -1119,7 +1002,8 @@
                         </td>
                         <td>. Rp.</td>
                         @php
-                             $subTotalHarian = $hari*$eselonMoney;    
+                             $subTotalHarian = $daily->jumrep;  
+                             $subTotal5 += $subTotalHarian;  
                          @endphp
                         <td style="text-align: right;">
                             @if ($subTotalHarian != '0')
@@ -1153,7 +1037,7 @@
                 @php
                     $totalPerjalanan = $subTotal1+$subTotal2+$subTotal3+$subTotal4+$subTotal5;
                 @endphp
-            <td class="isi">Rp. {{number_format($totalPerjalanan)}}
+            <td class="isi">Rp. &nbsp;&nbsp;&nbsp;&nbsp; {{number_format($totalPerjalanan)}}
             </td>
             <td class="isi"> </td>
         </tr>

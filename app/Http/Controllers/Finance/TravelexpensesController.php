@@ -97,14 +97,26 @@ class TravelexpensesController extends Controller
                     'fullday'           => $fullday,
                     'representatif'     => $representatif,
                     'hitdaily'          => $request->hitdaily[$i],
+                    'jumdaily'          => $request->jumdaily[$i],
+                    'totdaily'          => $request->totdaily[$i],
                     'hitdiklat'         => $request->hitdiklat[$i],
+                    'jumdiklat'         => $request->jumdiklat[$i],
+                    'totdiklat'         => $request->totdiklat[$i],
                     'hitfullb'          => $request->hitfullb[$i],
+                    'jumfullb'          => $request->jumfullb[$i],
+                    'totfullb'          => $request->totfullb[$i],
                     'hithalf'           => $request->hithalf[$i],
+                    'jumhalf'           => $request->jumhalf[$i],
+                    'tothalf'           => $request->tothalf[$i],
                     'hitrep'            => $request->hitrep[$i],
+                    'jumrep'            => $request->jumrep[$i],
+                    'totrep'            => $request->totrep[$i],
                     'dayshalf'          => $request->dayshalf[$i],
                     'feehalf'           => $request->feehalf[$i],
+                    'totdayshalf'       => $request->totdayshalf[$i],
                     'daysfull'          => $request->daysfull[$i],
-                    'feefull'           => $request->feefull[$i]
+                    'feefull'           => $request->feefull[$i],
+                    'totdayshalf'       => $request->totdayshalf[$i]
                 ];
                 Travelexpenses::create($dataone);
             }
@@ -117,10 +129,12 @@ class TravelexpensesController extends Controller
                         'inn_fee_1'         => $request->inn_fee_1[$i],
                         'long_stay_1'       => $request->long_stay_1[$i],
                         'isi_1'             => $request->isi_1[$i],
+                        'klaim_1'           => $request->klaim_1[$i],
                         'innname_2'         => $request->innname_2[$i],
                         'inn_fee_2'         => $request->inn_fee_2[$i],
                         'long_stay_2'       => $request->long_stay_2[$i],
                         'isi_2'             => $request->isi_2[$i],
+                        'klaim_2'           => $request->klaim_2[$i],
                         'bbm'               => $request->bbm[$i],
                         'taxy_count_from'   => $request->taxy_count_from[$i],
                         'taxy_fee_from'     => $request->taxy_fee_from[$i],
@@ -262,7 +276,7 @@ class TravelexpensesController extends Controller
             }
             DB::commit();
 
-        return redirect('/finance/ikutagging/taging/'.$id)->with('sukses','Data Berhasil Diperbaharui');
+        return redirect('/finance/travelexpenses')->with('sukses','Data Berhasil Diperbaharui');
 
     }
 
@@ -294,7 +308,7 @@ class TravelexpensesController extends Controller
 
         } else {
             return view('finance/travelexpenses.receipt',compact('petugas','data','pegawai','tujuan'));
-            // $pdf        = PDF::loadview('finance/travelexpenses.receipt',compact('petugas','data','pegawai','tujuan','tr'));
+            // $pdf        = PDF::loadview('finance/travelexpenses.receipt',compact('petugas','data','pegawai','tujuan'));
             // return $pdf->stream();
         }
         
