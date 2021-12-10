@@ -80,6 +80,7 @@
                 <li><a href="#tab-transport" data-toggle="tab">Biaya Transport</a></li>
                 <li><a href="#tab-ticket" data-toggle="tab">Tiket Pesawat</a></li>
                 <li><a href="#tab-inn" data-toggle="tab">Penginapan</a></li>
+                <li><a href="#tab-meeting" data-toggle="tab">Pertemuan</a></li>
         </ul>
         <div  class="tab-content" style="overflow: scroll">
                 @include('finance.travelexpenses.partials.employee')
@@ -132,7 +133,9 @@
                             '@else'+
                                 '<input type="checkbox" name="dailywage[]" value="Y">&nbsp;'+
                             '@endif'+  
-                            '<input type="text" name="hitdaily[]" value='+response.expen1[i].hitdaily+' readonly style="width:50%">/hr'+
+                            '<input type="number" name="hitdaily[]"  min="0" value="'+response.expen1[i].hitdaily+'" style="width: 50%;"  id="hitdaily-'+no+'"> X '+
+                            '<input type="number" name="jumdaily[]"  min="0" value="'+response.expen1[i].jumdaily+'" style="width:25%"  id="jumdaily-'+no+'" onkeyup="totdaily('+no+')">'+
+                            ' = <input type="text" name="totdaily[]"  min="0" value="'+response.expen1[i].totdaily+'" readonly style="width: 85%;" id="totdaily-'+no+'">'+
                         '</td>'+
                         '<td>'+
                         '@if ('+response.expen1[i].diklat+'=="Y")'+
@@ -140,28 +143,36 @@
                             '@else'+
                                 '<input type="checkbox" name="diklat[]" value="Y">&nbsp;'+
                             '@endif'+  
-                            '<input type="text" name="hitdiklat[]" value='+response.expen1[i].hitdiklat+' readonly style="width:50%">/hr'+
+                            '<input type="number" name="hitdiklat[]"  min="0" value="'+response.expen1[i].hitdiklat+'" style="width: 50%;"  id="hitdiklat-'+no+'"> X '+
+                            '<input type="number" name="jumdiklat[]"  min="0" value="'+response.expen1[i].jumdiklat+'" style="width:25%"  id="jumdiklat-'+no+'" onkeyup="totdiklat('+no+')">'+
+                            ' = <input type="text" name="totdiklat[]"  min="0" value="'+response.expen1[i].totdiklat+'" readonly style="width: 85%;" id="totdiklat-'+no+'">'+
                         '</td>'+            
                         '<td>@if ('+response.expen1[i].fullboard+'=="Y")'+
                                 '<input type="checkbox" name="fullboard[]" value="Y" checked>&nbsp;'+
                             '@else'+
                                 '<input type="checkbox" name="fullboard[]" value="Y">&nbsp;'+
                             '@endif'+  
-                            '<input type="text" name="hitfullb[]" value='+response.expen1[i].hitfullb+' readonly style="width:50%">/hr'+
+                            '<input type="number" name="hitfullb[]"   min="0" value="'+response.expen1[i].hitfullb+'" style="width: 50%;"  id="hitfullb-'+no+'"> X '+
+                            '<input type="number" name="jumfullb[]"   min="0" value="'+response.expen1[i].jumfullb+'" style="width:25%"  id="jumfullb-'+no+'" onkeyup="totfullb('+no+')">'+
+                            ' = <input type="text" name="totfullb[]"  min="0" value="'+response.expen1[i].totfullb+'" readonly style="width: 85%;" id="totfullb-'+no+'">'+
                         '</td>'+             
                         '<td>@if ('+response.expen1[i].fullday+'=="Y")'+
                                 '<input type="checkbox" name="fullday[]" value="Y" checked>&nbsp;'+
                             '@else'+
                                 '<input type="checkbox" name="fullday[]" value="Y">&nbsp;'+
                             '@endif'+  
-                            '<input type="text" name="hithalf[]" value='+response.expen1[i].hithalf+' readonly style="width:50%">/hr'+
+                            '<input type="number" name="hithalf[]" value="'+response.expen1[i].hithalf+'"  style="width: 50%;"  id="hithalf-'+no+'"> X '+
+                            '<input type="number" name="jumhalf[]"  min="0" value="'+response.expen1[i].jumhalf+'"  style="width:25%"  id="jumhalf-'+no+'" onkeyup="tothalf('+no+')">'+
+                            ' = <input type="text" name="tothalf[]"  min="0" value="'+response.expen1[i].tothalf+'"  readonly style="width: 85%;" id="tothalf-'+no+'">'+
                         '</td>'+
                         '<td>@if ('+response.expen1[i].representatif+'=="Y")'+
                                 '<input type="checkbox" name="representatif[]" value="Y" checked>&nbsp;'+
                             '@else'+
                                 '<input type="checkbox" name="representatif[]" value="Y">&nbsp;'+
                             '@endif'+  
-                            '<input type="text" name="hitrep[]" value='+response.expen1[i].hitrep+' readonly style="width:50%">/hr'+
+                            '<input type="number" name="hitrep[]"   min="0" value="'+response.expen1[i].hitrep+'" style="width: 50%;"  id="hitrep-'+no+'"> X '+
+                            '<input type="number" name="jumrep[]"   min="0" value="'+response.expen1[i].jumrep+'" style="width:25%"  id="jumrep-'+no+'" onkeyup="totrep('+no+')">'+
+                            ' = <input type="text" name="totrep[]"  min="0" value="'+response.expen1[i].totrep+'" readonly style="width: 85%;" id="totrep-'+no+'">'+
                         '</td>'+
                     '</tr>';
                 }
@@ -179,15 +190,15 @@
                             '<input type="hidden" name="outst_employee_id[]" class="outid" value='+response.expen2[i].outst_employee_id+'>'+
                         '</td>'+
                         '<td><input type="text" name="innname_1[]" value="'+response.expen2[i].innname_1+'"/></td>'+
-                        '<td><input type="number" min="0" value="'+response.expen2[i].inn_fee_1+'" name="inn_fee_1[]" /></td>'+
-                        '<td><input type="number" min="0" value="'+response.expen2[i].long_stay_1+'" name="long_stay_1[]" /></td>'+
-                        '<td><input type="number" min="0" value="'+response.expen2[i].isi_1+'" name="isi_1[]" style="width: 70%"/>org'+
-                        '</td>'+
-                        '<td><input type="text" name="innname_2[]"  value="'+response.expen2[i].innname_2+'"/></td>'+
-                        '<td><input type="number" min="0" value="'+response.expen2[i].inn_fee_2+'" name="inn_fee_2[]" /></td>'+
-                        '<td><input type="number" min="0" value="'+response.expen2[i].long_stay_2+'" name="long_stay_2[]" /></td>'+
-                        '<td><input type="number" min="0" value="'+response.expen2[i].isi_2+'" name="isi_2[]" style="width: 70%"/>org'+
-                        '</td>'+   
+                        '<td><input type="number" min="0" value="'+response.expen2[i].inn_fee_1+'" name="inn_fee_1[]" id="innfee1-'+no+'"/></td>'+
+                        '<td><input type="number" min="0" value="'+response.expen2[i].long_stay_1+'" name="long_stay_1[]" id="longstay1-'+no+'" style="width: 50px"/></td>' +
+                        '<td><input type="number" min="0" value="'+response.expen2[i].isi_1+'" name="isi_1[]" style="width: 50px"  id="isi1-'+no+'" onkeyup="longstay1('+no+')"/>org</td>'+
+                        '<td><input type="number" min="0" value="'+response.expen2[i].klaim_1+'" name="klaim_1[]"  id="klaim1-'+no+'"/></td>'+
+                        '<td><input type="text" name="innname_2[]" value="'+response.expen2[i].innname_2+'"/></td>'+
+                        '<td><input type="number" min="0" value="'+response.expen2[i].inn_fee_2+'" name="inn_fee_2[]" id="innfee2-'+no+'"/></td>'+
+                        '<td><input type="number" min="0" value="'+response.expen2[i].long_stay_2+'" name="long_stay_2[]" id="longstay2-'+no+'" style="width: 50px"/></td>'+
+                        '<td><input type="number" min="0" value="'+response.expen2[i].isi_2+'" name="isi_2[]" style="width: 50px" id="isi2-'+no+'" onkeyup="longstay2('+no+')"/>org </td>'+ 
+                        '<td><input type="number" min="0" value="'+response.expen2[i].klaim_2+'" name="klaim_2[]" id="klaim2-'+no+'"/></td>'+
                     '</tr>';
                 }
                 $("#nginap").html(nginap);
@@ -296,15 +307,81 @@
                         '<td style="text-align: center;">'+no+'</td>'+
                         '<td>'+response.expen1[i].name+
                         '</td>'+
-                        '<td><input type="number" min="0" name="dayshalf[]" value="'+response.expen1[i].dayshalf+'"/></td>'+       
-                        '<td><input type="number" min="0" name="feehalf[]" value="'+response.expen1[i].feehalf+'"/></td>'+                   
-                        '<td><input type="number" min="0" name="daysfull[]" value="'+response.expen1[i].daysfull+'"/></td>'+  
-                        '<td><input type="number" min="0" name="feefull[]" value="'+response.expen1[i].feefull+'" /></td>'+                 
+                        '<td><input type="number" min="0" value="'+response.expen1[i].dayshalf+'" name="dayshalf[]" style="width:50px;" id="dayshalf-'+no+'"/></td>'+       
+                        '<td><input type="number" min="0" value="'+response.expen1[i].feehalf+'" name="feehalf[]" id="feehalf-'+no+'" onkeyup="feehalf('+no+')"/></td>'+    
+                        '<td><input type="number" min="0" value="'+response.expen1[i].totdayshalf+'" name="totdayshalf[]" readonly id="totdayshalf-'+no+'"/></td>'+                   
+                        '<td><input type="number" min="0" value="'+response.expen1[i].daysfull+'" name="daysfull[]" style="width:50px;" id="daysfull-'+no+'"/></td>'+  
+                        '<td><input type="number" min="0" value="'+response.expen1[i].feefull+'" name="feefull[]" id="feefull-'+no+'" onkeyup="feefull('+no+')"/></td>'+   
+                        '<td><input type="number" min="0" value="'+response.expen1[i].totdaysfull+'" name="totdaysfull[]" readonly id="totdaysfull-'+no+'"/></td>'+  
                     '</tr>';
                 }
                 $("#meeting").html(meeting);
-            }
-        );
-       }
+            });
+        }
+        function totdaily(i) {
+            var a = $("#hitdaily-"+i).val();
+            var b =  $("#jumdaily-"+i).val();
+            var c = a * b;
+            var hasil = parseFloat(c).toFixed(2);
+            $("#totdaily-"+i).val(hasil);
+        }
+        function totdiklat(i) {
+            var a = $("#hitdiklat-"+i).val();
+            var b =  $("#jumdiklat-"+i).val();
+            var c = a * b;
+            var hasil = parseFloat(c).toFixed(2);
+            $("#totdiklat-"+i).val(hasil);
+        }
+        function totfullb(i) {
+            var a = $("#hitfullb-"+i).val();
+            var b =  $("#jumfullb-"+i).val();
+            var c = a * b;
+            var hasil = parseFloat(c).toFixed(2);
+            $("#totfullb-"+i).val(hasil);
+        }
+        function tothalf(i) {
+            var a = $("#hithalf-"+i).val();
+            var b =  $("#jumhalf-"+i).val();
+            var c = a * b;
+            var hasil = parseFloat(c).toFixed(2);
+            $("#tothalf-"+i).val(hasil);
+        }
+        function totrep(i) {
+            var a = $("#hitrep-"+i).val();
+            var b =  $("#jumrep-"+i).val();
+            var c = a * b;
+            var hasil = parseFloat(c).toFixed(2);
+            $("#totrep-"+i).val(hasil);
+        }
+        function longstay1(i) {
+            var a = $("#longstay1-"+i).val();
+            var b =  $("#isi1-"+i).val();
+            var c = $("#innfee1-"+i).val();
+            var d = ((c*a)/b);
+            var hasil = parseFloat(d).toFixed(2);
+            $("#klaim1-"+i).val(hasil);
+        }
+        function longstay2(i) {
+            var a = $("#longstay2-"+i).val();
+            var b =  $("#isi2-"+i).val();
+            var c = $("#innfee2-"+i).val();
+            var d = ((c*a)/b);
+            var hasil = parseFloat(d).toFixed(2);
+            $("#klaim2-"+i).val(hasil);
+        }
+        function feehalf(i) {
+            var a = $("#dayshalf-"+i).val();
+            var b =  $("#feehalf-"+i).val();
+            var c = a * b;
+            var hasil = parseFloat(c).toFixed(2);
+            $("#totdayshalf-"+i).val(hasil);
+        }
+        function feefull(i) {
+            var a = $("#daysfull-"+i).val();
+            var b =  $("#feefull-"+i).val();
+            var c = a * b;
+            var hasil = parseFloat(c).toFixed(2);
+            $("#totdaysfull-"+i).val(hasil);
+        }
    </script>
 @endsection

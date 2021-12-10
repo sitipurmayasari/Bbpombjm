@@ -370,9 +370,8 @@
                     '</tr>';
                 }
                 $("#meeting").html(meeting);
-            }
-        );
-       }
+            });
+        }
         function totdaily(i) {
             var a = $("#hitdaily-"+i).val();
             var b =  $("#jumdaily-"+i).val();

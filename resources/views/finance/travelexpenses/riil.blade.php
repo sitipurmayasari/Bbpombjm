@@ -216,6 +216,9 @@
         </thead>
         <tbody>
             <tr>
+                @php
+                     $nilai = $injectQuery->getDetail($item->id)
+                @endphp
                 <td style="text-align: center;" class="isi">1</td>
                 <td class="isi">
                     Biaya Transport : <br>
@@ -255,7 +258,6 @@
                     Rp. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                     @php
                         $bbm = 0;
-                        $nilai = $injectQuery->getDetail($item->id)
                     @endphp
                     @if ($nilai->bbm != '0')
                         @php
@@ -273,28 +275,24 @@
             <tr>
                 @php
                     $jum = 0;
+                    $biaya = $nilai->inn_fee_1/$nilai->isi_1;
                 @endphp
                 <td style="text-align: center;" class="isi">2</td>
                 <td class="isi">
                     Biaya Penginapan : 
-                    @php
-                        $nilai = $injectQuery->getDetail($item->id);
-                        $long = $nilai->long_stay_1;
-                        $fee = $nilai->inn_fee_1;
-                    @endphp
                     @if ($nilai->innname_1 != null)
-                        {{$long}} hari &nbsp; x &nbsp; Rp. &nbsp; &nbsp; &nbsp; &nbsp; {{number_format($fee)}}
+                        {{$nilai->long_stay_1}} hari &nbsp; x &nbsp; Rp. &nbsp; &nbsp; &nbsp; &nbsp; {{number_format($biaya)}}
                     @else
                         {{'-'}} hari &nbsp; x &nbsp; Rp. &nbsp; &nbsp; &nbsp; &nbsp; {{'-'}}
                     @endif
-                    hari &nbsp; x &nbsp;
                 </td>
                 <td class="isi">
                     Rp. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                    @php
-                        $jum = $long*$fee;
-                    @endphp
+                    
                     @if ($nilai->innname_1 != null)
+                        @php
+                            $jum = $nilai->klaim_1;
+                        @endphp
                         {{number_format($jum)}}
                     @else
                         {{'-'}}

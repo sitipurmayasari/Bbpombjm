@@ -267,28 +267,19 @@
                 </td>
                 <td class="isi" style="text-align: center">
                     @if ($hotel->innname_1 != null)
-                        @php
-                            $lama = $hotel->long_stay_1;     
-                        @endphp
-                        {{$lama}} Hari
+                        {{$hotel->long_stay_1}} Hari
                     @endif
                     &nbsp;
                 </td>
                 <td class="isi" style="text-align: center">
                     @if ($hotel->innname_1 != null)
-                        @php
-                            $harga = $hotel->inn_fee_1;
-                        @endphp
-                        {{number_format($harga)}}
+                        {{number_format($hotel->inn_fee_1)}}
                     @endif
                     &nbsp;
                 </td>
                 <td class="isi" style="text-align: center">
-                    @php
-                        $total1 = $lama*$harga
-                    @endphp
-                    @if ($total1 !='0')
-                        {{number_format($total1)}}
+                    @if ($hotel->klaim_1 !='0')
+                        {{number_format($hotel->klaim_1)}}
                     @endif
                     &nbsp;
                 </td>
@@ -326,28 +317,19 @@
                 </td>
                 <td class="isi" style="text-align: center">
                     @if ($hot->innname_2 != null)
-                        @php
-                            $lamadua = $hot->long_stay_2;     
-                        @endphp
-                        {{$lamadua}} Hari
+                        {{$hot->long_stay_2}} Hari
                     @endif
                     &nbsp;
                 </td>
                 <td class="isi" style="text-align: center">
                     @if ($hot->innname_2 != null)
-                        @php
-                            $hargadua = $hot->inn_fee_2;
-                        @endphp
-                        {{number_format($hargadua)}}
+                        {{number_format($hot->inn_fee_2)}}
                     @endif
                     &nbsp;
                 </td>
                 <td class="isi" style="text-align: center">
-                    @php
-                        $total2 = $lamadua*$hargadua
-                    @endphp
-                    @if ($total2 !='0')
-                        {{number_format($total2)}}
+                    @if ($hot->klaim_2 !='0')
+                        {{number_format($hot->klaim_2)}}
                     @endif
                     &nbsp;
                 </td>
