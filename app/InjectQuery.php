@@ -61,50 +61,49 @@ class InjectQuery
                                 ->LeftJoin('outst_employee','outstation.id','=','outst_employee.outstation_id')
                                 ->where('outst_employee.id',$id)->first();
 
-        $hari = $days->hari;
-
-        $daily          = $nilai->dailywage='Y' ? $nilai->hitdaily : '0';
-        $diklat         = $nilai->diklat='Y' ? $nilai->hitdiklat : '0';
-        $fullboard      = $nilai->fullboard='Y' ? $nilai->hitfullb : '0';
-        $fullday        = $nilai->fullday='Y' ? $nilai->hithalf : '0';
-        $representatif  = $nilai->representatif='Y' ? $nilai->hitrep : '0';
-
-        $meetDF = $nilai->daysfull;
-        $meetDH = $nilai->dayshalf;
-        $meetFF = $nilai->feefull;
-        $meetFH = $nilai->feehalf;
-
-        $innb1 = $nilai1->inn_fee_1;
-        $innlong1 = $nilai1->long_stay_1;
-        $innb2 = $nilai1->inn_fee_2;
-        $innlong2 = $nilai1->long_stay_2;
-        $taxicf = $nilai1->taxy_count_from;
-        $taxict = $nilai1->taxy_count_to;
-        $taxiff = $nilai1->taxy_fee_from;
-        $taxift = $nilai1->taxy_fee_to;
-
-        $Uharian        = $hari*$daily;
-        $Udiklat        = $hari*$diklat;
-        $Ufullb         = $hari*$fullboard;
-        $Ufulld         = $hari*$fullday;
-        $reps           = $hari*$representatif;
-        $TemuFullboard  = $meetDF*$meetFF;
-        $temuFullday    = $meetDH*$meetFH;
+        // transport
         $bbm            = $nilai1->bbm;
+
         $plane1         = $nilai1->planefee1;
         $plane2         = $nilai1->planefee2;
         $plane3         = $nilai1->planefee3;
-        $inn1           = $innb1*$innlong1;
-        $inn2           = $innb2*$innlong2;
+        $planeret       = $nilai1->planereturnfee;
+        
+        $taxicf         = $nilai1->taxy_count_from;
+        $taxict         = $nilai1->taxy_count_to;
+        $taxiff         = $nilai1->taxy_fee_from;
+        $taxift         = $nilai1->taxy_fee_to;
         $taxifrom       = $taxicf*$taxiff;
-        $taxito         = $taxict*$taxift;
+        $taxides        = $taxict*$taxift;
 
-        $harian     = $Uharian+$Udiklat+$Ufullb+$Ufulld+$reps;
-        $pertemuan  = $TemuFullboard+$temuFullday;
-        $perjalanan = $bbm+$plane1+$plane2+$plane3+$taxifrom+$taxito;
+        $transport      = $bbm+$plane1+$plane2+$plane3+$planeret+$taxifrom+$taxides;
+      
+        // harian
+        $daily          = $nilai->dailywage='Y' ? $nilai->totdaily : '0';
+        $diklat         = $nilai->diklat='Y' ? $nilai->totdiklat : '0';
+        $fullboard      = $nilai->fullboard='Y' ? $nilai->totfullb : '0';
+        $fullday        = $nilai->fullday='Y' ? $nilai->tothalf : '0';
+
+        $harian = $daily+$diklat+$fullboard+$fullday;
+      
+        // Pertemuan
+        $meethalf       = $nilai->totdayshalf;
+        $meetfull       = $nilai->totdaysfull;
+        
+        $pertemuan = $meethalf+$meetfull;
+
+        // penginapan
+        $inn1 = $nilai1->klaim_1;
+        $inn2 = $nilai1->klaim_2;
+
         $penginapan = $inn1+$inn2;
 
-        $jumlah = $harian+$pertemuan+$perjalanan+$penginapan;
+        // eselon
+        $eselon  = $nilai->representatif='Y' ? $nilai->totrep : '0';
+
+      
+
+        $jumlah = $transport+$harian+$pertemuan+$penginapan+$eselon;
         
         return $jumlah;
 
