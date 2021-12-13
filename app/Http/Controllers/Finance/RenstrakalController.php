@@ -116,4 +116,12 @@ class RenstrakalController extends Controller
         return redirect('/finance/renstrakal')->with('sukses','Data Diperbaharui');
     }
 
+    public function delete($id)
+    {
+        $data = Renstrakal::find($id);
+        $data->delete();
+        DB::table('Renstrakal_detail')->where('renstrakal_id', $id)->delete();
+        return redirect('/finance/renstrakal')->with('sukses','Data Terhapus');
+    }
+
 }

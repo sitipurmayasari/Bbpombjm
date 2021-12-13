@@ -134,7 +134,7 @@
 						</li>
 						<li class=" ">
 							<a href="/calendars">
-								<i class="menu-icon fa fa-user"></i>
+								<i class="menu-icon fa fa-calendar"></i>
 								<span class="menu-text"> Kalender Agenda </span>
 							</a>
 							<b class="arrow"></b>

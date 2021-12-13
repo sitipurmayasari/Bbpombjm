@@ -56,6 +56,10 @@
                         <a href="/finance/renstrakal/editmeta/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
+                        <a href="#" class="btn btn-danger delete"
+                            r-name="{{$row->filename}}" 
+                            r-id="{{$row->id}}">
+                            <i class="glyphicon glyphicon-trash"></i></a>
                     </td>
                 </tr>
               
@@ -64,4 +68,28 @@
         </table>
     </div>
 {{$data->appends(Request::all())->links()}}
+@endsection
+@section('footer')
+<script>
+    $().ready( function () {
+        $(".delete").click(function() {
+                var id = $(this).attr('r-id');
+                var name = $(this).attr('r-name');
+                Swal.fire({
+                title: 'Ingin Menghapus?',
+                text: "Yakin ingin menghapus data  : "+name+" ini ?" ,
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, hapus !'
+            }).then((result) => {
+                console.log(result);
+                if (result.value) {
+                    window.location = "/finance/renstrakal/delete/"+id;
+                }
+            });
+        });
+    } );
+</script>
 @endsection

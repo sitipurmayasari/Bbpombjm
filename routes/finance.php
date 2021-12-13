@@ -198,6 +198,8 @@
   Route::post('finance/renstranas/update/{id}','Finance\RenstranasController@update')->name('renstranas.update');
   Route::get('finance/renstranas/editmeta/{id}','Finance\RenstranasController@editmeta')->name('renstranas.editmeta');
   Route::post('finance/renstranas/updatemeta/{id}','Finance\RenstranasController@updatemeta')->name('renstranas.updatemeta');
+  Route::get('finance/renstranas/delete/{id}','Finance\RenstranasController@delete')->name('renstranas.delete');
+
 
   //Route untuk renstrakal
   Route::get('/finance/renstrakal/create','Finance\RenstrakalController@create')->name('renstrakal.create');
@@ -208,6 +210,7 @@
   Route::post('finance/renstrakal/update/{id}','Finance\RenstrakalController@update')->name('renstrakal.update');
   Route::get('finance/renstrakal/editmeta/{id}','Finance\RenstrakalController@editmeta')->name('renstrakal.editmeta');
   Route::post('finance/renstrakal/updatemeta/{id}','Finance\RenstrakalController@updatemeta')->name('renstrakal.updatemeta');
+  Route::get('finance/renstrakal/delete/{id}','Finance\RenstrakalController@delete')->name('renstrakal.delete');
 
 
    //Route untuk laporan Renstra
