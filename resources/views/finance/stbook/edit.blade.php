@@ -2,7 +2,7 @@
 @section('breadcrumb')
     <li>Surat Tugas</li>
     <li><a href="/finance/stbook">Nomor ST & SPPD</a></li>
-    <li>Tambah Baru</li>
+    <li>Ubah data</li>
 @endsection
 @section('content')
 @include('layouts.validasi')
@@ -19,7 +19,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-info">
-            <div class="panel-heading"><h3 class="panel-title">Input Nomor ST & SPPD</h3></div>
+            <div class="panel-heading"><h3 class="panel-title">Ubah Nomor ST & SPPD</h3></div>
             <div class="panel-body">
                 <fieldset>
                     <div class="form-group">
@@ -105,7 +105,8 @@
                                 <td colspan="3">
                                     <button type="button" class="form-control btn-default" onclick="addBarisNew()">
                                         <i class="glyphicon glyphicon-plus"></i>TAMBAH BARIS BARU</button>
-                                    <input type="hidden" id="countRow" value="0">
+                                    <input type="hidden" id="countRow" value="{{$jum->jumlah}}">
+                                    <input type="hidden" id="tambahan" value="0">
                                 </td>
                             </tr>
                             
@@ -137,12 +138,15 @@
         var last_baris = $("#countRow").val();
         var new_baris = parseInt(last_baris)+1;
 
+        var tambahan = $("#tambahan").val();
+        var plusplus = parseInt(tambahan)+1;
+
         $.get(
             "{{route('stbook.getnosppdnext') }}",
             {
                 date:date,
                 divisi_id:divisi_id,
-                new_baris:new_baris
+                plusplus:plusplus
             },
             function(response) {
                  $isi =  '<tr id="cell-'+new_baris+'">'+
@@ -154,6 +158,7 @@
                         '</tr>';
                 $("#myTable").find('tbody').append($isi);
                 $("#countRow").val(new_baris);
+                $("#tambahan").val(plusplus);
 
             }
         );

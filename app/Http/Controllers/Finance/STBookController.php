@@ -69,22 +69,39 @@ class STBookController extends Controller
     public function update(Request $request, $id)
     {
       $stbook_id = $id;
-      DB::beginTransaction();  
-        //---------------sppd----------------------
-        
-          for ($i = 0; $i < count($request->input('nomor_sppd')); $i++){
+      $isi = Stbook_sppd::where('stbook_id',$id);
+      $isi->delete();
+
+      DB::beginTransaction(); 
+        $stbook = Stbook::create($request->all());
+        $stbook_id = $stbook->id;
+        for ($i = 0; $i < count($request->input('nomor_sppd')); $i++){
             $data = [
-              'stbook_id' => $stbook_id,
-              'nomor_sppd'=> $request->nomor_sppd[$i],
-              'created_at' => Carbon::now()
+                'stbook_id' => $stbook_id,
+                'nomor_sppd'=> $request->nomor_sppd[$i]
             ];
-
-            DB::table('stbook_sppd')->updateOrInsert([
-              'nomor_sppd'=>$request->nomor_sppd
-            ],$data);
-          }
-
+            Stbook_sppd::create($data);
+        }
       DB::commit();
+
+      // DB::beginTransaction();  
+      
+      //   //---------------sppd----------------------
+        
+      //     for ($i = 0; $i < count($request->input('nomor_sppd')); $i++){
+      //       $data = [
+      //         'stbook_id' => $stbook_id,
+      //         'nomor_sppd'=> $request->nomor_sppd[$i],
+      //         'created_at' => Carbon::now(),
+      //         'updated_at' => Carbon::now()
+      //       ];
+
+      //       DB::table('stbook_sppd')->updateOrInsert([
+      //         'nomor_sppd'=>$request->nomor_sppd
+      //       ],$data);
+      //     }
+
+      // DB::commit();
 
       return redirect('/finance/stbook')->with('sukses','Data Diperbaharui');
     }
@@ -126,11 +143,14 @@ class STBookController extends Controller
 
     function getnosppd(Request $request){
 
+        $baris = $request->last_baris;
         $sppd = Stbook_sppd::orderBy('id','desc')->whereYear('created_at',date('Y'))->get(); 
         $bidang = Divisi::select('kode_sppd')->where('id',$request->divisi_id)->first();
+        $counting = Stbook_sppd::SelectRaw("COUNT(*)AS jum ")->first();
         $first = "0001";
         if($sppd->count()>0){
-          $first = $sppd->first()->id+1;
+          $first = $counting->jum+$baris;
+            // $first = $counting->jum+1;
             if($first < 10){
               $first = "000".$first;
             }else if($first < 100){
@@ -149,12 +169,14 @@ class STBookController extends Controller
 
     function getnosppdnext(Request $request){
 
-        $baris = $request->new_baris;
+        $baris = $request->plusplus;
         $sppd = Stbook_sppd::orderBy('id','desc')->whereYear('created_at',date('Y'))->get(); 
         $bidang = Divisi::select('kode_sppd')->where('id',$request->divisi_id)->first();
-        $first = "000".+$baris;
+        $counting = Stbook_sppd::SelectRaw("COUNT(*)AS jum")->first();
+        $first = "0001";
         if($sppd->count()>0){
-          $first = $sppd->first()->id+$baris;
+          // $first = $sppd->first()->id+$baris;
+          $first = $counting->jum+$baris;
             if($first < 10){
               $first = "000".$first;
             }else if($first < 100){

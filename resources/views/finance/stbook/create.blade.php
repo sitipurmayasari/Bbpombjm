@@ -123,6 +123,7 @@
     function getnomor(){
            var date = $("#st_date").val();
            var divisi_id = $("#div").val();
+           var last_baris = $("#countRow").val();
 
         $.get(
             "{{route('stbook.getnost') }}",
@@ -139,7 +140,8 @@
             "{{route('stbook.getnosppd') }}",
             {
                 date:date,
-                divisi_id:divisi_id
+                divisi_id:divisi_id,
+                last_baris:last_baris
             },
             function(response) {
                 $("#nosppd1").val(response.no_sppd)
@@ -152,13 +154,14 @@
         var divisi_id = $("#div").val();
         var last_baris = $("#countRow").val();
         var new_baris = parseInt(last_baris)+1;
+        var plusplus = new_baris;
 
         $.get(
             "{{route('stbook.getnosppdnext') }}",
             {
                 date:date,
                 divisi_id:divisi_id,
-                new_baris:new_baris
+                plusplus:plusplus
             },
             function(response) {
                  $isi =  '<tr id="cell-'+new_baris+'">'+
