@@ -120,7 +120,7 @@ class RenstrakalController extends Controller
     {
         $data = Renstrakal::find($id);
         $data->delete();
-        DB::table('Renstrakal_detail')->where('renstrakal_id', $id)->delete();
+        DB::table('renstrakal_detail')->where('renstrakal_id', $id)->delete();
         return redirect('/finance/renstrakal')->with('sukses','Data Terhapus');
     }
 

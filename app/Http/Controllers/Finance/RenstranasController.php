@@ -118,7 +118,7 @@ class RenstranasController extends Controller
     {
         $data = Renstranas::find($id);
         $data->delete();
-        DB::table('Renstranas_detail')->where('renstranas_id', $id)->delete();
+        DB::table('renstranas_detail')->where('renstranas_id', $id)->delete();
         return redirect('/finance/renstranas')->with('sukses','Data Terhapus');
     }
 
