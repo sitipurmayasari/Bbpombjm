@@ -14,25 +14,27 @@
         @page {
             size: A4;
             font-family: 'Times New Roman';
-            font-size: 8;
+            font-size: 7;
             font-style: italic;
             margin-top: 30px;
             margin-bottom: 15px;
-            line-height: 1;
+            /* line-height: 1; */
+            line-height: normal;
 
         }
 
         .kepala {
             text-align: left;
+            font-family: 'Times New Roman';
             font-style: italic;
-            font-size: 8;
+            /* font-size: 7; */
             border-collapse: collapse;
             border: none;
             line-height: 1;
 
         }
         .isi{
-            font-size: 7;
+            font-size: 6;
             font-family: 'Times New Roman';
             border: 1px solid black;
             vertical-align : top;
@@ -46,7 +48,7 @@
             text-align: center;
             margin-left: 120px;
             margin-right: 120px;
-            font-size: 12;
+            font-size: 11;
             padding-top: 0;
             padding-bottom: 0; 
         }
@@ -76,12 +78,12 @@
         $totalPerjalanan = 0;
     @endphp
 
-    <table style="width: 100%; padding" class="kepala">
+    <table class="kepala" style="width: 100%">
         <tr>
-            <td style="vertical-align: bottom; text-align: center;"  colspan="2">
-                <img src="{{asset('images/BBRI.jpg')}}" style="height:50px">
+            <td style="vertical-align: top; text-align: center;" style="width: 55%"  colspan="2">
+                <img src="{{asset('images/BBRI.jpg')}}" style="height:50px;">
             </td>
-            <td colspan="2" style=" font-size: 6;">
+            <td colspan="2" style="font-size: 4; width: 45%">
                 Lampiran VI (4 dari 4) <br>
                 Peraturan Menteri Keuangan tentang Perjalanan Dinas <br>
                 Dalam Negeri bagi Pejabat Negara Pegawai Negeri Sipil <br>
@@ -91,8 +93,8 @@
         </tr>
         <tr>
             <td colspan="2" style="text-align: center;  font-size: 10; font-style: normal;">BALAI BESAR PENGAWAS OBAT DAN MAKANAN</td>
-            <td style="width: 18%">Akun</td>
-            <td style="width: 25%">: {{$item->out->pok->sub->komponen->code}} / {{$item->out->pok->akun->code}} )</td>
+            <td >Akun</td>
+            <td >: {{$item->out->pok->sub->komponen->code}} / {{$item->out->pok->akun->code}} )</td>
         </tr>
         <tr>
             <td colspan="2" style="text-align: center;  font-size: 10;" > Di Banjarmasin</td>
@@ -108,13 +110,15 @@
             <td>Tahun Anggaran</td>
             <td>: {{$item->out->pok->pok->year}}</td>
         </tr>
+    </table>
+    <table class="kepala" style="width: 100%">
         <tr>
             <td style="width: 20%" >Sudah Terima dari</td>
-            <td colspan="3">: Pejabat Pembuat komitmen Balai Besar Pengawas Obat dan Makanan di Banjarmasin</td>
+            <td style="width: 80%">: Pejabat Pembuat komitmen Balai Besar Pengawas Obat dan Makanan di Banjarmasin</td>
         </tr>
         <tr>
             <td>Uang Sebesar</td>
-            <td colspan="3">: <b>Rp.  &nbsp;&nbsp;&nbsp; 
+            <td>: <b>Rp.  &nbsp;&nbsp;&nbsp; 
                 @php
                     $total = $injectQuery->totalHarga($item->id)
                 @endphp
@@ -123,9 +127,11 @@
         </tr>
         <tr>
             <td>Untuk Pembayaran</td>
-            <td colspan="3">: <b>{{$data->st->purpose}}</b></td>
+            <td>: <b>{{$data->st->purpose}}</b></td>
         </tr>
-   </table>
+    </table>
+    
+    
    <br>
    <table style="width: 100%; padding" class="kepala">
         <tr>
@@ -169,12 +175,11 @@
         </tr>
         <tr>
             <td>Terbilang</td>
-            <td style="text-transform: capitalize;">: 
-                <b>{{terbilang($total)}}</b>
+            <td colspan="4" style="text-transform: capitalize;">: 
+                <b>
+                    {{terbilang($total)}}
+                </b>
             </td>
-            <td></td>
-            <td></td>
-            <td></td>
         </tr>
         <tr>
             <td colspan="2" style="text-align: center;" > Yang Menerima : <br><br><br></td>
@@ -195,13 +200,18 @@
             </td>
         </tr>
         <tr>
-            <td colspan="2" style="text-align: center; vertical-align:bottom;" > <u>{{$item->pegawai->name}}</u>
+            <td colspan="2" style="text-align: center; vertical-align:top;" > 
+                <u>{{$item->pegawai->name}}</u>
+                @if ($item->pegawai->status == 'PNS')
+                <br> {{$item->pegawai->no_pegawai}}
+                @endif
+            </td>
             <td></td>
-            <td >Petugas <br></td>
+            <td style="vertical-align:top;">Petugas <br></td>
             <td>: {{$no++}} <br></td>
         </tr>
    </table>
-   <hr style="border:1px solid black;">
+   <hr style="border:0.5px solid black; margin: 7px;">
    <table style="width: 100%; text-align:center;" class="kepala">
         <tr>
             <td style="width:38%"></td>
@@ -232,7 +242,7 @@
             </td>
         </tr>
    </table>
-   <hr style="border:1px solid black;">
+   <hr style="border:0.5px solid black; margin: 7px;">
    <p style="font-size: 10; text-align:center;"><b>RINCIAN BIAYA PERJALANAN DINAS</b></p>
    <table class="isi" style="width: 100%">
     <thead>
@@ -1080,7 +1090,7 @@
         </td>
     </tr>
    </table>
-   <hr style="border:1px solid black;">
+   <hr style="border:0.5px solid black; margin: 7px;">
    <p style="font-size: 10; text-align:center;"><b>PERHITUNGAN SPPD RAMPUNG</b></p>
    <table style="width: 100%;" class="kepala">
         <tr>
@@ -1124,6 +1134,7 @@
             </td>
         </tr>
    </table>
+   <br>
 </body>
 
 @endforeach
