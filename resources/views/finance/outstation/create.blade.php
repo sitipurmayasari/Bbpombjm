@@ -37,7 +37,7 @@
                         for="form-field-1"> Substansi
                         </label>
                         <div class="col-sm-8"> 
-                            <select name="divisi_id" class="col-xs-10 col-sm-10 required select2" required id="div" onchange="getnomorst()">
+                            <select name="divisi_id" class="col-xs-10 col-sm-10 required select2" required id="divisi_id" onchange="getnomorst()">
                                 <option value="">Pilih Substansi</option>
                                 @foreach ($div as $item)
                                     <option value="{{$item->id}}">{{$item->nama}}</option>
@@ -289,7 +289,7 @@
 @section('footer')
    <script>
         function getnomorst(){
-            var divisi_id = $("#div").val();
+            var divisi_id = $("#divisi_id").val();
 
             $.get(
                 "{{route('outstation.getnomorst') }}",

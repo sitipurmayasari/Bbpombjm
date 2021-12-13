@@ -18,8 +18,8 @@ use App\Budget;
 use App\Outst_employee;
 use App\Outst_destiny;
 use App\Pejabat;
-use App\STbook;
-use App\STbook_sppd;
+use App\Stbook;
+use App\Stbook_sppd;
 use PDF;
 use DateTime;
 use Carbon\Carbon;
@@ -263,19 +263,18 @@ class OutstationController extends Controller
 
     public function getnomorst(Request $request)
     {
-        $nost = STbook::WhereRaw('stbook_number NOT IN ("select number from outstation")')
+        $nost = Stbook::WhereRaw('stbook_number NOT IN ("select number from outstation")')
                         ->where('divisi_id',$request->divisi_id)
                         ->get();
         return response()->json([ 
-            'success' => true,
-            'nost' => $nost
-          ],200
-        );
+          'success' => true,
+          'nost' => $nost
+        ],200);
     }
     
     public function getnomorsppd(Request $request)
     {
-        $nosppd = STbook_sppd::SelectRaw('stbook_sppd.*')
+        $nosppd = Stbook_sppd::SelectRaw('stbook_sppd.*')
                               ->LeftJoin('stbook','stbook.id','=','stbook_sppd.stbook_id')
                               ->WhereRaw('stbook_sppd.nomor_sppd NOT IN ("select no_sppd from outst_employee")')
                               ->where('stbook.stbook_number',$request->stbook_number)
@@ -283,8 +282,7 @@ class OutstationController extends Controller
         return response()->json([ 
             'success' => true,
             'nosppd' => $nosppd
-          ],200
-        );
+          ],200);
     }
 
 }
