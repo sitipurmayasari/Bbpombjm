@@ -73,8 +73,6 @@ class STBookController extends Controller
       $isi->delete();
 
       DB::beginTransaction(); 
-        $stbook = Stbook::create($request->all());
-        $stbook_id = $stbook->id;
         for ($i = 0; $i < count($request->input('nomor_sppd')); $i++){
             $data = [
                 'stbook_id' => $stbook_id,
