@@ -19,7 +19,7 @@
                         <br>
                         <div class="form-group">
                             <label class="col-sm-2 control-label no-padding-right" 
-                            for="form-field-1">  Kode Kegiatan *
+                            for="form-field-1">  Nama Kegiatan *
                             </label>
                             <div class="col-sm-8">
                                 <input type="text" name="nama" class="col-xs-10 col-sm-10" />
