@@ -6,8 +6,8 @@
                         <table id="myTable" class="table table-bordered table-hover scrollit">
                             <thead>
                                 <tr>
-                                    <th style="text-align: center;" rowspan="2">NO</th>
-                                    <th class="text-center" rowspan="2">Nama Pegawai</th>
+                                    <th style="text-align: center;" rowspan="2" >NO</th>
+                                    <th class="text-center col-md-3" rowspan="2">Nama Pegawai</th>
                                     <th class="text-center" rowspan="2">BBM</th>
                                     <th class="text-center" colspan="4">Taxi</th>
                                 </tr>

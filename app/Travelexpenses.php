@@ -14,7 +14,8 @@ class Travelexpenses extends Model
                             'fullday','hithalf','jumhalf','tothalf',
                             'representatif','hitrep','jumrep','totrep',
                             'dayshalf','feehalf','totdayshalf',
-                            'daysfull','feefull','totdaysfull'
+                            'daysfull','feefull','totdaysfull',
+                            'file'
 ];
 
     public function peg()
@@ -22,8 +23,10 @@ class Travelexpenses extends Model
         return $this->belongsTo(Outst_employee::class,'outst_employee_id','id');
     }
 
-    public function plane()
+    public function getFIleReceipt() 
     {
-        return $this->belongsTo(Plane::class,'plane_id','id');
+        return $this->file==null ? 'Tidak Ada File' : asset('images/kuitansi').'/'.$this->outst_employee_id.'/receipt/'.$this->file;
     }
+
+
 }

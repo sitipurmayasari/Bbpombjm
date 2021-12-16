@@ -342,9 +342,9 @@
                             '<input type="hidden" name="idpeg[]" class="outid" value='+response.peg[i].id+'>'+
                         '</td>'+
                         '<td><input type="number" min="0" value="0" name="bbm[]" /></td>'+
-                        '<td><input type="number" style="width: 35%" min="0" value="0" name="taxy_count_from[]" /> kali</td>'+            
+                        '<td><input type="number" style="width: 50%" min="0" value="0" name="taxy_count_from[]" /> kali</td>'+            
                         '<td><input type="number" min="0" value="0" name="taxy_fee_from[]" /></td>'+            
-                        '<td><input type="number" style=" width: 35%" min="0" value="0" name="taxy_count_to[]" /> kali</td>'+            
+                        '<td><input type="number" style=" width: 50%" min="0" value="0" name="taxy_count_to[]" /> kali</td>'+            
                         '<td><input type="number" min="0" value="0" name="taxy_fee_to[]" /></td>'+              
                     '</tr>';
                 }

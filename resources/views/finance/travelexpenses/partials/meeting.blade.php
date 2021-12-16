@@ -7,7 +7,7 @@
                             <thead>
                                 <tr>
                                     <th style="text-align: center;" rowspan="2">NO</th>
-                                    <th style="text-align: center;" rowspan="2">Nama</th>
+                                    <th style="text-align: center;width: 100px;" rowspan="2">Nama</th>
                                     <th class="text-center" colspan="3">Paket Halfday / Fullday</th>
                                     <th class="text-center" colspan="3">Paket FullBoard</th>
                                 </tr>

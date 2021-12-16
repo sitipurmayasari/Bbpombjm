@@ -245,9 +245,22 @@ class TravelexpensesController extends Controller
                     'totdayshalf'       => $request->totdayshalf[$i],
                     'daysfull'          => $request->daysfull[$i],
                     'feefull'           => $request->feefull[$i],
-                    'totdayshalf'       => $request->totdayshalf[$i]
+                    'totdayshalf'       => $request->totdayshalf[$i],
+                    'file'              => $request->file[$i]
+                    
                 ];
-                Travelexpenses::create($dataone);
+                $dokument = Travelexpenses::create($dataone);
+
+                if($request->hasFile('file')){ // Kalau file ada
+                    $request->file('file')
+                                ->move('images/kuitansi/'.$dokument->outst_employee_id.'/receipt',$request
+                                ->file('file')
+                                ->getClientOriginalName()); 
+                    $dokument->file = $request->file('file')->getClientOriginalName(); 
+                    $dokument->save(); 
+                }
+
+
             }
                 for ($i = 0; $i < count($request->input('outst_employee_id')); $i++){
                    

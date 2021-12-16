@@ -41,6 +41,7 @@
                 <th>Cetak Kuitansi</th>
                 <th>Cetak Riil</th>
                 <th>Cetak Surat Pernyataan</th>
+                <th>File</th>
                 <th  class="col-md-2">Aksi</th>
             </thead>
             <tbody>   	
@@ -61,6 +62,11 @@
                     <td>
                         <a class="btn btn-primary" href="/finance/travelexpenses/super/{{$row->id}}" target="_blank" 
                             rel="noopener noreferrer">CETAK</a>
+                    </td>
+                    <td>
+                        @foreach ($row->filess as $item)
+                            <li><a href="{{$item->getFIleReceipt()}}" target="_blank" >{{$item->file}}</a></li>
+                        @endforeach
                     </td>
                     <td>
                         <a href="/finance/travelexpenses/edit/{{$row->id}}" class="btn btn-warning">

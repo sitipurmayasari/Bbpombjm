@@ -15,4 +15,10 @@ class Expenses extends Model
         return $this->belongsTo(Outstation::class,'outstation_id','id');
     }
 
+    public function filess()
+    {
+        return $this->hasMany(Travelexpenses::class,'expenses_id','id');
+    }
+
+
 }
