@@ -145,7 +145,7 @@
 							<span class="menu-text"> Logout </span>
 						</a>
 						<b class="arrow"></b>
-					</li>	
+						</li>
 				</ul>
 
 				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">

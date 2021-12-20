@@ -10,15 +10,7 @@
   <link rel="stylesheet" href="{{asset('assets/css/fullcalendar.print.css')}}" />
   <style>
 
-    body {
-      margin-top: 40px;
-      text-align: center;
-      font-size: 14px;
-      font-family: "Helvetica Nueue",Arial,Verdana,sans-serif;
-      background-color: #DDDDDD;
-      }
-  
-    #wrap {
+    #wrap-calendar {
       width: 1100px;
       margin: 0 auto;
       }
@@ -57,10 +49,10 @@
       }
   
     #calendar {
-  /* 		float: right; */
+  		float: left;
           margin: 0 auto;
       width: 900px;
-      background-color: #FFFFFF;
+      background-color: #dffced;
         border-radius: 6px;
           box-shadow: 0 1px 2px #C3C3C3;
       }
@@ -68,7 +60,7 @@
   </style>
 @endsection
 @section('content')
-  <div id='wrap'>
+  <div id='wrap-calendar'>
 
     <div id='calendar'></div>
     
@@ -125,7 +117,7 @@
       var calendar =  $('#calendar').fullCalendar({
         header: {
           left: 'title',
-          center: 'agendaDay,agendaWeek,month',
+          // center: 'agendaDay,agendaWeek,month',
           right: 'prev,next today'
         },
         editable: true,
@@ -147,21 +139,6 @@
               },
         allDaySlot: false,
         selectHelper: true,
-        select: function(start, end, allDay) {
-          var title = prompt('Event Title:');
-          if (title) {
-            calendar.fullCalendar('renderEvent',
-              {
-                title: title,
-                start: start,
-                end: end,
-                allDay: allDay
-              },
-              true // make the event "stick"
-            );
-          }
-          calendar.fullCalendar('unselect');
-        },
         droppable: true, // this allows things to be dropped onto the calendar !!!
         drop: function(date, allDay) { // this function is called when something is dropped
 
@@ -202,11 +179,10 @@
                       start:response.data[i].date_from,
                       end: response.data[i].date_to,
                       url : "/calendars/lihat/"+response.data[i].id,
-                      className: 'success'
+                      className: 'info'
                     });    
                   }
                 }
-                console.log("Haloo events "+events);
                 callback(events);      
               }
             });
