@@ -34,7 +34,7 @@
             <br>
             <br>
             <p style="text-align: justify; font-size=14px">
-                <b>{{$data->detail}}</b>
+                <b>{!! $data->detail !!}</b>
             </p>
         </div>
     </div>

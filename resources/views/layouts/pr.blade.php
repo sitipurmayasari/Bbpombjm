@@ -122,30 +122,30 @@
 				</script>
 
 				<ul class="nav nav-list">
-						<li class="">
-							<b class="arrow"></b>
-						</li>
-						<li class=" ">
-							<a href="/profile">
-								<i class="menu-icon fa fa-user"></i>
-								<span class="menu-text"> Profile </span>
-							</a>
-							<b class="arrow"></b>
-						</li>
-						<li class=" ">
-							<a href="/calendars">
-								<i class="menu-icon fa fa-calendar"></i>
-								<span class="menu-text"> Kalender Agenda </span>
-							</a>
-							<b class="arrow"></b>
-						</li>
-                        <li class=" ">
-							<a href="/logout">
-								<i class="menu-icon fa fa-sign-out"></i>
-								<span class="menu-text"> Logout </span>
-							</a>
-							<b class="arrow"></b>
-						</li>
+					<li class="">
+						<b class="arrow"></b>
+					</li>
+					<li class=" ">
+						<a href="/profile">
+							<i class="menu-icon fa fa-user"></i>
+							<span class="menu-text"> Profile </span>
+						</a>
+						<b class="arrow"></b>
+					</li>
+					<li class=" ">
+						<a href="/calendars">
+							<i class="menu-icon fa fa-calendar"></i>
+							<span class="menu-text"> Kalender Agenda </span>
+						</a>
+						<b class="arrow"></b>
+					</li>
+					<li class=" ">
+						<a href="/logout">
+							<i class="menu-icon fa fa-sign-out"></i>
+							<span class="menu-text"> Logout </span>
+						</a>
+						<b class="arrow"></b>
+					</li>	
 				</ul>
 
 				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">

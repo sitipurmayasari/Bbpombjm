@@ -1,131 +1,221 @@
 @extends('layouts.pr')
 @section('breadcrumb')
-<nav aria-label="breadcrumb" class="main-breadcrumb">
+  <nav aria-label="breadcrumb" class="main-breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item active" aria-current="page">Kalender Agenda</li>
     </ol>
   </nav>
-{{-------------------------------------- kalender -------------------------------------------------------}}
-<link rel="stylesheet" href="{{asset('assets/css/fullcalendar/packages/core/main.css')}}" />
-<link rel="stylesheet" href="{{asset('assets/css/fullcalendar/packages/daygrid/main.css')}}" />
-<link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-<style>
-a {
-  -webkit-transition: .3s all ease;
-  -o-transition: .3s all ease;
-  transition: .3s all ease; }
-  a, a:hover {
-    text-decoration: none !important; }
+  {{-------------------------------------- kalender -------------------------------------------------------}}
+  <link rel="stylesheet" href="{{asset('assets/css/fullcalendar.css')}}" />
+  <link rel="stylesheet" href="{{asset('assets/css/fullcalendar.print.css')}}" />
+  <style>
 
-.content {
-  padding: 7rem 0; }
-
-h2 {
-  font-size: 20px; }
-
-.form-control:active, .form-control:focus {
-  outline: none;
-  -webkit-box-shadow: none;
-  box-shadow: none; }
-
-#calendar {
-  margin: 0 auto; }
-  #calendar .fc-view-container {
-    background-color: #fff;
-    -webkit-box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.2);
-    box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.2); }
-  #calendar .fc-toolbar.fc-header-toolbar .fc-center {
-    display: block; }
-
-/* #calendar-container {
-  position: fixed;
-  top: 0;
-  left: 20px;
-  right: 20px;
-  bottom: 20px; } */
-
-.fc-header-toolbar {
-  /*
-    the calendar will be butting up against the edges,
-    but let's scoot in the header's buttons
-    */
-  padding-top: 1em;
-  padding-left: 1em;
-  padding-right: 1em; }
-
-@media (max-width: 767.98px) {
-  .fc-toolbar {
-    display: block !important;
-    text-align: center; }
-    .fc-toolbar .fc-center {
-      display: block;
-      margin-top: 20px;
-      margin-bottom: 20px; } }
-
-</style>
+    body {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 14px;
+      font-family: "Helvetica Nueue",Arial,Verdana,sans-serif;
+      background-color: #DDDDDD;
+      }
+  
+    #wrap {
+      width: 1100px;
+      margin: 0 auto;
+      }
+  
+    #external-events {
+      float: left;
+      width: 150px;
+      padding: 0 10px;
+      text-align: left;
+      }
+  
+    #external-events h4 {
+      font-size: 16px;
+      margin-top: 0;
+      padding-top: 1em;
+      }
+  
+    .external-event { /* try to mimick the look of a real event */
+      margin: 10px 0;
+      padding: 2px 4px;
+      background: #3366CC;
+      color: #fff;
+      font-size: .85em;
+      cursor: pointer;
+      }
+  
+    #external-events p {
+      margin: 1.5em 0;
+      font-size: 11px;
+      color: #666;
+      }
+  
+    #external-events p input {
+      margin: 0;
+      vertical-align: middle;
+      }
+  
+    #calendar {
+  /* 		float: right; */
+          margin: 0 auto;
+      width: 900px;
+      background-color: #FFFFFF;
+        border-radius: 6px;
+          box-shadow: 0 1px 2px #C3C3C3;
+      }
+  
+  </style>
 @endsection
 @section('content')
-    <div id='calendar-container'>
-        <div id='calendar'></div>
-    </div>
+  <div id='wrap'>
+
+    <div id='calendar'></div>
+    
+    <div style='clear:both'></div>
+  </div>
 @endsection
 
 @section('footer')
-{{-- calendar script --}}
-<script src="{{asset('assets/css/fullcalendar/packages/core/main.js')}}"></script>
-<script src="{{asset('assets/css/fullcalendar/packages/interaction/main.js')}}"></script>
-<script src="{{asset('assets/css/fullcalendar/packages/daygrid/main.js')}}"></script>
-<script src="{{asset('assets/css/fullcalendar/packages/timegrid/main.js')}}"></script>
-<script src="{{asset('assets/css/fullcalendar/packages/list/main.js')}}"></script>
+  <script src="{{asset('assets/js/jquery-1.10.2.js')}}"></script>
+  <script src="{{asset('assets/js/jquery-ui.custom.min.js')}}"></script>
+  <script src="{{asset('assets/js/fullcalendar.js')}}"></script>
+  <script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
-    
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
-      height: 'parent',
-      header: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'dayGridMonth,timeGridWeek'
-      },
-      defaultView: 'dayGridMonth',
-      defaultDate: new Date(),
-    //   navLinks: true, // can click day/week names to navigate views
-      editable: true,
-      eventLimit: true, // allow "more" link when too many events
-      events:
-      function(start, end, callback) {
-        $.ajax({
-          url: "{{route('calendars.getData') }}",
-          type: 'GET',
-          dataType: 'json',
-          success: function(response) {
-            var events = [];  
-            if (!!response) {
-              for (let i = 0; i < response.data.length; i++) {
-                events.push({
-                  // title: response[i]['titles'],
-                  // start: response[i]['date_from'],
-                  // end: response[i]['date_to']
-                  title:response.data[i].titles,
-                  start:response.data[i].date_from,
-                  end: response.data[i].date_to,
-                });    
-              }
-            }
-            console.log("Haloo events "+events);
-            callback(events);      
-          }
+    $(document).ready(function() {
+        var date = new Date();
+      var d = date.getDate();
+      var m = date.getMonth();
+      var y = date.getFullYear();
+
+      /*  className colors
+
+      className: default(transparent), important(red), chill(pink), success(green), info(blue)
+
+      */
+
+
+      /* initialize the external events
+      -----------------------------------------------------------------*/
+
+      $('#external-events div.external-event').each(function() {
+
+        // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+        // it doesn't need to have a start or end
+        var eventObject = {
+          title: $.trim($(this).text()) // use the element's text as the event title
+        };
+
+        // store the Event Object in the DOM element so we can get to it later
+        $(this).data('eventObject', eventObject);
+
+        // make the event draggable using jQuery UI
+        $(this).draggable({
+          zIndex: 999,
+          revert: true,      // will cause the event to go back to its
+          revertDuration: 0  //  original position after the drag
         });
-      }
-    });
-    calendar.render();
-  });
 
-</script>
+      });
+
+
+      /* initialize the calendar
+      -----------------------------------------------------------------*/
+
+      var calendar =  $('#calendar').fullCalendar({
+        header: {
+          left: 'title',
+          center: 'agendaDay,agendaWeek,month',
+          right: 'prev,next today'
+        },
+        editable: true,
+        firstDay: 1, //  1(Monday) this can be changed to 0(Sunday) for the USA system
+        selectable: true,
+        defaultView: 'month',
+
+        axisFormat: 'h:mm',
+        columnFormat: {
+                  month: 'ddd',    // Mon
+                  week: 'ddd d', // Mon 7
+                  day: 'dddd M/d',  // Monday 9/7
+                  agendaDay: 'dddd d'
+              },
+              titleFormat: {
+                  month: 'MMMM yyyy', // September 2009
+                  week: "MMMM yyyy", // September 2009
+                  day: 'MMMM yyyy'                  // Tuesday, Sep 8, 2009
+              },
+        allDaySlot: false,
+        selectHelper: true,
+        select: function(start, end, allDay) {
+          var title = prompt('Event Title:');
+          if (title) {
+            calendar.fullCalendar('renderEvent',
+              {
+                title: title,
+                start: start,
+                end: end,
+                allDay: allDay
+              },
+              true // make the event "stick"
+            );
+          }
+          calendar.fullCalendar('unselect');
+        },
+        droppable: true, // this allows things to be dropped onto the calendar !!!
+        drop: function(date, allDay) { // this function is called when something is dropped
+
+          // retrieve the dropped element's stored Event Object
+          var originalEventObject = $(this).data('eventObject');
+
+          // we need to copy it, so that multiple events don't have a reference to the same object
+          var copiedEventObject = $.extend({}, originalEventObject);
+
+          // assign it the date that was reported
+          copiedEventObject.start = date;
+          copiedEventObject.allDay = allDay;
+
+          // render the event on the calendar
+          // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+          $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+
+          // is the "remove after drop" checkbox checked?
+          if ($('#drop-remove').is(':checked')) {
+            // if so, remove the element from the "Draggable Events" list
+            $(this).remove();
+          }
+
+        },
+
+        events: 
+          function(start, end, callback) {
+            $.ajax({
+              url: "{{route('calendars.getData') }}",
+              type: 'GET',
+              dataType: 'json',
+              success: function(response) {
+                var events = [];  
+                if (!!response) {
+                  for (let i = 0; i < response.data.length; i++) {
+                    events.push({
+                      title:response.data[i].titles,
+                      start:response.data[i].date_from,
+                      end: response.data[i].date_to,
+                      url : "/calendars/lihat/"+response.data[i].id,
+                      className: 'success'
+                    });    
+                  }
+                }
+                console.log("Haloo events "+events);
+                callback(events);      
+              }
+            });
+          }
+      
+      });
+
+
+    });
+
+  </script>
 @endsection
