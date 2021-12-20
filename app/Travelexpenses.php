@@ -25,7 +25,7 @@ class Travelexpenses extends Model
 
     public function getFIleReceipt() 
     {
-        return $this->file==null ? 'Tidak Ada File' : asset('images/kuitansi').'/'.$this->outst_employee_id.'/receipt/'.$this->file;
+        return $this->file==null ? 'Tidak Ada File' : asset('images/kuitansi').'/'.$this->id.'/'.$this->file;
     }
 
 

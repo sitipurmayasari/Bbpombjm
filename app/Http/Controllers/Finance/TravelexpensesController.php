@@ -204,13 +204,14 @@ class TravelexpensesController extends Controller
 
     public function update(Request $request,$id)
     {
-    //    dd($request->all());
+        // dd($request->all());
         DB::beginTransaction();
             Travelexpenses::where('Expenses_id', $id)->delete();
             Travelexpenses1::where('Expenses_id', $id)->delete();
             $expenses_id = $id;
 
             for ($i = 0; $i < count($request->input('outst_employee_id')); $i++){
+                $nomor = $i+1;
                 $dailywage      = $request->dailywage != null ?  $request->dailywage[$i] : 'N';
                 $diklat         = $request->diklat != null ?  $request->diklat[$i] : 'N';
                 $fullboard      = $request->fullboard != null ?  $request->fullboard[$i] : 'N';
@@ -246,60 +247,62 @@ class TravelexpensesController extends Controller
                     'daysfull'          => $request->daysfull[$i],
                     'feefull'           => $request->feefull[$i],
                     'totdayshalf'       => $request->totdayshalf[$i],
-                    'file'              => $request->file[$i]
                     
                 ];
                 $dokument = Travelexpenses::create($dataone);
 
-                if($request->hasFile('file')){ // Kalau file ada
-                    $request->file('file')
-                                ->move('images/kuitansi/'.$dokument->outst_employee_id.'/receipt',$request
-                                ->file('file')
+
+
+                if($request->hasFile('file-'.$nomor)){ // Kalau file ada
+                    $request->file('file-'.$nomor)
+                                ->move('images/kuitansi/'.$dokument->id,$request
+                                ->file('file-'.$nomor)
                                 ->getClientOriginalName()); 
-                    $dokument->file = $request->file('file')->getClientOriginalName(); 
+                    $dokument->file = $request->file('file-'.$nomor)->getClientOriginalName(); 
                     $dokument->save(); 
                 }
-
-
             }
-                for ($i = 0; $i < count($request->input('outst_employee_id')); $i++){
-                   
-                    $datatwo = [
-                        'expenses_id'       => $expenses_id,
-                        'outst_employee_id' => $request->outst_employee_id[$i],
-                        'innname_1'         => $request->innname_1[$i],
-                        'inn_fee_1'         => $request->inn_fee_1[$i],
-                        'long_stay_1'       => $request->long_stay_1[$i],
-                        'isi_1'             => $request->isi_1[$i],
-                        'klaim_1'           => $request->klaim_1[$i],
-                        'innname_2'         => $request->innname_2[$i],
-                        'inn_fee_2'         => $request->inn_fee_2[$i],
-                        'long_stay_2'       => $request->long_stay_2[$i],
-                        'isi_2'             => $request->isi_2[$i],
-                        'klaim_2'           => $request->klaim_2[$i],
-                        'bbm'               => $request->bbm[$i],
-                        'taxy_count_from'   => $request->taxy_count_from[$i],
-                        'taxy_fee_from'     => $request->taxy_fee_from[$i],
-                        'taxy_count_to'     => $request->taxy_count_to[$i],
-                        'plane_id1'         => $request->plane_id1[$i],
-                        'plane_id2'         => $request->plane_id2[$i],
-                        'plane_id3'         => $request->plane_id3[$i],
-                        'plane_idreturn'    => $request->plane_idreturn[$i],
-                        'planenumber1'      => $request->planenumber1[$i],
-                        'planenumber2'      => $request->planenumber2[$i],
-                        'planenumber3'      => $request->planenumber3[$i],
-                        'planenumberreturn' => $request->planenumberreturn[$i],
-                        'planefee1'         => $request->planefee1[$i],
-                        'planefee2'         => $request->planefee2[$i],
-                        'planefee3'         => $request->planefee3[$i],
-                        'planereturnfee'    => $request->planereturnfee[$i],
-                        'godate1'           => $request->godate1[$i],
-                        'godate2'           => $request->godate2[$i],
-                        'godate3'           => $request->godate3[$i],
-                        'returndate'        => $request->returndate[$i]
-    
-                    ];
-                    Travelexpenses1::create($datatwo);
+
+            
+
+            
+            for ($i = 0; $i < count($request->input('outst_employee_id')); $i++){
+                $datatwo = [
+                    'expenses_id'       => $expenses_id,
+                    'outst_employee_id' => $request->outst_employee_id[$i],
+                    'innname_1'         => $request->innname_1[$i],
+                    'inn_fee_1'         => $request->inn_fee_1[$i],
+                    'long_stay_1'       => $request->long_stay_1[$i],
+                    'isi_1'             => $request->isi_1[$i],
+                    'klaim_1'           => $request->klaim_1[$i],
+                    'innname_2'         => $request->innname_2[$i],
+                    'inn_fee_2'         => $request->inn_fee_2[$i],
+                    'long_stay_2'       => $request->long_stay_2[$i],
+                    'isi_2'             => $request->isi_2[$i],
+                    'klaim_2'           => $request->klaim_2[$i],
+                    'bbm'               => $request->bbm[$i],
+                    'taxy_count_from'   => $request->taxy_count_from[$i],
+                    'taxy_fee_from'     => $request->taxy_fee_from[$i],
+                    'taxy_count_to'     => $request->taxy_count_to[$i],
+                    'plane_id1'         => $request->plane_id1[$i],
+                    'plane_id2'         => $request->plane_id2[$i],
+                    'plane_id3'         => $request->plane_id3[$i],
+                    'plane_idreturn'    => $request->plane_idreturn[$i],
+                    'planenumber1'      => $request->planenumber1[$i],
+                    'planenumber2'      => $request->planenumber2[$i],
+                    'planenumber3'      => $request->planenumber3[$i],
+                    'planenumberreturn' => $request->planenumberreturn[$i],
+                    'planefee1'         => $request->planefee1[$i],
+                    'planefee2'         => $request->planefee2[$i],
+                    'planefee3'         => $request->planefee3[$i],
+                    'planereturnfee'    => $request->planereturnfee[$i],
+                    'godate1'           => $request->godate1[$i],
+                    'godate2'           => $request->godate2[$i],
+                    'godate3'           => $request->godate3[$i],
+                    'returndate'        => $request->returndate[$i]
+
+                ];
+                Travelexpenses1::create($datatwo);       
             }
             DB::commit();
 

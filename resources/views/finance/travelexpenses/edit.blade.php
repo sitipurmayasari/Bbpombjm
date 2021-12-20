@@ -6,7 +6,7 @@
 @section('content')
 @include('layouts.validasi')
     <form class="form-horizontal validate-form" role="form" 
-    method="post" action="/finance/travelexpenses/update/{{$data->id}}">
+    method="post" action="/finance/travelexpenses/update/{{$data->id}}" enctype="multipart/form-data">
     {{ csrf_field() }}
         {{ csrf_field() }}
     <div class="row">
@@ -345,7 +345,7 @@
                         '<td style="text-align: center;">'+no+'</td>'+
                         '<td>'+response.expen1[i].name+'</td>'+
                         '<td>'+
-                            '<input type="file" name="file[]" class="btn btn-default btn-sm" id="" value="Upload File">'+ada+     
+                            '<input type="file" name="file-'+no+'" class="btn btn-default btn-sm" id="" value="Upload File">'+ada+     
                         '</td>'+
                     '</tr>';
                 }

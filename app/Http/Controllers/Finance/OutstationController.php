@@ -204,7 +204,7 @@ class OutstationController extends Controller
                           ->getClientOriginalName()); // pindah file user manual k inventaris folder id file
               $data->file = $request->file('file')->getClientOriginalName(); // update isi kolum file user dengan origin gambar
               $data->save(); // save ke database
-          }
+            }
 
           
           //---------------outst_destiny----------------------

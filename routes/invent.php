@@ -79,12 +79,15 @@
   Route::post('invent/vehicle/update/{id}','Invent\VehicleController@update')->name('vehicle.update');
 
   //Route untuk Pinjam Mobil
-  Route::get('/invent/carrent/getCar','Invent\CarrentController@getCar')->name('carrent.getCar');
+  Route::get('/invent/carrent/create','Invent\CarrentController@create')->name('carrent.create');
   Route::post('invent/carrent/store','Invent\CarrentController@store')->name('carrent.store');
   Route::get('invent/carrent/delete/{id}','Invent\CarrentController@delete')->name('carrent.delete');
-  Route::get('invent/carrent/edit/{id}','Invent\CarrentController@edit')->name('carrent.edit');
-  Route::post('invent/carrent/update/{id}','Invent\CarrentController@update')->name('carrent.update');
+  Route::get('/invent/carrent/edit/{id}','Invent\CarrentController@edit')->name('carrent.edit'); // ---->cetak sih aslinya
 
-    //Route untuk Laporan stok barang
-    Route::post('/invent/kartustok/cetak','Invent\KartuStokController@cetak')->name('kartustok.cetak');
+  //Route untuk setujui peminjaman
+  Route::get('invent/carok/edit/{id}','Invent\CarOkController@edit')->name('carok.edit');
+  Route::post('invent/carok/update/{id}','Invent\CarOkController@update')->name('carok.update');
+
+  //Route untuk Laporan stok barang
+  Route::post('/invent/kartustok/cetak','Invent\KartuStokController@cetak')->name('kartustok.cetak');
     

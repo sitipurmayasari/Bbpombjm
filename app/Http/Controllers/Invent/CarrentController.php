@@ -18,9 +18,11 @@ class CarrentController extends Controller
 
     public function index(Request $request)
     {   
+        $peg =auth()->user()->id;
         $data = Vehiclerent::orderBy('id','desc')
         ->select('vehiclerent.*','users.name')
         ->leftJoin('users','users.id','=','vehiclerent.users_id')
+        ->where('users_id',$peg)
         ->when($request->keyword, function ($query) use ($request) {
             $query->where('code','LIKE','%'.$request->keyword.'%')
                     ->orWhere('destination', 'LIKE','%'.$request->keyword.'%')
@@ -71,35 +73,15 @@ class CarrentController extends Controller
             $pinjem->save(); // save ke database
         }
 
-
-
-
-        return redirect('/invent/carrent/create')->with('sukses','Data Tersimpan');
+        return redirect('/invent/carrent')->with('sukses','Data Tersimpan');
 
     }
 
     public function edit($id)
     {
-        $data = Vehiclerent::where('id',$id)->first();
-
-        $car = Car::WhereRaw("id NOT IN (SELECT car_id from vehiclerent WHERE '".$data->date_from."' BETWEEN date_from AND date_to and status='Y') ")
-                    ->get();
-        $driver =User::where("deskjob","LIKE","%Sopir%")
-                    ->WhereRaw("id NOT IN (SELECT driver_id from vehiclerent WHERE '".$data->date_from."' BETWEEN date_from AND date_to and status='Y') ")
-                    ->get();
-
-
-
-        return view('invent/carrent.edit',compact('data','car','driver'));
+      $data = Vehiclerent::where('id',$id)->first();
+      $pdf = PDF::loadview('invent/carrent.edit',compact('data'));
+      return $pdf->stream();
     }
-    
-
-    public function update(Request $request, $id)
-    {
-        $data = Vehiclerent::find($id);
-        $data->update($request->all());
-        return redirect('/invent/carrent')->with('sukses','Data Diperbaharui');
-    }
-
 
 }

@@ -87,7 +87,11 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/invent/petugas','Invent\PetugasController@index')->name('petugas');
     //Route untuk Pinjam Mobil
     Route::get('/invent/carrent','Invent\CarrentController@index')->name('carrent');
-    Route::get('/invent/carrent/create','Invent\CarrentController@create')->name('carrent.create');
+
+    //Route untuk setujui peminjaman
+    Route::get('/invent/carok','Invent\CarOkController@index')->name('carok');
+
+  
 
     //Route untuk Laporan
     Route::get('/invent/laporan','Invent\LaporanController@index')->name('laporan');

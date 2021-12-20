@@ -1,7 +1,8 @@
 @extends('layouts.app')
 @section('breadcrumb')
     <li>Kendaraan</li>
-    <li>Peminjaman Kendaraan Dinas</li>
+    <li><a href="/invent/carrent">Peminjaman Kendaraan Dinas</a></li>
+    <li>Ajukan Peminjaman</li>
 @endsection
 @section('content')
 @include('layouts.validasi')
