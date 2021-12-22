@@ -80,32 +80,32 @@
             <td>Di Kota (Tujuan)</td>
             <td> :
                 @if (count($item->out->outst_destiny) == 1)
-                     @foreach ($tujuan as $key=>$kota)
-                         @if ($loop->first)
-                             {{$kota->destiny->capital}} 
-                         @endif
-                         
-                     @endforeach
+                    @foreach ($tujuan as $key=>$kota)
+                        @if ($loop->first)
+                            {{$kota->destiny->capital}} 
+                        @endif
+                        
+                    @endforeach
 
-                 @elseif (count($item->out->outst_destiny) == 2)
-                     @foreach ($tujuan as $key=>$kota)
-                         {{$kota->destiny->capital}}
-                         @if ($tujuan->count()-1 != $key)
-                             {{' dan '}}
-                         @endif
-                     @endforeach
+                @elseif (count($item->out->outst_destiny) == 2)
+                    @foreach ($tujuan as $key=>$kota)
+                        {{$kota->destiny->capital}}
+                        @if ($tujuan->count()-1 != $key)
+                            {{' dan '}}
+                        @endif
+                    @endforeach
 
-                 @else
-                     @foreach ($tujuan as $key=>$kota)
-                         @if ($loop->last-1)
-                             {{$kota->destiny->capital}}{{','}} 
-                         @endif
-                         @if ($loop->last)
-                             {{' dan '}} {{$kota->destiny->capital}}
-                         @endif
-                         
-                     @endforeach
-                 @endif
+                @else
+                    @foreach ($tujuan as $key=>$kota)
+                        @if ($loop->last-1)
+                            {{$kota->destiny->capital}}{{','}} 
+                        @endif
+                        @if ($loop->last)
+                            {{' dan '}} {{$kota->destiny->capital}}
+                        @endif
+                        
+                    @endforeach
+                @endif
             </td>
         </tr>
     </table>
@@ -135,29 +135,35 @@
             </tr>
             <tr>
                 @php
-                    $berangkat1 = $injectQuery->getDetail($item->id);
-                    $pesawat1 = $berangkat1->planenumber1;
+                    $berangkat1 = $injectQuery->getPesawat($item->id);
                 @endphp
-                <td  class="isi">Berangkat</td>
-                <td  class="isi">
-                    @if ($pesawat1 != null)
-                        {{$berangkat1->plane_id1}}
+                <td  class="isi">  &nbsp; Berangkat</td>
+                <td  class="isi">  &nbsp;
+                    @if ($berangkat1 != null)
+                        {{$berangkat1->maskapai1}}
+                    @else
+                        {{ " " }}
                     @endif
                 </td>
-                <td  class="isi">
-                    @if ($pesawat1 != null)
-                        {{$pesawat1}}
+                <td  class="isi">  &nbsp;
+                    @if ($berangkat1 != null)
+                        {{$berangkat1->planenumber1}}
+                    @else
+                        {{ " " }}
                     @endif
                 </td>
-                <td  class="isi">
-                    @if ($pesawat1 != null)
+                <td  class="isi">  &nbsp;
+                    @if ($berangkat1 != null)
                         {{tgl_indo($berangkat1->godate1)}}
+                    @else
+                        {{ " " }}
                     @endif
-                    
                 </td>
-                <td  class="isi">
-                    @if ($pesawat1 != null)
-                        {{number_format($berangkat1->planefee1)}}
+                <td  class="isi"> &nbsp;
+                    @if ($berangkat1 != null)
+                      Rp. {{number_format($berangkat1->planefee1)}} ,-
+                    @else
+                      {{ " " }}
                     @endif
                 </td>
             </tr>
@@ -175,57 +181,57 @@
             </tr>
             <tr>
                 @php
-                    $berangkat2 = $injectQuery->getDetail($item->id);
-                    $pesawat2 = $berangkat2->planenumber2;
+                    $berangkat2 = $injectQuery->getPesawat($item->id);
                 @endphp
-               <td  class="isi">Berangkat</td>
-               <td  class="isi">
-                    @if ($pesawat1 != null)
-                        {{$berangkat2->plane_id2}}
+               <td  class="isi"> &nbsp; Berangkat</td>
+               <td  class="isi"> &nbsp;
+                    @if ($berangkat2->maskapai2 != null)
+                        {{$berangkat2->maskapai2}}
+                    @else
+                        {{ " " }}
                     @endif
                </td>
-               <td  class="isi">
-                   @if ($pesawat2 != null)
-                       {{$pesawat2}}
-                   @endif
+               <td  class="isi"> &nbsp;
+                    @if ($berangkat2->maskapai2 != null)
+                        {{$berangkat2->planenumber2}}
+                    @else
+                        {{ " " }}
+                    @endif
                </td>
-               <td  class="isi">
-                   @if ($pesawat2 != null)
-                       {{tgl_indo($berangkat2->godate2)}}
-                   @endif
-                   
+               <td  class="isi"> &nbsp;
+                    @if ($berangkat2->maskapai2 != null)
+                        {{tgl_indo($berangkat2->godate2)}}
+                    @endif
                </td>
-               <td  class="isi">
-                   @if ($pesawat2 != null)
-                       {{number_format($berangkat2->planefee2)}}
-                   @endif
+               <td  class="isi"> &nbsp;
+                    @if ($berangkat2->maskapai2 != null)
+                        Rp. {{number_format($berangkat2->planefee2)}} ,-
+                    @endif
                </td>
             </tr>
             <tr>
                 @php
-                    $bulik = $injectQuery->getDetail($item->id);
-                    $pulang = $bulik->planenumberreturn;
+                    $bulik = $injectQuery->getPesawat($item->id);
                 @endphp
-                <td  class="isi"><b>Kembali</b></td>
-                <td  class="isi">
-                    @if ($pulang != null)
-                        {{$bulik->plane_idreturn}}
+                <td  class="isi"><b> &nbsp; Kembali</b></td>
+                <td  class="isi"> &nbsp;
+                    @if ($bulik->maskapaipulang != null)
+                        {{$bulik->maskapaipulang}}
                     @endif
                 </td>
-                <td  class="isi">
-                    @if ($pulang != null)
-                        {{$pulang}}
+                <td  class="isi"> &nbsp;
+                    @if ($bulik->maskapaipulang != null)
+                        {{$bulik->planenumberreturn}}
                     @endif
                 </td>
-                <td  class="isi">
-                    @if ($pulang != null)
+                <td  class="isi"> &nbsp;
+                    @if ($bulik->maskapaipulang != null)
                         {{tgl_indo($bulik->returndate)}}
                     @endif
-                    
                 </td>
-                <td  class="isi">
-                    @if ($pulang != null)
-                        {{number_format($bulik->planereturnfee)}}
+                <td  class="isi"> &nbsp;
+                    @if ($bulik->maskapaipulang != null)
+                        Rp. {{number_format($bulik->planereturnfee)}} ,-
                     @endif
                 </td>
             </tr>
@@ -278,7 +284,7 @@
                     &nbsp;
                 </td>
                 <td class="isi" style="text-align: center">
-                    @if ($hotel->klaim_1 !='0')
+                    @if ($hotel->innname_1 !='0')
                         {{number_format($hotel->klaim_1)}}
                     @endif
                     &nbsp;
@@ -328,7 +334,7 @@
                     &nbsp;
                 </td>
                 <td class="isi" style="text-align: center">
-                    @if ($hot->klaim_2 !='0')
+                    @if ($hot->innname_2 !='0')
                         {{number_format($hot->klaim_2)}}
                     @endif
                     &nbsp;
@@ -352,19 +358,19 @@
     <table style="width: 100%">
         <tr>
             <td style="width: 60%"></td>
-            <td>{{$item->out->cityfrom->capital}}, {{tgl_indo($data->date)}}</td>
+            <td style="text-align: center;">{{$item->out->cityfrom->capital}}, {{tgl_indo($data->date)}}</td>
         </tr>
         <tr>
             <td></td>
-            <td>Yang membuat pernyataan, <br><br><br><br><br></td>
+            <td style="text-align: center;">Yang membuat pernyataan, <br><br><br><br><br></td>
         </tr>
         <tr>
             <td></td>
-            <td><u>{{$item->pegawai->name}}</u></td>
+            <td style="text-align: center;"><u>{{$item->pegawai->name}}</u></td>
         </tr>
         <tr>
             <td></td>
-            <td>
+            <td style="text-align: center;">
                 @if ($item->pegawai->status=="PNS")
                     NIP. {{$item->pegawai->no_pegawai}}
                 @else

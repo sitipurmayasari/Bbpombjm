@@ -117,7 +117,7 @@
             <td colspan="3">: <b>Rp.  &nbsp;&nbsp;&nbsp; 
                 @foreach ($tr as $nilai)
                     @if ($loop->first)
-                        {{number_format($nilai->hitdaily)}}
+                        {{number_format($nilai->hitdaily1)}}
                     @endif
                 @endforeach
                 
@@ -168,12 +168,13 @@
         </tr>
         <tr>
             <td>Terbilang</td>
-            <td>: <b>
+            <td style="text-transform: capitalize;">: <b>
                 @foreach ($tr as $nilai)
                     @if ($loop->first)
-                        {{terbilang($nilai->hitdaily)}}
+                        {{terbilang($nilai->hitdaily1)}}
                     @endif
-                @endforeach    
+                @endforeach
+                Rupiah    
             </b></td>
             <td></td>
             <td></td>
@@ -278,7 +279,7 @@
         <td colspan="3">: <b>Rp.  &nbsp;&nbsp;&nbsp; 
             @foreach ($tr as $nilai)
                 @if ($loop->first)
-                    {{number_format($nilai->hitdaily)}}
+                    {{number_format($nilai->hitdaily1)}}
                 @endif
             @endforeach
             
@@ -329,12 +330,13 @@
     </tr>
     <tr>
         <td>Terbilang</td>
-        <td>: <b>
+        <td style="text-transform: capitalize;">: <b>
             @foreach ($tr as $nilai)
                 @if ($loop->first)
-                    {{terbilang($nilai->hitdaily)}}
+                    {{terbilang($nilai->hitdaily1)}}
                 @endif
             @endforeach    
+            Rupiah
         </b></td>
         <td></td>
         <td></td>

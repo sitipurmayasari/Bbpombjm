@@ -462,11 +462,21 @@
                 <tr>
                     <td>Pada tanggal</td>
                     <td>:
-                        @foreach ($data->outst_destiny as $key=>$item)
-                            @if ($loop->last-1)
-                                {{$item->go_date}} 
-                            @endif
-                        @endforeach
+                        @if (count($data->outst_destiny) == 1)
+                                &nbsp;
+                        @elseif (count($data->outst_destiny) == 2)
+                            @foreach ($data->outst_destiny as $key=>$item)
+                                @if ($loop->last)
+                                    {{$item->go_date}} 
+                                @endif
+                            @endforeach
+                        @else
+                            @foreach ($data->outst_destiny as $key=>$item)
+                                @if ($loop->last)
+                                    {{$item->go_date}}
+                                @endif
+                            @endforeach
+                        @endif 
                     </td>
                 </tr>
                 <tr>

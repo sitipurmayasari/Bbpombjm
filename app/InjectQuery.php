@@ -5,6 +5,7 @@ use App\User;
 use App\Destination;
 use App\PengajuanDetail;
 use App\AduanDetail;
+use App\Expenses_daily;
 use App\Travelexpenses;
 use App\Travelexpenses1;
 use App\Outst_destiny;
@@ -42,20 +43,32 @@ class InjectQuery
         return $nilai;
     }
 
+    public function getUH($id){
+        $dailyfee = Expenses_daily::Where('outst_employee_id',$id)->first();
+        return $dailyfee;
+    }
+
     public function getTr($id){
         $daily = Travelexpenses::Where('outst_employee_id',$id)->first();
         return $daily;
     }
 
     public function getPesawat($id){
-        $daily = Travelexpenses::Where('outst_employee_id',$id)->first();
-        return $daily;
+        $pesawat = Travelexpenses1::SelectRaw('travelexpenses1.*, a.name AS maskapai1, b.name AS maskapai2, c.name AS maskapai3, d.name AS maskapaipulang')
+                                    ->LeftJoin('plane AS a','a.id','=','travelexpenses1.plane_id1')
+                                    ->LeftJoin('plane AS b','b.id','=','travelexpenses1.plane_id2')
+                                    ->LeftJoin('plane AS c','c.id','=','travelexpenses1.plane_id3')
+                                    ->LeftJoin('plane AS d','d.id','=','travelexpenses1.plane_idreturn')               
+                                    ->Where('outst_employee_id',$id)->first();
+                
+        return $pesawat;
     }
 
 
     public function totalHarga($id){
         $nilai = Travelexpenses::Where('outst_employee_id',$id)->first();
         $nilai1 = Travelexpenses1::Where('outst_employee_id',$id)->first();
+        $nilai2 = Expenses_daily::Where('outst_employee_id',$id)->first();
         $days = Outst_destiny::SelectRaw('SUM(longday) AS hari')
                                 ->LeftJoin('outstation','outstation.id','=','outst_destiny.outstation_id')
                                 ->LeftJoin('outst_employee','outstation.id','=','outst_employee.outstation_id')
@@ -75,16 +88,20 @@ class InjectQuery
         $taxift         = $nilai1->taxy_fee_to;
         $taxifrom       = $taxicf*$taxiff;
         $taxides        = $taxict*$taxift;
-
         $transport      = $bbm+$plane1+$plane2+$plane3+$planeret+$taxifrom+$taxides;
       
         // harian
-        $daily          = $nilai->dailywage='Y' ? $nilai->totdaily : '0';
+        $daily1          = $nilai2->dailywage1='Y' ? $nilai2->totdaily1 : '0';
+        $daily2          = $nilai2->dailywage2='Y' ? $nilai2->totdaily2 : '0';
+        $daily3          = $nilai2->dailywage3='Y' ? $nilai2->totdaily3 : '0';
+
+        // harian meeting
         $diklat         = $nilai->diklat='Y' ? $nilai->totdiklat : '0';
         $fullboard      = $nilai->fullboard='Y' ? $nilai->totfullb : '0';
         $fullday        = $nilai->fullday='Y' ? $nilai->tothalf : '0';
 
-        $harian = $daily+$diklat+$fullboard+$fullday;
+
+        $harian = $daily1+$daily2+$daily3+$diklat+$fullboard+$fullday;
       
         // Pertemuan
         $meethalf       = $nilai->totdayshalf;

@@ -120,15 +120,26 @@
 
                  // ------uang harian--------------//
                 var centanguang="";
-                for (let i = 0; i < response.expen1.length; i++) {
+                for (let i = 0; i < response.expen.length; i++) {
                   var is_check = '';
                   var no = i+1;
                     //---centang UH----
-                    if (response.expen1[i].dailywage == 'Y') {
-                        var dai = '<input type="checkbox" name="dailywage[]" value="Y" checked>';
+                    if (response.expen[i].dailywage == 'Y') {
+                        var dai1 = '<input type="checkbox" name="dailywage1[]" value="Y" checked>';
                     } else {
-                        var dai = '<input type="checkbox" name="dailywage[]" value="Y">';
+                        var dai1 = '<input type="checkbox" name="dailywage1[]" value="Y">';
                     }
+                    if (response.expen[i].dailywage == 'Y') {
+                        var dai2 = '<input type="checkbox" name="dailywage2[]" value="Y" checked>';
+                    } else {
+                        var dai2 = '<input type="checkbox" name="dailywage2[]" value="Y">';
+                    }
+                    if (response.expen[i].dailywage == 'Y') {
+                        var dai3 = '<input type="checkbox" name="dailywage3[]" value="Y" checked>';
+                    } else {
+                        var dai3 = '<input type="checkbox" name="dailywage3[]" value="Y">';
+                    }
+
                     //---centang UH DIKLAT----
                     if (response.expen1[i].diklat == 'Y') {
                         var dik = '<input type="checkbox" name="diklat[]" value="Y" checked>';
@@ -158,34 +169,44 @@
                     }
                     
                   centanguang+='<tr>'+
-                        '<td style="text-align: center;">'+no+'</td>'+
-                        '<td>'+response.expen1[i].name+
+                        '<td style="text-align: center;  width: 20px;">'+no+'</td>'+
+                        '<td style="width: 120px;">'+response.expen1[i].name+
                             '<input type="hidden" name="outst_employee_id[]" class="outid" value='+response.expen1[i].outst_employee_id+'>'+
                         '</td>'+
-                        '<td>'+dai+'&nbsp;'+
-                            '<input type="number" name="hitdaily[]"  min="0" value="'+response.expen1[i].hitdaily+'" style="width: 50%;"  id="hitdaily-'+no+'"> X '+
-                            '<input type="number" name="jumdaily[]"  min="0" value="'+response.expen1[i].jumdaily+'" style="width:25%"  id="jumdaily-'+no+'" onkeyup="totdaily('+no+')">'+
-                            ' = <input type="text" name="totdaily[]"  min="0" value="'+response.expen1[i].totdaily+'" readonly style="width: 85%;" id="totdaily-'+no+'">'+
+                        '<td>'+dai1+'&nbsp;'+
+                            '<input type="number" name="hitdaily1[]"  min="0" value="'+response.expen[i].hitdaily1+'" style="width: 75px;"   id="hitdaily-'+no+'"> X '+
+                            '<input type="number" name="jumdaily1[]"  min="0" value="'+response.expen[i].jumdaily1+'" style="width: 35px;"  id="jumdaily-'+no+'" onkeyup="totdaily('+no+')"   onclick="totdaily('+no+')">'+
+                            ' = <input type="text" name="totdaily1[]"  min="0" value="'+response.expen[i].totdaily1+'" readonly style="width: 150px;" id="totdaily-'+no+'">'+
+                        '</td>'+
+                        '<td>'+dai2+'&nbsp;'+
+                            '<input type="number" name="hitdaily2[]"  min="0" value="'+response.expen[i].hitdaily2+'" style="width: 75px;"   id="hitdaily2-'+no+'"> X '+
+                            '<input type="number" name="jumdaily2[]"  min="0" value="'+response.expen[i].jumdaily2+'" style="width: 35px;"  id="jumdaily2-'+no+'" onkeyup="totdaily2('+no+')"  onclick="totdaily2('+no+')">'+
+                            ' = <input type="text" name="totdaily2[]"  min="0" value="'+response.expen[i].totdaily2+'" readonly style="width: 150px;" id="totdaily2-'+no+'">'+
+                        '</td>'+
+                        '<td>'+dai3+'&nbsp;'+
+                            '<input type="number" name="hitdaily3[]"  min="0" value="'+response.expen[i].hitdaily3+'" style="width: 75px;"   id="hitdaily3-'+no+'"> X '+
+                            '<input type="number" name="jumdaily3[]"  min="0" value="'+response.expen[i].jumdaily3+'" style="width: 35px;"  id="jumdaily3-'+no+'" onkeyup="totdaily3('+no+')" onclick="totdaily3('+no+')">'+
+                            ' = <input type="text" name="totdaily3[]"  min="0" value="'+response.expen[i].totdaily3+'" readonly style="width: 150px;" id="totdaily3-'+no+'">'+
                         '</td>'+
                         '<td>'+dik+'&nbsp;'+
-                            '<input type="number" name="hitdiklat[]"  min="0" value="'+response.expen1[i].hitdiklat+'" style="width: 50%;"  id="hitdiklat-'+no+'"> X '+
-                            '<input type="number" name="jumdiklat[]"  min="0" value="'+response.expen1[i].jumdiklat+'" style="width:25%"  id="jumdiklat-'+no+'" onkeyup="totdiklat('+no+')">'+
-                            ' = <input type="text" name="totdiklat[]"  min="0" value="'+response.expen1[i].totdiklat+'" readonly style="width: 85%;" id="totdiklat-'+no+'">'+
+                            '<input type="number" name="hitdiklat[]"  min="0" value="'+response.expen1[i].hitdiklat+'" style="width: 75px;"   id="hitdiklat-'+no+'"> X '+
+                            '<input type="number" name="jumdiklat[]"  min="0" value="'+response.expen1[i].jumdiklat+'" style="width: 35px;"  id="jumdiklat-'+no+'" onkeyup="totdiklat('+no+')" onclick="totdiklat('+no+')">'+
+                            ' = <input type="text" name="totdiklat[]"  min="0" value="'+response.expen1[i].totdiklat+'" readonly style="width: 150px;" id="totdiklat-'+no+'">'+
                         '</td>'+   
                         '<td>'+fb+'&nbsp;'+         
-                            '<input type="number" name="hitfullb[]"   min="0" value="'+response.expen1[i].hitfullb+'" style="width: 50%;"  id="hitfullb-'+no+'"> X '+
-                            '<input type="number" name="jumfullb[]"   min="0" value="'+response.expen1[i].jumfullb+'" style="width:25%"  id="jumfullb-'+no+'" onkeyup="totfullb('+no+')">'+
-                            ' = <input type="text" name="totfullb[]"  min="0" value="'+response.expen1[i].totfullb+'" readonly style="width: 85%;" id="totfullb-'+no+'">'+
+                            '<input type="number" name="hitfullb[]"   min="0" value="'+response.expen1[i].hitfullb+'" style="width: 75px;"   id="hitfullb-'+no+'"> X '+
+                            '<input type="number" name="jumfullb[]"   min="0" value="'+response.expen1[i].jumfullb+'" style="width: 35px;" id="jumfullb-'+no+'" onkeyup="totfullb('+no+')" onclick="totfullb('+no+')">'+
+                            ' = <input type="text" name="totfullb[]"  min="0" value="'+response.expen1[i].totfullb+'" readonly style="width: 150px;" id="totfullb-'+no+'">'+
                         '</td>'+  
                         '<td>'+fday+'&nbsp;'+              
-                            '<input type="number" name="hithalf[]" value="'+response.expen1[i].hithalf+'"  style="width: 50%;"  id="hithalf-'+no+'"> X '+
-                            '<input type="number" name="jumhalf[]"  min="0" value="'+response.expen1[i].jumhalf+'"  style="width:25%"  id="jumhalf-'+no+'" onkeyup="tothalf('+no+')">'+
-                            ' = <input type="text" name="tothalf[]"  min="0" value="'+response.expen1[i].tothalf+'"  readonly style="width: 85%;" id="tothalf-'+no+'">'+
+                            '<input type="number" name="hithalf[]" value="'+response.expen1[i].hithalf+'" style="width: 75px;"   id="hithalf-'+no+'"> X '+
+                            '<input type="number" name="jumhalf[]"  min="0" value="'+response.expen1[i].jumhalf+'"  style="width: 35px;" id="jumhalf-'+no+'" onkeyup="tothalf('+no+')"  onclick="tothalf('+no+')">'+
+                            ' = <input type="text" name="tothalf[]"  min="0" value="'+response.expen1[i].tothalf+'"  readonly style="width: 150px;" id="tothalf-'+no+'">'+
                         '</td>'+
                         '<td>'+rep+'&nbsp;'+   
-                            '<input type="number" name="hitrep[]"   min="0" value="'+response.expen1[i].hitrep+'" style="width: 50%;"  id="hitrep-'+no+'"> X '+
-                            '<input type="number" name="jumrep[]"   min="0" value="'+response.expen1[i].jumrep+'" style="width:25%"  id="jumrep-'+no+'" onkeyup="totrep('+no+')">'+
-                            ' = <input type="text" name="totrep[]"  min="0" value="'+response.expen1[i].totrep+'" readonly style="width: 85%;" id="totrep-'+no+'">'+
+                            '<input type="number" name="hitrep[]"   min="0" value="'+response.expen1[i].hitrep+'" style="width: 75px;"   id="hitrep-'+no+'"> X '+
+                            '<input type="number" name="jumrep[]"   min="0" value="'+response.expen1[i].jumrep+'" style="width: 35px;"  id="jumrep-'+no+'" onkeyup="totrep('+no+')" onclick="totrep('+no+')">'+
+                            ' = <input type="text" name="totrep[]"  min="0" value="'+response.expen1[i].totrep+'" readonly style="width: 150px;" id="totrep-'+no+'">'+
                         '</td>'+
                     '</tr>';
                 }
@@ -358,6 +379,20 @@
             var c = a * b;
             var hasil = parseFloat(c).toFixed(2);
             $("#totdaily-"+i).val(hasil);
+        }
+        function totdaily2(i) {
+            var a = $("#hitdaily2-"+i).val();
+            var b =  $("#jumdaily2-"+i).val();
+            var c = a * b;
+            var hasil = parseFloat(c).toFixed(2);
+            $("#totdaily2-"+i).val(hasil);
+        }
+        function totdaily3(i) {
+            var a = $("#hitdaily3-"+i).val();
+            var b =  $("#jumdaily3-"+i).val();
+            var c = a * b;
+            var hasil = parseFloat(c).toFixed(2);
+            $("#totdaily3-"+i).val(hasil);
         }
         function totdiklat(i) {
             var a = $("#hitdiklat-"+i).val();

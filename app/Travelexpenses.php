@@ -8,7 +8,6 @@ class Travelexpenses extends Model
 {
     protected $table = "travelexpenses";
     protected $fillable = ['expenses_id','outst_employee_id',
-                            'dailywage','hitdaily','jumdaily','totdaily',
                             'diklat','hitdiklat','jumdiklat','totdiklat',
                             'fullboard','hitfullb','jumfullb','totfullb',
                             'fullday','hithalf','jumhalf','tothalf',

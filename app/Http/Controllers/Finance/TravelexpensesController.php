@@ -8,6 +8,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use DateTime;
 use Carbon\Carbon;
+use App\Expenses_daily;
 use App\Travelexpenses;
 use App\Travelexpenses1;
 use App\Expenses;
@@ -54,11 +55,22 @@ class TravelexpensesController extends Controller
                                 ->leftJoin('destination','destination.id','=','outst_destiny.destination_id')
                                 ->where('outst_destiny.outstation_id',$request->id)
                                 ->get();
+        $jumlahtujuan =  Outst_destiny::SelectRaw('count(*) as hitung')   
+                                ->where('outstation_id',$request->id)
+                                ->first(); 
         $lama   = Outst_destiny::selectRaw('sum(longday) as lawas')
                                 ->where('outstation_id',$request->id)
                                 ->first();
         $dest   = Destination::WhereRaw('id = (SELECT destination_id FROM outst_destiny WHERE outstation_id ='.$request->id.'
-                                        ORDER BY id DESC limit 1) ')
+                                        ORDER BY id ASC limit 1) ')
+                                ->first();
+        $dest2   = Destination::WhereRaw('id = (SELECT destination_id FROM
+                                                    (SELECT * FROM outst_destiny where outstation_id ='.$request->id.'
+                                                        ORDER BY id desc LIMIT 2) INI
+                                                LIMIT 1) ')
+                                ->first();
+        $dest3   = Destination::WhereRaw('id = (SELECT destination_id FROM outst_destiny WHERE outstation_id ='.$request->id.'
+                                ORDER BY id DESC limit 1) ')
                                 ->first();
 
         return response()->json([ 
@@ -66,7 +78,10 @@ class TravelexpensesController extends Controller
             'st'        =>$st,
             'peg'       =>$peg,
             'lama'      =>$lama,
-            'dest'      =>$dest
+            'dest'      =>$dest,
+            'dest2'      =>$dest2,
+            'dest3'      =>$dest3,
+            'jumltu'    =>$jumlahtujuan
         ],200);
     }
 
@@ -82,7 +97,30 @@ class TravelexpensesController extends Controller
             $expenses = Expenses::create($request->all());
             $expenses_id = $expenses->id;
             for ($i = 0; $i < count($request->input('outst_employee_id')); $i++){
-                $dailywage      = $request->dailywage != null ?  $request->dailywage[$i] : 'N';
+                $dailywage1      = $request->dailywage1 != null ?  $request->dailywage1[$i] : 'N';
+                $dailywage2      = $request->dailywage2 != null ?  $request->dailywage2[$i] : 'N';
+                $dailywage3      = $request->dailywage3 != null ?  $request->dailywage3[$i] : 'N';
+
+                $data = [
+                    'expenses_id'       => $expenses_id,
+                    'outst_employee_id' => $request->outst_employee_id[$i],
+                    'dailywage1'        => $dailywage1,
+                    'dailywage2'        => $dailywage2,
+                    'dailywage3'        => $dailywage3,
+                    'hitdaily1'         => $request->hitdaily1[$i],
+                    'jumdaily1'         => $request->jumdaily1[$i],
+                    'totdaily1'         => $request->totdaily1[$i],
+                    'hitdaily2'         => $request->hitdaily2[$i],
+                    'jumdaily2'         => $request->jumdaily2[$i],
+                    'totdaily2'         => $request->totdaily2[$i],
+                    'hitdaily3'         => $request->hitdaily3[$i],
+                    'jumdaily3'         => $request->jumdaily3[$i],
+                    'totdaily3'         => $request->totdaily3[$i],
+                  
+                ];
+                Expenses_daily::create($data);
+            }
+            for ($i = 0; $i < count($request->input('outst_employee_id')); $i++){
                 $diklat         = $request->diklat != null ?  $request->diklat[$i] : 'N';
                 $fullboard      = $request->fullboard != null ?  $request->fullboard[$i] : 'N';
                 $fullday        = $request->fullday != null ?  $request->fullday[$i] : 'N';
@@ -91,14 +129,10 @@ class TravelexpensesController extends Controller
                 $dataone = [
                     'expenses_id'       => $expenses_id,
                     'outst_employee_id' => $request->outst_employee_id[$i],
-                    'dailywage'         => $dailywage,
                     'diklat'            => $diklat,
                     'fullboard'         => $fullboard,
                     'fullday'           => $fullday,
                     'representatif'     => $representatif,
-                    'hitdaily'          => $request->hitdaily[$i],
-                    'jumdaily'          => $request->jumdaily[$i],
-                    'totdaily'          => $request->totdaily[$i],
                     'hitdiklat'         => $request->hitdiklat[$i],
                     'jumdiklat'         => $request->jumdiklat[$i],
                     'totdiklat'         => $request->totdiklat[$i],
@@ -160,9 +194,6 @@ class TravelexpensesController extends Controller
                     Travelexpenses1::create($datatwo);
             }
             DB::commit();
-
-
-
         return redirect('/finance/travelexpenses');
 
     }
@@ -181,6 +212,11 @@ class TravelexpensesController extends Controller
 
 
     function getIsian(Request $request){
+        $expen = Expenses_daily::SelectRaw('expenses_daily.*, users.name')
+                                ->LeftJoin('outst_employee','expenses_daily.outst_employee_id','=','outst_employee.id')
+                                ->LeftJoin('users','users.id','=','outst_employee.users_id')
+                                ->where('expenses_id',$request->id)
+                                ->get();
         $expen1 = Travelexpenses::SelectRaw('travelexpenses.*, users.name')
                                 ->LeftJoin('outst_employee','travelexpenses.outst_employee_id','=','outst_employee.id')
                                 ->LeftJoin('users','users.id','=','outst_employee.users_id')
@@ -196,7 +232,8 @@ class TravelexpensesController extends Controller
 
         return response()->json([ 
             'success'   => true,
-            'expen1'       =>$expen1,
+            'expen'       =>$expen,
+            'expen1'      =>$expen1,
             'expen2'      =>$expen2
         ],200);
     }
@@ -206,13 +243,38 @@ class TravelexpensesController extends Controller
     {
         // dd($request->all());
         DB::beginTransaction();
+            Expenses_daily::where('Expenses_id', $id)->delete();
             Travelexpenses::where('Expenses_id', $id)->delete();
             Travelexpenses1::where('Expenses_id', $id)->delete();
             $expenses_id = $id;
 
             for ($i = 0; $i < count($request->input('outst_employee_id')); $i++){
+                $dailywage1      = $request->dailywage1 != null ?  $request->dailywage1[$i] : 'N';
+                $dailywage2      = $request->dailywage2 != null ?  $request->dailywage2[$i] : 'N';
+                $dailywage3      = $request->dailywage3 != null ?  $request->dailywage3[$i] : 'N';
+
+                $data = [
+                    'expenses_id'       => $expenses_id,
+                    'outst_employee_id' => $request->outst_employee_id[$i],
+                    'dailywage1'        => $dailywage1,
+                    'dailywage2'        => $dailywage2,
+                    'dailywage3'        => $dailywage3,
+                    'hitdaily1'         => $request->hitdaily1[$i],
+                    'jumdaily1'         => $request->jumdaily1[$i],
+                    'totdaily1'         => $request->totdaily1[$i],
+                    'hitdaily2'         => $request->hitdaily2[$i],
+                    'jumdaily2'         => $request->jumdaily2[$i],
+                    'totdaily2'         => $request->totdaily2[$i],
+                    'hitdaily3'         => $request->hitdaily3[$i],
+                    'jumdaily3'         => $request->jumdaily3[$i],
+                    'totdaily3'         => $request->totdaily3[$i],
+                  
+                ];
+                Expenses_daily::create($data);
+            }
+
+            for ($i = 0; $i < count($request->input('outst_employee_id')); $i++){
                 $nomor = $i+1;
-                $dailywage      = $request->dailywage != null ?  $request->dailywage[$i] : 'N';
                 $diklat         = $request->diklat != null ?  $request->diklat[$i] : 'N';
                 $fullboard      = $request->fullboard != null ?  $request->fullboard[$i] : 'N';
                 $fullday        = $request->fullday != null ?  $request->fullday[$i] : 'N';
@@ -221,14 +283,10 @@ class TravelexpensesController extends Controller
                 $dataone = [
                     'expenses_id'       => $expenses_id,
                     'outst_employee_id' => $request->outst_employee_id[$i],
-                    'dailywage'         => $dailywage,
                     'diklat'            => $diklat,
                     'fullboard'         => $fullboard,
                     'fullday'           => $fullday,
                     'representatif'     => $representatif,
-                    'hitdaily'          => $request->hitdaily[$i],
-                    'jumdaily'          => $request->jumdaily[$i],
-                    'totdaily'          => $request->totdaily[$i],
                     'hitdiklat'         => $request->hitdiklat[$i],
                     'jumdiklat'         => $request->jumdiklat[$i],
                     'totdiklat'         => $request->totdiklat[$i],
@@ -251,8 +309,6 @@ class TravelexpensesController extends Controller
                 ];
                 $dokument = Travelexpenses::create($dataone);
 
-
-
                 if($request->hasFile('file-'.$nomor)){ // Kalau file ada
                     $request->file('file-'.$nomor)
                                 ->move('images/kuitansi/'.$dokument->id,$request
@@ -262,8 +318,6 @@ class TravelexpensesController extends Controller
                     $dokument->save(); 
                 }
             }
-
-            
 
             
             for ($i = 0; $i < count($request->input('outst_employee_id')); $i++){
@@ -325,21 +379,33 @@ class TravelexpensesController extends Controller
                                     ->where('expenses.id',$id)
                                     ->get();
         $tipe       = Outst_employee::SelectRaw('outst_employee.*, outstation.type')
-                        ->leftJoin('outstation','outstation.id','=','outst_employee.outstation_id')
-                        ->leftJoin('expenses','expenses.outstation_id','=','outstation.id')
-                        ->where('expenses.id',$id)
-                        ->first();
-        $tr         = Travelexpenses::where('expenses_id',$id)->get();
+                                    ->leftJoin('outstation','outstation.id','=','outst_employee.outstation_id')
+                                    ->leftJoin('expenses','expenses.outstation_id','=','outstation.id')
+                                    ->where('expenses.id',$id)
+                                    ->first();
+        $jmltujuan  = Outst_destiny::SelectRaw('count(*) as hitung')   
+                                    ->leftJoin('outstation','outstation.id','=','outst_destiny.outstation_id')
+                                    ->leftJoin('expenses','expenses.outstation_id','=','outstation.id')
+                                    ->where('expenses.id',$id)
+                                    ->first(); 
+        $tr         = Expenses_daily::where('expenses_id',$id)->get();
         $petugas    = Petugas::where('id', '=', 5)->first();
+       
 
         if ($tipe->type=="DL") {
             $pdf        = PDF::loadview('finance/travelexpenses.receiptDL',compact('petugas','data','pegawai','tujuan','tr'));
             return $pdf->stream();
 
         } else {
-            return view('finance/travelexpenses.receipt',compact('petugas','data','pegawai','tujuan'));
-            // $pdf        = PDF::loadview('finance/travelexpenses.receiptpdf',compact('petugas','data','pegawai','tujuan'));
-            // return $pdf->stream();
+            // return view('finance/travelexpenses.receipt',compact('petugas','data','pegawai','tujuan'));
+           if ($jmltujuan->hitung == 1) {
+                $pdf        = PDF::loadview('finance/travelexpenses.receipt',compact('petugas','data','pegawai','tujuan'));
+                return $pdf->stream();
+           } else {
+                $pdf        = PDF::loadview('finance/travelexpenses.receiptpdf',compact('petugas','data','pegawai','tujuan'));
+                return $pdf->stream();
+           }
+           
         }
         
     }
@@ -382,7 +448,6 @@ class TravelexpensesController extends Controller
                         ->get();
         $pdf = PDF::loadview('finance/travelexpenses.super',compact('data','pegawai','tujuan'));
         return $pdf->stream();
-        // return view('finance/travelexpenses.super',compact('pegawai'));
     }
 
 }

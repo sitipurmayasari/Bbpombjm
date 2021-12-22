@@ -57,7 +57,7 @@
                                 <input type="text"  placeholder="Nama kegiatan" readonly id="jenis"
                                         class="col-xs-10 col-sm-10 " 
                                         name="jenis"/>
-                            </div>
+                            </div> 
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label no-padding-right" 
@@ -125,7 +125,22 @@
                 // ------DATA ST--------------//
                 $("#maksud").val(response.st.purpose);
                 $("#lamahari").val(response.lama.lawas);
-                $("#tujuan").val(response.dest.capital);
+
+                var tujuan1 = response.dest.capital;
+                var tujuan2 = response.dest2.capital;
+                var tujuan3 = response.dest3.capital;
+
+                if (response.jumltu.hitung ==1) {
+                    var isitujuan = tujuan1;
+                } else if (response.jumltu.hitung ==2) {
+                    var isitujuan = tujuan1+' dan '+tujuan2;
+                } else {
+                    var isitujuan = tujuan1+' , '+tujuan2+' dan '+tujuan3;
+                }
+                
+                $("#tujuan").val(isitujuan);
+
+               
 
                 if (response.st.type=='DL') {
                     var r = 'Dalam Kota';
@@ -142,39 +157,120 @@
                   var is_check = '';
                   var no = i+1;
                 
-                if (response.st.type=='DL') {
+                if (response.st.type=='DL') { //DALAM KOTA
                     if (response.peg[i].deskjob != 'Non ASN / Sopir') {
-                        
                         if (response.peg[i].jabatan_id=='6') { //kabalai
                             var daily = response.dest.dailywageDK1;
+                            var daily2 = 0;
+                            var daily3 = 0;
                         } else if(response.peg[i].jabatan_id=='11') { //kabag
                             var daily = response.dest.dailywageDK2;
+                            var daily2 = 0;
+                            var daily3 = 0;
                         } else if(response.peg[i].jabatan_id=='7') { //koor
                             var daily = response.dest.dailywageDK3;
+                            var daily2 = 0;
+                            var daily3 = 0;
                         } else if(response.peg[i].jabatan_id=='5') { //sub
                             var daily = response.dest.dailywageDK4;
+                            var daily2 = 0;
+                            var daily3 = 0;
                         } else {
                             var daily = response.dest.dailywageDK5;
+                            var daily2 = 0;
+                            var daily3 = 0;
                         }
                     } else {
                         var daily = response.dest.DKDriver;
+                        var daily2 = 0;
+                        var daily3 = 0;
                     }
-                } else{
-                    if (response.peg[i].deskjob !='Non ASN / Sopir') {
-                        if (response.peg[i].jabatan_id=='6') { //kabalai
-                            var daily = response.dest.dailywageLK1;
-                        } else if(response.peg[i].jabatan_id=='11') { //kabag
-                            var daily = response.dest.dailywageLK2;
-                        } else if(response.peg[i].jabatan_id=='7') { //koor
-                            var daily = response.dest.dailywageLK3;
-                        } else if(response.peg[i].jabatan_id=='5') { //sub
-                            var daily = response.dest.dailywageLK4;
-                        } else {
-                            var daily = response.dest.dailywageLK5;
-                        }
-                    } else {
-                        var daily = response.dest.LKDriver;
-                    }  
+                } else{ //LUAR KOTA
+                    if (response.jumltu.hitung ==1) { //jumlah tujuan 1
+                        if (response.peg[i].deskjob !='Non ASN / Sopir') {
+                            if (response.peg[i].jabatan_id=='6') { //kabalai
+                                var daily = response.dest.dailywageLK1;
+                                var daily2 = 0;
+                                var daily3 = 0;
+                            } else if(response.peg[i].jabatan_id=='11') { //kabag
+                                var daily = response.dest.dailywageLK2;
+                                var daily2 = 0;
+                                var daily3 = 0;
+                            } else if(response.peg[i].jabatan_id=='7') { //koor
+                                var daily = response.dest.dailywageLK3;
+                                var daily2 = 0;
+                                var daily3 = 0;
+                            } else if(response.peg[i].jabatan_id=='5') { //sub
+                                var daily = response.dest.dailywageLK4;
+                                var daily2 = 0;
+                                var daily3 = 0;
+                            } else {
+                                var daily = response.dest.dailywageLK5;
+                                var daily2 = 0;
+                                var daily3 = 0;
+                            }
+                        } else { 
+                            var daily = response.dest.LKDriver;
+                            var daily2 = 0;
+                            var daily3 = 0;
+                        }  
+                    } else if(response.jumltu.hitung ==2) { //jumlah tujuan 2
+                        if (response.peg[i].deskjob !='Non ASN / Sopir') {
+                            if (response.peg[i].jabatan_id=='6') { //kabalai
+                                var daily = response.dest.dailywageLK1;
+                                var daily2 = response.dest3.dailywageLK1;
+                                var daily3 = 0;
+                            } else if(response.peg[i].jabatan_id=='11') { //kabag
+                                var daily = response.dest.dailywageLK2;
+                                var daily2 = response.dest3.dailywageLK2;
+                                var daily3 = 0;
+                            } else if(response.peg[i].jabatan_id=='7') { //koor
+                                var daily = response.dest.dailywageLK3;
+                                var daily2 = response.dest3.dailywageLK3;
+                                var daily3 = 0;
+                            } else if(response.peg[i].jabatan_id=='5') { //sub
+                                var daily = response.dest.dailywageLK4;
+                                var daily2 = response.dest3.dailywageLK4;
+                                var daily3 = 0;
+                            } else {
+                                var daily = response.dest.dailywageLK5;
+                                var daily2 = response.dest3.dailywageLK5;
+                                var daily3 = 0;
+                            }
+                        } else { 
+                            var daily = response.dest.LKDriver;
+                            var daily2 = response.dest3.LKDriver;
+                            var daily3 = 0;
+                        }  
+                    } else { //jumlah tujuan 3
+                        if (response.peg[i].deskjob !='Non ASN / Sopir') {
+                            if (response.peg[i].jabatan_id=='6') { //kabalai
+                                var daily = response.dest.dailywageLK1;
+                                var daily2 = response.dest2.dailywageLK1;
+                                var daily3 = response.dest3.dailywageLK1;
+                            } else if(response.peg[i].jabatan_id=='11') { //kabag
+                                var daily = response.dest.dailywageLK2;
+                                var daily2 = response.dest2.dailywageLK2;
+                                var daily3 = response.dest3.dailywageLK2;
+                            } else if(response.peg[i].jabatan_id=='7') { //koor
+                                var daily = response.dest.dailywageLK3;
+                                var daily2 = response.dest2.dailywageLK3;
+                                var daily3 = response.dest3.dailywageLK3;
+                            } else if(response.peg[i].jabatan_id=='5') { //sub
+                                var daily = response.dest.dailywageLK4;
+                                var daily2 = response.dest2.dailywageLK4;
+                                var daily3 = response.dest3.dailywageLK4;
+                            } else {
+                                var daily = response.dest.dailywageLK5;
+                                var daily2 = response.dest2.dailywageLK5;
+                                var daily3 = response.dest3.dailywageLK5;
+                            }
+                        } else { 
+                            var daily = response.dest.LKDriver;
+                            var daily2 = response.dest3.LKDriver;
+                            var daily3 = 0;
+                        }  
+                    }
                 }
 
                 if (response.peg[i].jabatan_id=='6') { //kabalai
@@ -211,35 +307,45 @@
 
 
                   centanguang+='<tr>'+
-                        '<td style="text-align: center;">'+no+'</td>'+
-                        '<td>'+response.peg[i].name+
+                        '<td style="text-align: center; width: 20px;">'+no+'</td>'+
+                        '<td style="width: 120px;">'+response.peg[i].name+
                             '<input type="hidden" name="outst_employee_id[]" class="outid" value='+response.peg[i].id+'>'+
                             '<input type="hidden" name="jabatan[]" value='+response.peg[i].jabatan_id+'>'+
                         '</td>'+
-                        '<td><input type="checkbox" name="dailywage[]" value="Y">'+
-                            '<input type="number" name="hitdaily[]"  min="0" value='+daily+' style="width: 50%;"  id="hitdaily-'+no+'"> X '+
-                            '<input type="number" name="jumdaily[]"  min="0" value="0" style="width:25%"  id="jumdaily-'+no+'" onkeyup="totdaily('+no+')">'+
-                            ' = <input type="text" name="totdaily[]"  min="0" value="0" readonly style="width: 85%;" id="totdaily-'+no+'">'+
+                        '<td><input type="checkbox" name="dailywage1[]" value="Y">'+
+                            '<input type="number" name="hitdaily1[]"  min="0" value="'+daily+'" style="width: 75px;"  id="hitdaily-'+no+'"> X '+
+                            '<input type="number" name="jumdaily1[]"  min="0" value="0" style="width: 35px;"  id="jumdaily-'+no+'" onkeyup="totdaily('+no+')"  onclick="totdaily('+no+')">'+
+                            ' = <input type="text" name="totdaily1[]"  min="0" value="0" readonly style="width: 150px;" id="totdaily-'+no+'">'+
+                        '</td>'+
+                        '<td><input type="checkbox" name="dailywage2[]" value="Y">'+
+                            '<input type="number" name="hitdaily2[]"  min="0" value="'+daily2+'"  style="width: 75px;"  id="hitdaily2-'+no+'"> X '+
+                            '<input type="number" name="jumdaily2[]"  min="0" value="0" style="width: 35px;"  id="jumdaily2-'+no+'" onkeyup="totdaily2('+no+')"  onclick="totdaily2('+no+')">'+
+                            ' = <input type="text" name="totdaily2[]"  min="0" value="0" readonly style="width: 150px;" id="totdaily2-'+no+'">'+
+                        '</td>'+
+                        '<td><input type="checkbox" name="dailywage3[]" value="Y">'+
+                            '<input type="number" name="hitdaily3[]"  min="0" value="'+daily3+'"  style="width: 75px;"  id="hitdaily3-'+no+'"> X '+
+                            '<input type="number" name="jumdaily3[]"  min="0" value="0" style="width: 35px;"  id="jumdaily3-'+no+'" onkeyup="totdaily3('+no+')"  onclick="totdaily3('+no+')">'+
+                            ' = <input type="text" name="totdaily3[]"  min="0" value="0" readonly style="width: 150px;" id="totdaily3-'+no+'">'+
                         '</td>'+
                         '<td><input type="checkbox" name="diklat[]" value="Y">'+
-                            '<input type="number" name="hitdiklat[]"  min="0" value='+diklat+' style="width: 50%;"  id="hitdiklat-'+no+'"> X '+
-                            '<input type="number" name="jumdiklat[]"  min="0" value="0" style="width:25%"  id="jumdiklat-'+no+'" onkeyup="totdiklat('+no+')">'+
-                            ' = <input type="text" name="totdiklat[]"  min="0" value="0" readonly style="width: 85%;" id="totdiklat-'+no+'">'+
+                            '<input type="number" name="hitdiklat[]"  min="0" value='+diklat+'  style="width: 75px;" id="hitdiklat-'+no+'"> X '+
+                            '<input type="number" name="jumdiklat[]"  min="0" value="0" style="width: 35px;" id="jumdiklat-'+no+'" onkeyup="totdiklat('+no+')" onclick="totdiklat('+no+')">'+
+                            ' = <input type="text" name="totdiklat[]"  min="0" value="0" readonly style="width: 150px;" id="totdiklat-'+no+'">'+
                         '</td>'+            
                         '<td><input type="checkbox" name="fullboard[]" value="Y">'+
-                            '<input type="number" name="hitfullb[]"   min="0"value='+fullb+' style="width: 50%;"  id="hitfullb-'+no+'"> X '+
-                            '<input type="number" name="jumfullb[]"   min="0"value="0" style="width:25%"  id="jumfullb-'+no+'" onkeyup="totfullb('+no+')">'+
-                            ' = <input type="text" name="totfullb[]"  min="0" value="0" readonly style="width: 85%;" id="totfullb-'+no+'">'+
+                            '<input type="number" name="hitfullb[]"   min="0"value='+fullb+'  style="width: 75px;"  id="hitfullb-'+no+'"> X '+
+                            '<input type="number" name="jumfullb[]"   min="0"value="0" style="width: 35px;"  id="jumfullb-'+no+'" onkeyup="totfullb('+no+')" onclick="totfullb('+no+')">'+
+                            ' = <input type="text" name="totfullb[]"  min="0" value="0" readonly style="width: 150px;" id="totfullb-'+no+'">'+
                         '</td>'+             
                         '<td><input type="checkbox" name="fullday[]" value="Y">'+
-                            '<input type="number" name="hithalf[]" value='+half+' style="width: 50%;"  id="hithalf-'+no+'"> X '+
-                            '<input type="number" name="jumhalf[]"  min="0" value="0" style="width:25%"  id="jumhalf-'+no+'" onkeyup="tothalf('+no+')">'+
-                            ' = <input type="text" name="tothalf[]"  min="0" value="0" readonly style="width: 85%;" id="tothalf-'+no+'">'+
+                            '<input type="number" name="hithalf[]" value='+half+' style="width: 75px;" id="hithalf-'+no+'"> X '+
+                            '<input type="number" name="jumhalf[]"  min="0" value="0" style="width: 35px;"  id="jumhalf-'+no+'" onkeyup="tothalf('+no+')" onclick="tothalf('+no+')">'+
+                            ' = <input type="text" name="tothalf[]"  min="0" value="0" readonly style="width: 150px;" id="tothalf-'+no+'">'+
                         '</td>'+
                         '<td><input type="checkbox" name="representatif[]" value="Y">'+
-                            '<input type="number" name="hitrep[]"   min="0" value='+rep+' style="width: 50%;"  id="hitrep-'+no+'"> X '+
-                            '<input type="number" name="jumrep[]"   min="0"value="0" style="width:25%"  id="jumrep-'+no+'" onkeyup="totrep('+no+')">'+
-                            ' = <input type="text" name="totrep[]"  min="0" value="0" readonly style="width: 85%;" id="totrep-'+no+'">'+
+                            '<input type="number" name="hitrep[]"   min="0" value='+rep+' style="width: 75px;" id="hitrep-'+no+'"> X '+
+                            '<input type="number" name="jumrep[]"   min="0"value="0" style="width: 35px;" id="jumrep-'+no+'" onkeyup="totrep('+no+')" onclick="totrep('+no+')">'+
+                            ' = <input type="text" name="totrep[]"  min="0" value="0" readonly style="width: 150px;" id="totrep-'+no+'">'+
                         '</td>'+
                     '</tr>';
                 }
@@ -378,6 +484,20 @@
             var c = a * b;
             var hasil = parseFloat(c).toFixed(2);
             $("#totdaily-"+i).val(hasil);
+        }
+        function totdaily2(i) {
+            var a = $("#hitdaily2-"+i).val();
+            var b =  $("#jumdaily2-"+i).val();
+            var c = a * b;
+            var hasil = parseFloat(c).toFixed(2);
+            $("#totdaily2-"+i).val(hasil);
+        }
+        function totdaily3(i) {
+            var a = $("#hitdaily3-"+i).val();
+            var b =  $("#jumdaily3-"+i).val();
+            var c = a * b;
+            var hasil = parseFloat(c).toFixed(2);
+            $("#totdaily3-"+i).val(hasil);
         }
         function totdiklat(i) {
             var a = $("#hitdiklat-"+i).val();
