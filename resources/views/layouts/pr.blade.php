@@ -227,6 +227,10 @@
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 		<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+		{{-- Kalendar --}}
+		<script src="{{asset('assets/js/jquery-1.10.2.js')}}"></script>
+  		<script src="{{asset('assets/js/jquery-ui.custom.min.js')}}"></script>
+
 		<script>
 			$(document).ready(function() {
 				$('.select2').select2();
