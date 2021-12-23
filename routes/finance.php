@@ -251,9 +251,20 @@
     Route::post('finance/stbook/store','Finance\STBookController@store')->name('stbook.store');
     Route::get('finance/stbook/edit/{id}','Finance\STBookController@edit')->name('stbook.edit');
     Route::post('finance/stbook/update/{id}','Finance\STBookController@update')->name('stbook.update');
-    Route::post('finance/stbook/delete/{id}','Finance\STBookController@update')->name('stbook.delete');
+    Route::post('finance/stbook/delete/{id}','Finance\STBookController@delete')->name('stbook.delete');
     Route::get('finance/stbook/getnost','Finance\STBookController@getnost')->name('stbook.getnost');
     Route::get('finance/stbook/getnosppd','Finance\STBookController@getnosppd')->name('stbook.getnosppd');
     Route::get('finance/stbook/getnosppdnext','Finance\STBookController@getnosppdnext')->name('stbook.getnosppdnext');
 
-  
+    //Route untuk Subkelompok Surat
+    Route::get('/finance/mailsubgroup/create','Finance\MailSubGroupController@create')->name('mailsubgroup.create');
+    Route::post('finance/mailsubgroup/store','Finance\MailSubGroupController@store')->name('mailsubgroup.store');
+    Route::get('finance/mailsubgroup/edit/{id}','Finance\MailSubGroupController@edit')->name('mailsubgroup.edit');
+    Route::post('finance/mailsubgroup/update/{id}','Finance\MailSubGroupController@update')->name('mailsubgroup.update');
+    
+    //Route untuk Klasifikasi Surat
+    Route::get('/finance/mailclasification/create','Finance\MailClasificationController@create')->name('mailclasification.create');
+    Route::post('finance/mailclasification/store','Finance\MailClasificationController@store')->name('mailclasification.store');
+    Route::get('finance/mailclasification/edit/{id}','Finance\MailClasificationController@edit')->name('mailclasification.edit');
+    Route::post('finance/mailclasification/update/{id}','Finance\MailClasificationController@update')->name('mailclasification.update');
+    Route::post('finance/mailclasification/delete/{id}','Finance\MailClasificationController@delete')->name('mailclasification.delete');

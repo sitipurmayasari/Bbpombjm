@@ -30,8 +30,17 @@ class STBookController extends Controller
 
     public function create()
     {
+      $klas = DB::select('SELECT * FROM(
+                            SELECT alias, names FROM mailgroup
+                            UNION ALL
+                            SELECT alias, names FROM mailsubgroup
+                            UNION ALL
+                            SELECT alias, names FROM mailclasification
+                          ) c
+                        ORDER BY alias asc');
+
       $div = Divisi::all();
-      return view('finance/stbook.create',compact('div'));
+      return view('finance/stbook.create',compact('div','klas'));
     }
 
     public function store(Request $request)
@@ -68,7 +77,9 @@ class STBookController extends Controller
    
     public function update(Request $request, $id)
     {
-      $stbook_id = $id;
+      $data = Stbook::find($id);
+      $data->update($request->all());
+
       $isi = Stbook_sppd::where('stbook_id',$id);
       $isi->delete();
 
@@ -81,25 +92,6 @@ class STBookController extends Controller
             Stbook_sppd::create($data);
         }
       DB::commit();
-
-      // DB::beginTransaction();  
-      
-      //   //---------------sppd----------------------
-        
-      //     for ($i = 0; $i < count($request->input('nomor_sppd')); $i++){
-      //       $data = [
-      //         'stbook_id' => $stbook_id,
-      //         'nomor_sppd'=> $request->nomor_sppd[$i],
-      //         'created_at' => Carbon::now(),
-      //         'updated_at' => Carbon::now()
-      //       ];
-
-      //       DB::table('stbook_sppd')->updateOrInsert([
-      //         'nomor_sppd'=>$request->nomor_sppd
-      //       ],$data);
-      //     }
-
-      // DB::commit();
 
       return redirect('/finance/stbook')->with('sukses','Data Diperbaharui');
     }
@@ -115,23 +107,66 @@ class STBookController extends Controller
         return redirect('/finance/stbook')->with('sukses','Data Terhapus');
     }
 
+    function getnosppd(Request $request){
+
+      $baris = $request->last_baris;
+      $sppd = Stbook_sppd::orderBy('id','desc')->whereYear('created_at',date('Y'))->get(); 
+      $bidang = Divisi::select('kode_sppd')->where('id',$request->divisi_id)->first();
+      $counting = Stbook_sppd::SelectRaw("COUNT(*)AS jum ")->first();
+      $first = "0001";
+      if($sppd->count()>0){
+        $first = $counting->jum+$baris;
+          // $first = $counting->jum+1;
+          if($first < 10){
+            $first = "000".$first;
+          }else if($first < 100){
+            $first = "00".$first;
+          }else if($first < 1000){
+          $first = "0".$first;
+          }
+      }
+          $no_sppd = $first."/".$bidang->kode_sppd."/SPPD/BBPOM"."/".date('Y');
+      
+      return response()->json([ 
+          'success' => true,
+          'no_sppd' => $no_sppd],200
+      );
+  }
+
+  function getnosppdnext(Request $request){
+
+      $baris = $request->plusplus;
+      $sppd = Stbook_sppd::orderBy('id','desc')->whereYear('created_at',date('Y'))->get(); 
+      $bidang = Divisi::select('kode_sppd')->where('id',$request->divisi_id)->first();
+      $counting = Stbook_sppd::SelectRaw("COUNT(*)AS jum")->first();
+      $first = "0001";
+      if($sppd->count()>0){
+        // $first = $sppd->first()->id+$baris;
+        $first = $counting->jum+$baris;
+          if($first < 10){
+            $first = "000".$first;
+          }else if($first < 100){
+            $first = "00".$first;
+          }else if($first < 1000){
+          $first = "0".$first;
+          }
+      }
+          $no_sppd = $first."/".$bidang->kode_sppd."/SPPD/BBPOM"."/".date('Y');
+      
+      return response()->json([ 
+          'success' => true,
+          'no_sppd' => $no_sppd],200
+      );
+  }
+
     function getnost(Request $request){
 
         $bidang = Divisi::select('lokasi')->where('id',$request->divisi_id)->first();
-        $st = Stbook::orderBy('id','desc')->whereYear('created_at',date('Y'))->get(); 
-        $bulan = $request->date;
-        $first = "0001";
-        if($st->count()>0){
-          $first = $st->first()->id+1;
-            if($first < 10){
-              $first = "000".$first;
-            }else if($first < 100){
-              $first = "00".$first;
-            }else if($first < 1000){
-            $first = "0".$first;
-            }
-        }
-            $no_st = "RT.02.01.".$bidang->lokasi.".".date('m').".".date('y').".".$first;
+        $klasifikasi = $request->klasifikasi;
+        $dates = $request->date;
+        $panda = $request->stpanda;
+      
+        $no_st = $klasifikasi.".".$bidang->lokasi.".".date('m').".".date('y').".".$panda;
         
         return response()->json([ 
             'success' => true,
@@ -139,57 +174,7 @@ class STBookController extends Controller
         );
     }
 
-    function getnosppd(Request $request){
-
-        $baris = $request->last_baris;
-        $sppd = Stbook_sppd::orderBy('id','desc')->whereYear('created_at',date('Y'))->get(); 
-        $bidang = Divisi::select('kode_sppd')->where('id',$request->divisi_id)->first();
-        $counting = Stbook_sppd::SelectRaw("COUNT(*)AS jum ")->first();
-        $first = "0001";
-        if($sppd->count()>0){
-          $first = $counting->jum+$baris;
-            // $first = $counting->jum+1;
-            if($first < 10){
-              $first = "000".$first;
-            }else if($first < 100){
-              $first = "00".$first;
-            }else if($first < 1000){
-            $first = "0".$first;
-            }
-        }
-            $no_sppd = $first."/".$bidang->kode_sppd."/SPPD/BBPOM"."/".date('Y');
-        
-        return response()->json([ 
-            'success' => true,
-            'no_sppd' => $no_sppd],200
-        );
-    }
-
-    function getnosppdnext(Request $request){
-
-        $baris = $request->plusplus;
-        $sppd = Stbook_sppd::orderBy('id','desc')->whereYear('created_at',date('Y'))->get(); 
-        $bidang = Divisi::select('kode_sppd')->where('id',$request->divisi_id)->first();
-        $counting = Stbook_sppd::SelectRaw("COUNT(*)AS jum")->first();
-        $first = "0001";
-        if($sppd->count()>0){
-          // $first = $sppd->first()->id+$baris;
-          $first = $counting->jum+$baris;
-            if($first < 10){
-              $first = "000".$first;
-            }else if($first < 100){
-              $first = "00".$first;
-            }else if($first < 1000){
-            $first = "0".$first;
-            }
-        }
-            $no_sppd = $first."/".$bidang->kode_sppd."/SPPD/BBPOM"."/".date('Y');
-        
-        return response()->json([ 
-            'success' => true,
-            'no_sppd' => $no_sppd],200
-        );
-    }
+   
 
 
 }

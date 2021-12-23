@@ -224,6 +224,10 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/finance/lapRAPK','Finance\LapRAPKController@index')->name('lapRAPK');
     //Route untuk buku ST
     Route::get('/finance/stbook','Finance\STBookController@index')->name('stbook');
+    //Route untuk Subkelompok Surat
+    Route::get('/finance/mailsubgroup','Finance\MailSubGroupController@index')->name('mailsubgroup');
+    //Route untuk Klasifikasi Surat
+    Route::get('/finance/mailclasification','Finance\MailClasificationController@index')->name('mailclasification');
 
 });
 

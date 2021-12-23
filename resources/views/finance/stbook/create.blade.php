@@ -34,10 +34,23 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> KLASIFIKASI SURAT
+                        </label>
+                        <div class="col-sm-8"> 
+                            <select name="klasifikasi" class="col-xs-10 col-sm-10 required select2" required id="klasifikasi">
+                                <option value="">Pilih klasifikasi</option>
+                                @foreach ($klas as $item)
+                                    <option value="{{$item->alias}}">{{$item->alias}} - {{$item->names}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
                         for="form-field-1"> Substansi
                         </label>
                         <div class="col-sm-8"> 
-                            <select name="divisi_id" class="col-xs-10 col-sm-10 required select2" required id="div" onchange="getnomor()">
+                            <select name="divisi_id" class="col-xs-10 col-sm-10 required" required id="div" onchange="getnomor()">
                                 <option value="">Pilih Substansi</option>
                                 @foreach ($div as $item)
                                     <option value="{{$item->id}}">{{$item->nama}}</option>
@@ -47,10 +60,20 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1"> Nomor ST
+                        for="form-field-1"> Nomor ST (SIPANDA)
                         </label>
                         <div class="col-sm-8">
-                            <input type="text" required readonly id="nost"
+                            <input type="text" required placeholder="mis : 0001" onkeyup="getnomorST()"
+                                    class="col-xs-10 col-sm-10 required " id="stpanda"
+                                    name="stpanda"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Nomor ST ANDA
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text" required readonly id="stbook_number"
                                     class="col-xs-10 col-sm-10 required " 
                                     name="stbook_number"/>
                         </div>
@@ -121,21 +144,9 @@
    <script>
 
     function getnomor(){
-           var date = $("#st_date").val();
-           var divisi_id = $("#div").val();
-           var last_baris = $("#countRow").val();
-
-        $.get(
-            "{{route('stbook.getnost') }}",
-            {
-                date:date,
-                divisi_id:divisi_id
-            },
-            function(response) {
-                document.getElementsByName("stbook_number")[0].value = response.no_st ;
-            }
-        );
-
+        var date = $("#st_date").val();
+        var divisi_id = $("#div").val();
+        var last_baris = $("#countRow").val();
         $.get(
             "{{route('stbook.getnosppd') }}",
             {
@@ -147,6 +158,25 @@
                 $("#nosppd1").val(response.no_sppd)
             }
         );
+    }
+
+    function getnomorST(){
+        var date = $("#st_date").val();
+        var divisi_id = $("#div").val();
+        var stpanda = $("#stpanda").val();
+        var klasifikasi = $("#klasifikasi").val();
+        $.get(
+            "{{route('stbook.getnost') }}",
+            {
+                date:date,
+                divisi_id:divisi_id,
+                klasifikasi:klasifikasi,
+                stpanda:stpanda
+            },
+            function(response) {
+                $("#stbook_number").val(response.no_st)
+            }
+        );           
     }
 
     function addBarisNew(){

@@ -54,7 +54,7 @@
                         for="form-field-1"> Nomor ST
                         </label>
                         <div class="col-sm-8">
-                            <input type="text" required readonly id="nost" value="{{$data->stbook_number}}"
+                            <input type="text" required id="nost" value="{{$data->stbook_number}}"
                                     class="col-xs-10 col-sm-10 required " 
                                     name="stbook_number"/>
                         </div>
