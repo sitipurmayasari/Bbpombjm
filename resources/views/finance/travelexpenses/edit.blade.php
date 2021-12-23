@@ -124,17 +124,17 @@
                   var is_check = '';
                   var no = i+1;
                     //---centang UH----
-                    if (response.expen[i].dailywage == 'Y') {
+                    if (response.expen[i].dailywage1 == 'Y') {
                         var dai1 = '<input type="checkbox" name="dailywage1[]" value="Y" checked>';
                     } else {
                         var dai1 = '<input type="checkbox" name="dailywage1[]" value="Y">';
                     }
-                    if (response.expen[i].dailywage == 'Y') {
+                    if (response.expen[i].dailywage2 == 'Y') {
                         var dai2 = '<input type="checkbox" name="dailywage2[]" value="Y" checked>';
                     } else {
                         var dai2 = '<input type="checkbox" name="dailywage2[]" value="Y">';
                     }
-                    if (response.expen[i].dailywage == 'Y') {
+                    if (response.expen[i].dailywage3 == 'Y') {
                         var dai3 = '<input type="checkbox" name="dailywage3[]" value="Y" checked>';
                     } else {
                         var dai3 = '<input type="checkbox" name="dailywage3[]" value="Y">';
