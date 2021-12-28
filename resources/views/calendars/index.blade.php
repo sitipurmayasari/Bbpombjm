@@ -707,11 +707,13 @@
   </style>
 @endsection
 @section('content')
-  <div id='wrap-calendar'>
+  <div class="row">
+    <div id='wrap-calendar'>
 
-    <div id='calendar'></div>
-    
-    <div style='clear:both'></div>
+      <div id='calendar'></div>
+      
+      <div style='clear:both'></div>
+    </div>
   </div>
 @endsection
 

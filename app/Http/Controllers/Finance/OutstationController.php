@@ -120,6 +120,20 @@ class OutstationController extends Controller
         return $pdf->stream();
       }
 
+      public function printSTKop($id)
+      {
+        $data = Outstation::where('id',$id)->first();
+        $isian = Outst_employee::orderBy('id','asc')
+                            ->where('outstation_id','=',$id)
+                            ->get();
+        $menyetujui = Pejabat::where('jabatan_id', '=', 6)
+                            ->whereRaw("(SELECT st_date FROM outstation WHERE id=$id) BETWEEN dari AND sampai")
+                            ->first();
+        $pdf = PDF::loadview('finance/outstation.printSTKop',compact('data','isian','menyetujui'));
+        return $pdf->stream();
+      }
+
+
       public function printSppd($id)
       {
         $data       = Outstation::where('id',$id)->first();

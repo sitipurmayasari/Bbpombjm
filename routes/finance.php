@@ -147,6 +147,7 @@
   Route::get('finance/outstation/edit/{id}','Finance\OutstationController@edit')->name('outstation.edit');
   Route::post('finance/outstation/update/{id}','Finance\OutstationController@update')->name('outstation.update');
   Route::get('finance/outstation/printST/{id}','Finance\OutstationController@printST')->name('outstation.printST');
+  Route::get('finance/outstation/printSTKop/{id}','Finance\OutstationController@printSTKop')->name('outstation.printSTKop');
   Route::get('finance/outstation/printSppd/{id}','Finance\OutstationController@printSppd')->name('outstation.printSppd');
   Route::get('finance/outstation/delete/{id}','Finance\OutstationController@delete')->name('outstation.delete');
   

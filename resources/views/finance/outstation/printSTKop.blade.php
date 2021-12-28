@@ -6,13 +6,53 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="{{asset('assets/css/no_header.css')}}" rel="stylesheet">
+    {{-- <link href="{{asset('assets/css/print.css')}}" rel="stylesheet"> --}}
     <title>Surat Tugas</title>
 </head>
 <style>
-    html, table{
+        @page {
+            size: A4;
+            /* margin: 170px 0px 100px 0px; */
+            font-family: 'Times New Roman';
+            font-size: 11px;
+            page-break-after: always;
+            
+        }
+        
+
+        body, html {
+            height: 100%;
+            margin: 0;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .header {
+            position:fixed;
+            padding-top: 0%;
+            /* height: 15%; */
+            top: 0%;
+            margin-left: 5%;
+            margin-right: 5%;
+            margin-top: -170px;
+        }
+
+        footer {
+                position:fixed;
+                height: 70px;
+                bottom: 0;
+                width: 100%;
+                margin-bottom: 20px;
+                z-index: -100;
+        }
+
+    
+        html, table{
             font-family: "Bookman Old Style";
             font-size: 12;
+
+            
         }
 
         #kop{
@@ -20,7 +60,10 @@
             margin-left: 10%;
             margin-right: 10%;
             line-height: 1.5;
+            margin-top: 170px;
         }
+
+        
 
         #isi{
             font-family: "Bookman Old Style";
@@ -47,9 +90,9 @@
         .detail{
             font-family: "Bookman Old Style";
             border: 1px solid black;
-            font-size: 11;
+            font-size: 10;
             text-align: left;
-            line-height: 1.5;
+            line-height: 1;
             vertical-align: top
         }
         th{
@@ -74,10 +117,12 @@
             padding-top: 13px;
             
         }
-        
 
 </style>
-<body>
+<body background="{{asset('images/kop.png')}}">
+     {{-- <header>
+        <img src="{{asset('images/kop.png')}}" style="width: 100%"> <br>
+    </header> --}}
     <div class="col-sm-12" style="text-align: center">
         <div style="align=center;" id="kop">
             <u><b style="font-size: 14">SURAT TUGAS</b></u><br>
@@ -96,8 +141,8 @@
                     <th style="width: 5%">NO</th>
                     <th style="width: 30%">NAMA</th>
                     <th style="width: 20%">NIP</th>
-                    <th style="width: 22%">PANGKAT / GOLONGAN</th>
-                    <th style="width: 33%">JABATAN</th>
+                    <th style="width: 25%">PANGKAT / GOLONGAN</th>
+                    <th style="width: 30%">JABATAN</th>
                 </tr>
             </thead>
             <tbody>
@@ -277,5 +322,8 @@
             </tr>
         </table>
     </div>
+   {{-- <footer>
+        <img src="{{asset('images/kopsurat2.jpg')}}" style="width: 100%" alt="background">
+   </footer> --}}
 </body>
 </html>

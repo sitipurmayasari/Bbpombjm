@@ -34,15 +34,15 @@
     <div class="table-responsive">
         <table id="simple-table" class="table  table-bordered table-hover">
         {{-- <table id="simple-table" class="table  table-bordered table-hover datatable"> --}}
-            <thead>
-                <th width="40px">No</th>
-                <th class="col-md-2">Nomor Surat Tugas</th>
-                <th>Nama Kegiatan</th>
-                <th>Destinasi</th>
-                <th>Cetak ST</th>
-                <th>Cetak SPPD</th>
-                <th>Scan ST</th>
-                <th  class="col-md-2">Aksi</th>
+            <thead >
+                <th style="text-align: center" width="40px">No</th>
+                <th style="text-align: center" class="col-md-2">Nomor Surat Tugas</th>
+                <th style="text-align: center">Nama Kegiatan</th>
+                <th style="text-align: center">Destinasi</th>
+                <th style="text-align: center">Cetak ST</th>
+                <th style="text-align: center">Cetak SPPD</th>
+                <th style="text-align: center">Scan ST</th>
+                <th style="text-align: center"  class="col-md-1">Aksi</th>
             </thead>
             <tbody>   	
                 @php
@@ -58,8 +58,9 @@
                             <li>{{$item->destiny->capital}}</li>
                         @endforeach
                     </td>
-                    <td>
-                        <a class="btn btn-primary" href="/finance/outstation/printST/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
+                    <td style="text-align: center">
+                        <a class="btn btn-info" href="/finance/outstation/printST/{{$row->id}}" target="_blank" rel="noopener noreferrer">TANPA KOP</a> <br>
+                        <a class="btn btn-success" href="/finance/outstation/printSTKop/{{$row->id}}" target="_blank" rel="noopener noreferrer">+KOP SURAT</a>
                     </td>
                     <td>
                         <a class="btn btn-primary" href="/finance/outstation/printSppd/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
