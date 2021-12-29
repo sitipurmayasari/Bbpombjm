@@ -158,7 +158,7 @@
                   var no = i+1;
                 
                 if (response.st.type=='DL') { //DALAM KOTA
-                    if (response.peg[i].deskjob != 'Non ASN / Sopir') {
+                    if (response.peg[i].deskjob != 'Sopir') {
                         if (response.peg[i].jabatan_id=='6') { //kabalai
                             var daily = response.dest.dailywageDK1;
                             var daily2 = 0;
@@ -187,7 +187,7 @@
                     }
                 } else{ //LUAR KOTA
                     if (response.jumltu.hitung ==1) { //jumlah tujuan 1
-                        if (response.peg[i].deskjob !='Non ASN / Sopir') {
+                        if (response.peg[i].deskjob !='Sopir') {
                             if (response.peg[i].jabatan_id=='6') { //kabalai
                                 var daily = response.dest.dailywageLK1;
                                 var daily2 = 0;
@@ -215,7 +215,7 @@
                             var daily3 = 0;
                         }  
                     } else if(response.jumltu.hitung ==2) { //jumlah tujuan 2
-                        if (response.peg[i].deskjob !='Non ASN / Sopir') {
+                        if (response.peg[i].deskjob !='Sopir') {
                             if (response.peg[i].jabatan_id=='6') { //kabalai
                                 var daily = response.dest.dailywageLK1;
                                 var daily2 = response.dest3.dailywageLK1;
@@ -243,7 +243,7 @@
                             var daily3 = 0;
                         }  
                     } else { //jumlah tujuan 3
-                        if (response.peg[i].deskjob !='Non ASN / Sopir') {
+                        if (response.peg[i].deskjob !='Sopir') {
                             if (response.peg[i].jabatan_id=='6') { //kabalai
                                 var daily = response.dest.dailywageLK1;
                                 var daily2 = response.dest2.dailywageLK1;
