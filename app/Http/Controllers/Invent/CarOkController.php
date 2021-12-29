@@ -31,7 +31,7 @@ class CarOkController extends Controller
         return view('invent/carok.index',compact('data'));
     }
 
-    public function edit($id)
+    public function yes($id)
     {
         $data = Vehiclerent::where('id',$id)->first();
 
@@ -43,6 +43,16 @@ class CarOkController extends Controller
 
 
 
+        return view('invent/carok.yes',compact('data','car','driver'));
+    }
+
+    public function edit($id)
+    {
+
+        $car = Car::all();
+        $driver =User::where("deskjob","LIKE","%Sopir%")->get();
+
+        $data = Vehiclerent::where('id',$id)->first();
         return view('invent/carok.edit',compact('data','car','driver'));
     }
     

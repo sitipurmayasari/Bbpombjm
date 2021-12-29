@@ -75,7 +75,7 @@
                     </td>
                     <td>
                         @if ($row->status == null)
-                            <a href="/invent/carok/edit/{{$row->id}}" class="btn btn-warning">
+                            <a href="/invent/carok/yes/{{$row->id}}" class="btn btn-warning">
                                 Lakukan Persetujuan
                             </a>
                         @elseif($row->status == 'N')

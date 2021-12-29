@@ -95,7 +95,11 @@
                                 <select name="car_id" class="col-xs-10 col-sm-10 required select2" id="car_id" required>
                                     <option value="">Pilih Kendaraan</option>
                                     @foreach ($car as $item)
-                                        <option value="{{$item->id}}">{{$item->merk}} ( {{$item->police_number}} )</option>
+                                        @if ($data->car_id == $item->id)
+                                            <option value="{{$item->id}}" selected>{{$item->merk}} ( {{$item->police_number}} )</option>
+                                        @else
+                                            <option value="{{$item->id}}">{{$item->merk}} ( {{$item->police_number}} )</option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>
@@ -108,7 +112,11 @@
                                 <select name="driver_id" id="driver_id" class="col-xs-10 col-sm-10 required select2">
                                     <option value="">Pilih Supir</option> 
                                     @foreach ($driver as $item)
-                                        <option value="{{$item->id}}">{{$item->name}}</option>
+                                        @if ($data->driver_id==$item->id)
+                                            <option value="{{$item->id}}" selected>{{$item->name}}</option>
+                                        @else
+                                            <option value="{{$item->id}}">{{$item->name}}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>
@@ -118,10 +126,12 @@
                             for="form-field-1"> Status
                             </label>
                             <div class="col-sm-9">
-                                <input type="radio" required value="Y" 
-                                name="status" id="Y"/> &nbsp; Disetujui  &nbsp;
-                                <input type="radio" required value="N"
-                                name="status" id="N"/> &nbsp; Ditolak
+                                @if ($data->status=="Y")
+                                    <input type="radio" required value="Y" checked
+                                    name="status" id="Y"/> &nbsp; Disetujui  &nbsp;
+                                    <input type="radio" required value="N"
+                                    name="status" id="N"/> &nbsp; Ditolak
+                                @endif
                             </div>
                         </div>
                         

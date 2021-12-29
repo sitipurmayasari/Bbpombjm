@@ -85,6 +85,7 @@
   Route::get('/invent/carrent/edit/{id}','Invent\CarrentController@edit')->name('carrent.edit'); // ---->cetak sih aslinya
 
   //Route untuk setujui peminjaman
+  Route::get('invent/carok/yes/{id}','Invent\CarOkController@yes')->name('carok.yes');
   Route::get('invent/carok/edit/{id}','Invent\CarOkController@edit')->name('carok.edit');
   Route::post('invent/carok/update/{id}','Invent\CarOkController@update')->name('carok.update');
 
