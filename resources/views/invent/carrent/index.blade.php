@@ -68,8 +68,10 @@
                     <td>
                         @if($row->status == 'N')
                             <a href="#" class="btn btn-danger">Ditolak</a>
+                        @elseif($row->status == 'Y')
+                            <a class="btn btn-success" href="/invent/carrent/edit/{{$row->id}}" target="_blank" rel="noopener noreferrer">Diterima</a>
                         @else 
-                            <a class="btn btn-primary" href="/invent/carrent/edit/{{$row->id}}" target="_blank" rel="noopener noreferrer">Diterima</a>
+                            <a href="#" class="btn btn-primary">Menunggu</a>
                         @endif
                     </td>
                 </tr>
