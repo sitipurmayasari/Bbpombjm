@@ -15,4 +15,9 @@ class Stbook extends Model
         return $this->belongsTo(Divisi::class,'divisi_id','id');
     }
 
+    public function sppd()
+    {
+        return $this->hasMany(Stbook_sppd::class,'stbook_id','id');
+    }
+
 }

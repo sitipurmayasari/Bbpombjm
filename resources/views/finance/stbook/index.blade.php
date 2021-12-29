@@ -36,7 +36,7 @@
             <thead>
                 <th width="40px">No</th>
                 <th class="col-md-2">Bagian</th>
-                <th class="col-md-2">tanggal pengajuan</th>
+                <th>tanggal pengajuan</th>
                 <th>Nomor ST</th>
                 <th>Nomor SPPD</th>
                 <th  class="col-md-2">Aksi</th>
@@ -49,7 +49,9 @@
                     <td>{{$row->stbook_date}}</td>
                     <td>{{$row->stbook_number}}</td>
                     <td>
-                        
+                        @foreach ($row->sppd as $item)
+                            <li>{{$item->nomor_sppd}}</li>
+                        @endforeach
                     </td>
                     <td>
                         <a href="/finance/stbook/edit/{{$row->id}}" class="btn btn-warning">
