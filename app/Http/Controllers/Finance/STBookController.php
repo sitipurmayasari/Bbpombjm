@@ -86,7 +86,7 @@ class STBookController extends Controller
       DB::beginTransaction(); 
         for ($i = 0; $i < count($request->input('nomor_sppd')); $i++){
             $data = [
-                'stbook_id' => $stbook_id,
+                'stbook_id' => $id,
                 'nomor_sppd'=> $request->nomor_sppd[$i]
             ];
             Stbook_sppd::create($data);

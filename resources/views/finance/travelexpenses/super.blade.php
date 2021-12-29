@@ -139,28 +139,28 @@
                 @endphp
                 <td  class="isi">  &nbsp; Berangkat</td>
                 <td  class="isi">  &nbsp;
-                    @if ($berangkat1 != null)
+                    @if ($berangkat1->maskapai1 != null)
                         {{$berangkat1->maskapai1}}
                     @else
                         {{ " " }}
                     @endif
                 </td>
                 <td  class="isi">  &nbsp;
-                    @if ($berangkat1 != null)
+                    @if ($berangkat1->maskapai1 != null)
                         {{$berangkat1->planenumber1}}
                     @else
                         {{ " " }}
                     @endif
                 </td>
                 <td  class="isi">  &nbsp;
-                    @if ($berangkat1 != null)
+                    @if ($berangkat1->maskapai1 != null)
                         {{tgl_indo($berangkat1->godate1)}}
                     @else
                         {{ " " }}
                     @endif
                 </td>
                 <td  class="isi"> &nbsp;
-                    @if ($berangkat1 != null)
+                    @if ($berangkat1->maskapai1 != null)
                       Rp. {{number_format($berangkat1->planefee1)}} ,-
                     @else
                       {{ " " }}

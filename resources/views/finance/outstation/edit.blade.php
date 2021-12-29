@@ -376,23 +376,23 @@
 @section('footer')
    <script>
 
-       function getnomorsppd(){
-            var stbook_number = $("#nomorst").val();
-            $.get(
-                "{{route('outstation.getnomorsppd') }}",
-                {
-                    stbook_number:stbook_number
-                },
-                function(response) {
-                    var data2 = response.nosppd;
-                    var string ="<option value=''>Pilih</option>";
-                        $.each(data2, function(index, value) {
-                            string = string + '<option value="'+ value.nomor_sppd +'">'+ value.nomor_sppd +'</option>';
-                        })
-                    $(".penomoransppd").html(string);
-                }
-            );
-        }
+    //    function getnomorsppd(){
+    //         var stbook_number = $("#nomorst").val();
+    //         $.get(
+    //             "{{route('outstation.getnomorsppd') }}",
+    //             {
+    //                 stbook_number:stbook_number
+    //             },
+    //             function(response) {
+    //                 var data2 = response.nosppd;
+    //                 var string ="<option value=''>Pilih</option>";
+    //                     $.each(data2, function(index, value) {
+    //                         string = string + '<option value="'+ value.nomor_sppd +'">'+ value.nomor_sppd +'</option>';
+    //                     })
+    //                 $(".penomoransppd").html(string);
+    //             }
+    //         );
+    //     }
 
         function addBarisNew(){
             var last_baris = $("#countRow").val();
