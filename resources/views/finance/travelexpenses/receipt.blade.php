@@ -240,6 +240,9 @@
     <tbody>
         <tr>
             @php
+                $fee1=0;
+                $fee2=0;
+                $fee3=0;
                 $nilai = $injectQuery->getDetail($item->id)
             @endphp
             <td class="isi" style="text-align: center">1</td>
