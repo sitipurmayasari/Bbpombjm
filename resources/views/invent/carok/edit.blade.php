@@ -76,6 +76,58 @@
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label no-padding-right" 
+                            for="form-field-1"> Jenis Kendaraan
+                            </label>
+                            <div class="col-sm-9">
+                                @if ($data->type =="C")
+                                    <input type="radio" required value="C" id="mobil" checked disabled="disabled"
+                                    name="type"/> &nbsp; Mobil &nbsp;
+                                    <input type="radio" required value="M" id="motor" disabled="disabled"
+                                    name="type"/> &nbsp; Motor
+                                @else
+                                    <input type="radio" required value="C" id="mobil" disabled="disabled"
+                                    name="type"/> &nbsp; Mobil &nbsp;
+                                    <input type="radio" required value="M" id="motor" checked disabled="disabled"
+                                    name="type"/> &nbsp; Motor
+                                @endif
+                            </div>
+                        </div>
+                       @if ($data->type =="C")
+                        <div class="form-group" id="supir">
+                            <label class="col-sm-2 control-label no-padding-right" 
+                            for="form-field-1"> Dengan Supir
+                            </label>
+                            <div class="col-sm-9">
+                                @if ($data->drivers=="N")
+                                    <input type="radio" required value="N" checked disabled="disabled"
+                                    name="drivers"/> &nbsp; Tidak &nbsp;
+                                    <input type="radio" required value="Y" disabled="disabled"
+                                    name="drivers"/> &nbsp; Ya
+                                @else
+                                    <input type="radio" required value="N"  disabled="disabled"
+                                    name="drivers"/> &nbsp; Tidak &nbsp;
+                                    <input type="radio" required value="Y" checked disabled="disabled"
+                                    name="drivers"/> &nbsp; Ya
+                                @endif
+                                
+                            </div>
+                        </div>
+                        <div class="form-group" id="jum">
+                            <label class="col-sm-2 control-label no-padding-right" 
+                            for="form-field-1"> Jumlah Pengguna
+                            </label>
+                            <div class="col-sm-5">
+                                <input type="number" placeholder="0" readonly
+                                class="col-xs-1 col-sm-1 required "  value="{{$data->total}}" 
+                                name="total"/> 
+                                <label class="col-sm-4 control-label no-padding-right" 
+                                for="form-field-1"> Dalam Satu Mobil
+                                </label>
+                            </div>
+                        </div>
+                       @endif
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right" 
                             for="form-field-1"> File Pendukung
                             </label>
                             <div class="col-sm-9">
@@ -104,23 +156,25 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label no-padding-right" 
-                            for="form-field-1"> Supir
-                            </label>
-                            <div class="col-sm-9">
-                                <select name="driver_id" id="driver_id" class="col-xs-10 col-sm-10 required select2">
-                                    <option value="">Pilih Supir</option> 
-                                    @foreach ($driver as $item)
-                                        @if ($data->driver_id==$item->id)
-                                            <option value="{{$item->id}}" selected>{{$item->name}}</option>
-                                        @else
-                                            <option value="{{$item->id}}">{{$item->name}}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                            </div>
+                       @if ($data->type=="C")
+                       <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Supir
+                        </label>
+                        <div class="col-sm-9">
+                            <select name="driver_id" id="driver_id" class="col-xs-10 col-sm-10 required select2">
+                                <option value="">Pilih Supir</option> 
+                                @foreach ($driver as $item)
+                                    @if ($data->driver_id==$item->id)
+                                        <option value="{{$item->id}}" selected>{{$item->name}}</option>
+                                    @else
+                                        <option value="{{$item->id}}">{{$item->name}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
                         </div>
+                    </div>
+                       @endif
                         <div class="form-group">
                             <label class="col-sm-2 control-label no-padding-right" 
                             for="form-field-1"> Status

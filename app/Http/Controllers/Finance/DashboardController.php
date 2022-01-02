@@ -33,8 +33,24 @@ class DashboardController extends Controller
                         ->WhereRaw('pok.year = YEAR(CURDATE())')
                         ->first();
 
-        $tot    = $act1->total + $act2->total;
-        $sisa   = $act1->sisa + $act2->sisa;
+        if ($act1 != null) {
+            $a = $act1->total;
+            $sisaa = $act1->sisa;
+        } else {
+            $a = 0;
+            $sisaa = 0;
+        };
+        if ($act2 != null) {
+            $b = $act2->total;
+            $sisab = $act2->sisa;
+        } else {
+            $b = 0;
+            $sisab = 0;
+        };
+        
+
+        $tot    = $a + $b;
+        $sisa   = $sisab + $sisaa;
 
         return view('finance/dashboard.index',compact('dinas','jumst','act1','act2','tot','sisa'));
     }

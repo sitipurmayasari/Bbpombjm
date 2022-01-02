@@ -126,7 +126,42 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
+                            <label class="col-sm-2 control-label no-padding-right" 
+                            for="form-field-1"> Jenis Kendaraan
+                            </label>
+                            <div class="col-sm-9">
+                                <input type="radio" required value="C" checked id="mobil"
+                                name="type"/> &nbsp; Mobil &nbsp;
+                                <input type="radio" required value="M" id="motor"
+                                name="type"/> &nbsp; Motor
+                            </div>
+                        </div>
+                        <div class="form-group" id="supir">
+                            <label class="col-sm-2 control-label no-padding-right" 
+                            for="form-field-1"> Dengan Supir
+                            </label>
+                            <div class="col-sm-9">
+                                <input type="radio" required value="N" checked 
+                                name="drivers"/> &nbsp; Tidak &nbsp;
+                                <input type="radio" required value="Y" 
+                                name="drivers"/> &nbsp; Ya
+                            </div>
+                        </div>
+                        <div class="form-group" id="jum">
+                            <label class="col-sm-2 control-label no-padding-right" 
+                            for="form-field-1"> Jumlah Pengguna
+                            </label>
+                            <div class="col-sm-5">
+                                <input type="number" placeholder="0"
+                                class="col-xs-1 col-sm-1 required "  value="0"
+                                name="total"/> 
+                                <label class="col-sm-4 control-label no-padding-right" 
+                                for="form-field-1"> Dalam Satu Mobil
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" 
                             for="form-field-1"> Upload File Pendukung *
                             </label>
                            
@@ -186,6 +221,24 @@
 
 @section('footer')
 <script>
+      $(document).ready(function(){
+
+        $("#mobil").click(function(){
+            $("#supir").show();
+            $("#jum").show();
+        });
+        $("#motor").click(function(){
+            $("#supir").hide();
+            $("#jum").hide();
+        });
+
+    });
+
+
+
+
+
+
     var modalsatu = document.getElementById("Modalku");
     var modaldua    = document.getElementById("Modalkedua");
     var spans = document.getElementsByClassName("close")[0];

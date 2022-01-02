@@ -36,6 +36,7 @@ class CarOkController extends Controller
         $data = Vehiclerent::where('id',$id)->first();
 
         $car = Car::WhereRaw("id NOT IN (SELECT car_id from vehiclerent WHERE '".$data->date_from."' BETWEEN date_from AND date_to and status='Y') ")
+                    ->where("type",$data->type)            
                     ->get();
         $driver =User::where("deskjob","LIKE","%Sopir%")
                     ->WhereRaw("id NOT IN (SELECT driver_id from vehiclerent WHERE '".$data->date_from."' BETWEEN date_from AND date_to and status='Y') ")
@@ -48,11 +49,10 @@ class CarOkController extends Controller
 
     public function edit($id)
     {
-
-        $car = Car::all();
-        $driver =User::where("deskjob","LIKE","%Sopir%")->get();
-
         $data = Vehiclerent::where('id',$id)->first();
+        $car = Car::where("type",$data->type)->get();
+        $driver =User::where("deskjob","LIKE","%Sopir%")->get();
+        
         return view('invent/carok.edit',compact('data','car','driver'));
     }
     

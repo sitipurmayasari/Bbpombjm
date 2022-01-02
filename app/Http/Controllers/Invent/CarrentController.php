@@ -60,7 +60,8 @@ class CarrentController extends Controller
         $this->validate($request,[
             'date_from'     => 'required|date',
             'date_to'       => 'required|date',
-            'destination'   => 'required'
+            'destination'   => 'required',
+            'type'          => 'required'
         ]);
 
         $pinjem = Vehiclerent::create($request->all());
