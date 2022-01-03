@@ -10,6 +10,7 @@ use App\Detailcode;
 use App\Komponencode;
 use App\Subcode;
 use App\Accountcode;
+use App\Activitycode;
 use App\Loka;
 
 class PokImport implements ToModel,WithStartRow
