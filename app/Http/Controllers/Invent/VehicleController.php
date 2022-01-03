@@ -30,7 +30,7 @@ class VehicleController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'code'          => 'required|unique:Car',
+            'code'          => 'required|unique:car',
             'merk'          => 'required',
             'police_number' => 'required'
         ]);

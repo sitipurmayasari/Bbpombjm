@@ -294,7 +294,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="text-align: left;">Kepala bagian Tata Usaha</td>
+                    <td colspan="4" style="text-align: left;">Kepala Bagian Tata Usaha</td>
                 </tr>
                 <tr>
                     <td style="height: 5%" colspan="4" style="text-align: left;"></td>
