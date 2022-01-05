@@ -1066,12 +1066,12 @@
                                 @endif
                             </i> &nbsp;</td>
                         <td style="text-align: center;">
-                            <i>. Rp.</i>
+                            <i>. kali x Rp.</i>
                         </td>
                         <td style="text-align: right"> 
                             <i>
                                 @php
-                                    $subTotalHarian = $daily->jumrep;  
+                                    $subTotalHarian = $daily->totrep;  
                                     $subTotal5 += $subTotalHarian;  
                                 @endphp
                                 @if ($subTotalHarian != '0')
