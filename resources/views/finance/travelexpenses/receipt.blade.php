@@ -998,10 +998,13 @@
                                 @else
                                     {{ '-' }}
                                 @endif
-                            </i>
+                            </i> &nbsp;
+                        </td>
+                        <td style="text-align: center;">
+                            <i>. hari x Rp.</i>
                         </td>
                         <td style="text-align: right;"> 
-                            <i>  
+                            <i>
                                 @if ($daily->representatif == 'Y')
                                     {{number_format($daily->hitrep)}}
                                 @else
@@ -1009,7 +1012,7 @@
                                 @endif
                             </i> &nbsp;</td>
                         <td style="text-align: center;">
-                            <i>. kali x Rp.</i>
+                            <i>. Rp.</i>
                         </td>
                         <td style="text-align: right"> 
                             <i>

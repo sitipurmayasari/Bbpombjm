@@ -1057,6 +1057,9 @@
                                 @endif
                             </i>
                         </td>
+                        <td style="text-align: center;">
+                            <i>. hari x Rp.</i>
+                        </td>
                         <td style="text-align: right;"> 
                             <i>
                                 @if ($daily->representatif == 'Y')
@@ -1066,7 +1069,7 @@
                                 @endif
                             </i> &nbsp;</td>
                         <td style="text-align: center;">
-                            <i>. kali x Rp.</i>
+                            <i>. Rp.</i>
                         </td>
                         <td style="text-align: right"> 
                             <i>
