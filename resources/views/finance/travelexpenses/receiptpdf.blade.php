@@ -1067,9 +1067,8 @@
                                 @else
                                     {{ '-' }}
                                 @endif
-                            </i> &nbsp;</td>
-                        <td style="text-align: center;">
-                            <i>. Rp.</i>
+                                &nbsp; . hari x Rp.
+                            </i> &nbsp;
                         </td>
                         <td style="text-align: right"> 
                             <i>
@@ -1091,9 +1090,9 @@
             <td class="isi">
                 Rp. &nbsp;&nbsp;&nbsp;&nbsp;
                 <i>
-                    @php
+                    {{-- @php
                         $subTotal5 += $subTotalHarian;
-                    @endphp
+                    @endphp --}}
                     @if ($subTotal5 != '0')
                         {{number_format($subTotal5)}}
                     @else
