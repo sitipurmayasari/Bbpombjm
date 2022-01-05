@@ -1014,7 +1014,7 @@
                         <td style="text-align: right"> 
                             <i>
                                 @php
-                                    $subTotalHarian = $daily->jumrep;  
+                                    $subTotalHarian = $daily->totrep;  
                                     $subTotal5 += $subTotalHarian;  
                                 @endphp
                                 @if ($subTotalHarian != '0')
