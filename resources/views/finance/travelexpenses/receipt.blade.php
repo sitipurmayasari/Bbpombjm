@@ -192,7 +192,7 @@
             <td colspan="2" style="text-align: center;" > 
                 <u>{{$item->pegawai->name}}</u> <br>
                 @if ($item->pegawai->status=="PNS")
-                {{$item->pegawai->no_pegawai}}
+                NIP. {{$item->pegawai->no_pegawai}}
             @endif
             <td></td>
             <td >Petugas <br><br><br></td>
@@ -1108,7 +1108,7 @@
         <td style="text-align: center; ">
             <u>{{$item->pegawai->name}}</u> <br>
             @if ($item->pegawai->status=="PNS")
-                {{$item->pegawai->no_pegawai}}
+                NIP. {{$item->pegawai->no_pegawai}}
             @endif
         </td>
     </tr>
