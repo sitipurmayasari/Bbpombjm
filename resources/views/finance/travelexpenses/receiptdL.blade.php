@@ -175,8 +175,7 @@
         <tr>
             <td>Terbilang</td>
             <td style="text-transform: capitalize;">: <b>
-                {{terbilang($bbm)}}
-                Rupiah    
+                {{terbilang($bbm)}} Rupiah    
             </b></td>
             <td></td>
             <td></td>
@@ -343,8 +342,7 @@
     <tr>
         <td>Terbilang</td>
         <td style="text-transform: capitalize;">: <b>
-            {{terbilang($bbm)}}
-            Rupiah
+            {{terbilang($bbm)}} Rupiah
         </b></td>
         <td></td>
         <td></td>
