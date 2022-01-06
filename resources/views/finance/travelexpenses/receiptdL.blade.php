@@ -143,7 +143,7 @@
         </tr>
         <tr>
             <td></td>
-            <td style="width: 25%">: di Kota
+            <td style="width: 30%">: di Kota
                 @if (count($item->out->outst_destiny) == 1)
                      @foreach ($tujuan as $key=>$kota)
                          @if ($loop->first)
