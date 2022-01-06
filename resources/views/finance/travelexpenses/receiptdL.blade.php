@@ -175,11 +175,7 @@
         <tr>
             <td>Terbilang</td>
             <td style="text-transform: capitalize;">: <b>
-                @foreach ($tr as $nilai)
-                    @if ($loop->first)
-                        {{terbilang($nilai->hitdaily1)}}
-                    @endif
-                @endforeach
+                {{$bbm}}
                 Rupiah    
             </b></td>
             <td></td>
@@ -347,11 +343,7 @@
     <tr>
         <td>Terbilang</td>
         <td style="text-transform: capitalize;">: <b>
-            @foreach ($tr as $nilai)
-                @if ($loop->first)
-                    {{terbilang($nilai->hitdaily1)}}
-                @endif
-            @endforeach    
+           {{$bbm}}
             Rupiah
         </b></td>
         <td></td>
