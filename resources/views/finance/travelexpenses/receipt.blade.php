@@ -189,12 +189,12 @@
             </td>
         </tr>
         <tr>
-            <td colspan="2" style="text-align: center;" > <u>{{$item->pegawai->name}}</u>
-            <td>
+            <td colspan="2" style="text-align: center;" > 
+                <u>{{$item->pegawai->name}}</u>
                 @if ($item->pegawai->status=="PNS")
-                    {{$item->pegawai->no_pegawai}}
-                @endif
-            </td>
+                {{$item->pegawai->no_pegawai}}
+            @endif
+            <td></td>
             <td >Petugas <br><br><br></td>
             <td>: {{$no++}} <br><br><br></td>
         </tr>
