@@ -190,7 +190,7 @@
         </tr>
         <tr>
             <td colspan="2" style="text-align: center;" > 
-                <u>{{$item->pegawai->name}}</u>
+                <u>{{$item->pegawai->name}}</u> <br>
                 @if ($item->pegawai->status=="PNS")
                 {{$item->pegawai->no_pegawai}}
             @endif
