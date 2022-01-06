@@ -115,11 +115,17 @@
         <tr>
             <td>Uang Sebesar</td>
             <td colspan="3">: <b>Rp.  &nbsp;&nbsp;&nbsp; 
-                @foreach ($tr as $nilai)
-                    @if ($loop->first)
-                        {{number_format($nilai->hitdaily1)}}
-                    @endif
-                @endforeach
+                @php
+                        $nilai = $injectQuery->getDetail($item->id)
+                @endphp
+                 @if ($nilai->bbm != '0')
+                    @php
+                        $bbm = $nilai->bbm;
+                    @endphp
+                    {{number_format($bbm)}}
+                @else
+                    {{'-'}} 
+                @endif
                 
             </b></td>
         </tr>
@@ -281,11 +287,17 @@
     <tr>
         <td>Uang Sebesar</td>
         <td colspan="3">: <b>Rp.  &nbsp;&nbsp;&nbsp; 
-            @foreach ($tr as $nilai)
-                @if ($loop->first)
-                    {{number_format($nilai->hitdaily1)}}
-                @endif
-            @endforeach
+            @php
+                $nilai = $injectQuery->getDetail($item->id)
+            @endphp
+            @if ($nilai->bbm != '0')
+                @php
+                    $bbm = $nilai->bbm;
+                @endphp
+                {{number_format($bbm)}}
+            @else
+                {{'-'}} 
+            @endif
             
         </b></td>
     </tr>

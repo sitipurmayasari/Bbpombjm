@@ -175,22 +175,22 @@
                                     <option value="">Pilih Jenis</option>
                                     <option value="DL" selected>Dalam Kota</option>
                                     <option value="LK">Luar Kota</option>
-                                    <option value="LN">Luar Negeri</option>
+                                    <option value="DL8">Dalam Kota > 8 Jam</option>
                                 @elseif($data->type=="LK")
                                     <option value="">Pilih Jenis</option>
                                     <option value="DL">Dalam Kota</option>
                                     <option value="LK" selected>Luar Kota</option>
-                                    <option value="LN">Luar Negeri</option>
-                                @elseif($data->type=="LN")
+                                    <option value="DL8">Dalam Kota > 8 Jam</option>
+                                @elseif($data->type=="DL8")
                                     <option value="">Pilih Jenis</option>
                                     <option value="DL">Dalam Kota</option>
                                     <option value="LK">Luar Kota</option>
-                                    <option value="LN" selected>Luar Negeri</option>
+                                    <option value="DL8" selected>Dalam Kota > 8 Jam</option>
                                 @else
                                     <option value="">Pilih Jenis</option>
                                     <option value="DL">Dalam Kota</option>
                                     <option value="LK">Luar Kota</option>
-                                    <option value="LN">Luar Negeri</option>
+                                    <option value="DL8">Dalam Kota > 8 Jam</option>
                                 @endif
                             </select>
                         </div>

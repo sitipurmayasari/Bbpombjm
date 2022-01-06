@@ -429,6 +429,7 @@ class TravelexpensesController extends Controller
                         ->get();
         $tr         = Travelexpenses::where('expenses_id',$id)
                         ->get();
+                        
         $pdf = PDF::loadview('finance/travelexpenses.riil',compact('petugas','data','pegawai','tujuan','tr'));
         return $pdf->stream();
     }

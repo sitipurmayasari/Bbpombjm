@@ -147,7 +147,7 @@
                 } else if (response.st.type=='LK') {
                     var r = 'Luar Kota';
                 } else {
-                    var r = 'Luar Negeri';
+                    var r = 'Dalam Kota > 8 Jam';
                 }
                 $("#jenis").val(r);
 
@@ -157,7 +157,7 @@
                   var is_check = '';
                   var no = i+1;
                 
-                if (response.st.type=='DL') { //DALAM KOTA
+                if (response.st.type=='DL8') { //DALAM KOTA
                     if (response.peg[i].deskjob != 'Sopir') {
                         if (response.peg[i].jabatan_id=='6') { //kabalai
                             var daily = response.dest.dailywageDK1;

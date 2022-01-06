@@ -143,7 +143,7 @@
                                 <option value="">Pilih Jenis</option>
                                 <option value="DL">Dalam Kota</option>
                                 <option value="LK">Luar Kota</option>
-                                <option value="LN">Luar Negeri</option>
+                                <option value="DL8">Dalam Kota > 8 Jam</option>
                             </select>
                         </div>
                     </div>
