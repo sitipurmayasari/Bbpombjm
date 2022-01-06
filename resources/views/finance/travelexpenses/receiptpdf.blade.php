@@ -445,7 +445,7 @@
                             <i>
                                 @php
                                     $subtrans = $jum*$bbm; 
-                                    // $subTotal1 += $subtrans;   
+                                    $subTotal1 += $subtrans;   
                                 @endphp
                                 @if ($subtrans !='0')
                                     {{$subtrans}}
@@ -475,7 +475,7 @@
             <td class="isi">
                 Rp. &nbsp;&nbsp;&nbsp;&nbsp;
                 @php
-                    $subTotal1 += $subtrans;
+                    $subTotal1 = $subtrans;
                 @endphp
                 @if ($subTotal1=='0')
                     {{'-'}}

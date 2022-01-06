@@ -190,7 +190,11 @@
         </tr>
         <tr>
             <td colspan="2" style="text-align: center;" > <u>{{$item->pegawai->name}}</u>
-            <td></td>
+            <td>
+                @if ($item->pegawai->status=="PNS")
+                    {{$item->pegawai->no_pegawai}}
+                @endif
+            </td>
             <td >Petugas <br><br><br></td>
             <td>: {{$no++}} <br><br><br></td>
         </tr>
@@ -475,7 +479,7 @@
             <td class="isi">
                 Rp. &nbsp;&nbsp;&nbsp;&nbsp;
                 @php
-                    $subTotal1 += $subtrans;
+                    $subTotal1 = $subtrans;
                 @endphp
                 @if ($subTotal1=='0')
                     {{'-'}}
@@ -1103,6 +1107,9 @@
         </td>
         <td style="text-align: center; ">
             <u>{{$item->pegawai->name}}</u> <br>
+            @if ($item->pegawai->status=="PNS")
+                {{$item->pegawai->no_pegawai}}
+            @endif
         </td>
     </tr>
    </table>
