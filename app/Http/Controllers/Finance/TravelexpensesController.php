@@ -393,7 +393,7 @@ class TravelexpensesController extends Controller
        
 
         if ($tipe->type=="DL") {
-            $pdf        = PDF::loadview('finance/travelexpenses.receiptDL',compact('petugas','data','pegawai','tujuan','tr'));
+            $pdf        = PDF::loadview('finance/travelexpenses.receiptdL',compact('petugas','data','pegawai','tujuan','tr'));
             return $pdf->stream();
 
         } else {
