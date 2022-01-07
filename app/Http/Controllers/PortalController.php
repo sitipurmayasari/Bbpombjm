@@ -24,7 +24,8 @@ class PortalController extends Controller
         $keterangan = Agenda::WhereRaw('CURDATE() BETWEEN date_from AND date_to')->get();
         $aksespinjam = UserPermission::where('menu_id','59')->where('user_id',$peg)->first();
         $pinjam = Vehiclerent::WhereRaw('status is null')->first();
-        $aju = Vehiclerent::WhereRaw('status IS NOT NULL AND created_at >= NOW() - INTERVAL 2 DAY')->first();
+        $aju = Vehiclerent::where('users_id', $peg)
+                            ->WhereRaw('status IS NOT NULL AND updated_at >= NOW() - INTERVAL 1 DAY')->first();
                 
         return view('portal',compact('data','tgl','bulan','tahun','hari','keterangan','pinjam','aksespinjam','aju'));
     }
