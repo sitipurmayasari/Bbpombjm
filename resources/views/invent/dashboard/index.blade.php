@@ -110,12 +110,10 @@
               @if ($dinas->status==null)
                 <h1 class="card-title">Menunggu</h1>
               @elseif($dinas->status=='Y')
-                <h1 class="card-title">Disetujui</h1>
+                <h1 class="card-title">Disetujui</h1><br>
+                <h5>Kendaraan : {{$dinas->car->merk}} ( {{$dinas->car->police_number}}</h5>
                 @if ($dinas->driver_id != null)
-                    <h5>Mobil : {{$dinas->car->merk}} ( {{$dinas->car->police_number}} )</h5>
-                    <h5>Supir : {{$dinas->supir->name}}</h5>
-                @else
-                  <h5>Mobil : {{$dinas->car->merk}} ( {{$dinas->car->police_number}} )</h5>
+                  <h5>Supir : {{$dinas->supir->name}}</h5>
                 @endif
               @else
                 <h1 class="card-title">Ditolak</h1>

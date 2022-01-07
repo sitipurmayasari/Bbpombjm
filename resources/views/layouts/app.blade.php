@@ -74,12 +74,30 @@
 				<div class="navbar-buttons navbar-header pull-right" role="navigation">
 
 					<ul class="nav ace-nav">
-
+						{{-- <li class="green dropdown-modal">
+							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
+								<span class="notification"> ! </span>
+								<i class="ace-icon fa fa-bell"></i>
+							</a>
+							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+								<li>
+									<a href="/invent/carok/">
+										<b> Peminjaman Kendaraan - </b> Pengajuan Baru 
+									</a>
+								</li>
+								<li class="divider"></li>
+								<li>
+									<a href="/invent/carrent/">
+										<b> Peminjaman Kendaraan - </b> Telah Diproses 
+									</a>
+								</li>
+							</ul>
+						</li> --}}
 						<li class="green dropdown-modal">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
 								<span class="user-info">
 									<small>Welcome,</small>
-									{{auth()->user()->name}}
+										{{auth()->user()->name}} 
 								</span>
 
 								<i class="ace-icon fa fa-caret-down"></i>

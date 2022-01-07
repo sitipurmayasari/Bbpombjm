@@ -60,8 +60,10 @@
                         {{$row->destination}}
                     </td>
                     <td>
-                        @if ($row->status=='Y')
-                            {{$row->car->merk}} - {{$row->car->police_number}}
+                        @if ($row->status =='Y')
+                            @if ($row->car_id != null)
+                                {{$row->car->merk}} - {{$row->car->police_number}}
+                            @endif
                         @endif
                     </td>
                     <td>
