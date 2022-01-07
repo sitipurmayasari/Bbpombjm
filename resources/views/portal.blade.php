@@ -315,25 +315,45 @@ h2, a {
           <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
               <li class="nav-item ">
-                {{-- <li class="nav-item dropdown">
-                  <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <li class="nav-item ">dropdown
+                  <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="material-icons">notifications</i>
-                    <span class="notification">!</span>
+                      @if ($aksespinjam != null && $pinjam != null)
+                        <span class="notification"> 
+                            !
+                        </span>
+                      @endif
+                      @if ($aju != null)
+                      <span class="notification"> 
+                          !
+                      </span>
+                    @endif
+                    
                     <p class="d-lg-none d-md-block">
                       Some Actions
                     </p>
                   </a>
-                  <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                    <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                      @if ($aksespinjam != null && $pinjam != null)
                       <div class="alert alert-info ">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                          <i class="material-icons">close</i>
-                        </button>
-                          <span>
-                            <b> Info - </b> This is a regular notification made with ".alert-info"
-                          </span>
+                            <span>
+                              <a href="/invent/carok/" class="btn btn-warning">
+                                <b> Peminjaman Kendaraan - </b> Pengajuan Baru 
+                              </a>
+                            </span>
                       </div>
-                  </div> 
-                </li> --}}
+                      @endif 
+                      @if ($aju != null)
+                      <div class="alert alert-info ">
+                            <span>
+                              <a href="/invent/carrent/" class="btn btn-warning">
+                                <b> Peminjaman Kendaraan - </b> Telah Diproses 
+                              </a>
+                            </span>
+                      </div>
+                      @endif    
+                    </div> 
+                </li>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

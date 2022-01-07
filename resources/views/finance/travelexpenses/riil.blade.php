@@ -139,7 +139,12 @@
                 Jabatan 
             </td>
             <td style="line-height:1;">
-                : {{$item->pegawai->deskjob}}
+                : 
+                @if ($item->pegawai->status=='PNS')
+                    {{$item->pegawai->jabasn->nama}}
+                @else
+                    {{$item->pegawai->deskjob}}
+                @endif
             </td>
         </tr>
     </table>
