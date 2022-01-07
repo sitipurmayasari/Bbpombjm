@@ -8,7 +8,7 @@ class Vehiclerent extends Model
 {
     protected $table = "vehiclerent";
     protected $fillable = ['code','users_id','car_id','date_from','date_to','driver_id','destination','file','status',
-                            'type','drivers','total'
+                            'type','drivers','total','keterangan','pengemudi'
     ];
 
     public function pegawai()

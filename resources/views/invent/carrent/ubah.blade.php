@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('breadcrumb')
     <li>Kendaraan</li>
-    <li><a href="/invent/carrent">Peminjaman Kendaraan Dinas</a></li>
-    <li>Ajukan Peminjaman</li>
+    <li><a href="/invent/carrent">Ubah Peminjaman Kendaraan Dinas</a></li>
+    <li>Ubah Peminjaman</li>
 @endsection
 @section('content')
 @include('layouts.validasi')
@@ -64,7 +64,7 @@
     <div class="col-sm-12">
         <div class="widget-box">
             <div class="widget-header">
-                <h4 class="widget-title"> Input peminjaman Kendaraan Dinas</h4>
+                <h4 class="widget-title"> Ubah peminjaman Kendaraan Dinas</h4>
                 <div class="widget-toolbar">
                     <a href="#" data-action="collapse">
                         <i class="ace-icon fa fa-chevron-down"></i>
@@ -81,7 +81,7 @@
                             for="form-field-1"> Nomor Ajuan
                             </label>
                             <div class="col-sm-9">
-                                <input type="text" value="{{$kode}}" readonly
+                                <input type="text" value="{{$data->code}}" readonly
                                 class="col-xs-10 col-sm-10 required " 
                                 name="code"/>  
                             </div>
@@ -91,10 +91,10 @@
                             for="form-field-1"> Nama Pengaju
                             </label>
                             <div class="col-sm-9">
-                                <input type="text" value="{{auth()->user()->name}}" readonly
+                                <input type="text" value="{{$data->pegawai->name}}" readonly
                                 class="col-xs-10 col-sm-10 required " 
                                 name="users_name"/>  
-                                <input type="hidden" name="users_id" value="{{auth()->user()->id}}">
+                                <input type="hidden" name="users_id" value="{{$data->users_id}}">
                             </div>
                         </div>
                         <div class="form-group">
@@ -102,7 +102,7 @@
                             for="form-field-1"> Tanggal Peminjaman
                             </label>
                             <div class="col-sm-2">
-                                <input type="date" value="{{date('Y-m-d')}}"  onchange="getCar()"
+                                <input type="date" value="{{$data->date_from}}"  onchange="getCar()"
                                 class="col-xs-10 col-sm-10 required " 
                                 name="date_from" required id="date_from" />  
                                 <label class="col-sm-2 control-label no-padding-right" 
@@ -110,7 +110,7 @@
                                 </label>
                             </div>
                             <div class="col-sm-2">
-                                <input type="date"  onchange="getLong()"
+                                <input type="date"  onchange="getLong()" value="{{$data->date_to}}"
                                 class="col-xs-10 col-sm-10 required " id="date_to"
                                 name="date_to" required />
                             </div>
@@ -120,7 +120,7 @@
                             for="form-field-1"> Tujuan
                             </label>
                             <div class="col-sm-9">
-                                <input type="text" placeholder="Tujuan"
+                                <input type="text" value="{{$data->destination}}"
                                 class="col-xs-10 col-sm-10 required " 
                                 name="destination"/>  
                             </div>
@@ -130,10 +130,17 @@
                             for="form-field-1"> Jenis Kendaraan
                             </label>
                             <div class="col-sm-9">
-                                <input type="radio" required value="C" checked id="mobil"
-                                name="type"/> &nbsp; Mobil &nbsp;
-                                <input type="radio" required value="M" id="motor"
-                                name="type"/> &nbsp; Motor
+                                @if ($data->type =="C")
+                                    <input type="radio" value="C" id="mobil" checked 
+                                    name="type"/> &nbsp; Mobil &nbsp;
+                                    <input type="radio" value="M" id="motor" 
+                                    name="type"/> &nbsp; Motor
+                                @else
+                                    <input type="radio" value="C" id="mobil" 
+                                    name="type"/> &nbsp; Mobil &nbsp;
+                                    <input type="radio" value="M" id="motor" checked 
+                                    name="type"/> &nbsp; Motor
+                                @endif
                             </div>
                         </div>
                         <div class="form-group" id="supir">
@@ -141,52 +148,62 @@
                             for="form-field-1"> Dengan Supir
                             </label>
                             <div class="col-sm-9">
-                                <input type="radio" required value="N" checked  id="without"
-                                name="drivers"/> &nbsp; Tidak &nbsp;
-                                <input type="radio" required value="Y"  id="with"
-                                name="drivers"/> &nbsp; Ya
+                                @if ($data->drivers=="N")
+                                    <input type="radio" value="N" checked 
+                                    name="drivers"/> &nbsp; Tidak &nbsp;
+                                    <input type="radio" value="Y" 
+                                    name="drivers"/> &nbsp; Ya
+                                @else
+                                    <input type="radio" value="N" 
+                                    name="drivers"/> &nbsp; Tidak &nbsp;
+                                    <input type="radio" value="Y" checked 
+                                    name="drivers"/> &nbsp; Ya
+                                @endif
                             </div>
                         </div>
+                       @if ($data->drivers=="N")
                         <div class="form-group" id="pengemudi">
                             <label class="col-sm-2 control-label no-padding-right" 
                             for="form-field-1"> Pengemudi 
                             </label>
                             <div class="col-sm-9">
-                                <input type="text" placeholder="nama pengemudi"
+                                <input type="text" value="{{$data->pengemudi}}"
                                 class="col-xs-10 col-sm-10 required " 
                                 name="pengemudi"/> 
                             </div>
                         </div>
+                       @endif
+                       @if ($data->type =="C")
                         <div class="form-group" id="jum">
                             <label class="col-sm-2 control-label no-padding-right" 
                             for="form-field-1"> Jumlah Pengguna
                             </label>
                             <div class="col-sm-5">
                                 <input type="number" placeholder="0"
-                                class="col-xs-1 col-sm-1 required "  value="0"
+                                class="col-xs-1 col-sm-1 required "  value="{{$data->total}}"
                                 name="total"/> 
                                 <label class="col-sm-4 control-label no-padding-right" 
                                 for="form-field-1"> Dalam Satu Mobil
                                 </label>
                             </div>
                         </div>
+                       @endif
                         <div class="form-group" id="jum">
                             <label class="col-sm-2 control-label no-padding-right" 
                             for="form-field-1"> Keterangan
                             </label>
                             <div class="col-sm-9">
                                 <textarea  class="col-xs-10 col-sm-10"  
-                                name="keterangan"></textarea>
+                                name="keterangan">{{$data->keterangan}}</textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label" 
                             for="form-field-1"> Upload File Pendukung *
                             </label>
-                           
                             <div class="col-sm-9">
                                 <input type="file" name="file" class="btn btn-default btn-sm" id="" value="Upload File">       
-                                <label><i>jenis file: pdf (*tidak wajib)</i></label>
+                                <label><a href="{{$data->getFile()}}" target="_blank" >{{$data->file}}</a></label>
                             </div>
                         </div>
                     </div>

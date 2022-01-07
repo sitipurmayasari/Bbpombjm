@@ -41,6 +41,7 @@
                 <th>Kendaraan Dinas</th>
                 <th>Supir</th>
                 <th>Status</th>
+                <th>Aksi</th>
             </head>
             <tbody>   	
                 @foreach($data as $key=>$row)
@@ -70,8 +71,23 @@
                             <a href="#" class="btn btn-danger">Ditolak</a>
                         @elseif($row->status == 'Y')
                             <a class="btn btn-success" href="/invent/carrent/edit/{{$row->id}}" target="_blank" rel="noopener noreferrer">Diterima</a>
-                        @else 
+                        @else
                             <a href="#" class="btn btn-primary">Menunggu</a>
+                        @endif
+                    </td>
+                    <td>
+                        @if ($row->status == 'Y')
+                            {{ "" }}
+                        @elseif ($row->status == 'N')
+                            {{ "" }}
+                        @else
+                            <a href="/invent/carrent/ubah/{{$row->id}}" class="btn btn-warning">
+                                <i class="glyphicon glyphicon-edit"></i>
+                            </a>
+                            <a href="#" class="btn btn-danger delete"
+                                r-name="{{$row->destination}}" 
+                                r-id="{{$row->id}}">
+                                <i class="glyphicon glyphicon-trash"></i></a>
                         @endif
                     </td>
                 </tr>
@@ -86,6 +102,24 @@
 @section('footer')
 <script>
     $().ready( function () {
+        $(".delete").click(function() {
+                var id = $(this).attr('r-id');
+                var name = $(this).attr('r-name');
+                Swal.fire({
+                title: 'Ingin Menghapus?',
+                text: "Yakin ingin menghapus data  : "+name+" ini ?" ,
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, hapus !'
+            }).then((result) => {
+                console.log(result);
+                if (result.value) {
+                    window.location = "/invent/carrent/delete/"+id;
+                }
+            });
+        });
     } );
 </script>
 @endsection

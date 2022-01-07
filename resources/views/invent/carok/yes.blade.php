@@ -112,6 +112,18 @@
                                     
                                 </div>
                             </div>
+                            @if ($data->drivers=="N")
+                                <div class="form-group" id="pengemudi">
+                                    <label class="col-sm-2 control-label no-padding-right" 
+                                    for="form-field-1"> Pengemudi 
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <input type="text" value="{{$data->pengemudi}}" readonly
+                                        class="col-xs-10 col-sm-10 required " 
+                                        name="pengemudi"/> 
+                                    </div>
+                                </div>
+                            @endif
                             <div class="form-group" id="jum">
                                 <label class="col-sm-2 control-label no-padding-right" 
                                 for="form-field-1"> Jumlah Pengguna
@@ -126,7 +138,15 @@
                                 </div>
                             </div>
                         @endif
-                        
+                        <div class="form-group" id="jum">
+                            <label class="col-sm-2 control-label no-padding-right" 
+                            for="form-field-1"> Keterangan
+                            </label>
+                            <div class="col-sm-9">
+                                <textarea  class="col-xs-10 col-sm-10"  readonly
+                                name="keterangan">{{$data->keterangan}}</textarea>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label no-padding-right" 
                             for="form-field-1"> File Pendukung
@@ -139,6 +159,8 @@
                                 @endif
                             </div>
                         </div>
+
+
                         <hr>
                         <div class="form-group">
                             <label class="col-sm-2 control-label no-padding-right" 

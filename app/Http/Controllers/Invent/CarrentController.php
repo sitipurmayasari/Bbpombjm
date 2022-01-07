@@ -85,4 +85,17 @@ class CarrentController extends Controller
       return $pdf->stream();
     }
 
+    public function ubah($id)
+    {
+      $data = Vehiclerent::where('id',$id)->first();
+      return view('invent/carrent.ubah',compact('data'));
+    }
+
+    public function delete($id)
+    {
+        $lokasi = Vehiclerent::find($id);
+        $lokasi->delete();
+        return redirect('/invent/carrent')->with('sukses','Data Terhapus');
+    }
+
 }

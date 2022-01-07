@@ -82,6 +82,7 @@
   Route::get('/invent/carrent/create','Invent\CarrentController@create')->name('carrent.create');
   Route::post('invent/carrent/store','Invent\CarrentController@store')->name('carrent.store');
   Route::get('invent/carrent/delete/{id}','Invent\CarrentController@delete')->name('carrent.delete');
+  Route::get('/invent/carrent/ubah/{id}','Invent\CarrentController@ubah')->name('carrent.ubah');
   Route::get('/invent/carrent/edit/{id}','Invent\CarrentController@edit')->name('carrent.edit'); // ---->cetak sih aslinya
 
   //Route untuk setujui peminjaman
