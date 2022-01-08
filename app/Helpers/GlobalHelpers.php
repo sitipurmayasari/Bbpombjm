@@ -35,9 +35,9 @@ function mySubMenu($groupMenuId)
     return $menu;
 }
 function urlStorage(){
-    // return "/home/bbpombjm/public_html";
+    return "/home/bbpombjm/public";
 
-    return "/home/u1275760/public_html/sibob";
+    // return "/home/u1275760/public_html/sibob";
 }
 function tgl_indo($tanggal){
     $bulan = array (
