@@ -11,7 +11,7 @@ use App\Outst_employee;
 use App\Outstation;
 use App\Outst_destiny;
 use App\Vehiclerent;
-use App\car;
+use App\Car;
 
 class CarouselController extends Controller
 {
