@@ -245,7 +245,7 @@
                                 $no=1;
                             @endphp
                             @foreach ($petugas as $item)
-                                <tr id="cell-"{{$no}}>
+                                <tr id="cella-{{$no}}">
                                     <td style="text-align: center;">
                                         {{$no}}
                                     </td>
@@ -267,7 +267,7 @@
                                         value="{{$item->no_sppd}}" required>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-danger" onclick="deleteRow({{$no}})"><i class="glyphicon glyphicon-trash"></i></button>
+                                        <button type="button" class="btn btn-danger" onclick="deleteRowPeg({{$no}})"><i class="glyphicon glyphicon-trash"></i></button>
                                     </td>
                                 </tr>
                                 @php
@@ -313,7 +313,7 @@
                                 $nomor=1;
                             @endphp
                             @foreach ($kota as $item)
-                                <tr id="cell-{{$nomor}}">
+                                <tr id="cellb-{{$nomor}}">
                                     <td style="text-align: center;">
                                         {{$nomor}}
                                     </td>
@@ -338,7 +338,7 @@
                                         value="{{$item->return_date}}" required>
                                     </td>
                                     <td>
-                                        <button type="button" onclick="deleteRowwil($nomor)"  class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
+                                        <button type="button" onclick="deleteRowwil({{$nomor}})"  class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -379,7 +379,7 @@
         function addBarisNew(){
             var last_baris = $("#countRow").val();
             var new_baris = parseInt(last_baris)+1;
-            $isi =  '<tr id="cell-'+new_baris+'">'+
+            $isi =  '<tr id="cella-'+new_baris+'">'+
                 '<td class="center">'+new_baris+'</td>'+
                     '<td>'+
                         '<select name="users_id[]" class="form-control select2">'+
@@ -396,7 +396,7 @@
                                 '@endforeach'+
                                 '</select>'+
                         '</td>'+
-                    '<td><button type="button"  class="btn btn-danger" onclick="deleteRow('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button></td>'+
+                    '<td><button type="button"  class="btn btn-danger" onclick="deleteRowPeg('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button></td>'+
                 '</tr>';
             $("#myTable").find('tbody').append($isi);
             $("#countRow").val(new_baris);
@@ -404,15 +404,15 @@
             getnomorsppd();
         }
 
-       function deleteRow(cell) {
-            $("#cell-"+cell).remove();
+       function deleteRowPeg(cell) {
+            $("#cella-"+cell).remove();
 
         }
 
         function addBarisDes(){
         var last_baris = $("#countRow").val();
         var new_baris = parseInt(last_baris)+1;
-        $isi =  '<tr id="cell-'+new_baris+'">'+
+        $isi =  '<tr id="cellb-'+new_baris+'">'+
             '<td class="center">'+new_baris+'</td>'+
             '<td>'+
                 '<select name="destination_id[]" id="destination_id" class="required select2" required>'+
@@ -436,7 +436,7 @@
        }
 
        function deleteRowwil(cell) {
-            $("#cell-"+cell).remove();
+            $("#cellb-"+cell).remove();
 
         }
 
