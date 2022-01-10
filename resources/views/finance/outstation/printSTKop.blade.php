@@ -266,14 +266,13 @@
                 <td></td>
                 <td style="width: 15%">&nbsp;&nbsp;MAK</td>
                 <td style="width: 60%">: 
-                    @if ($data->budget_id == 3)
-                        {{' - '}}
+                    @if ($data->pok_detail_id == 0)
+                        {{' Non Anggaran '}}
                     @else
                         {{$data->pok->pok->act->prog->unit->klcode->code}}.{{$data->pok->pok->act->prog->unit->code}}.
                         {{$data->pok->pok->act->prog->code}}.{{$data->pok->pok->act->code}}.
                         {{$data->pok->sub->komponen->det->unit->code}}.{{$data->pok->sub->komponen->det->code}}.
                         {{$data->pok->sub->komponen->code}}.{{$data->pok->sub->code}}.{{$data->pok->akun->code}}
-
                     @endif
                 </td>
             </tr>
@@ -301,7 +300,7 @@
                     </b></td>
             </tr>
             <tr>
-                <td style="height: 10%"></td>
+                <td style="height: 13%"></td>
             </tr>
             <tr>
                 <td><b>{{$menyetujui->user->name}}</b></td>
