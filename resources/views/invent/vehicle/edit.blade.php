@@ -41,17 +41,17 @@
                             for="form-field-1"> Jenis Kendaraan
                             </label>
                             <div class="col-sm-9">
-                                @if ($data->type=='M')
-                                    <input type="radio" required value="M" name="type" id="M" checked/> 
-                                    &nbsp; Motor  &nbsp;
-                                    <input type="radio" required value="C" checked name="type" id="C"/> 
-                                    &nbsp; Mobil
-                                @else
-                                    <input type="radio" required value="M" name="type" id="M"/> 
-                                    &nbsp; Motor  &nbsp;
-                                    <input type="radio" required value="C" name="type" id="C" checked/> 
-                                    &nbsp; Mobil 
-                                @endif
+                             @if ($data->type=='M')
+                                <input type="radio" required value="M" checked name="type" id="M"/> 
+                                &nbsp; Motor  &nbsp;
+                                <input type="radio" required value="C" name="type" id="C"/> 
+                                &nbsp; Mobil
+                            @else
+                                <input type="radio" required value="M"  name="type" id="M"/> 
+                                &nbsp; Motor  &nbsp;
+                                <input type="radio" required value="C" checked name="type" id="C"/> 
+                                &nbsp; Mobil
+                            @endif
                             </div>
                         </div>
                         <div class="form-group">
@@ -92,6 +92,24 @@
                                 <input type="date" value="{{$data->police_number_date}}"
                                         class="col-xs-10 col-sm-10 required " 
                                         name="police_number_date" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Operasional
+                            </label>
+                            <div class="col-sm-9">
+                                @if ($data->operasional=='Y')
+                                    <input type="radio" required value="Y" checked name="operasional" id="Y"/> 
+                                    &nbsp; Ya  &nbsp;
+                                    <input type="radio" required value="N" name="operasional" id="N"/> 
+                                    &nbsp; Tidak
+                                @else
+                                    <input type="radio" required value="Y"  name="operasional" id="Y"/> 
+                                    &nbsp; Ya  &nbsp;
+                                    <input type="radio" required value="N" checked name="operasional" id="N"/> 
+                                    &nbsp; Tidak
+                                @endif
                             </div>
                         </div>
 

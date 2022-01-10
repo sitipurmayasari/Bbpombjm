@@ -7,11 +7,11 @@
       <table style="width: 100%; font-size: 20px;text-align: center;">
           <thead>
               <tr >
-                  <th width="40px" style="text-align: center">No</th>
-                  <th  style="text-align: center">No. ST</th>
-                  <th  style="text-align: center">Nama kegiatan</th>
-                  <th  style="text-align: center">Tujuan</th>
-                  <th  style="text-align: center">Petugas</th>
+                  <th width="40px" style="text-align: center; vertical-align: top;">No</th>
+                  <th  style="text-align: center; vertical-align: top;">No. ST</th>
+                  <th  style="text-align: center; vertical-align: top;">Nama kegiatan</th>
+                  <th  style="text-align: center; vertical-align: top;">Tujuan</th>
+                  <th  style="text-align: center; vertical-align: top;">Petugas</th>
               </tr>
           </thead>
           <tbody>

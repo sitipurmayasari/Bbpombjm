@@ -87,6 +87,17 @@
                                         name="police_number_date" required />
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Operasional
+                            </label>
+                            <div class="col-sm-9">
+                                <input type="radio" required value="Y" checked 
+                                name="operasional" id="Y"/> &nbsp; Ya  &nbsp;
+                                <input type="radio" required value="N"
+                                name="operasional" id="N"/> &nbsp; Tidak
+                            </div>
+                        </div>
 
                 </div>
            </div>

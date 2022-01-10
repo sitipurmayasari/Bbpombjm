@@ -1,3 +1,4 @@
+@inject('injectQuery', 'App\InjectQuery')
 <div class="card col-sm-12">
     <div class="card-header card-header-warning">
       <h4 class="card-title">PEMINJAMAN KENDARAAN DINAS</h4>
@@ -7,43 +8,40 @@
             <thead>
                 <tr>
                     <th width="40px" style="text-align: center">No</th>
-                    <th style="text-align: center">Nama Peminjam</th>
-                    <th style="text-align: center">Tanggal Peminjaman</th>
-                    <th style="text-align: center">Tujuan</th>
                     <th style="text-align: center">Kendaraan Dinas</th>
-                    <th style="text-align: center">Supir</th>
+                    <th style="text-align: center">Status</th>
+                    <th style="text-align: center">Tanggal Peminjaman</th>
                 </tr>
             </thead>
             <tbody>
                 @php
                     $no=1;
                 @endphp
-                @foreach($mobil as $key=>$row)
+                @foreach($car as $key=>$row)
                    <tr>
                         <td>{{$no++}}</td>
                         <td>
-                            {{$row->pegawai->name}} <br>
-                            @if ($row->pegawai->subdivisi_id != null)
-                                {{$row->pegawai->divisi->nama}} - {{$row->pegawai->subdivisi->nama_subdiv}}
+                            {{$row->merk}} - {{$row->police_number}}
+                        </td>
+                            @php
+                                $tgl_awal = 
+                                $isi = $injectQuery->getPinjamMobil($row->id);
+                            @endphp
+                        <td>
+                            @if ($isi != null)
+                                @if ($isi->status=='Y')
+                                    {{ 'Telah Dipinjam' }}
+                                @endif
                             @else
-                                {{$row->pegawai->divisi->nama}}
+                                {{ 'Tersedia' }}
                             @endif
                         </td>
                         <td>
-                            {{tgl_indo($row->date_from)}} <br> s/d <br> {{tgl_indo($row->date_to)}}
-                        </td>
-                        <td>
-                            {{$row->destination}}
-                        </td>
-                        <td>
-                            {{$row->car->merk}} - {{$row->car->police_number}}
-                        </td>
-                        <td>
-                            @if ($row->driver_id != null)
-                                    {{$row->supir->name}}
-                            @else
-                                -
-                            @endif    
+                            @if ($isi != null)
+                                @if ($isi->status=='Y')
+                                    {{tgl_indo($isi->date_from)}} s/d {{tgl_indo($isi->date_to)}}
+                                @endif
+                            @endif
                         </td>
                    </tr>
                @endforeach

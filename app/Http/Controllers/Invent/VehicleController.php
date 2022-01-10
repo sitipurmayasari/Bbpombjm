@@ -49,7 +49,11 @@ class VehicleController extends Controller
    
     public function update(Request $request, $id)
     {
-        $this->validate($request,['police_number' => 'required']);
+        $this->validate(
+            $request,[
+                'police_number' => 'required',
+                'operasional' => 'required'
+            ]);
         $data = Car::find($id);
         $data->update($request->all());
         return redirect('/invent/vehicle')->with('sukses','Data Diperbaharui');

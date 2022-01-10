@@ -17,6 +17,7 @@ use App\Realrapk;
 use App\Realrapk_detail;
 use App\Outst_employee;
 use App\Outstation;
+use App\Vehiclerent;
 use Illuminate\Support\Facades\DB;
 
 class InjectQuery
@@ -284,6 +285,31 @@ class InjectQuery
     public function getKriteriaTE($nilai){
         $isi = Setuprenker::where('jenis','TE')
                             ->whereRaw("$nilai BETWEEN rentang_awal AND rentang_akhir")
+                            ->first();
+        return $isi;
+    }
+
+//-----------------------------------------Carousel -----------------------------------------------------------
+    public function getPinjamMobil($id){
+        $isi1 = Vehiclerent::where('car_id',$id)
+                            ->where('status','=','Y')
+                            ->whereRaw("curdate() BETWEEN date_from AND date_to")
+                            ->orderby('id','desc');
+        $isi2 = Vehiclerent::where('car_id',$id)
+                            ->where('status','=','Y')
+                            ->whereRaw("curdate()+1 BETWEEN date_from AND date_to")
+                            ->orderby('id','desc');
+        $isi3 = Vehiclerent::where('car_id',$id)
+                            ->where('status','=','Y')
+                            ->whereRaw("curdate()+2 BETWEEN date_from AND date_to")
+                            ->orderby('id','desc');
+        $isi = Vehiclerent::where('car_id',$id)
+                            ->where('status','=','Y')
+                            ->whereRaw("curdate()+3 BETWEEN date_from AND date_to")
+                            ->orderby('id','desc')
+                            ->union($isi1)
+                            ->union($isi2)
+                            ->union($isi3)
                             ->first();
         return $isi;
     }

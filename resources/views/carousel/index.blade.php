@@ -69,7 +69,7 @@
 <script>
     $(document).ready(function() {
         $('.carousel').carousel({
-            interval: 1500
+            interval: 3000
         })
 
 
