@@ -75,7 +75,7 @@
                         for="form-field-1"> Keterangan
                         </label>
                         <div class="col-sm-9" >
-                            <textarea  placeholder="" class="col-xs-10 col-sm-10"  
+                            <textarea  placeholder="" class="col-xs-10 col-sm-10 required" required  
                             name="detail"></textarea>
                         </div>
                     </div>
