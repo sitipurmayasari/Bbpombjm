@@ -60,7 +60,7 @@
             margin-left: 10%;
             margin-right: 10%;
             line-height: 1.5;
-            margin-top: 170px;
+            margin-top: 130px;
         }
 
         
