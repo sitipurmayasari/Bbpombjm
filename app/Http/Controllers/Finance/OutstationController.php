@@ -185,6 +185,7 @@ class OutstationController extends Controller
 
       public function edit($id)
       {
+         
           $thn            = Carbon::now()->year;
           $ppk            = PPK::all();
           $budget         = Budget::all();
@@ -202,8 +203,10 @@ class OutstationController extends Controller
                           ->where('pok.year','=',$thn)
                           ->get();
           $hitpeserta     = Outst_employee::SelectRaw('COUNT(id) AS jumpes')->where('outstation_id',$id)->first();
+          $sppd           = Stbook_sppd::leftjoin('stbook','stbook.id','=','stbook_sppd.stbook_id')
+                            ->where('stbook.stbook_number',$data->number)->get();
           return view('finance/outstation.edit',compact('data','petugas','kota','ppk','budget','act','sub',
-                      'akun','div','user','destination','pok','hitpeserta'
+                      'akun','div','user','destination','pok','hitpeserta','sppd'
           ));
       }
 
@@ -224,42 +227,35 @@ class OutstationController extends Controller
               $data->save(); // save ke database
             }
 
-          
-          //---------------outst_destiny----------------------
-            for ($j = 0; $j < count($request->destination_id); $j++){
-                $tgl1 = new DateTime($request->go_date[$j]);
-                $tgl2 = new DateTime($request->return_date[$j]);
-                $daylong = $tgl2->diff($tgl1)->days + 1;
-                
-                $destination = [
-                  'destination_id'=> $request->destination_id[$j],
-                  'go_date' => $request->go_date[$j],
-                  'return_date'  => $request->return_date[$j],
-                  'longday' => $daylong,
-                  'created_at' => Carbon::now()
-                ];
-                
-                DB::table('outst_destiny')->updateOrInsert([
-                  'outstation_id'=>$outstation_id,
-                  'destination_id' =>$request->destination_id[$j]
-                ],$destination);
-            }
+            Outst_destiny::where('outstation_id', $id)->delete();
+            outst_employee::where('outstation_id', $id)->delete();
 
-              //---------------outst_employee----------------------
-    
-            for ($i = 0; $i < count($request->input('users_id')); $i++){
-             
-              $pegawai = [
-                    'outstation_id' => $outstation_id,
+          //---------------outst_employee----------------------
+          for ($i = 0; $i < count($request->input('users_id')); $i++){
+                $data = [
+                    'outstation_id' => $id,
                     'users_id'      => $request->users_id[$i],
-                    'no_sppd'        =>$request->no_sppd[$i],
-                    'created_at' => Carbon::now()
-              ];
-
-              DB::table('outst_employee')->updateOrInsert([
-                'no_sppd'=>$request->no_sppd[$i]
-              ],$pegawai);
-            }
+                    'no_sppd'       => $request->no_sppd[$i],
+                ];
+                Outst_employee::create($data);
+          }
+           
+          //---------------outst_destiny----------------------
+          for ($i = 0; $i < count($request->input('destination_id')); $i++){
+            $tgl1 = new DateTime($request->go_date[$i]);
+            $tgl2 = new DateTime($request->return_date[$i]);
+            $daylong_1 = $tgl2->diff($tgl1)->days + 1;
+            $request->merge(['daylong_1'=>$daylong_1]);
+            
+            $data = [
+                'outstation_id'   => $id,
+                'destination_id'  => $request->destination_id[$i],
+                'go_date'         => $request->go_date[$i],
+                'return_date'     => $request->go_date[$i],
+                'longday'         => $daylong_1
+            ];
+            Outst_destiny::create($data);
+          }  
 
         DB::commit();
 

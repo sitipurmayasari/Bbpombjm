@@ -353,6 +353,7 @@
                                 </td>
                             </tr>
                             
+                            
                         </tfoot>
                     </table>
                 </fieldset>   
@@ -375,24 +376,6 @@
 @section('footer')
    <script>
 
-    //    function getnomorsppd(){
-    //         var stbook_number = $("#nomorst").val();
-    //         $.get(
-    //             "{{route('outstation.getnomorsppd') }}",
-    //             {
-    //                 stbook_number:stbook_number
-    //             },
-    //             function(response) {
-    //                 var data2 = response.nosppd;
-    //                 var string ="<option value=''>Pilih</option>";
-    //                     $.each(data2, function(index, value) {
-    //                         string = string + '<option value="'+ value.nomor_sppd +'">'+ value.nomor_sppd +'</option>';
-    //                     })
-    //                 $(".penomoransppd").html(string);
-    //             }
-    //         );
-    //     }
-
         function addBarisNew(){
             var last_baris = $("#countRow").val();
             var new_baris = parseInt(last_baris)+1;
@@ -407,8 +390,10 @@
                         '</select>'+                
                     '</td>'+
                         '<td>'+
-                            '<select name="no_sppd[]" class="form-control select2 penomoransppd">'+
-                                '<option value="">Pilih no SPPD</option>'+
+                            '<select name="no_sppd[]" class="form-control select2">'+
+                                '@foreach ($sppd as $item)'+
+                                    '<option value="{{$item->nomor_sppd}}">{{$item->nomor_sppd}}</option>'+
+                                '@endforeach'+
                                 '</select>'+
                         '</td>'+
                     '<td><button type="button"  class="btn btn-danger" onclick="deleteRow('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button></td>'+
@@ -421,7 +406,6 @@
 
        function deleteRow(cell) {
             $("#cell-"+cell).remove();
-            this.hitungTotal();
 
         }
 
@@ -453,7 +437,6 @@
 
        function deleteRowwil(cell) {
             $("#cell-"+cell).remove();
-            this.hitungTotal();
 
         }
 
