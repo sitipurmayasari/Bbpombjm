@@ -49,23 +49,35 @@
             <tr>
                 <td style="width: 11%">Program/kegiatan</td>
                 <td style="width: 18%">:
-                    {{$data->pok->pok->act->prog->unit->klcode->code}}.{{$data->pok->pok->act->prog->unit->code}}.
-                    {{$data->pok->pok->act->prog->code}} / {{$data->pok->pok->act->code}}
+                    @if ($data->pok_detail_id == 0)
+                        {{' Non Anggaran '}}
+                    @else
+                        {{$data->pok->pok->act->prog->unit->klcode->code}}.{{$data->pok->pok->act->prog->unit->code}}.
+                        {{$data->pok->pok->act->prog->code}} / {{$data->pok->pok->act->code}}
+                    @endif
                 </td>
             </tr>
             <tr>
                 <td>KRO/RO/komponen</td>
                 <td>:
-                    {{$data->pok->sub->komponen->det->unit->code}} / {{$data->pok->sub->komponen->det->code}} / {{$data->pok->sub->komponen->code}}
+                    @if ($data->pok_detail_id == 0)
+                        {{' Non Anggaran '}}
+                    @else
+                        {{$data->pok->sub->komponen->det->unit->code}} / {{$data->pok->sub->komponen->det->code}} / {{$data->pok->sub->komponen->code}}
+                    @endif
                 </td>
                
             </tr>
             <tr>
                 <td>Sub Komponen/Akun</td>
                 <td>:
-                    {{$data->pok->sub->code}} / {{$data->pok->akun->code}}
+                    @if ($data->pok_detail_id == 0)
+                        {{' Non Anggaran '}}
+                    @else
+                        {{$data->pok->sub->code}} / {{$data->pok->akun->code}}
+                    @endif
+                    
                 </td>
-                
             </tr>
             <tr>
                 <td>No. Surat Tugas</td>

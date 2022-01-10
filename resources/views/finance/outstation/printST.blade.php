@@ -221,8 +221,8 @@
                 <td></td>
                 <td style="width: 15%">&nbsp;&nbsp;MAK</td>
                 <td style="width: 60%">: 
-                    @if ($data->budget_id == 3)
-                        {{' - '}}
+                    @if ($data->pok_detail_id == 0)
+                        {{' Non Anggaran '}}
                     @else
                         {{$data->pok->pok->act->prog->unit->klcode->code}}.{{$data->pok->pok->act->prog->unit->code}}.
                         {{$data->pok->pok->act->prog->code}}.{{$data->pok->pok->act->code}}.

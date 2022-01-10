@@ -75,11 +75,11 @@
                         </label>
                         <div class="col-sm-8">
                             <select name="budget_id" class="col-xs-10 col-sm-10 required select2" required>
-                                <option value="">Pilih Anggaran</option>
                                 @foreach ($budget as $item)
                                     @if ($data->budget_id==$item->id)
                                         <option value="{{$item->id}}" selected>{{$item->code}}/{{$item->name}}</option>
                                     @else
+                                        <option value="0" selected>non Anggaran</option>
                                         <option value="{{$item->id}}">{{$item->code}}/{{$item->name}}</option>
                                     @endif
                                 @endforeach

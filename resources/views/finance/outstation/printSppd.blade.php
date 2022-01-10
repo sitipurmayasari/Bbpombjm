@@ -51,9 +51,13 @@
         <tr>
             <td style="width: 11%">Program/kegiatan</td>
             <td style="width: 18%">:
-                {{$data->pok->pok->act->prog->unit->klcode->code}}.{{$data->pok->pok->act->prog->unit->code}}.
-                {{$data->pok->pok->act->prog->code}}
-                 / {{$data->pok->pok->act->code}}
+                @if ($data->pok_detail_id == 0)
+                    {{' Non Anggaran '}}
+                @else
+                    {{$data->pok->pok->act->prog->unit->klcode->code}}.{{$data->pok->pok->act->prog->unit->code}}.
+                    {{$data->pok->pok->act->prog->code}}
+                    / {{$data->pok->pok->act->code}}
+                @endif
             </td>
             <td rowspan="5" style="vertical-align: bottom; text-align: center;" ><img src="{{asset('images/BBRI.jpg')}}" style="height:80px"></td>
             <td style="width: 28%">Lampiran VI (4 dari 4)</td> 
@@ -61,16 +65,25 @@
         <tr>
             <td>KRO/RO/komponen</td>
             <td>:
-                {{$data->pok->sub->komponen->det->unit->code}}
-                 / {{$data->pok->sub->komponen->det->code}}
-                 / {{$data->pok->sub->komponen->code}}
+                @if ($data->pok_detail_id == 0)
+                    {{' Non Anggaran '}}
+                @else
+                    {{$data->pok->sub->komponen->det->unit->code}}
+                    / {{$data->pok->sub->komponen->det->code}}
+                    / {{$data->pok->sub->komponen->code}}
+                @endif
+                
             </td>
             <td>Peraturan Menteri Keuangan tentang Perjalanan Dinas</td>
         </tr>
         <tr>
             <td>Sub Komponen/Akun</td>
             <td>:
-                {{$data->pok->sub->code}} / {{$data->pok->akun->code}}
+                @if ($data->pok_detail_id == 0)
+                    {{' Non Anggaran '}}
+                @else
+                    {{$data->pok->sub->code}} / {{$data->pok->akun->code}}
+                @endif
             </td>
             <td>Dalam Negeri bagi Pejabat Negara Pegawai Negeri Sipil</td>
         </tr>
@@ -227,8 +240,12 @@
                 &nbsp; &nbsp; b. Mata Anggaran
             </td>
             <td class="isi">     Hanya instansi yang dikuasainya <br>
-                 {{$data->budget->name}} <br>
-                 {{$data->pok->sub->komponen->code}} / {{$data->pok->akun->code}}
+                {{$data->budget->name}} <br>
+                @if ($data->pok_detail_id == 0)
+                    {{' Non Anggaran '}}
+                @else
+                    {{$data->pok->sub->komponen->code}} / {{$data->pok->akun->code}}
+                @endif
             </td>
         </tr>
         <tr>
