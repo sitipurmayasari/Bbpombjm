@@ -79,7 +79,6 @@
                                     @if ($data->budget_id==$item->id)
                                         <option value="{{$item->id}}" selected>{{$item->code}}/{{$item->name}}</option>
                                     @else
-                                        <option value="0" selected>non Anggaran</option>
                                         <option value="{{$item->id}}">{{$item->code}}/{{$item->name}}</option>
                                     @endif
                                 @endforeach
@@ -112,11 +111,13 @@
                                 <option value="">Kode Anggaran</option>
                                 @foreach ($pok as $item)
                                     @if ($item->id==$data->pok_detail_id)
+                                        <option value="0">non Anggaran</option>
                                         <option value="{{$item->id}}" selected>{{$item->pok->act->lengkap}}/{{$item->sub->kodeall}}/
                                             {{$item->akun->code}} 
                                             ( Tersisa Rp. {{number_format($item->sisa)}} )
                                         </option>
                                     @else
+                                        <option value="0" selected>non Anggaran</option>
                                         <option value="{{$item->id}}">{{$item->pok->act->lengkap}}/{{$item->sub->kodeall}}/
                                             {{$item->akun->code}} 
                                             ( Tersisa Rp. {{number_format($item->sisa)}} )
