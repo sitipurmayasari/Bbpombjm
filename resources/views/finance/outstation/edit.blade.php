@@ -108,16 +108,14 @@
                         </label>
                         <div class="col-sm-8">
                             <select name="pok_detail_id" class="col-xs-10 col-sm-10 required select2" required>
-                                <option value="">Kode Anggaran</option>
+                                <option value="0">non Anggaran</option>
                                 @foreach ($pok as $item)
                                     @if ($item->id==$data->pok_detail_id)
-                                        <option value="0">non Anggaran</option>
                                         <option value="{{$item->id}}" selected>{{$item->pok->act->lengkap}}/{{$item->sub->kodeall}}/
                                             {{$item->akun->code}} 
                                             ( Tersisa Rp. {{number_format($item->sisa)}} )
                                         </option>
                                     @else
-                                        <option value="0" selected>non Anggaran</option>
                                         <option value="{{$item->id}}">{{$item->pok->act->lengkap}}/{{$item->sub->kodeall}}/
                                             {{$item->akun->code}} 
                                             ( Tersisa Rp. {{number_format($item->sisa)}} )
