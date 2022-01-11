@@ -40,7 +40,7 @@
 
         .ttdini{
             float: right;
-            margin-right: 15%;
+            margin-right: 10%;
             font-size: 12;
         }
 
@@ -69,10 +69,10 @@
             text-align: center;
             border: 2px solid brown;
             margin: auto;
-            width: 70%;
+            margin-right: 20%;
+            /* width: 70%; */
             padding-bottom: 13px;
             padding-top: 13px;
-            
         }
         
 
@@ -238,7 +238,8 @@
         <br><br><br>
         <table class="ttdini">
             <tr>
-                <td>Banjarmasin, 
+                <td></td>
+                <td style="width: 38%;">Banjarmasin, 
                     @php
                         $a = $data->st_date;
                         echo tgl_indo($a); 
@@ -247,6 +248,13 @@
                 </td>
             </tr>
             <tr>
+                <td rowspan="3" >
+                   <div id="gratis">
+                    <b>Tidak Menerima Gratifikasi/KKN</b> <br>
+                    Pengaduan Gratifikasi/KKN ditujukan kepada Kepala BBPOM di <br>
+                    Banjarmasin Hp : 082149000821
+                   </div>
+                </td>
                 <td><b>
                     @if ($menyetujui->pjs !=null)
                         {{$menyetujui->pjs}} KEPALA,
@@ -260,20 +268,6 @@
             </tr>
             <tr>
                 <td><b>{{$menyetujui->user->name}}</b></td>
-            </tr>
-        </table>
-        <br>
-        <br>
-        <br>
-        <br><br><br><br><br><br><br><br>
-        <table style="width: 100%">
-            <tr><td style="width: 15%"></td>
-                <td id="gratis">
-                    <b>Tidak Menerima Gratifikasi/KKN</b> <br>
-                        Pengaduan Gratifikasi/KKN ditujukan kepada Kepala BBPOM di <br>
-                        Banjarmasin Hp : 082149000821
-                </td>
-                <td></td>
             </tr>
         </table>
     </div>
