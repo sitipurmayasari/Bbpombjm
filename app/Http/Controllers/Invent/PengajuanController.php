@@ -98,17 +98,15 @@ class PengajuanController extends Controller
         $mengetahui = Pejabat::orderBy('subdivisi_id','desc')
                        ->whereRaw("divisi_id =
                                     (
-                                        SELECT u.divisi_id
-                                        FROM users u
-                                        LEFT JOIN aduan a ON a.pegawai_id=u.id
+                                        SELECT u.divisi_id FROM users u
+                                        LEFT JOIN pengajuan a ON a.pegawai_id=u.id
                                         WHERE a.id=$id
                                     )" )
                         ->whereRaw(" 
                                     (subdivisi_id =
                                     (
-                                        SELECT u.subdivisi_id
-                                        FROM users u
-                                        LEFT JOIN aduan a ON a.pegawai_id=u.id
+                                        SELECT u.subdivisi_id FROM users u 
+                                        LEFT JOIN pengajuan a ON a.pegawai_id=u.id 
                                         WHERE a.id=$id
                                     ) OR subdivisi_id IS NULL)
                                 ")
