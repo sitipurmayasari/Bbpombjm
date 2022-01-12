@@ -205,7 +205,7 @@
                 @endif
             <td></td>
             <td >Petugas <br><br><br></td>
-            <td>: {{$no++}} <br><br><br></td>
+            <td>: {{$no}} <br><br><br></td>
         </tr>
    </table>
    <hr style="border:1px solid black;">
@@ -372,7 +372,7 @@
                 @endif
         <td></td>
         <td >Petugas <br><br><br></td>
-        <td>: {{$no++}} <br><br><br></td>
+        <td>: {{$no}} <br><br><br></td>
     </tr>
 </table>
 <hr style="border:1px solid black;">
@@ -407,7 +407,9 @@
     </tr>
 </table>
 </body>
-
+@php
+    $no++
+@endphp
 @endforeach
 
 </html>
