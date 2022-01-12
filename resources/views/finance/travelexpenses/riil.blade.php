@@ -111,7 +111,7 @@
                     {{$item->out->pok->sub->komponen->code}} <br>
                 : {{$item->out->pok->sub->code}} / {{$item->out->pok->akun->code}} <br>
                 :  {{$item->out->number}} <br>
-                : {{$no++}}
+                : {{$no}}
             </td>
         </tr>
         <tr>
@@ -492,7 +492,7 @@
                     {{$item->out->pok->sub->komponen->code}} <br>
                 : {{$item->out->pok->sub->code}} / {{$item->out->pok->akun->code}} <br>
                 :  {{$item->out->number}} <br>
-                : {{$no++}}
+                : {{$no}}
             </td>
         </tr>
         <tr>
@@ -816,5 +816,8 @@
         </tr>
     </table>
 </body>
+@php
+    $no++;
+@endphp
 @endforeach
 </html>

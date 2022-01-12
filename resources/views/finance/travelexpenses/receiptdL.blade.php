@@ -408,7 +408,7 @@
 </table>
 </body>
 @php
-    $no++
+    $no++;
 @endphp
 @endforeach
 
