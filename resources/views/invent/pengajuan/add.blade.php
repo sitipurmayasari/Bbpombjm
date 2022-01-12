@@ -66,9 +66,10 @@
                     <thead>
                         <th class="text-center col-md-1">No</th>
                         <th class="text-center col-md-4">Nama Barang</th>
+                        <th class="text-center col-md-3">Spesifikasi</th>
                         <th class="text-center col-md-2">Satuan</th>
                         <th class="text-center col-md-1">Jumlah</th>
-                        <th class="text-center col-md-5">Keperluan</th>
+                        <th class="text-center col-md-3">Keperluan</th>
                         <th class="text-center col-md-1">Aksi</th>
                     </thead>
                     <tbody>
@@ -78,6 +79,9 @@
                             </td>       
                             <td>
                                 <input type="text" name="nama_barang[]" class="form-control">
+                            </td>
+                            <td>
+                                <textarea name="spek" class="form-control"></textarea>
                             </td>
                             <td>
                                 <select name="satuan_id[]" class="col-xs-9 col-sm-9 select2" required>
@@ -99,7 +103,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="6">
+                            <td colspan="7">
                                 <button type="button" class="form-control btn-default" onclick="addBarisNew()">
                                     <i class="glyphicon glyphicon-plus"></i>TAMBAH BARIS BARU</button>
                                 <input type="hidden" id="countRow" value="1">

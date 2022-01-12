@@ -52,13 +52,14 @@
                         @elseif($row->status==1)
                             Pengecekkan
                         @else 
-                            Selesai 
+                            Selesai
                         @endif
 
                     </td>
                     <td>
                         <a class="btn btn-primary" href="/invent/pengajuan/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
                     </td>
+                    
                 </tr>
               
                 @endforeach

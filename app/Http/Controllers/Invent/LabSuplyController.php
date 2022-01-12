@@ -15,7 +15,7 @@ use App\Entrystock;
 use Illuminate\Support\Facades\DB;
 use QrCode;
 
-class DisposableController extends Controller
+class LabSuplyController extends Controller
 {
     public function index(Request $request)
     {
@@ -23,7 +23,7 @@ class DisposableController extends Controller
                     ->selectRaw('inventaris.*, users.name, SUM(entrystock.stock) AS stok')
                     ->leftJoin('users','users.id','=','inventaris.penanggung_jawab')
                     ->leftJoin('entrystock','entrystock.inventaris_id','=','inventaris.id')
-                    ->where('inventaris.kind','=','D')
+                    ->where('inventaris.kind','=','L')
                     ->groupBy('inventaris.id')
                     ->when($request->keyword, function ($query) use ($request) {
                         $query->where('nama_barang','LIKE','%'.$request->keyword.'%')
@@ -31,19 +31,20 @@ class DisposableController extends Controller
                                 ->orWhere('name', 'LIKE','%'.$request->keyword.'%');
                     })
                     ->paginate('10');
-        return view('invent/disposable.index',compact('data'));
+        return view('invent/labsuply.index',compact('data'));
     }
 
     public function create()
     {
 
         $divisi = Divisi::all();
-        $user = User::where('id','!=','1')->get();
+        $user = User::all()
+        ->where('id','!=','1');
         $lokasi = Lokasi::all();
-        $jenis = Jenisbrg::whereRaw('id NOT IN (2,3)')->get();
-        $satuan = Satuan::all();
+        $jenis = Jenisbrg::whereRaw('id IN (2,3)')->get();
+        $satuan = Satuan::WhereRaw('id not IN (2,3,4,6)')->get();
 
-        return view('invent/disposable.create',compact('divisi','user','lokasi','jenis','satuan'));
+        return view('invent/labsuply.create',compact('divisi','user','lokasi','jenis','satuan'));
     }
 
    
@@ -66,7 +67,7 @@ class DisposableController extends Controller
             $inventaris->file_foto = $request->file('file_foto')->getClientOriginalName(); // update isi kolum file user dengan origin gambar
             $inventaris->save(); // save ke database
         }
-        return redirect('/invent/disposable')->with('sukses','Data Tersimpan');
+        return redirect('/invent/labsuply')->with('sukses','Data Tersimpan');
     }
 
     public function qrcode($id)
@@ -79,13 +80,14 @@ class DisposableController extends Controller
 
     public function edit($id)
     {
-        $satuan = Satuan::all();
+        $satuan = Satuan::WhereRaw('id not IN (2,3,4,6)')->get();
         $data = Inventaris::where('id',$id)->first();
         $divisi = Divisi::all();
-        $user = User::where('id','!=','1')->get();
+        $user = User::all()
+                ->where('id','!=','1');
         $lokasi = Lokasi::all();
-        $jenis = Jenisbrg::whereRaw('id NOT IN (2,3)')->get();
-        return view('invent/disposable.edit',compact('data','divisi','user','lokasi','jenis','satuan'));
+        $jenis = Jenisbrg::whereRaw('id IN (2,3)')->get();
+        return view('invent/labsuply.edit',compact('data','divisi','user','lokasi','jenis','satuan'));
     }
 
 
@@ -108,7 +110,7 @@ class DisposableController extends Controller
             $inventaris->save(); // save ke database
         }
 
-        return redirect('/invent/disposable')->with('sukses','Data Diperbaharui');
+        return redirect('/invent/labsuply')->with('sukses','Data Diperbaharui');
     }
 
    
@@ -116,7 +118,7 @@ class DisposableController extends Controller
     {
         $inventaris = Inventaris::find($id);
         $inventaris->delete();
-        return redirect('/invent/disposable')->with('sukses','Data Terhapus');
+        return redirect('/invent/labsuply')->with('sukses','Data Terhapus');
     }
 
     public function stock($id)
@@ -127,7 +129,7 @@ class DisposableController extends Controller
                     ->get();
         $data = Inventaris::where('id',$id)->first();
         
-        return view('invent/disposable.stock',compact('data','stok'));
+        return view('invent/labsuply.stock',compact('data','stok'));
     }
 
     public function storestock(Request $request)
@@ -138,6 +140,6 @@ class DisposableController extends Controller
             'exp_date'   => 'required',
         ]);
         $stok = Entrystock::create($request->all());
-        return redirect('/invent/disposable/stock/'.$stok->inventaris_id)->with('sukses','Data Tersimpan');
+        return redirect('/invent/labsuply/stock/'.$stok->inventaris_id)->with('sukses','Data Tersimpan');
     }
 }

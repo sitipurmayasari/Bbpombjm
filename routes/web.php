@@ -67,18 +67,34 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/invent/inventaris','Invent\InventarisController@index')->name('inventaris');
     //Route untuk disposable inventaris
     Route::get('/invent/disposable','Invent\DisposableController@index')->name('disposable');
+    //Route untuk persediaan Lab
+    Route::get('/invent/labsuply','Invent\LabSuplyController@index')->name('labsuply');
     //Route untuk maintenance
     Route::get('/invent/maintenance','Invent\MaintenanceController@index')->name('maintenance');
-     //Route untuk Barang keluar
+    //Route untuk Barang keluar
      Route::get('/invent/barangkeluar','Invent\BarangkeluarController@index')->name('barangkeluar');
+
     //Route untuk aduan
     Route::get('/invent/aduan','Invent\AduanController@index')->name('aduan');
     Route::get('/invent/aduan/create','Invent\AduanController@create')->name('aduan.create');
     //Route untuk aduanTIK
     Route::get('/invent/aduantik','Invent\AduanTikController@index')->name('aduantik');
     Route::get('/invent/aduantik/create','Invent\AduanTikController@create')->name('aduantik.create');
-    //Route untuk Pengajuan
+
+    //Route untuk Pengajuan Barang Baru
     Route::get('/invent/pengajuan','Invent\PengajuanController@index')->name('pengajuan');
+    //Route untuk Permintaan Barang Lab di gudang
+     Route::get('/invent/labrequest','Invent\LabRequestController@index')->name('labrequest');
+    //Route untuk Permintaan Barang ATK di gudang
+    Route::get('/invent/atkrequest','Invent\AtkRequestController@index')->name('atkrequest');
+
+    //Route untuk Persetujuan Permintaan Barang Baru
+    Route::get('/invent/persetujuan','Invent\PersetujuanController@index')->name('persetujuan');
+    //Route untuk Persetujuan Permintaan Barang Lab di gudang
+    Route::get('/invent/labrequestOk','Invent\LabRequestOKController@index')->name('labrequestOk');
+    //Route untuk Persetujuan Permintaan Barang ATK di gudang
+    Route::get('/invent/atkrequestOk','Invent\AtkRequestOKController@index')->name('atkrequestOk');
+
     //Route untuk kendaraan
     Route::get('/invent/vehicle','Invent\VehicleController@index')->name('vehicle');
     //Route untuk lokasi
@@ -87,12 +103,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/invent/petugas','Invent\PetugasController@index')->name('petugas');
     //Route untuk Pinjam Mobil
     Route::get('/invent/carrent','Invent\CarrentController@index')->name('carrent');
-
     //Route untuk setujui peminjaman
     Route::get('/invent/carok','Invent\CarOkController@index')->name('carok');
-
-  
-
     //Route untuk Laporan
     Route::get('/invent/laporan','Invent\LaporanController@index')->name('laporan');
     //Route untuk Laporan Aduan

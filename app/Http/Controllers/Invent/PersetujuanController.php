@@ -18,18 +18,18 @@ class PengajuanController extends Controller
 {
     public function index(Request $request)
     {   
-        $peg =auth()->user()->id;
-        $data = Pengajuan::orderBy('pengajuan.id','desc')
-                    ->Select('pengajuan.*')
-                    ->leftJoin('pengajuan_detail','pengajuan_detail.pengajuan_id','=','pengajuan.id')
-                    ->where('pengajuan.pegawai_id',$peg)
+        $detail = PengajuanDetail::all();
+        $data = Pengajuan::orderBy('status','asc')
+                    ->select('pengajuan.*','users.name')
+                    ->leftJoin('users','users.id','=','pengajuan.pegawai_id')
                     ->when($request->keyword, function ($query) use ($request) {
                         $query->where('no_ajuan','LIKE','%'.$request->keyword.'%')
                                 ->orWhere('tgl_ajuan', 'LIKE','%'.$request->keyword.'%')
-                                ->orWhere('kelompok', 'LIKE','%'.$request->keyword.'%');
+                                ->orWhere('kelompok', 'LIKE','%'.$request->keyword.'%')
+                                ->orWhere('name', 'LIKE','%'.$request->keyword.'%');
                     })
                     ->paginate('10');
-        return view('invent/pengajuan.index',compact('data'));
+        return view('invent/pengajuan.index',compact('data','detail'));
     }
 
     public function create()
@@ -40,6 +40,14 @@ class PengajuanController extends Controller
         $no_ajuan = $this->getNoAjuan();
         return view('invent/pengajuan.add',compact('user','no_ajuan','satuan'));
     }
+
+    public function detail($id)
+    {
+       $ajuan = Pengajuan::find($id);
+       $detail = pengajuanDetail::where('pengajuan_id',$id)->get();
+       return view('invent/pengajuan.detail',compact('ajuan','detail'));
+    }
+
    
     public function store(Request $request)
     {
@@ -77,6 +85,16 @@ class PengajuanController extends Controller
 
         ->get();
 
+        $pejabat = Pejabat::all();
+
+        $petugas = Petugas::where('id', '=', 3)->first();
+
+        $menyetujui = Pejabat::
+                        where('jabatan_id', '=', 11)
+                        ->where('divisi_id', '=', 2)
+                        ->whereRaw("curdate() BETWEEN dari AND sampai")
+                        ->first();
+
         $mengetahui = Pejabat::orderBy('subdivisi_id','desc')
                        ->whereRaw("divisi_id =
                                     (
@@ -95,7 +113,7 @@ class PengajuanController extends Controller
                         ->whereRaw("curdate() BETWEEN dari AND sampai")
                         ->first();
         
-        $pdf = PDF::loadview('invent/pengajuan.print',compact('data','isi','mengetahui'));
+        $pdf = PDF::loadview('invent/pengajuan.print',compact('data','isi','menyetujui','petugas','pejabat','mengetahui'));
         return $pdf->stream();
     }
 

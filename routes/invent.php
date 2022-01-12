@@ -31,6 +31,17 @@
   Route::get('/invent/disposable/qrcode/{id}','Invent\DisposableController@qrcode')->name('disposable.qrcode');
   Route::get('/invent/disposable/stock/{id}','Invent\DisposableController@stock')->name('disposable.stock');
   Route::post('/invent/disposable/storestock','Invent\DisposableController@storestock')->name('disposable.storestock');
+
+
+  //Route untuk persediaan Lab
+  Route::get('/invent/labsuply/create','Invent\LabSuplyController@create')->name('labsuply.create');
+  Route::post('/invent/labsuply/store','Invent\LabSuplyController@store')->name('labsuply.store');
+  Route::get('/invent/labsuply/edit/{id}','Invent\LabSuplyController@edit')->name('labsuply.edit');
+  Route::post('/invent/labsuply/update/{id}','Invent\LabSuplyController@update')->name('labsuply.update');
+  Route::get('/invent/labsuply/delete/{id}','Invent\LabSuplyController@delete')->name('labsuply.delete');
+  Route::get('/invent/labsuply/qrcode/{id}','Invent\LabSuplyController@qrcode')->name('labsuply.qrcode');
+  Route::get('/invent/labsuply/stock/{id}','Invent\LabSuplyController@stock')->name('labsuply.stock');
+  Route::post('/invent/labsuply/storestock','Invent\LabSuplyController@storestock')->name('labsuply.storestock');
   
 
   //Route untuk maintenance
@@ -92,4 +103,10 @@
 
   //Route untuk Laporan stok barang
   Route::post('/invent/kartustok/cetak','Invent\KartuStokController@cetak')->name('kartustok.cetak');
+
+  //Route untuk Permintaan Barang Lab di gudang
+  Route::get('/invent/labrequest','Invent\LabRequestController@index')->name('labrequest');
+  
+  //Route untuk Permintaan Barang ATK di gudang
+  Route::get('/invent/atkrequest','Invent\AtkRequestController@index')->name('atkrequest');
     

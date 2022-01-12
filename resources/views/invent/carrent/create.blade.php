@@ -117,6 +117,22 @@
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label no-padding-right" 
+                            for="form-field-1"> Tanggal Peminjaman
+                            </label>
+                            <div class="col-sm-2">
+                                <input type="time" class="col-xs-10 col-sm-10 required"
+                                name="time_from" required />  
+                                <label class="col-sm-2 control-label no-padding-right" 
+                                    for="form-field-1"> s/d
+                                </label>
+                            </div>
+                            <div class="col-sm-2">
+                                <input type="time" class="col-xs-10 col-sm-10 required " 
+                                name="time_to" required />  
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right" 
                             for="form-field-1"> Tujuan
                             </label>
                             <div class="col-sm-9">
