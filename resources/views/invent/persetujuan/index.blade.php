@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('breadcrumb')
-    <li>Pengajuan</li>
-    <li> Daftar Pengajuan Barang</li>
+    <li>Persetujuan</li>
+    <li> Daftar persetujuan Barang Baru</li>
 @endsection
 @section('content')
 <form method="get" action="{{ url()->current() }}">
@@ -10,9 +10,6 @@
             <div class="row">
                 <div class="form-group col-sm-12">
                     <div class="row">
-                        <div class="form-group col-xs-12 col-sm-3" style="float: left">
-                            <a href="{{Route('pengajuan.create')}}"  class="btn btn-primary">Tambah Data</a>   
-                         </div>
                         <div class="form-group col-xs-12 col-sm-3" style="float: right">
                             <div class="input-group">
                                 <input type="text" class="form-control gp-search" name="keyword" placeholder="Cari " value="" autocomplete="off">
@@ -34,11 +31,10 @@
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
                 <th width="40px">No</th>
-                <th>No. Pengajuan</th>
+                <th>No. persetujuan</th>
                 <th>Tanggal</th>
                 <th>Kelompok Barang</th>
                 <th>Status</th>
-                <th>Aksi</th>
             <thead>
             <tbody>   	
                 @foreach($data as $key=>$row)
@@ -48,18 +44,14 @@
                     <td>{{$row->tgl_ajuan}}</td>
                     <td>{{$row->kelompok}}</td>
                     <td>@if ($row->status==0)
-                            Menunggu
-                        @elseif($row->status==1)
-                            Pengecekkan
+                            <a class="btn btn-primary" href="/invent/persetujuan/edit/{{$row->id}}" target="_blank" 
+                                rel="noopener noreferrer">Menunggu</a>
                         @else 
-                            Selesai
+                            <a class="btn btn-success" href="/invent/persetujuan/edit/{{$row->id}}" target="_blank" 
+                                rel="noopener noreferrer">Selesai</a>
                         @endif
 
                     </td>
-                    <td>
-                        <a class="btn btn-primary" href="/invent/pengajuan/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
-                    </td>
-                    
                 </tr>
               
                 @endforeach

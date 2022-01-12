@@ -18,7 +18,7 @@ use PDF;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
-class BarangkeluarController extends Controller
+class LabRequestController extends Controller
 {
     public function index(Request $request)
     {   
@@ -31,7 +31,7 @@ class BarangkeluarController extends Controller
                                 ->orWhere('name', 'LIKE','%'.$request->keyword.'%');
                     })
                     ->paginate('10');
-        return view('invent/barangkeluar.index',compact('data'));
+        return view('invent/labrequest.index',compact('data'));
     }
 
     public function create()
@@ -143,7 +143,7 @@ class BarangkeluarController extends Controller
             $first = "0".$first;
         }
       }
-      $nosbb = $first."/SBBK/BBPOM/".date('m')."/".date('Y');
+      $nosbb = $first."/SBB/LAB/BBPOM/".date('m')."/".date('Y');
       return $nosbb;
     }
 

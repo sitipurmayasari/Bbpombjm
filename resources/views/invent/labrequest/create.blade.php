@@ -27,7 +27,6 @@
                             name="nomor"
                             value="{{$nosbb}}"
                             />
-                            <input type="hidden" name="status" value="Y">
                         </div>
                    </div>
                    <div class="col-md-6">

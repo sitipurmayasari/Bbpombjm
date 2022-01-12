@@ -1,143 +1,94 @@
 @extends('layouts.app')
 @section('breadcrumb')
-    <li>Aduan</li>
-    <li><a href="/invent/aduan"> Daftar Aduan</a></li>
-    <li>Detail Aduan</li>
+    <li><i class="ace-icon fa fa-table home-icon"></i>  <a href="/invent/persetujuan">DPB Baru</a></li>
+    <li>No {{$ajuan->no_ajuan}}</li>
+
 @endsection
 @section('content')
-
-@include('layouts.validasi')
-
-<div class="row">
-    <form class="form-horizontal validate-form" role="form" 
-        method="post" action="/invent/aduan/update/{{$data->id}}">
-    {{ csrf_field() }}
-    <div class="col-sm-12">
-        <div class="widget-box">
-            <div class="widget-header">
-                <h4 class="widget-title"> Detail Aduan Kerusakan</h4>
-                <div class="widget-toolbar">
-                    <a href="#" data-action="collapse">
-                        <i class="ace-icon fa fa-chevron-down"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="widget-body">
-                <div class="col-sm-6">
-                    <div class="widget-main no-padding">
-                        <fieldset>
-                        <br>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> No. Aduan
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="text"  placeholder="nomor aduan" id="kode"
-                                        class="col-xs-10 col-sm-10  " readonly
-                                        name="no_aduan" value="{{$data->no_aduan}}"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Kode Barang
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="text"  placeholder="nomor aduan" id="kode"
-                                class="col-xs-10 col-sm-10  " value="{{$data->barang_id}}"
-                                name="no_aduan"readonly/>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Merk/Type
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="text"  placeholder="merk" 
-                                        class="col-xs-10 col-sm-10  " 
-                                        name="merk" id="merk" readonly/>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> No.Seri
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="text"  placeholder="seri" id="seri" 
-                                        class="col-xs-10 col-sm-10  " 
-                                        name="no_seri" readonly/>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Tanggal Aduan
-                            </label>
-                            <div class="col-sm-8 date">
-                                <input type="text"  placeholder="nomor aduan" id="kode" readonly
-                                class="col-xs-10 col-sm-10 " value="{{$data->tanggal}}"
-                                name="pegawai_id"/>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Pelapor
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="text"  placeholder="nomor aduan" id="kode" readonly
-                                        class="col-xs-10 col-sm-10 " value="{{$data->pegawai_id}}"
-                                        name="pegawai_id"/>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Keterangan
-                            </label>
-                            <div class="col-sm-8">
-                                <textarea  placeholder="" class="col-xs-10 col-sm-10"  readonly
-                                name="aduan">{{$data->aduan}}</textarea>
-                            </div>
-                        </div>
-
-                    
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> 
-                            </label>
-                            <div>
-                                &nbsp;&nbsp;
-                                <input type="checkbox"name="tindak" value="Y">
-                                &nbsp; Telah di tanggapi
-                            </div>
-                        </div>
-
-                        
-                        </fieldset>        
-                    </div>
-               </div>
-               <div class="col-sm-6">
-                   <br>
-                <div class="widget-main no-padding">
-                    <div class="form-actions" align="center">
-                        <img src="{{$data->getFoto()}}"  style="height:250px;width:250px">
-                    </div>     
-                </div>
-           </div>
-            </div>
-        </div>
-    </div><!-- /.col -->
-    
-    <div class="col-sm-12">
-        <div class="form-actions right">
-            <button class="btn btn-success btn-sm " type="submit">
-                <i class="ace-icon fa fa-check bigger-110"></i>Update
-            </button>
-        </div>
-    </div>
-    </form>
+<form Class="form-horizontal validate-form" role="form" 
+method="post" action="/invent/persetujuan/update/{{$ajuan->id}}">
+{{ csrf_field() }}
+<div class="panel panel-default table-responsive hidden-xs">
+    <table class="table table-condensed table-bordered">
+        <tr>
+            <td class="col-xs-2 text-center">No. Pengajuan</td>
+            <td class="col-xs-2 text-center">Tanggal</td>
+            <td class="col-xs-2 text-center">Pelapor</td>
+            <td class="col-xs-2 text-center">Status</td>
+        </tr>
+        <tr>
+            <td class="text-center lead" style="border-top: none;">{{$ajuan->no_ajuan}}</td>
+            <td class="text-center lead" style="border-top: none;">{{$ajuan->tgl_ajuan}}</td>
+            <td class="text-center lead" style="border-top: none;">{{$ajuan->lapor->no_pegawai." ".$ajuan->lapor->name}}</td>
+            <td>
+                @if ($ajuan->status==0)
+                    <select name="aduan_status"  class="form-control">
+                        <option value="0" {{$ajuan->status==0 ? 'selected' : ''}}>Menunggu</option>
+                        <option value="1" {{$ajuan->status==1 ? 'selected' : ''}}>Selesai</option>
+                    </select>                        
+                @else
+                    <input type="hidden" name="aduan_status" value="{{$ajuan->status}}">
+                @endif
+            </td>
+        </tr>
+    </table>
 </div>
 
+<div class="clearfix"></div>
+
+<table class="table table-responsive table-bordered">
+    <thead>
+        <tr>
+            <td style="text-align: center;">No</td>
+            <td style="text-align: center;">Nama Barang</td>
+            <td style="text-align: center;">Spesifikasi</td>
+            <td style="text-align: center;">Jumlah</td>
+            <td style="text-align: center;">keperluan</td>
+            <td style="text-align: center;">Status</td>
+        </tr>
+    </thead>
+    <tbody>
+        @php
+            $no= 1;
+        @endphp
+        @foreach ($detail as $item)
+            <tr>
+                <td style="text-align: center;">{{$no++}}
+                    <input type="hidden" name="detail_id[]" value="{{$item->id}}">
+                </td>
+                <td>{{$item->nama_barang}}</td>
+                <td>{{$item->spek}}</td>
+                <td style="text-align: center;">{{$item->jumlah}} {{$item->satuan->satuan}}</td>
+                <td>{{$item->keperluan}}</td>
+                <td>
+                    @if ($item->status==0)
+                        <select name="status[]"  class="form-control">
+                            <option value="0" {{$item->status==0 ? 'selected' : ''}}>Menunggu</option>
+                            <option value="1" {{$item->status==1 ? 'selected' : ''}}>Diterima</option>
+                            <option value="2" {{$item->status==2 ? 'selected' : ''}}>Ditolak</option>
+                        </select>                        
+                    @else
+                        <input type="hidden" name="status[]" value="{{$item->status}}">
+                        @if ($item->status==1)
+                            Diterima
+                        @else 
+                            Ditolak
+                        @endif
+                    @endif
+                   
+                </td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
+    <div class="form-actions right">
+        @if ($ajuan->status==0)
+        <button class="btn btn-success btn-sm " type="submit">
+            <i class="ace-icon fa fa-check bigger-110"></i>UPDATE
+        </button>
+        @endif
+       
+    </div>
+</form>
+  
 @endsection
