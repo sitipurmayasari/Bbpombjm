@@ -145,14 +145,27 @@ class OutstationController extends Controller
                             ->first();
         $destinys   = Outst_destiny::orderBy('id','asc')
                             ->where('outstation_id','=',$id)
-                            ->get();    
-        $lama       = Outst_destiny::selectRaw('sum(longday) as hitung')
-                            ->where('outstation_id','=',$id)
-                            ->first();
+                            ->get();      
         $hit       = Outst_destiny::selectRaw('count(*) as jum')
                             ->where('outstation_id','=',$id)
                             ->first();
-        
+        $desti1   = Outst_destiny::orderBy('id','asc')
+                      ->where('outstation_id','=',$id)
+                      ->first();  
+        $desti2   = Outst_destiny::orderBy('id','desc')
+                      ->where('outstation_id','=',$id)
+                      ->first();   
+
+        if ($desti1->go_date==$desti2->go_date) {
+            $lama = Outst_destiny::selectRaw('longday as hitung')
+                  ->where('outstation_id','=',$id)
+                  ->first();
+        } else {
+            $lama = Outst_destiny::selectRaw('sum(longday) as hitung')
+                  ->where('outstation_id','=',$id)
+                  ->first();
+        }
+                            
         if ($data->type=='DL') {
 
           $pdf = PDF::loadview('finance/outstation.inside',compact('data','isian','destinys'));
