@@ -31,7 +31,7 @@
                             for="form-field-1"> Kode Barang
                             </label>
                             <div class="col-sm-8">
-                                <input type="hidden" value="R" name="kind"  />
+                                <input type="hidden" value="L" name="kind"  />
                                 <input type="text"  value="{{$data->kode_barang}}"
                                         class="col-xs-10 col-sm-10 required " 
                                         name="kode_barang" required readonly/>
