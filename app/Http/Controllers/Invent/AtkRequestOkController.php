@@ -19,7 +19,7 @@ use PDF;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
-class AtkRequestoKController extends Controller
+class AtkRequestOkController extends Controller
 {
 
     public function index(Request $request)
