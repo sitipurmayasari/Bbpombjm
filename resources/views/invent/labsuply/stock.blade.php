@@ -98,8 +98,9 @@
                 <thead>
                     <th width="40px">No</th>
                     <th>Tgl Masuk</th>
-                    <th>Stok Awal</th>
-                    <th>Stok Tersedia</th>
+                    <th>Barang Masuk</th>
+                    <th>Barang keluar</th>
+                    <th>Sisa</th>
                     <th>Exp Date</th>
                 </thead>
                 <tbody>
@@ -109,6 +110,12 @@
                         <td style="text-align: center">{{$no++}}</td>
                         <td>{{$row->entry_date}}</td>
                         <td>{{$row->stockawal}}</td>
+                        <td>
+                            @php
+                                $sisa = $row->stockawal - $row->stock
+                            @endphp
+                            {{$sisa}}
+                        </td>
                         <td>{{$row->stock}}</td>
                         <td>{{$row->exp_date}}</td>
                     </tr>
