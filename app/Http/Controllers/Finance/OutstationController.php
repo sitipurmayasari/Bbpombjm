@@ -93,7 +93,7 @@ class OutstationController extends Controller
                   'outstation_id'   => $outstation_id,
                   'destination_id'  => $request->destination_id[$i],
                   'go_date'         =>$request->go_date[$i],
-                  'return_date'     =>$request->go_date[$i],
+                  'return_date'     =>$request->return_date[$i],
                   'longday'         =>$daylong_1
               ];
               Outst_destiny::create($data);
@@ -264,7 +264,7 @@ class OutstationController extends Controller
                 'outstation_id'   => $id,
                 'destination_id'  => $request->destination_id[$i],
                 'go_date'         => $request->go_date[$i],
-                'return_date'     => $request->go_date[$i],
+                'return_date'     => $request->return_date[$i],
                 'longday'         => $daylong_1
             ];
             Outst_destiny::create($data);
