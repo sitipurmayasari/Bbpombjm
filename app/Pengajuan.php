@@ -21,5 +21,10 @@ class Pengajuan extends Model
         return $this->belongsTo(User::class,'pegawai_id','id');
     }
 
+    public function isi()
+    {
+        return $this->hasMany(PengajuanDetail::class,'pengajuan_id','id');
+    }
+
   
 }

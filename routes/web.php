@@ -87,13 +87,12 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
      Route::get('/invent/labrequest','Invent\LabRequestController@index')->name('labrequest');
     //Route untuk Permintaan Barang ATK di gudang
     Route::get('/invent/atkrequest','Invent\AtkRequestController@index')->name('atkrequest');
-
     //Route untuk Persetujuan Permintaan Barang Baru
     Route::get('/invent/persetujuan','Invent\PersetujuanController@index')->name('persetujuan');
     //Route untuk Persetujuan Permintaan Barang Lab di gudang
-    Route::get('/invent/labrequestOk','Invent\LabRequestOKController@index')->name('labrequestOk');
+    Route::get('/invent/labrequestok','Invent\LabRequestOKController@index')->name('labrequestok');
     //Route untuk Persetujuan Permintaan Barang ATK di gudang
-    Route::get('/invent/atkrequestOk','Invent\AtkRequestOKController@index')->name('atkrequestOk');
+    Route::get('/invent/atkrequestok','Invent\AtkRequestOKController@index')->name('atkrequestok');
 
     //Route untuk kendaraan
     Route::get('/invent/vehicle','Invent\VehicleController@index')->name('vehicle');

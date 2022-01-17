@@ -76,11 +76,15 @@
   Route::get('/invent/labrequest/create','Invent\LabRequestController@create')->name('labrequest.create');
   Route::post('/invent/labrequest/store','Invent\LabRequestController@store')->name('labrequest.store');
   Route::get('/invent/labrequest/print/{id}','Invent\LabRequestController@print')->name('labrequest.print');
+  Route::get('/invent/labrequest/getBarang','Invent\LabRequestController@getBarang')->name('labrequest.getbarang');
+  Route::get('/invent/labrequest/getKelompok','Invent\LabRequestController@getKelompok')->name('labrequest.getKelompok');
 
   //Route untuk Permintaan Barang ATK di gudang
   Route::get('/invent/atkrequest/create','Invent\AtkRequestController@create')->name('atkrequest.create');
   Route::post('/invent/atkrequest/store','Invent\AtkRequestController@store')->name('atkrequest.store');
   Route::get('/invent/atkrequest/print/{id}','Invent\AtkRequestController@print')->name('atkrequest.print');
+  Route::get('/invent/atkrequest/getBarang','Invent\AtkRequestController@getBarang')->name('atkrequest.getbarang');
+  Route::get('/invent/atkrequest/getKelompok','Invent\AtkRequestController@getKelompok')->name('atkrequest.getKelompok');
   
    //Route untuk Barang Keluar
    Route::get('/invent/barangkeluar/create','Invent\BarangkeluarController@create')->name('barangkeluar.create');
@@ -115,9 +119,13 @@
   //Route untuk Laporan stok barang
   Route::post('/invent/kartustok/cetak','Invent\KartuStokController@cetak')->name('kartustok.cetak');
 
-  //Route untuk Permintaan Barang Lab di gudang
-  Route::get('/invent/labrequest','Invent\LabRequestController@index')->name('labrequest');
+  //Route untuk Persetujuan Permintaan Barang Lab di gudang
+  Route::get('invent/labrequestok/yes/{id}','Invent\LabRequestoKController@yes')->name('labrequestok.yes');
+  Route::get('invent/labrequestok/print/{id}','Invent\LabRequestoKController@print')->name('labrequestok.print');
+  Route::post('invent/labrequestok/update/{id}','Invent\LabRequestoKController@update')->name('labrequestok.update');
   
-  //Route untuk Permintaan Barang ATK di gudang
-  Route::get('/invent/atkrequest','Invent\AtkRequestController@index')->name('atkrequest');
+  //Route untuk Persetujuan Permintaan Barang ATK di gudang
+  Route::get('invent/atkrequestok/yes/{id}','Invent\AtkRequestoKController@yes')->name('atkrequestok.yes');
+  Route::get('invent/atkrequestok/print/{id}','Invent\AtkRequestoKController@print')->name('atkrequestok.print');
+  Route::post('invent/atkrequestok/update/{id}','Invent\AtkRequestoKController@update')->name('atkrequestok.update');
     

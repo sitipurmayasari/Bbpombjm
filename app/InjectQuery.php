@@ -18,6 +18,7 @@ use App\Realrapk_detail;
 use App\Outst_employee;
 use App\Outstation;
 use App\Vehiclerent;
+use App\Entrystock;
 use Illuminate\Support\Facades\DB;
 
 class InjectQuery
@@ -313,5 +314,13 @@ class InjectQuery
                             ->first();
         return $isi;
     }
+
+    public function getSTokBarang($id){
+        $stok = Entrystock::selectraw('SUM(stock) AS stok')
+                            ->where('inventaris_id',$id)
+                            ->first();
+        return $stok;
+    }
+   
    
 }

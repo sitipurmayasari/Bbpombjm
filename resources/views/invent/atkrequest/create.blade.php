@@ -1,13 +1,13 @@
 @extends('layouts.app')
 @section('breadcrumb')
     <li>Inventaris</li>
-    <li><a href="/invent/labrequest"> Barang keluar</a></li>
-    <li>Tambah Barang Keluar</li>
+    <li><a href="/invent/atkrequest"> Permintaan Persediaan Kantor</a></li>
+    <li>Pengajuan Persediaan Kantor</li>
 @endsection
 @section('content')
 @include('layouts.validasi')
  <form class="form-horizontal validate-form" role="form" 
-         method="post" action="{{route('labrequest.store')}}" enctype="multipart/form-data"   >
+         method="post" action="{{route('atkrequest.store')}}" enctype="multipart/form-data"   >
     {{ csrf_field() }}
 <div class="row">
     <div class="col-md-12">
@@ -17,8 +17,11 @@
                <div class="col-md-12">
                    <div class="col-md-6">
                         <div class="col-md-12">
-                            <label>UNIT KERJA</label><br>
-                            <label><b>Balai besar Pengawas Obat dan Makanan di Banjarmasin</b></label>
+                            <label>Pengaju</label><br>
+                            <input type="text" value="{{auth()->user()->name}}" readonly
+                                class="col-xs-9 col-sm-9 required " 
+                                name="users_name"/>  
+                            <input type="hidden" name="users_id" value="{{auth()->user()->id}}">
                         </div>
                         <div class="col-md-12">
                             <label>NO. SPB*</label><br>
@@ -27,22 +30,23 @@
                             name="nomor"
                             value="{{$nosbb}}"
                             />
-                            <input type="hidden" name="status" value="Y">
+                            <input type="hidden" name="jenis" value="A">
+                            
                         </div>
                    </div>
                    <div class="col-md-6">
                         <div class="col-md-12">
-                            <label>TANGGAL KELUAR *</label><br>
+                            <label>TANGGAL PENGAJUAN *</label><br>
                             <input type="text" name="tanggal" readonly 
                                         class="col-xs-9 col-sm-9 required" value="{{date('Y-m-d')}}" required
                                         data-date-format="yyyy-mm-dd" data-provide="datepicker">
                         </div>
                         <div class="col-md-12">
-                            <label> Penerima *</label><br>
-                            <select id="peg" name="users_id" class="col-xs-9 col-sm-9 select2" required>
-                                    <option value="">pilih nama pegawai</option>
-                                @foreach ($user as $peg)
-                                    <option value="{{$peg->id}}">{{$peg->no_pegawai}} || {{$peg->name}}</option>
+                            <label> Kelompok Barang *</label><br>
+                            <select name="jenis_barang" id="jenisbrg" class="col-xs-9 col-sm-9" onchange="getkelompok()">
+                                <option value="">Pilih Jenis Barang</option>
+                                @foreach ($jenis as $lok)
+                                    <option value="{{$lok->id}}">{{$lok->nama}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -73,17 +77,15 @@
                                 1
                             </td>       
                             <td>
-                                <select name="inventaris_id[]" class="col-xs-11 col-sm-11 select2" required id="barang_id-1"
+                                <select name="inventaris_id[]" class="col-xs-11 col-sm-11 select2 kelompok" required id="barang_id-1"
                                 onchange="getData1()">
                                     <option value="">Pilih Barang</option>
-                                    @foreach ($data as $brg)
-                                        <option value="{{$brg->id}}">{{$brg->nama_barang}} || {{$brg->merk}}</option>
-                                    @endforeach
                                 </select>
+                                <input type="hidden" name="status[]" value="N">
                             </td>
                             <td>
                                 <input type=hidden name="satuan_id[]" class="form-control" id="satuan_id-1">
-                                <input type="text" name="satuan" class="form-control" readonly id="satuan-1">
+                                <input type="text" name="satuan[]" class="form-control" readonly id="satuan-1">
                             </td>
                             <td>
                                 <input type="number" name="stok[]" class="form-control" readonly id="stok-1">
@@ -132,36 +134,34 @@
         function addBarisNew(){
         var last_baris = $("#countRow").val();
         var new_baris = parseInt(last_baris)+1;
-        $isi =  '<tr id="cell-'+new_baris+'">'+
-            '<td>'+new_baris+'</td>'+
+        $isi ='<tr id="cell-'+new_baris+'">'+
+                '<td>'+new_baris+'</td>'+
                 '<td>'+
-                    '<select name="st_id[]" class="col-xs-11 col-sm-11 select2" required id="barang_id-'+new_baris+'" onchange="getDataBarang('+new_baris+')">'+
-                        '<option value="">Pilih Barang</option>'+
-                        '@foreach ($data as $brg)'+
-                        '<option value="{{$brg->st_id}}">{{$brg->nama_barang}} || {{$brg->merk}}</option>'+
-                        '@endforeach'+
-                    '</select>'+
-                    '<input type="hidden" name="inventaris_id[]" class="form-control" value="0" id="inventaris_id-'+new_baris+'">'+
-                '</td>'+
-                '<td>'+
-                    '<input type=hidden name="satuan_id[]" class="form-control" id="satuan_id-'+new_baris+'">'+
-                    '<input type="text" name="satuan" class="form-control" readonly id="satuan-'+new_baris+'">'+
-                '</td>'+
-                '<td>'+
+                    '<select name="inventaris_id[]" class="col-xs-11 col-sm-11 select2 kelompok" required "barang_id-'+new_baris+'" onchange="getDataBarang('+new_baris+')">'+                
+                        '<option value="">Pilih Barang</option>'+            
+                    '</select>'+                    
+                    '<input type="hidden" name="status[]" value="N">'                
+                '</td>'+                    
+                '<td>'+                
+                    '<input type=hidden name="satuan_id[]" class="form-control" id="satuan_id-'+new_baris+'">'+            
+                    '<input type="text" name="satuan[]" class="form-control" readonly id="satuan-'+new_baris+'">'+                
+                '</td>'+                    
+                '<td>'+                       
                     '<input type="number" name="stok[]" class="form-control" readonly id="stok-'+new_baris+'">'+
-                '</td>'+
-                '<td>'+
-                    '<input type="number" min="1" name="jumlah[]" class="form-control" value="0" id="jum-'+new_baris+'" onchange="hitung2('+new_baris+')">'+
-                    '<input type="text" name="sisa[]" class="form-control" value="0" id="sisa-'+new_baris+'">'+
-                '</td>'+
-                '<td>'+
+                '</td>'+                    
+                '<td>'+                    
+                    '<input type="number"  min="1" name="jumlah[]" class="form-control" value="0" id="jum-'+new_baris+'" onchange="hitung2('+new_baris+')">>'+
+                    '<input type="hidden" name="sisa[]" class="form-control" value="0" id="sisa-'+new_baris+'">'+                
+                '</td>'+                    
+                '<td>'+ 
                     '<input type="text" name="ket[]" class="form-control" required>'+
-                '</td>'+
-                    '<td><button type="button"  class="btn btn-danger" onclick="deleteRow('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button></td>'+
-                '</tr>';
+                '</td>'+                    
+                '<td><button type="button"  class="btn btn-danger" onclick="deleteRow('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button></td>'+
+            '</tr>';
         $("#myTable").find('tbody').append($isi);
         $("#countRow").val(new_baris);
         $('.select2').select2();
+        getkelompok();
 
        }
 
@@ -172,12 +172,30 @@
 
         }
 
+        function getkelompok(){
+            var jenis_barang = $("#jenisbrg").val();
+
+            $.get(
+            "{{route('atkrequest.getKelompok') }}",
+            {
+                jenis_barang: jenis_barang
+            },
+            function(response) {
+                var data2 = response.data;
+                var string ="<option value=''>Pilih Barang</option>";
+                    $.each(data2, function(index, value) {
+                        string = string + '<option value="'+ value.id +'">'+ value.nama_barang +'</option>';
+                    })
+                $(".kelompok").html(string);
+            }
+        );
+        }
 
         function getData1(){
             var barang_id = $("#barang_id-1").val();
 
             $.get(
-                "{{route('labrequest.getbarang') }}",
+                "{{route('atkrequest.getbarang') }}",
                 {
                     barang_id: barang_id
                 },
@@ -203,7 +221,7 @@
             var barang_id =  $("#barang_id-"+i).val();
             if (barang_id == '') return false;
             $.get(
-                "{{route('labrequest.getbarang') }}",
+                "{{route('atkrequest.getbarang') }}",
                 {
                     barang_id: barang_id
                 },

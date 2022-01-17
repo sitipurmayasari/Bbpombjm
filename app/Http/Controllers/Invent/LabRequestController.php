@@ -14,6 +14,7 @@ use App\Petugas;
 use App\Subdivisi;
 use App\Divisi;
 use App\Entrystock;
+use App\Jenisbrg;
 use PDF;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -25,6 +26,7 @@ class LabRequestController extends Controller
         $data = Sbb::orderBy('id','desc')
                     ->select('sbb.*','users.name')
                     ->leftJoin('users','users.id','=','sbb.users_id')
+                    ->where('sbb.jenis','L')
                     ->when($request->keyword, function ($query) use ($request) {
                         $query->where('tanggal','LIKE','%'.$request->keyword.'%')
                                 ->orWhere('nomor', 'LIKE','%'.$request->keyword.'%')
@@ -36,15 +38,15 @@ class LabRequestController extends Controller
 
     public function create()
     {
-        $data = Inventaris::select('inventaris.*','entrystock.exp_date','entrystock.id AS st_id')
-                            ->leftJoin('entrystock','entrystock.inventaris_id','=','inventaris.id')
-                            ->where('inventaris.kind','!=','R')
-                        ->get();
+        $data = Inventaris::orderBy('id','desc')
+                            ->where('kind','=','L')
+                            ->get();
         $user = User::all()
                 ->where('id','!=','1');
+        $jenis = Jenisbrg::whereRaw('id IN (2,3)')->get();
         $satuan = Satuan::all();
         $nosbb = $this->getNoSBB();
-        return view('invent/barangkeluar.create',compact('data','user','nosbb','satuan'));
+        return view('invent/labrequest.create',compact('data','user','nosbb','satuan','jenis'));
     }
 
    
@@ -69,14 +71,13 @@ class LabRequestController extends Controller
                 ];
                 Sbbdetail::create($data);
 
-                Entrystock::where('id',$request->st_id[$i])->update([
-                'stock' => $request->sisa[$i]
-                ]);
+                // Entrystock::where('id',$request->st_id[$i])->update([
+                // 'stock' => $request->sisa[$i]
+                // ]);
 
             }
             DB::commit(); 
-            // return redirect('/invent/barangkeluar')->with('sukses','Data Tersimpan');
-        return redirect('/invent/barangkeluar/print/'.$sbb_id);
+        return redirect('/invent/labrequest/print/'.$sbb_id);
     }
 
     public function print($id)
@@ -84,13 +85,34 @@ class LabRequestController extends Controller
         $data = Sbb::where('id',$id)->first();
         $isi = Sbbdetail::where('sbb_id',$id)->get();
         $petugas = Petugas::where('id', '=', 4)->first();
+        $kel = Sbbdetail::select('jenis_barang.nama')
+                        ->leftjoin('inventaris','inventaris.id','=','sbb_detail.inventaris_id')
+                        ->leftjoin('jenis_barang','jenis_barang.id','=','inventaris.jenis_barang')
+                        ->where('sbb_id',$id)->first();
 
-        $mengetahui = Pejabat::where('jabatan_id', '=', 11)
+        $menyetujui = Pejabat::where('jabatan_id', '=', 11)
                     ->where('divisi_id', '=', 2)
                     ->whereRaw("(SELECT tanggal FROM aduan WHERE id=$id) BETWEEN dari AND sampai")
                     ->first();
+        $mengetahui = Pejabat::orderBy('subdivisi_id','desc')
+                    ->whereRaw("divisi_id =
+                                 (
+                                     SELECT u.divisi_id FROM users u
+                                     LEFT JOIN sbb a ON a.users_id=u.id
+                                     WHERE a.id=$id
+                                 )" )
+                     ->whereRaw(" 
+                                 (subdivisi_id =
+                                 (
+                                     SELECT u.subdivisi_id FROM users u 
+                                     LEFT JOIN sbb a ON a.users_id=u.id 
+                                     WHERE a.id=$id
+                                 ) OR subdivisi_id IS NULL)
+                             ")
+                     ->whereRaw("curdate() BETWEEN dari AND sampai")
+                     ->first();
         
-        $pdf = PDF::loadview('invent/barangkeluar.print',compact('data','isi','petugas','mengetahui'));
+        $pdf = PDF::loadview('invent/labrequest.print',compact('data','isi','petugas','mengetahui','menyetujui','kel'));
         return $pdf->stream();
     }
 
@@ -98,40 +120,25 @@ class LabRequestController extends Controller
     {
         $id = $request->barang_id;
 
-        $data = DB::table('inventaris')
-            ->leftJoin('satuan', 'inventaris.satuan_id', '=', 'satuan.id','entrystock.id AS st_id')
-            ->leftJoin('entrystock','entrystock.inventaris_id','=','inventaris.id')
-            ->select('inventaris.*','satuan.satuan','entrystock.stock',  'entrystock.exp_date')
-            ->where('entrystock.id',$id)
-            ->first();
+        $data = Inventaris::selectRaw('inventaris.id, inventaris.nama_barang, inventaris.satuan_id, satuan.satuan, SUM(entrystock.stock) AS sisa')
+                    ->leftJoin('satuan', 'inventaris.satuan_id', '=', 'satuan.id')
+                    ->leftJoin('entrystock','entrystock.inventaris_id','=','inventaris.id')
+                    ->where('inventaris.id',$id)
+                    ->first();
+        return response()->json([ 'success' => true,'data' => $data],200);
+    }
+
+    public function getKelompok(Request $request)
+    {
+        $id = $request->jenis_barang;
+
+        $data = Inventaris::where('jenis_barang',$id)
+                            ->where('kind','L')
+                            ->get();
         return response()->json([ 'success' => true,'data' => $data],200);
     }
    
-    // public function edit($id)
-    // {
-    //     $barang = Inventaris::all();
-    //     $user = User::where('id','!=','1');
-    //     $data = Sbb::where('id',$id)->first();
-    //     $detail = Sbbdetail::where('tukin_id',$id)->get();
-
-    //     return view('invent/barangkeluar.edit',compact('data','detail','user','barang'));
-    // }
-
-   
-    // public function update(Request $request, $id)
-    // {
-    //     $aduan = Aduan::find($id);
-    //     for ($i = 0; $i < count($request->input('detail_id')); $i++){
-    //         $detail_id = $request->detail_id[$i];
-    //         AduanDetail::where('id',$detail_id)->update([
-    //             'status' => $request->status[$i]
-    //         ]);
-    //     }
-    //     $aduan->update(['aduan_status' => $request->aduan_status]);
-    //     return redirect('/invent/aduan/detail/'.$id)->with('sukses','Barang sudah diperbaharui');
-    // }
-
-
+    
     function getNoSBB(){
       $nomor = Sbb::orderBy('id','desc')->whereYear('tanggal',date('Y'))->get();
       $first = "001";

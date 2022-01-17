@@ -50,7 +50,16 @@
                     <td>@if ($row->status==0)
                             Menunggu
                         @else 
-                            <a class="btn btn-primary" href="/invent/pengajuan/print2/{{$row->id}}" target="_blank" rel="noopener noreferrer">Selesai</a>
+                            @foreach ($row->isi as $item)
+                                <li>{{$item->nama_barang}} 
+                                    <i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+                                    @if ($item->status==1)
+                                        {{ 'Diterima' }}
+                                    @else
+                                        {{ 'Ditolak' }}
+                                    @endif
+                                </li>
+                            @endforeach
                         @endif
 
                     </td>

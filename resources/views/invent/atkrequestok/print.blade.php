@@ -57,7 +57,7 @@
                 <td rowspan="5" style="width: 20%;"> <img src="{{asset('images/BBRI.jpg')}}" style="height:80px"></td>
                 <td rowspan="2" style="width: 30%; font-size: 16px;">BALAI BESAR POM DI BANJARMASIN</td>
                 <td class="kiri1">No. Bagian</td>
-                <td class="kiri2">: A 14</td>
+                <td class="kiri2">: 1. 10</td>
             </tr>
             <tr>
                 <td class="kiri1">Terbitan/Tgl</td>
@@ -80,31 +80,20 @@
     <br>  
     <div class="lara">
         <h6>BALAI BESAR PENGAWASAN OBAT DAN MAKANAN DI BANJARMASIN</h6>
-        <u><h5>SURAT PERMINTAAN BARANG (SPB)</h5></u>
+        <u><h5>SURAT BUKTI BARANG KELUAR (SBBK)</h5></u>
         <h6>NO. {{$data->nomor}}</h6>
         <br>
         <div >
             <table class="rapi">
                 <tr>
-                    <td class="rapi" style="width: 20%; ">Bag / Bid / Lab</td>
-                    <td  class="rapi"style="width: 2%;">:</td>
-                    <td class="rapi">
-                        @if ($data->pegawai->subdivisi_id !=null)
-                            {{$data->pegawai->subdivisi->nama_subdiv}} ( {{$data->pegawai->divisi->nama}} )
-                        @else
-                            {{$data->pegawai->divisi->nama}}
-                        @endif
-                    </td>
+                    <td  class="rapi"style="width: 20%;">Unit Kerja</td>
+                    <td  class="rapi"style="width: 2%; ">:</td>
+                    <td class="rapi"><b>Balai Besar Pengawas Obat dan makanan di Banjarmasin</b></td>
                 </tr>
                 <tr>
-                    <td  class="rapi"style="width: 20%;">Kelompok Barang</td>
+                    <td  class="rapi"style="width: 20%;">Tanggal</td>
                     <td  class="rapi"style="width: 2%; ">:</td>
-                    <td class="rapi">{{$kel->nama}}</td>
-                </tr>
-                <tr>
-                    <td  class="rapi"style="width: 20%;">Tanggal Permintaan</td>
-                    <td  class="rapi"style="width: 2%; ">:</td>
-                    <td class="rapi">{{tgl_indo($data->tanggal)}}</td>
+                    <td class="rapi">{{$data->tanggal}}</td>
                 </tr>
             </table>
         </div>
@@ -116,7 +105,7 @@
                     <th>NAMA BARANG</th>
                     <th>SATUAN</th>
                     <th>JUMLAH</th>
-                    <th>KEPERLUAN</th>
+                    <th>KETERANGAN</th>
                 </tr>
             </thead>
             <tbody>
@@ -126,7 +115,7 @@
                 @foreach ($isi as $item)
                 <tr>
                     <td>{{$no++}}</td>
-                    <td style="text-align: left;">{{$item->barang->nama_barang}}</td>
+                    <td>{{$item->barang->nama_barang}}</td>
                     <td>{{$item->satuan->satuan}}</td>
                     <td>{{$item->jumlah}}</td>
                     <td>{{$item->ket}}</td>
@@ -138,40 +127,30 @@
         <div id="ttd">
             <table class="ttd">
                 <tr>
-                    <td class="ttd">Menyetujui,</td>
-                    <td class="ttd">Mengetahui,</td>
-                    <td class="ttd">Yang Meminta,</td>
+                    <td class="ttd col-md-4"></td>
+                    <td class="ttd col-md-4"></td>
+                    <td class="ttd col-md-4">Banjarmasin, {{$data->tanggal}}</td>
                 </tr>
                 <tr>
-                    <td class="ttd">
-                        @if ($menyetujui != null)
-                            @if ($menyetujui->pjs != null)
-                            {{$menyetujui->pjs}}
-                            {{$menyetujui->jabatan->jabatan}} 
-                            {{$menyetujui->divisi->nama}}
-                            @else
-                            {{$menyetujui->jabatan->jabatan}} 
-                            {{$menyetujui->divisi->nama}}
-                            @endif
-                        @else
-                            SILAHKAN CEK SETUP PEJABAT
-                        @endif
-                                   
-                    </td>
+                    <td class="ttd"><u>Yang Menerima</u></td>
+                    <td class="ttd">Mengetahui,</td>
+                    <td class="ttd">Pengelola Gudang</td>
+                </tr>
+                <tr>
+                    <td class="ttd">Tanggal .................................</td>
                     <td class="ttd">
                         @if ($mengetahui != null)
                             @if ($mengetahui->pjs != null)
                             {{$mengetahui->pjs}}
                             {{$mengetahui->jabatan->jabatan}} 
                             {{$mengetahui->divisi->nama}}
-                            @else
+                            @else 
                             {{$mengetahui->jabatan->jabatan}} 
                             {{$mengetahui->divisi->nama}}
                             @endif
-                        @else
-                            SILAHKAN CEK SETUP PEJABAT
-                        @endif
-                               
+                      @else
+                        SILAHKAN CEK SETUP PEJABAT
+                      @endif
                     </td>
                     <td class="ttd"></td>
                 </tr>
@@ -182,71 +161,40 @@
                 </tr>
                 <tr>
                     <td class="ttd"><u>
-                        @if ($menyetujui != null)
-                            {{$menyetujui->user->name}}
-                        @else
-                            SILAHKAN CEK SETUP PEJABAT
-                        @endif
+                        {{$data->pegawai->name}}
                         </u>
                     </td>
                     <td class="ttd"><u>
-                        @if ($mengetahui != null)
+                        @if ($mengetahui !=null)
                             {{$mengetahui->user->name}}
                         @else
                             SILAHKAN CEK SETUP PEJABAT
                         @endif
-                        
                     </u>
                     </td>
-                    <td class="ttd"><u>{{$data->pegawai->name}}</u></td>
+                    <td class="ttd"><u>
+                        {{$petugas->user->name}}
+                        </u></td>
                 </tr>
                 <tr>
                     <td class="ttd">NIP. 
-                        @if ($menyetujui != null)
-                            {{$menyetujui->user->no_pegawai}}
+                        {{$data->pegawai->no_pegawai}}
+                    </td>
+                    <td class="ttd">
+                        @if ($mengetahui !=null)
+                            NIP.  {{$mengetahui->user->no_pegawai}}
                         @else
                             SILAHKAN CEK SETUP PEJABAT
                         @endif
                         
                     </td>
                     <td class="ttd">NIP. 
-                        @if ($mengetahui != null)
-                            {{$mengetahui->user->no_pegawai}}
-                        @else
-                            SILAHKAN CEK SETUP PEJABAT
-                        @endif
-                        
-                    </td>
-                    <td class="ttd">
-                        @if ($data->pegawai->status=="PNS")
-                            NIP. {{$data->pegawai->no_pegawai}}
-                        @endif
+                        {{$petugas->user->no_pegawai}}
                     </td>
                 </tr>
             </table>
 
         </div><br><br>
-
-        <div class="col-sm-4" style="float: right">
-            <table class="ttd">
-                <tr>
-                    <td class="ttd">Diserahkan</td>
-                </tr>
-                <tr >
-                    <td style="height: 10%" class="ttd"></td>
-                    
-                </tr>
-                <tr>
-                    <td class="ttd"><u>Kepala Gudang : {{$petugas->user->name}}</u></td>
-                    
-                </tr>
-                <tr>
-                    <td class="rapi">Tanggal :</td>
-                </tr>
-            </table>
-
-        </div><br>
-
     
     </div>
 </body>
