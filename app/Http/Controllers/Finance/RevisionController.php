@@ -77,8 +77,8 @@ class RevisionController extends Controller
             $pok =POK::create($request->all());
             $pok_id = $pok->id;
 
-            Excel::import(new PokImport($pok_id), urlStorage().'/excel/'.$nama_file);
-            // Excel::import(new PokImport($pok_id), public_path('/excel/'.$nama_file));
+            // Excel::import(new PokImport($pok_id), urlStorage().'/excel/'.$nama_file);
+            Excel::import(new PokImport($pok_id), public_path('/excel/'.$nama_file));
         
         DB::commit();
   
