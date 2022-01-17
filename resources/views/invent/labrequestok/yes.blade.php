@@ -38,14 +38,13 @@
                             <label>NO. SPB*</label><br>
                             <input type="text" id="nomor" readonly required
                             class="col-xs-9 col-sm-9 required " 
-                            name="nomor"
                             value="{{$data->nomor}}"
                             />
                         </div>
                         <div class="col-md-12">
                             <label>TANGGAL PENGAJUAN *</label><br>
-                            <input type="text" name="tanggal" readonly 
-                                class="col-xs-9 col-sm-9 required" value="{{tgl_indo($data->tanggal)}}">
+                            <input type="text"  readonly 
+                                class="col-xs-9 col-sm-9 required" value="{{$data->tanggal}}">
                         </div>
                     </div>
                </div>          
@@ -81,7 +80,7 @@
                                     <input type="hidden" value="{{$item->inventaris_id}}" name="inventaris_id[]">
                                 </td>
                                 <td>
-                                    <input type=hidden name="satuan_id[]" {{$item->satuan->satuan}}>
+                                    <input type=hidden name="satuan_id[]" value="{{$item->satuan_id}}">
                                     <input type="text" name="satuan[]" class="form-control" readonly value="{{$item->satuan->satuan}}">
                                 </td>
                                 <td>

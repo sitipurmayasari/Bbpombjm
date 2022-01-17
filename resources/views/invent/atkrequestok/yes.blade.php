@@ -38,13 +38,12 @@
                             <label>NO. SPB*</label><br>
                             <input type="text" id="nomor" readonly required
                             class="col-xs-9 col-sm-9 required " 
-                            name="nomor"
                             value="{{$data->nomor}}"
                             />
                         </div>
                         <div class="col-md-12">
                             <label>TANGGAL PENGAJUAN *</label><br>
-                            <input type="text" name="tanggal" readonly 
+                            <input type="text"readonly 
                                 class="col-xs-9 col-sm-9 required" value="{{tgl_indo($data->tanggal)}}">
                         </div>
                     </div>
@@ -65,8 +64,8 @@
                         <th class="text-center col-md-2">Satuan</th>
                         <th class="text-center col-md-1">Stok</th>
                         <th class="text-center col-md-1">Jumlah</th>
-                        <th class="text-center col-md-4">Keterangan</th>
-                        <th class="text-center col-md-1">Aksi</th>
+                        <th class="text-center col-md-3">Keterangan</th>
+                        <th class="text-center col-md-2">Aksi</th>
                     </thead>
                     <tbody>
                         @php
@@ -81,7 +80,7 @@
                                     <input type="hidden" value="{{$item->inventaris_id}}" name="inventaris_id[]">
                                 </td>
                                 <td>
-                                    <input type=hidden name="satuan_id[]" {{$item->satuan->satuan}}>
+                                    <input type=hidden name="satuan_id[]" value="{{$item->satuan_id}}">
                                     <input type="text" name="satuan[]" class="form-control" readonly value="{{$item->satuan->satuan}}">
                                 </td>
                                 <td>
@@ -91,14 +90,14 @@
                                     <input type="number" name="stok[]" class="form-control" readonly value="{{$stok->stok}}">
                                 </td>
                                 <td>
-                                    <input type="number"  min="1" name="jumlah[]" class="form-control" value={{$item->jumlah}}>
+                                    <input type="number"  min="1"  name="jumlah[]" class="form-control" value={{$item->jumlah}}>
                                     <input type="hidden" name="sisa[]" class="form-control" value="0" id="sisa-1">
                                 </td>
                                 <td>
                                     <input type="text" name="ket[]" class="form-control" value="{{$item->ket}}" readonly>
                                 </td>
                                 <td>
-                                    <select name="status">
+                                    <select name="status[]" class="form-control">
                                         <option value="">Pilih Status</option>
                                         <option value="Y"> Disetujui</option>
                                         <option value="N"> Ditolak</option>

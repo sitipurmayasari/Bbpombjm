@@ -69,9 +69,28 @@ class BarangkeluarController extends Controller
                 ];
                 Sbbdetail::create($data);
 
-                Entrystock::where('id',$request->st_id[$i])->update([
-                'stock' => $request->sisa[$i]
-                ]);
+                $stok1 = Entrystock::Where('inventaris_id',$request->inventaris_id[$i])
+                                    ->WhereRaw('stock != 0')->orderBy('id','asc')->first();
+                $stok2 = Entrystock::Where('inventaris_id',$request->inventaris_id[$i])
+                                    ->WhereRaw('stock != 0')->orderBy('id','desc')->first();
+
+                $minta = $request->jumlah[$i];
+                $rest =   $stok1->stock - $minta;
+                $rest2 = $minta - $stok1->stock;
+                $sisa = $stok2->stock - $rest2;
+
+                if ($rest < 0) {
+                    Entrystock::where('id',$stok1->id)->update([
+                    'stock' => 0
+                    ]);
+                    Entrystock::where('id',$stok2->id)->update([
+                    'stock' => $sisa
+                    ]);
+                } else {
+                   Entrystock::where('id',$stok1->id)->update([
+                    'stock' => $rest
+                    ]);
+                }
 
             }
             DB::commit(); 
@@ -98,12 +117,11 @@ class BarangkeluarController extends Controller
     {
         $id = $request->barang_id;
 
-        $data = DB::table('inventaris')
-            ->leftJoin('satuan', 'inventaris.satuan_id', '=', 'satuan.id','entrystock.id AS st_id')
-            ->leftJoin('entrystock','entrystock.inventaris_id','=','inventaris.id')
-            ->select('inventaris.*','satuan.satuan','entrystock.stock',  'entrystock.exp_date')
-            ->where('entrystock.id',$id)
-            ->first();
+        $data = Inventaris::selectRaw('inventaris.id, inventaris.nama_barang, inventaris.satuan_id, satuan.satuan, SUM(entrystock.stock) AS sisa')
+                        ->leftJoin('satuan', 'inventaris.satuan_id', '=', 'satuan.id')
+                        ->leftJoin('entrystock','entrystock.inventaris_id','=','inventaris.id')
+                        ->where('inventaris.id',$id)
+                        ->first();
         return response()->json([ 'success' => true,'data' => $data],200);
     }
    

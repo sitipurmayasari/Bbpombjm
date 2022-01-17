@@ -19,21 +19,21 @@ use PDF;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
-class LabRequestController extends Controller
+class AtkRequestController extends Controller
 {
     public function index(Request $request)
     {   
         $data = Sbb::orderBy('id','desc')
                     ->select('sbb.*','users.name')
                     ->leftJoin('users','users.id','=','sbb.users_id')
-                    ->where('sbb.jenis','L')
+                    ->where('sbb.jenis','D')
                     ->when($request->keyword, function ($query) use ($request) {
                         $query->where('tanggal','LIKE','%'.$request->keyword.'%')
                                 ->orWhere('nomor', 'LIKE','%'.$request->keyword.'%')
                                 ->orWhere('name', 'LIKE','%'.$request->keyword.'%');
                     })
                     ->paginate('10');
-        return view('invent/labrequest.index',compact('data'));
+        return view('invent/atkrequest.index',compact('data'));
     }
 
     public function create()
@@ -43,10 +43,10 @@ class LabRequestController extends Controller
                             ->get();
         $user = User::all()
                 ->where('id','!=','1');
-        $jenis = Jenisbrg::whereRaw('id IN (2,3)')->get();
+        $jenis = Jenisbrg::whereRaw('id not IN (2,3)')->get();
         $satuan = Satuan::all();
         $nosbb = $this->getNoSBB();
-        return view('invent/labrequest.create',compact('data','user','nosbb','satuan','jenis'));
+        return view('invent/atkrequest.create',compact('data','user','nosbb','satuan','jenis'));
     }
 
    
@@ -70,9 +70,14 @@ class LabRequestController extends Controller
                     'ket' => $request->ket[$i]
                 ];
                 Sbbdetail::create($data);
+
+                // Entrystock::where('id',$request->st_id[$i])->update([
+                // 'stock' => $request->sisa[$i]
+                // ]);
+
             }
             DB::commit(); 
-        return redirect('/invent/labrequest/print/'.$sbb_id);
+        return redirect('/invent/atkrequest/print/'.$sbb_id);
     }
 
     public function print($id)
@@ -107,7 +112,7 @@ class LabRequestController extends Controller
                      ->whereRaw("curdate() BETWEEN dari AND sampai")
                      ->first();
         
-        $pdf = PDF::loadview('invent/labrequest.print',compact('data','isi','petugas','mengetahui','menyetujui','kel'));
+        $pdf = PDF::loadview('invent/atkrequest.print',compact('data','isi','petugas','mengetahui','menyetujui','kel'));
         return $pdf->stream();
     }
 
@@ -127,8 +132,8 @@ class LabRequestController extends Controller
     {
         $id = $request->jenis_barang;
 
-        $data = Inventaris::where('jenis_barang',$id)
-                            ->where('kind','L')
+        $data = Inventaris::where("jenis_barang",$id)
+                            ->where("kind","D")
                             ->get();
         return response()->json([ 'success' => true,'data' => $data],200);
     }
@@ -145,7 +150,7 @@ class LabRequestController extends Controller
             $first = "0".$first;
         }
       }
-      $nosbb = $first."/SBB/LAB/BBPOM/".date('m')."/".date('Y');
+      $nosbb = $first."/SBB/BBPOM/".date('m')."/".date('Y');
       return $nosbb;
     }
 

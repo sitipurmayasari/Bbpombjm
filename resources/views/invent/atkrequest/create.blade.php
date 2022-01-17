@@ -81,7 +81,6 @@
                                 onchange="getData1()">
                                     <option value="">Pilih Barang</option>
                                 </select>
-                                <input type="hidden" name="status[]" value="N">
                             </td>
                             <td>
                                 <input type=hidden name="satuan_id[]" class="form-control" id="satuan_id-1">
@@ -139,8 +138,7 @@
                 '<td>'+
                     '<select name="inventaris_id[]" class="col-xs-11 col-sm-11 select2 kelompok" required "barang_id-'+new_baris+'" onchange="getDataBarang('+new_baris+')">'+                
                         '<option value="">Pilih Barang</option>'+            
-                    '</select>'+                    
-                    '<input type="hidden" name="status[]" value="N">'                
+                    '</select>'+                               
                 '</td>'+                    
                 '<td>'+                
                     '<input type=hidden name="satuan_id[]" class="form-control" id="satuan_id-'+new_baris+'">'+            
