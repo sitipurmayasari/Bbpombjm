@@ -135,27 +135,27 @@
         var new_baris = parseInt(last_baris)+1;
         $isi ='<tr id="cell-'+new_baris+'">'+
                 '<td>'+new_baris+'</td>'+
-                '<td>'+
-                    '<select name="inventaris_id[]" class="col-xs-11 col-sm-11 select2 kelompok" required "barang_id-'+new_baris+'" onchange="getDataBarang('+new_baris+')">'+                
-                        '<option value="">Pilih Barang</option>'+            
-                    '</select>'+                               
-                '</td>'+                    
-                '<td>'+                
-                    '<input type=hidden name="satuan_id[]" class="form-control" id="satuan_id-'+new_baris+'">'+            
-                    '<input type="text" name="satuan[]" class="form-control" readonly id="satuan-'+new_baris+'">'+                
-                '</td>'+                    
-                '<td>'+                       
-                    '<input type="number" name="stok[]" class="form-control" readonly id="stok-'+new_baris+'">'+
-                '</td>'+                    
-                '<td>'+                    
-                    '<input type="number"  min="1" name="jumlah[]" class="form-control" value="0" id="jum-'+new_baris+'" onchange="hitung2('+new_baris+')">>'+
-                    '<input type="hidden" name="sisa[]" class="form-control" value="0" id="sisa-'+new_baris+'">'+                
-                '</td>'+                    
-                '<td>'+ 
-                    '<input type="text" name="ket[]" class="form-control" required>'+
-                '</td>'+                    
-                '<td><button type="button"  class="btn btn-danger" onclick="deleteRow('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button></td>'+
-            '</tr>';
+                    '<td>'+
+                        '<select name="inventaris_id[]" class="col-xs-11 col-sm-11 select2 kelompok" required id="barang_id-'+new_baris+'" onchange="getDataBarang('+new_baris+')">'+
+                            '<option value="">Pilih Barang</option>'+                      
+                        '</select>'+            
+                    '</td>'+
+                    '<td>'+
+                        '<input type=hidden name="satuan_id[]" class="form-control" id="satuan_id-'+new_baris+'">'+
+                        '<input type="text" name="satuan" class="form-control" readonly id="satuan-'+new_baris+'">'+
+                    '</td>'+
+                    '<td>'+
+                        '<input type="number" name="stok[]" class="form-control" readonly id="stok-'+new_baris+'">'+
+                    '</td>'+
+                    '<td>'+
+                        '<input type="number" min="1" name="jumlah[]" class="form-control" value="0" id="jum-'+new_baris+'" onchange="hitung2('+new_baris+')">'+
+                        '<input type="hidden" name="sisa[]" class="form-control" value="0" id="sisa-'+new_baris+'">'+
+                    '</td>'+
+                    '<td>'+
+                        '<input type="text" name="ket[]" class="form-control" required>'+
+                    '</td>'+
+                        '<td><button type="button" class="btn btn-danger" onclick="deleteRow('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button></td>'+
+                    '</tr>';
         $("#myTable").find('tbody').append($isi);
         $("#countRow").val(new_baris);
         $('.select2').select2();
@@ -201,7 +201,6 @@
                     $("#satuan_id-1").val(response.data.satuan_id);
                     $("#satuan-1").val(response.data.satuan);
                     $("#stok-1").val(response.data.sisa);
-                    $("#inventaris_id-1").val(response.data.id);
                     var x = $("#stok-1").val();
                     document.getElementById("jum-1").setAttribute("max", x);
                 }
@@ -227,7 +226,6 @@
                     $("#satuan_id-"+i).val(response.data.satuan_id);
                     $("#satuan-"+i).val(response.data.satuan);
                     $("#stok-"+i).val(response.data.sisa);
-                    $("#inventaris_id-"+i).val(response.data.id);
                     var x = $("#stok-"+i).val();
                     document.getElementById("jum-"+i).setAttribute("max", x);
                 }

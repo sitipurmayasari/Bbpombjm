@@ -125,7 +125,7 @@
   Route::post('invent/labrequestok/update/{id}','Invent\LabRequestoKController@update')->name('labrequestok.update');
   
   //Route untuk Persetujuan Permintaan Barang ATK di gudang
-  Route::get('invent/atkrequestok/yes/{id}','Invent\AtkRequestoKController@yes')->name('atkrequestok.yes');
-  Route::get('invent/atkrequestok/print/{id}','Invent\AtkRequestoKController@print')->name('atkrequestok.print');
-  Route::post('invent/atkrequestok/update/{id}','Invent\AtkRequestoKController@update')->name('atkrequestok.update');
+  Route::get('invent/atkrequestok/yes/{id}','Invent\AtkRequestOkController@yes')->name('atkrequestok.yes');
+  Route::get('invent/atkrequestok/print/{id}','Invent\AtkRequestOkController@print')->name('atkrequestok.print');
+  Route::post('invent/atkrequestok/update/{id}','Invent\AtkRequestOkController@update')->name('atkrequestok.update');
     
