@@ -61,7 +61,7 @@
                             for="form-field-1"> Jumlah Barang
                             </label>
                             <div class="col-sm-8">
-                                <input type="number" name="stock" class="col-xs-2 col-sm-2" required  id="stok" onkeyup="hitung()">&nbsp;&nbsp;
+                                <input type="number" name="stock" class="col-xs-2 col-sm-2" required  id="stok"  onkeyup="hitung()" onclick="hitung()">&nbsp;&nbsp;
                                 <input type="hidden" name="stockawal" class="col-xs-2 col-sm-2" id="awal">
                                 <label>{{$data->satuan->satuan}}</label> 
                             </div>
@@ -98,7 +98,8 @@
                 <thead>
                     <th width="40px">No</th>
                     <th>Tgl Masuk</th>
-                    <th>Stock</th>
+                    <th>Stok Awal</th>
+                    <th>Stok Tersedia</th>
                     <th>Exp Date</th>
                 </thead>
                 <tbody>
@@ -107,13 +108,12 @@
                     <tr>
                         <td style="text-align: center">{{$no++}}</td>
                         <td>{{$row->entry_date}}</td>
+                        <td>{{$row->stockawal}}</td>
                         <td>{{$row->stock}}</td>
                         <td>{{$row->exp_date}}</td>
                     </tr>
                     @endforeach
                 </tbody>
-                <tfoot>
-                </tfoot>
             </table>
            </div>
         </div>
