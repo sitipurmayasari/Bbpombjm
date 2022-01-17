@@ -27,7 +27,8 @@
                             name="nomor"
                             value="{{$nosbb}}"
                             />
-                            <input type="hidden" name="status" value="Y">
+                            <input type="hidden" name="jenis" value="U">
+                            <input type="hidden" name="stat_aduan" value="S">
                         </div>
                    </div>
                    <div class="col-md-6">
@@ -80,6 +81,7 @@
                                         <option value="{{$brg->id}}">{{$brg->nama_barang}} || {{$brg->merk}}</option>
                                     @endforeach
                                 </select>
+                                <input type="hidden" name="status[]" value="Y">
                             </td>
                             <td>
                                 <input type=hidden name="satuan_id[]" class="form-control" id="satuan_id-1">
@@ -134,31 +136,31 @@
         var new_baris = parseInt(last_baris)+1;
         $isi =  '<tr id="cell-'+new_baris+'">'+
             '<td>'+new_baris+'</td>'+
-                '<td>'+
-                    '<select name="st_id[]" class="col-xs-11 col-sm-11 select2" required id="barang_id-'+new_baris+'" onchange="getDataBarang('+new_baris+')">'+
-                        '<option value="">Pilih Barang</option>'+
-                        '@foreach ($data as $brg)'+
-                        '<option value="{{$brg->st_id}}">{{$brg->nama_barang}} || {{$brg->merk}}</option>'+
-                        '@endforeach'+
-                    '</select>'+
-                    '<input type="hidden" name="inventaris_id[]" class="form-control" value="0" id="inventaris_id-'+new_baris+'">'+
-                '</td>'+
-                '<td>'+
-                    '<input type=hidden name="satuan_id[]" class="form-control" id="satuan_id-'+new_baris+'">'+
-                    '<input type="text" name="satuan" class="form-control" readonly id="satuan-'+new_baris+'">'+
-                '</td>'+
-                '<td>'+
-                    '<input type="number" name="stok[]" class="form-control" readonly id="stok-'+new_baris+'">'+
-                '</td>'+
-                '<td>'+
-                    '<input type="number" min="1" name="jumlah[]" class="form-control" value="0" id="jum-'+new_baris+'" onchange="hitung2('+new_baris+')">'+
-                    '<input type="text" name="sisa[]" class="form-control" value="0" id="sisa-'+new_baris+'">'+
-                '</td>'+
-                '<td>'+
-                    '<input type="text" name="ket[]" class="form-control" required>'+
-                '</td>'+
-                    '<td><button type="button"  class="btn btn-danger" onclick="deleteRow('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button></td>'+
-                '</tr>';
+            '<td>'+
+                '<select name="inventaris_id[]" class="col-xs-11 col-sm-11 select2" required id="barang_id-1" onchange="getData1()">'+                
+                    '<option value="">Pilih Barang</option>'+                
+                        '@foreach ($data as $brg)'+            
+                            '<option value="{{$brg->id}}">{{$brg->nama_barang}} || {{$brg->merk}}</option>'+            
+                        ' @endforeach'+           
+                '</select>'+            
+                '<input type="hidden" name="status[]" value="Y">'+                
+            '</td>'+                            
+            '<td>'+
+                '<input type=hidden name="satuan_id[]" class="form-control" id="satuan_id-'+new_baris+'">'+
+                '<input type="text" name="satuan" class="form-control" readonly id="satuan-'+new_baris+'">'+
+            '</td>'+
+            '<td>'+
+                '<input type="number" name="stok[]" class="form-control" readonly id="stok-'+new_baris+'">'+
+            '</td>'+
+            '<td>'+
+                '<input type="number" min="1" name="jumlah[]" class="form-control" value="0" id="jum-'+new_baris+'" onchange="hitung2('+new_baris+')">'+
+                '<input type="text" name="sisa[]" class="form-control" value="0" id="sisa-'+new_baris+'">'+
+            '</td>'+
+            '<td>'+
+                '<input type="text" name="ket[]" class="form-control" required>'+
+            '</td>'+
+                '<td><button type="button"  class="btn btn-danger" onclick="deleteRow('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button></td>'+
+            '</tr>';  
         $("#myTable").find('tbody').append($isi);
         $("#countRow").val(new_baris);
         $('.select2').select2();
