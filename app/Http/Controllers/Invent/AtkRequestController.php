@@ -27,7 +27,7 @@ class AtkRequestController extends Controller
         $data = Sbb::orderBy('id','desc')
                     ->select('sbb.*','users.name')
                     ->leftJoin('users','users.id','=','sbb.users_id')
-                    ->where('sbb.jenis','L')
+                    ->where('sbb.jenis','A')
                     ->where('sbb.users_id',$peg)
                     ->when($request->keyword, function ($query) use ($request) {
                         $query->where('tanggal','LIKE','%'.$request->keyword.'%')

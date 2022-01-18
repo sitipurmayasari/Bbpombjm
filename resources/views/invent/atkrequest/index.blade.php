@@ -39,8 +39,10 @@
                 <th class="col-md-2">Tanggal</th>
                 <th class="col-md-4">Pengaju</th>
                 <th class="col-md-1">Cetak</th>
+                <th class="col-md-1">Status</th>
             <thead>
             <tbody>   	
+                
                 @foreach($data as $key=>$row)
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
@@ -49,6 +51,13 @@
                     <td>{{$row->pegawai->no_pegawai}} || {{$row->pegawai->name}}</td>
                     <td>
                         <a class="btn btn-primary" href="/invent/atkrequest/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
+                    </td>
+                    <td>
+                        @if ($row->stat_aduan=="B")
+                            <p style="color: blue">Menunggu</p>
+                        @else
+                            <p style="color: green">Selesai</p>
+                        @endif
                     </td>
                 </tr>
               
