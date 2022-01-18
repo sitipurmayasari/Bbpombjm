@@ -683,7 +683,7 @@
                         {{number_format($jum1)}} <br>
                         {{number_format($jum2)}}
                     @else
-                        {{'-'}} hari &nbsp; x &nbsp; Rp. &nbsp; &nbsp; &nbsp; &nbsp; {{'-'}}
+                        {{'-'}}
                     @endif
                 </td>
                 <td style="text-align: center" class="isi">
@@ -692,6 +692,8 @@
                     @elseif($nilai->isi_2 != '0')
                             1 kamar untuk {{$nilai->isi_1}} orang <br>
                             1 kamar untuk {{$nilai->isi_2}} orang
+                    @else 
+                        {{'-'}}
                     @endif
                 </td>
             </tr>
