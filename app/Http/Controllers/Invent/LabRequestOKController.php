@@ -19,7 +19,7 @@ use PDF;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
-class LabRequestoKController extends Controller
+class LabRequestOkController extends Controller
 {
 
     public function index(Request $request)

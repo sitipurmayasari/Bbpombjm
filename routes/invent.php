@@ -120,9 +120,9 @@
   Route::post('/invent/kartustok/cetak','Invent\KartuStokController@cetak')->name('kartustok.cetak');
 
   //Route untuk Persetujuan Permintaan Barang Lab di gudang
-  Route::get('invent/labrequestok/yes/{id}','Invent\LabRequestoKController@yes')->name('labrequestok.yes');
-  Route::get('invent/labrequestok/print/{id}','Invent\LabRequestoKController@print')->name('labrequestok.print');
-  Route::post('invent/labrequestok/update/{id}','Invent\LabRequestoKController@update')->name('labrequestok.update');
+  Route::get('invent/labrequestok/yes/{id}','Invent\LabRequestOkController@yes')->name('labrequestok.yes');
+  Route::get('invent/labrequestok/print/{id}','Invent\LabRequestOkController@print')->name('labrequestok.print');
+  Route::post('invent/labrequestok/update/{id}','Invent\LabRequestOkController@update')->name('labrequestok.update');
   
   //Route untuk Persetujuan Permintaan Barang ATK di gudang
   Route::get('invent/atkrequestok/yes/{id}','Invent\AtkRequestOkController@yes')->name('atkrequestok.yes');

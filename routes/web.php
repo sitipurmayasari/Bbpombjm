@@ -90,7 +90,7 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     //Route untuk Persetujuan Permintaan Barang Baru
     Route::get('/invent/persetujuan','Invent\PersetujuanController@index')->name('persetujuan');
     //Route untuk Persetujuan Permintaan Barang Lab di gudang
-    Route::get('/invent/labrequestok','Invent\LabRequestOKController@index')->name('labrequestok');
+    Route::get('/invent/labrequestok','Invent\LabRequestOkController@index')->name('labrequestok');
     //Route untuk Persetujuan Permintaan Barang ATK di gudang
     Route::get('/invent/atkrequestok','Invent\AtkRequestOkController@index')->name('atkrequestok');
 
