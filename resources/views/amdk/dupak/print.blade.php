@@ -347,8 +347,8 @@
                 </td>
             </tr>
             <tr >
-                <td style="height: 18%" class="ttd"></td>
-                <td style="height: 18%" class="ttd"></td>
+                <td style="height: 25%" class="ttd"></td>
+                <td style="height: 25%" class="ttd"></td>
             </tr>
             <tr>
                 <td></td>
