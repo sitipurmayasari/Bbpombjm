@@ -335,11 +335,11 @@
                               @if ($mengetahui != null)
                                 @if ($mengetahui->pjs != null)
                                 {{$mengetahui->pjs}}
-                                {{$mengetahui->jabatan->jabatan}} 
-                                {{$mengetahui->divisi->nama}}
+                                {{-- {{$mengetahui->jabatan->jabatan}}  --}}
+                                Kepala {{$mengetahui->divisi->nama}}
                                 @else 
-                                {{$mengetahui->jabatan->jabatan}} 
-                                {{$mengetahui->divisi->nama}}
+                                {{-- {{$mengetahui->jabatan->jabatan}}  --}}
+                                Kepala {{$mengetahui->divisi->nama}}
                                 @endif
                               @else
                                 SILAHKAN CEK SETUP PEJABAT
