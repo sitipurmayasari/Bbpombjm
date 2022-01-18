@@ -168,11 +168,11 @@ class OutstationController extends Controller
                             
         if ($data->type=='DL') {
 
-          $pdf = PDF::loadview('finance/outstation.inside',compact('data','isian','destinys'));
+          $pdf = PDF::loadview('finance/outstation.inside',compact('data','isian','destinys','lama'));
         
         }else if ($data->type=='DL8') {
 
-          $pdf = PDF::loadview('finance/outstation.inside2',compact('data','isian','destinys'));
+          $pdf = PDF::loadview('finance/outstation.inside2',compact('data','isian','destinys','lama'));
 
         } else {
 

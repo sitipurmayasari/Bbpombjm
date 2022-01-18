@@ -133,29 +133,59 @@
                     </td>
                     <td class="detail" style="text-align:center;">
                         @php
-                        $a = strtotime($item->go_date);
-                        $c = date('D', $a);
+                            $a = strtotime($item->go_date);
+                            $b = strtotime($item->return_date);
+                            $c = date('D', $a);
+                            $d = date('D', $b);
+                            if ($c=='sun') {
+                            $days='Minggu';
+                            }else if ($c=='Mon') {
+                                $days='Senin';
+                            }else if ($c=='Tue') {
+                                $days='Selasa';
+                            }else if ($c=='Wed') {
+                                $days='Rabu';
+                            }else if ($c=='Thu') {
+                                $days='Kamis';
+                            }else if ($c=='Fri') {
+                                $days='Jumat';
+                            }else{
+                                $days='Sabtu';
+                            };
 
-                        if ($c=='sun') {
-                           $days='Minggu';
-                        }else if ($c=='Mon') {
-                            $days='Senin';
-                        }else if ($c=='Tue') {
-                            $days='Selasa';
-                        }else if ($c=='Wed') {
-                            $days='Rabu';
-                        }else if ($c=='Thu') {
-                            $days='Kamis';
-                        }else if ($c=='Fri') {
-                            $days='Jumat';
-                        }else{
-                            $days='Sabtu';
-                        };
+                            if ($d=='sun') {
+                            $days2='Minggu';
+                            }else if ($d=='Mon') {
+                                $days2='Senin';
+                            }else if ($d=='Tue') {
+                                $days2='Selasa';
+                            }else if ($d=='Wed') {
+                                $days2='Rabu';
+                            }else if ($d=='Thu') {
+                                $days2='Kamis';
+                            }else if ($d=='Fri') {
+                                $days2='Jumat';
+                            }else{
+                                $days2='Sabtu';
+                            };
+                        @endphp
 
-                        echo $days; 
-                    @endphp
+                        @if ($lama->hitung == 1)
+                            {{$days}}
+                        @else
+                            {{$days}} <br><br>
+                            {{ 's/d' }} <br><br>
+                            {{$days2}}
+                        @endif
                     </td class="detail">
-                    <td class="detail" style="height:60%; text-align:center;" >{{tgl_indo($item->go_date)}}
+                    <td class="detail" style="height:60%; text-align:center;" >
+                        @if ($lama->hitung == 1)
+                            {{tgl_indo($item->go_date)}}
+                        @else
+                            {{tgl_indo($item->go_date)}} <br><br>
+                            {{ 's/d' }} <br><br>
+                            {{tgl_indo($item->return_date)}}
+                        @endif
                     </td>
                     <td class="detail"></td>
                     <td class="detail"></td>
