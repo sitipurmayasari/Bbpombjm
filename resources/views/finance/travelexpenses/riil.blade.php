@@ -211,10 +211,6 @@
         </tr>
     </table>
     <table style="width: 100%" class="isi">
-        @php
-            $bbm = 0;
-            $nilai = $injectQuery->getDetail($item->id)
-        @endphp
         <thead>
             <tr>
                 <th style="width: 5%; text-align:center;" class="isi">No.</th>
@@ -224,6 +220,11 @@
             </tr>
         </thead>
         <tbody>
+            @php
+                $bbm = 0;
+                $nilai = $injectQuery->getDetail($item->id);
+                
+            @endphp
             <tr>
                 <td style="text-align: center;" class="isi">1</td>
                 <td class="isi">
@@ -261,11 +262,11 @@
                     </b>
                 </td>
                 <td class="isi">
+                    @php
+                        $bbm = $nilai->bbm;
+                    @endphp
                     Rp. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                    @if ($nilai->bbm != 0)
-                        @php
-                            $bbm = $nilai->bbm;
-                        @endphp
+                    @if ($bbm != '0')
                         {{number_format($bbm)}}
                     @else
                         {{'-'}} 
