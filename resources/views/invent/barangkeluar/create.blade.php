@@ -91,7 +91,7 @@
                             </td>
                             <td>
                                 <input type="number"  min="1" name="jumlah[]" class="form-control" value="0" id="jum-1" onchange="hitung()">
-                                <input type="number" name="sisa[]" class="form-control" value="0" id="sisa-1">
+                                <input type="hidden" name="sisa[]" class="form-control" value="0" id="sisa-1">
                                
                             </td>
                             <td>

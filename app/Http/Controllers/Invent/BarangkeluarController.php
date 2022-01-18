@@ -25,6 +25,7 @@ class BarangkeluarController extends Controller
         $data = Sbb::orderBy('id','desc')
                     ->select('sbb.*','users.name')
                     ->leftJoin('users','users.id','=','sbb.users_id')
+                    ->where('sbb.jenis','U')
                     ->when($request->keyword, function ($query) use ($request) {
                         $query->where('tanggal','LIKE','%'.$request->keyword.'%')
                                 ->orWhere('nomor', 'LIKE','%'.$request->keyword.'%')
