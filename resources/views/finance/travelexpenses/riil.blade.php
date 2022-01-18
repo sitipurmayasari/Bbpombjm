@@ -211,6 +211,10 @@
         </tr>
     </table>
     <table style="width: 100%" class="isi">
+        @php
+            $bbm = 0;
+            $nilai = $injectQuery->getDetail($item->id)
+        @endphp
         <thead>
             <tr>
                 <th style="width: 5%; text-align:center;" class="isi">No.</th>
@@ -258,7 +262,7 @@
                 </td>
                 <td class="isi">
                     Rp. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                    @if ($nilai->bbm != '0')
+                    @if ($nilai->bbm != 0)
                         @php
                             $bbm = $nilai->bbm;
                         @endphp
@@ -596,10 +600,6 @@
         </thead>
         <tbody>
             <tr>
-                @php
-                    $bbm = 0;
-                    $nilai = $injectQuery->getDetail($item->id)
-                @endphp
                 <td style="text-align: center;" class="isi">1</td>
                 <td class="isi">
                     Biaya Transport : <br>
@@ -637,7 +637,7 @@
                 </td>
                 <td class="isi">
                     Rp. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                    @if ($nilai->bbm != '0')
+                    @if ($nilai->bbm != 0)
                         @php
                             $bbm = $nilai->bbm;
                         @endphp
