@@ -174,8 +174,6 @@
             </tbody>
         </table>
         <br><br>
-        <br><br>
-        &ensp;Agar melaksanakan tugas sebaik - baiknya dan setelah bertugas <b>segera membuat laporan.</b>
         <br><br><br>
         <table class="ttdini" style="width: 100%">
             <tr>

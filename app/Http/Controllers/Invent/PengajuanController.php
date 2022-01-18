@@ -20,9 +20,7 @@ class PengajuanController extends Controller
     {   
         $peg =auth()->user()->id;
         $data = Pengajuan::orderBy('pengajuan.id','desc')
-                    ->Select('pengajuan.*')
-                    ->leftJoin('pengajuan_detail','pengajuan_detail.pengajuan_id','=','pengajuan.id')
-                    ->where('pengajuan.pegawai_id',$peg)
+                    ->where('pegawai_id',$peg)
                     ->when($request->keyword, function ($query) use ($request) {
                         $query->where('no_ajuan','LIKE','%'.$request->keyword.'%')
                                 ->orWhere('tgl_ajuan', 'LIKE','%'.$request->keyword.'%')
