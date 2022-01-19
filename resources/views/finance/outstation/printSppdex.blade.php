@@ -330,8 +330,8 @@
             </td>
     </tr>
     <tr>
-        <td class="isi">
-            <table class="didalam">
+        <td class="isi" >
+            <table class="didalam" style="width: 100%">
                 <tr>
                     <td>Tiba di</td>
                     <td>:
