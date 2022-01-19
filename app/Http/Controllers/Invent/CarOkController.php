@@ -12,6 +12,7 @@ use App\Vehiclerent;
 use App\Agenda;
 use PDF;
 use Illuminate\Support\Facades\DB;
+use DateTime;
 use Carbon\Carbon;
 
 class CarOkController extends Controller
@@ -40,17 +41,55 @@ class CarOkController extends Controller
                     ->where("type",$data->type)            
                     ->get();
 
+        $tgl1 = new DateTime($data->date_from);
+        $tgl2 = new DateTime($data->date_to);
+        $daylong = $tgl2->diff($tgl1)->days + 1;
+
         $date = date('Y-m-d', strtotime("+1 day", strtotime($data->date_from)));
+        $date4 = date('Y-m-d', strtotime("+2 day", strtotime($data->date_from)));
 
-        $driver =User::where("deskjob","LIKE","%Sopir%")
-                    ->WhereRaw("id NOT IN (SELECT driver_id from vehiclerent WHERE '".$data->date_from."' BETWEEN date_from AND date_to and driver_id is not null) ")
-                    ->WhereRaw("id NOT IN (SELECT driver_id from vehiclerent WHERE '".$date."' BETWEEN date_from AND date_to and driver_id is not null) ")
-                    ->WhereRaw("id NOT IN (SELECT driver_id from vehiclerent WHERE '".$data->date_to."' BETWEEN date_from AND date_to and driver_id is not null) ")
-                    ->get();
+        if ($daylong == 1) {
+            $driver =User::where("deskjob","LIKE","%Sopir%")
+                        ->WhereRaw("id NOT IN (SELECT driver_id from vehiclerent WHERE '".$data->date_from."' 
+                                    BETWEEN date_from AND date_to and driver_id is not null) ")
+                        ->get();
+
+        } elseif ($daylong == 2) {
+            $driver =User::where("deskjob","LIKE","%Sopir%")
+                        ->WhereRaw("id NOT IN (SELECT driver_id from vehiclerent WHERE '".$data->date_from."' 
+                                    BETWEEN date_from AND date_to and driver_id is not null) ")
+                        ->WhereRaw("id NOT IN (SELECT driver_id from vehiclerent WHERE '".$data->date_to."' 
+                                    BETWEEN date_from AND date_to and driver_id is not null) ")
+                        ->get();
+
+        } elseif ($daylong == 3) {
+                        $driver =User::where("deskjob","LIKE","%Sopir%")
+                                    ->WhereRaw("id NOT IN (SELECT driver_id from vehiclerent WHERE '".$data->date_from."' 
+                                                BETWEEN date_from AND date_to and driver_id is not null) ")
+                                    ->WhereRaw("id NOT IN (SELECT driver_id from vehiclerent WHERE '".$date."' 
+                                                BETWEEN date_from AND date_to and driver_id is not null) ")
+                                    ->WhereRaw("id NOT IN (SELECT driver_id from vehiclerent WHERE '".$data->date_to."' 
+                                                BETWEEN date_from AND date_to and driver_id is not null) ")
+                                    ->get();
+        } else {
+            $driver =User::where("deskjob","LIKE","%Sopir%")
+                        ->WhereRaw("id NOT IN (SELECT driver_id from vehiclerent WHERE '".$data->date_from."' 
+                                    BETWEEN date_from AND date_to and driver_id is not null) ")
+                        ->WhereRaw("id NOT IN (SELECT driver_id from vehiclerent WHERE '".$date."' 
+                                    BETWEEN date_from AND date_to and driver_id is not null) ")
+                        ->WhereRaw("id NOT IN (SELECT driver_id from vehiclerent WHERE '".$date4."' 
+                                    BETWEEN date_from AND date_to and driver_id is not null) ")
+                        ->WhereRaw("id NOT IN (SELECT driver_id from vehiclerent WHERE '".$data->date_to."' 
+                                    BETWEEN date_from AND date_to and driver_id is not null) ")
+                        ->get();
+        }
+        
+ 
+        
 
 
 
-        return view('invent/carok.yes',compact('data','car','driver'));
+        return view('invent/carok.yes',compact('data','car','driver','daylong'));
     }
 
     public function edit($id)
