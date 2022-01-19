@@ -499,19 +499,19 @@
                         @endif
                     </td>
                 </tr>
-                <tr>
-                    <td colspan="4" style="text-align: left;">Kepala Bagian Tata Usaha</td>
+                <tr style="text-align: center;">
+                    <td colspan="4" style="text-align: center;">Kepala Bagian Tata Usaha</td>
                 </tr>
                 <tr>
-                    <td style="height: 5%" colspan="4" style="text-align: left;"></td>
+                    <td style="height: 5%" colspan="4" style="text-align: center;"></td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="text-align: left;">
+                    <td colspan="4" style="text-align: center;">
                         <u><b> {{$menyetujui->user->name}} </b></u>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="text-align: left;">
+                    <td colspan="4" style="text-align: center;">
                         NIP. {{$menyetujui->user->no_pegawai}}
                     </td>
                 </tr>
@@ -549,19 +549,19 @@
                         @endif
                     </td>
                 </tr>
-                <tr>
-                    <td colspan="4" style="text-align: left;">Kepala Bagian Tata Usaha</td>
+                <tr style="text-align: center;">
+                    <td colspan="4" style="text-align: center;">Kepala Bagian Tata Usaha</td>
                 </tr>
                 <tr>
-                    <td style="height: 5%" colspan="4" style="text-align: left;"></td>
+                    <td style="height: 5%" colspan="4" style="text-align: center;"></td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="text-align: left;">
+                    <td colspan="4" style="text-align: center;">
                         <u><b> {{$menyetujui->user->name}} </b></u>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="text-align: left;">
+                    <td colspan="4" style="text-align: center;">
                         NIP. {{$menyetujui->user->no_pegawai}}
                     </td>
                 </tr>
