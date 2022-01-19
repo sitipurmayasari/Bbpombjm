@@ -67,8 +67,14 @@ class CarOkController extends Controller
         if ($request->status == "Y") {
             $car = Car::LeftJoin('vehiclerent','vehiclerent.car_id','=','car.id')
                     ->where('car.id',$data->car_id)->first();
-                    
-            $jdl = $car->merk."(".$car->police_number.") Telah Dipinjam";
+            $driver = User::LeftJoin('vehiclerent','vehiclerent.driver_id','=','users.id')
+                    ->where('users.id',$data->driver_id)->first();
+                 
+            if ($data->driver_id != null) {
+                $jdl = $car->merk."(".$car->police_number.") Telah Dipinjam Dengan Supir ".$driver->name;
+            } else {
+                $jdl = $car->merk."(".$car->police_number.") Telah Dipinjam ";
+            }
 
             $kale = [
                 'agenda_kategori_id' => 5,
