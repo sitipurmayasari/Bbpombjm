@@ -41,6 +41,7 @@ class CarOkController extends Controller
                     ->get();
         $driver =User::where("deskjob","LIKE","%Sopir%")
                     ->WhereRaw("id NOT IN (SELECT driver_id from vehiclerent WHERE '".$data->date_from."' BETWEEN date_from AND date_to and driver_id is not null) ")
+                    ->WhereRaw("id NOT IN (SELECT driver_id from vehiclerent WHERE '".$data->date_to."' BETWEEN date_from AND date_to and driver_id is not null) ")
                     ->get();
 
 
