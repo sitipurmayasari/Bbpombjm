@@ -96,7 +96,7 @@
                                
                             </td>
                             <td>
-                                <input type="text" name="ket[]" class="form-control" required>
+                                <input type="text" name="ket[]" class="form-control">
                             </td>
                             <td>
                             </td>
@@ -154,7 +154,7 @@
                         '<input type="hidden" name="sisa[]" class="form-control" value="0" id="sisa-'+new_baris+'">'+
                     '</td>'+
                     '<td>'+
-                        '<input type="text" name="ket[]" class="form-control" required>'+
+                        '<input type="text" name="ket[]" class="form-control">'+
                     '</td>'+
                         '<td><button type="button" class="btn btn-danger" onclick="deleteRow('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button></td>'+
             '</tr>';

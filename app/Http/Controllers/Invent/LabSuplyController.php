@@ -28,6 +28,7 @@ class LabSuplyController extends Controller
                     ->when($request->keyword, function ($query) use ($request) {
                         $query->where('nama_barang','LIKE','%'.$request->keyword.'%')
                                 ->orWhere('merk', 'LIKE','%'.$request->keyword.'%')
+                                ->where('inventaris.kind','=','L')
                                 ->orWhere('name', 'LIKE','%'.$request->keyword.'%');
                     })
                     ->paginate('10');
