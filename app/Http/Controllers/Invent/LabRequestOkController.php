@@ -65,7 +65,7 @@ class LabRequestOkController extends Controller
                 ];
                 Sbbdetail::create($data);
 
-               if ($reqest->status == 'Y') {
+               if ($request->status == 'Y') {
                     $stok1 = Entrystock::Where('inventaris_id',$request->inventaris_id[$i])
                                     ->WhereRaw('stock != 0')->orderBy('id','asc')->first();
                     $stok2 = Entrystock::Where('inventaris_id',$request->inventaris_id[$i])
