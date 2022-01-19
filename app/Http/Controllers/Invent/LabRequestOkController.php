@@ -60,33 +60,36 @@ class LabRequestOkController extends Controller
                     'satuan_id' => $request->satuan_id[$i] ,
                     'jumlah' => $request->jumlah[$i] ,
                     'ket' => $request->ket[$i],
-                    'ket' => $request->status[$i]
+                    'status' => $request->status[$i]
 
                 ];
                 Sbbdetail::create($data);
 
-                $stok1 = Entrystock::Where('inventaris_id',$request->inventaris_id[$i])
+               if ($reqest->status == 'Y') {
+                    $stok1 = Entrystock::Where('inventaris_id',$request->inventaris_id[$i])
                                     ->WhereRaw('stock != 0')->orderBy('id','asc')->first();
-                $stok2 = Entrystock::Where('inventaris_id',$request->inventaris_id[$i])
+                    $stok2 = Entrystock::Where('inventaris_id',$request->inventaris_id[$i])
                                     ->WhereRaw('stock != 0')->orderBy('id','desc')->first();
 
-                $minta = $request->jumlah[$i];
-                $rest =   $stok1->stock - $minta;
-                $rest2 = $minta - $stok1->stock;
-                $sisa = $stok2->stock - $rest2;
+                    $minta = $request->jumlah[$i];
+                    $rest =   $stok1->stock - $minta;
+                    $rest2 = $minta - $stok1->stock;
+                    $sisa = $stok2->stock - $rest2;
 
-                if ($rest < 0) {
-                    Entrystock::where('id',$stok1->id)->update([
-                    'stock' => 0
-                    ]);
-                    Entrystock::where('id',$stok2->id)->update([
-                    'stock' => $sisa
-                    ]);
-                } else {
-                   Entrystock::where('id',$stok1->id)->update([
-                    'stock' => $rest
-                    ]);
-                }
+                    if ($rest < 0) {
+                        Entrystock::where('id',$stok1->id)->update([
+                        'stock' => 0
+                        ]);
+                        Entrystock::where('id',$stok2->id)->update([
+                        'stock' => $sisa
+                        ]);
+                        } else {
+                        Entrystock::where('id',$stok1->id)->update([
+                        'stock' => $rest
+                        ]);
+                    }
+               }
+               
 
             }
         DB::commit(); 
