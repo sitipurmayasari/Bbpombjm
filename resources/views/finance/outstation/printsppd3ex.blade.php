@@ -500,7 +500,20 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2"  style="height: 5%"></td>
+                    <td colspan="4" style="text-align: left;">Kepala Bagian Tata Usaha</td>
+                </tr>
+                <tr>
+                    <td style="height: 5%" colspan="4" style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="text-align: left;">
+                        <u><b> {{$menyetujui->user->name}} </b></u>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="text-align: left;">
+                        NIP. {{$menyetujui->user->no_pegawai}}
+                    </td>
                 </tr>
             </table>
         </td>
@@ -537,7 +550,20 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="4"  style="height: 5%"></td>
+                    <td colspan="4" style="text-align: left;">Kepala Bagian Tata Usaha</td>
+                </tr>
+                <tr>
+                    <td style="height: 5%" colspan="4" style="text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="text-align: left;">
+                        <u><b> {{$menyetujui->user->name}} </b></u>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="text-align: left;">
+                        NIP. {{$menyetujui->user->no_pegawai}}
+                    </td>
                 </tr>
             </table>
         </td>
