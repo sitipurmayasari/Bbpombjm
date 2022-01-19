@@ -58,9 +58,26 @@ class TravelexpensesController extends Controller
         $jumlahtujuan =  Outst_destiny::SelectRaw('count(*) as hitung')   
                                 ->where('outstation_id',$request->id)
                                 ->first(); 
-        $lama   = Outst_destiny::selectRaw('sum(longday) as lawas')
+        //-------------------------------------------------------------------------------
+        $desti1   = Outst_destiny::orderBy('outst_destiny.id','asc')
+                                    ->leftJoin('destination','destination.id','=','outst_destiny.destination_id')
+                                    ->where('outst_destiny.outstation_id',$request->id)
+                                    ->first();  
+        $desti2   = Outst_destiny::orderBy('outst_destiny.id','desc')
+                                    ->leftJoin('destination','destination.id','=','outst_destiny.destination_id')
+                                    ->where('outst_destiny.outstation_id',$request->id)
+                                    ->first();  
+        if ($desti1->go_date==$desti2->go_date) {
+            $lama   = Outst_destiny::selectRaw('longday as lawas')
+                                    ->where('outstation_id',$request->id)
+                                    ->first();
+        } else {
+            $lama   = Outst_destiny::selectRaw('sum(longday) as lawas')
                                 ->where('outstation_id',$request->id)
                                 ->first();
+        }
+        
+                                
         $dest   = Destination::WhereRaw('id = (SELECT destination_id FROM outst_destiny WHERE outstation_id ='.$request->id.'
                                         ORDER BY id ASC limit 1) ')
                                 ->first();
