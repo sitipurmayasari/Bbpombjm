@@ -184,7 +184,7 @@
                 var data2 = response.data;
                 var string ="<option value=''>Pilih Barang</option>";
                     $.each(data2, function(index, value) {
-                        string = string + '<option value="'+ value.id +'">'+ value.nama_barang +'</option>';
+                        string = string + '<option value="'+ value.id +'">'+ value.nama_barang +'('+value.no_seri+')</option>';
                     })
                 $(".kelompok").html(string);
             }
