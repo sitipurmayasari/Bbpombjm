@@ -94,7 +94,13 @@ class LabRequestOkController extends Controller
             }
         DB::commit(); 
 
-        return redirect('/invent/labrequestok/print/'.$id)->with('sukses','Data Diperbaharui');
+        if ($request->status == 'Y') {
+            return redirect('/invent/labrequestok/print/'.$id)->with('sukses','Data Diperbaharui');
+        } else {
+            return redirect('/invent/labrequestok/')->with('sukses','Data Diperbaharui');
+        }
+        
+        
     }
 
     public function print($id)
