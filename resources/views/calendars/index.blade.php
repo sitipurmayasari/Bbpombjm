@@ -828,7 +828,7 @@
                       start:response.data[i].date_from,
                       end: response.data[i].date_to,
                       url : "/calendars/lihat/"+response.data[i].id,
-                      className: 'info'
+                      className: response.data[i].kelas
                     });    
                   }
                 }

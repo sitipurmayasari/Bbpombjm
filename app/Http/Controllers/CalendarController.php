@@ -10,7 +10,12 @@ class CalendarController extends Controller
 {
     public function index()
     {
-        $events  = Agenda::get();    
+        $events  = Agenda::SelectRaw('*,CASE
+                                            WHEN agenda_kategori_id IN (1,2) THEN "success"
+                                            WHEN agenda_kategori_id = 3 THEN "important"
+                                            ELSE "info"
+                                        END AS kelas') 
+                            ->get();    
         return view('calendars.index',compact('events'));
     }
 
@@ -22,7 +27,11 @@ class CalendarController extends Controller
 
     public function getData(Request $request)
     {
-        $data = Agenda::get();    
+        $data = Agenda::SelectRaw('*,CASE WHEN agenda_kategori_id IN (1,2) THEN "success"
+                                        WHEN agenda_kategori_id = 3 THEN "important"
+                                        ELSE "info"
+                                    END AS kelas') 
+                        ->get();    
         return response()->json([ 
             'success' => true,
             'data' => $data],200
