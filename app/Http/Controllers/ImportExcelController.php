@@ -26,8 +26,8 @@ class ImportExcelController extends Controller
 		$file->move('excel',$nama_file);
  
 		// import data
-        Excel::import(new JabasnImport, urlStorage().'/excel/'.$nama_file);
-        // Excel::import(new JabasnImport, public_path('/excel/'.$nama_file));
+        // Excel::import(new JabasnImport, urlStorage().'/excel/'.$nama_file);
+        Excel::import(new JabasnImport, public_path('/excel/'.$nama_file));
 
         return redirect()->route('import');
  
