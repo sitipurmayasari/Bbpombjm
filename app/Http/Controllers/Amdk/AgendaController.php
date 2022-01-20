@@ -16,9 +16,9 @@ class AgendaController extends Controller
                 ->leftJoin('agenda_kategori','agenda_kategori.id','=','agenda.agenda_kategori_id')
                 ->when($request->keyword, function ($query) use ($request) {
                     $query->where('titles','LIKE','%'.$request->keyword.'%')
-                            ->orWhere('nama', 'LIKE','%'.$request->keyword.'%')
-                            ->orWhere('dari', 'LIKE','%'.$request->keyword.'%')
-                            ->orWhere('sampai', 'LIKE','%'.$request->keyword.'%');
+                            ->orWhere('detail', 'LIKE','%'.$request->keyword.'%')
+                            ->orWhere('date_from', 'LIKE','%'.$request->keyword.'%')
+                            ->orWhere('date_to', 'LIKE','%'.$request->keyword.'%');
                     })
                 ->paginate('10');
         return view('amdk/agenda.index',compact('data'));
