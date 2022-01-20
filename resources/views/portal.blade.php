@@ -380,11 +380,13 @@ h2, a {
             <div class="tgl_det">{{$hari}}</div>
             <div class="hari">
               <h1><b>{{$tgl}}</b></h1>
-              @if ($keterangan != null)
+              <i class="material-icons">campaign</i> 
+              Klik Untuk melihat Kalender
+              {{-- @if ($keterangan != null)
                   @foreach ($keterangan as $item)
-                    <i class="material-icons">notifications</i>  {{$item->titles}} <br>
+                    {{$item->titles}} <br>
                   @endforeach
-              @endif
+              @endif --}}
             </div>
             <div class="tgl_det">{{$bulan}} {{$tahun}}</div>
           </div>

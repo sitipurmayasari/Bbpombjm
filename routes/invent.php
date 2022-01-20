@@ -115,6 +115,7 @@
   Route::get('invent/carok/yes/{id}','Invent\CarOkController@yes')->name('carok.yes');
   Route::get('invent/carok/edit/{id}','Invent\CarOkController@edit')->name('carok.edit');
   Route::post('invent/carok/update/{id}','Invent\CarOkController@update')->name('carok.update');
+  Route::post('invent/carok/revisi/{id}','Invent\CarOkController@revisi')->name('carok.revisi');
 
   //Route untuk Laporan stok barang
   Route::post('/invent/kartustok/cetak','Invent\KartuStokController@cetak')->name('kartustok.cetak');

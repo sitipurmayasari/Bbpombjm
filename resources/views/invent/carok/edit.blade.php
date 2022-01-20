@@ -8,7 +8,7 @@
 @include('layouts.validasi')
 <div class="row">
     <form class="form-horizontal validate-form" role="form" 
-        method="post" action="/invent/carok/update/{{$data->id}}">
+        method="post" action="/invent/carok/revisi/{{$data->id}}">
     {{ csrf_field() }}
     <div class="col-sm-12">
         <div class="widget-box">
