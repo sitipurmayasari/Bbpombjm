@@ -36,10 +36,13 @@
                    </div>
                    <div class="col-md-6">
                         <div class="col-md-12">
-                            <label>TANGGAL PENGAJUAN *</label><br>
-                            <input type="text" name="tanggal" readonly 
-                                        class="col-xs-9 col-sm-9 required" value="{{date('Y-m-d')}}" required
-                                        data-date-format="yyyy-mm-dd" data-provide="datepicker">
+                            <label>Asal Lab *</label><br>
+                            <select name="labory_id" id="labory_id" class="col-xs-9 col-sm-9" required>
+                                @foreach ($lab as $lok)
+                                    <option value="{{$lok->id}}">{{$lok->name}}</option>
+                                @endforeach
+                            </select>
+                            <input type="hidden" name="tanggal"value="{{date('Y-m-d')}}">
                         </div>
                         <div class="col-md-12">
                             <label> Kelompok Barang *</label><br>
@@ -135,7 +138,6 @@
         var last_baris = $("#countRow").val();
         var new_baris = parseInt(last_baris)+1;
         $isi ='<tr id="cell-'+new_baris+'">'+
-                '<td>'+new_baris+'</td>'+
                 '<td>'+new_baris+'</td>'+
                     '<td>'+
                         '<select name="inventaris_id[]" class="col-xs-11 col-sm-11 select2 kelompok" required id="barang_id-'+new_baris+'" onchange="getDataBarang('+new_baris+')">'+

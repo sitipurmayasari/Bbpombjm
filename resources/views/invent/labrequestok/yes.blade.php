@@ -97,7 +97,7 @@
                                     <input type="text" name="ket[]" class="form-control" value="{{$item->ket}}" readonly>
                                 </td>
                                 <td>
-                                    <select name="status">
+                                    <select name="status[]">
                                         <option value="">Pilih Status</option>
                                         <option value="Y"> Disetujui</option>
                                         <option value="N"> Ditolak</option>

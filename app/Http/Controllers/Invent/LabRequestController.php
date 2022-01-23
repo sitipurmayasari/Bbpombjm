@@ -15,6 +15,7 @@ use App\Subdivisi;
 use App\Divisi;
 use App\Entrystock;
 use App\Jenisbrg;
+use App\Labory;
 use PDF;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -45,10 +46,11 @@ class LabRequestController extends Controller
                             ->get();
         $user = User::all()
                 ->where('id','!=','1');
-        $jenis = Jenisbrg::whereRaw('id IN (2,3)')->get();
+        $lab = Labory::all();
+        $jenis = Jenisbrg::whereRaw('id IN (2,3,8)')->get();
         $satuan = Satuan::all();
         $nosbb = $this->getNoSBB();
-        return view('invent/labrequest.create',compact('data','user','nosbb','satuan','jenis'));
+        return view('invent/labrequest.create',compact('data','user','nosbb','satuan','jenis','lab'));
     }
 
    
