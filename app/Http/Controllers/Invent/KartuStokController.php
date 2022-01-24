@@ -59,6 +59,7 @@ class KartuStokController extends Controller
                                 ->get();
             $data = Labory::where('id',$request->labory)->first();
             $pdf = PDF::loadview('invent/kartustok.stoklab',compact('stock','data','request'));
+            return $pdf->stream();
         }else{
             dd($request->all());
         }
