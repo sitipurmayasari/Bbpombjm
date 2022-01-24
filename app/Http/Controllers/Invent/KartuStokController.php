@@ -48,11 +48,10 @@ class KartuStokController extends Controller
             $data = Jenisbrg::where('id',$request->kelompok)->first();
             $pdf = PDF::loadview('invent/kartustok.stokkelompok',compact('stock','data','request'));
             return $pdf->stream();
-        } else if($request->jenis_Laporan=="2"){
-            $stock = Sbbdetail::SelectRaw('sbb_detail.* , inventaris.nama_barang, sbb.tanggal, satuan.satuan')
+        } else if($request->jenis_Laporan=="3"){
+            $stock = Inventaris::SelectRaw('inventaris.*, SUM(sbb_detail.jumlah) AS jumlah')
+                                ->LeftJoin('sbb_detail','inventaris.id','=','sbb_detail.inventaris_id')
                                 ->LeftJoin('sbb','sbb.id','=','sbb_detail.sbb_id')
-                                ->LeftJoin('inventaris','inventaris.id','=','sbb_detail.inventaris_id')
-                                ->LeftJoin('satuan','satuan.id','=','sbb_detail.satuan_id')
                                 ->Where('sbb.labory_id',$request->labory)
                                 ->Where('sbb_detail.status','Y')
                                 ->whereYear('sbb.tanggal',$request->years)

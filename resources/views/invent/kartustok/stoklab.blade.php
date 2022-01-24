@@ -19,7 +19,7 @@
     <main>
         <div class="col-sm-12 isi" style="text-align: center">
             <div class="col-sm-12" style="text-align: center;font-size: 18px;">
-                <b>Laporan DPB Keluar </b><br>
+                <b>Laporan Jumlah DPB Keluar </b><br>
                 <b><i>{{$data->name}}</i></b>
             </div><br>
             <div class="col-sm-12 table-responsive row" style="text-align: left">
@@ -28,7 +28,7 @@
                         <tr>
                             <th style="text-align: center; vertical-align:middle;" width="20px">No</th>
                             <th style="text-align: center; vertical-align:middle;">Nama Barang</th>
-                            <th style="text-align: center; vertical-align:middle;">Tanggal Permintaan</th>
+                            <th style="text-align: center; vertical-align:middle;">kelompok Barang</th>
                             <th style="text-align: center; vertical-align:middle;">Jumlah Barang</th>
                         </tr>
                     </thead>
@@ -40,8 +40,8 @@
                             <tr>
                                 <td style="text-align: center">{{$no++}}</td>
                                 <td>{{$item->nama_barang}}</td>
-                                <td>{{$item->tanggal}}</td>
-                                <td style="text-align: center">{{$item->jumlah}}  {{$item->satuan}}</td>
+                                <td>{{$item->jenis->nama}}</td>
+                                <td style="text-align: center">{{$item->jumlah}}  {{$item->satuan->satuan}}</td>
                             </tr>
                         @endforeach 
                     </tbody>
