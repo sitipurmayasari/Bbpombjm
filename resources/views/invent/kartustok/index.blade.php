@@ -30,9 +30,10 @@
                             for="form-field-1"> Jenis Laporan
                             </label>
                             <div class="col-sm-8">
-                                <select name="jenis_Laporan" id="jenis" class="col-xs-10 col-sm-10 select2" onchange="myFunction()">
+                                <select name="jenis_Laporan" id="jenis" class="col-xs-10 col-sm-10" onchange="myFunction()">
+                                    <option value="2">Sisa Stok Kelompok Barang</option>
+                                    <option value="3">Lapooran Permintaan Per Laboratorium</option>
                                     <option value="1">Laporan Per Barang</option>
-                                    <option value="2">Laporan Per Kelompok</option>
                                 </select>
                             </div>
                         </div>
@@ -42,10 +43,23 @@
                             for="form-field-1"> Kelompok
                             </label>
                             <div class="col-sm-8">
-                                <select name="kelompok" class="col-xs-10 col-sm-10 select2">
+                                <select name="kelompok" class="col-xs-10 col-sm-10">
                                     <option value="">Pilih kelompok</option>
                                     @foreach ($jenis as $item)
                                         <option value="{{$item->id}}">{{$item->nama}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" id="lab">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Laboratorium
+                            </label>
+                            <div class="col-sm-8">
+                                <select name="labory" class="col-xs-10 col-sm-10">
+                                    <option value="">Pilih Laboratorium</option>
+                                    @foreach ($lab as $item)
+                                        <option value="{{$item->id}}">{{$item->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -63,19 +77,6 @@
                                 </select>
                             </div>
                         </div>
-                        {{-- <div class="form-group" id="divisi">
-                            <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Bagian
-                            </label>
-                            <div class="col-sm-8">
-                                <select name="divisi" class="col-xs-10 col-sm-10 select2">
-                                    <option value="">Pilih Bagian</option>
-                                    @foreach ($div as $item)
-                                        <option value="{{$item->id}}">{{$item->nama}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div> --}}
                         <br>
                         <div class="form-group" id="pilihtahun">
                             <label class="col-sm-3 control-label no-padding-right" 
@@ -84,8 +85,8 @@
                             <div class="col-sm-8">
                                 <select name="years" class="col-xs-10 col-sm-10 select2">
                                     <?php
-                                        $a=2021;
-                                        $pus = $a+4;
+                                        $a=2022;
+                                        $pus = $a+3;
                                         for ($a=date('Y');$a<=$pus;$a++)
                                         {
                                             echo "<option value='$a'>$a</option>";
@@ -95,7 +96,7 @@
                             </div>
                         </div>
                         <br>
-                        <div class="form-group" id="pilihbulan">
+                        {{-- <div class="form-group" id="pilihbulan">
                             <label class="col-sm-3 control-label no-padding-right" 
                             for="form-field-1"> Bulan
                             </label>
@@ -125,7 +126,7 @@
                                     @endphp
                                 </select>
                             </div>
-                        </div>
+                        </div> --}}
                         
                         </fieldset>        
                     </div>
@@ -149,28 +150,37 @@
 @section('footer')
 <script>
     $(document).ready(function(){
-        $("#tampildetilbulan").hide();
-        $("#kelompok").hide();
+        // $("#tampildetilbulan").hide();
+        $("#barang").hide();
+        $("#lab").hide();
 
-        $("#bln").click(function(){
-            $("#tampildetilbulan").hide();
-        });
-        $("#bln2").click(function(){
-            $("#tampildetilbulan").show();
-        });
+        // $("#bln").click(function(){
+        //     $("#tampildetilbulan").hide();
+        // });
+        // $("#bln2").click(function(){
+        //     $("#tampildetilbulan").show();
+        // });
     
         $("#jenis").on("change", function(){
             var v = $(this).val();
             if(v=="1"){
                 $("#kelompok").hide();
                 $("#barang").show();
+                $("#lab").hide();
                 $("#pilihtahun").show();
-                $("#pilihbulan").show();
+                // $("#pilihbulan").show();
+            }else if(v=="3"){
+                $("#kelompok").hide();
+                $("#barang").hide();
+                $("#lab").show();
+                $("#pilihtahun").show();
+                // $("#pilihbulan").hide();
             }else{
                 $("#barang").hide();
                 $("#kelompok").show();
+                $("#lab").hide();
                 $("#pilihtahun").hide();
-                $("#pilihbulan").hide();
+                // $("#pilihbulan").hide();
             } 
         });
 
