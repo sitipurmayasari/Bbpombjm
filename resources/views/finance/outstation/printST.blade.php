@@ -190,16 +190,15 @@
                 <td colspan="3">:&ensp;
                     @if (count($data->outst_destiny) == 1)
                         @foreach ($data->outst_destiny as $key=>$item)
-                            @if ($loop->first)
-
+                            @if ($item->go_date ==  $item->return_date)
+                                {{tgl_indo($item->go_date)}} 
+                            @else
                                 {{tgl_indo($item->go_date)}} s/d {{tgl_indo($item->return_date)}}
-                            
                             @endif
                         @endforeach
                     @else
                         @foreach ($data->outst_destiny as $key=>$item)
                             @if ($loop->first)
-                              
                                 {{tgl_indo($item->go_date)}}
                                 s/d
                             @endif
