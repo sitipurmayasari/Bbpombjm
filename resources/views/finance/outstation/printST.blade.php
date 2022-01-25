@@ -257,9 +257,9 @@
                 </td>
                 <td><b>
                     @if ($menyetujui->pjs !=null)
-                        {{$menyetujui->pjs}} KEPALA,
+                        {{$menyetujui->pjs}} Kepala,
                     @else
-                        KEPALA,
+                        Kepala,
                     @endif
                     </b></td>
             </tr>

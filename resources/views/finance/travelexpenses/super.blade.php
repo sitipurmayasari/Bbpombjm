@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Document</title>
+    <title>Surat Pernyataan</title>
 
     <style>
         @page {
@@ -316,31 +316,31 @@
                     $hot = $injectQuery->getDetail($item->id);
                 @endphp
                 <td class="isi">
-                    @if ($hot->innname_2 != null)
+                    @if ($hot->inn_fee_2 != 0)
                         Hotel {{$hot->innname_2}}
                     @endif
                     &nbsp;
                 </td>
                 <td class="isi" style="text-align: center">
-                    @if ($hot->innname_2 != null)
+                    @if ($hot->inn_fee_2 != 0)
                         {{$hot->long_stay_2}} Hari
                     @endif
                     &nbsp;
                 </td>
                 <td class="isi" style="text-align: center">
-                    @if ($hot->innname_2 != null)
+                    @if ($hot->inn_fee_2 != 0)
                         {{number_format($hot->inn_fee_2)}}
                     @endif
                     &nbsp;
                 </td>
                 <td class="isi" style="text-align: center">
-                    @if ($hot->innname_2 !='0')
+                    @if ($hot->inn_fee_2 != 0)
                         {{number_format($hot->klaim_2)}}
                     @endif
                     &nbsp;
                 </td>
                 <td class="isi" style="text-align: center">
-                    @if ($hot->innname_2 != null)
+                    @if ($hot->inn_fee_2 != 0)
                         1 kamar {{$hot->isi_2}} orang
                     @endif
                     &nbsp;
