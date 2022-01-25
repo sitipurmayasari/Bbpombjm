@@ -292,6 +292,7 @@ class OutstationController extends Controller
     {
         $nost = Stbook::WhereRaw('stbook_number NOT IN ("select number from outstation")')
                         ->where('divisi_id',$request->divisi_id)
+                        ->orderBy('id','desc')
                         ->get();
         return response()->json([ 
           'success' => true,

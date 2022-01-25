@@ -38,7 +38,7 @@ class TravelexpensesController extends Controller
 
     public function create()
     {
-        $st = Outstation::all();
+        $st = Outstation::orderBy('id','desc')->get();
         $pok = Pok_detail::selectRaw('DISTINCT(subcode_id),accountcode_id')->get();
         $plane = Plane::all();
         $user = User::where('id','!=','1')->get();
@@ -466,6 +466,23 @@ class TravelexpensesController extends Controller
                         ->get();
         $pdf = PDF::loadview('finance/travelexpenses.super',compact('data','pegawai','tujuan'));
         return $pdf->stream();
+    }
+
+
+    public function delete($id)
+    {
+        $lokasi = Expenses::find($id);
+        $lokasi->delete();
+
+        $daily = Expenses_daily::where('expenses_id',$id);
+        $daily->delete();
+
+        $tr = Travelexpenses::where('expenses_id',$id);
+        $tr->delete();
+
+        $tr1 = Travelexpenses1::where('expenses_id',$id);
+        $tr1->delete();
+        return redirect('/finance/travelexpenses')->with('sukses','Data Terhapus');
     }
 
 }
