@@ -47,7 +47,7 @@ class LabRequestController extends Controller
         $user = User::all()
                 ->where('id','!=','1');
         $lab = Labory::all();
-        $jenis = Jenisbrg::whereRaw('id IN (2,3,8)')->get();
+        $jenis = Jenisbrg::whereRaw('id IN (2,3,8,9)')->get();
         $satuan = Satuan::all();
         $nosbb = $this->getNoSBB();
         return view('invent/labrequest.create',compact('data','user','nosbb','satuan','jenis','lab'));
