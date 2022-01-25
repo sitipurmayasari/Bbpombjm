@@ -42,7 +42,7 @@ class LabSuplyController extends Controller
         $user = User::all()
         ->where('id','!=','1');
         $lokasi = Lokasi::all();
-        $jenis = Jenisbrg::whereRaw('id IN (2,3,8,9)')->get();
+        $jenis = Jenisbrg::where('kelompok','L')->get();
         $satuan = Satuan::WhereRaw('id not IN (2,3,4,6)')->get();
 
         return view('invent/labsuply.create',compact('divisi','user','lokasi','jenis','satuan'));
@@ -87,7 +87,7 @@ class LabSuplyController extends Controller
         $user = User::all()
                 ->where('id','!=','1');
         $lokasi = Lokasi::all();
-        $jenis = Jenisbrg::whereRaw('id IN (2,3)')->get();
+        $jenis = Jenisbrg::where('kelompok','L')->get();
         return view('invent/labsuply.edit',compact('data','divisi','user','lokasi','jenis','satuan'));
     }
 

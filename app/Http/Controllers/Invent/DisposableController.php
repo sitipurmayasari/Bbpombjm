@@ -40,7 +40,7 @@ class DisposableController extends Controller
         $divisi = Divisi::all();
         $user = User::where('id','!=','1')->get();
         $lokasi = Lokasi::all();
-        $jenis = Jenisbrg::whereRaw('id NOT IN (2,3)')->get();
+        $jenis = Jenisbrg::where('kelompok','K')->get();
         $satuan = Satuan::all();
 
         return view('invent/disposable.create',compact('divisi','user','lokasi','jenis','satuan'));
@@ -84,7 +84,7 @@ class DisposableController extends Controller
         $divisi = Divisi::all();
         $user = User::where('id','!=','1')->get();
         $lokasi = Lokasi::all();
-        $jenis = Jenisbrg::whereRaw('id NOT IN (2,3)')->get();
+        $jenis = Jenisbrg::where('kelompok','K')->get();
         return view('invent/disposable.edit',compact('data','divisi','user','lokasi','jenis','satuan'));
     }
 

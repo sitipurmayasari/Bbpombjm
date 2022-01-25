@@ -45,7 +45,7 @@ class AtkRequestController extends Controller
                             ->get();
         $user = User::all()
                 ->where('id','!=','1');
-        $jenis = Jenisbrg::whereRaw('id not IN (2,3)')->get();
+        $jenis = Jenisbrg::where('kelompok','K')->get();
         $satuan = Satuan::all();
         $nosbb = $this->getNoSBB();
         return view('invent/atkrequest.create',compact('data','user','nosbb','satuan','jenis'));
