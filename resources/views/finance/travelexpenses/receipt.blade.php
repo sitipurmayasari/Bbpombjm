@@ -546,7 +546,7 @@
                                 @else
                                     {{ '-' }} 
                                 @endif
-                                &nbsp; hari x Rp. 
+                                 hari x Rp.
                             </i>
                         </td>
                         <td style="text-align: right;"> 
