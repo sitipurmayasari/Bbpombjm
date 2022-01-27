@@ -51,25 +51,25 @@ class CarOkController extends Controller
         if ($daylong == 1) {
             $driver =User::where("deskjob","LIKE","%Sopir%")
                         ->WhereRaw("id NOT IN (SELECT driver_id from vehiclerent WHERE '".$data->date_from."' 
-                                    BETWEEN date_from AND date_to and driver_id is not null) ")
+                                    BETWEEN date_from AND date_to and driver_id is not null AND status = 'Y') ")
                         ->get();
 
         } elseif ($daylong == 2) {
             $driver =User::where("deskjob","LIKE","%Sopir%")
                         ->WhereRaw("id NOT IN (SELECT driver_id from vehiclerent WHERE '".$data->date_from."' 
-                                    BETWEEN date_from AND date_to and driver_id is not null) ")
+                                    BETWEEN date_from AND date_to and driver_id is not null AND status = 'Y') ")
                         ->WhereRaw("id NOT IN (SELECT driver_id from vehiclerent WHERE '".$data->date_to."' 
-                                    BETWEEN date_from AND date_to and driver_id is not null) ")
+                                    BETWEEN date_from AND date_to and driver_id is not null AND status = 'Y') ")
                         ->get();
 
         } else{
                         $driver =User::where("deskjob","LIKE","%Sopir%")
                                     ->WhereRaw("id NOT IN (SELECT driver_id from vehiclerent WHERE '".$data->date_from."' 
-                                                BETWEEN date_from AND date_to and driver_id is not null) ")
+                                                BETWEEN date_from AND date_to and driver_id is not null AND status = 'Y') ")
                                     ->WhereRaw("id NOT IN (SELECT driver_id from vehiclerent WHERE '".$date."' 
-                                                BETWEEN date_from AND date_to and driver_id is not null) ")
+                                                BETWEEN date_from AND date_to and driver_id is not null AND status = 'Y') ")
                                     ->WhereRaw("id NOT IN (SELECT driver_id from vehiclerent WHERE '".$data->date_to."' 
-                                                BETWEEN date_from AND date_to and driver_id is not null) ")
+                                                BETWEEN date_from AND date_to and driver_id is not null AND status = 'Y') ")
                                     ->get();
         }
         return view('invent/carok.yes',compact('data','car','driver','daylong'));
