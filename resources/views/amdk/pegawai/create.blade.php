@@ -46,18 +46,25 @@
                                         name="name" />
                             </div>
                         </div>
-
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Nama (Tanpa gelar)
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text"  placeholder="nama (tanpa gelar)" 
+                                        class="col-xs-10 col-sm-10 required " 
+                                        name="namanogelar" />
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
                             for="form-field-1"> Tempat Lahir
                             </label>
                             <div class="col-sm-8">
                                 <input type="text" name="tempat_lhr" class="col-xs-10 col-sm-10 required" 
-                                placeholder ="tempat talhir" required>
+                                placeholder ="tempat lahir" required>
                             </div>
                         </div>
-                        
-
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
                             for="form-field-1"> Tanggal Lahir
@@ -67,7 +74,6 @@
                                 data-date-format="yyyy-mm-dd" data-provide="datepicker" required>
                             </div>
                         </div>
-
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
                             for="form-field-1"> Jenis Kelamin
@@ -77,6 +83,21 @@
                                 name="jkel" id="L"/> &nbsp; Laki - Laki  &nbsp;
                                 <input type="radio" required value="P"
                                 name="jkel" id="P"/> &nbsp; Perempuan
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Agama
+                            </label>
+                            <div class="col-sm-8">
+                                <select id="agama" name="agama" class="col-xs-10 col-sm-10" required>
+                                    <option value="Islam">Islam</option>
+                                    <option value="Katolik">Katolik</option>
+                                    <option value="Protestan">Protestan</option>
+                                    <option value="Hindu">Hindu</option>
+                                    <option value="Budha">Budha</option>
+                                    <option value="Khonghucu">Khonghucu</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">

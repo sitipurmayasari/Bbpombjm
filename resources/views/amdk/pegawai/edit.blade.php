@@ -35,7 +35,6 @@
                                         name="no_pegawai" required  />
                             </div>
                         </div>
-
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
                             for="form-field-1"> Nama Pegawai
@@ -44,6 +43,16 @@
                                 <input type="text" value="{{$data->name}}"
                                         class="col-xs-10 col-sm-10 required " 
                                         name="name" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Nama (Tanpa gelar)
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text"  value="{{$data->namanogelar}}"
+                                        class="col-xs-10 col-sm-10 required " 
+                                        name="namanogelar" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -87,7 +96,58 @@
                                
                             </div>
                         </div>
-
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Agama
+                            </label>
+                            <div class="col-sm-8">
+                                <select id="agama" name="agama" class="col-xs-10 col-sm-10" required>
+                                    @if ($data->agama=='Katolik')
+                                        <option value="Islam" >Islam</option>
+                                        <option value="Katolik" selected>Katolik</option>
+                                        <option value="Protestan">Protestan</option>
+                                        <option value="Hindu">Hindu</option>
+                                        <option value="Budha">Budha</option>
+                                        <option value="Khonghucu">Khonghucu</option>
+                                    @elseif($data->agama=='Protestan')
+                                        <option value="Islam" >Islam</option>
+                                        <option value="Katolik" >Katolik</option>
+                                        <option value="Protestan" selected>Protestan</option>
+                                        <option value="Hindu">Hindu</option>
+                                        <option value="Budha">Budha</option>
+                                        <option value="Khonghucu">Khonghucu</option>
+                                    @elseif($data->agama=='Hindu')
+                                        <option value="Islam" >Islam</option>
+                                        <option value="Katolik" >Katolik</option>
+                                        <option value="Protestan">Protestan</option>
+                                        <option value="Hindu" selected>Hindu</option>
+                                        <option value="Budha">Budha</option>
+                                        <option value="Khonghucu">Khonghucu</option>
+                                    @elseif($data->agama=='Budha')
+                                        <option value="Islam" >Islam</option>
+                                        <option value="Katolik" >Katolik</option>
+                                        <option value="Protestan">Protestan</option>
+                                        <option value="Hindu">Hindu</option>
+                                        <option value="Budha" selected>Budha</option>
+                                        <option value="Khonghucu">Khonghucu</option>
+                                    @elseif($data->agama=='Khonghucu')
+                                        <option value="Islam" >Islam</option>
+                                        <option value="Katolik" >Katolik</option>
+                                        <option value="Protestan">Protestan</option>
+                                        <option value="Hindu">Hindu</option>
+                                        <option value="Budha" >Budha</option>
+                                        <option value="Khonghucu" selected>Khonghucu</option>
+                                    @else
+                                        <option value="Islam" selected>Islam</option>
+                                        <option value="Katolik">Katolik</option>
+                                        <option value="Protestan">Protestan</option>
+                                        <option value="Hindu">Hindu</option>
+                                        <option value="Budha">Budha</option>
+                                        <option value="Khonghucu">Khonghucu</option>
+                                    @endif
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
                             for="form-field-1"> Alamat
@@ -201,18 +261,16 @@
                                 </select>
                             </div>
                         </div>
-
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
                             for="form-field-1"> Desk Job
                             </label>
                             <div class="col-sm-8">
-                                <input type="text"  placeholder="desk job" value={{$data->deskjob}}
+                                <input type="text" value="{{$data->deskjob}}"
                                         class="col-xs-10 col-sm-10 required " 
                                         name="deskjob" />
                             </div>
                         </div>
-                       
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
                             for="form-field-1"> Kelompok
@@ -302,17 +360,6 @@
                                 data-date-format="yyyy-mm-dd" data-provide="datepicker" required>
                             </div>
                         </div>
-                        {{-- <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Username
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="text"  value="{{$data->username}}"
-                                        class="col-xs-10 col-sm-10 required " 
-                                        name="username" required/>
-                            </div>
-                        </div> --}}
-
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
                             for="form-field-1"> Password
