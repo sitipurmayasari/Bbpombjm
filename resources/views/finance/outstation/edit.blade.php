@@ -238,7 +238,6 @@
             <div class="panel-heading"><h3 class="panel-title">Pilih Pegawai</h3></div>
             <div class="panel-body">
                 <fieldset>
-                    *Menambah Baris Baru otomatis memasukkan nomor SPPD yang baru.
                     <table id="myTable" class="table table-bordered table-hover scrollit">
                         <thead>
                             <tr>
@@ -265,10 +264,10 @@
                                                     <option value="{{$peg->id}}" selected>{{$peg->name}} | {{$peg->no_pegawai}}</option> 
                                                 @else 
                                                     <option value="{{$peg->id}}">{{$peg->name}} | {{$peg->no_pegawai}}</option>
-                                                   
                                                 @endif
                                             @endforeach
                                         </select>
+                                        <input type="hidden" name="outemp_id[]" value="{{$item->id}}">
                                     </td>
                                     <td>
                                         <input type="text" name="no_sppd[]" readonly class="form-control"
@@ -336,6 +335,7 @@
                                                @endif
                                             @endforeach
                                         </select>
+                                        <input type="hidden" name="outdes_id[]" value="{{$item->id}}">
                                     </td>
                                     <td>
                                         <input type="date" name="go_date[]" id="date_from" class="required form-control" 
@@ -385,32 +385,32 @@
    <script>
 
         function addBarisNew(){
-            var last_baris = $("#countRow").val();
-            var new_baris = parseInt(last_baris)+1;
-            $isi =  '<tr id="cella-'+new_baris+'">'+
-                '<td class="center">'+new_baris+'</td>'+
+        var last_baris = $("#countRow").val();
+        var new_baris = parseInt(last_baris)+1;
+        $isi =  '<tr id="cell-'+new_baris+'">'+
+            '<td>'+new_baris+'</td>'+
+                '<td>'+
+                    '<select name="users_id[]" class="form-control select2">'+
+                        '<option value="">-Pilih Pegawai-</option>'+
+                        '@foreach ($user as $item)'+
+                            '<option value="{{$item->id}}">{{$item->name}} | {{$item->no_pegawai}}</option>'+
+                        '@endforeach'+
+                    '</select>'+  
+                    '<input type="text" name="hidden[]">'+              
+                '</td>'+
                     '<td>'+
-                        '<select name="users_id[]" class="form-control select2">'+
-                            '<option value="">-Pilih Pegawai-</option>'+
-                            '@foreach ($user as $item)'+
-                                '<option value="{{$item->id}}">{{$item->name}} | {{$item->no_pegawai}}</option>'+
-                            '@endforeach'+
-                        '</select>'+                
+                        '<select name="no_sppd[]" class="form-control select2 penomoransppd">'+
+                            '<option value="">Pilih no SPPD</option>'+
+                            '</select>'+
                     '</td>'+
-                        '<td>'+
-                            '<select name="no_sppd[]" class="form-control select2">'+
-                                '@foreach ($sppd as $item)'+
-                                    '<option value="{{$item->nomor_sppd}}">{{$item->nomor_sppd}}</option>'+
-                                '@endforeach'+
-                                '</select>'+
-                        '</td>'+
-                    '<td><button type="button"  class="btn btn-danger" onclick="deleteRowPeg('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button></td>'+
-                '</tr>';
-            $("#myTable").find('tbody').append($isi);
-            $("#countRow").val(new_baris);
-            $('.select2').select2();
-            getnomorsppd();
-        }
+                '<td><button type="button"  class="btn btn-danger" onclick="deleteRow('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button></td>'+
+            '</tr>';
+        $("#myTable").find('tbody').append($isi);
+        $("#countRow").val(new_baris);
+        $('.select2').select2();
+        getnomorsppd();
+
+       }
 
        function deleteRowPeg(cell) {
             $("#cella-"+cell).remove();
@@ -432,6 +432,7 @@
             '</td>'+
             '<td>'+
                 '<input type="date" name="go_date[]" id="date_from" class="required" value="{{date('Y-m-d')}}" required>'+ 
+                ' <input type="hidden" name="outdes_id[]">'+
             '</td>'+
             '<td>'+
                 '<input type="date" name="return_date[]" id="date_to" class="required" value="{{date('Y-m-d')}}" required>'+ 
@@ -446,6 +447,24 @@
        function deleteRowwil(cell) {
             $("#cellb-"+cell).remove();
 
+        }
+
+        function getnomorsppd(){
+            var stbook_number = $("#nomorst").val();
+            $.get(
+                "{{route('outstation.getnomorsppd') }}",
+                {
+                    stbook_number:stbook_number
+                },
+                function(response) {
+                    var data2 = response.nosppd;
+                    var string ="<option value=''>Pilih</option>";
+                        $.each(data2, function(index, value) {
+                            string = string + '<option value="'+ value.nomor_sppd +'">'+ value.nomor_sppd +'</option>';
+                        })
+                    $(".penomoransppd").html(string);
+                }
+            );
         }
 
         

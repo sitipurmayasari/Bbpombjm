@@ -101,10 +101,7 @@ class OutstationController extends Controller
 
             DB::commit();
   
-          return redirect('/finance/outstation');
-
-
-  
+          return redirect('/finance/outstation');  
       }
 
       public function printST($id)
@@ -240,19 +237,18 @@ class OutstationController extends Controller
               $data->save(); // save ke database
             }
 
-            Outst_destiny::where('outstation_id', $id)->delete();
-            outst_employee::where('outstation_id', $id)->delete();
-
           //---------------outst_employee----------------------
-          for ($i = 0; $i < count($request->input('users_id')); $i++){
+           for ($i = 0; $i < count($request->input('users_id')); $i++){
                 $data = [
                     'outstation_id' => $id,
                     'users_id'      => $request->users_id[$i],
-                    'no_sppd'       => $request->no_sppd[$i],
+                    'no_sppd'       => $request->no_sppd[$i]
                 ];
-                Outst_employee::create($data);
+                Outst_employee::updateOrCreate([
+                  'id'   => $request->outemp_id[$i],
+                ],$data);
           }
-           
+
           //---------------outst_destiny----------------------
           for ($i = 0; $i < count($request->input('destination_id')); $i++){
             $tgl1 = new DateTime($request->go_date[$i]);
@@ -267,7 +263,9 @@ class OutstationController extends Controller
                 'return_date'     => $request->return_date[$i],
                 'longday'         => $daylong_1
             ];
-            Outst_destiny::create($data);
+            Outst_destiny::updateOrCreate([
+              'id'   => $request->outdes_id[$i],
+            ],$data);
           }  
 
         DB::commit();
