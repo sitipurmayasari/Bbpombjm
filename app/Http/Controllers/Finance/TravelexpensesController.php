@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use App\Expenses_daily;
 use App\Travelexpenses;
 use App\Travelexpenses1;
+use App\Travelexpenses2;
 use App\Expenses;
 use App\User;
 use App\Destination;
@@ -38,7 +39,8 @@ class TravelexpensesController extends Controller
 
     public function create()
     {
-        $st = Outstation::orderBy('id','desc')->get();
+        $st = Outstation::WhereRaw('id NOT IN (SELECT outstation_id FROM expenses)')
+                        ->orderBy('id','desc')->get();
         $pok = Pok_detail::selectRaw('DISTINCT(subcode_id),accountcode_id')->get();
         $plane = Plane::all();
         $user = User::where('id','!=','1')->get();
@@ -111,8 +113,11 @@ class TravelexpensesController extends Controller
       ]);
 
       DB::beginTransaction(); 
+        //metadata
             $expenses = Expenses::create($request->all());
             $expenses_id = $expenses->id;
+        
+        //Expenses_daily
             for ($i = 0; $i < count($request->input('outst_employee_id')); $i++){
                 $dailywage1      = $request->dailywage1 != null ?  $request->dailywage1[$i] : 'N';
                 $dailywage2      = $request->dailywage2 != null ?  $request->dailywage2[$i] : 'N';
@@ -137,6 +142,8 @@ class TravelexpensesController extends Controller
                 ];
                 Expenses_daily::create($data);
             }
+
+            //Travelexpenses
             for ($i = 0; $i < count($request->input('outst_employee_id')); $i++){
                 $diklat         = $request->diklat != null ?  $request->diklat[$i] : 'N';
                 $fullboard      = $request->fullboard != null ?  $request->fullboard[$i] : 'N';
@@ -171,46 +178,78 @@ class TravelexpensesController extends Controller
                 ];
                 Travelexpenses::create($dataone);
             }
-                for ($i = 0; $i < count($request->input('outst_employee_id')); $i++){
-                   
-                    $datatwo = [
-                        'expenses_id'       => $expenses_id,
-                        'outst_employee_id' => $request->outst_employee_id[$i],
-                        'innname_1'         => $request->innname_1[$i],
-                        'inn_fee_1'         => $request->inn_fee_1[$i],
-                        'long_stay_1'       => $request->long_stay_1[$i],
-                        'isi_1'             => $request->isi_1[$i],
-                        'klaim_1'           => $request->klaim_1[$i],
-                        'innname_2'         => $request->innname_2[$i],
-                        'inn_fee_2'         => $request->inn_fee_2[$i],
-                        'long_stay_2'       => $request->long_stay_2[$i],
-                        'isi_2'             => $request->isi_2[$i],
-                        'klaim_2'           => $request->klaim_2[$i],
-                        'bbm'               => $request->bbm[$i],
-                        'taxy_count_from'   => $request->taxy_count_from[$i],
-                        'taxy_fee_from'     => $request->taxy_fee_from[$i],
-                        'taxy_count_to'     => $request->taxy_count_to[$i],
-                        'plane_id1'         => $request->plane_id1[$i],
-                        'plane_id2'         => $request->plane_id2[$i],
-                        'plane_id3'         => $request->plane_id3[$i],
-                        'plane_idreturn'    => $request->plane_idreturn[$i],
-                        'planenumber1'      => $request->planenumber1[$i],
-                        'planenumber2'      => $request->planenumber2[$i],
-                        'planenumber3'      => $request->planenumber3[$i],
-                        'planenumberreturn' => $request->planenumberreturn[$i],
-                        'planefee1'         => $request->planefee1[$i],
-                        'planefee2'         => $request->planefee2[$i],
-                        'planefee3'         => $request->planefee3[$i],
-                        'planereturnfee'    => $request->planereturnfee[$i],
-                        'godate1'           => $request->godate1[$i],
-                        'godate2'           => $request->godate2[$i],
-                        'godate3'           => $request->godate3[$i],
-                        'returndate'        => $request->returndate[$i]
-    
-                    ];
-                    Travelexpenses1::create($datatwo);
+
+            //Travelexpenses1
+            for ($i = 0; $i < count($request->input('outst_employee_id')); $i++){
+                $datatwo = [
+                    'expenses_id'       => $expenses_id,
+                    'outst_employee_id' => $request->outst_employee_id[$i],
+                    'innname_1'         => $request->innname_1[$i],
+                    'inn_fee_1'         => $request->inn_fee_1[$i],
+                    'long_stay_1'       => $request->long_stay_1[$i],
+                    'isi_1'             => $request->isi_1[$i],
+                    'klaim_1'           => $request->klaim_1[$i],
+                    'innname_2'         => $request->innname_2[$i],
+                    'inn_fee_2'         => $request->inn_fee_2[$i],
+                    'long_stay_2'       => $request->long_stay_2[$i],
+                    'isi_2'             => $request->isi_2[$i],
+                    'klaim_2'           => $request->klaim_2[$i],
+                    'bbm'               => $request->bbm[$i],
+                    'taxy_count_from'   => $request->taxy_count_from[$i],
+                    'taxy_fee_from'     => $request->taxy_fee_from[$i],
+                    'taxy_count_to'     => $request->taxy_count_to[$i],
+                    'plane_id1'         => $request->plane_id1[$i],
+                    'plane_id2'         => $request->plane_id2[$i],
+                    'plane_id3'         => $request->plane_id3[$i],
+                    'plane_idreturn'    => $request->plane_idreturn[$i],
+                    'planenumber1'      => $request->planenumber1[$i],
+                    'planenumber2'      => $request->planenumber2[$i],
+                    'planenumber3'      => $request->planenumber3[$i],
+                    'planenumberreturn' => $request->planenumberreturn[$i],
+                    'planefee1'         => $request->planefee1[$i],
+                    'planefee2'         => $request->planefee2[$i],
+                    'planefee3'         => $request->planefee3[$i],
+                    'planereturnfee'    => $request->planereturnfee[$i],
+                    'godate1'           => $request->godate1[$i],
+                    'godate2'           => $request->godate2[$i],
+                    'godate3'           => $request->godate3[$i],
+                    'returndate'        => $request->returndate[$i]
+
+                ];
+                Travelexpenses1::create($datatwo);     
             }
-            DB::commit();
+
+            //Travelexpenses2
+            for ($i = 0; $i < count($request->input('outst_employee_id')); $i++){
+                $datathree = [
+                    'expenses_id'       => $expenses_id,
+                    'employee_id'       => $request->outst_employee_id[$i],
+                    'inn_loc1'          => $request->inn_loc1[$i],
+                    'inn_loc2'          => $request->inn_loc2[$i],
+                    'inn_telp1'         => $request->inn_telp1[$i],
+                    'inn_telp2'         => $request->inn_telp2[$i],
+                    'checkin1'          => $request->checkin1[$i],
+                    'checkin2'          => $request->checkin2[$i],
+                    'checkout1'         => $request->checkout1[$i],
+                    'checkout2'         => $request->checkout2[$i],
+                    'inn_room1'         => $request->inn_room1[$i],
+                    'inn_room2'         => $request->inn_room2[$i],
+                    'innvoice1'         => $request->innvoice1[$i],
+                    'innvoice2'         => $request->innvoice2[$i],
+                    'plane_book1'       => $request->plane_book1[$i],
+                    'plane_book2'       => $request->plane_book2[$i],
+                    'plane_book3'       => $request->plane_book3[$i],
+                    'plane_bookreturn'  => $request->plane_bookreturn[$i],
+                    'plane_flight1'     => $request->plane_flight1[$i],
+                    'plane_flight2'     => $request->plane_flight2[$i],
+                    'plane_flight3'     => $request->plane_flight3[$i],
+                    'plane_flightreturn'=> $request->plane_flightreturn[$i],
+                ];
+                Travelexpenses2::create($datathree);     
+            }
+
+        DB::commit();
+
         return redirect('/finance/travelexpenses');
 
     }

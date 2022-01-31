@@ -307,7 +307,7 @@
 
 
                   centanguang+='<tr>'+
-                        '<td style="text-align: center; width: 20px;">'+no+'</td>'+
+                        '<td style="text-align: center; width: 200px;">'+no+'</td>'+
                         '<td style="width: 120px;">'+response.peg[i].name+
                             '<input type="hidden" name="outst_employee_id[]" class="outid" value='+response.peg[i].id+'>'+
                             '<input type="hidden" name="jabatan[]" value='+response.peg[i].jabatan_id+'>'+
@@ -359,19 +359,31 @@
 
                   nginap+='<tr>'+
                         '<td style="text-align: center;">'+no+'</td>'+
-                        '<td>'+response.peg[i].name+
+                        '<td style="width: 120px;">'+response.peg[i].name+
                             '<input type="hidden" name="idpeg[]" class="outid" value='+response.peg[i].id+'>'+
                         '</td>'+
                         '<td><input type="text" name="innname_1[]" /></td>'+
+                        '<td><input type="text" name="inn_loc1[]" /></td>'+
+                        '<td><input type="number" name="inn_telp1[]" /></td>'+
+                        '<td><input type="text" name="inn_room1[]" /></td>'+
+                        '<td><input type="date" name="checkin1[]" /></td>'+
+                        '<td><input type="date" name="checkout1[]" /></td>'+
                         '<td><input type="number" min="0" value="0" name="inn_fee_1[]" id="innfee1-'+no+'"/></td>'+
                         '<td><input type="number" min="0" value="0" name="long_stay_1[]" id="longstay1-'+no+'" style="width: 50px"/></td>' +
                         '<td><input type="number" min="0" value="0" name="isi_1[]" style="width: 50px"  id="isi1-'+no+'" onkeyup="longstay1('+no+')"/>org</td>'+
                         '<td><input type="number" min="0" value="0" name="klaim_1[]"  id="klaim1-'+no+'"/></td>'+
+                        '<td><input type="text" name="innvoice1[]" /></td>'+
                         '<td><input type="text" name="innname_2[]" /></td>'+
+                        '<td><input type="text" name="inn_loc2[]" /></td>'+
+                        '<td><input type="number" name="inn_telp2[]" /></td>'+
+                        '<td><input type="text" name="inn_room2[]" /></td>'+
+                        '<td><input type="date" name="checkin2[]" /></td>'+
+                        '<td><input type="date" name="checkout2[]" /></td>'+
                         '<td><input type="number" min="0" value="0" name="inn_fee_2[]" id="innfee2-'+no+'"/></td>'+
                         '<td><input type="number" min="0" value="0" name="long_stay_2[]" id="longstay2-'+no+'" style="width: 50px"/></td>'+
                         '<td><input type="number" min="0" value="0" name="isi_2[]" style="width: 50px" id="isi2-'+no+'" onkeyup="longstay2('+no+')"/>org </td>'+ 
                         '<td><input type="number" min="0" value="0" name="klaim_2[]" id="klaim2-'+no+'"/></td>'+
+                        '<td><input type="text" name="innvoice2[]" /></td>'+
                     '</tr>';
                 }
                 $("#nginap").html(nginap);
@@ -384,7 +396,7 @@
 
                   pesawat+='<tr>'+
                         '<td style="text-align: center;">'+no+'</td>'+
-                        '<td>'+response.peg[i].name+
+                        '<td style="width: 120px;">'+response.peg[i].name+
                             '<input type="hidden" name="idpeg[]" class="outid" value='+response.peg[i].id+'>'+
                         '</td>'+
                         '<td>'+
@@ -398,6 +410,8 @@
                         '<td><input type="text" placeholder="nomor tiket" name="planenumber1[]" /></td>'+
                         '<td><input type="number" min="0" value="0" name="planefee1[]" /></td>'+
                         '<td><input type="date" name="godate1[]" /></td>'+
+                        '<td><input type="text" name="plane_book1[]" /></td>'+
+                        '<td><input type="text" name="plane_flight1[]" /></td>'+
                         '<td>'+
                             '<select name="plane_id2[]"  select2" >'+
                                 '<option value="">Pilih Maskapai</option>'+
@@ -409,6 +423,8 @@
                         '<td><input type="text" placeholder="nomor tiket" name="planenumber2[]" /></td>'+
                         '<td><input type="number" min="0" value="0" name="planefee2[]" /></td>'+
                         '<td><input type="date" name="godate2[]" /></td>'+
+                        '<td><input type="text" name="plane_book2[]" /></td>'+
+                        '<td><input type="text" name="plane_flight2[]" /></td>'+
                         '<td>'+
                             '<select name="plane_id3[]"  select2" >'+
                                 '<option value="">Pilih Maskapai</option>'+
@@ -420,6 +436,8 @@
                         '<td><input type="text" placeholder="nomor tiket" name="planenumber3[]" /></td>'+
                         '<td><input type="number" min="0" value="0" name="planefee3[]" /></td>'+
                         '<td><input type="date" name="godate3[]" /></td>'+
+                        '<td><input type="text" name="plane_book3[]" /></td>'+
+                        '<td><input type="text" name="plane_flight3[]" /></td>'+
                         '<td>'+
                             '<select name="plane_idreturn[]"  select2" >'+
                                 '<option value="">Pilih Maskapai</option>'+
@@ -431,6 +449,8 @@
                         '<td><input type="text" placeholder="nomor tiket" name="planenumberreturn[]" /></td>'+
                         '<td><input type="number" min="0" value="0" name="planereturnfee[]" /> </td>'+
                         '<td><input type="date" name="returndate[]" /> </td>'+
+                        '<td><input type="text" name="plane_bookreturn[]" /></td>'+
+                        '<td><input type="text" name="plane_flightreturn[]" /></td>'+
                         
                     '</tr>';
                 }
@@ -444,7 +464,7 @@
 
                   transport+='<tr>'+
                         '<td style="text-align: center;">'+no+'</td>'+
-                        '<td>'+response.peg[i].name+
+                        '<td style="width: 120px;">'+response.peg[i].name+
                             '<input type="hidden" name="idpeg[]" class="outid" value='+response.peg[i].id+'>'+
                         '</td>'+
                         '<td><input type="number" min="0" value="0" name="bbm[]" /></td>'+
@@ -464,7 +484,7 @@
 
                   meeting+='<tr>'+
                         '<td style="text-align: center;">'+no+'</td>'+
-                        '<td>'+response.peg[i].name+
+                        '<td style="width: 120px;">'+response.peg[i].name+
                             '<input type="hidden" name="idpeg[]" class="outid" value='+response.peg[i].id+'>'+
                         '</td>'+
                         '<td><input type="number" min="0" value="0" name="dayshalf[]" style="width:50px;" id="dayshalf-'+no+'"/></td>'+       

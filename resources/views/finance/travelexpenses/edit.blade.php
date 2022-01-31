@@ -223,15 +223,27 @@
                         '<td>'+response.expen2[i].name+
                         '</td>'+
                         '<td><input type="text" name="innname_1[]" value="'+response.expen2[i].innname_1+'"/></td>'+
+                        '<td><input type="text" name="inn_loc1[]" value="'+response.expen2[i].inn_loc1+'"/></td>'+
+                        '<td><input type="number" name="inn_telp1[]" value="'+response.expen2[i].inn_telp1+'"/></td>'+
+                        '<td><input type="text" name="inn_room1[]" value="'+response.expen2[i].inn_room1+'"/></td>'+
+                        '<td><input type="date" name="checkin1[]" value="'+response.expen2[i].checkin1+'"/></td>'+
+                        '<td><input type="date" name="checkout1[]" value="'+response.expen2[i].checkout1+'"/></td>'+
                         '<td><input type="number" min="0" value="'+response.expen2[i].inn_fee_1+'" name="inn_fee_1[]" id="innfee1-'+no+'"/></td>'+
                         '<td><input type="number" min="0" value="'+response.expen2[i].long_stay_1+'" name="long_stay_1[]" id="longstay1-'+no+'" style="width: 50px"/></td>' +
                         '<td><input type="number" min="0" value="'+response.expen2[i].isi_1+'" name="isi_1[]" style="width: 50px"  id="isi1-'+no+'" onkeyup="longstay1('+no+')"/>org</td>'+
                         '<td><input type="number" min="0" value="'+response.expen2[i].klaim_1+'" name="klaim_1[]"  id="klaim1-'+no+'"/></td>'+
+                        '<td><input type="text" name="innvoice1[]" value="'+response.expen2[i].innvoice1+'"/></td>'+
                         '<td><input type="text" name="innname_2[]" value="'+response.expen2[i].innname_2+'"/></td>'+
+                        '<td><input type="text" name="inn_loc2[]" value="'+response.expen2[i].inn_loc2+'"/></td>'+
+                        '<td><input type="number" name="inn_telp2[]" value="'+response.expen2[i].inn_telp2+'"/></td>'+
+                        '<td><input type="text" name="inn_room2[]" value="'+response.expen2[i].inn_room2+'"/></td>'+
+                        '<td><input type="date" name="checkin2[]" value="'+response.expen2[i].checkin2+'"/></td>'+
+                        '<td><input type="date" name="checkout2[]" value="'+response.expen2[i].checkout2+'"/></td>'+
                         '<td><input type="number" min="0" value="'+response.expen2[i].inn_fee_2+'" name="inn_fee_2[]" id="innfee2-'+no+'"/></td>'+
                         '<td><input type="number" min="0" value="'+response.expen2[i].long_stay_2+'" name="long_stay_2[]" id="longstay2-'+no+'" style="width: 50px"/></td>'+
                         '<td><input type="number" min="0" value="'+response.expen2[i].isi_2+'" name="isi_2[]" style="width: 50px" id="isi2-'+no+'" onkeyup="longstay2('+no+')"/>org </td>'+ 
                         '<td><input type="number" min="0" value="'+response.expen2[i].klaim_2+'" name="klaim_2[]" id="klaim2-'+no+'"/></td>'+
+                        '<td><input type="text" name="innvoice2[]" value="'+response.expen2[i].innvoice2+'"/></td>'+
                     '</tr>';
                 }
                 $("#nginap").html(nginap);
@@ -261,6 +273,8 @@
                         '<td><input type="text" placeholder="nomor tiket" name="planenumber1[]" value="'+response.expen2[i].planenumber1+'"/></td>'+
                         '<td><input type="number" min="0" name="planefee1[]" value="'+response.expen2[i].planefee1+'"/></td>'+
                         '<td><input type="date" name="godate1[]" value="'+response.expen2[i].godate1+'"/></td>'+
+                        '<td><input type="text" name="plane_book1[]" value="'+response.expen2[i].plane_book1+'"/></td>'+
+                        '<td><input type="text" name="plane_flight1[]" value="'+response.expen2[i].plane_flight1+'"/></td>'+
                         '<td>'+
                             '<select name="plane_id2[]"  select2" >'+
                                 '<option value="">Pilih Maskapai</option>'+
@@ -276,6 +290,8 @@
                         '<td><input type="text" placeholder="nomor tiket" name="planenumber2[]" value="'+response.expen2[i].planenumber2+'"/></td>'+
                         '<td><input type="number" min="0"  name="planefee2[]" value="'+response.expen2[i].planefee2+'"/></td>'+
                         '<td><input type="date" name="godate2[]" value="'+response.expen2[i].godate2+'"/></td>'+
+                        '<td><input type="text" name="plane_book2[]" value="'+response.expen2[i].plane_book2+'"/></td>'+
+                        '<td><input type="text" name="plane_flight2[]" value="'+response.expen2[i].plane_flight2+'"/></td>'+
                         '<td>'+
                             '<select name="plane_id3[]"  select2" >'+
                                 '<option value="">Pilih Maskapai</option>'+
@@ -291,6 +307,8 @@
                         '<td><input type="text" placeholder="nomor tiket" name="planenumber3[]" value="'+response.expen2[i].planenumber3+'"/></td>'+
                         '<td><input type="number" min="0" name="planefee3[]" value="'+response.expen2[i].planefee3+'"/></td>'+
                         '<td><input type="date" name="godate3[]" value="'+response.expen2[i].godate3+'"/></td>'+
+                        '<td><input type="text" name="plane_book3[]" value="'+response.expen2[i].plane_book3+'"/></td>'+
+                        '<td><input type="text" name="plane_flight3[]" value="'+response.expen2[i].plane_flight3+'"/></td>'+
                         '<td>'+
                             '<select name="plane_idreturn[]"  select2" >'+
                                 '<option value="">Pilih Maskapai</option>'+
@@ -306,7 +324,8 @@
                         '<td><input type="text" placeholder="nomor tiket" name="planenumberreturn[]" value="'+response.expen2[i].planenumberreturn+'"/></td>'+
                         '<td><input type="number" min="0" name="planereturnfee[]" value="'+response.expen2[i].planereturnfee+'"/> </td>'+
                         '<td><input type="date" name="returndate[]"value="'+response.expen2[i].returndate+'" /> </td>'+
-                        
+                        '<td><input type="text" name="plane_bookreturn[]" value="'+response.expen2[i].plane_bookreturn+'"/></td>'+
+                        '<td><input type="text" name="plane_flightreturn[]" value="'+response.expen2[i].plane_flightreturn+'"/></td>'+
                     '</tr>';
                 }
                 $("#pesawat").html(pesawat);

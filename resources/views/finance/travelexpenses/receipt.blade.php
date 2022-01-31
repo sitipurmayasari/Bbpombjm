@@ -921,10 +921,10 @@
                         <td style="text-align: right;"> 
                             <i>
                                 @if ($nilai->innname_2 != null)
-                                    {{$fee1}} &nbsp; <br>
-                                    {{$fee2}}
+                                    {{number_format($nilai->inn_fee_1)}} &nbsp; <br>
+                                    {{number_format($nilai->inn_fee_2)}}
                                 @elseif($nilai->innname_2 == null && $nilai->innname_1 != null)
-                                    {{$fee1}} &nbsp;
+                                    {{number_format($nilai->inn_fee_1)}} &nbsp;
                                 @else
                                     - &nbsp; <br>
                                     

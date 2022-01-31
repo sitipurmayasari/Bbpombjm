@@ -8,7 +8,7 @@
                                 <thead>
                                     <tr>
                                         <th style="text-align: center;">NO</th>
-                                        <th style="text-align: center;" >Nama</th>
+                                        <th style="text-align: center;" class="col-md-3">Nama</th>
                                         <th style="text-align: center;" >Harian (Kota 1)</th>
                                         <th style="text-align: center;" >Harian (Kota 2)</th>
                                         <th style="text-align: center;" >Harian (Kota 3)</th>

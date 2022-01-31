@@ -7,32 +7,40 @@
                             <thead>
                                 <tr>
                                     <th rowspan="2" style="text-align: center;">NO</th>
-                                    <th  rowspan="2" class="text-center col-md-4">Nama</th>
-                                    <th colspan="4"  class="text-center"> Tiket Pergi Kota 1</th>
-                                    <th colspan="4"  class="text-center"> Tiket Pergi Kota 2</th>
-                                    <th colspan="4"  class="text-center"> Tiket Pergi Kota 3</th>
-                                    <th colspan="4"  class="text-center"> Tiket Pulang</th>
+                                    <th  rowspan="2" class="text-center">Nama</th>
+                                    <th colspan="6"  class="text-center"> Tiket Pergi Kota 1</th>
+                                    <th colspan="6"  class="text-center"> Tiket Pergi Kota 2</th>
+                                    <th colspan="6"  class="text-center"> Tiket Pergi Kota 3</th>
+                                    <th colspan="6"  class="text-center"> Tiket Pulang</th>
                                 </tr>
                                 <tr>
                                     <th>Maskapai Pergi</th>
                                     <th>Nomor Tiket</th>
-                                    <th>Tiket Pergi Rp.</th>
+                                    <th>Harga Tiket (Rp)</th>
                                     <th>Tgl Pergi</th>
+                                    <th>Kode Booking</th>
+                                    <th>No. Penerbangan</th>
 
                                     <th>Maskapai Pergi</th>
                                     <th>Nomor Tiket</th>
-                                    <th>Tiket Pergi Rp.</th>
+                                    <th>Harga Tiket (Rp)</th>
                                     <th>Tgl Pergi</th>
+                                    <th>Kode Booking</th>
+                                    <th>No. Penerbangan</th>
 
                                     <th>Maskapai Pergi</th>
                                     <th>Nomor Tiket</th>
-                                    <th>Tiket Pergi Rp.</th>
+                                    <th>Harga Tiket (Rp)</th>
                                     <th>Tgl Pergi</th>
+                                    <th>Kode Booking</th>
+                                    <th>No. Penerbangan</th>
 
                                     <th>Maskapai Pulang</th>
                                     <th>Nomor Tiket</th>
-                                    <th>Tiket Rp.</th>
+                                    <th>Harga Tiket Rp.</th>
                                     <th>Tgl Pulang</th>  
+                                    <th>Kode Booking</th>
+                                    <th>No. Penerbangan</th>
                                 </tr>
                             </thead>
                             <tbody id="pesawat">
