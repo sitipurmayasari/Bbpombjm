@@ -263,11 +263,11 @@
                     </tr>
                     <tr>
                         <td colspan="2"> <i>Tiket Pesawat / Kereta</i></td>
-                        <td></td>
-                        <td> <i>Pergi</i></td>
-                        <td></td>
-                        <td style="text-align: center;"> <i>. Rp.</i></td>
-                        <td style="text-align: right"> 
+                        <td style="width: 5%"></td>
+                        <td  style="width: 18%"> <i>Pergi</i></td>
+                        <td style="width: 10%"></td>
+                        <td style="text-align: center; width:10%;"> <i>. Rp.</i></td>
+                        <td style="text-align: right; width:10%;"> 
                             <i>
                                 @if ($nilai->planefee1 != '0')
                                     @php
@@ -336,7 +336,7 @@
                                     {{ '-' }}
                                 @endif
                                 &nbsp;
-                                kali x Rp. 
+                                kali &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp. 
                             </i>
                         </td>
                         <td style="text-align: right"> 
@@ -422,7 +422,7 @@
                                     -
                                 @endif
                                 &nbsp;
-                                kali x Rp. 
+                                kali &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp.
                             </i>
                         </td>
                         <td style="text-align: right;"> 
@@ -465,7 +465,7 @@
                         <td style="text-align: center;"><i>:</i> </td>
                         <td> 
                             <i>
-                                - &nbsp; kali x Rp. 
+                                -kali &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp.
                             </i>
                         </td>
                         <td style="text-align: right;"> <i>- &nbsp;</i> &nbsp;</td>
@@ -540,7 +540,7 @@
                             $subTotal2 = 0;
                             $dailyfee = $injectQuery->getUH($item->id)
                         @endphp
-                        <td style="width: 40%">
+                        <td>
                             <i> - Penuh 
                                 (
                                     @foreach ($tujuan as $key=>$kota)
@@ -551,18 +551,18 @@
                                 )
                             </i>
                         </td>
-                        <td style="text-align: center;"><i>:</i> </td>
-                        <td> 
+                        <td style="text-align: center; width:5%"><i>:</i> </td>
+                        <td style="width:18%"> 
                             <i>
                                 @if ($dailyfee->dailywage1 == 'Y')
                                     {{number_format($dailyfee->jumdaily1)}} 
                                 @else
                                     {{ '-' }} 
                                 @endif
-                                &nbsp; hari x Rp. 
+                                hari &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp.
                             </i>
                         </td>
-                        <td style="text-align: right;"> 
+                        <td style="text-align: right; width:10%"> 
                             <i>
                                 @if ($dailyfee->dailywage1 == 'Y')
                                     {{number_format($dailyfee->hitdaily1)}} 
@@ -571,8 +571,8 @@
                                 @endif
                             </i> &nbsp;
                         </td>
-                        <td style="text-align: center;"><i>. Rp.</i></td>
-                        <td style="text-align: right"> 
+                        <td style="text-align: center; width:10%"><i>. Rp.</i></td>
+                        <td style="text-align: right; width:10%"> 
                             <i>
                                 @php
                                     $subTotalHarian = $dailyfee->totdaily1;
@@ -606,7 +606,7 @@
                                 @else
                                     {{ '-' }} 
                                 @endif
-                                &nbsp; hari x Rp. 
+                                =hari &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp.
                             </i>
                         </td>
                         <td style="text-align: right;"> 
@@ -646,7 +646,7 @@
                                 @else
                                     {{ '-' }} 
                                 @endif
-                                &nbsp; hari x Rp. 
+                                hari &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp. 
                             </i>
                         </td>
                         <td style="text-align: right;"> 
@@ -682,7 +682,7 @@
                                 @else
                                     {{ '-' }} 
                                 @endif
-                                &nbsp; hari x Rp. 
+                                =hari &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp.
                             </i>
                         </td>
                         <td style="text-align: right;"> 
@@ -718,7 +718,7 @@
                                 @else
                                     {{ '-' }}
                                 @endif
-                                &nbsp; hari x Rp. 
+                                hari &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp. 
                             </i>
                         </td>
                         <td style="text-align: right;"> 
@@ -809,15 +809,15 @@
                             $subBiaya = 0;
                         @endphp
                         <td><i> - Paket Halfday / Fullday</i></td>
-                        <td style="text-align: center;"><i>:</i> </td>
-                        <td> 
+                        <td style="text-align: center; width:5%"><i>:</i> </td>
+                        <td style="width: 18%;"> 
                             <i>
                                 @if ($daily->dayshalf != '0')
                                     {{$daily->dayshalf}}
                                 @else
                                     {{ '-' }} 
                                 @endif
-                                &nbsp; hari x Rp. 
+                                hari &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp. 
                             </i>
                         </td>
                         <td style="text-align: right;"> 
@@ -854,7 +854,7 @@
                                 @else
                                     {{ '-' }}
                                 @endif
-                                &nbsp; hari x Rp. 
+                                hari &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp. 
                             </i>
                         </td>
                         <td style="text-align: right;"> 
@@ -961,36 +961,36 @@
                                 - &nbsp; <br>
                             @endif
                             </i></td>
-                        <td style="text-align: center;"><i>:</i> </td>
-                        <td> 
+                        <td style="text-align: center; width:5%;"><i>:</i> </td>
+                        <td style="width: 18%;"> 
                             <i>
                                 @php
                                     $long1 = $nilai->long_stay_1;
                                     $long2 = $nilai->long_stay_2;
                                 @endphp
                                 @if ($nilai->innname_2 != null)
-                                    {{$long1}} &nbsp; hari x Rp.  <br>
-                                    {{$long2}} &nbsp; hari x Rp. 
+                                    {{$long1}} hari &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp.  <br>
+                                    {{$long2}} hari &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp. 
                                 @elseif($nilai->innname_2 == null && $nilai->innname_1 != null)
-                                    {{$long1}} &nbsp; hari x Rp. 
+                                    {{$long1}} hari &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp. 
                                 @else
                                 - &nbsp; <br>
                                 @endif
                             </i>
                         </td>
-                        <td style="text-align: right;"> 
+                        <td style="text-align: right; width:10%;"> 
                             <i>
                                 @if ($nilai->innname_2 != null)
-                                    {{$fee1}} &nbsp; <br>
-                                    {{$fee2}}
+                                    {{number_format($fee1)}} &nbsp; <br>
+                                    {{number_format($fee2)}}
                                 @elseif($nilai->innname_2 == null && $nilai->innname_1 != null)
-                                    {{$fee1}} &nbsp;
+                                    {{number_format($fee1)}} &nbsp;
                                 @else
                                     - &nbsp; <br>
                                     
                                 @endif
                             </i> &nbsp;</td>
-                        <td style="text-align: center;">
+                        <td style="text-align: center; width:10%;">
                             <i>
                                 . Rp. <br>
                                 @if ($nilai->innname_2 != null)
@@ -998,7 +998,7 @@
                                 @endif
                             </i>
                         </td>
-                        <td style="text-align: right"> 
+                        <td style="text-align: right; width:10%;"> 
                             <i>
                                 @php
                                     $jum1 = $nilai->klaim_1; 
@@ -1006,10 +1006,10 @@
                                     $subTotal4 = $jum1 + $jum2;
                                 @endphp
                                 @if ($jum2 != '0' && $jum1 != '0')
-                                    {{$jum1}} &nbsp; <br>
-                                    {{$jum2}} &nbsp;
+                                    {{number_format($jum1)}} &nbsp; <br>
+                                    {{number_format($jum2)}} &nbsp;
                                 @elseif($jum2 =='0' && $jum1 != '0')
-                                    {{$jum1}} &nbsp; <br>
+                                    {{number_format($jum1)}} &nbsp; <br>
                                 @else
                                     - &nbsp; <br>
                                 @endif
@@ -1051,30 +1051,29 @@
                         <td><i>
                             Uang Representatif Eselon II
                             </i></td>
-                        <td style="text-align: center;"><i>:</i> </td>
-                        <td> 
+                        <td style="text-align: center; width:5%;"><i>:</i> </td>
+                        <td style="width: 18%"> 
                             <i>
                                 @if ($daily->representatif == 'Y')
                                     {{$daily->jumrep}}
                                 @else
                                     {{ '-' }}
-                                @endif
-                            </i>
+                                @endif 
+                                hari &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp.
+                            </i> &nbsp;
                         </td>
-                        <td style="text-align: center;">
-                            <i>. hari x Rp.</i>
-                        </td>
-                        <td style="text-align: right;"> 
+                        <td style="text-align: right; width:10%"> 
                             <i>
                                 @if ($daily->representatif == 'Y')
                                     {{number_format($daily->hitrep)}}
                                 @else
                                     {{ '-' }}
                                 @endif
-                                &nbsp; . hari x Rp.
-                            </i> &nbsp;
+                            </i> &nbsp;</td>
+                        <td style="text-align: center; width:10%">
+                            <i>. Rp.</i>
                         </td>
-                        <td style="text-align: right"> 
+                        <td style="text-align: right; width:10%"> 
                             <i>
                                 @php
                                     $subTotalHarian = $daily->totrep;  

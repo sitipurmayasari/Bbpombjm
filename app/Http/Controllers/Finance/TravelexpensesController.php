@@ -278,8 +278,14 @@ class TravelexpensesController extends Controller
                                 ->LeftJoin('users','users.id','=','outst_employee.users_id')
                                 ->where('expenses_id',$request->id)
                                 ->get();
-        $expen2 = Travelexpenses1::SelectRaw('travelexpenses1.*, users.name')
+        $expen2 = Travelexpenses1::SelectRaw('travelexpenses1.*, users.name','inn_loc1','inn_telp1','checkin1','checkout1','inn_room1'
+                                            ,'innvoice1','inn_loc2','inn_telp2','checkin2','checkout2','inn_room2','innvoice2',
+                                            'plane_book1','plane_flight1',
+                                            'plane_book2','plane_flight2',
+                                            'plane_book3','plane_flight3',
+                                            'plane_bookreturn','plane_flightreturn')
                                 ->LeftJoin('outst_employee','travelexpenses1.outst_employee_id','=','outst_employee.id')
+                                ->letjoin('travelexpenses2','travelexpenses2.outst_employee_id','=','travelexpenses1.outst_employee.id')
                                 ->LeftJoin('users','users.id','=','outst_employee.users_id')
                                 ->where('expenses_id',$request->id)
                                 ->get();
@@ -302,6 +308,7 @@ class TravelexpensesController extends Controller
             Expenses_daily::where('Expenses_id', $id)->delete();
             Travelexpenses::where('Expenses_id', $id)->delete();
             Travelexpenses1::where('Expenses_id', $id)->delete();
+            Travelexpenses::where('Expenses_id', $id)->delete();
             $expenses_id = $id;
 
             for ($i = 0; $i < count($request->input('outst_employee_id')); $i++){
@@ -414,6 +421,35 @@ class TravelexpensesController extends Controller
                 ];
                 Travelexpenses1::create($datatwo);       
             }
+
+            for ($i = 0; $i < count($request->input('outst_employee_id')); $i++){
+                $datathree = [
+                    'expenses_id'       => $expenses_id,
+                    'employee_id'       => $request->outst_employee_id[$i],
+                    'inn_loc1'          => $request->inn_loc1[$i],
+                    'inn_loc2'          => $request->inn_loc2[$i],
+                    'inn_telp1'         => $request->inn_telp1[$i],
+                    'inn_telp2'         => $request->inn_telp2[$i],
+                    'checkin1'          => $request->checkin1[$i],
+                    'checkin2'          => $request->checkin2[$i],
+                    'checkout1'         => $request->checkout1[$i],
+                    'checkout2'         => $request->checkout2[$i],
+                    'inn_room1'         => $request->inn_room1[$i],
+                    'inn_room2'         => $request->inn_room2[$i],
+                    'innvoice1'         => $request->innvoice1[$i],
+                    'innvoice2'         => $request->innvoice2[$i],
+                    'plane_book1'       => $request->plane_book1[$i],
+                    'plane_book2'       => $request->plane_book2[$i],
+                    'plane_book3'       => $request->plane_book3[$i],
+                    'plane_bookreturn'  => $request->plane_bookreturn[$i],
+                    'plane_flight1'     => $request->plane_flight1[$i],
+                    'plane_flight2'     => $request->plane_flight2[$i],
+                    'plane_flight3'     => $request->plane_flight3[$i],
+                    'plane_flightreturn'=> $request->plane_flightreturn[$i],
+                ];
+                Travelexpenses2::create($datathree);     
+            }
+
             DB::commit();
 
         return redirect('/finance/travelexpenses')->with('sukses','Data Berhasil Diperbaharui');
