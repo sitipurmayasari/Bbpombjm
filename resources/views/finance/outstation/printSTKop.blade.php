@@ -11,11 +11,12 @@
 </head>
 <style>
         @page {
-            size: A4;
-            /* margin: 170px 0px 100px 0px; */
-            font-family: 'Times New Roman';
+            /* size: legal; */
+            size:8.5in 13in ;
+            font-family: 'Bookman Old Style';
             font-size: 11px;
             page-break-after: always;
+            page-break-inside: avoid;
             
         }
         
@@ -23,9 +24,11 @@
         body, html {
             height: 100%;
             margin: 0;
+            width:100%;
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
+            /* background-size: auto; */
         }
 
         .header {
@@ -119,7 +122,7 @@
         }
 
 </style>
-<body background="{{asset('images/kop.png')}}">
+<body background="{{asset('images/KOPF4.png')}}">
      {{-- <header>
         <img src="{{asset('images/kop.png')}}" style="width: 100%"> <br>
     </header> --}}

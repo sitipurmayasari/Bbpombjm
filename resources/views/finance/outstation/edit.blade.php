@@ -396,7 +396,7 @@
                             '<option value="{{$item->id}}">{{$item->name}} | {{$item->no_pegawai}}</option>'+
                         '@endforeach'+
                     '</select>'+  
-                    '<input type="text" name="hidden[]">'+              
+                    '<input type="hidden" name="outemp_id[]">'+              
                 '</td>'+
                     '<td>'+
                         '<select name="no_sppd[]" class="form-control select2 penomoransppd">'+

@@ -6,10 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="{{asset('assets/css/no_header.css')}}" rel="stylesheet">
+    {{-- <link href="{{asset('assets/css/no_header.css')}}" rel="stylesheet"> --}}
     <title>Surat Tugas</title>
 </head>
 <style>
+    @page {
+        size:8.5in 13in ;
+        margin: 155px 0px 100px 0px;
+    }
     html, table{
             font-family: "Bookman Old Style";
             font-size: 12;
