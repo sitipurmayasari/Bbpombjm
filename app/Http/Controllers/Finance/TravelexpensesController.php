@@ -278,16 +278,11 @@ class TravelexpensesController extends Controller
                                 ->LeftJoin('users','users.id','=','outst_employee.users_id')
                                 ->where('expenses_id',$request->id)
                                 ->get();
-        $expen2 = Travelexpenses1::SelectRaw('travelexpenses1.*, users.name','inn_loc1','inn_telp1','checkin1','checkout1','inn_room1'
-                                            ,'innvoice1','inn_loc2','inn_telp2','checkin2','checkout2','inn_room2','innvoice2',
-                                            'plane_book1','plane_flight1',
-                                            'plane_book2','plane_flight2',
-                                            'plane_book3','plane_flight3',
-                                            'plane_bookreturn','plane_flightreturn')
-                                ->LeftJoin('outst_employee','travelexpenses1.outst_employee_id','=','outst_employee.id')
-                                ->letjoin('travelexpenses2','travelexpenses2.outst_employee_id','=','travelexpenses1.outst_employee.id')
+        $expen2 = Travelexpenses1::SelectRaw('travelexpenses1.*, users.name,inn_loc1,inn_telp1,checkin1,checkout1,inn_room1, innvoice1,inn_loc2,inn_telp2,checkin2,checkout2,inn_room2,innvoice2,plane_book1,plane_flight1,plane_book2,plane_flight2,plane_book3,plane_flight3,plane_bookreturn,plane_flightreturn')
+                                ->LeftJoin('outst_employee','travelexpenses1.outst_employee_id','=','outst_employee_id')
+                                ->leftjoin('travelexpenses2','travelexpenses2.outst_employee_id','=','travelexpenses1.outst_employee_id')
                                 ->LeftJoin('users','users.id','=','outst_employee.users_id')
-                                ->where('expenses_id',$request->id)
+                                ->where('travelexpenses1.expenses_id',$request->id)
                                 ->get();
 
 

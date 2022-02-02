@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Travelexpenses2 extends Model
 {
     protected $table = "travelexpenses2";
-    protected $fillable = ['expenses_id','employee_id',
+    protected $fillable = ['expenses_id','outst_employee_id',
                             'inn_loc1','inn_telp1','checkin1','checkout1','inn_room1','innvoice1',
                             'inn_loc2','inn_telp2','checkin2','checkout2','inn_room2','innvoice2',
                             'plane_book1','plane_flight1',
