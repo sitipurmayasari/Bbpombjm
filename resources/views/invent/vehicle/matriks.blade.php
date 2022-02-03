@@ -12,7 +12,14 @@
 @section('content')
 
 <style>
+    @media print {
+    div {
+        -webkit-print-color-adjust: exact !important; /*Chrome, Safari */
+        color-adjust: exact !important;  /*Firefox*/
+        }
+    }
     @page {
+            size: landscape;
             font-family: 'Times New Roman';
             font-size: 11px;
     }
@@ -40,21 +47,25 @@
     }
 
     .pjk{
-        background:blue;
-        color: white;
+        background:blue !important;
+        color: white !important;
         text-align: center;
+        font-weight: bold;
+
     }
 
     .plt{
-        background:red;
-        color: white;
+        background:red !important;
+        color: white !important;
         text-align: center;
+        font-weight: bold;
     }
 
     .main{
-        background:green;
-        color: white;
+        background:green !important;
+        color: white !important;
         text-align: center;
+        font-weight: bold;
     }
     
 </style>
@@ -94,15 +105,15 @@
                 @foreach($data as $key=>$row)
                     <tr>
                         <td style="text-align: center">{{$no++}}</td>
-                        <td>
+                        <td>&nbsp; 
                             @if ($row->type=="M")
                                 MOTOR
                             @else
                                 MOBIL
                             @endif
                         </td>
-                        <td>{{$row->merk}}</td>
-                        <td>{{$row->police_number}}</td>
+                        <td> &nbsp; {{$row->merk}}</td>
+                        <td> &nbsp; {{$row->police_number}}</td>
                         <td>
                             @php
                                 $mon1 = '01';
@@ -125,7 +136,7 @@
                                 
                             @endphp
 
-                            <div class="pjk"> {{$pajak1}}</div>
+                            <div class="pjk "> {{$pajak1}}</div>
                             <div class="plt"> {{$plat1}}</div>
                             <div class="main"> {{$main1}}</div>
                         </td>
@@ -177,9 +188,9 @@
                                 
                             @endphp
 
-                        <div class="pjk"> {{$pajak3}}</div>
-                        <div class="plt"> {{$plat3}}</div>
-                        <div class="main"> {{$main3}}</div>
+                        <div class="pjk primary"> {{$pajak3}}</div>
+                        <div class="plt danger"> {{$plat3}}</div>
+                        <div class="main susscess"> {{$main3}}</div>
                         </td>
                         <td>
                             @php
@@ -429,7 +440,4 @@
     </div>
 </div>
 
-@endsection
-
-@section('footer')
 @endsection

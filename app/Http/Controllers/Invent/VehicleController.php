@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use PDF;
 
 use App\Car;
 use App\JadwalCar;
@@ -99,6 +100,9 @@ class VehicleController extends Controller
     {   
         $now = Carbon::now()->year;
         $data = Car::whereYear('tax_date',$now)->get();
+
+        // $pdf = PDF::loadview('invent/vehicle.matriks',compact('data','now'));
+        // return $pdf->stream();
         return view('invent/vehicle.matriks',compact('data','now'));
     }
 }
