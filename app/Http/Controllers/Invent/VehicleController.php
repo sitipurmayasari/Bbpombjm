@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Car;
+use App\JadwalCar;
+use App\User;
 
 class VehicleController extends Controller
 {
@@ -23,8 +25,8 @@ class VehicleController extends Controller
 
     public function create()
     {
-
-        return view('invent/vehicle.create');
+        $pj = User::where('aktif','Y')->where('id','!=','1')->get();
+        return view('invent/vehicle.create',compact('pj'));
     }
 
     public function store(Request $request)
@@ -43,7 +45,8 @@ class VehicleController extends Controller
     public function edit($id)
     {
         $data = Car::where('id',$id)->first();
-        return view('invent/vehicle.edit',compact('data'));
+        $pj = User::where('aktif','Y')->where('id','!=','1')->get();
+        return view('invent/vehicle.edit',compact('data','pj'));
     }
 
    
@@ -65,5 +68,28 @@ class VehicleController extends Controller
         $data = Car::find($id);
         $data->delete();
         return redirect('/invent/vehicle')->with('sukses','Data Terhapus');
+    }
+
+    public function jadwal($id)
+    {
+        $jadwal = JadwalCar::orderBy('id','asc')
+                    ->where('car_id',$id)
+                    ->get();
+        $data = Car::where('id',$id)->first();
+
+        return view('invent/vehicle.jadwal',compact('data','jadwal'));
+    }
+
+    public function storejadwal(Request $request)
+    {
+        $jadwal = JadwalCar::create($request->all());
+        return redirect('/invent/vehicle/jadwal/'.$jadwal->car_id)->with('sukses','Data Tersimpan');
+    }
+
+    public function deletejadwal($id)
+    {
+        $data = JadwalCar::find($id);
+        $data->delete();
+        return redirect('/invent/vehicle/jadwal/'.$data->car_id)->with('sukses','Data Terhapus');
     }
 }

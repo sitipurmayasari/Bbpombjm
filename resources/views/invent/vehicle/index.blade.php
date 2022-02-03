@@ -11,8 +11,9 @@
             <div class="row">
                 <div class="form-group col-sm-12">
                     <div class="row">
-                        <div class="form-group col-xs-12 col-sm-3" style="float: left">
+                        <div class="form-group col-xs-12 col-sm-5" style="float: left">
                            <a href="{{Route('vehicle.create')}}"  class="btn btn-primary">Tambah Data</a>   
+                           <a href="{{Route('vehicle.create')}}"  class="btn btn-success">Matriks Maintenance</a>   
                         </div>
                         <div class="form-group col-xs-12 col-sm-5" style="float: right">
                             <div class="input-group">
@@ -39,6 +40,7 @@
                 <th>Jenis</th>
                 <th>Merk</th>
                 <th>No. Polisi</th>
+                <th>Maintenance</th>
                 <th>Aksi</th>
             </head>
             <tbody>   	
@@ -55,6 +57,11 @@
                     </td>
                     <td>{{$row->merk}}</td>
                     <td>{{$row->police_number}}</td>
+                    <td>
+                        <a href="/invent/vehicle/jadwal/{{$row->id}}" class="btn btn-success">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                        </a>
+                    </td>
                     <td>
                         <a href="/invent/vehicle/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>

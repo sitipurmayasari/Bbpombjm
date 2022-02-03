@@ -22,25 +22,25 @@
                 </div>
             </div>
             <div class="widget-body">
-                <div class="col-sm-6">
+                <div class="col-sm-12">
                     <div class="widget-main no-padding">
                         <fieldset>
                         <br>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
+                            <label class="col-sm-2 control-label no-padding-right" 
                             for="form-field-1"> Kode Kendaraan
                             </label>
-                            <div class="col-sm-9">
+                            <div class="col-sm-8">
                                 <input type="text"
                                         class="col-xs-10 col-sm-10 required " 
                                         name="code" required value="{{$data->code}}"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
+                            <label class="col-sm-2 control-label no-padding-right" 
                             for="form-field-1"> Jenis Kendaraan
                             </label>
-                            <div class="col-sm-9">
+                            <div class="col-sm-8">
                              @if ($data->type=='M')
                                 <input type="radio" required value="M" checked name="type" id="M"/> 
                                 &nbsp; Motor  &nbsp;
@@ -55,50 +55,67 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
+                            <label class="col-sm-2 control-label no-padding-right" 
                             for="form-field-1"> Merk / Jenis Kendaraan
                             </label>
-                            <div class="col-sm-9">
+                            <div class="col-sm-8">
                                 <input type="text"  value="{{$data->merk}}"
                                         class="col-xs-10 col-sm-10 required " 
                                         name="merk" required />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
+                            <label class="col-sm-2 control-label no-padding-right" 
                             for="form-field-1"> No. Polisi
                             </label>
-                            <div class="col-sm-9">
+                            <div class="col-sm-8">
                                 <input type="text"  value="{{$data->police_number}}" 
                                         class="col-xs-10 col-sm-10 required " 
                                         name="police_number" required />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
+                            <label class="col-sm-2 control-label no-padding-right" 
                             for="form-field-1"> Tanggal Pajak
                             </label>
-                            <div class="col-sm-5">
+                            <div class="col-sm-3">
                                 <input type="date" value="{{$data->tax_date}}"
                                         class="col-xs-10 col-sm-10 required " 
                                         name="tax_date" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
+                            <label class="col-sm-2 control-label no-padding-right" 
                             for="form-field-1"> Tanggal PLat
                             </label>
-                            <div class="col-sm-5">
+                            <div class="col-sm-3">
                                 <input type="date" value="{{$data->police_number_date}}"
                                         class="col-xs-10 col-sm-10 required " 
                                         name="police_number_date" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
+                            <label class="col-sm-2 control-label no-padding-right" 
+                            for="form-field-1"> Penanggung Jawab
+                            </label>
+                            <div class="col-sm-8">
+                                <select  name="users_id" class="col-xs-10 col-sm-10 select2">
+                                    <option value="">Pilih Nama Pegawai</option>
+                                    @foreach ($pj as $peg)
+                                        @if ($peg->id == $data->users_id)
+                                            <option value="{{$peg->id}}" selected>{{$peg->no_pegawai}} || {{$peg->name}}</option>
+                                        @else
+                                            <option value="{{$peg->id}}" >{{$peg->no_pegawai}} || {{$peg->name}}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right" 
                             for="form-field-1"> Operasional
                             </label>
-                            <div class="col-sm-9">
+                            <div class="col-sm-8">
                                 @if ($data->operasional=='Y')
                                     <input type="radio" required value="Y" checked name="operasional" id="Y"/> 
                                     &nbsp; Ya  &nbsp;

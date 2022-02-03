@@ -103,6 +103,9 @@
   Route::get('invent/vehicle/delete/{id}','Invent\VehicleController@delete')->name('vehicle.delete');
   Route::get('invent/vehicle/edit/{id}','Invent\VehicleController@edit')->name('vehicle.edit');
   Route::post('invent/vehicle/update/{id}','Invent\VehicleController@update')->name('vehicle.update');
+  Route::get('/invent/vehicle/jadwal/{id}','Invent\VehicleController@jadwal')->name('vehicle.jadwal');
+  Route::post('/invent/vehicle/storejadwal','Invent\VehicleController@storejadwal')->name('vehicle.storejadwal');
+  Route::get('invent/vehicle/deletejadwal/{id}','Invent\VehicleController@deletejadwal')->name('vehicle.deletejadwal');
 
   //Route untuk Pinjam Mobil
   Route::get('/invent/carrent/create','Invent\CarrentController@create')->name('carrent.create');
