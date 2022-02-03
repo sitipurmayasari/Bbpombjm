@@ -19,6 +19,8 @@ use App\Outst_employee;
 use App\Outstation;
 use App\Vehiclerent;
 use App\Entrystock;
+use App\Car;
+use App\JadwalCar;
 use Illuminate\Support\Facades\DB;
 
 class InjectQuery
@@ -320,6 +322,25 @@ class InjectQuery
                             ->where('inventaris_id',$id)
                             ->first();
         return $stok;
+    }
+
+    //-------------------Matriks Mobil--------------------
+    public function pajak($id, $year, $mon){
+        $pajak = Car::Where('id',$id)
+                    ->whereYear('tax_date',$year)
+                    ->whereMonth('tax_date',$mon)
+                    ->first();
+        return $pajak;
+    }
+
+    public function jadmain($id, $year, $mon){
+        $main = JadwalCar::Select('tanggal')
+                    ->Where('car_id',$id)
+                    ->whereYear('tanggal',$year)
+                    ->whereMonth('tanggal',$mon)
+                    ->first();
+        // return $main ? $main->tanggal : '';
+        return $main;
     }
    
    

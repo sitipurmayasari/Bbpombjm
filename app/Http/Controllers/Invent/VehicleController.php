@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Invent;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 use App\Car;
 use App\JadwalCar;
@@ -91,5 +93,12 @@ class VehicleController extends Controller
         $data = JadwalCar::find($id);
         $data->delete();
         return redirect('/invent/vehicle/jadwal/'.$data->car_id)->with('sukses','Data Terhapus');
+    }
+
+    public function matriks()
+    {   
+        $now = Carbon::now()->year;
+        $data = Car::whereYear('tax_date',$now)->get();
+        return view('invent/vehicle.matriks',compact('data','now'));
     }
 }

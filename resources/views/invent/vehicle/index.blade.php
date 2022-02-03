@@ -13,7 +13,7 @@
                     <div class="row">
                         <div class="form-group col-xs-12 col-sm-5" style="float: left">
                            <a href="{{Route('vehicle.create')}}"  class="btn btn-primary">Tambah Data</a>   
-                           <a href="{{Route('vehicle.create')}}"  class="btn btn-success">Matriks Maintenance</a>   
+                           <a href="{{Route('vehicle.matriks')}}"  class="btn btn-success">Matriks Maintenance</a>   
                         </div>
                         <div class="form-group col-xs-12 col-sm-5" style="float: right">
                             <div class="input-group">
