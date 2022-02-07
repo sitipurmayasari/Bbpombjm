@@ -7,22 +7,23 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="{{asset('assets/css/print.css')}}" rel="stylesheet">
-    <title>Document</title>
+    <title>Rekapitulasi Biaya Perjalanan Dinas</title>
 </head>
 <body>
-    <header>
-        <img src="{{asset('images/kopsurat1.jpg')}}" style="width: 100%">
-    </header>
+    {{-- @php
+        header("Content-type: application/vnd-ms-excel");
+        header("Content-Disposition: attachment; filename=Rekap_Perjadin.xls");
+    @endphp --}}
     <main>
         <div class="col-sm-12 isi" style="text-align: center">
             <div style="align=center font-size: 20px">
-                <b>Rekapitulasi Surat Tugas</b>
+                <b>Rekapitulasi Biaya Perjalanan Dinas</b>
             </div>
             <br>
          </div>
          <div class="isi" style="font-size: 12px">
             Periode :
-            @if ($request->bulan!="1")
+            @if ($request->bulan =="2")
                @php
                    $bln = $request->daftarbulan;
 
@@ -56,6 +57,12 @@
             @endif 
             @if ($request->tahun!="1")
                 {{$request->daftartahun}}
+            @else
+                Semua Data
+            @endif
+            <br>
+            @if ($request->divisi != null)
+                Bidang : {{$bidang->nama}}         
             @endif
             <br>
             <br>
@@ -65,12 +72,10 @@
                      <thead style="text-align: center">
                          <tr>
                             <th width="20px" style="vertical-align: middle;">No</th>
+                            <th style="vertical-align: middle;">Nama Pegawai</th>
                             <th style="vertical-align: middle;">Nomor Surat Tugas</th>
-                            <th style="vertical-align: middle;">Tanggal Pengajuan</th>
-                            <th style="vertical-align: middle;">Bidang</th>
                             <th style="vertical-align: middle;">Nama Kegiatan</th>
-                            <th style="vertical-align: middle;">Destinasi</th>
-                            <th style="vertical-align: middle;">Petugas</th>
+                            <th style="vertical-align: middle;">Uang Harian</th>
                             <th style="vertical-align: middle;">ket</th>
                          </tr>
                      <thead>
@@ -79,47 +84,18 @@
                         @foreach($data as $key=>$row)
                         <tr>
                             <td style="text-align: center">{{$no++}}</td>
+                            <td>{{$row->name}}</td>
                             <td>{{$row->number}}</td>
-                            <td>{{tgl_indo($row->st_date)}}</td>
-                            <td>{{$row->divisi->nama}}</td>
                             <td>{{$row->purpose}}</td>
                             <td>
-                                @if (count($row->outst_destiny) == 1)
-                                    @foreach ($row->outst_destiny as $key=>$item)
-                                        @if ($loop->first)
-                                            {{$item->destiny->capital}} 
-                                        @endif
-                                        
-                                    @endforeach
-
-                                @elseif (count($row->outst_destiny) == 2)
-                                    @foreach ($row->outst_destiny as $key=>$item)
-                                        {{$item->destiny->capital}}
-                                        @if ($row->outst_destiny->count()-1 != $key)
-                                            {{' dan '}}
-                                        @endif
-                                    @endforeach
-
-                                @else
-                                    @foreach ($row->outst_destiny as $key=>$item)
-                                        @if ($loop->last-1)
-                                            {{$item->destiny->capital}}{{','}} 
-                                        @endif
-                                        @if ($loop->last)
-                                            {{' dan '}} {{$item->destiny->capital}}
-                                        @endif
-                                        
-                                    @endforeach
-                                @endif
+                                @php
+                                    $dai1 = $row->totdaily1;
+                                    $dai2 = $row->totdaily2;
+                                    $dai3 = $row->totdaily3;
+                                    $harian = $dai+$dai2+$dai3;
+                                @endphp
+                                {{$harian}}
                             </td>
-                            <td style="text-align: center">
-                                {{count($row->petugas)}} Orang
-                            </td>   
-                            <td>
-                                @if ($row->external == 'Y')
-                                    Petugas External        
-                                @endif
-                            </td> 
                         </tr>
                         @endforeach
                      <tbody>

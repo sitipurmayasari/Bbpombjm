@@ -12,6 +12,11 @@ use App\Outstation;
 use App\Outst_employee;
 use App\Outst_destiny;
 use App\Users;
+use App\Expenses;
+use App\Expenses_daily;
+use App\Travelexpenses;
+use App\Travelexpenses1;
+use App\Travelexpenses2;
 
 class OutReportController extends Controller
 {
@@ -63,7 +68,30 @@ class OutReportController extends Controller
                                 })
                                 ->get();
             $pdf = PDF::loadview('finance/outreport.cetakpeg',compact('data','request'));
-            return $pdf->stream();                     
+            return $pdf->stream();                  
+        }elseif($request->jenis_Laporan=="Kui"){
+            $data = Expenses_daily::Orderby('outstation.id','asc')
+                            ->SelectRaw('users.name, expenses_daily.*, outst_employee_id, outstation.*')
+                            ->LeftJoin('outst_employee','expenses_daily.outst_employee_id','=','outst_employee.id')
+                            ->LeftJoin('users','users.id','=','outst_employee.users_id')
+                            ->LeftJoin('expenses','expenses.id','=','expenses_daily.expenses_id')
+                            ->LeftJoin('outstation','outstation.id','=','expenses.outstation_id')
+                            ->when($request->divisi, function ($query) use ($request) {
+                               $query->where('outstation.divisi_id',$request->divisi);
+                            })
+                            ->when($request->tahun, function ($query) use ($request) {
+                                if($request->tahun==2){
+                                    $query->whereYear('expenses.date',$request->daftartahun);
+                                }
+                             })
+                             ->when($request->bulan, function ($query) use ($request) {
+                                if($request->bulan==2){
+                                    $query->whereMonth('expenses.date',$request->daftarbulan);
+                                }
+                             })
+                            ->get();
+            $bidang = Divisi::where('id', $request->divisi)->first();
+            return view('finance/outreport.cetaklapkui',compact('data','request','bidang'));                   
         } else {
             dd($request->all());
 

@@ -198,6 +198,7 @@ class TravelexpensesController extends Controller
                     'taxy_count_from'   => $request->taxy_count_from[$i],
                     'taxy_fee_from'     => $request->taxy_fee_from[$i],
                     'taxy_count_to'     => $request->taxy_count_to[$i],
+                    'taxy_fee_to'       => $request->taxy_fee_to[$i],
                     'plane_id1'         => $request->plane_id1[$i],
                     'plane_id2'         => $request->plane_id2[$i],
                     'plane_id3'         => $request->plane_id3[$i],
@@ -396,6 +397,7 @@ class TravelexpensesController extends Controller
                     'taxy_count_from'   => $request->taxy_count_from[$i],
                     'taxy_fee_from'     => $request->taxy_fee_from[$i],
                     'taxy_count_to'     => $request->taxy_count_to[$i],
+                    'taxy_fee_to'     => $request->taxy_fee_to[$i],
                     'plane_id1'         => $request->plane_id1[$i],
                     'plane_id2'         => $request->plane_id2[$i],
                     'plane_id3'         => $request->plane_id3[$i],
@@ -417,6 +419,7 @@ class TravelexpensesController extends Controller
                 Travelexpenses1::create($datatwo);       
             }
 
+            //Travelexpenses2
             for ($i = 0; $i < count($request->input('outst_employee_id')); $i++){
                 $datathree = [
                     'expenses_id'       => $expenses_id,
@@ -442,7 +445,7 @@ class TravelexpensesController extends Controller
                     'plane_flight3'     => $request->plane_flight3[$i],
                     'plane_flightreturn'=> $request->plane_flightreturn[$i],
                 ];
-                Travelexpenses2::create($datathree);     
+                Travelexpenses2::create($datathree);    
             }
 
             DB::commit();

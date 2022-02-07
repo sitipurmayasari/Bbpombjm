@@ -251,7 +251,7 @@
             @endphp
             <td class="isi" style="text-align: center">1</td>
             <td>
-               <table style="width: 100%">
+                <table style="width: 100%;">
                     <tr>
                         <td colspan="7"><i>Biaya Transport</i></td>
                         @php
@@ -264,10 +264,10 @@
                     <tr>
                         <td colspan="2"> <i>Tiket Pesawat / Kereta</i></td>
                         <td style="width: 5%"></td>
-                        <td  style="width: 18%"> <i>Pergi</i></td>
-                        <td style="width: 10%"></td>
+                        <td style="width: 18%"> <i>Pergi</i></td>
+                        <td style="width: 13%"></td>
                         <td style="text-align: center; width:10%;"> <i>. Rp.</i></td>
-                        <td style="text-align: right; width:10%;"> 
+                        <td style="text-align: right; width:13%;"> 
                             <i>
                                 @if ($nilai->planefee1 != '0')
                                     @php
@@ -325,8 +325,8 @@
                                 {{$item->out->cityfrom->capital}}
                             </i>
                         </td>
-                        <td style="text-align: center;"><i>:</i> </td>
-                        <td> <i>
+                        <td style="text-align: center; width:5%;"><i>:</i> </td>
+                        <td style="width: 18%"> <i>
                                 @if ($nilai->taxy_count_from != '0')
                                     @php
                                         $jumtaxi =$nilai->taxy_count_from;
@@ -336,7 +336,7 @@
                                     {{ '-' }}
                                 @endif
                                 &nbsp;
-                                kali &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp. 
+                                kali &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp.
                             </i>
                         </td>
                         <td style="text-align: right"> 
@@ -352,8 +352,8 @@
                             </i> 
                             &nbsp;
                         </td>
-                        <td style="text-align: center;"><i>. Rp.</i></td>
-                        <td style="text-align: right"> 
+                        <td style="text-align: center; width:10%;"><i>. Rp.</i></td>
+                        <td style="text-align: right;  width:10%;"> 
                             <i>
                                 @php
                                     $subtrans = $jumtaxi*$hartaxi;  
@@ -422,20 +422,28 @@
                                     -
                                 @endif
                                 &nbsp;
-                                kali &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp.
+                                kali &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp. 
                             </i>
                         </td>
                         <td style="text-align: right;"> 
                             <i>
-                                @if ($nilai->bbm != '0')
+                                @if ($nilai->bbm != '0' && $nilai->taxy_count_to == null)
                                     @php
                                         $bbm = $nilai->bbm;
                                     @endphp
                                     {{number_format($bbm)}}
         
-                                @elseif($nilai->taxy_count_to != null)
+                                @elseif($nilai->taxy_count_to != null && $nilai->bbm == '0')
                                     @php
                                         $bbm = $nilai->taxy_fee_to;
+                                    @endphp
+                                    {{number_format($bbm)}}
+                                @elseif($nilai->taxy_count_to != null && $nilai->bbm != '0')
+                                    @php
+                                        $a = $nilai->taxy_fee_to;
+                                        $b = $nilai->bbm;
+
+                                        $bbm = $a+$b;
                                     @endphp
                                     {{number_format($bbm)}}
                                 @else
@@ -465,22 +473,19 @@
                         <td style="text-align: center;"><i>:</i> </td>
                         <td> 
                             <i>
-                                -kali &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp.
+                                - &nbsp; kali &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp.
                             </i>
                         </td>
                         <td style="text-align: right;"> <i>- &nbsp;</i> &nbsp;</td>
                         <td style="text-align: center;"><i>. Rp.</i></td>
                         <td style="text-align: right"> 
-                            <i>-</i> &nbsp; 
+                            <i>-</i> &nbsp; &nbsp; 
                         </td>
                     </tr>
                </table>
             </td>
             <td class="isi">
                 Rp. &nbsp;&nbsp;&nbsp;&nbsp;
-                @php
-                    $subTotal1 = $subtrans;
-                @endphp
                 @if ($subTotal1=='0')
                     {{'-'}}
                 @else
@@ -606,7 +611,7 @@
                                 @else
                                     {{ '-' }} 
                                 @endif
-                                =hari &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp.
+                                hari &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp.
                             </i>
                         </td>
                         <td style="text-align: right;"> 
@@ -961,7 +966,7 @@
                                 - &nbsp; <br>
                             @endif
                             </i></td>
-                        <td style="text-align: center; width:5%;"><i>:</i> </td>
+                        <td style="text-align: center; width:5%"><i>:</i> </td>
                         <td style="width: 18%;"> 
                             <i>
                                 @php
@@ -972,25 +977,25 @@
                                     {{$long1}} hari &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp.  <br>
                                     {{$long2}} hari &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp. 
                                 @elseif($nilai->innname_2 == null && $nilai->innname_1 != null)
-                                    {{$long1}} hari &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp. 
+                                    {{$long1}} hari &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp.
                                 @else
                                 - &nbsp; <br>
                                 @endif
                             </i>
                         </td>
-                        <td style="text-align: right; width:10%;"> 
+                        <td style="text-align: right; width:13%"> 
                             <i>
                                 @if ($nilai->innname_2 != null)
-                                    {{number_format($fee1)}} &nbsp; <br>
-                                    {{number_format($fee2)}}
+                                    {{number_format($nilai->inn_fee_1)}} &nbsp; <br>
+                                    {{number_format($nilai->inn_fee_2)}}
                                 @elseif($nilai->innname_2 == null && $nilai->innname_1 != null)
-                                    {{number_format($fee1)}} &nbsp;
+                                    {{number_format($nilai->inn_fee_1)}} &nbsp;
                                 @else
                                     - &nbsp; <br>
                                     
                                 @endif
                             </i> &nbsp;</td>
-                        <td style="text-align: center; width:10%;">
+                        <td style="text-align: center; width:10%">
                             <i>
                                 . Rp. <br>
                                 @if ($nilai->innname_2 != null)
@@ -998,7 +1003,7 @@
                                 @endif
                             </i>
                         </td>
-                        <td style="text-align: right; width:10%;"> 
+                        <td style="text-align: right; width:13%"> 
                             <i>
                                 @php
                                     $jum1 = $nilai->klaim_1; 

@@ -78,7 +78,11 @@
                         @foreach($data as $key=>$row)
                         <tr>
                             <td style="text-align: center">{{$no++}}</td>
-                            <td>{{$row->pegawai->name}}</td>
+                            <td>{{$row->pegawai->name}} 
+                                @if ($row->out->external == 'Y')
+                                    (Petugas External) 
+                                @endif
+                            </td>
                             <td>{{$row->pegawai->divisi->nama}}</td>
                             <td>{{$row->out->number}}</td>
                             <td>{{$row->out->purpose}}</td>

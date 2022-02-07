@@ -262,7 +262,30 @@
                     </b>
                 </td>
                 <td class="isi">
-                    @php
+                    Rp. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    @if ($nilai->bbm != '0' && $nilai->taxy_count_to == null)
+                        @php
+                            $bbm = $nilai->bbm;
+                        @endphp
+                        {{number_format($bbm)}}
+        
+                    @elseif($nilai->taxy_count_to != null && $nilai->bbm == '0')
+                        @php
+                            $bbm = $nilai->taxy_fee_to;
+                        @endphp
+                        {{number_format($bbm)}}
+                    @elseif($nilai->taxy_count_to != null && $nilai->bbm != '0')
+                        @php
+                            $a = $nilai->taxy_fee_to;
+                            $b = $nilai->bbm;
+
+                            $bbm = $a+$b;
+                        @endphp
+                        {{number_format($bbm)}}
+                        @else
+                            {{ '-' }}
+                        @endif
+                    {{-- @php
                         $bbm = $nilai->bbm;
                     @endphp
                     Rp. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -270,7 +293,7 @@
                         {{number_format($bbm)}}
                     @else
                         {{'-'}} 
-                    @endif
+                    @endif --}}
                 </td>
                 <td style="text-align: center" class="isi">
                     {{$item->out->transport}}

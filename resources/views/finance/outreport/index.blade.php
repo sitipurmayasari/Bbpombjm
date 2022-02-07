@@ -1,6 +1,5 @@
 @extends('layouts.mon')
 @section('breadcrumb')
-@section('breadcrumb')
     <li>>Laporan</li>
     <li>Laporan Perjalanan Dinas</li>
 
@@ -35,6 +34,7 @@
                                     <option value="">Pilih Jenis Laporan</option>
                                     <option value="ST">Laporan daftar ST Keluar</option>
                                     <option value="Peg">Laporan Daftar Pegawai Dinas</option>
+                                    <option value="Kui">Laporan Biaya Perjalanan Dinas</option>
                                 </select>
                             </div>
                         </div>
