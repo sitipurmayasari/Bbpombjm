@@ -304,7 +304,7 @@ class TravelexpensesController extends Controller
             Expenses_daily::where('Expenses_id', $id)->delete();
             Travelexpenses::where('Expenses_id', $id)->delete();
             Travelexpenses1::where('Expenses_id', $id)->delete();
-            Travelexpenses::where('Expenses_id', $id)->delete();
+            Travelexpenses2::where('Expenses_id', $id)->delete();
             $expenses_id = $id;
 
             for ($i = 0; $i < count($request->input('outst_employee_id')); $i++){
