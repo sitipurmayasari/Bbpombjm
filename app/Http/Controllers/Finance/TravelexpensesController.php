@@ -224,7 +224,7 @@ class TravelexpensesController extends Controller
             for ($i = 0; $i < count($request->input('outst_employee_id')); $i++){
                 $datathree = [
                     'expenses_id'       => $expenses_id,
-                    'employee_id'       => $request->outst_employee_id[$i],
+                    'outst_employee_id' => $request->outst_employee_id[$i],
                     'inn_loc1'          => $request->inn_loc1[$i],
                     'inn_loc2'          => $request->inn_loc2[$i],
                     'inn_telp1'         => $request->inn_telp1[$i],
@@ -423,7 +423,7 @@ class TravelexpensesController extends Controller
             for ($i = 0; $i < count($request->input('outst_employee_id')); $i++){
                 $datathree = [
                     'expenses_id'       => $expenses_id,
-                    'employee_id'       => $request->outst_employee_id[$i],
+                    'outst_employee_id' => $request->outst_employee_id[$i],
                     'inn_loc1'          => $request->inn_loc1[$i],
                     'inn_loc2'          => $request->inn_loc2[$i],
                     'inn_telp1'         => $request->inn_telp1[$i],
