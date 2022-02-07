@@ -34,18 +34,34 @@
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
                 <th width="40px">No</th>
+                <th>Periode</th>
                 <th>No. Keputusan</th>
-                <th>Nama Pegawai</th>
                 <th>Tanggal</th>
+                <th>Poin Smt Lalu</th>
+                <th>Poin Saat ini</th>
                 <th>File Upload</th>
             <thead>
             <tbody>   	
                 @foreach($data as $key=>$row)
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
+                    <td>
+                        @php
+                            $bulan = date("m", strtotime($row->sampai));
+                            $tahun = date("Y", strtotime($row->sampai));
+
+                            if ($bulan = '12') {
+                                $periode = 'II'; 
+                            } else {
+                                $periode = 'II'; 
+                            };
+                        @endphp
+                        SMT {{$periode}} {{$tahun}}
+                    </td>
                     <td>{{$row->nomor_kp}}</td>
-                    <td>{{$row->pegawai->name}}</td>
                     <td>{{$row->tanggal}}</td>
+                    <td style="text-align: center">{{$row->jumlama}}</td>
+                    <td style="text-align: center">{{$row->total}}</td>
                     <td><a href="{{$row->getFIleDupak()}}" target="_blank" >{{$row->file}}</a></td>
                 </tr>
               
