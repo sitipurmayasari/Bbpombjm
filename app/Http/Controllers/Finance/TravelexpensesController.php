@@ -174,7 +174,8 @@ class TravelexpensesController extends Controller
                     'totdayshalf'       => $request->totdayshalf[$i],
                     'daysfull'          => $request->daysfull[$i],
                     'feefull'           => $request->feefull[$i],
-                    'totdayshalf'       => $request->totdayshalf[$i]
+                    'totdayshalf'       => $request->totdayshalf[$i],
+                    'totdaysfull'       => $request->totdaysfull[$i]
                 ];
                 Travelexpenses::create($dataone);
             }
@@ -364,6 +365,7 @@ class TravelexpensesController extends Controller
                     'daysfull'          => $request->daysfull[$i],
                     'feefull'           => $request->feefull[$i],
                     'totdayshalf'       => $request->totdayshalf[$i],
+                    'totdaysfull'       => $request->totdaysfull[$i]
                     
                 ];
                 $dokument = Travelexpenses::create($dataone);

@@ -826,9 +826,6 @@
             <td class="isi">
                 Rp. &nbsp;&nbsp;&nbsp;&nbsp;
                 <i>
-                    @php
-                        $subTotal3 += $subBiaya;
-                    @endphp
                     @if ($subTotal3!= '0')
                         {{number_format($subTotal3)}}
                     @else 
