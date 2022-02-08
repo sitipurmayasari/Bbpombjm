@@ -23,6 +23,7 @@ use App\PPK;
 use App\Plane;
 use App\Budget;
 use App\Petugas;
+use App\Pejabat;
 use PDF;
 
 
@@ -54,7 +55,14 @@ class NominatifController extends Controller
                         ->leftJoin('expenses','expenses.outstation_id','=','outstation.id')
                         ->where('expenses.id',$id)
                         ->get();
-        $pdf = PDF::loadview('finance/nominatif.cetak',compact('data','pegawai','tujuan'));
+        $menyetujui    = Pejabat::SelectRaw('pejabat.* ')
+                        ->leftJoin('outstation','outstation.divisi_id','=','pejabat.divisi_id')
+                        ->leftJoin('divisi','divisi.id','=','outstation.divisi_id')
+                        ->whereraw('subdivisi_id IS NULL')
+                        ->where('outstation.id',$data->outstation_id)
+                        ->whereRaw("st_date BETWEEN pejabat.dari AND pejabat.sampai")
+                        ->first();
+        $pdf = PDF::loadview('finance/nominatif.cetak',compact('data','pegawai','tujuan','menyetujui'));
         return $pdf->stream();
     }
 

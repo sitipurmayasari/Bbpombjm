@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Laporan Nominatif</title>
+    <title>Nominatif Perjalanan Dinas</title>
 
     <style>
         @page {
@@ -388,7 +388,15 @@
             </tr>
             <tr class="table2">
                 <td class="table2">{{$data->st->ppk->jabatan}} <br><br><br><br><br></td>
-                <td class="table2">atasan langsung <br><br><br><br><br></td>
+                <td class="table2">
+                    @if ($menyetujui->pjs !=null)
+                        {{$menyetujui->pjs}}
+                        {{$menyetujui->jabatan->jabatan}} {{$menyetujui->divisi->nama}},
+                    @else
+                        {{$menyetujui->jabatan->jabatan}} {{$menyetujui->divisi->nama}},
+                    @endif
+                    <br><br><br><br><br>
+                </td>
             </tr>
             <tr class="table2">
                 <td class="table2">
@@ -396,7 +404,8 @@
                     NIP. {{$data->st->ppk->user->no_pegawai}}
                 </td>
                 <td class="table2">
-                    Nip-nya
+                    <u>{{$menyetujui->user->name}}</u> <br>
+                    NIP. {{$menyetujui->user->no_pegawai}}
                 </td>
             </tr>
         </table>
