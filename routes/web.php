@@ -239,6 +239,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/finance/mailsubgroup','Finance\MailSubGroupController@index')->name('mailsubgroup');
     //Route untuk Klasifikasi Surat
     Route::get('/finance/mailclasification','Finance\MailClasificationController@index')->name('mailclasification');
+    //Route untuk laporan nominatif Surat
+    Route::get('/finance/nominatif','Finance\NominatifController@index')->name('nominatif');
 
 });
 

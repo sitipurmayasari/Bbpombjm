@@ -270,3 +270,6 @@
     Route::get('finance/mailclasification/edit/{id}','Finance\MailClasificationController@edit')->name('mailclasification.edit');
     Route::post('finance/mailclasification/update/{id}','Finance\MailClasificationController@update')->name('mailclasification.update');
     Route::post('finance/mailclasification/delete/{id}','Finance\MailClasificationController@delete')->name('mailclasification.delete');
+
+    //Route untuk laporan nominatif Surat
+    Route::get('finance/nominatif/cetak/{id}','Finance\NominatifController@cetak')->name('nominatif.cetak');
