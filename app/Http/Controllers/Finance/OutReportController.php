@@ -11,7 +11,7 @@ use App\Divisi;
 use App\Outstation;
 use App\Outst_employee;
 use App\Outst_destiny;
-use App\Users;
+use App\User;
 use App\Expenses;
 use App\Expenses_daily;
 use App\Travelexpenses;
@@ -22,8 +22,9 @@ class OutReportController extends Controller
 {
     public function index()
     {
+        $user = User::where('aktif','Y')->where('id','!=','1')->OrderBy('name','asc')->get();
         $div = Divisi::where('id','!=','1')->get();
-        return view('finance/outreport.index',compact('div'));
+        return view('finance/outreport.index',compact('div' , 'user'));
     }
 
     public function cetak(Request $request)
@@ -68,6 +69,27 @@ class OutReportController extends Controller
                                 })
                                 ->get();
             $pdf = PDF::loadview('finance/outreport.cetakpeg',compact('data','request'));
+            return $pdf->stream();                  
+        }elseif($request->jenis_Laporan=="Per"){
+            $pegawai = User::where('id',$request->users)->first();
+            $data = Outst_employee::orderBy('outst_employee.id','asc')
+                                ->leftJoin('outstation','outstation.id','=','outst_employee.outstation_id')
+                                ->where('outst_employee.users_id',$request->users)
+                                ->when($request->divisi, function ($query) use ($request) {
+                                $query->where('outstation.divisi_id',$request->divisi);
+                                })
+                                ->when($request->tahun, function ($query) use ($request) {
+                                    if($request->tahun==2){
+                                        $query->whereYear('outstation.st_date',$request->daftartahun);
+                                    }
+                                })
+                                ->when($request->bulan, function ($query) use ($request) {
+                                    if($request->bulan==2){
+                                        $query->whereMonth('outstation.st_date',$request->daftarbulan);
+                                    }
+                                })
+                                ->get();
+            $pdf = PDF::loadview('finance/outreport.cetakper',compact('data','request','pegawai'));
             return $pdf->stream();                  
         }elseif($request->jenis_Laporan=="Kui"){
             $data = Expenses_daily::Orderby('outstation.id','asc')

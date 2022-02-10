@@ -30,10 +30,11 @@
                             for="form-field-1"> Jenis Laporan
                             </label>
                             <div class="col-sm-8">
-                                <select name="jenis_Laporan" id="jenis" class="col-xs-10 col-sm-10">
+                                <select name="jenis_Laporan" id="jenis" class="col-xs-10 col-sm-10" onchange="myFunction()">
                                     <option value="">Pilih Jenis Laporan</option>
                                     <option value="ST">Laporan daftar ST Keluar</option>
                                     <option value="Peg">Laporan Daftar Pegawai Dinas</option>
+                                    <option value="Per">Laporan Perjadin Per Pegawai</option>
                                     <option value="Kui">Laporan Biaya Perjalanan Dinas</option>
                                 </select>
                             </div>
@@ -48,6 +49,19 @@
                                     <option value="">Semua Bidang</option>
                                     @foreach ($div as $item)
                                         <option value="{{$item->id}}">{{$item->nama}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" id="Datapeg">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Nama Pegawai
+                            </label>
+                            <div class="col-sm-8">
+                                <select id="users" name="users" class="col-xs-10 col-sm-10 select2">
+                                    <option value="">Pilih Pegawai</option>
+                                    @foreach ($user as $item)
+                                        <option value="{{$item->id}}">{{$item->name}} (NIP/NIK. {{$item->no_pegawai}})</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -143,6 +157,7 @@
         $("#brg").hide();
         $("#tampilbulan").hide();
         $("#tampildetilbulan").hide();
+        $("#Datapeg").hide();
 
         $("#thn").click(function(){
             $("#mew").hide();
@@ -162,5 +177,17 @@
         });
 
     });
+
+
+    $("#jenis").on("change", function(){
+            var v = $(this).val();
+            if(v=="Per"){
+                $("#ruang").hide();
+                $("#Datapeg").show();
+            }else{
+                $("#Datapeg").hide();
+                $("#ruang").show();
+            } 
+        });
 </script>
 @endsection
