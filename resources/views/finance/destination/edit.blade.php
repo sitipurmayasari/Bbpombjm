@@ -117,15 +117,15 @@
                             <tbody>
                                 <tr>
                                     <td>Uang Transport</td>
-                                    <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0" value="{{$data->trans1}}"
+                                    <td> <input type="number"  placeholder="Rp. 0,-"min="0" value="{{$data->trans1}}"
                                          name="trans1" /></td>
-                                    <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0" value="{{$data->trans2}}"
+                                    <td> <input type="number"  placeholder="Rp. 0,-" min="0" value="{{$data->trans2}}"
                                         name="trans2" /></td>
-                                    <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0" value="{{$data->trans3}}"
+                                    <td> <input type="number"  placeholder="Rp. 0,-" min="0" value="{{$data->trans3}}"
                                             name="trans3" /></td>
-                                    <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0" value="{{$data->trans4}}"
+                                    <td> <input type="number"  placeholder="Rp. 0,-" min="0" value="{{$data->trans4}}"
                                            name="trans4" /></td>
-                                    <td> <input type="number"  placeholder="Rp. 0,-" value="0" min="0" value="{{$data->trans5}}"
+                                    <td> <input type="number"  placeholder="Rp. 0,-" min="0" value="{{$data->trans5}}"
                                            name="trans5" /></td>    
                                 </tr>
                                 <tr>

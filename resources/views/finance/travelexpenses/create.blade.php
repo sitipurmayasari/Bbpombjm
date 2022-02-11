@@ -467,6 +467,11 @@
                         '<td style="width: 120px;">'+response.peg[i].name+
                             '<input type="hidden" name="idpeg[]" class="outid" value='+response.peg[i].id+'>'+
                         '</td>'+
+                        '<td><input type="checkbox" name="tlokal[]" value="Y">'+
+                            '<input type="number" name="hittlokal[]"  min="0" value="'+trans+'" style="width: 75px;"  id="hittlokal-'+no+'"> X '+
+                            '<input type="number" name="jumtlokal[]"  min="0" value="0" style="width: 35px;"  id="jumtlokal-'+no+'" onkeyup="jumtlokal('+no+')"  onclick="jumtlokal('+no+')">'+
+                            ' = <input type="text" name="tottlokal[]"  min="0" value="0" readonly style="width: 150px;" id="tottlokal-'+no+'">'+
+                        '</td>'+
                         '<td><input type="number" min="0" value="0" name="bbm[]" /></td>'+
                         '<td><input type="number" style="width: 50%" min="0" value="0" name="taxy_count_from[]" /> kali</td>'+            
                         '<td><input type="number" min="0" value="0" name="taxy_fee_from[]" /></td>'+            
@@ -546,6 +551,13 @@
             var c = a * b;
             var hasil = parseFloat(c).toFixed(2);
             $("#totrep-"+i).val(hasil);
+        }
+        function jumtlokal(i) {
+            var a = $("#hittlokal-"+i).val();
+            var b =  $("#jumtlokal-"+i).val();
+            var c = a * b;
+            var hasil = parseFloat(c).toFixed(2);
+            $("#tottlokal-"+i).val(hasil);
         }
         function longstay1(i) {
             var a = $("#longstay1-"+i).val();

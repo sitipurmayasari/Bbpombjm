@@ -259,15 +259,14 @@
                         '<td>'+response.expen2[i].name+
                         '</td>'+
                         '<td>'+
-                            '<select name="plane_id1[]"  select2" >'+
-                                '<option value="">Pilih Maskapai</option>'+
-                                    '@foreach ($plane as $item)'+
-                                        '@if ('+response.expen2[i].plane_id1+'==$item->id)'+
-                                            '<option value="{{$item->id}}" selected>{{$item->code}} - {{$item->name}}</option>'+
-                                        '@else'+
-                                            '<option value="{{$item->id}}">{{$item->code}} - {{$item->name}}</option>'+
-                                        '@endif'+
-                                    '@endforeach'+
+                            '<select name="plane_id1" class="select2">'+
+                                '@foreach ($plane as $item1)'+
+                                    '@if ('+response.expen2[i].plane_id1+'==$item1->id)'+
+                                        '<option value="{{$item1->id}}" selected>{{$item1->code}} - {{$item1->name}}</option>'+
+                                    '@else'+
+                                        '<option value="{{$item1->id}}">{{$item1->code}} - {{$item1->name}}</option>'+
+                                    '@endif'+
+                                '@endforeach'+
                             '</select>'+
                         '</td>'+
                         '<td><input type="text" placeholder="nomor tiket" name="planenumber1[]" value="'+response.expen2[i].planenumber1+'"/></td>'+
@@ -276,15 +275,14 @@
                         '<td><input type="text" name="plane_book1[]" value="'+response.expen2[i].plane_book1+'"/></td>'+
                         '<td><input type="text" name="plane_flight1[]" value="'+response.expen2[i].plane_flight1+'"/></td>'+
                         '<td>'+
-                            '<select name="plane_id2[]"  select2" >'+
-                                '<option value="">Pilih Maskapai</option>'+
-                                    '@foreach ($plane as $item)'+
-                                        '@if ('+response.expen2[i].plane_id2+'==$item->id)'+
-                                            '<option value="{{$item->id}}" selected>{{$item->code}} - {{$item->name}}</option>'+
-                                        '@else'+
-                                            '<option value="{{$item->id}}">{{$item->code}} - {{$item->name}}</option>'+
-                                        '@endif'+
-                                    '@endforeach'+
+                            '<select name="plane_id2" class="select2">'+
+                                '@foreach ($plane as $item1)'+
+                                    '@if ('+response.expen2[i].plane_id2+'==$item1->id)'+
+                                        '<option value="{{$item1->id}}" selected>{{$item1->code}} - {{$item1->name}}</option>'+
+                                    '@else'+
+                                        '<option value="{{$item1->id}}">{{$item1->code}} - {{$item1->name}}</option>'+
+                                    '@endif'+
+                                '@endforeach'+
                             '</select>'+
                         '</td>'+
                         '<td><input type="text" placeholder="nomor tiket" name="planenumber2[]" value="'+response.expen2[i].planenumber2+'"/></td>'+
@@ -293,15 +291,14 @@
                         '<td><input type="text" name="plane_book2[]" value="'+response.expen2[i].plane_book2+'"/></td>'+
                         '<td><input type="text" name="plane_flight2[]" value="'+response.expen2[i].plane_flight2+'"/></td>'+
                         '<td>'+
-                            '<select name="plane_id3[]"  select2" >'+
-                                '<option value="">Pilih Maskapai</option>'+
-                                    '@foreach ($plane as $item)'+
-                                        '@if ('+response.expen2[i].plane_id3+'==$item->id)'+
-                                            '<option value="{{$item->id}}" selected>{{$item->code}} - {{$item->name}}</option>'+
-                                        '@else'+
-                                            '<option value="{{$item->id}}">{{$item->code}} - {{$item->name}}</option>'+
-                                        '@endif'+
-                                    '@endforeach'+
+                            '<select name="plane_id3" class="select2">'+
+                                '@foreach ($plane as $item1)'+
+                                    '@if ('+response.expen2[i].plane_id3+'==$item1->id)'+
+                                        '<option value="{{$item1->id}}" selected>{{$item1->code}} - {{$item1->name}}</option>'+
+                                    '@else'+
+                                        '<option value="{{$item1->id}}">{{$item1->code}} - {{$item1->name}}</option>'+
+                                    '@endif'+
+                                '@endforeach'+
                             '</select>'+
                         '</td>'+
                         '<td><input type="text" placeholder="nomor tiket" name="planenumber3[]" value="'+response.expen2[i].planenumber3+'"/></td>'+
@@ -310,15 +307,14 @@
                         '<td><input type="text" name="plane_book3[]" value="'+response.expen2[i].plane_book3+'"/></td>'+
                         '<td><input type="text" name="plane_flight3[]" value="'+response.expen2[i].plane_flight3+'"/></td>'+
                         '<td>'+
-                            '<select name="plane_idreturn[]"  select2" >'+
-                                '<option value="">Pilih Maskapai</option>'+
-                                    '@foreach ($plane as $item)'+
-                                        '@if ('+response.expen2[i].plane_idreturn+'==$item->id)'+
-                                            '<option value="{{$item->id}}" selected>{{$item->code}} - {{$item->name}}</option>'+
-                                        '@else'+
-                                            '<option value="{{$item->id}}">{{$item->code}} - {{$item->name}}</option>'+
-                                        '@endif'+
-                                    '@endforeach'+
+                            '<select name="plane_idreturn" class="select2">'+
+                                '@foreach ($plane as $item1)'+
+                                    '@if ('+response.expen2[i].plane_idreturn+'==$item1->id)'+
+                                        '<option value="{{$item1->id}}" selected>{{$item1->code}} - {{$item1->name}}</option>'+
+                                    '@else'+
+                                        '<option value="{{$item1->id}}">{{$item1->code}} - {{$item1->name}}</option>'+
+                                    '@endif'+
+                                '@endforeach'+
                             '</select>'+
                         '</td>'+
                         '<td><input type="text" placeholder="nomor tiket" name="planenumberreturn[]" value="'+response.expen2[i].planenumberreturn+'"/></td>'+
@@ -336,9 +332,20 @@
                   var is_check = '';
                   var no = i+1;
 
+                  if (response.expen2[i].tlokal == 'Y') {
+                        var tloc = '<input type="checkbox" name="tlokal[]" value="Y" checked>';
+                    } else {
+                        var tloc = '<input type="checkbox" name="tlokal[]" value="Y">';
+                    }
+
                   transport+='<tr>'+
                         '<td style="text-align: center;">'+no+'</td>'+
                         '<td>'+response.expen2[i].name+
+                        '</td>'+
+                        '<td>'+tloc+'&nbsp;'+
+                            '<input type="number" name="hittlokal[]"  min="0" value="'+response.expen2[i].hittlokal+'" style="width: 75px;"  id="hittlokal-'+no+'"> X '+
+                            '<input type="number" name="jumtlokal[]"  min="0" value="'+response.expen2[i].jumtlokal+'" style="width: 35px;"  id="jumtlokal-'+no+'" onkeyup="jumtlokal('+no+')"  onclick="jumtlokal('+no+')">'+
+                            ' = <input type="text" name="tottlokal[]"  min="0" value="'+response.expen2[i].tottlokal+'" readonly style="width: 150px;" id="tottlokal-'+no+'">'+
                         '</td>'+
                         '<td><input type="number" min="0" value="'+response.expen2[i].bbm+'" name="bbm[]" /></td>'+
                         '<td><input type="number" style="width: 50%" min="0" value="'+response.expen2[i].taxy_count_from+'" name="taxy_count_from[]" /> kali</td>'+            
@@ -470,6 +477,13 @@
             var c = a * b;
             var hasil = parseFloat(c).toFixed(2);
             $("#totdaysfull-"+i).val(hasil);
+        }
+        function jumtlokal(i) {
+            var a = $("#hittlokal-"+i).val();
+            var b =  $("#jumtlokal-"+i).val();
+            var c = a * b;
+            var hasil = parseFloat(c).toFixed(2);
+            $("#tottlokal-"+i).val(hasil);
         }
    </script>
 @endsection

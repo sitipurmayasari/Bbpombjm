@@ -104,7 +104,6 @@ class InjectQuery
         $fullboard      = $nilai->fullboard='Y' ? $nilai->totfullb : '0';
         $fullday        = $nilai->fullday='Y' ? $nilai->tothalf : '0';
 
-
         $harian = $daily1+$daily2+$daily3+$diklat+$fullboard+$fullday;
       
         // Pertemuan
@@ -122,9 +121,12 @@ class InjectQuery
         // eselon
         $eselon  = $nilai->representatif='Y' ? $nilai->totrep : '0';
 
+        // Transport Lokal
+        $Tlocal  = $nilai->tlokal='Y' ? $nilai->tottlokal : '0';
+
       
 
-        $jumlah = $transport+$harian+$pertemuan+$penginapan+$eselon;
+        $jumlah = $transport+$harian+$pertemuan+$penginapan+$eselon+$Tlocal;
         
         return $jumlah;
 

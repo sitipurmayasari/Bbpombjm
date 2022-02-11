@@ -12,6 +12,7 @@ class Travelexpenses extends Model
                             'fullboard','hitfullb','jumfullb','totfullb',
                             'fullday','hithalf','jumhalf','tothalf',
                             'representatif','hitrep','jumrep','totrep',
+                            'tlokal','hittlokal','jumtlokal','tottlokal',
                             'dayshalf','feehalf','totdayshalf',
                             'daysfull','feefull','totdaysfull',
                             'file'

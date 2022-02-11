@@ -307,6 +307,51 @@
                         </td>
                     </tr>
                     <tr>
+                        @php
+                            $jumloc=0;
+                            $harloc=0;
+                            $daily = $injectQuery->getTr($item->id)
+                        @endphp
+                        <td><i> Transport Lokal</i></td>
+                        <td>
+                        </td>
+                        <td style="text-align: center; width:5%;"><i>:</i> </td>
+                        <td style="width: 18%"> <i>
+                            @if ($daily->tlokal == 'Y')
+                                 {{number_format($daily->jumtlokal)}} 
+                            @else
+                                {{ '-' }} 
+                            @endif
+                            &nbsp;
+                            kali &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp.
+                            </i>
+                        </td>
+                        <td style="text-align: right"> 
+                            <i>
+                                @if ($daily->tlokal == 'Y')
+                                    {{number_format($daily->hittlokal)}} 
+                                @else
+                                    {{ '-' }}
+                                @endif
+                            </i> 
+                            &nbsp;
+                        </td>
+                        <td style="text-align: center; width:10%;"><i>. Rp.</i></td>
+                        <td style="text-align: right;  width:10%;"> 
+                            <i>
+                                @php
+                                    $subtrans = $daily->tottlokal;  
+                                    $subTotal1 += $subtrans;  
+                                @endphp
+                                @if ($subtrans !='0')
+                                    {{number_format($subtrans)}}
+                                @else
+                                    {{'-'}}
+                                @endif
+                            </i> &nbsp; 
+                        </td>
+                    </tr>
+                    <tr>
                         <td> <i>Taxi Kota</i></td>
                         <td></td>
                         <td></td>
