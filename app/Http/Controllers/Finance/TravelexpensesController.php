@@ -33,6 +33,12 @@ class TravelexpensesController extends Controller
     public function index(Request $request)
     {
         $data = Expenses::orderBy('id','desc')
+                         ->SelectRaw('expenses.*, outstation.number, outstation.purpose')
+                        ->leftjoin('outstation','outstation.id','expenses.outstation_id')
+                        ->when($request->keyword, function ($query) use ($request) {
+                            $query->where('outstation.number','LIKE','%'.$request->keyword.'%')
+                                    ->orWhere('outstation.purpose', 'LIKE','%'.$request->keyword.'%');
+                        })
                 ->paginate('10');
         return view('finance/travelexpenses.index',compact('data'));
     }
