@@ -119,10 +119,7 @@
                     $nilai = $injectQuery->getTr($item->id)
                 @endphp
                 @if ($nilai->tlokal != 'Y')
-                    @php
-                        $trans = $nilai->tottlokal;
-                    @endphp
-                    {{number_format($trans)}}
+                    {{number_format($nilai->tottlokal)}}
                 @else
                     {{'-'}} 
                 @endif
@@ -175,7 +172,7 @@
         <tr>
             <td>Terbilang</td>
             <td style="text-transform: capitalize;">: <b>
-                {{terbilang($trans)}} Rupiah    
+                {{terbilang($nilai->tottlokal)}} Rupiah    
             </b></td>
             <td></td>
             <td></td>
@@ -286,10 +283,7 @@
                 $nilai = $injectQuery->getTr($item->id)
             @endphp
             @if ($nilai->tlokal != 'Y')
-                @php
-                    $trans = $nilai->tottlokal;
-                @endphp
-                {{number_format($trans)}}
+                {{number_format($nilai->tottlokal)}}
             @else
                 {{'-'}} 
             @endif
@@ -342,7 +336,7 @@
     <tr>
         <td>Terbilang</td>
         <td style="text-transform: capitalize;">: <b>
-            {{terbilang($trans)}} Rupiah
+            {{terbilang($nilai->tottlokal)}} Rupiah
         </b></td>
         <td></td>
         <td></td>
