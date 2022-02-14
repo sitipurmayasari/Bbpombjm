@@ -296,7 +296,8 @@
                         Tiket 3 <br>
                         Taksi 1 <br>
                         Taksi 2 <br>
-                        BBM
+                        BBM <br>    
+                        Trans Lokal(DK)
                     </td>
                     <td style="vertical-align: top;  text-align:center;">
                         @if ($item->planefee1 != 0)
@@ -316,7 +317,10 @@
                         @endif <br>
                         @if ($item->bbm != 0)
                             1 OK
-                        @endif
+                        @endif <br>
+                        @if ($item->tlokal == 'Y')
+                           {{$item->hittlokal}} OK
+                        @endif 
                     </td>
                     <td style="vertical-align: top; text-align:right;">
                         @if ($item->planefee1 != 0)
@@ -336,7 +340,10 @@
                         @endif <br>
                         @if ($item->bbm != 0)
                             {{number_format($item->bbm)}}
-                        @endif
+                        @endif <br>
+                        @if ($item->tlokal == 'Y')
+                           {{number_format($item->jumtlokal)}}
+                        @endif 
                     </td>
                     <td style="vertical-align: top; text-align:right;">
                         @if ($item->planefee1 != 0)
@@ -366,7 +373,10 @@
                         @endif <br>
                         @if ($item->bbm != 0)
                             {{number_format($item->bbm)}}
-                        @endif
+                        @endif <br>
+                        @if ($item->tlokal == 'Y')
+                        {{number_format($item->tottlokal)}}
+                     @endif 
                     </td>
                     <td style="vertical-align: top; text-align:right;">
                         @php
