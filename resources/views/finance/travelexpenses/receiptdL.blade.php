@@ -116,13 +116,9 @@
             <td>Uang Sebesar</td>
             <td colspan="3">: <b>Rp.  &nbsp;&nbsp;&nbsp; 
                 @php
-                    $nilai = $injectQuery->getTr($item->id)
+                    $total = $injectQuery->totalHarga($item->id)
                 @endphp
-                @if ($nilai->tlokal != 'Y')
-                    {{number_format($nilai->tottlokal)}}
-                @else
-                    {{'-'}} 
-                @endif
+                {{number_format($total)}} 
                 
             </b></td>
         </tr>
@@ -172,7 +168,10 @@
         <tr>
             <td>Terbilang</td>
             <td style="text-transform: capitalize;">: <b>
-                {{terbilang($nilai->tottlokal)}} Rupiah    
+                @php
+                    $total = $injectQuery->totalHarga($item->id)
+                @endphp
+                {{terbilang($total)}} Rupiah    
             </b></td>
             <td></td>
             <td></td>
@@ -280,13 +279,9 @@
         <td>Uang Sebesar</td>
         <td colspan="3">: <b>Rp.  &nbsp;&nbsp;&nbsp; 
             @php
-                $nilai = $injectQuery->getTr($item->id)
+                $total = $injectQuery->totalHarga($item->id)
             @endphp
-            @if ($nilai->tlokal != 'Y')
-                {{number_format($nilai->tottlokal)}}
-            @else
-                {{'-'}} 
-            @endif
+                {{number_format($total)}} 
             
         </b></td>
     </tr>
@@ -336,7 +331,10 @@
     <tr>
         <td>Terbilang</td>
         <td style="text-transform: capitalize;">: <b>
-            {{terbilang($nilai->tottlokal)}} Rupiah
+            @php
+                $total = $injectQuery->totalHarga($item->id)
+            @endphp
+            {{terbilang($total)}} Rupiah  
         </b></td>
         <td></td>
         <td></td>

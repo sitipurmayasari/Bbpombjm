@@ -223,6 +223,7 @@
             @php
                 $bbm = 0;
                 $nilai = $injectQuery->getDetail($item->id);
+                $nilai2 = $injectQuery->getTr($item->id);
                 
             @endphp
             <tr>
@@ -263,20 +264,20 @@
                 </td>
                 <td class="isi">
                     Rp. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                    @if ($nilai->bbm != '0' && $nilai->taxy_count_to == null)
+                    @if ($nilai->bbm != '0' && $nilai2->tlokal == 'N')
                         @php
                             $bbm = $nilai->bbm;
                         @endphp
                         {{number_format($bbm)}}
         
-                    @elseif($nilai->taxy_count_to != null && $nilai->bbm == '0')
+                    @elseif($nilai2->tlokal == 'Y' && $nilai->bbm == '0')
                         @php
-                            $bbm = $nilai->taxy_fee_to;
+                            $bbm = $nilai2->tottlokal;
                         @endphp
-                        {{number_format($bbm)}}
-                    @elseif($nilai->taxy_count_to != null && $nilai->bbm != '0')
+                            {{number_format($bbm)}}
+                    @elseif($nilai2->tlokal != null && $nilai->bbm != '0')
                         @php
-                            $a = $nilai->taxy_fee_to;
+                            $a = $nilai2->tottlokal;
                             $b = $nilai->bbm;
 
                             $bbm = $a+$b;
@@ -661,14 +662,28 @@
                 </td>
                 <td class="isi">
                     Rp. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                    @if ($nilai->bbm != 0)
+                    @if ($nilai->bbm != '0' && $nilai2->tlokal == 'N')
                         @php
                             $bbm = $nilai->bbm;
                         @endphp
                         {{number_format($bbm)}}
-                    @else
-                        {{'-'}} 
-                    @endif
+        
+                    @elseif($nilai2->tlokal == 'Y' && $nilai->bbm == '0')
+                        @php
+                            $bbm = $nilai2->tottlokal;
+                        @endphp
+                            {{number_format($bbm)}}
+                    @elseif($nilai2->tlokal != null && $nilai->bbm != '0')
+                        @php
+                            $a = $nilai2->tottlokal;
+                            $b = $nilai->bbm;
+
+                            $bbm = $a+$b;
+                        @endphp
+                        {{number_format($bbm)}}
+                        @else
+                            {{ '-' }}
+                        @endif
                 </td>
                 <td style="text-align: center" class="isi">
                     {{$item->out->transport}}
