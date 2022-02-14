@@ -116,13 +116,13 @@
             <td>Uang Sebesar</td>
             <td colspan="3">: <b>Rp.  &nbsp;&nbsp;&nbsp; 
                 @php
-                        $nilai = $injectQuery->getDetail($item->id)
+                    $nilai = $injectQuery->getTr($item->id)
                 @endphp
-                 @if ($nilai->bbm != '0')
+                @if ($nilai->tlokal != 'Y')
                     @php
-                        $bbm = $nilai->bbm;
+                        $trans = $nilai->tottlokal;
                     @endphp
-                    {{number_format($bbm)}}
+                    {{number_format($trans)}}
                 @else
                     {{'-'}} 
                 @endif
@@ -175,7 +175,7 @@
         <tr>
             <td>Terbilang</td>
             <td style="text-transform: capitalize;">: <b>
-                {{terbilang($bbm)}} Rupiah    
+                {{terbilang($trans)}} Rupiah    
             </b></td>
             <td></td>
             <td></td>
@@ -283,13 +283,13 @@
         <td>Uang Sebesar</td>
         <td colspan="3">: <b>Rp.  &nbsp;&nbsp;&nbsp; 
             @php
-                $nilai = $injectQuery->getDetail($item->id)
+                $nilai = $injectQuery->getTr($item->id)
             @endphp
-            @if ($nilai->bbm != '0')
+            @if ($nilai->tlokal != 'Y')
                 @php
-                    $bbm = $nilai->bbm;
+                    $trans = $nilai->tottlokal;
                 @endphp
-                {{number_format($bbm)}}
+                {{number_format($trans)}}
             @else
                 {{'-'}} 
             @endif
@@ -342,7 +342,7 @@
     <tr>
         <td>Terbilang</td>
         <td style="text-transform: capitalize;">: <b>
-            {{terbilang($bbm)}} Rupiah
+            {{terbilang($trans)}} Rupiah
         </b></td>
         <td></td>
         <td></td>
