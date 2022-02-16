@@ -278,9 +278,12 @@
                     &nbsp;
                 </td>
                 <td class="isi" style="text-align: center">
-                    @if ($hotel->innname_1 != null)
-                        {{number_format($hotel->inn_fee_1)}}
-                    @endif
+                    @if ($hotel->klaim_1 != 0)
+                    @php
+                        $fee1 = $hotel->inn_fee_1 / $hotel->isi_1;
+                    @endphp
+                    {{number_format($fee1)}}
+                @endif
                     &nbsp;
                 </td>
                 <td class="isi" style="text-align: center">
@@ -329,7 +332,10 @@
                 </td>
                 <td class="isi" style="text-align: center">
                     @if ($hot->inn_fee_2 != 0)
-                        {{number_format($hot->inn_fee_2)}}
+                        @php
+                            $fee2 = $hot->inn_fee_2 / $hot->isi_2;
+                        @endphp
+                        {{number_format($fee2)}}
                     @endif
                     &nbsp;
                 </td>

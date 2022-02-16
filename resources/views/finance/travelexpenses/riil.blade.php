@@ -698,10 +698,17 @@
                 <td class="isi">
                     Biaya Penginapan : 
                     @if ($nilai->innname_1 != null)
-                        {{$nilai->long_stay_1}} hari &nbsp; x &nbsp; Rp. &nbsp; &nbsp; &nbsp; &nbsp; {{number_format($nilai->inn_fee_1)}}
+                        @php
+                            $fee1 = $nilai->inn_fee_1 / $nilai->isi_1;
+                        @endphp
+                        {{$nilai->long_stay_1}} hari &nbsp; x &nbsp; Rp. &nbsp; &nbsp; &nbsp; &nbsp; {{number_format($fee1)}}
                     @elseif ($nilai->innname_2 != null)
-                        {{$nilai->long_stay_1}} hari &nbsp; x &nbsp; Rp. &nbsp; &nbsp; &nbsp; &nbsp; {{number_format($nilai->inn_fee_1)}} <br>
-                        {{$nilai->long_stay_2}} hari &nbsp; x &nbsp; Rp. &nbsp; &nbsp; &nbsp; &nbsp; {{number_format($nilai->inn_fee_2)}}
+                        @php
+                            $fee1 = $nilai->inn_fee_1 / $nilai->isi_1;
+                            $fee2 = $nilai->inn_fee_2 / $nilai->isi_2;
+                        @endphp
+                        {{$nilai->long_stay_1}} hari &nbsp; x &nbsp; Rp. &nbsp; &nbsp; &nbsp; &nbsp; {{number_format($fee1)}} <br>
+                        {{$nilai->long_stay_2}} hari &nbsp; x &nbsp; Rp. &nbsp; &nbsp; &nbsp; &nbsp; {{number_format($fee2)}}
                     @else
                         {{'-'}} hari &nbsp; x &nbsp; Rp. &nbsp; &nbsp; &nbsp; &nbsp; {{'-'}}
                     @endif
