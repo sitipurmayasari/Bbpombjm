@@ -1031,10 +1031,17 @@
                         <td style="text-align: right; width:13%"> 
                             <i>
                                 @if ($nilai->innname_2 != null)
-                                    {{number_format($nilai->inn_fee_1)}} &nbsp; <br>
-                                    {{number_format($nilai->inn_fee_2)}}
+                                    @php
+                                        $feehotel1 = $nilai->inn_fee_1 / $nilai->isi_1;
+                                        $feehotel2 = $nilai->inn_fee_2 / $nilai->isi_2;
+                                    @endphp
+                                    {{number_format($feehotel1)}} &nbsp; <br>
+                                    {{number_format($feehotel2)}}
                                 @elseif($nilai->innname_2 == null && $nilai->innname_1 != null)
-                                    {{number_format($nilai->inn_fee_1)}} &nbsp;
+                                    @php
+                                        $feehotel1 = $nilai->inn_fee_1 / $nilai->isi_1;
+                                    @endphp
+                                    {{number_format($feehotel1)}} &nbsp;
                                 @else
                                     - &nbsp; <br>
                                     

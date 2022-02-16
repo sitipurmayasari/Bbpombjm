@@ -264,10 +264,16 @@
                     </td>
                     <td style="vertical-align: top; text-align:right;">
                         @if ($item->klaim_1 != 0)
-                            {{number_format($item->inn_fee_1)}}
+                            @php
+                                $fee1 = $item->inn_fee_1 / $item->isi_1;
+                            @endphp
+                            {{number_format($fee1)}}
                         @endif <br>
                         @if ($item->klaim_2 != 0)
-                            {{number_format($item->inn_fee_2)}}
+                            @php
+                                $fee1 = $item->inn_fee_2 / $item->isi_2;
+                            @endphp
+                            {{number_format($fee2)}}
                         @endif <br>
                         @if ($item->totdaysfull != 0)
                             {{number_format($item->feefull)}}
