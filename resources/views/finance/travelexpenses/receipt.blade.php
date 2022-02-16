@@ -1021,9 +1021,9 @@
                 &nbsp;
             </td>
             <td class="isi">
-                @if ($nilai->isi_1 != '0')
+                @if ($nilai->isi_1 != 0)
                         1 kamar untuk {{$nilai->isi_1}} orang
-                @elseif($nilai->isi_2 != '0')
+                @elseif($nilai->isi_2 != 0)
                         1 kamar untuk {{$nilai->isi_1}} orang <br>
                         1 kamar untuk {{$nilai->isi_2}} orang
                 @endif
