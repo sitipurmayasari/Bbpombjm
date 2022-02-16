@@ -84,6 +84,7 @@
 <body>
     <div class="col-sm-12" style="text-align: center">
         <div style="align=center;" id="kop">
+            <br><br>
             <u><b style="font-size: 14">SURAT TUGAS</b></u><br>
             <p style="font-size: 12">NOMOR : {{$data->number}}</p>
         </div>
