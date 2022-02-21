@@ -372,7 +372,7 @@
                         @if ($item->taxy_fee_to != 0)
                             @php
                                 $c = $item->taxy_count_to;
-                                $d = $item->taxy_fee_from;
+                                $d = $item->taxy_fee_to;
                                 $jumlahb = $c*$d;
                             @endphp
                             {{number_format($jumlahb)}}
