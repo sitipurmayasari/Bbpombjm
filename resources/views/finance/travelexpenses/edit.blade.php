@@ -256,12 +256,12 @@
 
                   pesawat+='<tr>'+
                         '<td style="text-align: center;">'+no+'</td>'+
-                        '<td>'+response.expen2[i].name+
-                        '</td>'+
+                        '<td>'+response.expen2[i].name+'</td>'+
                         '<td>'+
-                            '<select name="plane_id1" class="select2">'+
+                            '<select name="plane_id1[]" class="select2">'+
+                                '<option value="">Pilih Maskapai</option>'+
                                 '@foreach ($plane as $item1)'+
-                                    '@if ('+response.expen2[i].plane_id1+'==$item1->id)'+
+                                    '@if ($item1->id == '+response.expen2[i].plane_id1+')'+
                                         '<option value="{{$item1->id}}" selected>{{$item1->code}} - {{$item1->name}}</option>'+
                                     '@else'+
                                         '<option value="{{$item1->id}}">{{$item1->code}} - {{$item1->name}}</option>'+
@@ -275,7 +275,8 @@
                         '<td><input type="text" name="plane_book1[]" value="'+response.expen2[i].plane_book1+'"/></td>'+
                         '<td><input type="text" name="plane_flight1[]" value="'+response.expen2[i].plane_flight1+'"/></td>'+
                         '<td>'+
-                            '<select name="plane_id2" class="select2">'+
+                            '<select name="plane_id2[]" class="select2">'+
+                                '<option value="">Pilih Maskapai</option>'+
                                 '@foreach ($plane as $item1)'+
                                     '@if ('+response.expen2[i].plane_id2+'==$item1->id)'+
                                         '<option value="{{$item1->id}}" selected>{{$item1->code}} - {{$item1->name}}</option>'+
@@ -291,7 +292,8 @@
                         '<td><input type="text" name="plane_book2[]" value="'+response.expen2[i].plane_book2+'"/></td>'+
                         '<td><input type="text" name="plane_flight2[]" value="'+response.expen2[i].plane_flight2+'"/></td>'+
                         '<td>'+
-                            '<select name="plane_id3" class="select2">'+
+                            '<select name="plane_id3[]" class="select2">'+
+                                '<option value="">Pilih Maskapai</option>'+
                                 '@foreach ($plane as $item1)'+
                                     '@if ('+response.expen2[i].plane_id3+'==$item1->id)'+
                                         '<option value="{{$item1->id}}" selected>{{$item1->code}} - {{$item1->name}}</option>'+
@@ -307,7 +309,8 @@
                         '<td><input type="text" name="plane_book3[]" value="'+response.expen2[i].plane_book3+'"/></td>'+
                         '<td><input type="text" name="plane_flight3[]" value="'+response.expen2[i].plane_flight3+'"/></td>'+
                         '<td>'+
-                            '<select name="plane_idreturn" class="select2">'+
+                            '<select name="plane_idreturn[]" class="select2">'+
+                                '<option value="">Pilih Maskapai</option>'+
                                 '@foreach ($plane as $item1)'+
                                     '@if ('+response.expen2[i].plane_idreturn+'==$item1->id)'+
                                         '<option value="{{$item1->id}}" selected>{{$item1->code}} - {{$item1->name}}</option>'+

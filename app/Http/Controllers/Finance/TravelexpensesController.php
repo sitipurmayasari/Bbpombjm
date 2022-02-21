@@ -416,7 +416,7 @@ class TravelexpensesController extends Controller
                     'taxy_count_from'   => $request->taxy_count_from[$i],
                     'taxy_fee_from'     => $request->taxy_fee_from[$i],
                     'taxy_count_to'     => $request->taxy_count_to[$i],
-                    'taxy_fee_to'     => $request->taxy_fee_to[$i],
+                    'taxy_fee_to'       => $request->taxy_fee_to[$i],
                     'plane_id1'         => $request->plane_id1[$i],
                     'plane_id2'         => $request->plane_id2[$i],
                     'plane_id3'         => $request->plane_id3[$i],
