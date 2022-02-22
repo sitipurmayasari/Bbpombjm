@@ -88,7 +88,7 @@ class AduanTikController extends Controller
 
         $petugas = Petugas::where('id', '=', 1)->first();
 
-        $petugastik = Petugas::where('id', '=', 5)->first();
+        $petugastik = Petugas::where('id', '=', 6)->first();
 
         $menyetujui = Pejabat::
                         where('jabatan_id', '=', 11)
