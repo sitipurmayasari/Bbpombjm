@@ -276,7 +276,26 @@ class TravelexpensesController extends Controller
         $tujuan = Outst_destiny::where('outstation_id',$data->outstation_id)->get();
         $lama   = Outst_destiny::SelectRaw('SUM(longday) as lamahari')
                             ->where('outstation_id',$data->outstation_id)->first();
-        return view('finance/travelexpenses.edit',compact('data','pok','plane','user','data','tujuan','lama'));
+        $harian = Expenses_daily::orderBy('expenses_daily.outst_employee_id','asc')
+                                ->LeftJoin('travelexpenses','travelexpenses.outst_employee_id','=','expenses_daily.outst_employee_id')
+                                ->where('expenses_daily.expenses_id',$id)
+                                ->get();
+        $upload = Travelexpenses::orderBy('outst_employee_id','asc')
+                                ->where('expenses_id',$id)
+                                ->get();
+        $pertemuan = Travelexpenses1::orderBy('outst_employee_id','asc')
+                                ->where('expenses_id',$id)
+                                ->get();
+        $pesawat = Travelexpenses1::orderBy('travelexpenses1.outst_employee_id','asc')
+                                ->LeftJoin('travelexpenses2','travelexpenses2.outst_employee_id','=','travelexpenses1.outst_employee_id')
+                                ->where('travelexpenses1.expenses_id',$id)
+                                ->get();
+        $transport = Travelexpenses1::orderBy('travelexpenses1.outst_employee_id','asc')
+                                    ->LeftJoin('travelexpenses','travelexpenses1.outst_employee_id','=','travelexpenses.outst_employee_id')
+                                    ->where('travelexpenses1.expenses_id',$id)
+                                    ->get();
+        return view('finance/travelexpenses.edit2',compact('data','pok','plane','user','data','tujuan','lama',
+                                                            'harian','upload','pertemuan','pesawat','transport'));
     }
 
 
