@@ -54,7 +54,7 @@
     <div id="kepala">
         <table>
             <tr>
-                <td rowspan="5" style="width: 20%;"> <img src="{{asset('images/BBRI.jpg')}}" style="height:80px"></td>
+                <td rowspan="5" style="width: 20%;"><img src="{{asset('images/BBRI.jpg')}}" style="height:80px"></td>
                 <td rowspan="2" style="width: 30%; font-size: 16px;">BALAI BESAR POM DI BANJARMASIN</td>
                 <td class="kiri1">No. Bagian</td>
                 <td class="kiri2">: 1. 10</td>
