@@ -46,13 +46,18 @@
                     <td>{{$row->lapor->no_pegawai}}<br>{{$row->lapor->name}}</td>
                     <td>@if ($row->aduan_status==0)
                             Belum Diperiksa
+                        @elseif ($row->aduan_status==1)
+                            Sedang Diproses
                         @else
-                            Selesai Diperiksa
+                            Selesai Diproses 
                         @endif
 
                     </td>
                     <td>
-                        <a class="btn btn-primary" href="/invent/aduantik/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
+                        <a class="btn btn-primary" href="/invent/aduantik/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">PENGAJUAN</a>
+                        @if ($row->aduan_status==2)
+                            <a class="btn btn-primary" href="/invent/aduantik/printhasil/{{$row->id}}" target="_blank" rel="noopener noreferrer">HASIL</a>
+                        @endif
                     </td>
                     
                 </tr>

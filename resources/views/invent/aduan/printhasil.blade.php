@@ -80,7 +80,7 @@
     <br>  
     <div class="lara">
         <h6>BALAI BESAR PENGAWASAN OBAT DAN MAKANAN DI BANJARMASIN</h6>
-        <u><h5>SURAT PERMINTAAN PERBAIKAN INVENTARIS</h5></u>
+        <u><h5>LAPORAN HASIL PEMELIHARAAN INVENTARIS</h5></u>
         <h6>NO. {{$data->no_aduan}}</h6>
         <br>
         <div >
@@ -99,7 +99,7 @@
                 <tr>
                     <td  class="rapi"style="width: 20%;">Tanggal Permintaan</td>
                     <td  class="rapi"style="width: 2%; ">:</td>
-                    <td class="rapi">{{$data->tanggal}}</td>
+                    <td class="rapi">{{tgl_indo($data->tanggal)}}</td>
                 </tr>
             </table>
         </div>
@@ -124,113 +124,37 @@
             </tbody>
         </table>
         <br>
-        <div id="ttd">
+        <div style="text-align: left; font-size: 12px; " >
+
+            <b>Tindak Lanjut dari Aduan :</b> <br>
+            <i>{{$data->follow_up}} </i>
+        </div><br>
+        <div style="text-align: left; font-size: 12px; " >
+            @php
+                $time = strtotime($data->updated_at);
+                $newformat = date('Y-m-d',$time); 
+            @endphp
+            <b>Telah selesai diperbaiki tanggal :</b> <i>{{tgl_indo($newformat)}}</i> <br>
+            <b>Dengan Hasil Akhir : </b><br>
+            <i>{{$data->result}}</i>
+        </div><br><br><br>
+        <div class="col-sm-12">
             <table class="ttd">
                 <tr>
-                    <td class="ttd">Pemeriksa,</td>
-                    <td class="ttd">Mengetahui,</td>
-                    <td class="ttd">Yang Meminta,</td>
-                </tr>
-                <tr>
-                    <td class="ttd"> Petugas BMN,     
-                    </td>
-                    <td class="ttd">
-                                @if ($mengetahui!= null)
-                                    @if ($mengetahui->pjs != null)
-                                    {{$mengetahui->pjs}}
-                                    {{$mengetahui->jabatan->jabatan}} 
-                                    {{$mengetahui->divisi->nama}}
-                                    @else
-                                    {{$mengetahui->jabatan->jabatan}} 
-                                    {{$mengetahui->divisi->nama}}
-                                    @endif
-                                @else
-                                    SILAHKAN CEK SETUP PEJABAT
-                                @endif
-                    </td>
-                    <td class="ttd"></td>
+                    <td class="ttd">Petugas perlengkapan,</td>
+                    <td class="ttd">Yang Menerima,</td>
                 </tr>
                 <tr >
                     <td style="height: 10%" class="ttd"></td>
                     <td style="height: 10%" class="ttd"></td>
-                    <td style="height: 10%" class="ttd"></td>
                 </tr>
                 <tr>
-                    <td class="ttd"><u>
-                        {{$petugas->user->name}}
-                    </u></td>
-                    <td class="ttd"><u>
-                        @if ($mengetahui !=null)
-                        {{$mengetahui->user->name}}
-                        @else
-                        SILAHKAN CEK SETUP PEJABAT
-                        @endif
-                    </u>
-                    </td>
-                    <td class="ttd"><u>{{$data->lapor->name}}</u></td>
+                    <td class="ttd"><u>{{$petugas->user->name}}</u></td>
+                    <td class="ttd"> <u>{{$data->lapor->name}}</u></td>
                 </tr>
                 <tr>
-                    <td class="ttd">
-                        @if ($menyetujui !=null)
-                        NIP. {{$menyetujui->user->no_pegawai}}
-                        @else
-                        SILAHKAN CEK SETUP PEJABAT
-                        @endif
-
-                    </td>
-                    <td class="ttd">
-                        @if ($mengetahui !=null)
-                        NIP.  {{$mengetahui->user->no_pegawai}}
-                        @else
-                        SILAHKAN CEK SETUP PEJABAT
-                        @endif
-                    </td>
+                    <td class="ttd">NIP. {{$petugas->user->no_pegawai}}</td>
                     <td class="ttd">NIP. {{$data->lapor->no_pegawai}}</td>
-                </tr>
-            </table>
-        </div><br><br>
-        <div class="col-sm-12">
-            <table class="ttd" >
-                <tr>
-                    <td class="ttd">Menyetujui,</td>
-                </tr>
-                <tr>
-                    <td class="ttd">
-                        @if ($menyetujui != null)
-                            @if ($menyetujui->pjs != null)
-                                {{$menyetujui->pjs}}
-                                {{$menyetujui->jabatan->jabatan}} 
-                                {{$menyetujui->divisi->nama}}
-                             @else 
-                                {{$menyetujui->jabatan->jabatan}} 
-                                {{$menyetujui->divisi->nama}}
-                            @endif
-                        @else
-                            SILAHKAN CEK SETUP PEJABAT
-                        @endif
-                    </td>
-                </tr>
-                <tr >
-                    <td style="height: 10%" class="ttd"></td>
-                </tr>
-                <tr>
-                    <td class="ttd"><u>
-                        @if ($menyetujui !=null)
-                        {{$menyetujui->user->name}}
-                        @else
-                            SILAHKAN CEK SETUP PEJABAT
-                        @endif        
-                    </u></td>
-                </tr>
-                <tr>
-                    <td class="ttd">
-                        @if ($menyetujui !=null)
-                        NIP. {{$menyetujui->user->no_pegawai}}
-                        @else
-                        SILAHKAN CEK SETUP PEJABAT
-                        @endif
-
-                    </td>
                 </tr>
             </table>
 

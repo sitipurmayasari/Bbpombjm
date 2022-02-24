@@ -80,7 +80,7 @@
     <br>  
     <div class="lara">
         <h6>BALAI BESAR PENGAWASAN OBAT DAN MAKANAN DI BANJARMASIN</h6>
-        <u><h5>SURAT PERMINTAAN PERBAIKAN PEMELIHARAAN TIK</h5></u>
+        <u><h5>SURAT PERMINTAAN PERBAIKAN TIK</h5></u>
         <h6>NO. {{$data->no_aduan}}</h6>
         <br>
         <div >
@@ -107,48 +107,33 @@
         <table >
             <thead>
                 <tr>
-                    <th>NO</th>
                     <th>NAMA BARANG</th>
                     <th>TEMPAT</th>
-                    <th>KETERANGAN</th>
+                    <th>ADUAN KERUSAKAN</th>
                 </tr>
             </thead>
             <tbody>
-                @php
-                    $no= 1;
-                @endphp
-                @foreach ($isi as $item)
                 <tr>
-                    <td>{{$no++}}</td>
-                    <td>{{$item->barang->kode_barang}}</td>
-                    <td>{{$item->barang->location->nama}}</td>
-                    <td>{{$item->keterangan}}</td>
+                    <td style="vertical-align: top; align:left; width: 30%;">
+                        {{$data->barang->nama_barang}} - {{$data->barang->merk}}
+                        <br><br><br>
+                    </td>
+                    <td style="vertical-align: top; width: 20%;">{{$data->barang->location->nama}}</td>
+                    <td style="vertical-align: top; align:left;">{{$data->problem}}</td>
                 </tr>
-                @endforeach
             </tbody>
         </table>
         <br>
         <div id="ttd">
             <table class="ttd">
                 <tr>
-                    <td class="ttd">Menyetujui,</td>
+                    <td class="ttd">Pemeriksa,</td>
                     <td class="ttd">Mengetahui,</td>
                     <td class="ttd">Yang Meminta,</td>
                 </tr>
                 <tr>
-                    <td class="ttd">
-                                  @if ($menyetujui != null)
-                                    @if ($menyetujui->pjs != null)
-                                    {{$menyetujui->pjs}}
-                                    {{$menyetujui->jabatan->jabatan}} 
-                                    {{$menyetujui->divisi->nama}}
-                                    @else 
-                                    {{$menyetujui->jabatan->jabatan}} 
-                                    {{$menyetujui->divisi->nama}}
-                                    @endif
-                                  @else
-                                    SILAHKAN CEK SETUP PEJABAT
-                                  @endif
+                    <td class="ttd"> Petugas TIK,
+                                  
                     </td>
                     <td class="ttd">
                                 @if ($mengetahui!= null)
@@ -173,12 +158,7 @@
                 </tr>
                 <tr>
                     <td class="ttd"><u>
-                    @if ($menyetujui !=null)
-                    {{$menyetujui->user->name}}
-                    @else
-                        SILAHKAN CEK SETUP PEJABAT
-                    @endif    
-                    
+                        {{$petugastik->user->name}}
                     </u></td>
                     <td class="ttd"><u>
                         @if ($mengetahui !=null)
@@ -187,7 +167,6 @@
                         SILAHKAN CEK SETUP PEJABAT
                         @endif
                     </u>
-
                     </td>
                     <td class="ttd"><u>{{$data->lapor->name}}</u></td>
                 </tr>
@@ -210,32 +189,49 @@
                     <td class="ttd">NIP. {{$data->lapor->no_pegawai}}</td>
                 </tr>
             </table>
-
         </div><br><br>
-        <div style="text-align: left; font-size: 12px; " >
-            Telah selesai diperbaiki tanggal : ......................................
-        </div><br>
         <div class="col-sm-12">
-            <table class="ttd">
+            <table class="ttd" >
                 <tr>
-                    <td class="ttd">Yang Menerima,</td>
-                    <td class="ttd">Petugas TIK,</td>
-                    <td class="ttd">Petugas perlengkapan,</td>
+                    <td class="ttd">Menyetujui,</td>
+                </tr>
+                <tr>
+                    <td class="ttd">
+                        @if ($menyetujui != null)
+                            @if ($menyetujui->pjs != null)
+                                {{$menyetujui->pjs}}
+                                {{$menyetujui->jabatan->jabatan}} 
+                                {{$menyetujui->divisi->nama}}
+                             @else 
+                                {{$menyetujui->jabatan->jabatan}} 
+                                {{$menyetujui->divisi->nama}}
+                            @endif
+                        @else
+                            SILAHKAN CEK SETUP PEJABAT
+                        @endif
+                    </td>
                 </tr>
                 <tr >
                     <td style="height: 10%" class="ttd"></td>
-                    <td style="height: 10%" class="ttd"></td>
-                    <td style="height: 10%" class="ttd"></td>
                 </tr>
                 <tr>
-                    <td class="ttd"> <u>{{$data->lapor->name}}</u></td>
-                    <td class="ttd"><u>{{$petugastik->user->name}}</u></td>
-                    <td class="ttd"><u>{{$petugas->user->name}}</u></td>
+                    <td class="ttd"><u>
+                        @if ($menyetujui !=null)
+                        {{$menyetujui->user->name}}
+                        @else
+                            SILAHKAN CEK SETUP PEJABAT
+                        @endif        
+                    </u></td>
                 </tr>
                 <tr>
-                    <td class="ttd">NIP. {{$data->lapor->no_pegawai}}</td>
-                    <td class="ttd">NIP. {{$petugastik->user->no_pegawai}}</td>
-                    <td class="ttd">NIP. {{$petugas->user->no_pegawai}}</td>
+                    <td class="ttd">
+                        @if ($menyetujui !=null)
+                        NIP. {{$menyetujui->user->no_pegawai}}
+                        @else
+                        SILAHKAN CEK SETUP PEJABAT
+                        @endif
+
+                    </td>
                 </tr>
             </table>
 

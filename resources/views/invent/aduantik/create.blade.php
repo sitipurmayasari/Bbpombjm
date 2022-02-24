@@ -14,6 +14,7 @@
             <div class="panel-heading"><h3 class="panel-title"></h3></div>
             <div class="panel-body">
                <div class="col-md-12">
+                <fieldset>
                 <div class="col-md-4">
                     <label for="">NO. ADUAN*</label>
                     <input type="text" id="no_adu" readonly required
@@ -37,6 +38,7 @@
                         @endforeach
                     </select>
                 </div>
+                </fieldset>
                </div>
             </div>
         </div>
@@ -45,48 +47,51 @@
         <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title">Barang yang di Adukan</h3></div>
             <div class="panel-body">
-               <div class="col-md-12">
-                <table id="myTable" class="table table-bordered table-hover">
-                    <thead>
-                        <th class="text-left col-md-1">NO</th>
-                        <th class="text-center col-md-4">Kode Barang</th>
-                        <th class="text-right col-md-5">Keterangan</th>
-                        <th class="text-center col-md-1">Aksi</th>
-                    </thead>
-                    <tbody>
-                        <tr id="cell-1">
-                            <td>
-                                1
-                            </td>
-                            <td>
-                                <select name="aduan_detail[]" class="form-control select2" required>
-                                    <option value="">-Pilih-</option>
-                                    @foreach ($data as $item)
-                                        <option value="{{$item->id}}">{{$item->kode_barang}} | {{$item->nama_barang}}</option>
-                                    @endforeach
-                                </select>
-                            </td>
-                            <td>
-                                <input type="text" name="note[]" class="form-control">
-                            </td>
-                            <td>
-                                {{-- <button type="button"  class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button> --}}
-                            </td>
-                        </tr>
-                        <span id="row-new"></span>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="4">
-                                <button type="button" class="form-control btn-default" onclick="addBarisNew()">
-                                    <i class="glyphicon glyphicon-plus"></i>TAMBAH BARIS BARU</button>
-                                <input type="hidden" id="countRow" value="1">
-                            </td>
-                        </tr>
-                        
-                    </tfoot>
-                </table>
-               </div>
+                <div class="widget-main no-padding">
+                    <fieldset>
+                    <br>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Nama Barang*
+                        </label>
+                        <div class="col-sm-8">
+                            <select name="inventaris_id[]" class="col-xs-10 col-sm-10 select2" id="inventaris_id" onchange="getData()">
+                                <option value="">-Pilih-</option>
+                                @foreach ($data as $item)
+                                    <option value="{{$item->id}}">{{$item->nama_barang}}|{{$item->merk}} (Kode : {{$item->kode_barang}}) </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Merk*
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text" id="merk" readonly
+                            class="col-xs-10 col-sm-10 ">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> No. Seri*
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text" id="no_seri" readonly
+                            class="col-xs-10 col-sm-10"  >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Masalah / Kerusakan*
+                        </label>
+                        <div class="col-sm-8">
+                            <textarea name="problem"  required class="col-xs-10 col-sm-10" rows="10"></textarea>
+                        </div>
+                    </div>
+                    </fieldset>        
+               
+                </div>
             </div>
         </div>
     </div>
@@ -102,34 +107,20 @@
 
 @endsection
 @section('footer')
-   <script>
-       function addBarisNew(){
-        var last_baris = $("#countRow").val();
-        var new_baris = parseInt(last_baris)+1;
-        $isi =  '<tr id="cell-'+new_baris+'">'+
-            '<td>'+new_baris+'</td>'+
-                    '<td>'+
-                        '<select name="aduan_detail[]" class="form-control select2" required>'+
-                        '<option value="">-Pilih-</option>'+
-                        '@foreach ($data as $item)'+
-                            '<option value="{{$item->id}}">{{$item->kode_barang}} | {{$item->nama_barang}}</option>'+
-                        '@endforeach'+
-                    '</td>'+
-                    '<td>'+
-                        '<input type="text" name="note[]" class="form-control">'+
-                    '</td>'+
-                    '<td><button type="button"  class="btn btn-danger" onclick="deleteRow('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button></td>'+
-                '</tr>';
-        $("#myTable").find('tbody').append($isi);
-        $("#countRow").val(new_baris);
-        $('.select2').select2();
-       }
+    <script>
+        function getData(){
+            var barang_id = $("#inventaris_id").val();
 
-    
-       function deleteRow(cell) {
-            $("#cell-"+cell).remove();
-            this.hitungTotal();
-
+            $.get(
+                "{{route('inventaris.getbarang') }}",
+                {
+                    barang_id: barang_id
+                },
+                function(response) {
+                    $("#merk").val(response.data.merk);
+                    $("#no_seri").val(response.data.no_seri);
+                }
+            );
         }
-   </script>
+    </script>
 @endsection

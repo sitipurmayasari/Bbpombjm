@@ -18,8 +18,8 @@ class AduanTikController extends Controller
 {
     public function index(Request $request)
     {   
-        $detail = AduanDetail::all();
         $data = Aduan::orderBy('aduan_status','asc')
+                    ->orderBy('id','desc')
                     ->select('aduan.*','users.name')
                     ->leftJoin('users','users.id','=','aduan.pegawai_id')
                     ->where('aduan.jenis','=','T')
@@ -29,7 +29,7 @@ class AduanTikController extends Controller
                                 ->orWhere('name', 'LIKE','%'.$request->keyword.'%');
                     })
                     ->paginate('10');
-        return view('invent/aduantik.index',compact('data','detail'));
+        return view('invent/aduantik.index',compact('data'));
     }
 
     public function create()
@@ -46,33 +46,23 @@ class AduanTikController extends Controller
 
     public function detail($id)
     {
-       $aduan = Aduan::find($id);
-       $detail = AduanDetail::where('aduan_id',$id)->get();
-       return view('invent/aduantik.detail',compact('aduan','detail'));
+       $aduan = Aduan::where('id',$id)->first();
+       return view('invent/aduantik.detail',compact('aduan'));
     }
 
    
     public function store(Request $request)
     {
         $this->validate($request,[
-            'no_aduan' => 'required|unique:aduan',
-            'tanggal' => 'required|date',
-            'pegawai_id'=> 'required'
+            'no_aduan'      => 'required|unique:aduan',
+            'tanggal'       => 'required|date',
+            'pegawai_id'    => 'required',
+            'inventaris_id' => 'required',
+            'problem'       => 'required'
         ]);
 
-        DB::beginTransaction(); // kegunaan untuk multiple insert (banyak aksi k database)
-            $aduan =Aduan::create($request->all());
-            $aduan_id = $aduan->id;
-            for ($i = 0; $i < count($request->input('aduan_detail')); $i++){
-                $data = [
-                    'aduan_id' => $aduan_id,
-                    'inventaris_id' => $request->aduan_detail[$i] ,
-                    'keterangan' => $request->note[$i]
-                ];
-                AduanDetail::create($data);
-            }
-        DB::commit(); 
-
+        $aduan = Aduan::create($request->all());
+        $aduan_id = $aduan->id;
         return redirect('/invent/aduantik/print/'.$aduan_id);
 
     }
@@ -80,9 +70,6 @@ class AduanTikController extends Controller
     public function print($id)
     {
         $data = Aduan::where('id',$id)->first();
-        $isi = AduanDetail::where('aduan_id',$id)
-
-        ->get();
 
         $pejabat = Pejabat::all();
 
@@ -116,29 +103,60 @@ class AduanTikController extends Controller
                         ->whereRaw("(SELECT tanggal FROM aduan WHERE id=$id) BETWEEN dari AND sampai")
                         ->first();
         
-        $pdf = PDF::loadview('invent/aduantik.print',compact('data','isi','menyetujui','petugas','pejabat','mengetahui','petugastik'));
+        $pdf = PDF::loadview('invent/aduantik.print',compact('data','menyetujui','petugas','pejabat','mengetahui','petugastik'));
         return $pdf->stream();
     }
 
-   
-    public function edit($id)
+    public function printhasil($id)
     {
         $data = Aduan::where('id',$id)->first();
-        return view('invent/aduantik.edit',compact('data'));
-    }
 
+        $pejabat = Pejabat::all();
+
+        $petugas = Petugas::where('id', '=', 1)->first();
+
+        $petugastik = Petugas::where('id', '=', 6)->first();
+
+        $menyetujui = Pejabat::
+                        where('jabatan_id', '=', 11)
+                        ->where('divisi_id', '=', 2)
+                        ->whereRaw("(SELECT tanggal FROM aduan WHERE id=$id) BETWEEN dari AND sampai")
+                        ->first();
+
+        $mengetahui = Pejabat::orderBy('subdivisi_id','desc')
+                       ->whereRaw("divisi_id =
+                                    (
+                                        SELECT u.divisi_id
+                                        FROM users u
+                                        LEFT JOIN aduan a ON a.pegawai_id=u.id
+                                        WHERE a.id=$id
+                                    )" )
+                        ->whereRaw(" 
+                                    (subdivisi_id =
+                                    (
+                                        SELECT u.subdivisi_id
+                                        FROM users u
+                                        LEFT JOIN aduan a ON a.pegawai_id=u.id
+                                        WHERE a.id=$id
+                                    ) OR subdivisi_id IS NULL)
+                                ")
+                        ->whereRaw("(SELECT tanggal FROM aduan WHERE id=$id) BETWEEN dari AND sampai")
+                        ->first();
+        
+        $pdf = PDF::loadview('invent/aduantik.printhasil',compact('data','menyetujui','petugas','pejabat','mengetahui','petugastik'));
+        return $pdf->stream();
+    }
    
     public function update(Request $request, $id)
     {
         $aduan = Aduan::find($id);
-        for ($i = 0; $i < count($request->input('detail_id')); $i++){
-            $detail_id = $request->detail_id[$i];
-            AduanDetail::where('id',$detail_id)->update([
-                'status' => $request->status[$i]
-            ]);
-        }
-        $aduan->update(['aduan_status' => $request->aduan_status]);
-        return redirect('/invent/aduantik/detail/'.$id)->with('sukses','Barang sudah diperbaharui');
+        $aduan->update(
+            [
+                'result' => $request->result,
+                'aduan_status' => $request->aduan_status,
+                'follow_up' => $request->follow_up,
+        ]);
+        return redirect('/invent/aduantik')->with('sukses','Status Aduan Telah Diperbaharui');
     }
 
 

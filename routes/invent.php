@@ -61,6 +61,7 @@
   Route::post('/invent/aduantik/update/{id}','Invent\AduanTikController@update')->name('aduantik.update');
   Route::get('/invent/aduantik/print/{id}','Invent\AduanTikController@print')->name('aduantik.print');
   Route::get('/invent/aduantik/detail/{id}','Invent\AduanTikController@detail')->name('aduantik.detail');
+  Route::get('/invent/aduantik/printhasil/{id}','Invent\AduanTikController@printhasil')->name('aduantik.printhasil');
 
   //Route untuk pengajuan barang baru
   Route::get('/invent/pengajuan/create','Invent\PengajuanController@create')->name('pengajuan.create');

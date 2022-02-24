@@ -7,22 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class Aduan extends Model
 {
     protected $table = "aduan";
-    protected $fillable = ['no_aduan','tanggal','aduan_status','pegawai_id','jenis'];
+    protected $fillable = ['no_aduan','tanggal','aduan_status','pegawai_id','jenis','inventaris_id','problem',
+                            'follow_up','result'];
 
     public function getFoto() 
     {
         return $this->foto==null ? asset('images/user/barang.png') : asset('images/aduan').'/'.$this->id.'/'.$this->foto;
     }
 
-
-    public function barang() //Relasi dari aduan k user / pegawai
+    public function barang()
     {
-        return $this->belongsTo(Inventaris::class,'barang_id','id');
-    }
-
-    public function detail() 
-    {
-        return $this->belongsTo(AduanDetail::class,'id','aduan_id');
+        return $this->belongsTo(Inventaris::class,'inventaris_id','id');
     }
 
     public function lapor() //Relasi dari aduan k user / pegawai
@@ -30,8 +25,9 @@ class Aduan extends Model
         return $this->belongsTo(User::class,'pegawai_id','id');
     }
 
-    public function tindak(){
-        return $this->tindak;
+    public function detail() 
+    {
+        return $this->belongsTo(AduanDetail::class,'id','aduan_id');
     }
 
     public function lokasi()
