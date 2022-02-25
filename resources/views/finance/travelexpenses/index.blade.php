@@ -53,15 +53,17 @@
                     <td>{{$row->st->purpose}}</td>
                     <td>
                         <a class="btn btn-primary" href="/finance/travelexpenses/receipt/{{$row->id}}" target="_blank" 
-                            rel="noopener noreferrer">CETAK</a>
+                            rel="noopener noreferrer">Kuitansi</a>
                     </td>
                     <td>
                         <a class="btn btn-primary" href="/finance/travelexpenses/riil/{{$row->id}}" target="_blank" 
-                            rel="noopener noreferrer">CETAK</a>
+                            rel="noopener noreferrer">Riil</a>
                     </td>
-                    <td>
+                    <td style="text-align: center">
                         <a class="btn btn-primary" href="/finance/travelexpenses/super/{{$row->id}}" target="_blank" 
-                            rel="noopener noreferrer">CETAK</a>
+                            rel="noopener noreferrer">SuPer</a> <br>
+                        <a class="btn btn-warning" href="/finance/travelexpenses/super30/{{$row->id}}" target="_blank" 
+                            rel="noopener noreferrer">SuPer30%</a>
                     </td>
                     <td>
                         @foreach ($row->filess as $item)

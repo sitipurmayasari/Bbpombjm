@@ -368,6 +368,8 @@
                         '<td><input type="text" name="inn_room1[]" /></td>'+
                         '<td><input type="date" name="checkin1[]" /></td>'+
                         '<td><input type="date" name="checkout1[]" /></td>'+
+                        '<td><input type="checkbox" name="inap1[]" value="Y"> Ya </td>'+
+                        '<td><input type="number" min="0" value="0" name="hotelmax1[]"/></td>'+
                         '<td><input type="number" min="0" value="0" name="inn_fee_1[]" id="innfee1-'+no+'"/></td>'+
                         '<td><input type="number" min="0" value="0" name="long_stay_1[]" id="longstay1-'+no+'" style="width: 50px"/></td>' +
                         '<td><input type="number" min="0" value="0" name="isi_1[]" style="width: 50px"  id="isi1-'+no+'" onkeyup="longstay1('+no+')"/>org</td>'+
@@ -379,6 +381,8 @@
                         '<td><input type="text" name="inn_room2[]" /></td>'+
                         '<td><input type="date" name="checkin2[]" /></td>'+
                         '<td><input type="date" name="checkout2[]" /></td>'+
+                        '<td><input type="checkbox" name="inap2[]" value="N"> Ya</td>'+
+                        '<td><input type="number" min="0" value="0" name="hotelmax2[]"/></td>'+
                         '<td><input type="number" min="0" value="0" name="inn_fee_2[]" id="innfee2-'+no+'"/></td>'+
                         '<td><input type="number" min="0" value="0" name="long_stay_2[]" id="longstay2-'+no+'" style="width: 50px"/></td>'+
                         '<td><input type="number" min="0" value="0" name="isi_2[]" style="width: 50px" id="isi2-'+no+'" onkeyup="longstay2('+no+')"/>org </td>'+ 

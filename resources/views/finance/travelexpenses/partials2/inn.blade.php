@@ -18,6 +18,8 @@
                                     <th class="text-center">No. Kamar (Room)</th>
                                     <th class="text-center">Tgl CheckIn</th>
                                     <th class="text-center">Tgl CheckOut</th>
+                                    <th class="text-center">Non Penginapan*</th>
+                                    <th class="text-center">Tarif Max* </th>
                                     <th class="text-center">Tarif</th>
                                     <th class="text-center">Lama (hari)</th>
                                     <th class="text-center">isi/kamar</th>
@@ -29,6 +31,8 @@
                                     <th class="text-center">No. Kamar (Room)</th>
                                     <th class="text-center">Tgl CheckIn</th>
                                     <th class="text-center">Tgl CheckOut</th>
+                                    <th class="text-center">Non Penginapan*</th>
+                                    <th class="text-center">Tarif Max* </th>
                                     <th class="text-center">Tarif</th>
                                     <th class="text-center">Lama (hari)</th>
                                     <th class="text-center">isi/kamar</th>
@@ -50,6 +54,12 @@
                                         <td><input type="text" name="inn_room1[]" value="{{$item->inn_room1}}"/></td>
                                         <td><input type="date" name="checkin1[]" value="{{$item->checkin1}}"/></td>
                                         <td><input type="date" name="checkout1[]" value="{{$item->checkout1}}"/></td>
+                                        @if ($item->inap1=='Y')
+                                            <input type="checkbox" name="inap1[]" value="Y" checked> Ya
+                                        @else
+                                            <input type="checkbox" name="inap1[]" value="Y" >
+                                        @endif
+                                        <td><input type="number" min="0" value="0" name="hotelmax1[]" value="{{$item->hotelmax1}}"/></td>
                                         <td><input type="number" min="0" value="{{$item->inn_fee_1}}" name="inn_fee_1[]" id="innfee1-{{$nomor}}"/></td>
                                         <td><input type="number" min="0" value="{{$item->long_stay_1}}" name="long_stay_1[]" id="longstay1-{{$nomor}}" style="width: 50px"/></td>
                                         <td><input type="number" min="0" value="{{$item->isi_1}}" name="isi_1[]" style="width: 50px"  id="isi1-{{$nomor}}" onkeyup="longstay1({{$nomor}})"/>org</td>
@@ -61,6 +71,12 @@
                                         <td><input type="text" name="inn_room2[]" value="{{$item->inn_room2}}"/></td>
                                         <td><input type="date" name="checkin2[]" value="{{$item->checkin2}}"/></td>
                                         <td><input type="date" name="checkout2[]" value="{{$item->checkout2}}"/></td>
+                                        @if ($item->inap2=='Y')
+                                            <input type="checkbox" name="inap2[]" value="Y" checked> Ya
+                                        @else
+                                            <input type="checkbox" name="inap2[]" value="Y" >
+                                        @endif
+                                        <td><input type="number" min="0" value="0" name="hotelmax2[]" value="{{$item->hotelmax2}}"/></td>
                                         <td><input type="number" min="0" value="{{$item->inn_fee_2}}" name="inn_fee_2[]" id="innfee2-{{$nomor}}"/></td>
                                         <td><input type="number" min="0" value="{{$item->long_stay_2}}" name="long_stay_2[]" id="longstay2-{{$nomor}}" style="width: 50px"/></td>
                                         <td><input type="number" min="0" value="{{$item->isi_2}}" name="isi_2[]" style="width: 50px" id="isi2-{{$nomor}}" onkeyup="longstay2({{$nomor}})"/>org </td> 
@@ -73,6 +89,7 @@
                                @endforeach
                             </tbody>
                         </table>
+                        *Jika tidak menggunakan penginapan / menggunakan rumah pribadi atau saudara
                    </div>
     
                 </div>

@@ -234,6 +234,9 @@ class TravelexpensesController extends Controller
 
             //Travelexpenses2
             for ($i = 0; $i < count($request->input('outst_employee_id')); $i++){
+                $inap1         = $request->inap1 != null ?  $request->inap1[$i] : 'N';
+                $inap2         = $request->inap2 != null ?  $request->inap2[$i] : 'N';
+
                 $datathree = [
                     'expenses_id'       => $expenses_id,
                     'outst_employee_id' => $request->outst_employee_id[$i],
@@ -257,6 +260,10 @@ class TravelexpensesController extends Controller
                     'plane_flight2'     => $request->plane_flight2[$i],
                     'plane_flight3'     => $request->plane_flight3[$i],
                     'plane_flightreturn'=> $request->plane_flightreturn[$i],
+                    'inap1'             => $inap1,
+                    'inap2'             => $inap2,
+                    'hotelmax1'       => $request->hotelmax1[$i],
+                    'hotelmax2'       => $request->hotelmax2[$i]
                 ];
                 Travelexpenses2::create($datathree);     
             }
@@ -459,6 +466,8 @@ class TravelexpensesController extends Controller
 
             //Travelexpenses2
             for ($i = 0; $i < count($request->input('outst_employee_id')); $i++){
+                $inap1         = $request->inap1 != null ?  $request->inap1[$i] : 'N';
+                $inap2         = $request->inap2 != null ?  $request->inap2[$i] : 'N';
                 $datathree = [
                     'expenses_id'       => $expenses_id,
                     'outst_employee_id' => $request->outst_employee_id[$i],
@@ -482,6 +491,10 @@ class TravelexpensesController extends Controller
                     'plane_flight2'     => $request->plane_flight2[$i],
                     'plane_flight3'     => $request->plane_flight3[$i],
                     'plane_flightreturn'=> $request->plane_flightreturn[$i],
+                    'inap1'             => $inap1,
+                    'inap2'             => $inap2,
+                    'hotelmax1'         => $request->hotelmax1[$i],
+                    'hotelmax2'         => $request->hotelmax2[$i]
                 ];
                 Travelexpenses2::create($datathree);    
             }
@@ -576,6 +589,31 @@ class TravelexpensesController extends Controller
                         ->where('expenses.id',$id)
                         ->get();
         $pdf = PDF::loadview('finance/travelexpenses.super',compact('data','pegawai','tujuan'));
+        return $pdf->stream();
+    }
+
+    public function super30($id)
+    {
+        $data       = Expenses::where('id',$id)->first();
+        $pegawai    = Outst_employee::SelectRaw('outst_employee.*, inap1')
+                        ->leftJoin('outstation','outstation.id','=','outst_employee.outstation_id')
+                        ->leftJoin('expenses','expenses.outstation_id','=','outstation.id')
+                        ->leftJoin('travelexpenses2','travelexpenses2.outst_employee_id','=','outst_employee.id')
+                        ->where('inap1','Y')
+                        ->where('expenses.id',$id)
+                        ->get();
+        $tujuan    = Outst_destiny::SelectRaw('outst_destiny.* ')
+                        ->leftJoin('outstation','outstation.id','=','outst_destiny.outstation_id')
+                        ->leftJoin('expenses','expenses.outstation_id','=','outstation.id')
+                        ->where('expenses.id',$id)
+                        ->get();
+        $nilai      = Travelexpenses2::SelectRaw('travelexpenses2.*, travelexpenses1.innname_1')
+                        ->leftJoin('travelexpenses1','travelexpenses1.outst_employee_id','=','travelexpenses2.outst_employee_id')
+                        ->where('inap1','Y')
+                        ->where('travelexpenses2.expenses_id',$id)
+                        ->first();
+        $petugas    = Petugas::where('id', 7)->first();
+        $pdf = PDF::loadview('finance/travelexpenses.super30',compact('data','pegawai','tujuan','petugas','nilai'));
         return $pdf->stream();
     }
 
