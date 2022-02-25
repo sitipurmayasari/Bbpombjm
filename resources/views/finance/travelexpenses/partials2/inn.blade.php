@@ -61,7 +61,7 @@
                                                 <input type="checkbox" name="inap1[]" value="Y" >
                                             @endif
                                         </td>
-                                        <td><input type="number" min="0" value="0" name="hotelmax1[]" value="{{$item->hotelmax1}}"/></td>
+                                        <td><input type="number" min="0" name="hotelmax1[]" value="{{$item->hotelmax1}}"/></td>
                                         <td><input type="number" min="0" value="{{$item->inn_fee_1}}" name="inn_fee_1[]" id="innfee1-{{$nomor}}"/></td>
                                         <td><input type="number" min="0" value="{{$item->long_stay_1}}" name="long_stay_1[]" id="longstay1-{{$nomor}}" style="width: 50px"/></td>
                                         <td><input type="number" min="0" value="{{$item->isi_1}}" name="isi_1[]" style="width: 50px"  id="isi1-{{$nomor}}" onkeyup="longstay1({{$nomor}})"/>org</td>
@@ -80,7 +80,7 @@
                                                 <input type="checkbox" name="inap2[]" value="Y" >
                                             @endif
                                         </td>
-                                        <td><input type="number" min="0" value="0" name="hotelmax2[]" value="{{$item->hotelmax2}}"/></td>
+                                        <td><input type="number" min="0"  name="hotelmax2[]" value="{{$item->hotelmax2}}"/></td>
                                         <td><input type="number" min="0" value="{{$item->inn_fee_2}}" name="inn_fee_2[]" id="innfee2-{{$nomor}}"/></td>
                                         <td><input type="number" min="0" value="{{$item->long_stay_2}}" name="long_stay_2[]" id="longstay2-{{$nomor}}" style="width: 50px"/></td>
                                         <td><input type="number" min="0" value="{{$item->isi_2}}" name="isi_2[]" style="width: 50px" id="isi2-{{$nomor}}" onkeyup="longstay2({{$nomor}})"/>org </td> 
