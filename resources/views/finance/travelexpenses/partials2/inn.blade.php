@@ -54,11 +54,13 @@
                                         <td><input type="text" name="inn_room1[]" value="{{$item->inn_room1}}"/></td>
                                         <td><input type="date" name="checkin1[]" value="{{$item->checkin1}}"/></td>
                                         <td><input type="date" name="checkout1[]" value="{{$item->checkout1}}"/></td>
-                                        @if ($item->inap1=='Y')
-                                            <input type="checkbox" name="inap1[]" value="Y" checked> Ya
-                                        @else
-                                            <input type="checkbox" name="inap1[]" value="Y" >
-                                        @endif
+                                        <td>
+                                            @if ($item->inap1=='Y')
+                                                <input type="checkbox" name="inap1[]" value="Y" checked> Ya
+                                            @else
+                                                <input type="checkbox" name="inap1[]" value="Y" >
+                                            @endif
+                                        </td>
                                         <td><input type="number" min="0" value="0" name="hotelmax1[]" value="{{$item->hotelmax1}}"/></td>
                                         <td><input type="number" min="0" value="{{$item->inn_fee_1}}" name="inn_fee_1[]" id="innfee1-{{$nomor}}"/></td>
                                         <td><input type="number" min="0" value="{{$item->long_stay_1}}" name="long_stay_1[]" id="longstay1-{{$nomor}}" style="width: 50px"/></td>
@@ -71,11 +73,13 @@
                                         <td><input type="text" name="inn_room2[]" value="{{$item->inn_room2}}"/></td>
                                         <td><input type="date" name="checkin2[]" value="{{$item->checkin2}}"/></td>
                                         <td><input type="date" name="checkout2[]" value="{{$item->checkout2}}"/></td>
-                                        @if ($item->inap2=='Y')
-                                            <input type="checkbox" name="inap2[]" value="Y" checked> Ya
-                                        @else
-                                            <input type="checkbox" name="inap2[]" value="Y" >
-                                        @endif
+                                        <td>
+                                            @if ($item->inap2=='Y')
+                                                <input type="checkbox" name="inap2[]" value="Y" checked> Ya
+                                            @else
+                                                <input type="checkbox" name="inap2[]" value="Y" >
+                                            @endif
+                                        </td>
                                         <td><input type="number" min="0" value="0" name="hotelmax2[]" value="{{$item->hotelmax2}}"/></td>
                                         <td><input type="number" min="0" value="{{$item->inn_fee_2}}" name="inn_fee_2[]" id="innfee2-{{$nomor}}"/></td>
                                         <td><input type="number" min="0" value="{{$item->long_stay_2}}" name="long_stay_2[]" id="longstay2-{{$nomor}}" style="width: 50px"/></td>
