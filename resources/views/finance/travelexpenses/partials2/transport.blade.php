@@ -37,7 +37,7 @@
                                             <input type="number" name="jumtlokal[]"  min="0" value="{{$item->jumtlokal}}" style="width: 35px;"  id="jumtlokal-{{$nomor}}" onkeyup="jumtlokal({{$nomor}})"  onclick="jumtlokal({{$nomor}})">
                                             <input type="text" name="tottlokal[]"  min="0" value="{{$item->tottlokal}}" readonly style="width: 150px;" id="tottlokal-{{$nomor}}">
                                         </td>
-                                        <td><input type="number" min="0" value="{{$item->bbm}}+'" name="bbm[]" /></td>
+                                        <td><input type="number" min="0" value="{{$item->bbm}}" name="bbm[]" /></td>
                                         <td><input type="number" style="width: 35px;" min="0" value="{{$item->taxy_count_from}}" name="taxy_count_from[]" />kali</td>          
                                         <td><input type="number" min="0" value="{{$item->taxy_fee_from}}" name="taxy_fee_from[]" /></td>          
                                         <td><input type="number" style=" width: 35px" min="0" value="{{$item->taxy_count_to}}" name="taxy_count_to[]" />kali</td>          
