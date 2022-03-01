@@ -60,7 +60,7 @@ class AtkRequestOkController extends Controller
                     'satuan_id' => $request->satuan_id[$i] ,
                     'jumlah' => $request->jumlah[$i] ,
                     'ket' => $request->ket[$i],
-                    'ket' => $request->status[$i]
+                    'status' => $request->status[$i]
 
                 ];
                 Sbbdetail::create($data);
