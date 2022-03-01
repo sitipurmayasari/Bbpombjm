@@ -107,7 +107,7 @@ class BarangkeluarController extends Controller
 
         $mengetahui = Pejabat::where('jabatan_id', '=', 11)
                     ->where('divisi_id', '=', 2)
-                    ->whereRaw("(SELECT tanggal FROM Sbb WHERE id=$id) BETWEEN dari AND sampai")
+                    ->whereRaw("(SELECT tanggal FROM sbb WHERE id=$id) BETWEEN dari AND sampai")
                     ->first();
         
         $pdf = PDF::loadview('invent/barangkeluar.print',compact('data','isi','petugas','mengetahui'));
