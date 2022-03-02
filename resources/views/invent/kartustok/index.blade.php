@@ -32,7 +32,7 @@
                             <div class="col-sm-8">
                                 <select name="jenis_Laporan" id="jenis" class="col-xs-10 col-sm-10" onchange="myFunction()">
                                     <option value="2">Sisa Stok Kelompok Barang</option>
-                                    <option value="3">Lapooran Permintaan Per Laboratorium</option>
+                                    <option value="3">Laporan Permintaan Per Laboratorium</option>
                                     <option value="1">Laporan Per Barang</option>
                                 </select>
                             </div>
@@ -95,39 +95,6 @@
                                 </select>
                             </div>
                         </div>
-                        <br>
-                        {{-- <div class="form-group" id="pilihbulan">
-                            <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Bulan
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="radio" name="bulan" value="1" checked id="bln">
-                                <label class="control-label no-padding-right" for="form-field-1"> Semua</label> 
-                                &nbsp;&nbsp;
-                                <input type="radio" name="bulan" value="2" id="bln2">
-                                <label class="control-label no-padding-right" for="form-field-1"> Per bulan</label>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="form-group" id="tampildetilbulan">
-                            <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1">
-                            </label>
-                            <div class="col-sm-8">
-                                <select id="bulan" name="daftarbulan" class="col-xs-10 col-sm-10 select2">
-                                    <option value="">Pilih Bulan</option>
-                                    @php
-                                    $bulan = array("", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus",
-                                                     "September", "Oktober", "November", "Desember");
-                                    for($a=1;$a<=12;$a++){
-                                        $pilih="";
-                                        echo("<option value=\"$a\" $pilih>$bulan[$a]</option>"."\n");
-                                    }
-                                    @endphp
-                                </select>
-                            </div>
-                        </div> --}}
-                        
                         </fieldset>        
                     </div>
                </div>
@@ -150,31 +117,22 @@
 @section('footer')
 <script>
     $(document).ready(function(){
-        // $("#tampildetilbulan").hide();
+
         $("#barang").hide();
         $("#lab").hide();
-
-        // $("#bln").click(function(){
-        //     $("#tampildetilbulan").hide();
-        // });
-        // $("#bln2").click(function(){
-        //     $("#tampildetilbulan").show();
-        // });
-    
+        $("#pilihtahun").hide();
         $("#jenis").on("change", function(){
             var v = $(this).val();
             if(v=="1"){
                 $("#kelompok").hide();
                 $("#barang").show();
                 $("#lab").hide();
-                $("#pilihtahun").show();
-                // $("#pilihbulan").show();
+                $("#pilihtahun").hide();
             }else if(v=="3"){
                 $("#kelompok").hide();
                 $("#barang").hide();
                 $("#lab").show();
                 $("#pilihtahun").show();
-                // $("#pilihbulan").hide();
             }else{
                 $("#barang").hide();
                 $("#kelompok").show();

@@ -13,6 +13,7 @@ use App\Lokasi;
 use App\Labory;
 use App\Sbb;
 use App\Sbbdetail;
+use Carbon\Carbon;
 use PDF;
 class KartuStokController extends Controller
 {
@@ -28,21 +29,21 @@ class KartuStokController extends Controller
     public function cetak(Request $request)
     {       
         if ($request->jenis_Laporan=='1') {
+            $now = Carbon::now()->month;
+
             $stock = EntryStock::SelectRaw('entrystock.*, (stockawal-stock) AS keluar')
                                 ->LeftJoin('inventaris','inventaris.id','=','entrystock.inventaris_id')
                                 ->Where('inventaris_id',$request->inventaris_id)
-                                ->whereYear('entry_date',$request->years)
                                 ->get();
             $data = Inventaris::Where('id',$request->inventaris_id)->first();
-            $pdf = PDF::loadview('invent/kartustok.stokbarang',compact('stock','request','data'));
+            $pdf = PDF::loadview('invent/kartustok.stokbarang',compact('stock','request','data','now'));
             return $pdf->stream();
         }else if($request->jenis_Laporan=="2"){
-            $stock = Inventaris::SelectRaw('DISTINCT(inventaris.id),nama_barang, inventaris.satuan_id,lokasi, SUM(stock) AS stok, SUM(jumlah) AS keluar')
+            $stock = Inventaris::SelectRaw('DISTINCT(inventaris.id),nama_barang, inventaris.satuan_id,merk, no_seri, SUM(stock) AS stok')
                                 ->LeftJoin('entrystock','inventaris.id','=','entrystock.inventaris_id')
                                 ->LeftJoin('sbb_detail','inventaris.id','=','sbb_detail.inventaris_id')
                                 ->Where('kind','=','D')
                                 ->Where('jenis_barang',$request->kelompok)
-                                ->whereYear('sbb_detail.created_at',$request->years)
                                 ->GroupBY('inventaris.id')
                                 ->get();
             $data = Jenisbrg::where('id',$request->kelompok)->first();

@@ -24,29 +24,29 @@
             </div><br>
             <div class="col-sm-12" style="text-align: left">
                 Periode :
-                @if ($request->bulan!="1")
+                @if ($now!="1")
                     @php
-                        if ($request->daftarbulan=='1') {
+                        if ($now=='1') {
                             $bulan = "Januari";
-                        } else if($request->daftarbulan=='2') {
+                        } else if($now=='2') {
                             $bulan = "Februari";
-                        } else if($request->daftarbulan=='3') {
+                        } else if($now=='3') {
                             $bulan = "Maret";
-                        } else if($request->daftarbulan=='4') {
+                        } else if($now=='4') {
                             $bulan = "April";
-                        } else if($request->daftarbulan=='5') {
+                        } else if($now=='5') {
                             $bulan = "Mei";
-                        } else if($request->daftarbulan=='6') {
+                        } else if($now=='6') {
                             $bulan = "Juni";
-                        } else if($request->daftarbulan=='7') {
+                        } else if($now=='7') {
                             $bulan = "Juli";
-                        } else if($request->daftarbulan=='8') {
+                        } else if($now=='8') {
                             $bulan = "Agustus";
-                        } else if($request->daftarbulan=='9') {
+                        } else if($now=='9') {
                             $bulan = "September";
-                        } else if($request->daftarbulan=='10') {
+                        } else if($now=='10') {
                             $bulan = "Oktober";
-                        } else if($request->daftarbulan=='11') {
+                        } else if($now=='11') {
                             $bulan = "November";
                         } else {
                             $bulan = "Desember";
