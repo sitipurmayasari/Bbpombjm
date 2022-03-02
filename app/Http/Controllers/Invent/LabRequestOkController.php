@@ -47,6 +47,7 @@ class LabRequestOkController extends Controller
     
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         $sbb = Sbb::find($id);
         $sbb->update($request->all());
         
@@ -65,9 +66,9 @@ class LabRequestOkController extends Controller
                 ];
                 Sbbdetail::create($data);
 
-               if ($request->status == 'Y') {
+               if ($request->status[$i] == 'Y') {
                     $stok1 = Entrystock::Where('inventaris_id',$request->inventaris_id[$i])
-                                    ->WhereRaw('stock != 0')->orderBy('id','asc')->first();
+                                    ->WhereRaw('stock!= 0')->orderBy('id','asc')->first();
                     $stok2 = Entrystock::Where('inventaris_id',$request->inventaris_id[$i])
                                     ->WhereRaw('stock != 0')->orderBy('id','desc')->first();
 
