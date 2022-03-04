@@ -452,19 +452,23 @@
                         <td style="text-align: center;"><i>:</i> </td>
                         <td> 
                             <i>
-                                @if ($nilai->bbm != '0')
+                                @if ($nilai->bbm != '0' && $nilai->taxy_fee_to == '0')
                                     @php
                                         $jum = 1;
                                     @endphp
                                     {{$jum}}
-    
-                                @elseif($nilai->taxy_count_to != null)
+                                @elseif($nilai->taxy_fee_to != '0' && $nilai->bbm == '0')
+                                    @php
+                                        $jum = $nilai->taxy_count_to;
+                                    @endphp
+                                    {{$jum}}
+                                @elseif($nilai->taxy_fee_to != '0' && $nilai->bbm != '0')
                                     @php
                                         $jum = $nilai->taxy_count_to;
                                     @endphp
                                     {{$jum}}
                                 @else
-                                    -
+                                    {{ '-' }}
                                 @endif
                                 &nbsp;
                                 kali &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp. 
@@ -472,22 +476,21 @@
                         </td>
                         <td style="text-align: right;"> 
                             <i>
-                                @if ($nilai->bbm != '0' && $nilai->taxy_count_to == null)
+                                @if ($nilai->bbm != '0' && $nilai->taxy_fee_to == 0)
                                     @php
                                         $bbm = $nilai->bbm;
                                     @endphp
                                     {{number_format($bbm)}}
         
-                                @elseif($nilai->taxy_count_to != null && $nilai->bbm == '0')
+                                @elseif($nilai->taxy_fee_to != 0 && $nilai->bbm == '0')
                                     @php
                                         $bbm = $nilai->taxy_fee_to;
                                     @endphp
                                     {{number_format($bbm)}}
-                                @elseif($nilai->taxy_count_to != null && $nilai->bbm != '0')
+                                @elseif($nilai->taxy_fee_to != 0 && $nilai->bbm != '0')
                                     @php
                                         $a = $nilai->taxy_fee_to;
                                         $b = $nilai->bbm;
-
                                         $bbm = $a+$b;
                                     @endphp
                                     {{number_format($bbm)}}
