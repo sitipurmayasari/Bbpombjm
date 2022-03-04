@@ -55,7 +55,7 @@
                         for="form-field-1"> Nama Barang*
                         </label>
                         <div class="col-sm-8">
-                            <select name="inventaris_id[]" class="col-xs-10 col-sm-10 select2" id="inventaris_id" onchange="getData()">
+                            <select name="inventaris_id" class="col-xs-10 col-sm-10 select2" id="inventaris_id" onchange="getData()">
                                 <option value="">-Pilih-</option>
                                 @foreach ($data as $item)
                                     <option value="{{$item->id}}">{{$item->nama_barang}}|{{$item->merk}} (Kode : {{$item->kode_barang}}) </option>
