@@ -140,7 +140,7 @@
         $isi ='<tr id="cell-'+new_baris+'">'+
                 '<td>'+new_baris+'</td>'+
                     '<td>'+
-                        '<select name="inventaris_id[]" class="col-xs-11 col-sm-11 select2 kelompok" required id="barang_id-'+new_baris+'" onchange="getDataBarang('+new_baris+')">'+
+                        '<select name="inventaris_id[]" class="col-xs-11 col-sm-11 select2" required id="barang_id-'+new_baris+'" onchange="getDataBarang('+new_baris+')">'+
                             '<option value="">Pilih Barang</option>'+                      
                         '</select>'+            
                     '</td>'+
@@ -163,8 +163,7 @@
         $("#myTable").find('tbody').append($isi);
         $("#countRow").val(new_baris);
         $('.select2').select2();
-        getkelompok();
-
+        getkelompoknext(new_baris);
        }
 
     
@@ -189,6 +188,25 @@
                         string = string + '<option value="'+ value.id +'">'+ value.nama_barang +'('+value.no_seri+')</option>';
                     })
                 $(".kelompok").html(string);
+            }
+        );
+        }
+
+        function getkelompoknext(i){
+            var jenis_barang = $("#jenisbrg").val();
+
+            $.get(
+            "{{route('atkrequest.getKelompok') }}",
+            {
+                jenis_barang: jenis_barang
+            },
+            function(response) {
+                var data2 = response.data;
+                var string ="<option value=''>Pilih Barang</option>";
+                    $.each(data2, function(index, value) {
+                        string = string + '<option value="'+ value.id +'">'+ value.nama_barang +'</option>';
+                    })
+                $("#barang_id-"+i).html(string);
             }
         );
         }
