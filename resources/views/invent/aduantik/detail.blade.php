@@ -76,7 +76,7 @@ method="post" action="/invent/aduantik/update/{{$aduan->id}}">
                     for="form-field-1"> Masalah / Kerusakan
                     </label>
                     <div class="col-sm-8">
-                        <textarea class="col-xs-10 col-sm-10" style="background-color:rgb(233, 233, 233);" readonly>{{$aduan->problem}}
+                        <textarea class="col-xs-10 col-sm-10" style="background-color:rgb(233, 233, 233);">{{$aduan->problem}}
                         </textarea>
                     </div>
                 </div>
