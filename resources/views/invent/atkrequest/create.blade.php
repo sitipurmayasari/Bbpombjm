@@ -249,9 +249,14 @@
                     barang_id: barang_id
                 },
                 function(response) {
+                    if (response.data.sisa == null) {
+                        v = 0;
+                    } else {
+                        v = response.data.sisa;
+                    }
                     $("#satuan_id-"+i).val(response.data.satuan_id);
                     $("#satuan-"+i).val(response.data.satuan);
-                    $("#stok-"+i).val(response.data.sisa);
+                    $("#stok-"+i).val(v);
                     var x = $("#stok-"+i).val();
                     document.getElementById("jum-"+i).setAttribute("max", x);
                 }
