@@ -189,7 +189,7 @@
                         @if ($mengetahui->pjs != null)
                         {{$mengetahui->pjs}}
                         {{$mengetahui->jabatan->jabatan}} 
-                        @if ($mengetahui->subdivisi_id is null)
+                        @if ($mengetahui->subdivisi_id == null)
                             {{$mengetahui->divisi->nama}}
                         @else
                             {{$mengetahui->subdivisi->nama_subdiv}}
