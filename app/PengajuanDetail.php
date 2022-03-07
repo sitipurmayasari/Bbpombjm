@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class PengajuanDetail extends Model
 {
     protected $table = "pengajuan_detail";
-    protected $fillable = ["pengajuan_id","nama_barang","jumlah","satuan_id","keperluan","status"];
+    protected $fillable = ["pengajuan_id","nama_barang","jumlah","satuan_id","keperluan","status","spek"];
     
     public function satuan() 
     {

@@ -94,7 +94,7 @@
                                 <input type="number" name="jumlah[]" class="form-control" value="0">
                             </td>
                             <td>
-                                <input type="text" name="keperluan[]" class="form-control">
+                                <input type="text" name="keperluan[]" class="form-control" style="width:200px;">
                             </td>
                             <td>
                             </td>
@@ -138,6 +138,9 @@
                         '<input type="text" name="nama_barang[]" class="form-control">'+
                     '</td>'+
                     '<td>'+
+                        '<textarea name="spek" class="form-control"></textarea>'+
+                    '</td>'+
+                    '<td>'+
                         '<select name="satuan_id[]" class="col-xs-9 col-sm-9 select2" required>'+
                             '@foreach ($satuan as $brg)'+
                                 '<option value="{{$brg->id}}">{{$brg->satuan}}</option>'+
@@ -147,7 +150,7 @@
                         '<input type="number" name="jumlah[]" class="form-control" value="0">'+
                     '</td>'+
                     '<td>'+
-                        '<input type="text" name="keperluan[]" class="form-control">'+
+                        '<input type="text" name="keperluan[]" class="form-control" style="width:200px;">'+
                     '</td>'+
                     '<td><button type="button"  class="btn btn-danger" onclick="deleteRow('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button></td>'+
                 '</tr>';

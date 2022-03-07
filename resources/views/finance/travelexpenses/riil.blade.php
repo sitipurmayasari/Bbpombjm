@@ -299,7 +299,10 @@
                     @elseif($nilai2->tlokal =='Y' && $nilai->bbm == '0'  && $nilai->taxy_fee_to !='0')
                         @php
                             $a = $nilai2->tottlokal;
-                            $c = $nilai->taxy_fee_to;
+
+                            $x = $nilai->taxy_count_to;
+                            $y = $nilai->taxy_fee_to;
+                            $c = $x*$y;
 
                             $bbm = $a+$c;
                         @endphp
@@ -310,7 +313,9 @@
                         @php
 
                             $b = $nilai->bbm;
-                            $c = $nilai->taxy_fee_to;
+                            $x = $nilai->taxy_count_to;
+                            $y = $nilai->taxy_fee_to;
+                            $c = $x*$y;
 
                             $bbm = $b+$c;
                         @endphp
@@ -321,7 +326,9 @@
                         @php
                             $a = $nilai2->tottlokal;
                             $b = $nilai->bbm;
-                            $c = $nilai->taxy_fee_to;
+                            $x = $nilai->taxy_count_to;
+                            $y = $nilai->taxy_fee_to;
+                            $c = $x*$y;
 
                             $bbm = $a+$b+$c;
                         @endphp
@@ -731,7 +738,9 @@
                     @elseif($nilai2->tlokal =='Y' && $nilai->bbm == '0' && $nilai->taxy_fee_to !='0')
                         @php
                             $a = $nilai2->tottlokal;
-                            $c = $nilai->taxy_fee_to;
+                            $x = $nilai->taxy_count_to;
+                            $y = $nilai->taxy_fee_to;
+                            $c = $x*$y;
 
                             $bbm = $a+$c;
                         @endphp
@@ -742,7 +751,9 @@
                         @php
 
                             $b = $nilai->bbm;
-                            $c = $nilai->taxy_fee_to;
+                            $x = $nilai->taxy_count_to;
+                            $y = $nilai->taxy_fee_to;
+                            $c = $x*$y;
 
                             $bbm = $b+$c;
                         @endphp
@@ -753,7 +764,9 @@
                         @php
                             $a = $nilai2->tottlokal;
                             $b = $nilai->bbm;
-                            $c = $nilai->taxy_fee_to;
+                            $x = $nilai->taxy_count_to;
+                            $y = $nilai->taxy_fee_to;
+                            $c = $x*$y;
 
                             $bbm = $a+$b+$c;
                         @endphp
