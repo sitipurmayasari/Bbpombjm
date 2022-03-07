@@ -82,26 +82,39 @@ class AduanTikController extends Controller
                         ->where('divisi_id', '=', 2)
                         ->whereRaw("(SELECT tanggal FROM aduan WHERE id=$id) BETWEEN dari AND sampai")
                         ->first();
+            
+            $jab = User::Select('jabatan_id')
+                        ->leftjoin('aduan','aduan.pegawai_id','=','users.id')
+                        ->where('aduan.id',$id)->first();
+    
+            if ($jab->jabatan_id == '11') {
+                $mengetahui = Pejabat::orderBy('id','desc')
+                                    ->Where('jabatan_id',6)->whereRaw("curdate() BETWEEN dari AND sampai")->first();
+            
+            } else if ($jab->jabatan_id == '7') {
+                $mengetahui = Pejabat::orderBy('id','desc')
+                                    ->Where('jabatan_id',6)->whereRaw("curdate() BETWEEN dari AND sampai")->first();
+            } else if ($jab->jabatan_id == '5') {
+                $mengetahui = Pejabat::orderBy('id','desc')
+                                    ->whereRaw("divisi_id =
+                                                (SELECT u.divisi_id FROM users u
+                                                    LEFT JOIN aduan a ON a.pegawai_id=u.id
+                                                    WHERE a.id=$id
+                                                )" )
+                                    ->whereRaw('subdivisi_id is null')
+                                    ->whereRaw("curdate() BETWEEN dari AND sampai")
+                                    ->first();
+            } else {
+                $mengetahui = Pejabat::orderBy('id','desc')
+                                    ->whereRaw("subdivisi_id =
+                                                    ( SELECT u.subdivisi_id FROM users u 
+                                                        LEFT JOIN aduan a ON a.pegawai_id=u.id 
+                                                        WHERE a.id=$id
+                                                )" )
+                                    ->whereRaw("curdate() BETWEEN dari AND sampai")
+                                    ->first();
+            }
 
-        $mengetahui = Pejabat::orderBy('subdivisi_id','desc')
-                       ->whereRaw("divisi_id =
-                                    (
-                                        SELECT u.divisi_id
-                                        FROM users u
-                                        LEFT JOIN aduan a ON a.pegawai_id=u.id
-                                        WHERE a.id=$id
-                                    )" )
-                        ->whereRaw(" 
-                                    (subdivisi_id =
-                                    (
-                                        SELECT u.subdivisi_id
-                                        FROM users u
-                                        LEFT JOIN aduan a ON a.pegawai_id=u.id
-                                        WHERE a.id=$id
-                                    ) OR subdivisi_id IS NULL)
-                                ")
-                        ->whereRaw("(SELECT tanggal FROM aduan WHERE id=$id) BETWEEN dari AND sampai")
-                        ->first();
         
         $pdf = PDF::loadview('invent/aduantik.print',compact('data','menyetujui','petugas','pejabat','mengetahui','petugastik'));
         return $pdf->stream();

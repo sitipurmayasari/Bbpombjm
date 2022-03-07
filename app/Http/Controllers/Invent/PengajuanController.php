@@ -72,27 +72,39 @@ class PengajuanController extends Controller
     public function print($id)
     {
         $data = Pengajuan::where('id',$id)->first();
-        $isi = PengajuanDetail::where('pengajuan_id',$id)
+        $isi = PengajuanDetail::where('pengajuan_id',$id)->get();
 
-        ->get();
+        $jab = User::Select('jabatan_id')
+                    ->leftjoin('pengajuan','pengajuan.pegawai_id','=','users.id')
+                    ->where('pengajuan.id',$id)->first();
 
-        $mengetahui = Pejabat::orderBy('subdivisi_id','desc')
-                       ->whereRaw("divisi_id =
-                                    (
-                                        SELECT u.divisi_id FROM users u
-                                        LEFT JOIN pengajuan a ON a.pegawai_id=u.id
-                                        WHERE a.id=$id
-                                    )" )
-                        ->whereRaw(" 
-                                    (subdivisi_id =
-                                    (
-                                        SELECT u.subdivisi_id FROM users u 
-                                        LEFT JOIN pengajuan a ON a.pegawai_id=u.id 
-                                        WHERE a.id=$id
-                                    ) OR subdivisi_id IS NULL)
-                                ")
-                        ->whereRaw("curdate() BETWEEN dari AND sampai")
-                        ->first();
+        if ($jab->jabatan_id == '11') {
+            $mengetahui = Pejabat::orderBy('id','desc')
+                                ->Where('jabatan_id',6)->whereRaw("curdate() BETWEEN dari AND sampai")->first();
+        
+        } else if ($jab->jabatan_id == '7') {
+            $mengetahui = Pejabat::orderBy('id','desc')
+                                ->Where('jabatan_id',6)->whereRaw("curdate() BETWEEN dari AND sampai")->first();
+        } else if ($jab->jabatan_id == '5') {
+            $mengetahui = Pejabat::orderBy('id','desc')
+                                ->whereRaw("divisi_id =
+                                            (SELECT u.divisi_id FROM users u
+                                                LEFT JOIN pengajuan a ON a.pegawai_id=u.id
+                                                WHERE a.id=$id
+                                            )" )
+                                ->whereRaw('subdivisi_id is null')
+                                ->whereRaw("curdate() BETWEEN dari AND sampai")
+                                ->first();
+        } else {
+            $mengetahui = Pejabat::orderBy('id','desc')
+                                ->whereRaw("subdivisi_id =
+                                                ( SELECT u.subdivisi_id FROM users u 
+                                                    LEFT JOIN pengajuan a ON a.pegawai_id=u.id 
+                                                    WHERE a.id=$id
+                                            )" )
+                                ->whereRaw("curdate() BETWEEN dari AND sampai")
+                                ->first();
+        }
         
         $pdf = PDF::loadview('invent/pengajuan.print',compact('data','isi','mengetahui'));
         return $pdf->stream();
