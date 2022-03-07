@@ -196,7 +196,7 @@
             var jenis_barang = $("#jenisbrg").val();
 
             $.get(
-            "{{route('atkrequest.getKelompok') }}",
+            "{{route('labrequest.getKelompok') }}",
             {
                 jenis_barang: jenis_barang
             },
