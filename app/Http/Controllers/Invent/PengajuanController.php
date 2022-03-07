@@ -58,6 +58,7 @@ class PengajuanController extends Controller
                     'nama_barang' => $request->nama_barang[$i],
                     'satuan_id' => $request->satuan_id[$i] ,
                     'jumlah' => $request->jumlah[$i] ,
+                    'spek' => $request->spek[$i] ,
                     'keperluan' => $request->keperluan[$i]
                 ];
                 PengajuanDetail::create($data);
