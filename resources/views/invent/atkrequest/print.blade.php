@@ -163,10 +163,17 @@
                             @if ($mengetahui->pjs != null)
                             {{$mengetahui->pjs}}
                             {{$mengetahui->jabatan->jabatan}} 
-                            {{$mengetahui->divisi->nama}}
+                        
                             @else
                             {{$mengetahui->jabatan->jabatan}} 
-                            {{$mengetahui->divisi->nama}}
+                            
+                            @endif
+                            @if ($mengetahui->jabatan_id == 5 )
+                                {{$mengetahui->subdivisi->nama_subdiv}}
+                            @elseif ($mengetahui->jabatan_id == 7 or $mengetahui->jabatan_id==11)
+                                {{$mengetahui->divisi->nama}}
+                            @else
+                                Kepala Balai Besar POM di Banjarmasin
                             @endif
                         @else
                             SILAHKAN CEK SETUP PEJABAT

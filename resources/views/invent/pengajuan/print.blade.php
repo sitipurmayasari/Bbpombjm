@@ -105,7 +105,7 @@
         }
 
 </style>
-<body background="{{asset('images/kop.png')}}">
+<body>
      {{-- <header>
         <img src="{{asset('images/kop.png')}}" style="width: 100%"> <br>
     </header> --}}
