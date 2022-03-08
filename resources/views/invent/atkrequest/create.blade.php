@@ -36,10 +36,16 @@
                    </div>
                    <div class="col-md-6">
                         <div class="col-md-12">
-                            <label>TANGGAL PENGAJUAN *</label><br>
-                            <input type="text" name="tanggal" readonly 
+                            <label>MENGETAHUI *</label><br>
+                            <select name="pejabat_id" class="col-xs-9 col-sm-9 select2">
+                                <option value="">Pilih Pejabat</option>
+                                @foreach ($tahu as $lok)
+                                    <option value="{{$lok->id}}">{{$lok->user->name}} ({{$lok->jabatan->jabatan}})</option>
+                                @endforeach
+                            </select>
+                            <input type="hidden" name="tanggal" readonly 
                                         class="col-xs-9 col-sm-9 required" value="{{date('Y-m-d')}}" required
-                                        data-date-format="yyyy-mm-dd" data-provide="datepicker">
+                                        data-date-format="yyyy-mm-dd">
                         </div>
                         <div class="col-md-12">
                             <label> Kelompok Barang *</label><br>

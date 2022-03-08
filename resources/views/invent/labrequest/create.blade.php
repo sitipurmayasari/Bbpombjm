@@ -15,18 +15,18 @@
             <div class="panel-heading"><h3 class="panel-title"></h3></div>
             <div class="panel-body">
                <div class="col-md-12">
-                   <div class="col-md-6">
+                   <div class="col-md-4">
                         <div class="col-md-12">
                             <label>Pengaju</label><br>
                             <input type="text" value="{{auth()->user()->name}}" readonly
-                                class="col-xs-9 col-sm-9 required " 
+                                class="col-xs-11 col-sm-11 required " 
                                 name="users_name"/>  
                             <input type="hidden" name="users_id" value="{{auth()->user()->id}}">
                         </div>
                         <div class="col-md-12">
                             <label>NO. SPB*</label><br>
                             <input type="text" id="nomor" readonly required
-                            class="col-xs-9 col-sm-9 required " 
+                            class="col-xs-11 col-sm-11 required " 
                             name="nomor"
                             value="{{$nosbb}}"
                             />
@@ -34,10 +34,27 @@
                             
                         </div>
                    </div>
-                   <div class="col-md-6">
+                   <div class="col-md-4">
+                        <div class="col-md-12">
+                            <label>Tanggal Pengajuan</label><br>
+                            <input type="text" name="tanggal" readonly 
+                                        class="col-xs-11 col-sm-11 required" value="{{date('Y-m-d')}}" required
+                                        data-date-format="yyyy-mm-dd">
+                        </div>
+                        <div class="col-md-12">
+                            <label>MENGETAHUI *</label><br>
+                            <select name="pejabat_id" class="col-xs-11 col-sm-11 ">
+                                <option value="">Pilih Pejabat</option>
+                                @foreach ($tahu as $lok)
+                                    <option value="{{$lok->id}}">{{$lok->user->name}} ({{$lok->jabatan->jabatan}})</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
                         <div class="col-md-12">
                             <label>Asal Lab *</label><br>
-                            <select name="labory_id" id="labory_id" class="col-xs-9 col-sm-9" required>
+                            <select name="labory_id" id="labory_id" class="col-xs-11 col-sm-11" required>
                                 @foreach ($lab as $lok)
                                     <option value="{{$lok->id}}">{{$lok->name}}</option>
                                 @endforeach
@@ -46,7 +63,7 @@
                         </div>
                         <div class="col-md-12">
                             <label> Kelompok Barang *</label><br>
-                            <select name="jenis_barang" id="jenisbrg" class="col-xs-9 col-sm-9" onchange="getkelompok()">
+                            <select name="jenis_barang" id="jenisbrg" class="col-xs-11 col-sm-11" onchange="getkelompok()">
                                 <option value="">Pilih Jenis Barang</option>
                                 @foreach ($jenis as $lok)
                                     <option value="{{$lok->id}}">{{$lok->nama}}</option>
