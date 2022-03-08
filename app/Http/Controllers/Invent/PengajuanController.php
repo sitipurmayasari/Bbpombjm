@@ -10,6 +10,7 @@ use App\Petugas;
 use App\Pengajuan;
 use App\PengajuanDetail;
 use App\Satuan;
+use App\Jenisbrg;
 use PDF;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -35,8 +36,9 @@ class PengajuanController extends Controller
         $user = User::all()
                 ->where('id','!=','1');
         $satuan = Satuan::all();
+        $kelompok = Jenisbrg::all();
         $no_ajuan = $this->getNoAjuan();
-        return view('invent/pengajuan.add',compact('user','no_ajuan','satuan'));
+        return view('invent/pengajuan.add',compact('user','no_ajuan','satuan','kelompok'));
     }
    
     public function store(Request $request)

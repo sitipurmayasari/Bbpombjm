@@ -25,13 +25,9 @@
                         <div class="col-md-12">
                             <label> Kelompok Barang *</label><br>
                             <select id="peg" name="kelompok" class="col-xs-9 col-sm-9 select2" required>
-                                    <option value="">pilih Kelompok Barang</option>
-                                    <option value="ATK">ATK</option>
-                                    <option value="Bahan Kimia">Bahan Kimia</option>
-                                    <option value="Alat Gelas">Alat Gelas</option>
-                                    <option value="Media">Media</option>
-                                    <option value="Alat Fungsional">Alat Fungsional</option>
-                                    <option value="Alat Rumah Tangga">Alat Rumah Tangga</option>
+                                    @foreach ($kelompok as $item)
+                                        <option value="{{$item->id}}">{{$item->nama}}</option>
+                                    @endforeach
                             </select>
                         </div>
                    </div>

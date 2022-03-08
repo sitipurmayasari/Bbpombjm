@@ -46,7 +46,7 @@
                     <td>{{$data->firstItem() + $key}}</td>
                     <td>{{$row->no_ajuan}}</td>
                     <td>{{$row->tgl_ajuan}}</td>
-                    <td>{{$row->kelompok}}</td>
+                    <td>{{$row->kel->nama}}</td>
                     <td>@if ($row->status==0)
                             Menunggu
                         @else 

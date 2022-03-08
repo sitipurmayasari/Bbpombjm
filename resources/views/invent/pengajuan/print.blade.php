@@ -141,7 +141,7 @@
             <tr>
                 <td>Kelompok Barang</td>
                 <td>:</td>
-                <td>{{$data->kelompok}}</td>
+                <td>{{$data->kel->nama}}</td>
             </tr>
         </table>
         <br><br>

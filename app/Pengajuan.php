@@ -7,9 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Pengajuan extends Model
 {
     protected $table = "pengajuan";
-    protected $fillable = ['no_ajuan','tgl_ajuan','status','pegawai_id','kelompok','spek'
-                            ];
+    protected $fillable = ['no_ajuan','tgl_ajuan','status','pegawai_id','jenis_barang_id','spek'];
+      
 
+    public function kel() 
+    {
+        return $this->belongsTo(Jenisbrg::class,'jenis_barang_id','id');
+    }
 
     public function detail() 
     {
