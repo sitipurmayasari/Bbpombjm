@@ -80,7 +80,7 @@
     <br>  
     <div class="lara">
         <h6>BALAI BESAR PENGAWASAN OBAT DAN MAKANAN DI BANJARMASIN</h6>
-        <u><h5>LAPORAN HASIL PEMELIHARAAN TIK</h5></u>
+        <u><h5>LAPORAN HASIL PERBAIKAN TIK</h5></u>
         <h6>NO. {{$data->no_aduan}}</h6>
         <br>
         <div >
