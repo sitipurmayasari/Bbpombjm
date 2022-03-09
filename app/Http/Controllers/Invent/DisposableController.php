@@ -88,20 +88,7 @@ class DisposableController extends Controller
         return view('invent/disposable.edit',compact('data','divisi','user','lokasi','jenis','satuan'));
     }
 
-    public function ubahstok($id)
-    {
-        $data = Entrystock::where('id',$id)->first();
-        return view('invent/disposable.ubahstok',compact('data'));
-    }
-
-    public function updatestok(Request $request, $id)
-    {
-        $data = Entrystock::find($id);
-        $data->update($request->all());
-
-    }
-
-
+   
     public function update(Request $request, $id)
     {
          $this->validate($request,[
@@ -156,4 +143,19 @@ class DisposableController extends Controller
         $stok = Entrystock::create($request->all());
         return redirect('/invent/disposable/stock/'.$stok->inventaris_id)->with('sukses','Data Tersimpan');
     }
+
+    public function ubahstok($id)
+    {
+        $data = Entrystock::where('id',$id)->first();
+        return view('invent/disposable.ubahstok',compact('data'));
+    }
+
+    public function updatestok(Request $request, $id)
+    {
+        $data = Entrystock::find($id);
+        $data->update($request->all());
+        return redirect('/invent/disposable/stock/'.$data->inventaris_id)->with('sukses','Data Tersimpan');
+    }
+
+
 }

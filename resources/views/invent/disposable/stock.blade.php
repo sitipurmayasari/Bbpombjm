@@ -51,7 +51,7 @@
                             </label>
                             <div class="col-sm-8">
                                 <input type="number" value="0"
-                                class="col-xs-9 col-sm-9 required " min="0" name="merk" />
+                                class="col-xs-9 col-sm-9 required " min="0" name="harga" />
                             </div>
                         </div>
                     </div>
@@ -111,6 +111,7 @@
                     <th>Barang keluar</th>
                     <th>Sisa</th>
                     <th>Exp Date</th>
+                    <th>Harga Satuan</th>
                     <th>Aksi</th>
                 </thead>
                 <tbody>
@@ -128,7 +129,8 @@
                         </td>
                         <td>{{$row->stock}}</td>
                         <td>{{$row->exp_date}}</td>
-                        <td><a href="/invent/disposable/edit/{{$row->id}}" class="btn btn-warning">
+                        <td>{{$row->harga}}</td>
+                        <td><a href="/invent/disposable/ubahstok/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i></td>
                     </tr>
                     @endforeach

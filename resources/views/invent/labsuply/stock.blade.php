@@ -45,6 +45,15 @@
                                 class="col-xs-9 col-sm-9 required " readonly name="merk" />
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Harga Satuan
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="number" value="0"
+                                class="col-xs-9 col-sm-9 required " min="0" name="harga" />
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
@@ -102,6 +111,8 @@
                     <th>Barang keluar</th>
                     <th>Sisa</th>
                     <th>Exp Date</th>
+                    <th>Harga Satuan</th>
+                    <th>Aksi</th>
                 </thead>
                 <tbody>
                     @php $no=1; @endphp
@@ -118,6 +129,9 @@
                         </td>
                         <td>{{$row->stock}}</td>
                         <td>{{$row->exp_date}}</td>
+                        <td>{{$row->harga}}</td>
+                        <td><a href="/invent/labsuply0/ubahstok/{{$row->id}}" class="btn btn-warning">
+                            <i class="glyphicon glyphicon-edit"></i></td>
                     </tr>
                     @endforeach
                 </tbody>

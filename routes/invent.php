@@ -43,6 +43,8 @@
   Route::get('/invent/labsuply/qrcode/{id}','Invent\LabSuplyController@qrcode')->name('labsuply.qrcode');
   Route::get('/invent/labsuply/stock/{id}','Invent\LabSuplyController@stock')->name('labsuply.stock');
   Route::post('/invent/labsuply/storestock','Invent\LabSuplyController@storestock')->name('labsuply.storestock');
+  Route::get('/invent/labsuply/ubahstok/{id}','Invent\LabSuplyController@ubahstok')->name('labsuply.ubahstok');
+  Route::post('/invent/labsuply/updatestok/{id}','Invent\LabSuplyController@updatestok')->name('labsuply.updatestok');
   
 
   //Route untuk maintenance
