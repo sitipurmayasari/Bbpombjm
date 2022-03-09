@@ -47,8 +47,9 @@ class KartuStokController extends Controller
                                 ->GroupBY('inventaris.id')
                                 ->get();
             $data = Jenisbrg::where('id',$request->kelompok)->first();
-            $pdf = PDF::loadview('invent/kartustok.stokkelompok',compact('stock','data','request'));
-            return $pdf->stream();
+            return view('invent/kartustok.stokkelompok',compact('stock','data','request'));
+            // $pdf = PDF::loadview('invent/kartustok.stokkelompok',compact('stock','data','request'));
+            // return $pdf->stream();
         } else if($request->jenis_Laporan=="3"){
             $stock = Inventaris::SelectRaw('inventaris.*, SUM(sbb_detail.jumlah) AS jumlah')
                                 ->LeftJoin('sbb_detail','inventaris.id','=','sbb_detail.inventaris_id')
