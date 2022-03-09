@@ -42,7 +42,7 @@ class KartuStokController extends Controller
             $stock = Inventaris::SelectRaw('DISTINCT(inventaris.id),nama_barang, inventaris.satuan_id,merk, no_seri, SUM(stock) AS stok')
                                 ->LeftJoin('entrystock','inventaris.id','=','entrystock.inventaris_id')
                                 ->LeftJoin('sbb_detail','inventaris.id','=','sbb_detail.inventaris_id')
-                                ->Where('kind','=','D')
+                                ->Where('kind','!=','R')
                                 ->Where('jenis_barang',$request->kelompok)
                                 ->GroupBY('inventaris.id')
                                 ->get();
