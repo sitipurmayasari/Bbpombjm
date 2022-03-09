@@ -16,7 +16,7 @@ class AksesController extends Controller
 {
     public function index()
     {
-        $user = User::where('aktif','Y');    
+        $user = User::where('aktif','Y')->get();    
         return view('amdk/akses.index',compact('user'));
     }
 
