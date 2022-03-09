@@ -31,6 +31,8 @@
   Route::get('/invent/disposable/qrcode/{id}','Invent\DisposableController@qrcode')->name('disposable.qrcode');
   Route::get('/invent/disposable/stock/{id}','Invent\DisposableController@stock')->name('disposable.stock');
   Route::post('/invent/disposable/storestock','Invent\DisposableController@storestock')->name('disposable.storestock');
+  Route::get('/invent/disposable/ubahstok/{id}','Invent\DisposableController@ubahstok')->name('disposable.ubahstok');
+  Route::post('/invent/disposable/updatestok/{id}','Invent\DisposableController@updatestok')->name('disposable.updatestok');
 
   //Route untuk persediaan Lab
   Route::get('/invent/labsuply/create','Invent\LabSuplyController@create')->name('labsuply.create');

@@ -24,7 +24,7 @@
                         </div>
                         <div class="col-md-12">
                             <label> Kelompok Barang *</label><br>
-                            <select id="peg" name="kelompok" class="col-xs-9 col-sm-9 select2" required>
+                            <select id="peg" name="jenis_barang_id" class="col-xs-9 col-sm-9 select2" required>
                                     @foreach ($kelompok as $item)
                                         <option value="{{$item->id}}">{{$item->nama}}</option>
                                     @endforeach
@@ -35,8 +35,7 @@
                         <div class="col-md-12">
                             <label>TANGGAL AJUAN *</label><br>
                             <input type="text" name="tgl_ajuan" readonly 
-                                        class="col-xs-9 col-sm-9 required" value="{{date('Y-m-d')}}" required
-                                        data-date-format="yyyy-mm-dd" data-provide="datepicker">
+                                        class="col-xs-9 col-sm-9 " value="{{date('Y-m-d')}}">
                         </div>
                         <div class="col-md-12">
                             <label> Pengaju *</label><br>
@@ -77,7 +76,7 @@
                                 <input type="text" name="nama_barang[]" class="form-control">
                             </td>
                             <td>
-                                <textarea name="spek" class="form-control"></textarea>
+                                <textarea name="spek[]" class="form-control"></textarea>
                             </td>
                             <td>
                                 <select name="satuan_id[]" class="col-xs-9 col-sm-9 select2" required>
@@ -134,7 +133,7 @@
                         '<input type="text" name="nama_barang[]" class="form-control">'+
                     '</td>'+
                     '<td>'+
-                        '<textarea name="spek" class="form-control"></textarea>'+
+                        '<textarea name="spek[]" class="form-control"></textarea>'+
                     '</td>'+
                     '<td>'+
                         '<select name="satuan_id[]" class="col-xs-9 col-sm-9 select2" required>'+

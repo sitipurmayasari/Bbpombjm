@@ -45,6 +45,15 @@
                                 class="col-xs-9 col-sm-9 required " readonly name="merk" />
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Harga Satuan
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="number" value="0"
+                                class="col-xs-9 col-sm-9 required " min="0" name="merk" />
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
@@ -58,21 +67,21 @@
                         </div>
                         <div class="form-group">
                             <label class="col-sm-4 control-label no-padding-right" 
+                            for="form-field-1"> Tanggal Expired
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="date" name="exp_date" readonly class="col-xs-5 col-sm-5" 
+                                data-date-format="yyyy-mm-dd"  data-provide="datepicker" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label no-padding-right" 
                             for="form-field-1"> Jumlah Barang
                             </label>
                             <div class="col-sm-8">
                                 <input type="number" name="stock" class="col-xs-2 col-sm-2" required  id="stok" onkeyup="hitung()" onclick="hitung()">&nbsp;&nbsp;
                                 <input type="hidden" name="stockawal" value="0" class="col-xs-2 col-sm-2" id="awal">
                                 <label>{{$data->satuan->satuan}}</label> 
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label no-padding-right" 
-                            for="form-field-1"> Tanggal Expired
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="date" name="exp_date" readonly class="col-xs-5 col-sm-5" 
-                                data-date-format="yyyy-mm-dd"  data-provide="datepicker" required>
                             </div>
                         </div>
                     </div>
@@ -102,6 +111,7 @@
                     <th>Barang keluar</th>
                     <th>Sisa</th>
                     <th>Exp Date</th>
+                    <th>Aksi</th>
                 </thead>
                 <tbody>
                     @php $no=1; @endphp
@@ -118,6 +128,8 @@
                         </td>
                         <td>{{$row->stock}}</td>
                         <td>{{$row->exp_date}}</td>
+                        <td><a href="/invent/disposable/edit/{{$row->id}}" class="btn btn-warning">
+                            <i class="glyphicon glyphicon-edit"></i></td>
                     </tr>
                     @endforeach
                 </tbody>

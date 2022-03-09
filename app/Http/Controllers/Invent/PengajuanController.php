@@ -48,7 +48,7 @@ class PengajuanController extends Controller
             'no_ajuan' => 'required|unique:pengajuan',
             'tgl_ajuan' => 'required|date',
             'pegawai_id'=> 'required',
-            'kelompok'=> 'required'
+            'jenis_barang_id'=> 'required'
         ]);
 
         DB::beginTransaction(); // kegunaan untuk multiple insert (banyak aksi k database)
@@ -58,9 +58,9 @@ class PengajuanController extends Controller
                 $data = [
                     'pengajuan_id' => $pengajuan_id,
                     'nama_barang' => $request->nama_barang[$i],
-                    'satuan_id' => $request->satuan_id[$i] ,
-                    'jumlah' => $request->jumlah[$i] ,
-                    'spek' => $request->spek[$i] ,
+                    'satuan_id' => $request->satuan_id[$i],
+                    'jumlah' => $request->jumlah[$i],
+                    'spek' => $request->spek[$i],
                     'keperluan' => $request->keperluan[$i]
                 ];
                 PengajuanDetail::create($data);

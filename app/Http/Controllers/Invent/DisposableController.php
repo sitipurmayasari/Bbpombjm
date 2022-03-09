@@ -88,6 +88,19 @@ class DisposableController extends Controller
         return view('invent/disposable.edit',compact('data','divisi','user','lokasi','jenis','satuan'));
     }
 
+    public function ubahstok($id)
+    {
+        $data = Entrystock::where('id',$id)->first();
+        return view('invent/disposable.ubahstok',compact('data'));
+    }
+
+    public function updatestok(Request $request, $id)
+    {
+        $data = Entrystock::find($id);
+        $data->update($request->all());
+
+    }
+
 
     public function update(Request $request, $id)
     {
@@ -111,6 +124,9 @@ class DisposableController extends Controller
         return redirect('/invent/disposable')->with('sukses','Data Diperbaharui');
     }
 
+
+
+  
    
     public function delete($id)
     {
