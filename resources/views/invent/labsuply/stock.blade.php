@@ -130,7 +130,7 @@
                         <td>{{$row->stock}}</td>
                         <td>{{$row->exp_date}}</td>
                         <td>{{$row->harga}}</td>
-                        <td><a href="/invent/labsuply0/ubahstok/{{$row->id}}" class="btn btn-warning">
+                        <td><a href="/invent/labsuply/ubahstok/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i></td>
                     </tr>
                     @endforeach
