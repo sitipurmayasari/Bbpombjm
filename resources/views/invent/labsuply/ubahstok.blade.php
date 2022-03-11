@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('breadcrumb')
     <li>Inventaris</li>
-    <li><a href="/invent/disposable/"> Inventaris Asset Sekali Pakai</a></li>
-    <li><a href="/invent/disposable/stock/{{$data->inventaris_id}}"> Stok Barang</a></li>
+    <li><a href="/invent/labsuply/"> Persediaan Laboratorium</a></li>
+    <li><a href="/invent/labsuply/stock/{{$data->inventaris_id}}"> Stok Barang</a></li>
     <li>Edit</li>
 @endsection
 @section('content')
@@ -104,7 +104,7 @@
                             for="form-field-1">Harga Satuan
                             </label>
                             <div class="col-sm-8">
-                                <input type="number" value="0" value="{{$data->harga}}"
+                                <input type="number" value="{{$data->harga}}"
                                 class="col-xs-10 col-sm-10 required"  min="0" name="harga" />
                             </div>
                         </div>

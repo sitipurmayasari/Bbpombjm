@@ -104,7 +104,7 @@
                             for="form-field-1">Harga Satuan
                             </label>
                             <div class="col-sm-8">
-                                <input type="number" value="0" value="{{$data->harga}}"
+                                <input type="number" value="{{$data->harga}}"
                                 class="col-xs-10 col-sm-10 required"  min="0" name="harga" />
                             </div>
                         </div>

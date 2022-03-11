@@ -147,13 +147,13 @@ class LabSuplyController extends Controller
     public function ubahstok($id)
     {
         $data = Entrystock::where('id',$id)->first();
-        return view('invent/disposable.ubahstok',compact('data'));
+        return view('invent/labsuply.ubahstok',compact('data'));
     }
 
     public function updatestok(Request $request, $id)
     {
         $data = Entrystock::find($id);
         $data->update($request->all());
-        return redirect('/invent/disposable/stock/'.$data->inventaris_id)->with('sukses','Data Tersimpan');
+        return redirect('/invent/labsuply/stock/'.$data->inventaris_id)->with('sukses','Data Tersimpan');
     }
 }
