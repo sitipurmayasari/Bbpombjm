@@ -144,4 +144,42 @@ class AtkRequestController extends Controller
     }
 
 
+    public function ubah($id)
+    {
+        $data = Sbb::where('id',$id)->first();
+        $ajuan = Sbbdetail::where('sbb_id',$id)->get();
+        $tahu = Pejabat::selectraw('DISTINCT(jabatan_id), id, divisi_id, subdivisi_id, users_id, pjs')
+        -> whereraw('pjs is null and jabatan_id != 6')->Orderby('id','desc')->get();
+        $jenis = Jenisbrg::where('kelompok','K')->get();
+        $kel = Sbbdetail::where('sbb_id',$id)->first();
+        $inv = Inventaris::where('jenis_barang',$kel->barang->jenis->id)->get();
+
+        return view('invent/atkrequest.ubah',compact('data','ajuan','tahu','jenis','kel','inv'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $sbb = Sbb::find($id);
+        $sbb->update($request->all());
+        
+        DB::beginTransaction();
+        Sbbdetail::where('sbb_id', $sbb->id)->delete();
+
+        for ($i = 0; $i < count($request->input('inventaris_id')); $i++){
+                $data = [
+                    'sbb_id' => $id,
+                    'inventaris_id' => $request->inventaris_id[$i],
+                    'satuan_id' => $request->satuan_id[$i] ,
+                    'jumlah' => $request->jumlah[$i] ,
+                    'ket' => $request->ket[$i]
+
+                ];
+                Sbbdetail::create($data);
+            }
+        DB::commit(); 
+        return redirect('/invent/atkrequest/print/'.$id);
+    }
+    
+
+
 }

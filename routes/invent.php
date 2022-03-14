@@ -83,11 +83,15 @@
   Route::get('/invent/labrequest/print/{id}','Invent\LabRequestController@print')->name('labrequest.print');
   Route::get('/invent/labrequest/getBarang','Invent\LabRequestController@getBarang')->name('labrequest.getbarang');
   Route::get('/invent/labrequest/getKelompok','Invent\LabRequestController@getKelompok')->name('labrequest.getKelompok');
+  Route::get('/invent/labrequest/ubah/{id}','Invent\LabRequestController@ubah')->name('labrequest.ubah');
+  Route::post('/invent/labrequest/update/{id}','Invent\LabRequestController@update')->name('labrequest.update');
 
   //Route untuk Permintaan Barang ATK di gudang
   Route::get('/invent/atkrequest/create','Invent\AtkRequestController@create')->name('atkrequest.create');
   Route::post('/invent/atkrequest/store','Invent\AtkRequestController@store')->name('atkrequest.store');
   Route::get('/invent/atkrequest/print/{id}','Invent\AtkRequestController@print')->name('atkrequest.print');
+  Route::get('/invent/atkrequest/ubah/{id}','Invent\AtkRequestController@ubah')->name('atkrequest.ubah');
+  Route::post('/invent/atkrequest/update/{id}','Invent\AtkRequestController@update')->name('atkrequest.update');
   Route::get('/invent/atkrequest/getBarang','Invent\AtkRequestController@getBarang')->name('atkrequest.getbarang');
   Route::get('/invent/atkrequest/getKelompok','Invent\AtkRequestController@getKelompok')->name('atkrequest.getKelompok');
   

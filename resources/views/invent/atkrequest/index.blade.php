@@ -55,6 +55,9 @@
                     <td>
                         @if ($row->stat_aduan=="B")
                             <p style="color: blue">Menunggu</p>
+                            <a href="/invent/atkrequest/ubah/{{$row->id}}" class="btn btn-warning">
+                                <i class="glyphicon glyphicon-edit"></i>
+                            </a>
                         @else
                             <p style="color: green">Selesai</p>
                         @endif
