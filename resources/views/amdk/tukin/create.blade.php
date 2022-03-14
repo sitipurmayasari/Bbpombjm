@@ -49,11 +49,17 @@
                     <label > Tahun *</label>
                     <select id="tahun" name="tahun" class="col-xs-10 col-sm-10" required>
                         @php
+                            // $now=date('Y');
+                            // $a = $now+1;
+                            //  echo 
+                            //  "<option value='$now'>$now</option>
+                            //  <option value='$a'>$a</option>";
                             $now=date('Y');
-                            $a = $now+1;
-                             echo 
-                             "<option value='$now'>$now</option>
-                             <option value='$a'>$a</option>";
+                            $c = $now+1;
+                                for ($a=2021;$a<=$c;$a++)
+                                    {
+                                        echo "<option value='$a'>$a</option>";
+                                    }
                         @endphp
                     </select>
                 </div>
