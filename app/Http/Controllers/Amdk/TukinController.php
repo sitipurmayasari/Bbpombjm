@@ -217,8 +217,8 @@ class TukinController extends Controller
         DB::beginTransaction();
             $tukin =Tukin::create($request->all());
             $tukin_id = $tukin->id;
-
-          Excel::import(new TukinImport($tukin_id), urlStorage().'/excel/'.$nama_file);
+            Excel::import(new TukinImport($tukin_id), public_path('/excel/'.$nama_file));
+        //   Excel::import(new TukinImport($tukin_id), urlStorage().'/excel/'.$nama_file);
         
         DB::commit();
   
