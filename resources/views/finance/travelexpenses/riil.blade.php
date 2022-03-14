@@ -96,7 +96,7 @@
             </td>
         </tr>
         <tr>
-            <td colspan="2" style="text-align: center; line-height: 1;">Yang bertanda Tangan di Bawah ini :</td>
+            <td colspan="2" style="text-align: center; line-height: 1;">Yang bert&&a Tangan di Bawah ini :</td>
             <td style="font-size: 7;" rowspan="4">
                 Program / Kegiatan <br>
                 KRO/RO/Komponen <br>
@@ -281,7 +281,10 @@
                     {{-- taxy --}}
                     @elseif($nilai2->tlokal == 'N' && $nilai->bbm == '0'  && $nilai->taxy_fee_to !='0')
                             @php
-                                $bbm = $nilai->taxy_fee_to;
+                                $x = $nilai->taxy_count_to;
+                                $y = $nilai->taxy_fee_to;
+                                $c = $x*$y;
+                                $bbm = $c;
                             @endphp
                                 {{number_format($bbm)}}
                     
@@ -541,7 +544,7 @@
             </td>
         </tr>
         <tr>
-            <td colspan="2" style="text-align: center; line-height: 1;">Yang bertanda Tangan di Bawah ini :</td>
+            <td colspan="2" style="text-align: center; line-height: 1;">Yang bert&&a Tangan di Bawah ini :</td>
             <td style="font-size: 7;" rowspan="4">
                 Program / Kegiatan <br>
                 KRO/RO/Komponen <br>
@@ -720,7 +723,10 @@
                     {{-- taxy --}}
                     @elseif($nilai2->tlokal == 'N' && $nilai->bbm == '0' && $nilai->taxy_fee_to !='0')
                             @php
-                                $bbm = $nilai->taxy_fee_to;
+                                $x = $nilai->taxy_count_to;
+                                $y = $nilai->taxy_fee_to;
+                                $c = $x*$y;
+                                $bbm = $c;
                             @endphp
                                 {{number_format($bbm)}}
                     
