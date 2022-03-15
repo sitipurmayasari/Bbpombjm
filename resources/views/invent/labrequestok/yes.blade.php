@@ -91,7 +91,7 @@
                                 </td>
                                 <td>
                                     <input type="number"  min="1" name="jumlah[]" class="form-control" value={{$item->jumlah}}>
-                                    <input type="hide" name="sisa[]" class="form-control" value="0" id="sisa-1">
+                                    <input type="hidden" name="sisa[]" class="form-control" value="0" id="sisa-1">
                                 </td>
                                 <td>
                                     <input type="text" name="ket[]" class="form-control" value="{{$item->ket}}" readonly>

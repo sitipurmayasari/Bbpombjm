@@ -32,8 +32,9 @@
                             <div class="col-sm-8">
                                 <select name="jenis_Laporan" id="jenis" class="col-xs-10 col-sm-10" onchange="myFunction()">
                                     <option value="2">Sisa Stok Kelompok Barang</option>
-                                    <option value="3">Laporan Permintaan Per Laboratorium</option>
                                     <option value="1">Laporan Per Barang</option>
+                                    <option value="3">Laporan Permintaan Per Laboratorium</option>
+                                    <option value="4">Laporan Permintaan Persediaan</option>
                                 </select>
                             </div>
                         </div>
@@ -83,7 +84,7 @@
                             for="form-field-1"> Tahun
                             </label>
                             <div class="col-sm-8">
-                                <select name="years" class="col-xs-10 col-sm-10 select2">
+                                <select name="years" class="col-xs-10 col-sm-10">
                                     <?php
                                         $a=2022;
                                         $pus = $a+3;
@@ -92,6 +93,28 @@
                                             echo "<option value='$a'>$a</option>";
                                         }
                                         ?>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <div  class="form-group" id="pilihbulan">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Pilih Bulan
+                            </label>
+                            <div class="col-sm-8">
+                                <select id="bulan" name="bulan" class="col-xs-10 col-sm-10" required>
+                                    @php
+                                    $bulan = array("", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus",
+                                                     "September", "Oktober", "November", "Desember");
+                                    for($a=1;$a<=12;$a++){
+                                    if($a==date("m")){ 
+                                        $pilih="selected";
+                                    }else {
+                                        $pilih="";
+                                    }
+                                        echo("<option value=\"$a\" $pilih>$bulan[$a]</option>"."\n");
+                                    }
+                                    @endphp
                                 </select>
                             </div>
                         </div>
@@ -117,7 +140,7 @@
 @section('footer')
 <script>
     $(document).ready(function(){
-
+        $("#pilihbulan").hide();
         $("#barang").hide();
         $("#lab").hide();
         $("#pilihtahun").hide();
@@ -128,17 +151,26 @@
                 $("#barang").show();
                 $("#lab").hide();
                 $("#pilihtahun").hide();
+                $("#pilihbulan").hide();
             }else if(v=="3"){
                 $("#kelompok").hide();
                 $("#barang").hide();
                 $("#lab").show();
                 $("#pilihtahun").show();
+                $("#pilihbulan").hide();
+            }else if(v=="4"){
+                $("#kelompok").hide();
+                $("#barang").hide();
+                $("#lab").hide();
+                $("#pilihtahun").show();
+                 $("#pilihbulan").show();
             }else{
                 $("#barang").hide();
                 $("#kelompok").show();
                 $("#lab").hide();
                 $("#pilihtahun").hide();
-                // $("#pilihbulan").hide();
+                $("#pilihbulan").hide();
+               
             } 
         });
 

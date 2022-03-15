@@ -20,6 +20,16 @@ class Sbb extends Model
         return $this->belongsTo(User::class,'pejabat_id','id');
     }
 
+    public function labory()
+    {
+        return $this->belongsTo(Labory::class,'labory_id','id');
+    }
+
+    public function isi()
+    {
+        return $this->hasMany(Sbbdetail::class,'sbb_id','id');
+    }
+
 
 
 }

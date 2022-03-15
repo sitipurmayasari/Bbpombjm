@@ -44,6 +44,7 @@ class KartuStokController extends Controller
                                 ->Where('kind','!=','R')
                                 ->Where('jenis_barang',$request->kelompok)
                                 ->GroupBY('inventaris.id')
+                                ->OrderBy('nama_barang','asc')
                                 ->get();
             $data = Jenisbrg::where('id',$request->kelompok)->first();
             return view('invent/kartustok.stokkelompok',compact('stock','data','request'));
@@ -60,6 +61,13 @@ class KartuStokController extends Controller
             $data = Labory::where('id',$request->labory)->first();
             $pdf = PDF::loadview('invent/kartustok.stoklab',compact('stock','data','request'));
             return $pdf->stream();
+        } else if($request->jenis_Laporan=="4"){
+            $data = Sbb::Where('stat_aduan','=','S')
+                        ->orderby('id','asc')
+                        ->whereYear('tanggal',$request->years)
+                        ->whereMonth('tanggal',$request->bulan)
+                        ->get();
+            return view('invent/kartustok.laporansbbk',compact('data','request'));
         }else{
             dd($request->all());
         }

@@ -61,11 +61,11 @@
                     <thead>
                         <tr>
                             <th style="text-align: center; vertical-align:middle;" width="20px">No</th>
-                            <th style="text-align: center; vertical-align:middle;">Tanggal Masuk</th>
-                            <th style="text-align: center; vertical-align:middle;">Tanggal Expired</th>
-                            <th style="text-align: center; vertical-align:middle;">Barang Masuk</th>
-                            <th style="text-align: center; vertical-align:middle;">Barang Keluar</th>
+                            <th style="text-align: center; vertical-align:middle;">Tanggal</th>      
+                            <th style="text-align: center; vertical-align:middle;">Masuk</th>
+                            <th style="text-align: center; vertical-align:middle;">Keluar</th>
                             <th style="text-align: center; vertical-align:middle;">Sisa</th>
+                            <th style="text-align: center; vertical-align:middle;">Keterangan</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -76,10 +76,10 @@
                             <tr>
                                <td style="text-align: center">{{$no}}</td>
                                <td>{{tgl_indo($item->entry_date)}}</td>
-                               <td>{{tgl_indo($item->exp_date)}}</td>
                                <td style="text-align: center">{{$item->stockawal}} {{$item->barang->satuan->satuan}}</td>
                                <td style="text-align: center">{{$item->keluar}}  {{$item->barang->satuan->satuan}}</td>
                                <td style="text-align: center">{{$item->stock}}  {{$item->barang->satuan->satuan}}</td>
+                               <td>Exp. Date : {{$item->exp_date}}</td>
                             </tr>
                             @php
                                 $no++
