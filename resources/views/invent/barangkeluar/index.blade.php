@@ -38,8 +38,8 @@
                 <th class="col-md-2">No. SBBK</th>
                 <th class="col-md-2">Tanggal</th>
                 <th class="col-md-4">Penerima</th>
-                <th class="col-md-1">Cetak</th>
-                {{-- <th class="col-md-1">Edit</th> --}}
+                <th class="col-md-1">Cetak SBBK</th>
+                <th class="col-md-1">Cetak SBB</th>
             <thead>
             <tbody>   	
                 @foreach($data as $key=>$row)
@@ -51,12 +51,13 @@
                     <td>
                         <a class="btn btn-primary" href="/invent/barangkeluar/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
                     </td>
-                    {{-- <td>
-                        <a href="/invent/barangkeluar/edit/{{$row->id}}" class="btn btn-warning">
-                            <i class="glyphicon glyphicon-edit"></i>
-                        </a>
+                    <td>
+                        @if ($row->jenis != 'L')
+                            <a class="btn btn-primary" href="/invent/atkrequest/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
+                        @else
+                        <a class="btn btn-primary" href="/invent/labrequest/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
+                        @endif
                     </td>
-                     --}}
                 </tr>
               
                 @endforeach
