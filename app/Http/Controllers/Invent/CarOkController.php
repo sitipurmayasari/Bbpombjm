@@ -116,10 +116,12 @@ class CarOkController extends Controller
     public function revisi(Request $request, $id)
     {
         $data = Vehiclerent::find($id);
-        $data->update($request->all());
-        
-        $kal = Agenda::whereraw('titles LIKE "%'.$car->police_number.'%" AND date_from = "'.$request->date_from.'"')->first();
+        $car = Car::where('id',$data->car_id)->first();
+        $kal = Agenda::WhereRaw("titles LIKE '%$car->police_number%' AND date_from = '$request->date_from'")
+                        ->first();
         $kal->delete();
+        
+        $data->update($request->all());
 
         if ($request->status == "Y") {
             $car = Car::LeftJoin('vehiclerent','vehiclerent.car_id','=','car.id')
