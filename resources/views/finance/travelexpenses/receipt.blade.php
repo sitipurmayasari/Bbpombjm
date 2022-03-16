@@ -18,6 +18,7 @@
             margin-top: 30px;
             margin-bottom: 15px;
             line-height: 1;
+            page-break-after: auto;
         }
 
         /* table, tr, td, th {

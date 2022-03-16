@@ -39,12 +39,16 @@
                         </div>
                         <div class="col-md-12">
                             <label> Pengaju *</label><br>
-                            <select id="peg" name="pegawai_id" class="col-xs-9 col-sm-9 select2" required>
+                            {{-- <select id="peg" name="pegawai_id" class="col-xs-9 col-sm-9 select2" required>
                                     <option value="">pilih nama pegawai</option>
                                 @foreach ($user as $peg)
                                     <option value="{{$peg->id}}">{{$peg->no_pegawai}} || {{$peg->name}}</option>
                                 @endforeach
-                            </select>
+                            </select> --}}
+                            <input type="text" value="{{auth()->user()->name}}" readonly
+                                class="col-xs-9 col-sm-9 required " 
+                                name="users_name"/>  
+                            <input type="hidden" name="pegawai_id" value="{{auth()->user()->id}}">
                         </div>
                     </div>
                </div>          
