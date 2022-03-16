@@ -44,7 +44,7 @@ class OutstationController extends Controller
     {
         $thn            = Carbon::now()->year;
         $ppk            = PPK::all();
-        $budget         = Budget::all();
+        $budget         = Budget::OrderBy('id','desc')->get();
         $act            = Activitycode::all();
         $sub            = Subcode::all();
         $akun           = Accountcode::all();
@@ -199,7 +199,7 @@ class OutstationController extends Controller
          
           $thn            = Carbon::now()->year;
           $ppk            = PPK::all();
-          $budget         = Budget::all();
+          $budget         = Budget::OrderBy('id','desc')->get();
           $act            = Activitycode::all();
           $sub            = Subcode::all();
           $akun           = Accountcode::all();
