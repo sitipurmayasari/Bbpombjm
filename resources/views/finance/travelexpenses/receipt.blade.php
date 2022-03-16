@@ -19,13 +19,7 @@
             margin-bottom: 15px;
             line-height: 1;
             page-break-after: always;
-            page-break-before: always;
         }
-
-        /* table, tr, td, th {
-            padding-top: 3px;
-            padding-bottom: 3px;
-        } */
 
         .kepala {
             text-align: left;
@@ -65,6 +59,7 @@
             text-align:center;
             line-height: 1;
         }
+        @media print{  body{    overflow:visible;  } }
 
 
         </style>
