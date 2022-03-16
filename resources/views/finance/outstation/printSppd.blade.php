@@ -414,21 +414,27 @@
                 <tr>
                     <td>Tiba di</td>
                     <td>:
-                        @foreach ($data->outst_destiny as $key=>$item)
-                            @if ($loop->last)
-                                {{$item->destiny->capital}} 
-                            @endif
-                        @endforeach
+                        @if (count($data->outst_destiny) != 1)
+                            @foreach ($data->outst_destiny as $key=>$item)
+                                @if ($loop->last)
+                                    {{$item->destiny->capital}} 
+                                @endif
+                            @endforeach
+                        @endif
+                        
                     </td>
                 </tr>
                 <tr>
                     <td>Pada tanggal</td>
                     <td>:
-                        @foreach ($data->outst_destiny as $key=>$item)
-                            @if ($loop->last)
-                                {{$item->go_date}} 
-                            @endif
-                        @endforeach
+                        @if (count($data->outst_destiny) != 1)
+                            @foreach ($data->outst_destiny as $key=>$item)
+                                @if ($loop->last)
+                                    {{$item->go_date}} 
+                                @endif
+                            @endforeach
+                        @endif
+                        
                     </td>
                 </tr>
                 <tr>
