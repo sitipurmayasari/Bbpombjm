@@ -59,7 +59,10 @@
             text-align:center;
             line-height: 1;
         }
-        @media print{  body{    overflow:visible;  } }
+        
+        body{
+            page-break-after: always;
+        }
 
 
         </style>
