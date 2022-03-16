@@ -19,6 +19,7 @@
             margin-bottom: 15px;
             line-height: 1;
             page-break-after: always;
+            page-break-before: always;
         }
 
         .kepala {
@@ -62,6 +63,7 @@
         
         body{
             page-break-after: always;
+            page-break-before: always;
         }
 
 
