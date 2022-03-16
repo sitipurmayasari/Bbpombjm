@@ -55,7 +55,7 @@
                                         $daftarajuan = $injectQuery->getDaftarBrgAjuan($item->id)
                                     @endphp
                                         @foreach ($daftarajuan as $key=>$isi)
-                                            - {{$isi->nama_barang}} <br>
+                                            - {{$isi->nama_barang}}  ({{$isi->jumlah}} {{$isi->satuan->satuan}})<br>
                                         @endforeach 
                                 </td>
                                 <td>
