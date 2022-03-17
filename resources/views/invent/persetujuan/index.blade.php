@@ -42,7 +42,7 @@
                     <td>{{$data->firstItem() + $key}}</td>
                     <td>{{$row->no_ajuan}}</td>
                     <td>{{$row->tgl_ajuan}}</td>
-                    <td>{{$row->kelompok}}</td>
+                    <td>{{$row->kel->nama}}</td>
                     <td>@if ($row->status==0)
                             <a class="btn btn-primary" href="/invent/persetujuan/edit/{{$row->id}}" target="_blank" 
                                 rel="noopener noreferrer">Menunggu</a>

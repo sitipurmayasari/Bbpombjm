@@ -64,6 +64,10 @@
                             rel="noopener noreferrer">SuPer</a> <br>
                         <a class="btn btn-warning" href="/finance/travelexpenses/super30/{{$row->id}}" target="_blank" 
                             rel="noopener noreferrer">SuPer30%</a>
+                        @if ($row->st->type == 'DL8')
+                            <a class="btn btn-success" href="/finance/travelexpenses/super8J/{{$row->id}}" target="_blank" 
+                                rel="noopener noreferrer">SuPer>8Jam</a>
+                        @endif
                     </td>
                     <td>
                         @foreach ($row->filess as $item)
