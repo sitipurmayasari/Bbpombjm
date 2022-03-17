@@ -38,6 +38,8 @@ Route::get('/qR/{id}/inventaris','Invent\InventarisController@detail')->name('in
   Route::get('/finance/dashboard','Finance\DashboardController@index')->name('dashboard');
   //--------------------------AMDK------------------------------------------
   Route::get('/amdk/dashboard','Amdk\DashboardController@index')->name('dashboard');
+  //--------------------------calibration------------------------------------------
+  Route::get('/calibration/dashboard','Calibration\DashboardController@index')->name('dashboard');
 
 
   //Route untuk Profile
@@ -56,6 +58,8 @@ Route::get('/qR/{id}/inventaris','Invent\InventarisController@detail')->name('in
   require __DIR__.'/amdk.php';
   //--------------------------Finance------------------------------------------
   require __DIR__.'/finance.php';
+  // //--------------------------calibration------------------------------------------
+  // require __DIR__.'/calibration.php';
 
 });
 

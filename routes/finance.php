@@ -168,6 +168,7 @@
   Route::get('finance/travelexpenses/riil/{id}','Finance\TravelexpensesController@riil')->name('travelexpenses.riil');
   Route::get('finance/travelexpenses/super/{id}','Finance\TravelexpensesController@super')->name('travelexpenses.super');
   Route::get('finance/travelexpenses/super30/{id}','Finance\TravelexpensesController@super30')->name('travelexpenses.super30');
+  Route::get('finance/travelexpenses/super8J/{id}','Finance\TravelexpensesController@super8J')->name('travelexpenses.super8J');
   Route::get('finance/travelexpenses/getIsian','Finance\TravelexpensesController@getIsian')->name('travelexpenses.getIsian');
   Route::get('finance/travelexpenses/delete/{id}','Finance\TravelexpensesController@delete')->name('travelexpenses.delete');
 
