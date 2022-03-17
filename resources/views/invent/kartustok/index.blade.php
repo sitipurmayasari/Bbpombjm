@@ -144,6 +144,8 @@
         $("#barang").hide();
         $("#lab").hide();
         $("#pilihtahun").hide();
+
+        
         $("#jenis").on("change", function(){
             var v = $(this).val();
             if(v=="1"){

@@ -10,7 +10,6 @@ use App\Inventaris;
 use App\Pengajuan;
 use App\PengajuanDetail;
 use App\Satuan;
-use App\AduanDetail;
 
 use PDF;
 class LapAjuController extends Controller
@@ -23,41 +22,30 @@ class LapAjuController extends Controller
     {
         if($request->jenis_Laporan=="baru"){
             $user   = User::all();
-            $data   = Pengajuan::orderBy('id','desc')
-                                ->when($request->tahun, function ($query) use ($request) {
-                                    if($request->tahun==2){
-                                        $query->whereYear('tgl_ajuan',$request->daftartahun);
+            $data   = Pengajuan::orderBy('id','asc')
+                                ->whereYear('tgl_ajuan',$request->daftartahun)
+                                ->when($request->daftarbulan, function ($query) use ($request) {
+                                    $query->whereMonth('tgl_ajuan',$request->daftarbulan);
+                                 })
+                                 ->when($request->piltgl, function ($query) use ($request) {
+                                    if($request->piltgl==2){
+                                        $query->WhereRaw('tgl_ajuan between "'.$request->awal.'" AND "'.$request->akhir.'"');
                                     }
                                  })
                                 ->get();
-            $detail = PengajuanDetail::orderBy('id','desc')
-                                ->when($request->tahun, function ($query) use ($request) {
-                                    if($request->tahun==2){
-                                        $query->whereYear('created_at',$request->daftartahun);
-                                    }
-                                })
-                                ->get();
-            $pdf = PDF::loadview('invent/lapajuan.ajuan',compact('user','data','request','detail'));
+            $pdf = PDF::loadview('invent/lapajuan.ajuan',compact('user','data','request'));
             return $pdf->stream();
 
         }else if($request->jenis_Laporan=="rusak"){
             $user   = User::all();
             $data   = Aduan::orderBy('id','desc')
-                                ->when($request->tahun, function ($query) use ($request) {
-                                    if($request->tahun==2){
-                                        $query->whereYear('tgl_ajuan',$request->daftartahun);
-                                    }
+                                ->whereYear('tanggal',$request->daftartahun)
+                                ->when($request->daftarbulan, function ($query) use ($request) {
+                                    $query->whereMonth('tanggal',$request->daftarbulan);
                                  })
                                 ->get();
-            $detail = AduanDetail::orderBy('id','desc')
-                                ->when($request->tahun, function ($query) use ($request) {
-                                    if($request->tahun==2){
-                                        $query->whereYear('created_at',$request->daftartahun);
-                                    }
-                                })
-                                ->get();
             
-            $pdf = PDF::loadview('invent/lapajuan.aduan',compact('user','data','request','detail'));
+            $pdf = PDF::loadview('invent/lapajuan.aduan',compact('user','data','request'));
             return $pdf->stream();
         // }else{
         //     dd($request->all());
