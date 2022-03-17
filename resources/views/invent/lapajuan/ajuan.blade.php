@@ -32,7 +32,7 @@
                         <tr>
                             <th width="20px">No</th>
                             <th>Nomor Ajuan</th>
-                            <th>Tanggal Pengajuan/th>
+                            <th>Tanggal Pengajuan</th>
                             <th>Nama Pengaju</th>
                             <th>Kelompok Barang</th>
                             <th>Daftar Barang</th>
@@ -49,7 +49,7 @@
                                 <td>{{$item->no_ajuan}}</td>
                                 <td>{{$item->tgl_ajuan}}</td>
                                 <td>{{$item->lapor->name}}</td>
-                                <td>{{$item->kelompok}}</td>
+                                <td>{{$item->kel->nama}}</td>
                                 <td>
                                     @php
                                         $daftarajuan = $injectQuery->getDaftarBrgAjuan($item->id)
@@ -61,8 +61,6 @@
                                 <td>
                                     @if ($item->status=='0')
                                         Menunggu
-                                    @elseif ($item->status=='1')
-                                        Sedang Diperiksa
                                     @else
                                         Selesai
                                     @endif
