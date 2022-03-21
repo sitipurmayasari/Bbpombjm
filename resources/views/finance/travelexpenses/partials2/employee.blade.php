@@ -30,9 +30,9 @@
                                         </td>
                                         <td>
                                             @if ($item->dailywage1=='Y')
-                                                <input type="checkbox" name="dailywage1[]" value="Y" checked>&nbsp;
+                                                <input type="checkbox" name="dailywage1_{{$item->outst_employee_id}}" value="Y" checked>&nbsp;
                                             @else
-                                                <input type="checkbox" name="dailywage1[]" value="Y" >&nbsp;
+                                                <input type="checkbox" name="dailywage1_{{$item->outst_employee_id}}" value="Y" >&nbsp;
                                             @endif
                                             <input type="number" name="hitdaily1[]"  min="0" value="{{$item->hitdaily1}}" style="width: 75px;"   id="hitdaily-{{$nomor}}"> X
                                             <input type="number" name="jumdaily1[]"  min="0" value="{{$item->jumdaily1}}" style="width: 35px;" id="jumdaily-{{$nomor}}" onkeyup="totdaily({{$nomor}})" onclick="totdaily({{$nomor}})"> <br>
@@ -40,9 +40,9 @@
                                         </td>
                                         <td>
                                             @if ($item->dailywage2=='Y')
-                                                <input type="checkbox" name="dailywage2[]" value="Y" checked>&nbsp;
+                                                <input type="checkbox" name="dailywage2_{{$item->outst_employee_id}}" value="Y" checked>&nbsp;
                                             @else
-                                                <input type="checkbox" name="dailywage2[]" value="Y" >&nbsp;
+                                                <input type="checkbox" name="dailywage2_{{$item->outst_employee_id}}" value="Y" >&nbsp;
                                             @endif
                                             <input type="number" name="hitdaily2[]"  min="0" value="{{$item->hitdaily2}}" style="width: 75px"   id="hitdaily2-{{$nomor}}"> X
                                             <input type="number" name="jumdaily2[]"  min="0" value="{{$item->jumdaily2}}" style="width: 35px"  id="jumdaily2-{{$nomor}}" onkeyup="totdaily2({{$nomor}})" onclick="totdaily2({{$nomor}})"> <br>
@@ -50,9 +50,9 @@
                                         </td>
                                         <td>
                                             @if ($item->dailywage3=='Y')
-                                                <input type="checkbox" name="dailywage3[]" value="Y" checked>&nbsp;
+                                                <input type="checkbox" name="dailywage3_{{$item->outst_employee_id}}" value="Y" checked>&nbsp;
                                             @else
-                                                <input type="checkbox" name="dailywage3[]" value="Y" >&nbsp;
+                                                <input type="checkbox" name="dailywage3_{{$item->outst_employee_id}}" value="Y" >&nbsp;
                                             @endif
                                             <input type="number" name="hitdaily3[]"  min="0" value="{{$item->hitdaily3}}" style="width: 75px"   id="hitdaily3-{{$nomor}}"> X
                                             <input type="number" name="jumdaily3[]"  min="0" value="{{$item->jumdaily3}}" style="width: 35px"  id="jumdaily3-{{$nomor}}" onkeyup="totdaily3({{$nomor}})" onclick="totdaily3({{$nomor}})"> <br>

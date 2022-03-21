@@ -312,17 +312,17 @@
                             '<input type="hidden" name="outst_employee_id[]" class="outid" value='+response.peg[i].id+'>'+
                             '<input type="hidden" name="jabatan[]" value='+response.peg[i].jabatan_id+'>'+
                         '</td>'+
-                        '<td><input type="checkbox" name="dailywage1[]" value="Y">'+
+                        '<td><input type="checkbox" name="dailywage1_'+response.peg[i].id+'" value="Y">'+
                             '<input type="number" name="hitdaily1[]"  min="0" value="'+daily+'" style="width: 75px;"  id="hitdaily-'+no+'"> X '+
                             '<input type="number" name="jumdaily1[]"  min="0" value="0" style="width: 35px;"  id="jumdaily-'+no+'" onkeyup="totdaily('+no+')"  onclick="totdaily('+no+')">'+
                             ' = <input type="text" name="totdaily1[]"  min="0" value="0" readonly style="width: 150px;" id="totdaily-'+no+'">'+
                         '</td>'+
-                        '<td><input type="checkbox" name="dailywage2[]" value="Y">'+
+                        '<td><input type="checkbox" name="dailywage2_'+response.peg[i].id+'" value="Y">'+
                             '<input type="number" name="hitdaily2[]"  min="0" value="'+daily2+'"  style="width: 75px;"  id="hitdaily2-'+no+'"> X '+
                             '<input type="number" name="jumdaily2[]"  min="0" value="0" style="width: 35px;"  id="jumdaily2-'+no+'" onkeyup="totdaily2('+no+')"  onclick="totdaily2('+no+')">'+
                             ' = <input type="text" name="totdaily2[]"  min="0" value="0" readonly style="width: 150px;" id="totdaily2-'+no+'">'+
                         '</td>'+
-                        '<td><input type="checkbox" name="dailywage3[]" value="Y">'+
+                        '<td><input type="checkbox" name="dailywage3_'+response.peg[i].id+'" value="Y">'+
                             '<input type="number" name="hitdaily3[]"  min="0" value="'+daily3+'"  style="width: 75px;"  id="hitdaily3-'+no+'"> X '+
                             '<input type="number" name="jumdaily3[]"  min="0" value="0" style="width: 35px;"  id="jumdaily3-'+no+'" onkeyup="totdaily3('+no+')"  onclick="totdaily3('+no+')">'+
                             ' = <input type="text" name="totdaily3[]"  min="0" value="0" readonly style="width: 150px;" id="totdaily3-'+no+'">'+

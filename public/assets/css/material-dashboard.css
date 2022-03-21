@@ -15048,12 +15048,13 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 }
 
 .footer {
-  padding: 0.9375rem 0;
+  padding:0;
   text-align: center;
   display: -webkit-flex;
   /* Safari */
   /* Safari 6.1+ */
   display: flex;
+  margin: 0;
 }
 
 .footer ul {
@@ -15070,7 +15071,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   color: inherit;
   padding: 0.9375rem;
   font-weight: 500;
-  font-size: 12px;
+  font-size: 10px;
   text-transform: uppercase;
   border-radius: 3px;
   text-decoration: none;

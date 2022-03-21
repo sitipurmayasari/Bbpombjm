@@ -21,6 +21,7 @@ use App\Vehiclerent;
 use App\Entrystock;
 use App\Car;
 use App\JadwalCar;
+use App\Inventaris;
 use Illuminate\Support\Facades\DB;
 
 class InjectQuery
@@ -147,6 +148,14 @@ class InjectQuery
         $daftarajuan = PengajuanDetail::where('pengajuan_id',$ajuanId)->get();
             return $daftarajuan;
     }
+
+    public function barang($id)
+    {
+        $data = Inventaris::where('id',$id)->first();
+            return $data;
+    }
+
+
 
 //------------------------------TAGGING ANGGARAN------------------------------------------------------------------------  
     public function getTag($pagu_id, $subcode_id){

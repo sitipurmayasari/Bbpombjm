@@ -112,7 +112,6 @@ class TravelexpensesController extends Controller
 
     public function store(Request $request)
     { 
-    //   dd($request->all());
       $this->validate($request,[
           'outstation_id'   => 'required',
           'date'            => 'required'
@@ -125,9 +124,10 @@ class TravelexpensesController extends Controller
         
         //Expenses_daily
             for ($i = 0; $i < count($request->input('outst_employee_id')); $i++){
-                $dailywage1      = $request->dailywage1 != null ?  $request->dailywage1[$i] : 'N';
-                $dailywage2      = $request->dailywage2 != null ?  $request->dailywage2[$i] : 'N';
-                $dailywage3      = $request->dailywage3 != null ?  $request->dailywage3[$i] : 'N';
+                $emId = $request->outst_employee_id[$i];
+                $dailywage1 =  $request->input('dailywage1_'.$emId) != null ?  $request->input('dailywage1_'.$emId) : 'N';
+                $dailywage2 =  $request->input('dailywage2_'.$emId) != null ?  $request->input('dailywage2_'.$emId) : 'N';
+                $dailywage3 =  $request->input('dailywage3_'.$emId)!= null ?  $request->input('dailywage3_'.$emId): 'N';
 
                 $data = [
                     'expenses_id'       => $expenses_id,
@@ -346,10 +346,14 @@ class TravelexpensesController extends Controller
             Travelexpenses2::where('expenses_id', $id)->delete();
             $expenses_id = $id;
 
+            // dd($request->dailywage2_571);
+
             for ($i = 0; $i < count($request->input('outst_employee_id')); $i++){
-                $dailywage1      = $request->dailywage1 != null ?  $request->dailywage1[$i] : 'N';
-                $dailywage2      = $request->dailywage2 != null ?  $request->dailywage2[$i] : 'N';
-                $dailywage3      = $request->dailywage3 != null ?  $request->dailywage3[$i] : 'N';
+                $emId = $request->outst_employee_id[$i];
+                $dailywage1 =  $request->input('dailywage1_'.$emId) != null ?  $request->input('dailywage1_'.$emId) : 'N';
+                $dailywage2 =  $request->input('dailywage2_'.$emId) != null ?  $request->input('dailywage2_'.$emId) : 'N';
+                $dailywage3 =  $request->input('dailywage3_'.$emId)!= null ?  $request->input('dailywage3_'.$emId): 'N';
+
 
                 $data = [
                     'expenses_id'       => $expenses_id,
