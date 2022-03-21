@@ -286,6 +286,16 @@ class OutstationController extends Controller
         return redirect('/finance/outstation')->with('sukses','Data Terhapus');
     }
 
+    public function deletepeg($id)
+    {
+        $data = Outst_employee::find($id);
+
+        $out = $data->outstation_id;
+
+        $data->delete();
+        return redirect('finance/outstation/edit/'.$out)->with('sukses','Pegawai Terhapus');
+    }
+
 
     public function getnomorst(Request $request)
     {

@@ -29,9 +29,9 @@
                                         <td> {{$item->peg->pegawai->name}}</td>
                                         <td>
                                             @if ($item->tlokal=='Y')
-                                                <input type="checkbox" name="tlokal[]" value="Y" checked>&nbsp;
+                                                <input type="checkbox" name="tlokal_{{$item->outst_employee_id}}" value="Y" checked>&nbsp;
                                             @else
-                                                <input type="checkbox" name="tlokal[]" value="Y" >&nbsp;
+                                                <input type="checkbox" name="tlokal_{{$item->outst_employee_id}}" value="Y" >&nbsp;
                                             @endif
                                             <input type="number" name="hittlokal[]"  min="0" value="{{$item->hittlokal}}" style="width: 75px;"  id="hittlokal-{{$nomor}}"> X
                                             <input type="number" name="jumtlokal[]"  min="0" value="{{$item->jumtlokal}}" style="width: 35px;"  id="jumtlokal-{{$nomor}}" onkeyup="jumtlokal({{$nomor}})"  onclick="jumtlokal({{$nomor}})">

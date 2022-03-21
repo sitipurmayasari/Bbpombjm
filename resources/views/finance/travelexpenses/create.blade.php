@@ -327,22 +327,22 @@
                             '<input type="number" name="jumdaily3[]"  min="0" value="0" style="width: 35px;"  id="jumdaily3-'+no+'" onkeyup="totdaily3('+no+')"  onclick="totdaily3('+no+')">'+
                             ' = <input type="text" name="totdaily3[]"  min="0" value="0" readonly style="width: 150px;" id="totdaily3-'+no+'">'+
                         '</td>'+
-                        '<td><input type="checkbox" name="diklat[]" value="Y">'+
+                        '<td><input type="checkbox" name="diklat_'+response.peg[i].id+'" value="Y">'+
                             '<input type="number" name="hitdiklat[]"  min="0" value='+diklat+'  style="width: 75px;" id="hitdiklat-'+no+'"> X '+
                             '<input type="number" name="jumdiklat[]"  min="0" value="0" style="width: 35px;" id="jumdiklat-'+no+'" onkeyup="totdiklat('+no+')" onclick="totdiklat('+no+')">'+
                             ' = <input type="text" name="totdiklat[]"  min="0" value="0" readonly style="width: 150px;" id="totdiklat-'+no+'">'+
                         '</td>'+            
-                        '<td><input type="checkbox" name="fullboard[]" value="Y">'+
+                        '<td><input type="checkbox" name="fullboard_'+response.peg[i].id+'" value="Y">'+
                             '<input type="number" name="hitfullb[]"   min="0"value='+fullb+'  style="width: 75px;"  id="hitfullb-'+no+'"> X '+
                             '<input type="number" name="jumfullb[]"   min="0"value="0" style="width: 35px;"  id="jumfullb-'+no+'" onkeyup="totfullb('+no+')" onclick="totfullb('+no+')">'+
                             ' = <input type="text" name="totfullb[]"  min="0" value="0" readonly style="width: 150px;" id="totfullb-'+no+'">'+
                         '</td>'+             
-                        '<td><input type="checkbox" name="fullday[]" value="Y">'+
+                        '<td><input type="checkbox" name="fullday_'+response.peg[i].id+'" value="Y">'+
                             '<input type="number" name="hithalf[]" value='+half+' style="width: 75px;" id="hithalf-'+no+'"> X '+
                             '<input type="number" name="jumhalf[]"  min="0" value="0" style="width: 35px;"  id="jumhalf-'+no+'" onkeyup="tothalf('+no+')" onclick="tothalf('+no+')">'+
                             ' = <input type="text" name="tothalf[]"  min="0" value="0" readonly style="width: 150px;" id="tothalf-'+no+'">'+
                         '</td>'+
-                        '<td><input type="checkbox" name="representatif[]" value="Y">'+
+                        '<td><input type="checkbox" name="representatif_'+response.peg[i].id+'" value="Y">'+
                             '<input type="number" name="hitrep[]"   min="0" value='+rep+' style="width: 75px;" id="hitrep-'+no+'"> X '+
                             '<input type="number" name="jumrep[]"   min="0"value="0" style="width: 35px;" id="jumrep-'+no+'" onkeyup="totrep('+no+')" onclick="totrep('+no+')">'+
                             ' = <input type="text" name="totrep[]"  min="0" value="0" readonly style="width: 150px;" id="totrep-'+no+'">'+

@@ -275,7 +275,7 @@
                                     </td>
                                     <td>
                                         <a href="#" class="btn btn-danger delete"
-                                            r-name="{{$peg->name}}" 
+                                            r-name="{{$item->pegawai->name}}" 
                                             r-id="{{$item->id}}">
                                             <i class="glyphicon glyphicon-trash"></i></a>
                                         {{-- <button type="button" class="btn btn-danger" onclick="deleteRowPeg({{$no}})"><i class="glyphicon glyphicon-trash"></i></button> --}}
@@ -402,7 +402,7 @@
             }).then((result) => {
                 console.log(result);
                 if (result.value) {
-                  //  window.location = "/finance/outstation/delete/"+id;
+                   window.location = "/finance/outstation/deletepeg/"+id;
                 }
             });
         });

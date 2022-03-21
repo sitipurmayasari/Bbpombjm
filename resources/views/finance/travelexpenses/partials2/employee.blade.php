@@ -60,9 +60,9 @@
                                         </td>
                                         <td>
                                             @if ($item->diklat=='Y')
-                                                <input type="checkbox" name="diklat[]" value="Y" checked>&nbsp;
+                                                <input type="checkbox" name="diklat_{{$item->outst_employee_id}}" value="Y" checked>&nbsp;
                                             @else
-                                                <input type="checkbox" name="diklat[]" value="Y" >&nbsp;
+                                                <input type="checkbox" name="diklat_{{$item->outst_employee_id}}" value="Y" >&nbsp;
                                             @endif
                                             <input type="number" name="hitdiklat[]"  min="0" value="{{$item->hitdiklat}}" style="width: 75px"   id="hitdiklat-{{$nomor}}"> X
                                             <input type="number" name="jumdiklat[]"  min="0" value="{{$item->jumdiklat}}" style="width: 35px"  id="jumdiklat-{{$nomor}}" onkeyup="totdiklat({{$nomor}})" onclick="totdiklat({{$nomor}})"> <br>
@@ -70,9 +70,9 @@
                                         </td>
                                         <td>
                                             @if ($item->fullboard=='Y')
-                                                <input type="checkbox" name="fullboard[]" value="Y" checked>&nbsp;
+                                                <input type="checkbox" name="fullboard_{{$item->outst_employee_id}}" value="Y" checked>&nbsp;
                                             @else
-                                                <input type="checkbox" name="fullboard[]" value="Y" >&nbsp;
+                                                <input type="checkbox" name="fullboard_{{$item->outst_employee_id}}" value="Y" >&nbsp;
                                             @endif
                                             <input type="number" name="hitfullb[]"  min="0" value="{{$item->hitfullb}}" style="width: 75px"   id="hitfullb-{{$nomor}}"> X
                                             <input type="number" name="jumfullb[]"  min="0" value="{{$item->jumfullb}}" style="width: 35px"  id="jumfullb-{{$nomor}}" onkeyup="totfullb({{$nomor}})"   onclick="totfullb({{$nomor}})"> <br>
@@ -80,9 +80,9 @@
                                         </td>
                                         <td>
                                             @if ($item->fullday=='Y')
-                                                <input type="checkbox" name="fullday[]" value="Y" checked>&nbsp;
+                                                <input type="checkbox" name="fullday_{{$item->outst_employee_id}}" value="Y" checked>&nbsp;
                                             @else
-                                                <input type="checkbox" name="fullday[]" value="Y" >&nbsp;
+                                                <input type="checkbox" name="fullday_{{$item->outst_employee_id}}" value="Y" >&nbsp;
                                             @endif
                                             <input type="number" name="hithalf[]"  min="0" value="{{$item->hithalf}}" style="width: 75px"   id="hithalf-{{$nomor}}"> X
                                             <input type="number" name="jumhalf[]"  min="0" value="{{$item->jumhalf}}" style="width: 35px"  id="jumhalf-{{$nomor}}" onkeyup="tothalf({{$nomor}})"   onclick="tothalf({{$nomor}})"> <br>
@@ -90,9 +90,9 @@
                                         </td>
                                         <td>
                                             @if ($item->representatif=='Y')
-                                                <input type="checkbox" name="representatif[]" value="Y" checked>&nbsp;
+                                                <input type="checkbox" name="representatif_{{$item->outst_employee_id}}" value="Y" checked>&nbsp;
                                             @else
-                                                <input type="checkbox" name="representatif[]" value="Y" >&nbsp;
+                                                <input type="checkbox" name="representatif_{{$item->outst_employee_id}}" value="Y" >&nbsp;
                                             @endif
                                             <input type="number" name="hitrep[]"  min="0" value="{{$item->hitrep}}" style="width: 75px"   id="hitrep-{{$nomor}}"> X
                                             <input type="number" name="jumrep[]"  min="0" value="{{$item->jumrep}}" style="width: 35px"  id="jumrep-{{$nomor}}" onkeyup="totrep({{$nomor}})"   onclick="totrep({{$nomor}})"> <br>

@@ -151,11 +151,18 @@ class TravelexpensesController extends Controller
 
             //Travelexpenses
             for ($i = 0; $i < count($request->input('outst_employee_id')); $i++){
-                $diklat         = $request->diklat != null ?  $request->diklat[$i] : 'N';
-                $fullboard      = $request->fullboard != null ?  $request->fullboard[$i] : 'N';
-                $fullday        = $request->fullday != null ?  $request->fullday[$i] : 'N';
-                $representatif  = $request->representatif != null ?  $request->representatif[$i] : 'N';
-                $tlokal         = $request->tlokal != null ?  $request->tlokal[$i] : 'N';
+                $emId = $request->outst_employee_id[$i];
+                $diklat         = $request->input('diklat_'.$emId) != null ?   $request->input('diklat_'.$emId) : 'N';
+                $fullboard      = $request->input('fullboard_'.$emId) != null ?  $request->input('fullboard_'.$emId) : 'N';
+                $fullday        = $request->input('fullday_'.$emId) != null ?  $request->input('fullday_'.$emId) : 'N';
+                $representatif  = $request->input('representatif_'.$emId) != null ?  $request->input('representatif_'.$emId) : 'N';
+                $tlokal         = $request->input('tlokal_'.$emId) != null ?  $request->input('tlokal_'.$emId) : 'N';
+
+                // $diklat         = $request->diklat != null ?  $request->diklat[$i] : 'N';
+                // $fullboard      = $request->fullboard != null ?  $request->fullboard[$i] : 'N';
+                // $fullday        = $request->fullday != null ?  $request->fullday[$i] : 'N';
+                // $representatif  = $request->representatif != null ?  $request->representatif[$i] : 'N';
+                // $tlokal         = $request->tlokal != null ?  $request->tlokal[$i] : 'N';
 
                 $dataone = [
                     'expenses_id'       => $expenses_id,
@@ -377,11 +384,19 @@ class TravelexpensesController extends Controller
 
             for ($i = 0; $i < count($request->input('outst_employee_id')); $i++){
                 $nomor = $i+1;
-                $diklat         = $request->diklat != null ?  $request->diklat[$i] : 'N';
-                $fullboard      = $request->fullboard != null ?  $request->fullboard[$i] : 'N';
-                $fullday        = $request->fullday != null ?  $request->fullday[$i] : 'N';
-                $representatif  = $request->representatif != null ?  $request->representatif[$i] : 'N';
-                $tlokal         = $request->tlokal != null ?  $request->tlokal[$i] : 'N';
+
+                $emId = $request->outst_employee_id[$i];
+                $diklat         = $request->input('diklat_'.$emId) != null ?  $request->input('diklat_'.$emId) : 'N';
+                $fullboard      = $request->input('fullboard_'.$emId) != null ?  $request->input('fullboard_'.$emId) : 'N';
+                $fullday        = $request->input('fullday_'.$emId) != null ?  $request->input('fullday_'.$emId) : 'N';
+                $representatif  = $request->input('representatif_'.$emId) != null ?  $request->input('representatif_'.$emId) : 'N';
+                $tlokal         = $request->input('tlokal_'.$emId) != null ?  $request->input('tlokal_'.$emId) : 'N';
+
+                // $diklat         = $request->diklat != null ?  $request->diklat[$i] : 'N';
+                // $fullboard      = $request->fullboard != null ?  $request->fullboard[$i] : 'N';
+                // $fullday        = $request->fullday != null ?  $request->fullday[$i] : 'N';
+                // $representatif  = $request->representatif != null ?  $request->representatif[$i] : 'N';
+                // $tlokal         = $request->tlokal != null ?  $request->tlokal[$i] : 'N';
 
                 $dataone = [
                     'expenses_id'       => $expenses_id,
@@ -654,6 +669,9 @@ class TravelexpensesController extends Controller
 
         $tr1 = Travelexpenses1::where('expenses_id',$id);
         $tr1->delete();
+
+        $tr2 = Travelexpenses2::where('expenses_id',$id);
+        $tr2->delete();
         return redirect('/finance/travelexpenses')->with('sukses','Data Terhapus');
     }
 

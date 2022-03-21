@@ -150,6 +150,7 @@
   Route::get('finance/outstation/printSTKop/{id}','Finance\OutstationController@printSTKop')->name('outstation.printSTKop');
   Route::get('finance/outstation/printSppd/{id}','Finance\OutstationController@printSppd')->name('outstation.printSppd');
   Route::get('finance/outstation/delete/{id}','Finance\OutstationController@delete')->name('outstation.delete');
+  Route::get('finance/outstation/deletepeg/{id}','Finance\OutstationController@deletepeg')->name('outstation.deletepeg');
   
 
 //Route untuk kode anggaran

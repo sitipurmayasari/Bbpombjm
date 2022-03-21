@@ -233,13 +233,13 @@
                         @endif
                     </td>
                     <td style="vertical-align: top; text-align:right;">
-                        @if ($item->fullday != 'N')
+                        @if ($item->representatif != 'N')
                             {{number_format($item->hitrep)}}
                         @endif
                     </td>
-                    <td style="vertical-align: top;">
-                        @if ($item->fullday != 'N')
-                            {{number_format($item->jumrep)}}
+                    <td style="vertical-align: top;text-align:right;">
+                        @if ($item->representatif != 'N')
+                            {{number_format($item->totrep)}}
                         @endif
                     </td>
                     <td style="vertical-align: top;">
