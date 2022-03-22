@@ -122,6 +122,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     //--------------------------AMDK------------------------------------------
     //Route untuk pegawai
     Route::get('/amdk/pegawai','Amdk\PegawaiController@index')->name('pegawai');
+    //Route untuk pegawai
+    Route::get('/amdk/outsourcing','Amdk\OutsourcingController@index')->name('outsourcing');
     //Route untuk pengumuman
     Route::get('/amdk/pengumuman','Amdk\PengumumanController@index')->name('pengumuman');
     //Route untuk keluarga

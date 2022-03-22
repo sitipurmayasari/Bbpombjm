@@ -28,13 +28,15 @@ class PegawaiController extends Controller
     public function index(Request $request)
     {
         $subdivisi = Subdivisi::all();
-        $jabatan = Jabatan::all();
+        $jabatan = Jabatan::where('jabatan_id','!=','10');
         $divisi = Divisi::all();
         $data = User::orderBy('name','asc')
                 ->where('id','!=','1')
+                ->where('jabatan_id','!=','10')
                 ->when($request->keyword, function ($query) use ($request) {
                 $query->where('no_pegawai','LIKE','%'.$request->keyword.'%')
-                        ->orWhere('name', 'LIKE','%'.$request->keyword.'%');
+                        ->orWhere('name', 'LIKE','%'.$request->keyword.'%')
+                        ->where('jabatan_id','!=','10');
                 })
                 ->paginate('10');
 

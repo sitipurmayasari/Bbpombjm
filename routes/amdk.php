@@ -9,6 +9,12 @@
   Route::get('/amdk/pegawai/detail/{id}','Amdk\PegawaiController@detail')->name('pegawai.detail');
   // Route::post('/amdk/pegawai/storesaudara','Amdk\PegawaiController@storesaudara')->name('pegawai.storesaudara');
 
+   //Route untuk outsourcing
+   Route::get('/amdk/outsourcing/create','Amdk\OutsourcingController@create')->name('outsourcing.create');
+   Route::post('/amdk/outsourcing/store','Amdk\OutsourcingController@store')->name('outsourcing.store');
+   Route::get('/amdk/outsourcing/edit/{id}','Amdk\OutsourcingController@edit')->name('outsourcing.edit');
+   Route::post('/amdk/outsourcing/update/{id}','Amdk\OutsourcingController@update')->name('outsourcing.update');
+
   //Route untuk pengumuman
   Route::get('/amdk/pengumuman/create','Amdk\PengumumanController@create')->name('pengumuman.create');
   Route::post('/amdk/pengumuman/store','Amdk\PengumumanController@store')->name('pengumuman.store');
