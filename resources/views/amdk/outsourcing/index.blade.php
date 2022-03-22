@@ -1,7 +1,7 @@
 @extends('amdk/layouts_amdk.app')
 @section('breadcrumb')
     <li>Pegawai</li>
-    <li>Data Outsurcing</li>
+    <li>Data Pegawai External</li>
 @endsection
 @section('content')
 <form method="get" action="{{ url()->current() }}">

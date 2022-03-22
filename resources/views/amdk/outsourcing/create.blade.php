@@ -1,8 +1,8 @@
 @extends('amdk/layouts_amdk.app')
 @section('breadcrumb')
     <li>Pegawai</li>
-    <li><a href="/amdk/outsourcing"> Outsourcing</a></li>
-    <li>Tambah Data Outsourcing</li>
+    <li><a href="/amdk/outsourcing"> Pegawai External</a></li>
+    <li>Tambah Data Pegawai External</li>
 @endsection
 @section('content')
 @include('layouts.validasi')
@@ -14,7 +14,7 @@
     <div class="col-sm-12">
         <div class="widget-box">
             <div class="widget-header">
-                <h4 class="widget-title"> Data Outsourcing</h4>
+                <h4 class="widget-title"> Data Pegawai External</h4>
                 <div class="widget-toolbar">
                     <a href="#" data-action="collapse">
                         <i class="ace-icon fa fa-chevron-down"></i>
@@ -28,7 +28,7 @@
                         <br>
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> NIP. Outsourcing
+                            for="form-field-1"> NIP. Pegawai External
                             </label>
                             <div class="col-sm-8" id="tambah">
                                 <input type="text"  placeholder="nomor pegawai"
