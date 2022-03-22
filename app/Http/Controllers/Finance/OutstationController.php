@@ -113,8 +113,17 @@ class OutstationController extends Controller
         $menyetujui = Pejabat::where('jabatan_id', '=', 6)
                             ->whereRaw("(SELECT st_date FROM outstation WHERE id=$id) BETWEEN dari AND sampai")
                             ->first();
-        $pdf = PDF::loadview('finance/outstation.printST',compact('data','isian','menyetujui'));
+        $jmlpeg  = Outst_employee::SelectRaw('count(*) as hitung')   
+                                  ->where('outstation_id',$id)
+                                  ->first(); 
+        if ($jmlpeg->hitung >= 8) {
+          $pdf = PDF::loadview('finance/outstation.printSTbanyak',compact('data','isian','menyetujui'));
+        } else {
+          $pdf = PDF::loadview('finance/outstation.printST',compact('data','isian','menyetujui'));
+        }
         return $pdf->stream();
+
+        
       }
 
       public function printSTKop($id)

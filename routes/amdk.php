@@ -173,3 +173,10 @@
 
   //Route untuk rekaman personel
   Route::post('/amdk/record/cetak','Amdk\RecordController@cetak')->name('record.cetak');
+
+  //Route untuk Surat Izin Pramubakti
+  Route::get('/amdk/permit/create','Amdk\PermitController@create')->name('permit.create');
+  Route::post('/amdk/permit/store','Amdk\PermitController@store')->name('permit.store');
+  Route::get('/amdk/permit/delete/{id}','Amdk\PermitController@delete')->name('permit.delete');
+  Route::get('/amdk/permit/edit/{id}','Amdk\PermitController@edit')->name('permit.edit');
+  Route::post('/amdk/permit/update/{id}','Amdk\PermitController@update')->name('permit.update');

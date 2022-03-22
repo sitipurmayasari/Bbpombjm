@@ -168,6 +168,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/amdk/kategori','Amdk\KategoriController@index')->name('kategori');
     //Route untuk rekaman personel
     Route::get('/amdk/record','Amdk\RecordController@index')->name('record');
+    //Route untuk Surat Izin Pramubakti
+    Route::get('/amdk/permit','Amdk\PermitController@index')->name('permit');
     
     
 

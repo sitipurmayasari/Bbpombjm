@@ -143,17 +143,18 @@
             </tbody>
         </table>
         <br><br>
-        <table >
-           
+        <table style="width: 100%">
             <tr >
-                <td style="width: 25%;">Tugas yang di berikan &ensp;</td>
-                <td colspan="3">:&ensp;
+                <td style="width: 25%;">Tugas yang di berikan &nbsp;</td>
+                <td>:</td>
+                <td colspan="2">
                     {{$data->purpose}}
                 </td>
             </tr>
             <tr>
-                <td>Tujuan&ensp;</td>
-                <td colspan="3">: 
+                <td>Tujuan&nbsp;</td>
+                <td>:</td>
+                <td colspan="2"> 
                     @if (count($data->outst_destiny) == 1)
                         @foreach ($data->outst_destiny as $key=>$item)
                             @if ($loop->first)
@@ -185,13 +186,15 @@
             </tr>
             <tr>
                 <td>Kendaraan</td>
-                <td colspan="3">:&ensp;
+                <td>:</td>
+                <td colspan="2">
                     {{$data->transport}}
                 </td>
             </tr>
             <tr>
-                <td>Waktu&ensp;</td>
-                <td colspan="3">:&ensp;
+                <td>Waktu&nbsp;</td>
+                <td>:</td>
+                <td colspan="2">
                     @if (count($data->outst_destiny) == 1)
                         @foreach ($data->outst_destiny as $key=>$item)
                             @if ($item->go_date ==  $item->return_date)
@@ -214,16 +217,18 @@
                 </td>
             </tr>
             <tr>
-                <td>Biaya&ensp;</td>
-                <td style="width: 15%">:&ensp;Anggaran</td>
-                <td style="width: 60%">: 
+                <td>Biaya&nbsp;</td>
+                <td>:</td>
+                <td > Anggaran</td>
+                <td style="width: 65%">: 
                         {{$data->budget->name}}
                 </td>
             </tr>
             <tr>
                 <td></td>
-                <td style="width: 15%">&nbsp;&nbsp;MAK</td>
-                <td style="width: 60%">: 
+                <td></td>
+                <td> MAK</td>
+                <td>: 
                     @if ($data->pok_detail_id == 0)
                         {{' Non Anggaran '}}
                     @else
@@ -237,7 +242,7 @@
             </tr>
         </table>
         <br><br>
-        &ensp;Agar melaksanakan tugas sebaik - baiknya dan setelah bertugas <b>segera membuat laporan.</b>
+        &nbsp;Agar melaksanakan tugas sebaik - baiknya dan setelah bertugas <b>segera membuat laporan.</b>
         <br><br><br>
         <table class="ttdini">
             <tr>
