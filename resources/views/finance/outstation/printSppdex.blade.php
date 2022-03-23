@@ -252,8 +252,9 @@
                 9. Keterangan lain-lain <br>
                 <table class="didalam">
                  <tr>
-                     <td>Dikeluarkan di</td>
-                     <td> :{{$data->cityfrom->capital}}</td>
+                    <td>Dikeluarkan di</td>
+                    {{-- <td> :{{$data->cityfrom->capital}}</td> --}}
+                    <td>: Banjarmasin</td>
                  </tr>
                  <tr>
                     <td>Pada tanggal </td>
