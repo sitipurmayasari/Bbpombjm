@@ -30,7 +30,7 @@ class OutstationController extends Controller
 
     public function index(Request $request)
     {
-        $data = Outstation::orderBy('id','desc')
+        $data = Outstation::orderBy('updated_at','desc')
                 ->when($request->keyword, function ($query) use ($request) {
                     $query->where('number','LIKE','%'.$request->keyword.'%')
                             ->orWhere('purpose', 'LIKE','%'.$request->keyword.'%')
@@ -232,6 +232,9 @@ class OutstationController extends Controller
 
       public function update(Request $request, $id)
       {
+        $data = Outstation::find($id);
+        $data->touch();
+
         $outstation_id = $id;
         DB::beginTransaction(); 
           //---------------outstation----------------------

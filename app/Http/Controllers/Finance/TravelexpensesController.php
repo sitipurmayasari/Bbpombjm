@@ -32,7 +32,7 @@ class TravelexpensesController extends Controller
 
     public function index(Request $request)
     {
-        $data = Expenses::orderBy('id','desc')
+        $data = Expenses::orderBy('expenses.updated_at','desc')
                          ->SelectRaw('expenses.*, outstation.number, outstation.purpose')
                         ->leftjoin('outstation','outstation.id','expenses.outstation_id')
                         ->when($request->keyword, function ($query) use ($request) {
@@ -346,6 +346,9 @@ class TravelexpensesController extends Controller
     public function update(Request $request,$id)
     {
         // dd($request->all());
+        $data = Expenses::find($id);
+        $data->touch();
+
         DB::beginTransaction();
             Expenses_daily::where('expenses_id', $id)->delete();
             Travelexpenses::where('expenses_id', $id)->delete();
