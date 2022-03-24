@@ -271,7 +271,7 @@
                         @endif <br>
                         @if ($item->klaim_2 != 0)
                             @php
-                                $fee1 = $item->inn_fee_2 / $item->isi_2;
+                                $fee2 = $item->inn_fee_2 / $item->isi_2;
                             @endphp
                             {{number_format($fee2)}}
                         @endif <br>
