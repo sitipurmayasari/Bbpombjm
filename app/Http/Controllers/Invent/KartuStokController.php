@@ -39,12 +39,12 @@ class KartuStokController extends Controller
             $pdf = PDF::loadview('invent/kartustok.stokbarang',compact('stock','request','data','now'));
             return $pdf->stream();
         }else if($request->jenis_Laporan=="2"){
-            $stock = Inventaris::SelectRaw('DISTINCT(inventaris.id),nama_barang, inventaris.satuan_id,merk, no_seri, SUM(stock) AS stok')
+            $stock = Inventaris::Orderby('stok','desc')
+                                ->SelectRaw('DISTINCT(inventaris.id),nama_barang, inventaris.satuan_id,merk, no_seri, SUM(stock) AS stok')
                                 ->LeftJoin('entrystock','inventaris.id','=','entrystock.inventaris_id')
                                 ->Where('kind','!=','R')
                                 ->Where('jenis_barang',$request->kelompok)
                                 ->GroupBY('inventaris.id')
-                                ->OrderBy('nama_barang','asc')
                                 ->get();
             $data = Jenisbrg::where('id',$request->kelompok)->first();
             return view('invent/kartustok.stokkelompok',compact('stock','data','request'));
