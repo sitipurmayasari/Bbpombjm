@@ -51,9 +51,9 @@
                                 <li>{{$item->barang->nama_barang}} 
                                     (
                                       @if ($item->status != 'Y')
-                                          ditolak
+                                          <b>ditolak</b>
                                       @else
-                                          disetujui
+                                          <b>disetujui</b>
                                       @endif  
                                     )
                                 </li>

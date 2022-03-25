@@ -50,11 +50,11 @@
                             @foreach ($row->isi as $item)
                                 <li>{{$item->barang->nama_barang}} 
                                     (
-                                      @if ($item->status != 'Y')
-                                          ditolak
-                                      @else
-                                          disetujui
-                                      @endif  
+                                        @if ($item->status != 'Y')
+                                            <b>ditolak</b>
+                                        @else
+                                            <b>disetujui</b>
+                                        @endif  
                                     )
                                 </li>
                             @endforeach
