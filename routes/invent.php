@@ -142,4 +142,10 @@
   Route::get('invent/atkrequestok/yes/{id}','Invent\AtkRequestOkController@yes')->name('atkrequestok.yes');
   Route::get('invent/atkrequestok/print/{id}','Invent\AtkRequestOkController@print')->name('atkrequestok.print');
   Route::post('invent/atkrequestok/update/{id}','Invent\AtkRequestOkController@update')->name('atkrequestok.update');
+
+  //Route untuk Barang Rusak
+  Route::get('/invent/broken/create','Invent\BrokenController@create')->name('broken.create');
+  Route::post('/invent/broken/store','Invent\BrokenController@store')->name('broken.store');
+  Route::get('/invent/broken/print/{id}','Invent\BrokenController@print')->name('broken.print');
+  Route::get('/invent/broken/getBarang','Invent\BrokenController@getBarang')->name('broken.getbarang');
     

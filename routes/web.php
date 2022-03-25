@@ -77,7 +77,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/invent/maintenance','Invent\MaintenanceController@index')->name('maintenance');
     //Route untuk Barang keluar
      Route::get('/invent/barangkeluar','Invent\BarangkeluarController@index')->name('barangkeluar');
-
+    //Route untuk Barang Rusak
+    Route::get('/invent/broken','Invent\BrokenController@index')->name('broken');
     //Route untuk aduan
     Route::get('/invent/aduan','Invent\AduanController@index')->name('aduan');
     Route::get('/invent/aduan/create','Invent\AduanController@create')->name('aduan.create');
