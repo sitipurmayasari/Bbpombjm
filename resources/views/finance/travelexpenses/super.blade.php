@@ -154,7 +154,7 @@
                 </td>
                 <td  class="isi">  &nbsp;
                     @if ($berangkat1->maskapai1 != null)
-                        {{$berangkat1->godate1}}
+                        {{tgl_indo($berangkat1->godate1)}}
                     @else
                         {{ " " }}
                     @endif
@@ -200,7 +200,7 @@
                </td>
                <td  class="isi"> &nbsp;
                     @if ($berangkat2->maskapai2 != null)
-                        {{$berangkat2->godate2}}
+                        {{tgl_indo($berangkat2->godate2)}}
                     @endif
                </td>
                <td  class="isi"> &nbsp;
@@ -226,7 +226,7 @@
                 </td>
                 <td  class="isi"> &nbsp;
                     @if ($bulik->maskapaipulang != null)
-                        {{$bulik->returndate}}
+                        {{tgl_indo($bulik->returndate)}}
                     @endif
                 </td>
                 <td  class="isi"> &nbsp;
