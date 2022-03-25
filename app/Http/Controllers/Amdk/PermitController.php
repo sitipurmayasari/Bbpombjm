@@ -21,7 +21,8 @@ class PermitController extends Controller
                             ->orWhere('date_to', 'LIKE','%'.$request->keyword.'%');
                     })
                 ->paginate('10');
-        return view('amdk/permit.index',compact('data'));
+        // return view('amdk/permit.index',compact('data'));
+        return view('calibration/dashboard.index');
     }
 
     public function create()

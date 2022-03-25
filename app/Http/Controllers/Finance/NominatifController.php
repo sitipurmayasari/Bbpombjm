@@ -68,9 +68,9 @@ class NominatifController extends Controller
                         ->where('outstation.id',$data->outstation_id)
                         ->whereRaw("st_date BETWEEN pejabat.dari AND pejabat.sampai")
                         ->first();
-        // $pdf = PDF::loadview('finance/nominatif.cetak',compact('data','pegawai','tujuan','menyetujui'));
-        // return $pdf->stream();
-        return view('finance/nominatif.cetak',compact('data','pegawai','tujuan','menyetujui'));
+        $pdf = PDF::loadview('finance/nominatif.cetak',compact('data','pegawai','tujuan','menyetujui'));
+        return $pdf->stream();
+        // return view('finance/nominatif.cetak',compact('data','pegawai','tujuan','menyetujui'));
     }
 
 }
