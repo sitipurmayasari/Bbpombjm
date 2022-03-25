@@ -35,6 +35,7 @@
                 <th class="col-md-2">No. Ajuan</th>
                 <th class="col-md-2">Tanggal</th>
                 <th class="col-md-4">Pengaju</th>
+                <th class="col-md-4">daftar</th>
                 <th>Aksi</th>
             </head>
             <tbody>   	
@@ -44,6 +45,21 @@
                     <td>{{$row->nomor}}</td>
                     <td>{{tgl_indo($row->tanggal)}}</td>
                     <td>{{$row->pegawai->name}} ({{$row->pegawai->divisi->nama}})</td>
+                    <td>
+                        @if ($row->stat_aduan == 'S')
+                            @foreach ($row->isi as $item)
+                                <li>{{$item->barang->nama_barang}} 
+                                    (
+                                      @if ($item->status != 'Y')
+                                          ditolak
+                                      @else
+                                          disetujui
+                                      @endif  
+                                    )
+                                </li>
+                            @endforeach
+                        @endif
+                    </td>
                     <td>
                         @if ($row->stat_aduan == 'B')
                             <a href="/invent/labrequestok/yes/{{$row->id}}" class="btn btn-warning">

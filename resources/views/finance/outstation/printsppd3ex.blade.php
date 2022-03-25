@@ -7,7 +7,7 @@
     <title>SPPD EXTERNAL</title>
     <style>
         @page {
-            size: A4;
+            size:8.5in 13in;
             font-family: Arial;
             margin: 10px 15px 10px 15px;
 

@@ -7,7 +7,7 @@
     <title>DALAM KOTA</title>
     <style>
          @page {
-            size: A4 landscape;
+            size:8.5in 13in landscape;
             font-family: Arial;
             -moz-transform:rotate(-90deg) scale(.58,.58);
             -moz-transform:rotate(-90deg) scale(.58,.58);

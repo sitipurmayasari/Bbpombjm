@@ -7,7 +7,7 @@
     <title>SPPD</title>
     <style>
         @page {
-            size: A4;
+            size:8.5in 13in;
             font-family: Arial;
             margin: 10px 15px 10px 15px;
 
@@ -367,8 +367,23 @@
                         @endforeach
                     </td>
                 </tr>
+                <tr style="text-align: center;">
+                    <td colspan="4" style="text-align: center;">{{$data->jab_petugas}}</td>
+                </tr>
                 <tr>
-                        <td colspan="2"  style="height:5%;"></td>
+                    <td style="height: 5%" colspan="4" style="text-align: center;"></td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="text-align: center;">
+                        <u><b> {{$data->nama_petugas}} </b></u>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="text-align: center;">
+                        @if ($data->nip_petugas != null)
+                            NIP. {{$data->nip_petugas}}
+                        @endif
+                    </td>
                 </tr>
             </table>
         </td>
@@ -402,8 +417,23 @@
                         @endforeach
                     </td>
                 </tr>
+                <tr style="text-align: center;">
+                    <td colspan="4" style="text-align: center;">{{$data->jab_petugas}}</td>
+                </tr>
                 <tr>
-                        <td colspan="4"  style="height: 5%"></td>
+                    <td style="height: 4%" colspan="4" style="text-align: center;"></td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="text-align: center;">
+                        <u><b> {{$data->nama_petugas}} </b></u>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="text-align: center;">
+                        @if ($data->nip_petugas != null)
+                            NIP. {{$data->nip_petugas}}
+                        @endif
+                    </td>
                 </tr>
             </table>
         </td>
@@ -431,8 +461,23 @@
                         @endforeach
                     </td>
                 </tr>
+                <tr style="text-align: center;">
+                    <td colspan="4" style="text-align: center;">{{$data->jab_petugas2}}</td>
+                </tr>
                 <tr>
-                        <td colspan="2"  style="height: 5%"></td>
+                    <td style="height: 4%" colspan="4" style="text-align: center;"></td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="text-align: center;">
+                        <u><b> {{$data->nama_petugas2}} </b></u>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="text-align: center;">
+                        @if ($data->nip_petugas2 != null)
+                            NIP. {{$data->nip_petugas2}}
+                        @endif
+                    </td>
                 </tr>
             </table>
         </td>
@@ -466,8 +511,23 @@
                         @endforeach
                     </td>
                 </tr>
+                <tr style="text-align: center;">
+                    <td colspan="4" style="text-align: center;">{{$data->jab_petugas2}}</td>
+                </tr>
                 <tr>
-                        <td colspan="2"  style="height: 5%"></td>
+                    <td style="height: 4%" colspan="4" style="text-align: center;"></td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="text-align: center;">
+                        <u><b> {{$data->nama_petugas2}} </b></u>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="text-align: center;">
+                        @if ($data->nip_petugas2 != null)
+                            NIP. {{$data->nip_petugas2}}
+                        @endif
+                    </td>
                 </tr>
             </table>
         </td>
@@ -499,8 +559,23 @@
                         @endif
                     </td>
                 </tr>
+                <tr style="text-align: center;">
+                    <td colspan="4" style="text-align: center;">{{$data->jab_petugas3}}</td>
+                </tr>
                 <tr>
-                    <td colspan="2"  style="height: 5%"></td>
+                    <td style="height: 4%" colspan="4" style="text-align: center;"></td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="text-align: center;">
+                        <u><b> {{$data->nama_petugas3}} </b></u>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="text-align: center;">
+                        @if ($data->nip_petugas3 != null)
+                            NIP. {{$data->nip_petugas3}}
+                        @endif
+                    </td>
                 </tr>
             </table>
         </td>
@@ -536,8 +611,23 @@
                         @endif
                     </td>
                 </tr>
+                <tr style="text-align: center;">
+                    <td colspan="4" style="text-align: center;">{{$data->jab_petugas3}}</td>
+                </tr>
                 <tr>
-                    <td colspan="4"  style="height: 5%"></td>
+                    <td style="height: 5%" colspan="4" style="text-align: center;"></td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="text-align: center;">
+                        <u><b> {{$data->nama_petugas3}} </b></u>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="text-align: center;">
+                        @if ($data->nip_petugas3 != null)
+                            NIP. {{$data->nip_petugas3}}
+                        @endif
+                    </td>
                 </tr>
             </table>
         </td>

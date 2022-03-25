@@ -372,6 +372,78 @@
             </div>
         </div>
     </div>
+    <div class="col-md-12">
+        <div class="panel panel-info">
+            <div class="panel-heading"><h3 class="panel-title">Pengesah SPPD*</h3></div>
+            <div class="panel-body">
+                <fieldset>
+                    <table id="myTable" class="table table-bordered table-hover scrollit">
+                        <thead>
+                            <tr>
+                                <th class="text-center col-md-1">Tujuan</th>
+                                <th class="text-center col-md-4" >Nama</th>
+                                <th class="text-center  col-md-4">Jabatan</th>
+                                <th class="text-center col-md-2">NIP</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Tujuan 1</td>
+                                <td>
+                                    <input type="text" placeholder="Nama Pengesah" class="form-control" 
+                                    name="nama_petugas" value="{{$data->nama_petugas}}"/>
+                                </td>
+                                <td>
+                                    <input type="text" placeholder="Jabatan Pengesah" class="form-control" 
+                                    name="jab_petugas" value="{{$data->jab_petugas}}"/>
+                                </td>
+                                <td>
+                                    <input type="text" placeholder="NIP Pengesah" class="form-control" 
+                                    name="nip_petugas" value="{{$data->nip_petugas}}"/>
+                                    *Jika ada
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Tujuan 2</td>
+                                <td>
+                                    <input type="text" placeholder="Nama Pengesah" class="form-control" 
+                                    name="nama_petugas2" value="{{$data->nama_petugas2}}"/>
+                                </td>
+                                <td>
+                                    <input type="text" placeholder="Jabatan Pengesah" class="form-control" 
+                                    name="jab_petugas2" value="{{$data->jab_petugas2}}"/>
+                                </td>
+                                <td>
+                                    <input type="text" placeholder="NIP Pengesah" class="form-control" 
+                                    name="nip_petugas2" value="{{$data->nip_petugas2}}"/>
+                                    *Jika ada
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Tujuan 3</td>
+                                <td>
+                                    <input type="text" placeholder="Nama Pengesah" class="form-control" 
+                                    name="nama_petugas3" value="{{$data->nama_petugas3}}"/>
+                                </td>
+                                <td>
+                                    <input type="text" placeholder="Jabatan Pengesah" class="form-control" 
+                                    name="jab_petugas3" value="{{$data->jab_petugas3}}"/>
+                                </td>
+                                <td>
+                                    <input type="text" placeholder="NIP Pengesah" class="form-control" 
+                                    name="nip_petugas3" value="{{$data->nip_petugas3}}"/>
+                                    *Jika ada
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    *Jika Sudah Mengetahui
+                </fieldset>   
+   
+            </div>
+        </div>
+    </div>
     <div class="clearfix"></div>
 </div>
 <div class="col-sm-12">

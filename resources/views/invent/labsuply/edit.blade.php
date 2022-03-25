@@ -34,7 +34,7 @@
                                 <input type="hidden" value="L" name="kind"  />
                                 <input type="text"  value="{{$data->kode_barang}}"
                                         class="col-xs-10 col-sm-10 required " 
-                                        name="kode_barang" required readonly/>
+                                        name="kode_barang" required/>
                             </div>
                         </div>
 
