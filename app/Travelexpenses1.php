@@ -14,7 +14,8 @@ class Travelexpenses1 extends Model
                             'plane_id1','planenumber1','planefee1','godate1',
                             'plane_id2','planenumber2','planefee2','godate2',
                             'plane_id3','planenumber3','planefee3','godate3',
-                            'plane_idreturn','planenumberreturn','planereturnfee','returndate'
+                            'plane_idreturn','planenumberreturn','planereturnfee','returndate',
+                            'taxyriil','taxyriil2'
 ];
 
     public function peg()

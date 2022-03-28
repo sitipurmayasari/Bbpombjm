@@ -38,9 +38,22 @@
                                             <input type="text" name="tottlokal[]"  min="0" value="{{$item->tottlokal}}" readonly style="width: 150px;" id="tottlokal-{{$nomor}}">
                                         </td>
                                         <td><input type="number" min="0" value="{{$item->bbm}}" name="bbm[]" /></td>
-                                        <td><input type="number" style="width: 35px;" min="0" value="{{$item->taxy_count_from}}" name="taxy_count_from[]" />kali</td>          
+                                        <td> <input type="number" style="width: 50px;" min="0" value="{{$item->taxy_count_from}}" name="taxy_count_from[]" />kali
+                                            @if ($item->taxyriil=='Y')
+                                                <input type="checkbox" name="taxyriil[]" value="Y" checked>Riil
+                                            @else
+                                                <input type="checkbox" name="taxyriil[]" value="Y">Riil
+                                            @endif
+                                           
+                                        </td>          
                                         <td><input type="number" min="0" value="{{$item->taxy_fee_from}}" name="taxy_fee_from[]" /></td>          
-                                        <td><input type="number" style=" width: 35px" min="0" value="{{$item->taxy_count_to}}" name="taxy_count_to[]" />kali</td>          
+                                        <td><input type="number" style=" width: 50px" min="0" value="{{$item->taxy_count_to}}" name="taxy_count_to[]" />kali
+                                            @if ($item->taxyriil2=='Y')
+                                                <input type="checkbox" name="taxyriil2[]" value="Y" checked>Riil
+                                            @else
+                                                <input type="checkbox" name="taxyriil2[]" value="Y">Riil
+                                            @endif
+                                        </td>          
                                         <td><input type="number" min="0" value="{{$item->taxy_fee_to}}" name="taxy_fee_to[]" /></td>           
                                     </tr>
                                     @php

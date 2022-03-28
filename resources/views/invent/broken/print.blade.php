@@ -54,10 +54,10 @@
     <div id="kepala">
         <table>
             <tr>
-                <td rowspan="5" style="width: 20%;"><img src="{{asset('images/BBRI.jpg')}}" style="height:80px"></td>
+                <td rowspan="5" style="width: 20%;"> <img src="{{asset('images/BBRI.jpg')}}" style="height:80px"></td>
                 <td rowspan="2" style="width: 30%; font-size: 16px;">BALAI BESAR POM DI BANJARMASIN</td>
                 <td class="kiri1">No. Bagian</td>
-                <td class="kiri2">: 1. 10</td>
+                <td class="kiri2">: A 19</td>
             </tr>
             <tr>
                 <td class="kiri1">Terbitan/Tgl</td>
@@ -73,27 +73,29 @@
                 <td class="kiri2">: 1 dari 1</td>
             </tr>
             <tr>
-                <td colspan="3" style="width: 30%; font-size: 18px;"><b>SURAT PERMINTAAN BARANG</b></td>           
+                <td colspan="3" style="width: 30%; font-size: 18px;"><b>LAPORAN KERUSAKAN</b></td>           
             </tr>
         </table>
     </div>  
     <br>  
     <div class="lara">
         <h6>BALAI BESAR PENGAWASAN OBAT DAN MAKANAN DI BANJARMASIN</h6>
-        <u><h5>SURAT BUKTI BARANG KELUAR (SBBK)</h5></u>
+        <u><h5>LAPORAN KERUSAKAN STOK BARANG</h5></u>
         <h6>NO. {{$data->nomor}}</h6>
         <br>
         <div >
             <table class="rapi">
                 <tr>
-                    <td  class="rapi"style="width: 20%;">Unit Kerja</td>
-                    <td  class="rapi"style="width: 2%; ">:</td>
-                    <td class="rapi"><b>Balai Besar Pengawas Obat dan makanan di Banjarmasin</b></td>
+                    <td class="rapi" style="width: 20%; ">Lab</td>
+                    <td  class="rapi"style="width: 2%;">:</td>
+                    <td class="rapi">
+                        {{$data->lab->name}}
+                    </td>
                 </tr>
                 <tr>
                     <td  class="rapi"style="width: 20%;">Tanggal</td>
                     <td  class="rapi"style="width: 2%; ">:</td>
-                    <td class="rapi">{{$data->tanggal}}</td>
+                    <td class="rapi">{{tgl_indo($data->tanggal)}}</td>
                 </tr>
             </table>
         </div>
@@ -101,100 +103,51 @@
         <table >
             <thead>
                 <tr>
-                    <th>NO</th>
                     <th>NAMA BARANG</th>
-                    <th>SATUAN</th>
                     <th>JUMLAH</th>
                     <th>KETERANGAN</th>
                 </tr>
             </thead>
             <tbody>
-                @php
-                    $no= 1;
-                @endphp
-                @foreach ($isi as $item)
                 <tr>
-                    <td>{{$no++}}</td>
-                    <td>{{$item->barang->nama_barang}}</td>
-                    <td>{{$item->satuan->satuan}}</td>
-                    <td>{{$item->jumlah}}</td>
-                    <td>{{$item->ket}}</td>
+                    <td style="vertical-align: top; align:left; width: 30%;">
+                        {{$data->barang->nama_barang}} - {{$data->barang->merk}}
+                        <br><br><br>
+                    </td>
+                    <td style="vertical-align: top; align:left;">{{$data->jumlah}}</td>
+                    <td style="vertical-align: top; align:left;">{{$data->ket}}</td>
                 </tr>
-                @endforeach
             </tbody>
         </table>
         <br>
-        <div id="ttd">
+        <div class="col-sm-12">
             <table class="ttd">
                 <tr>
-                    <td class="ttd col-md-4"></td>
-                    <td class="ttd col-md-4"></td>
-                    <td class="ttd col-md-4">Banjarmasin, {{$data->tanggal}}</td>
-                </tr>
-                <tr>
-                    <td class="ttd"><u>Yang Menerima</u></td>
+                    <td class="ttd">Penanggung Jawab,</td>
                     <td class="ttd">Mengetahui,</td>
-                    <td class="ttd">Pengelola Gudang</td>
-                </tr>
-                <tr>
-                    <td class="ttd">Tanggal .................................</td>
-                    <td class="ttd">
-                        @if ($mengetahui != null)
-                            @if ($mengetahui->pjs != null)
-                            {{$mengetahui->pjs}}
-                            {{$mengetahui->jabatan->jabatan}} 
-                            {{$mengetahui->divisi->nama}}
-                            @else 
-                            {{$mengetahui->jabatan->jabatan}} 
-                            {{$mengetahui->divisi->nama}}
-                            @endif
-                      @else
-                        SILAHKAN CEK SETUP PEJABAT
-                      @endif
-                    </td>
-                    <td class="ttd"></td>
                 </tr>
                 <tr >
-                    <td style="height: 10%" class="ttd"></td>
                     <td style="height: 10%" class="ttd"></td>
                     <td style="height: 10%" class="ttd"></td>
                 </tr>
                 <tr>
                     <td class="ttd"><u>
                         {{$data->pegawai->name}}
-                        </u>
-                    </td>
-                    <td class="ttd"><u>
-                        @if ($mengetahui !=null)
-                            {{$mengetahui->user->name}}
-                        @else
-                            SILAHKAN CEK SETUP PEJABAT
-                        @endif
-                    </u>
-                    </td>
-                    <td class="ttd"><u>
-                        {{$petugas->user->name}}
-                        </u></td>
+                    </u></td>
+                    <td class="ttd"> <u>{{$data->mengetahui->user->name}}</u></td>
                 </tr>
                 <tr>
-                    <td class="ttd">NIP. 
-                        {{$data->pegawai->no_pegawai}}
-                    </td>
                     <td class="ttd">
-                        @if ($mengetahui !=null)
-                            NIP.  {{$mengetahui->user->no_pegawai}}
-                        @else
-                            SILAHKAN CEK SETUP PEJABAT
+                        @if ($data->pegawai->status == 'PNS')
+                            NIP. {{$data->pegawai->no_pegawai}} 
                         @endif
-                        
-                    </td>
-                    <td class="ttd">NIP. 
-                        {{$petugas->user->no_pegawai}}
-                    </td>
+                       </td>
+                    <td class="ttd">NIP. {{$data->mengetahui->user->no_pegawai}}</td>
                 </tr>
             </table>
 
-        </div><br><br>
+        </div><br>
+
     
     </div>
 </body>

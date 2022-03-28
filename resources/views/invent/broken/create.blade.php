@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('breadcrumb')
     <li>Inventaris</li>
-    <li><a href="/invent/broken"> Barang Rusak</a></li>
-    <li>Tambah Barang Keluar</li>
+    <li><a href="/invent/broken"> Stok Rusak</a></li>
+    <li>Input Aduan Kerusakan Stok</li>
 @endsection
 @section('content')
 @include('layouts.validasi')
@@ -15,105 +15,108 @@
             <div class="panel-heading"><h3 class="panel-title"></h3></div>
             <div class="panel-body">
                <div class="col-md-12">
-                   <div class="col-md-6">
-                        <div class="col-md-12">
-                            <label>UNIT KERJA</label><br>
-                            <label><b>Balai besar Pengawas Obat dan Makanan di Banjarmasin</b></label>
-                        </div>
-                        <div class="col-md-12">
-                            <label>NO. SPB*</label><br>
-                            <input type="text" id="nomor" readonly required
-                            class="col-xs-9 col-sm-9 required " 
-                            name="nomor"
-                            value="{{$nosbb}}"
-                            />
-                            <input type="hidden" name="jenis" value="U">
-                            <input type="hidden" name="stat_aduan" value="S">
-                        </div>
-                   </div>
-                   <div class="col-md-6">
-                        <div class="col-md-12">
-                            <label>TANGGAL KELUAR *</label><br>
-                            <input type="text" name="tanggal" readonly 
-                                        class="col-xs-9 col-sm-9 required" value="{{date('Y-m-d')}}" required
-                                        data-date-format="yyyy-mm-dd" data-provide="datepicker">
-                        </div>
-                        <div class="col-md-12">
-                            <label> Penerima *</label><br>
-                            <select id="peg" name="users_id" class="col-xs-9 col-sm-9 select2" required>
-                                    <option value="">pilih nama pegawai</option>
-                                @foreach ($user as $peg)
-                                    <option value="{{$peg->id}}">{{$peg->no_pegawai}} || {{$peg->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-               </div>          
-           </div>
+                <fieldset>
+                <div class="col-md-4">
+                    <label for="">NO. ADUAN*</label>
+                    <input type="text" id="no_adu" readonly required
+                    class="col-xs-10 col-sm-10 required " 
+                    name="nomor"
+                    value="{{$norusak}}"/>
+                    <input type="hidden" name="tanggal" value="{{date('Y-m-d')}}"/>
+                </div>
+                <div class="col-md-4">
+                    <label > Mengetahui *</label>
+                    <select id="peg" name="pejabat_id" class="col-xs-10 col-sm-10 select2" required>
+                            <option value="">pilih nama pejabat</option>
+                        @foreach ($tahu as $lok)
+                            <option value="{{$lok->id}}">{{$lok->user->name}} ({{$lok->jabatan->jabatan}})</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label >Pegawai *</label>
+                    <select id="peg" name="users_id" class="col-xs-10 col-sm-10 select2" required>
+                            <option value="">pilih nama pegawai</option>
+                        @foreach ($user as $peg)
+                            <option value="{{$peg->id}}">{{$peg->no_pegawai}} || {{$peg->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                
+                </fieldset>
+               </div>
             </div>
         </div>
     </div>
     <div class="col-md-12">
         <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title">Barang yang di Ajukan</h3></div>
+            <div class="panel-heading"><h3 class="panel-title">Data Barang Rusak</h3></div>
             <div class="panel-body">
-               <div class="col-md-12">
-                <table id="myTable" class="table table-bordered table-hover text-center">
-                    <thead>
-                        <th class="text-center col-md-1">No</th>
-                        <th class="text-center col-md-3">Nama Barang</th>
-                        <th class="text-center col-md-2">Satuan</th>
-                        <th class="text-center col-md-1">Stok</th>
-                        <th class="text-center col-md-1">Jumlah</th>
-                        <th class="text-center col-md-4">Keterangan</th>
-                        <th class="text-center col-md-1">Aksi</th>
-                    </thead>
-                    <tbody>
-                        <tr id="cell-1">
-                            <td class=>
-                                1
-                            </td>       
-                            <td>
-                                <select name="inventaris_id[]" class="form-control col-xs-11 col-sm-11 select2" required id="barang_id-1"
-                                onchange="getData1()">
-                                    <option value="">Pilih Barang</option>
-                                    @foreach ($data as $brg)
-                                        <option value="{{$brg->id}}">{{$brg->nama_barang}} || {{$brg->merk}}</option>
-                                    @endforeach
-                                </select>
-                            </td>
-                            <td>
-                                <input type=hidden name="satuan_id[]" class="form-control" id="satuan_id-1">
-                                <input type="text" name="satuan" class="form-control" readonly id="satuan-1">
-                            </td>
-                            <td>
-                                <input type="number" name="stok[]" class="form-control" readonly id="stok-1">
-                            </td>
-                            <td>
-                                <input type="number"  min="1" name="jumlah[]" class="form-control" value="0" id="jum-1" onchange="hitung()">
-                                <input type="hidden" name="sisa[]" class="form-control" value="0" id="sisa-1">
-                               
-                            </td>
-                            <td>
-                                <input type="text" name="ket[]" class="form-control" required>
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
-                        <span id="row-new"></span>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="7">
-                                <button type="button" class="form-control btn-default" onclick="addBarisNew()">
-                                    <i class="glyphicon glyphicon-plus"></i>TAMBAH BARIS BARU</button>
-                                <input type="hidden" id="countRow" value="1">
-                            </td>
-                        </tr>
-                        
-                    </tfoot>
-                </table>
-               </div>
+                <div class="widget-main no-padding">
+                    <fieldset>
+                    <br>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Nama Barang
+                        </label>
+                        <div class="col-sm-8">
+                            <select name="inventaris_id" class="col-xs-10 col-sm-10 select2" id="inventaris_id" onchange="getData()" required>
+                                <option value="">-Pilih-</option>
+                                @foreach ($data as $item)
+                                    <option value="{{$item->id}}">{{$item->nama_barang}}|{{$item->merk}} (Kode : {{$item->kode_barang}}) </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Merk
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text" id="merk" readonly
+                            class="col-xs-10 col-sm-10 ">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> No. Seri
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text" id="no_seri" readonly
+                            class="col-xs-10 col-sm-10"  >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Jumlah
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="number" min="1" class="col-xs-2 col-sm-2" name="jumlah" value="0" required> 
+                            <label for="form-field-1" class="control-label"> &nbsp;  Buah </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Keterangan*
+                        </label>
+                        <div class="col-sm-8">
+                            <textarea name="ket"  class="col-xs-10 col-sm-10"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Foto Bukti*
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="file" name="foto" class="btn btn-success btn-sm" id="" 
+                            value="Upload Foto Barang">   
+                            <label><i>ex:Lorem_ipsum.jpg/.jpeg/.png</i></label>   
+                        </div>
+                    </div>
+                    *Tidak Wajib
+                    </fieldset>        
+               
+                </div>
             </div>
         </div>
     </div>
@@ -129,98 +132,20 @@
 
 @endsection
 @section('footer')
-   <script>
-        function addBarisNew(){
-        var last_baris = $("#countRow").val();
-        var new_baris = parseInt(last_baris)+1;
-        $isi =  '<tr id="cell-'+new_baris+'">'+
-            '<td>'+new_baris+'</td>'+
-                '<td>'+
-                    '<select name="inventaris_id[]" class="form-control col-xs-11 col-sm-11 select2" required id="barang_id-'+new_baris+'" onchange="getDataBarang('+new_baris+')">'+
-                        '<option value="">Pilih Barang</option>'+            
-                        '@foreach ($data as $brg)'+
-                            '<option value="{{$brg->id}}">{{$brg->nama_barang}} || {{$brg->merk}}</option>'+                
-                        '@endforeach'+            
-                    '</select>'+            
-                '</td>'+
-                '<td>'+
-                    '<input type=hidden name="satuan_id[]" class="form-control" id="satuan_id-'+new_baris+'">'+
-                    '<input type="text" name="satuan" class="form-control" readonly id="satuan-'+new_baris+'">'+
-                '</td>'+
-                '<td>'+
-                    '<input type="number" name="stok[]" class="form-control" readonly id="stok-'+new_baris+'">'+
-                '</td>'+
-                '<td>'+
-                    '<input type="number" min="1" name="jumlah[]" class="form-control" value="0" id="jum-'+new_baris+'" onchange="hitung2('+new_baris+')">'+
-                    '<input type="hidden" name="sisa[]" class="form-control" value="0" id="sisa-'+new_baris+'">'+
-                '</td>'+
-                '<td>'+
-                    '<input type="text" name="ket[]" class="form-control" required>'+
-                '</td>'+
-                    '<td><button type="button" class="btn btn-danger" onclick="deleteRow('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button></td>'+
-                '</tr>';
-        $("#myTable").find('tbody').append($isi);
-        $("#countRow").val(new_baris);
-        $('.select2').select2();
-       }
-
-    
-       function deleteRow(cell) {
-            $("#cell-"+cell).remove();
-            this.hitungTotal();
-
-        }
-
-
-        function getData1(){
-            var barang_id = $("#barang_id-1").val();
+    <script>
+        function getData(){
+            var barang_id = $("#inventaris_id").val();
 
             $.get(
-                "{{route('broken.getbarang') }}",
+                "{{route('inventaris.getbarang') }}",
                 {
                     barang_id: barang_id
                 },
                 function(response) {
-                    $("#satuan_id-1").val(response.data.satuan_id);
-                    $("#satuan-1").val(response.data.satuan);
-                    $("#stok-1").val(response.data.sisa);
-                    var x = $("#stok-1").val();
-                    document.getElementById("jum-1").setAttribute("max", x);
+                    $("#merk").val(response.data.merk);
+                    $("#no_seri").val(response.data.no_seri);
                 }
             );
         }
-
-        function hitung() {
-        var a = $("#stok-1").val();
-        var b =  $("#jum-1").val();
-        var c = a - b;
-        $("#sisa-1").val(c);
-        }
-
-        function getDataBarang(i){
-            var barang_id =  $("#barang_id-"+i).val();
-            if (barang_id == '') return false;
-            $.get(
-                "{{route('broken.getbarang') }}",
-                {
-                    barang_id: barang_id
-                },
-                function(response) {
-                    $("#satuan_id-"+i).val(response.data.satuan_id);
-                    $("#satuan-"+i).val(response.data.satuan);
-                    $("#stok-"+i).val(response.data.sisa);
-                    var x = $("#stok-"+i).val();
-                    document.getElementById("jum-"+i).setAttribute("max", x);
-                }
-            );
-        }
-
-    function hitung2(i) {
-        var a = $("#stok-"+i).val();
-        var b =  $("#jum-"+i).val();
-        var c = a - b;
-        $("#sisa-"+i).val(c);
-    }
-    
-   </script>
+    </script>
 @endsection

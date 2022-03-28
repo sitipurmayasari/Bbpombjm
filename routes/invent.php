@@ -148,4 +148,6 @@
   Route::post('/invent/broken/store','Invent\BrokenController@store')->name('broken.store');
   Route::get('/invent/broken/print/{id}','Invent\BrokenController@print')->name('broken.print');
   Route::get('/invent/broken/getBarang','Invent\BrokenController@getBarang')->name('broken.getbarang');
+  Route::get('/invent/broken/edit/{id}','Invent\BrokenController@edit')->name('broken.edit');
+  Route::post('/invent/broken/update/{id}','Invent\BrokenController@update')->name('broken.update');
     

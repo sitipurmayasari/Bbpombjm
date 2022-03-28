@@ -200,6 +200,9 @@ class TravelexpensesController extends Controller
 
             //Travelexpenses1
             for ($i = 0; $i < count($request->input('outst_employee_id')); $i++){
+
+                $taxyriil         = $request->taxyriil != null ?  $request->taxyriil[$i] : 'N';
+                $taxyriil2         = $request->taxyriil2 != null ?  $request->taxyriil2[$i] : 'N';
                 $datatwo = [
                     'expenses_id'       => $expenses_id,
                     'outst_employee_id' => $request->outst_employee_id[$i],
@@ -218,6 +221,8 @@ class TravelexpensesController extends Controller
                     'taxy_fee_from'     => $request->taxy_fee_from[$i],
                     'taxy_count_to'     => $request->taxy_count_to[$i],
                     'taxy_fee_to'       => $request->taxy_fee_to[$i],
+                    'taxyriil'          => $taxyriil,
+                    'taxyriil2'         => $taxyriil2,
                     'plane_id1'         => $request->plane_id1[$i],
                     'plane_id2'         => $request->plane_id2[$i],
                     'plane_id3'         => $request->plane_id3[$i],
@@ -447,6 +452,8 @@ class TravelexpensesController extends Controller
 
             
             for ($i = 0; $i < count($request->input('outst_employee_id')); $i++){
+                $taxyriil         = $request->taxyriil != null ?  $request->taxyriil[$i] : 'N';
+                $taxyriil2         = $request->taxyriil2 != null ?  $request->taxyriil2[$i] : 'N';
                 $datatwo = [
                     'expenses_id'       => $expenses_id,
                     'outst_employee_id' => $request->outst_employee_id[$i],
@@ -465,6 +472,8 @@ class TravelexpensesController extends Controller
                     'taxy_fee_from'     => $request->taxy_fee_from[$i],
                     'taxy_count_to'     => $request->taxy_count_to[$i],
                     'taxy_fee_to'       => $request->taxy_fee_to[$i],
+                    'taxyriil'          => $taxyriil,
+                    'taxyriil2'         => $taxyriil2,
                     'plane_id1'         => $request->plane_id1[$i],
                     'plane_id2'         => $request->plane_id2[$i],
                     'plane_id3'         => $request->plane_id3[$i],

@@ -8,8 +8,8 @@
                                 <tr>
                                     <th style="text-align: center;" rowspan="2">NO</th>
                                     <th class="text-center col-md-3" rowspan="2">Nama Pegawai</th>
-                                    <th class="text-center" colspan="13">Penginapan 1</th>
-                                    <th class="text-center" colspan="13">Penginapan 2</th>
+                                    <th colspan="13">Penginapan 1</th>
+                                    <th colspan="13">Penginapan 2</th>
                                 </tr>
                                 <tr>
                                     <th class="text-center">Nama Penginapan</th>

@@ -477,9 +477,11 @@
                             ' = <input type="text" name="tottlokal[]"  min="0" value="0" readonly style="width: 150px;" id="tottlokal-'+no+'">'+
                         '</td>'+
                         '<td><input type="number" min="0" value="0" name="bbm[]" /></td>'+
-                        '<td><input type="number" style="width: 50%" min="0" value="0" name="taxy_count_from[]" /> kali</td>'+            
+                        '<td><input type="number" style="width: 50px" min="0" value="0" name="taxy_count_from[]" /> kali'+
+                            '<input type="checkbox" name="taxyriil[]" value="Y">Riil+</td>'+            
                         '<td><input type="number" min="0" value="0" name="taxy_fee_from[]" /></td>'+            
-                        '<td><input type="number" style=" width: 50%" min="0" value="0" name="taxy_count_to[]" /> kali</td>'+            
+                        '<td><input type="number" style=" width: 50px" min="0" value="0" name="taxy_count_to[]" /> kali'+
+                            '<input type="checkbox" name="taxyriil2[]" value="Y">Riil</td>'+            
                         '<td><input type="number" min="0" value="0" name="taxy_fee_to[]" /></td>'+              
                     '</tr>';
                 }

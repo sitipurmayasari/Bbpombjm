@@ -265,31 +265,41 @@
                 <td class="isi">
                     {{-- bbm --}}
                     Rp. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                    @if ($nilai->bbm != '0' && $nilai2->tlokal == 'N' && $nilai->taxy_fee_to =='0')
+                    @if ($nilai->bbm != '0' && $nilai2->tlokal == 'N' && $nilai->taxyriil == 'N' && $nilai->taxyriil2 == 'N')
                         @php
                             $bbm = $nilai->bbm;
                         @endphp
                         {{number_format($bbm)}}
         
                     {{-- lokal --}}
-                    @elseif($nilai2->tlokal == 'Y' && $nilai->bbm == '0'  && $nilai->taxy_fee_to =='0')
+                    @elseif($nilai2->tlokal == 'Y' && $nilai->bbm == '0'  && $nilai->taxyriil == 'N' && $nilai->taxyriil2 == 'N')
                         @php
                             $bbm = $nilai2->tottlokal;
                         @endphp
                             {{number_format($bbm)}}
                     
-                    {{-- taxy --}}
-                    @elseif($nilai2->tlokal == 'N' && $nilai->bbm == '0'  && $nilai->taxy_fee_to !='0')
+                    {{-- taxy ASAL --}}
+                    @elseif($nilai2->tlokal == 'N' && $nilai->bbm == '0'  && $nilai->taxyriil == 'Y' && $nilai->taxyriil2 == 'N')
                             @php
-                                $x = $nilai->taxy_count_to;
-                                $y = $nilai->taxy_fee_to;
+                                $x = $nilai->taxy_count_from;
+                                $y = $nilai->taxy_fee_from;
                                 $c = $x*$y;
                                 $bbm = $c;
                             @endphp
                                 {{number_format($bbm)}}
                     
+                     {{-- taxy TUJUAN--}}
+                     @elseif($nilai2->tlokal == 'N' && $nilai->bbm == '0'  && $nilai->taxyriil == 'N' && $nilai->taxyriil2 == 'Y')
+                     @php
+                         $x = $nilai->taxy_count_to;
+                         $y = $nilai->taxy_fee_to;
+                         $c = $x*$y;
+                         $bbm = $c;
+                     @endphp
+                         {{number_format($bbm)}}
+                    
                     {{-- lokal+bbm --}}
-                    @elseif($nilai2->tlokal == 'Y' && $nilai->bbm != '0'  && $nilai->taxy_fee_to =='0')
+                    @elseif($nilai2->tlokal == 'Y' && $nilai->bbm != '0'  && $nilai->taxyriil == 'N' && $nilai->taxyriil2 == 'N')
                         @php
                             $a = $nilai2->tottlokal;
                             $b = $nilai->bbm;
@@ -298,8 +308,8 @@
                         @endphp
                         {{number_format($bbm)}}
                     
-                    {{-- lokal+taxi --}}
-                    @elseif($nilai2->tlokal =='Y' && $nilai->bbm == '0'  && $nilai->taxy_fee_to !='0')
+                    {{-- lokal+taxi TUJUAN --}}
+                    @elseif($nilai2->tlokal =='Y' && $nilai->bbm == '0'  && $nilai->taxyriil == 'N' && $nilai->taxyriil2 == 'Y')
                         @php
                             $a = $nilai2->tottlokal;
 
@@ -311,8 +321,8 @@
                         @endphp
                         {{number_format($bbm)}}
 
-                    {{-- bbm+taxi --}}
-                    @elseif($nilai2->tlokal =='N' && $nilai->bbm != '0'  && $nilai->taxy_fee_to !='0')
+                    {{-- bbm+taxi TUJUAN--}}
+                    @elseif($nilai2->tlokal =='N' && $nilai->bbm != '0'  && $nilai->taxyriil == 'N' && $nilai->taxyriil2 == 'Y')
                         @php
 
                             $b = $nilai->bbm;
@@ -324,8 +334,8 @@
                         @endphp
                         {{number_format($bbm)}}
                     
-                    {{-- bbm+taxi+lokal --}}
-                    @elseif($nilai2->tlokal =='Y' && $nilai->bbm != '0'  && $nilai->taxy_fee_to !='0')
+                    {{-- bbm+taxi TUJUAN+lokal --}}
+                    @elseif($nilai2->tlokal =='Y' && $nilai->bbm != '0'  && $nilai->taxyriil == 'N' && $nilai->taxyriil2 == 'Y')
                         @php
                             $a = $nilai2->tottlokal;
                             $b = $nilai->bbm;
@@ -336,6 +346,110 @@
                             $bbm = $a+$b+$c;
                         @endphp
                         {{number_format($bbm)}}
+
+
+                     {{-- lokal+taxi ASAL --}}
+                     @elseif($nilai2->tlokal =='Y' && $nilai->bbm == '0'  && $nilai->taxyriil == 'Y' && $nilai->taxyriil2 == 'N')
+                     @php
+                         $a = $nilai2->tottlokal;
+
+                         $x = $nilai->taxy_count_from;
+                         $y = $nilai->taxy_fee_from;
+                         $c = $x*$y;
+
+                         $bbm = $a+$c;
+                     @endphp
+                     {{number_format($bbm)}}
+
+                 {{-- bbm+taxi asal--}}
+                 @elseif($nilai2->tlokal =='N' && $nilai->bbm != '0'  && $nilai->taxyriil == 'Y' && $nilai->taxyriil2 == 'N')
+                     @php
+
+                         $b = $nilai->bbm;
+                         $x = $nilai->taxy_count_from;
+                         $y = $nilai->taxy_fee_from;
+                         $c = $x*$y;
+
+                         $bbm = $b+$c;
+                     @endphp
+                     {{number_format($bbm)}}
+                 
+                 {{-- bbm+taxi asal+lokal --}}
+                 @elseif($nilai2->tlokal =='Y' && $nilai->bbm != '0'  && $nilai->taxyriil == 'Y' && $nilai->taxyriil2 == 'N')
+                     @php
+                         $a = $nilai2->tottlokal;
+                         $b = $nilai->bbm;
+                         $x = $nilai->taxy_count_from;
+                         $y = $nilai->taxy_fee_from;
+                         $c = $x*$y;
+
+                         $bbm = $a+$b+$c;
+                     @endphp
+                     {{number_format($bbm)}}
+                
+                {{-- bbm+taxi asal + taxi tujuan + lokal --}}
+                @elseif($nilai2->tlokal =='Y' && $nilai->bbm != '0'  && $nilai->taxyriil == 'Y' && $nilai->taxyriil2 == 'Y')
+                     @php
+                         $a = $nilai2->tottlokal;
+                         $b = $nilai->bbm;
+                         $x = $nilai->taxy_count_to;
+                         $y = $nilai->taxy_fee_to;
+                         $Q = $nilai->taxy_count_from;
+                         $R = $nilai->taxy_fee_from;
+                         $c = $x*$y;
+                         $s = $Q*$R;
+
+
+                         $bbm = $a+$b+$c+$s;
+                     @endphp
+                     {{number_format($bbm)}}
+
+                  {{-- bbm+taxi asal + taxi tujuan --}}
+                  @elseif($nilai2->tlokal =='N' && $nilai->bbm != '0'  && $nilai->taxyriil == 'Y' && $nilai->taxyriil2 == 'Y')
+                  @php
+                      $b = $nilai->bbm;
+                      $x = $nilai->taxy_count_to;
+                      $y = $nilai->taxy_fee_to;
+                      $Q = $nilai->taxy_count_from;
+                      $R = $nilai->taxy_fee_from;
+                      $c = $x*$y;
+                      $s = $Q*$R;
+
+
+                      $bbm = $b+$c+$s;
+                  @endphp
+                  {{number_format($bbm)}}
+
+                  {{-- taxi asal + taxi tujuan + lokal --}}
+                  @elseif($nilai2->tlokal =='Y' && $nilai->bbm == '0'  && $nilai->taxyriil == 'Y' && $nilai->taxyriil2 == 'Y')
+                  @php
+                      $a = $nilai2->tottlokal;
+                      $x = $nilai->taxy_count_to;
+                      $y = $nilai->taxy_fee_to;
+                      $Q = $nilai->taxy_count_from;
+                      $R = $nilai->taxy_fee_from;
+                      $c = $x*$y;
+                      $s = $Q*$R;
+
+
+                      $bbm = $a+$c+$s;
+                  @endphp
+                  {{number_format($bbm)}}
+
+                 {{-- taxi asal + taxi tujuan --}}
+                 @elseif($nilai2->tlokal =='N' && $nilai->bbm == '0'  && $nilai->taxyriil == 'Y' && $nilai->taxyriil2 == 'Y')
+                 @php
+                     $x = $nilai->taxy_count_to;
+                     $y = $nilai->taxy_fee_to;
+                     $Q = $nilai->taxy_count_from;
+                     $R = $nilai->taxy_fee_from;
+                     $c = $x*$y;
+                     $s = $Q*$R;
+
+
+                     $bbm = $c+$s;
+                 @endphp
+                 {{number_format($bbm)}}
                     @else
                             {{ '-' }}
                     @endif
@@ -707,31 +821,41 @@
                 <td class="isi">
                     {{-- bbm --}}
                     Rp. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                    @if ($nilai->bbm != '0' && $nilai2->tlokal == 'N' && $nilai->taxy_fee_to =='0')
+                    @if ($nilai->bbm != '0' && $nilai2->tlokal == 'N' && $nilai->taxyriil == 'N' && $nilai->taxyriil2 == 'N')
                         @php
                             $bbm = $nilai->bbm;
                         @endphp
                         {{number_format($bbm)}}
         
                     {{-- lokal --}}
-                    @elseif($nilai2->tlokal == 'Y' && $nilai->bbm == '0' && $nilai->taxy_fee_to =='0')
+                    @elseif($nilai2->tlokal == 'Y' && $nilai->bbm == '0'  && $nilai->taxyriil == 'N' && $nilai->taxyriil2 == 'N')
                         @php
                             $bbm = $nilai2->tottlokal;
                         @endphp
                             {{number_format($bbm)}}
                     
-                    {{-- taxy --}}
-                    @elseif($nilai2->tlokal == 'N' && $nilai->bbm == '0' && $nilai->taxy_fee_to !='0')
+                    {{-- taxy ASAL --}}
+                    @elseif($nilai2->tlokal == 'N' && $nilai->bbm == '0'  && $nilai->taxyriil == 'Y' && $nilai->taxyriil2 == 'N')
                             @php
-                                $x = $nilai->taxy_count_to;
-                                $y = $nilai->taxy_fee_to;
+                                $x = $nilai->taxy_count_from;
+                                $y = $nilai->taxy_fee_from;
                                 $c = $x*$y;
                                 $bbm = $c;
                             @endphp
                                 {{number_format($bbm)}}
                     
+                     {{-- taxy TUJUAN--}}
+                     @elseif($nilai2->tlokal == 'N' && $nilai->bbm == '0'  && $nilai->taxyriil == 'N' && $nilai->taxyriil2 == 'Y')
+                     @php
+                         $x = $nilai->taxy_count_to;
+                         $y = $nilai->taxy_fee_to;
+                         $c = $x*$y;
+                         $bbm = $c;
+                     @endphp
+                         {{number_format($bbm)}}
+                    
                     {{-- lokal+bbm --}}
-                    @elseif($nilai2->tlokal == 'Y' && $nilai->bbm != '0' && $nilai->taxy_fee_to =='0')
+                    @elseif($nilai2->tlokal == 'Y' && $nilai->bbm != '0'  && $nilai->taxyriil == 'N' && $nilai->taxyriil2 == 'N')
                         @php
                             $a = $nilai2->tottlokal;
                             $b = $nilai->bbm;
@@ -740,10 +864,11 @@
                         @endphp
                         {{number_format($bbm)}}
                     
-                    {{-- lokal+taxi --}}
-                    @elseif($nilai2->tlokal =='Y' && $nilai->bbm == '0' && $nilai->taxy_fee_to !='0')
+                    {{-- lokal+taxi TUJUAN --}}
+                    @elseif($nilai2->tlokal =='Y' && $nilai->bbm == '0'  && $nilai->taxyriil == 'N' && $nilai->taxyriil2 == 'Y')
                         @php
                             $a = $nilai2->tottlokal;
+
                             $x = $nilai->taxy_count_to;
                             $y = $nilai->taxy_fee_to;
                             $c = $x*$y;
@@ -752,8 +877,8 @@
                         @endphp
                         {{number_format($bbm)}}
 
-                    {{-- bbm+taxi --}}
-                    @elseif($nilai2->tlokal =='N' && $nilai->bbm != '0' && $nilai->taxy_fee_to !='0')
+                    {{-- bbm+taxi TUJUAN--}}
+                    @elseif($nilai2->tlokal =='N' && $nilai->bbm != '0'  && $nilai->taxyriil == 'N' && $nilai->taxyriil2 == 'Y')
                         @php
 
                             $b = $nilai->bbm;
@@ -765,8 +890,8 @@
                         @endphp
                         {{number_format($bbm)}}
                     
-                    {{-- bbm+taxi+lokal --}}
-                    @elseif($nilai2->tlokal =='Y' && $nilai->bbm != '0' && $nilai->taxy_fee_to !='0')
+                    {{-- bbm+taxi TUJUAN+lokal --}}
+                    @elseif($nilai2->tlokal =='Y' && $nilai->bbm != '0'  && $nilai->taxyriil == 'N' && $nilai->taxyriil2 == 'Y')
                         @php
                             $a = $nilai2->tottlokal;
                             $b = $nilai->bbm;
@@ -777,6 +902,110 @@
                             $bbm = $a+$b+$c;
                         @endphp
                         {{number_format($bbm)}}
+
+
+                     {{-- lokal+taxi ASAL --}}
+                     @elseif($nilai2->tlokal =='Y' && $nilai->bbm == '0'  && $nilai->taxyriil == 'Y' && $nilai->taxyriil2 == 'N')
+                     @php
+                         $a = $nilai2->tottlokal;
+
+                         $x = $nilai->taxy_count_from;
+                         $y = $nilai->taxy_fee_from;
+                         $c = $x*$y;
+
+                         $bbm = $a+$c;
+                     @endphp
+                     {{number_format($bbm)}}
+
+                 {{-- bbm+taxi asal--}}
+                 @elseif($nilai2->tlokal =='N' && $nilai->bbm != '0'  && $nilai->taxyriil == 'Y' && $nilai->taxyriil2 == 'N')
+                     @php
+
+                         $b = $nilai->bbm;
+                         $x = $nilai->taxy_count_from;
+                         $y = $nilai->taxy_fee_from;
+                         $c = $x*$y;
+
+                         $bbm = $b+$c;
+                     @endphp
+                     {{number_format($bbm)}}
+                 
+                 {{-- bbm+taxi asal+lokal --}}
+                 @elseif($nilai2->tlokal =='Y' && $nilai->bbm != '0'  && $nilai->taxyriil == 'Y' && $nilai->taxyriil2 == 'N')
+                     @php
+                         $a = $nilai2->tottlokal;
+                         $b = $nilai->bbm;
+                         $x = $nilai->taxy_count_from;
+                         $y = $nilai->taxy_fee_from;
+                         $c = $x*$y;
+
+                         $bbm = $a+$b+$c;
+                     @endphp
+                     {{number_format($bbm)}}
+                
+                {{-- bbm+taxi asal + taxi tujuan + lokal --}}
+                @elseif($nilai2->tlokal =='Y' && $nilai->bbm != '0'  && $nilai->taxyriil == 'Y' && $nilai->taxyriil2 == 'Y')
+                     @php
+                         $a = $nilai2->tottlokal;
+                         $b = $nilai->bbm;
+                         $x = $nilai->taxy_count_to;
+                         $y = $nilai->taxy_fee_to;
+                         $Q = $nilai->taxy_count_from;
+                         $R = $nilai->taxy_fee_from;
+                         $c = $x*$y;
+                         $s = $Q*$R;
+
+
+                         $bbm = $a+$b+$c+$s;
+                     @endphp
+                     {{number_format($bbm)}}
+
+                  {{-- bbm+taxi asal + taxi tujuan --}}
+                  @elseif($nilai2->tlokal =='N' && $nilai->bbm != '0'  && $nilai->taxyriil == 'Y' && $nilai->taxyriil2 == 'Y')
+                  @php
+                      $b = $nilai->bbm;
+                      $x = $nilai->taxy_count_to;
+                      $y = $nilai->taxy_fee_to;
+                      $Q = $nilai->taxy_count_from;
+                      $R = $nilai->taxy_fee_from;
+                      $c = $x*$y;
+                      $s = $Q*$R;
+
+
+                      $bbm = $b+$c+$s;
+                  @endphp
+                  {{number_format($bbm)}}
+
+                  {{-- taxi asal + taxi tujuan + lokal --}}
+                  @elseif($nilai2->tlokal =='Y' && $nilai->bbm == '0'  && $nilai->taxyriil == 'Y' && $nilai->taxyriil2 == 'Y')
+                  @php
+                      $a = $nilai2->tottlokal;
+                      $x = $nilai->taxy_count_to;
+                      $y = $nilai->taxy_fee_to;
+                      $Q = $nilai->taxy_count_from;
+                      $R = $nilai->taxy_fee_from;
+                      $c = $x*$y;
+                      $s = $Q*$R;
+
+
+                      $bbm = $a+$c+$s;
+                  @endphp
+                  {{number_format($bbm)}}
+
+                 {{-- taxi asal + taxi tujuan --}}
+                 @elseif($nilai2->tlokal =='N' && $nilai->bbm == '0'  && $nilai->taxyriil == 'Y' && $nilai->taxyriil2 == 'Y')
+                 @php
+                     $x = $nilai->taxy_count_to;
+                     $y = $nilai->taxy_fee_to;
+                     $Q = $nilai->taxy_count_from;
+                     $R = $nilai->taxy_fee_from;
+                     $c = $x*$y;
+                     $s = $Q*$R;
+
+
+                     $bbm = $c+$s;
+                 @endphp
+                 {{number_format($bbm)}}
                     @else
                             {{ '-' }}
                     @endif

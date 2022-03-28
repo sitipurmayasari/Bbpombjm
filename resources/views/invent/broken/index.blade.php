@@ -4,6 +4,12 @@
     <li> Barang Rusak</li>
 @endsection
 @section('content')
+<style>
+    th{
+        text-align: center;
+        vertical-align: middle;
+    }
+</style>
 
 <form method="get" action="{{ url()->current() }}">
     <div class="row">
@@ -34,29 +40,37 @@
     <div class="table-responsive">
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
-                <th class="col-md-1">No</th>
-                <th class="col-md-2">No. Surat</th>
-                <th class="col-md-2">Tanggal</th>
-                <th class="col-md-4">Penanggung Jawab</th>
+                <th>No</th>
+                <th class="col-md-2">Nomor</th>
+                <th class="col-md-1">Tanggal</th>
+                <th class="col-md-2">Laboratorium</th>
+                <th class="col-md-4">Nama Barang</th>
                 <th class="col-md-1">Cetak</th>
+                <th class="col-md-1">Aksi</th>
             <thead>
             <tbody>   	
-                {{-- @foreach($data as $key=>$row) --}}
-                {{-- <tr>
-                    <td>{{$data->firstItem() + $key}}</td>
+                @foreach($data as $key=>$row)
+                <tr>
+                    <td style="text-align: center">{{$data->firstItem() + $key}}</td>
                     <td>{{$row->nomor}}</td>
                     <td>{{$row->tanggal}}</td>
-                    <td>{{$row->pegawai->no_pegawai}} || {{$row->pegawai->name}}</td>
+                    <td>{{$row->lab->name}}</td>
+                    <td>{{$row->barang->nama_barang}} - {{$row->barang->merk}}</td>
                     <td>
                         <a class="btn btn-primary" href="/invent/broken/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
                     </td>
+                    <td style="text-align: center">
+                        <a href="/invent/broken/edit/{{$row->id}}" class="btn btn-warning">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </a>
+                    </td>
                 </tr>
               
-                @endforeach --}}
+                @endforeach
             <tbody>
         </table>
     </div>
-{{-- {{$data->appends(Request::all())->links()}} --}}
+{{$data->appends(Request::all())->links()}}
 @endsection
 
 @section('footer')

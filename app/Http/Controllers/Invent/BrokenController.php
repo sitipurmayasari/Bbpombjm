@@ -6,14 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Inventaris;
 use App\User;
-use App\Sbb;
-use App\Sbbdetail;
 use App\Satuan;
 use App\Pejabat;
-use App\Petugas;
-use App\Subdivisi;
-use App\Divisi;
-use App\Entrystock;
+use App\Labory;
+use App\Broken;
 use PDF;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -22,96 +18,66 @@ class BrokenController extends Controller
 {
     public function index(Request $request)
     {   
-    //     $data = Sbb::orderBy('id','desc')
-    //                 ->select('sbb.*','users.name')
-    //                 ->leftJoin('users','users.id','=','sbb.users_id')
-    //                 // ->where('sbb.jenis','U')
-    //                 ->when($request->keyword, function ($query) use ($request) {
-    //                     $query->where('tanggal','LIKE','%'.$request->keyword.'%')
-    //                             ->orWhere('nomor', 'LIKE','%'.$request->keyword.'%')
-    //                             ->orWhere('name', 'LIKE','%'.$request->keyword.'%');
-    //                 })
-    //                 ->paginate('10');
-        // return view('invent/broken.index',compact('data'));
-        return view('invent/broken.index');
+        $data = Broken::orderBy('id','desc')
+                        ->select('broken.*','inventaris.nama_barang','labory.name')
+                        ->leftJoin('inventaris','inventaris.id','=','broken.inventaris_id')
+                        ->leftJoin('labory','labory.id','=','broken.labory_id')
+                        ->when($request->keyword, function ($query) use ($request) {
+                            $query->where('nomor','LIKE','%'.$request->keyword.'%')
+                                    ->orWhere('nama_barang', 'LIKE','%'.$request->keyword.'%')
+                                    ->orWhere('labory.name', 'LIKE','%'.$request->keyword.'%');
+                        })
+                        ->paginate('10');
+        return view('invent/broken.index',compact('data'));
     }
 
     public function create()
     {
-        $data = Inventaris::select('inventaris.*','entrystock.exp_date','entrystock.id AS st_id')
-                            ->leftJoin('entrystock','entrystock.inventaris_id','=','inventaris.id')
-                            ->where('inventaris.kind','!=','R')
-                        ->get();
+        $data = Inventaris::orderBy('nama_barang','asc')
+                            ->whereraw('jenis_barang IN (3,8)')
+                            ->get();
         $user = User::all()
                 ->where('id','!=','1');
         $satuan = Satuan::all();
-        $nosbb = $this->getNoSBB();
-        return view('invent/broken.create',compact('data','user','nosbb','satuan'));
+        $norusak = $this->getNoRusak();
+        $tahu = Pejabat::selectraw('DISTINCT(jabatan_id), id, divisi_id, subdivisi_id, users_id, pjs')
+                        -> whereraw('pjs is null and jabatan_id != 6')->Orderby('id','desc')->get();
+        return view('invent/broken.create',compact('data','user','norusak','satuan','tahu'));
     }
 
    
     public function store(Request $request)
     {
         $this->validate($request,[
-            'nomor' => 'required|unique:sbb',
-            'tanggal' => 'required|date',
-            'users_id'=> 'required'
+            'nomor'         => 'required|unique:broken',
+            'users_id'    => 'required',
+            'pejabat_id'    => 'required',
+            'inventaris_id' => 'required',
+            'jumlah' => 'required',
+            'file_foto' => 'mimes:jpg,png,jpeg|max:2048',
         ]);
 
-        DB::beginTransaction();
-            $sbb =Sbb::create($request->all());
-            $sbb_id = $sbb->id;
-            for ($i = 0; $i < count($request->input('inventaris_id')); $i++){
-                $data = [
-                    'sbb_id' => $sbb_id,
-                    'inventaris_id' => $request->inventaris_id[$i],
-                    'satuan_id' => $request->satuan_id[$i] ,
-                    'jumlah' => $request->jumlah[$i] ,
-                    'ket' => $request->ket[$i]
-                ];
-                Sbbdetail::create($data);
+        $rusak = Broken::create($request->all());
 
-                $stok1 = Entrystock::Where('inventaris_id',$request->inventaris_id[$i])
-                                    ->WhereRaw('stock != 0')->orderBy('id','asc')->first();
-                $stok2 = Entrystock::Where('inventaris_id',$request->inventaris_id[$i])
-                                    ->WhereRaw('stock != 0')->orderBy('id','desc')->first();
+        $rusak_id = $rusak->id;
 
-                $minta = $request->jumlah[$i];
-                $rest =   $stok1->stock - $minta;
-                $rest2 = $minta - $stok1->stock;
-                $sisa = $stok2->stock - $rest2;
-
-                if ($rest < 0) {
-                    Entrystock::where('id',$stok1->id)->update([
-                    'stock' => 0
-                    ]);
-                    Entrystock::where('id',$stok2->id)->update([
-                    'stock' => $sisa
-                    ]);
-                } else {
-                   Entrystock::where('id',$stok1->id)->update([
-                    'stock' => $rest
-                    ]);
-                }
-
-            }
-            DB::commit(); 
-            // return redirect('/invent/broken')->with('sukses','Data Tersimpan');
-        return redirect('/invent/broken/print/'.$sbb_id);
+        if($request->hasFile('foto')){ // Kalau file ada
+            $request->file('foto')
+                        ->move('images/broken/'.$rusak_id,$request
+                        ->file('foto')
+                        ->getClientOriginalName()); // pindah file user manual k inventaris folder id file
+            $rusak->foto = $request->file('foto')->getClientOriginalName(); // update isi kolum file user dengan origin gambar
+            $rusak->save(); // save ke database
+        }
+        return redirect('/invent/broken/print/'.$rusak_id);
     }
 
     public function print($id)
     {
-        $data = Sbb::where('id',$id)->first();
-        $isi = Sbbdetail::where('sbb_id',$id)->get();
-        $petugas = Petugas::where('id', '=', 4)->first();
-
-        $mengetahui = Pejabat::where('jabatan_id', '=', 11)
-                    ->where('divisi_id', '=', 2)
-                    ->whereRaw("(SELECT tanggal FROM sbb WHERE id=$id) BETWEEN dari AND sampai")
-                    ->first();
-        
-        $pdf = PDF::loadview('invent/broken.print',compact('data','isi','petugas','mengetahui'));
+        $data = Broken::where('id',$id)->first();
+        $tahu = $data->pejabat_id;
+        $mengetahui = Pejabat::where('id',$tahu)->first();
+        $pdf = PDF::loadview('invent/broken.print',compact('data','mengetahui'));
         return $pdf->stream();
     }
 
@@ -127,33 +93,46 @@ class BrokenController extends Controller
         return response()->json([ 'success' => true,'data' => $data],200);
     }
    
-    // public function edit($id)
-    // {
-    //     $barang = Inventaris::all();
-    //     $user = User::where('id','!=','1');
-    //     $data = Sbb::where('id',$id)->first();
-    //     $detail = Sbbdetail::where('tukin_id',$id)->get();
+    public function edit($id)
+    {
+        $data = Broken::where('id',$id)->first();
+        $barang = Inventaris::orderBy('nama_barang','asc')
+                ->whereraw('jenis_barang IN (3,8)')
+                ->get();
+        $user = User::all()
+        ->where('id','!=','1');
+        $satuan = Satuan::all();
+        $tahu = Pejabat::selectraw('DISTINCT(jabatan_id), id, divisi_id, subdivisi_id, users_id, pjs')
+            -> whereraw('pjs is null and jabatan_id != 6')->Orderby('id','desc')->get();
 
-    //     return view('invent/broken.edit',compact('data','detail','user','barang'));
-    // }
+        return view('invent/broken.edit',compact('data','barang','user','satuan','tahu'));
+    }
 
    
-    // public function update(Request $request, $id)
-    // {
-    //     $aduan = Aduan::find($id);
-    //     for ($i = 0; $i < count($request->input('detail_id')); $i++){
-    //         $detail_id = $request->detail_id[$i];
-    //         AduanDetail::where('id',$detail_id)->update([
-    //             'status' => $request->status[$i]
-    //         ]);
-    //     }
-    //     $aduan->update(['aduan_status' => $request->aduan_status]);
-    //     return redirect('/invent/aduan/detail/'.$id)->with('sukses','Barang sudah diperbaharui');
-    // }
+    public function update(Request $request, $id)
+    {
+        $this->validate($request,[
+            'jumlah' => 'required',
+            'file_foto' => 'mimes:jpg,png,jpeg|max:2048'
+        ]);
+
+        $broken = Broken::find($id);
+        $broken->update($request->all());
+
+        if($request->hasFile('foto')){ // Kalau file ada
+            $request->file('foto')
+                        ->move('images/broken/'.$broken->id,$request
+                        ->file('foto')
+                        ->getClientOriginalName()); // pindah file user manual k inventaris folder id file
+            $broken->foto = $request->file('foto')->getClientOriginalName(); // update isi kolum file user dengan origin gambar
+            $broken->save(); // save ke database
+        }
+        return redirect('/invent/broken/')->with('sukses','Barang sudah diperbaharui');
+    }
 
 
-    function getNoSBB(){
-      $nomor = Sbb::orderBy('id','desc')->whereYear('tanggal',date('Y'))->get();
+    function getNoRusak(){
+      $nomor = Broken::orderBy('id','desc')->whereYear('tanggal',date('Y'))->get();
       $first = "001";
       if($nomor->count()>0){
         $first = $nomor->first()->id+1;
@@ -163,8 +142,8 @@ class BrokenController extends Controller
             $first = "0".$first;
         }
       }
-      $nosbb = $first."/SBBK/BBPOM/".date('m')."/".date('Y');
-      return $nosbb;
+      $norusak = $first."/LPBR/BBPOM/".date('m')."/".date('Y');
+      return $norusak;
     }
 
 
