@@ -478,7 +478,7 @@
                         '</td>'+
                         '<td><input type="number" min="0" value="0" name="bbm[]" /></td>'+
                         '<td><input type="number" style="width: 50px" min="0" value="0" name="taxy_count_from[]" /> kali'+
-                            '<input type="checkbox" name="taxyriil[]" value="Y">Riil+</td>'+            
+                            '<input type="checkbox" name="taxyriil[]" value="Y">Riils</td>'+            
                         '<td><input type="number" min="0" value="0" name="taxy_fee_from[]" /></td>'+            
                         '<td><input type="number" style=" width: 50px" min="0" value="0" name="taxy_count_to[]" /> kali'+
                             '<input type="checkbox" name="taxyriil2[]" value="Y">Riil</td>'+            
