@@ -48,6 +48,6 @@ class Inventaris extends Model
 
     public function getFoto() 
     {
-        return $this->file_foto==null ? asset('images/user/userempty.png') : asset('images/inventaris').'/'.$this->id.'/'.$this->file_foto;
+        return $this->file_foto==null ? asset('images/user/barang.png') : asset('images/inventaris').'/'.$this->id.'/'.$this->file_foto;
     }
 }
