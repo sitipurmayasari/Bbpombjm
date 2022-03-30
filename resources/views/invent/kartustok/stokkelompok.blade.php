@@ -23,9 +23,9 @@
                     <thead>
                         <tr>
                             <th style="text-align: center; vertical-align:middle;" width="20px">No</th>
+                            <th style="text-align: center; vertical-align:middle;">Kode Barang</th>
                             <th style="text-align: center; vertical-align:middle;">Nama Barang</th>
-                            <th style="text-align: center; vertical-align:middle;">Merk</th>
-                            <th style="text-align: center; vertical-align:middle;">No. Seri</th>
+                            <th style="text-align: center; vertical-align:middle;">Lokasi</th>
                             <th style="text-align: center; vertical-align:middle;">Sisa Stok</th>
                         </tr>
                     </thead>
@@ -36,13 +36,9 @@
                         @foreach ($stock as $item)
                             <tr>
                                 <td style="text-align: center">{{$no++}}</td>
-                                <td>{{$item->nama_barang}}</td>
-                                <td>{{$item->merk}}</td>
-                                <td>
-                                    @if ($item->no_seri != null)
-                                        {{$item->no_seri}}
-                                    @endif
-                                </td>
+                                <td>{{$item->kode_barang}}</td>
+                                <td>{{$item->nama_barang}} ({{$item->merk}})</td>
+                                <td>{{$item->location->nama}}</td>
                                 <td style="text-align: center">{{$item->stok}}  {{$item->satuan->satuan}}</td>
                             </tr>
                         @endforeach 

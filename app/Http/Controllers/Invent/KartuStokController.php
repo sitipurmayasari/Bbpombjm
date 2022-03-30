@@ -40,7 +40,7 @@ class KartuStokController extends Controller
             return $pdf->stream();
         }else if($request->jenis_Laporan=="2"){
             $stock = Inventaris::Orderby('stok','desc')
-                                ->SelectRaw('DISTINCT(inventaris.id),nama_barang, inventaris.satuan_id,merk, no_seri, SUM(stock) AS stok')
+                                ->SelectRaw('DISTINCT(inventaris.id),nama_barang, inventaris.satuan_id,merk, lokasi, kode_barang, SUM(stock) AS stok')
                                 ->LeftJoin('entrystock','inventaris.id','=','entrystock.inventaris_id')
                                 ->Where('kind','!=','R')
                                 ->Where('jenis_barang',$request->kelompok)

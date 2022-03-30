@@ -390,7 +390,7 @@
                         
                     </div>
                 </div>
-                <div class="form-actions" align="center">
+                <div class="form-actions" style="text-align: center">
                     <input type="file" name="foto2" class="btn btn-success btn-sm" id="" 
                         value="Upload Ulang Foto Barang">   
                     <img src="{{$data->getFoto()}}"  style="height:250px;width:250px">
