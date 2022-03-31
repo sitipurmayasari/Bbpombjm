@@ -191,15 +191,16 @@
                     @endif
                 </b> 
                 selama
-                @php
+                {{$lama->hitung}}
+                {{-- @php
                     $hari=0;
                 @endphp
                 @foreach ($tujuan as $key=>$hr)
                     @php
                         $hari += $hr->longday;
                     @endphp
-                @endforeach
-                {{$hari}}
+                @endforeach --}}
+                {{-- {{$hari}} --}}
                 hari, dengan ini menyatakan dengan sesungguhnya bahwa : 
             </td>
         </tr>
@@ -753,7 +754,7 @@
                     @endif
                 </b> 
                 selama
-                @php
+                {{-- @php
                     $hari=0;
                 @endphp
                 @foreach ($tujuan as $key=>$hr)
@@ -761,7 +762,8 @@
                         $hari += $hr->longday;
                     @endphp
                 @endforeach
-                {{$hari}}
+                {{$hari}} --}}
+                {{$lama->hitung}}
                 hari, dengan ini menyatakan dengan sesungguhnya bahwa : 
             </td>
         </tr>
