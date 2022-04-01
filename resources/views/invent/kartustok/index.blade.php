@@ -31,10 +31,11 @@
                             </label>
                             <div class="col-sm-8">
                                 <select name="jenis_Laporan" id="jenis" class="col-xs-10 col-sm-10" onchange="myFunction()">
-                                    <option value="2">Sisa Stok Kelompok Barang</option>
+                                    <option value="2">Laporan Fisik Kelompok Barang</option>
                                     <option value="1">Laporan Per Barang</option>
                                     <option value="3">Laporan Permintaan Per Laboratorium</option>
                                     <option value="4">Laporan Permintaan Persediaan</option>
+                                    {{-- <option value="5">Laporan Transaksi Persediaan</option> --}}
                                 </select>
                             </div>
                         </div>
@@ -164,6 +165,10 @@
                 $("#kelompok").hide();
                 $("#barang").hide();
                 $("#lab").hide();
+                $("#pilihtahun").show();
+                 $("#pilihbulan").show();
+            }else if(v=="5"){
+                $("#kelompok").show();
                 $("#pilihtahun").show();
                  $("#pilihbulan").show();
             }else{

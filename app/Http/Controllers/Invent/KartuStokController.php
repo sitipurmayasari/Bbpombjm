@@ -69,7 +69,16 @@ class KartuStokController extends Controller
                         ->get();
             return view('invent/kartustok.laporansbbk',compact('data','request'));
         }else{
-            dd($request->all());
+            $data = Inventaris::SelectRaw('inventaris.*, SUM(sbb_detail.jumlah) AS keluar')
+                            ->LeftJoin('sbb_detail','inventaris.id','=','sbb_detail.inventaris_id')
+                            ->leftjoin('sbb','sbb.id','=','sbb_detail.sbb_id')
+                            ->Where('sbb_detail.status','=','Y')
+                            ->Where('jenis_barang',$request->kelompok)
+                            ->GroupBY('inventaris.id')
+                            ->whereYear('sbb.tanggal',$request->years)
+                            ->whereMonth('sbb.tanggal',$request->bulan)
+                            ->get();
+            return view('invent/kartustok.laporanduitnya',compact('data','request')); 
         }
         
     }

@@ -15,7 +15,7 @@
     </div>
         <div class="col-sm-12 isi" style="text-align: center">
             <div class="col-sm-12" style="text-align: center;font-size: 18px;">
-                <b>Laporan Sisa Stok</b><br>
+                <b>Laporan Fisik</b><br>
                 <b><i>{{$data->nama}}</i></b>
             </div><br>
             <div class="col-sm-12 table-responsive row" style="text-align: left">

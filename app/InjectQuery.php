@@ -1,27 +1,27 @@
 <?php
 
 namespace App;
-use App\User;
-use App\Destination;
-use App\PengajuanDetail;
 use App\AduanDetail;
-use App\Expenses_daily;
-use App\Travelexpenses;
-use App\Travelexpenses1;
-use App\Outst_destiny;
-use App\Tagging;
+use App\Car;
+use App\Destination;
+use App\Entrystock;
 use App\Eselontwo;
 use App\Eselontwo_detail;
-use App\Setuprenker;
+use App\Expenses_daily;
+use App\Inventaris;
+use App\JadwalCar;
+use App\Outstation;
+use App\Outst_destiny;
+use App\Outst_employee;
+use App\PengajuanDetail;
 use App\Realrapk;
 use App\Realrapk_detail;
-use App\Outst_employee;
-use App\Outstation;
+use App\Setuprenker;
+use App\Tagging;
+use App\Travelexpenses;
+use App\Travelexpenses1;
+use App\User;
 use App\Vehiclerent;
-use App\Entrystock;
-use App\Car;
-use App\JadwalCar;
-use App\Inventaris;
 use Illuminate\Support\Facades\DB;
 
 class InjectQuery
@@ -153,6 +153,26 @@ class InjectQuery
     {
         $data = Inventaris::where('id',$id)->first();
             return $data;
+    }
+
+    public function getHarga($id)
+    {
+        // $nilai = DB::select(DB::raw(" 
+        //                 SELECT SUM(stock) AS stok, SUM(jumlah) AS total
+        //                 FROM
+        //                 (
+        //                     SELECT stock, harga, (stock*harga) AS jumlah
+        //                     FROM entrystock
+        //                     WHERE inventaris_id = $id
+        //                 ) nilai
+        //                 "
+        //                 ));
+        $nilai = Entrystock::SelectRaw('SUM(stock) AS stok, SUM(stockawal) AS awal, SUM(harga) AS biaya')
+                            ->where('inventaris_id',$id)
+                            ->GroupBy('inventaris_id')
+                            ->first();
+
+            return $nilai;
     }
 
 
