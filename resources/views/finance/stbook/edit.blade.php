@@ -91,7 +91,7 @@
                                     name="nomor_sppd[]"/>
                                 </td>
                                 <td>
-                                    {{-- <button type="button"  class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button> --}}
+                                    <button type="button"  class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
                                 </td>
                             </tr>
                             @php

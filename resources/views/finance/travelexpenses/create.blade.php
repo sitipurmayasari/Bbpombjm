@@ -471,7 +471,7 @@
                         '<td style="width: 120px;">'+response.peg[i].name+
                             '<input type="hidden" name="idpeg[]" class="outid" value='+response.peg[i].id+'>'+
                         '</td>'+
-                        '<td><input type="checkbox" name="tlokal[]" value="Y">'+
+                        '<td><input type="checkbox" name="tlokal_'+response.peg[i].id+'" value="Y">'+
                             '<input type="number" name="hittlokal[]"  min="0" value="'+trans+'" style="width: 75px;"  id="hittlokal-'+no+'"> X '+
                             '<input type="number" name="jumtlokal[]"  min="0" value="0" style="width: 35px;"  id="jumtlokal-'+no+'" onkeyup="jumtlokal('+no+')"  onclick="jumtlokal('+no+')">'+
                             ' = <input type="text" name="tottlokal[]"  min="0" value="0" readonly style="width: 150px;" id="tottlokal-'+no+'">'+
