@@ -735,7 +735,7 @@
                                 @else
                                     {{ '-' }} 
                                 @endif
-                                =hari &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp.
+                                hari &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp.
                             </i>
                         </td>
                         <td style="text-align: right;"> 
