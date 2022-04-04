@@ -13,6 +13,8 @@ use App\Lokasi;
 use App\Labory;
 use App\Sbb;
 use App\Sbbdetail;
+use App\Petugas;
+use App\Pejabat;
 use Carbon\Carbon;
 use PDF;
 class KartuStokController extends Controller
@@ -46,8 +48,14 @@ class KartuStokController extends Controller
                                 ->Where('jenis_barang',$request->kelompok)
                                 ->GroupBY('inventaris.id')
                                 ->get();
+            $petugas = Petugas::where('id', '=', 4)->first();
+
+            $mengetahui = Pejabat::where('jabatan_id', '=', 11)
+                          ->where('divisi_id', '=', 2)
+                          ->whereRaw("pjs IS null")
+                          ->first();
             $data = Jenisbrg::where('id',$request->kelompok)->first();
-            return view('invent/kartustok.stokkelompok',compact('stock','data','request'));
+            return view('invent/kartustok.stokkelompok',compact('stock','data','request','petugas','mengetahui'));
             // $pdf = PDF::loadview('invent/kartustok.stokkelompok',compact('stock','data','request'));
             // return $pdf->stream();
         } else if($request->jenis_Laporan=="3"){
@@ -67,7 +75,13 @@ class KartuStokController extends Controller
                         ->whereYear('tanggal',$request->years)
                         ->whereMonth('tanggal',$request->bulan)
                         ->get();
-            return view('invent/kartustok.laporansbbk',compact('data','request'));
+            $petugas = Petugas::where('id', '=', 4)->first();
+
+            $mengetahui = Pejabat::where('jabatan_id', '=', 11)
+                                      ->where('divisi_id', '=', 2)
+                                      ->whereRaw("pjs IS null")
+                                      ->first();
+            return view('invent/kartustok.laporansbbk',compact('data','request','petugas','mengetahui'));
         }else{
             $data = Inventaris::SelectRaw('inventaris.*, SUM(sbb_detail.jumlah) AS keluar')
                             ->LeftJoin('sbb_detail','inventaris.id','=','sbb_detail.inventaris_id')

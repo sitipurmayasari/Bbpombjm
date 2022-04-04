@@ -10,6 +10,14 @@
     
 @endsection
 @section('content')
+<style>
+    .ttd{
+            border:none;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+</style>
         <div class="col-sm-12 isi" style="text-align: center">
             <div class="col-sm-12" style="text-align: center;font-size: 18px;">
                 <b>Laporan Barang Keluar</b><br>
@@ -91,4 +99,65 @@
                 </table>
             </div><br><br>
         </div>
+        <div id="ttd">
+            <table class="ttd">
+                <tr>
+                    <td class="ttd col-md-6"></td>
+                    <td class="ttd col-md-6">Banjarmasin,</td>
+                </tr>
+                <tr>
+                    <td class="ttd">Mengetahui,</td>
+                    <td class="ttd">Pengelola Gudang</td>
+                </tr>
+                <tr>
+                    <td class="ttd">Tanggal .................................</td>
+                    <td class="ttd">
+                        @if ($mengetahui != null)
+                            @if ($mengetahui->pjs != null)
+                            {{$mengetahui->pjs}}
+                            {{$mengetahui->jabatan->jabatan}} 
+                            {{$mengetahui->divisi->nama}}
+                            @else 
+                            {{$mengetahui->jabatan->jabatan}} 
+                            {{$mengetahui->divisi->nama}}
+                            @endif
+                      @else
+                        SILAHKAN CEK SETUP PEJABAT
+                      @endif
+                    </td>
+                    <td class="ttd"></td>
+                </tr>
+                <tr >
+                    <td style="height: 10%" class="ttd"></td>
+                    <td style="height: 10%" class="ttd"></td>
+                </tr>
+                <tr>
+                    <td class="ttd"><u>
+                        @if ($mengetahui !=null)
+                            {{$mengetahui->user->name}}
+                        @else
+                            SILAHKAN CEK SETUP PEJABAT
+                        @endif
+                    </u>
+                    </td>
+                    <td class="ttd"><u>
+                        {{$petugas->user->name}}
+                        </u></td>
+                </tr>
+                <tr>
+                    <td class="ttd">
+                        @if ($mengetahui !=null)
+                            NIP.  {{$mengetahui->user->no_pegawai}}
+                        @else
+                            SILAHKAN CEK SETUP PEJABAT
+                        @endif
+                        
+                    </td>
+                    <td class="ttd">NIP. 
+                        {{$petugas->user->no_pegawai}}
+                    </td>
+                </tr>
+            </table>
+
+        </div><br><br>
         @endsection

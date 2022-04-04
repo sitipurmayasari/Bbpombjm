@@ -466,38 +466,44 @@
                 @endphp
                 <td style="text-align: center;" class="isi">2</td>
                 <td class="isi">
-                    Biaya Penginapan : 
-                    @if ($nilai->innname_1 != null)
-                        {{$nilai->long_stay_1}} hari &nbsp; x &nbsp; Rp. &nbsp; &nbsp; &nbsp; &nbsp; {{number_format($nilai->inn_fee_1)}}
-                    @elseif ($nilai->innname_2 != null)
-                        {{$nilai->long_stay_1}} hari &nbsp; x &nbsp; Rp. &nbsp; &nbsp; &nbsp; &nbsp; {{number_format($nilai->inn_fee_1)}} <br>
-                        {{$nilai->long_stay_2}} hari &nbsp; x &nbsp; Rp. &nbsp; &nbsp; &nbsp; &nbsp; {{number_format($nilai->inn_fee_2)}}
+                    
+                    @if ($nilai->inn_fee_1 != 0 && $nilai->inn_fee_2 == 0)
+                        @php
+                            $fee1 = $nilai->inn_fee_1 / $nilai->isi_1;
+                        @endphp
+                        Biaya Penginapan :  {{$nilai->long_stay_1}} hari &nbsp; x &nbsp; Rp. &nbsp; &nbsp; &nbsp; &nbsp; {{number_format($fee1)}}
+                    @elseif ($nilai->inn_fee_2 != 0 && $nilai->inn_fee_1 != 0 )
+                        @php
+                            $fee1 = $nilai->inn_fee_1 / $nilai->isi_1;
+                            $fee2 = $nilai->inn_fee_2 / $nilai->isi_2;
+                        @endphp
+                        Biaya Penginapan 1 : {{$nilai->long_stay_1}} hari &nbsp; x &nbsp; Rp. &nbsp; &nbsp; &nbsp; &nbsp; {{number_format($fee1)}} <br>
+                        Biaya Penginapan 2 : {{$nilai->long_stay_2}} hari &nbsp; x &nbsp; Rp. &nbsp; &nbsp; &nbsp; &nbsp; {{number_format($fee2)}}
                     @else
                         {{'-'}} hari &nbsp; x &nbsp; Rp. &nbsp; &nbsp; &nbsp; &nbsp; {{'-'}}
                     @endif
                 </td>
                 <td class="isi">
-                    Rp. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                    @if ($nilai->innname_1 != null)
+                    @if ($nilai->klaim_1 != 0 && $nilai->klaim_2 == 0)
                         @php
                             $jum1 = $nilai->klaim_1;
                         @endphp
                         {{number_format($jum1)}}
-                    @elseif ($nilai->innname_2 != null)
+                    @elseif ($nilai->klaim_2 != 0)
                         @php
                             $jum1 = $nilai->klaim_1;
-                            $jum1 = $nilai->klaim_2;
+                            $jum2 = $nilai->klaim_2;
                         @endphp
-                        {{number_format($jum1)}} <br>
-                        {{number_format($jum2)}}
+                        Rp. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{number_format($jum1)}} <br>
+                        Rp. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{number_format($jum2)}}
                     @else
                         {{'-'}}
                     @endif
                 </td>
                 <td style="text-align: center" class="isi">
-                    @if ($nilai->isi_1 != '0')
+                    @if ($nilai->isi_1 != '0' && $nilai->isi_2 == '0')
                             1 kamar untuk {{$nilai->isi_1}} orang
-                    @elseif($nilai->isi_2 != '0')
+                    @elseif($nilai->isi_2 != '0' && $nilai->isi_1 != '0')
                             1 kamar untuk {{$nilai->isi_1}} orang <br>
                             1 kamar untuk {{$nilai->isi_2}} orang
                     @else 
@@ -1023,45 +1029,44 @@
                 @endphp
                 <td style="text-align: center;" class="isi">2</td>
                 <td class="isi">
-                    Biaya Penginapan : 
-                    @if ($nilai->innname_1 != null)
+                    
+                    @if ($nilai->inn_fee_1 != 0 && $nilai->inn_fee_2 == 0)
                         @php
                             $fee1 = $nilai->inn_fee_1 / $nilai->isi_1;
                         @endphp
-                        {{$nilai->long_stay_1}} hari &nbsp; x &nbsp; Rp. &nbsp; &nbsp; &nbsp; &nbsp; {{number_format($fee1)}}
-                    @elseif ($nilai->innname_2 != null)
+                        Biaya Penginapan :  {{$nilai->long_stay_1}} hari &nbsp; x &nbsp; Rp. &nbsp; &nbsp; &nbsp; &nbsp; {{number_format($fee1)}}
+                    @elseif ($nilai->inn_fee_2 != 0 && $nilai->inn_fee_1 != 0 )
                         @php
                             $fee1 = $nilai->inn_fee_1 / $nilai->isi_1;
                             $fee2 = $nilai->inn_fee_2 / $nilai->isi_2;
                         @endphp
-                        {{$nilai->long_stay_1}} hari &nbsp; x &nbsp; Rp. &nbsp; &nbsp; &nbsp; &nbsp; {{number_format($fee1)}} <br>
-                        {{$nilai->long_stay_2}} hari &nbsp; x &nbsp; Rp. &nbsp; &nbsp; &nbsp; &nbsp; {{number_format($fee2)}}
+                        Biaya Penginapan 1 : {{$nilai->long_stay_1}} hari &nbsp; x &nbsp; Rp. &nbsp; &nbsp; &nbsp; &nbsp; {{number_format($fee1)}} <br>
+                        Biaya Penginapan 2 : {{$nilai->long_stay_2}} hari &nbsp; x &nbsp; Rp. &nbsp; &nbsp; &nbsp; &nbsp; {{number_format($fee2)}}
                     @else
                         {{'-'}} hari &nbsp; x &nbsp; Rp. &nbsp; &nbsp; &nbsp; &nbsp; {{'-'}}
                     @endif
                 </td>
                 <td class="isi">
-                    Rp. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                    @if ($nilai->innname_1 != null)
+                    @if ($nilai->klaim_1 != 0 && $nilai->klaim_2 == 0)
                         @php
                             $jum1 = $nilai->klaim_1;
                         @endphp
                         {{number_format($jum1)}}
-                    @elseif ($nilai->innname_2 != null)
+                    @elseif ($nilai->klaim_2 != 0)
                         @php
                             $jum1 = $nilai->klaim_1;
-                            $jum1 = $nilai->klaim_2;
+                            $jum2 = $nilai->klaim_2;
                         @endphp
-                        {{number_format($jum1)}} <br>
-                        {{number_format($jum2)}}
+                        Rp. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{number_format($jum1)}} <br>
+                        Rp. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{number_format($jum2)}}
                     @else
                         {{'-'}}
                     @endif
                 </td>
                 <td style="text-align: center" class="isi">
-                    @if ($nilai->isi_1 != '0')
+                    @if ($nilai->isi_1 != '0' && $nilai->isi_2 == '0')
                             1 kamar untuk {{$nilai->isi_1}} orang
-                    @elseif($nilai->isi_2 != '0')
+                    @elseif($nilai->isi_2 != '0' && $nilai->isi_1 != '0')
                             1 kamar untuk {{$nilai->isi_1}} orang <br>
                             1 kamar untuk {{$nilai->isi_2}} orang
                     @else 
@@ -1076,6 +1081,7 @@
                 <td class="isi"></td>
                 <td class="isi"><b>Jumlah pengeluaran riil :</b></td>
                 <td class="isi">
+                    Rp. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                     @php
                         $hasil = $bbm+$jum1+$jum2;
                     @endphp
