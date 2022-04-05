@@ -7,17 +7,17 @@
             <i class="ace-icon fa fa-print icon-on-right bigger-110"></i> &nbsp; cetak
         </button>
     </div>
+    <style>
+        .ttd{
+                border:none;
+                border-collapse: collapse;
+                text-align: center;
+            }
+    
+    </style>
     
 @endsection
 @section('content')
-<style>
-    .ttd{
-            border:none;
-            border-collapse: collapse;
-            text-align: center;
-        }
-
-</style>
         <div class="col-sm-12 isi" style="text-align: center">
             <div class="col-sm-12" style="text-align: center;font-size: 18px;">
                 <b>Laporan Barang Keluar</b><br>
@@ -100,7 +100,7 @@
             </div><br><br>
         </div>
         <div id="ttd">
-            <table class="ttd">
+            <table class="ttd" style="width: 100%">
                 <tr>
                     <td class="ttd col-md-6"></td>
                     <td class="ttd col-md-6">Banjarmasin,</td>
@@ -128,8 +128,8 @@
                     <td class="ttd"></td>
                 </tr>
                 <tr >
-                    <td style="height: 10%" class="ttd"></td>
-                    <td style="height: 10%" class="ttd"></td>
+                    <td style="height: 30%" class="ttd"><br><br><br><br></td>
+                    <td style="height: 30%" class="ttd"><br><br><br><br></td>
                 </tr>
                 <tr>
                     <td class="ttd"><u>

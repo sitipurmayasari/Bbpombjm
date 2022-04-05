@@ -7,17 +7,16 @@
             <i class="ace-icon fa fa-print icon-on-right bigger-110"></i> &nbsp; cetak
         </button>
     </div>
+    <style>
+        .ttd{
+                border:none;
+                border-collapse: collapse;
+                text-align: center;
+            }
     
+    </style>
 @endsection
 @section('content')
-<style>
-    .ttd{
-            border:none;
-            border-collapse: collapse;
-            text-align: center;
-        }
-
-</style>
     <div>
         <img src="{{asset('images/kopsurat1.jpg')}}" style="width: 100%"> <br>
     </div>
@@ -56,7 +55,7 @@
         </div>
         <br>
         <div id="ttd">
-            <table class="ttd">
+            <table class="ttd" style="width: 100%">
                 <tr>
                     <td class="ttd col-md-6"></td>
                     <td class="ttd col-md-6">Banjarmasin, </td>
@@ -84,8 +83,8 @@
                     <td class="ttd"></td>
                 </tr>
                 <tr >
-                    <td style="height: 10%" class="ttd"></td>
-                    <td style="height: 10%" class="ttd"></td>
+                    <td style="height: 30%" class="ttd"><br><br><br><br></td>
+                    <td style="height: 30%" class="ttd"><br><br><br><br></td>
                 </tr>
                 <tr>
                     <td class="ttd"><u>
