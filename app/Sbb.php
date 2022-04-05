@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Sbb extends Model
 {
     protected $table = "sbb";
-    protected $fillable = ['users_id','nomor','tanggal','jenis','stat_aduan','labory_id','pejabat_id'
+    protected $fillable = ['users_id','nomor','tanggal','jenis','stat_aduan','labory_id','pejabat_id','file'
 ];
 
     public function pegawai()
@@ -28,6 +28,11 @@ class Sbb extends Model
     public function isi()
     {
         return $this->hasMany(Sbbdetail::class,'sbb_id','id');
+    }
+
+    public function getFIleSbb() 
+    {
+        return $this->file==null ? 'Tidak Ada File' : asset('images/SBB').'/'.$this->id.'/'.$this->file;
     }
 
 

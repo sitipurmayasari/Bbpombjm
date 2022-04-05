@@ -180,7 +180,9 @@
                         {{$item->out->purpose}}
                     </td>
                     <td style="vertical-align: top;">
-                        UH Penuh <br>
+                        UH Penuh 1<br>
+                        UH Penuh 2<br>
+                        UH Penuh 3<br>
                         UH Diklat <br>
                         UH Fullboard <br>
                         UH H/F Day
@@ -189,6 +191,12 @@
                         @if ($item->dailywage1 != 'N')
                             {{$item->jumdaily1}} OH
                         @endif <br>
+                        @if ($item->dailywage2 != 'N')
+                            {{$item->jumdaily2}} OH
+                        @endif <br>
+                        @if ($item->dailywage3 != 'N')
+                        {{$item->jumdaily3}} OH
+                         @endif <br>
                         @if ($item->diklat != 'N')
                             {{$item->jumdiklat}} OH
                         @endif <br>
@@ -203,6 +211,12 @@
                         @if ($item->dailywage1 != 'N')
                             {{number_format($item->hitdaily1)}}
                         @endif <br>
+                        @if ($item->dailywage2 != 'N')
+                            {{number_format($item->hitdaily2)}}
+                        @endif <br>
+                        @if ($item->dailywage3 != 'N')
+                            {{number_format($item->hitdaily3)}}
+                        @endif <br>
                         @if ($item->diklat != 'N')
                             {{number_format($item->hitdiklat)}}
                         @endif <br>
@@ -216,6 +230,12 @@
                     <td style="vertical-align: top; text-align:right;">
                         @if ($item->dailywage1 != 'N')
                             {{number_format($item->totdaily1)}}
+                        @endif <br>
+                        @if ($item->dailywage2 != 'N')
+                            {{number_format($item->totdaily2)}}
+                        @endif <br>
+                        @if ($item->dailywage3 != 'N')
+                            {{number_format($item->totdaily3)}}
                         @endif <br>
                         @if ($item->diklat != 'N')
                             {{number_format($item->totdiklat)}}

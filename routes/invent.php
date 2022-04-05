@@ -100,6 +100,8 @@
    Route::post('/invent/barangkeluar/store','Invent\BarangkeluarController@store')->name('barangkeluar.store');
    Route::get('/invent/barangkeluar/print/{id}','Invent\BarangkeluarController@print')->name('barangkeluar.print');
    Route::get('/invent/barangkeluar/getBarang','Invent\BarangkeluarController@getBarang')->name('barangkeluar.getbarang');
+   Route::get('/invent/barangkeluar/edit/{id}','Invent\BarangkeluarController@edit')->name('barangkeluar.edit');
+   Route::post('/invent/barangkeluar/update/{id}','Invent\BarangkeluarController@update')->name('barangkeluar.update');
 
   //Route untuk Laporan
   Route::post('/invent/laporan/cetak','Invent\LaporanController@cetak')->name('laporan.cetak');

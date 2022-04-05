@@ -126,29 +126,34 @@ class BarangkeluarController extends Controller
         return response()->json([ 'success' => true,'data' => $data],200);
     }
    
-    // public function edit($id)
-    // {
-    //     $barang = Inventaris::all();
-    //     $user = User::where('id','!=','1');
-    //     $data = Sbb::where('id',$id)->first();
-    //     $detail = Sbbdetail::where('tukin_id',$id)->get();
+    public function edit($id)
+    {
+        $data = Sbb::where('id',$id)->first();
+        $detail = Sbbdetail::where('sbb_id',$id)->get();
 
-    //     return view('invent/barangkeluar.edit',compact('data','detail','user','barang'));
-    // }
+        return view('invent/barangkeluar.edit',compact('data','detail'));
+    }
 
-   
-    // public function update(Request $request, $id)
-    // {
-    //     $aduan = Aduan::find($id);
-    //     for ($i = 0; $i < count($request->input('detail_id')); $i++){
-    //         $detail_id = $request->detail_id[$i];
-    //         AduanDetail::where('id',$detail_id)->update([
-    //             'status' => $request->status[$i]
-    //         ]);
-    //     }
-    //     $aduan->update(['aduan_status' => $request->aduan_status]);
-    //     return redirect('/invent/aduan/detail/'.$id)->with('sukses','Barang sudah diperbaharui');
-    // }
+    public function update(Request $request, $id)
+    {
+         $this->validate($request,[
+            'file' => 'mimes:pdf|max:10048',
+        ]);
+
+        $sbb = Sbb::find($id);
+        $sbb->update($request->all());
+        if($request->hasFile('file')){ 
+            $request->file('file')
+                        ->move('images/SBB/'.$sbb->id,$request
+                        ->file('file')
+                        ->getClientOriginalName()); 
+            $sbb->file = $request->file('file')->getClientOriginalName();
+            $sbb->save(); 
+        }
+
+        return redirect('/invent/barangkeluar')->with('sukses','Data Diperbaharui');
+    }
+
 
 
     function getNoSBB(){

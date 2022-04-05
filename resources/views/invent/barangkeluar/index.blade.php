@@ -40,12 +40,13 @@
                 <th class="col-md-4">Penerima</th>
                 <th class="col-md-1">Cetak SBBK</th>
                 <th class="col-md-1">Cetak SBB</th>
+                <th>Upload SBBK</th>
             <thead>
             <tbody>   	
                 @foreach($data as $key=>$row)
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
-                    <td>{{$row->nomor}}</td>
+                    <td><a href="/invent/barangkeluar/edit/{{$row->id}}" >{{$row->nomor}}</a></td>
                     <td>{{$row->tanggal}}</td>
                     <td>{{$row->pegawai->no_pegawai}} || {{$row->pegawai->name}}</td>
                     <td>
@@ -57,6 +58,9 @@
                         @else
                         <a class="btn btn-primary" href="/invent/labrequest/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
                         @endif
+                    </td>
+                    <td>
+                        <a href="{{$row->getFIleSbb()}}" target="_blank" >{{$row->file}}</a>
                     </td>
                 </tr>
               
