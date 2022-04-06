@@ -153,3 +153,17 @@
   Route::get('/invent/broken/edit/{id}','Invent\BrokenController@edit')->name('broken.edit');
   Route::post('/invent/broken/update/{id}','Invent\BrokenController@update')->name('broken.update');
     
+
+   //Route untuk sbbfiles
+   Route::get('/invent/sbbfiles/create','Invent\SbbController@create')->name('sbbfiles.create');
+   Route::post('/invent/sbbfiles/store','Invent\SbbController@store')->name('sbbfiles.store');
+   Route::get('/invent/sbbfiles/delete/{id}','Invent\SbbController@delete')->name('sbbfiles.delete');
+   Route::get('/invent/sbbfiles/edit/{id}','Invent\SbbController@edit')->name('sbbfiles.edit');
+   Route::post('/invent/sbbfiles/update/{id}','Invent\SbbController@update')->name('sbbfiles.update');
+
+   //Route untuk rekapsbb
+   Route::get('/invent/rekapsbb/create','Invent\RekapSbbController@create')->name('rekapsbb.create');
+   Route::post('/invent/rekapsbb/store','Invent\RekapSbbController@store')->name('rekapsbb.store');
+   Route::get('/invent/rekapsbb/delete/{id}','Invent\RekapSbbController@delete')->name('rekapsbb.delete');
+   Route::get('/invent/rekapsbb/edit/{id}','Invent\RekapSbbController@edit')->name('rekapsbb.edit');
+   Route::post('/invent/rekapsbb/update/{id}','Invent\RekapSbbController@update')->name('rekapsbb.update');

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('breadcrumb')
-    <li>Inventaris</li>
-    <li> Barang keluar</li>
+    <li>Laporan</li>
+    <li>Arsip SBB Kelompok {{$divisi->nama}}</li>
 @endsection
 @section('content')
 
@@ -12,7 +12,7 @@
                 <div class="form-group col-sm-12">
                     <div class="row">
                         <div class="form-group col-xs-12 col-sm-3" style="float: left">
-                           <a href="{{Route('barangkeluar.create')}}"  class="btn btn-primary">Tambah Data</a>   
+                           <a href="{{Route('sbbfiles.create')}}"  class="btn btn-primary">Tambah Data</a>   
                         </div>
                         <div class="form-group col-xs-12 col-sm-5" style="float: right">
                             <div class="input-group">
@@ -34,35 +34,28 @@
     <div class="table-responsive">
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
-                <th class="col-md-1">No</th>
-                <th class="col-md-2">No. SBBK</th>
-                <th class="col-md-2">Tanggal</th>
-                <th class="col-md-4">Penerima</th>
-                <th class="col-md-1">Cetak SBBK</th>
-                <th class="col-md-1">Cetak SBB</th>
-                {{-- <th>Upload SBBK</th> --}}
+                <th width="40px">No</th>
+                <th>Nama Dokumen</th>
+                <th>Tanggal</th>
+                <th>File</th>
+                <th>Aksi</th>
             <thead>
             <tbody>   	
                 @foreach($data as $key=>$row)
                 <tr>
-                    <td style="text-align: center">{{$data->firstItem() + $key}}</td>
-                    {{-- <td><a href="/invent/barangkeluar/edit/{{$row->id}}" >{{$row->nomor}}</a></td> --}}
-                    <td>{{$row->nomor}}</td>
-                    <td>{{$row->tanggal}}</td>
-                    <td>{{$row->pegawai->no_pegawai}} || {{$row->pegawai->name}}</td>
+                    <td>{{$data->firstItem() + $key}}</td>
+                    <td>{{$row->nama}}</td>
+                    <td>{{$row->created_at}}</td>
+                    <td><a href="{{$row->getFIledosir()}}" target="_blank" >{{$row->file}}</a></td>
                     <td>
-                        <a class="btn btn-primary" href="/invent/barangkeluar/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
+                        <a href="/invent/sbbfiles/edit/{{$row->id}}" class="btn btn-warning">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </a>
+                        <a href="#" class="btn btn-danger delete"
+                            r-name="{{$row->nama}}" 
+                            r-id="{{$row->id}}">
+                            <i class="glyphicon glyphicon-trash"></i></a>
                     </td>
-                    <td>
-                        @if ($row->jenis != 'L')
-                            <a class="btn btn-primary" href="/invent/atkrequest/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
-                        @else
-                        <a class="btn btn-primary" href="/invent/labrequest/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
-                        @endif
-                    </td>
-                    {{-- <td>
-                        <a href="{{$row->getFIleSbb()}}" target="_blank" >{{$row->file}}</a>
-                    </td> --}}
                 </tr>
               
                 @endforeach
@@ -75,6 +68,24 @@
 @section('footer')
 <script>
     $().ready( function () {
+        $(".delete").click(function() {
+                var id = $(this).attr('r-id');
+                var name = $(this).attr('r-name');
+                Swal.fire({
+                title: 'Ingin Menghapus?',
+                text: "Yakin ingin menghapus data  : "+name+" ini ?" ,
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, hapus !'
+            }).then((result) => {
+                console.log(result);
+                if (result.value) {
+                    window.location = "/invent/sbbfiles/delete/"+id;
+                }
+            });
+        });
     } );
 </script>
 @endsection

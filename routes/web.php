@@ -85,7 +85,6 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     //Route untuk aduanTIK
     Route::get('/invent/aduantik','Invent\AduanTikController@index')->name('aduantik');
     Route::get('/invent/aduantik/create','Invent\AduanTikController@create')->name('aduantik.create');
-
     //Route untuk Pengajuan Barang Baru
     Route::get('/invent/pengajuan','Invent\PengajuanController@index')->name('pengajuan');
     //Route untuk Permintaan Barang Lab di gudang
@@ -98,7 +97,6 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/invent/labrequestok','Invent\LabRequestOkController@index')->name('labrequestok');
     //Route untuk Persetujuan Permintaan Barang ATK di gudang
     Route::get('/invent/atkrequestok','Invent\AtkRequestOkController@index')->name('atkrequestok');
-
     //Route untuk kendaraan
     Route::get('/invent/vehicle','Invent\VehicleController@index')->name('vehicle');
     //Route untuk lokasi
@@ -115,8 +113,12 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/invent/lappinjam','Invent\LapPinjamController@index')->name('lappinjam');
     //Route untuk Laporan Pengajuan
     Route::get('/invent/lapajuan','Invent\LapAjuController@index')->name('lapajuan');
-     //Route untuk Laporan stok barang
-     Route::get('/invent/kartustok','Invent\KartuStokController@index')->name('kartustok');
+    //Route untuk Laporan stok barang
+    Route::get('/invent/kartustok','Invent\KartuStokController@index')->name('kartustok');
+    //Route untuk sbbfiles
+    Route::get('/invent/sbbfiles','Invent\SbbController@index')->name('sbbfiles');
+    //Route untuk rekapsbb
+    Route::get('/invent/rekapsbb','Invent\RekapSbbController@index')->name('rekapsbb');
     
 
 

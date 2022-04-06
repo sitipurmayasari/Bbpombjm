@@ -28,27 +28,12 @@
                     <br>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1"> Jenis Dokumen
-                        </label>
-                        <div class="col-sm-10">
-                            <select name="archive_time_id" class="col-xs-10 col-sm-10 required select2" required>
-                                <option value="">Pilih Jenis</option>
-                                @foreach ($masa as $div)
-                                       @if ($div->id==$data->archive_time_id)
-                                            <option value="{{$div->id}}" selected>{{$div->nama}}</option>
-                                       @else
-                                            <option value="{{$div->id}}">{{$div->nama}}</option>
-                                       @endif
-                                    @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label no-padding-right" 
                         for="form-field-1"> Nama Dokumen
                         </label>
                         <div class="col-sm-10">
                             <input type="hidden" name="users_id" value="{{auth()->user()->id}}">
+                            <input type="hidden" name="divisi_id" value="{{auth()->user()->divisi_id}}">
+                            <input type="hidden" name="archive_time_id" value="6">
                             <input type="text"  placeholder="Nama file" class="col-xs-10 col-sm-10 required " 
                                     name="nama" required  value="{{$data->nama}}"/>
                             

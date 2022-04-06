@@ -1,7 +1,7 @@
-@extends('amdk/layouts_amdk.app')
+@extends('layouts.app')
 @section('breadcrumb')
-    <li>Dokumen Arsip</li>
-    <li><a href="/amdk/dosir"> Dosir</a></li>
+    <li>Laporan</li>
+    <li><a href="/invent/sbbfiles"> Arsip SBB</a></li>
     <li>Tambah Baru</li>
 @endsection
 @section('content')
@@ -9,12 +9,12 @@
 
 <div class="row">
     <form class="form-horizontal validate-form" role="form" 
-    method="post" action="{{route('dosir.store')}}" enctype="multipart/form-data">
+    method="post" action="{{route('sbbfiles.store')}}" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div class="col-sm-12">
         <div class="widget-box">
             <div class="widget-header">
-                <h4 class="widget-title">Form Upload Dosir</h4>
+                <h4 class="widget-title">Form Upload sbbfiles</h4>
                 <div class="widget-toolbar">
                     <a href="#" data-action="collapse">
                         <i class="ace-icon fa fa-chevron-down"></i>
@@ -28,24 +28,12 @@
                     <br>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1"> Jenis Dokumen
-                        </label>
-                        <div class="col-sm-10">
-                            <select name="archive_time_id" class="col-xs-10 col-sm-10 required select2" required>
-                                <option value="">Pilih Jenis</option>
-                                @foreach ($masa as $div)
-                                        <option value="{{$div->id}}">{{$div->nama}}</option>
-                                    @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label no-padding-right" 
                         for="form-field-1"> Nama Dokumen
                         </label>
                         <div class="col-sm-10">
                             <input type="hidden" name="users_id" value="{{auth()->user()->id}}">
                             <input type="hidden" name="divisi_id" value="{{auth()->user()->divisi_id}}">
+                            <input type="hidden" name="archive_time_id" value="6">
                             <input type="text"  placeholder="Nama file" class="col-xs-10 col-sm-10 required " 
                                     name="nama" required />
                             

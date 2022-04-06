@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Dosir extends Model
 {
     protected $table = "dosir";
-    protected $fillable = ['users_id','nama','file','archive_time_id'
+    protected $fillable = ['users_id','nama','file','archive_time_id','divisi_id'
 ];
 
     public function pegawai()
@@ -18,6 +18,11 @@ class Dosir extends Model
     public function arsip()
     {
         return $this->belongsTo(Archive_time::class,'archive_time_id','id');
+    }
+
+    public function div()
+    {
+        return $this->belongsTo(Divisi::class,'divisi_id','id');
     }
 
     public function getFIledosir() 
