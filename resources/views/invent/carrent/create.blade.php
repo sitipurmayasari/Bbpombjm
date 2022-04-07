@@ -221,7 +221,7 @@
             </div>
             <div class="col-sm-9" style="text-align: center; font-size:18px"> 
                 <p>Anda hanya bisa mengajukan peminjaman kendaraan
-                paling cepat 5 hari sebelum tanggal keberangkatan</p>
+                paling cepat 7 hari sebelum tanggal keberangkatan</p>
             </div>
         </div>
     </div>
@@ -291,7 +291,7 @@
         var dates = $("#date_from").val();
         var today = new Date();   
         today.setHours(0,0,0,0);
-        today.setDate(today.getDate() + 5);
+        today.setDate(today.getDate() + 7);
 
         var batas = today.toISOString().substring(0, 10);
 
