@@ -256,7 +256,7 @@
     Route::post('finance/stbook/store','Finance\STBookController@store')->name('stbook.store');
     Route::get('finance/stbook/edit/{id}','Finance\STBookController@edit')->name('stbook.edit');
     Route::post('finance/stbook/update/{id}','Finance\STBookController@update')->name('stbook.update');
-    Route::post('finance/stbook/delete/{id}','Finance\STBookController@delete')->name('stbook.delete');
+    Route::get('finance/stbook/delete/{id}','Finance\STBookController@delete')->name('stbook.delete');
     Route::get('finance/stbook/getnost','Finance\STBookController@getnost')->name('stbook.getnost');
     Route::get('finance/stbook/getnosppd','Finance\STBookController@getnosppd')->name('stbook.getnosppd');
     Route::get('finance/stbook/getnosppdnext','Finance\STBookController@getnosppdnext')->name('stbook.getnosppdnext');
