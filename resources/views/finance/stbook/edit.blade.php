@@ -91,7 +91,7 @@
                                     name="nomor_sppd[]"/>
                                 </td>
                                 <td>
-                                    <button type="button"  class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
+                                    <button type="button" class="btn btn-danger" onclick="deleteRow({{$no}})"><i class="glyphicon glyphicon-trash"></i></button>
                                 </td>
                             </tr>
                             @php
@@ -163,6 +163,12 @@
             }
         );
     }
+
+    function deleteRow(cell) {
+            $("#cell-"+cell).remove();
+            this.hitungTotal();
+
+        }
 
    </script>
 @endsection
