@@ -52,7 +52,7 @@
                                         <td style="text-align: center;">{{$nomor}}</td>
                                         <td> {{$item->peg->pegawai->name}}</td>
                                         <td>
-                                            <select name="plane_id1[]" class="select2">
+                                            <select name="plane_id1[]" class="select2 col-md-12">
                                                 <option value="">Pilih Maskapai</option>
                                                 @foreach ($plane as $maska)
                                                     @if ($maska->id == $item->plane_id1)
@@ -69,7 +69,7 @@
                                         <td><input type="text" name="plane_book1[]" value="{{$item->plane_book1}}"/></td>
                                         <td><input type="text" name="plane_flight1[]" value="{{$item->plane_flight1}}"/></td>
                                         <td>
-                                            <select name="plane_id2[]" class="select2">
+                                            <select name="plane_id2[]" class="select2 col-md-12">
                                                 <option value="">Pilih Maskapai</option>
                                                 @foreach ($plane as $maska)
                                                     @if ($item->plane_id2==$maska->id)
@@ -86,7 +86,7 @@
                                         <td><input type="text" name="plane_book2[]" value="{{$item->plane_book2}}"/></td>
                                         <td><input type="text" name="plane_flight2[]" value="{{$item->plane_flight2}}"/></td>
                                         <td>
-                                            <select name="plane_id3[]" class="select2">
+                                            <select name="plane_id3[]" class="select2 col-md-12">
                                                 <option value="">Pilih Maskapai</option>
                                                 @foreach ($plane as $maska)
                                                     @if ($item->plane_id3==$maska->id)
@@ -103,7 +103,7 @@
                                         <td><input type="text" name="plane_book3[]" value="{{$item->plane_book3}}"/></td>
                                         <td><input type="text" name="plane_flight3[]" value="{{$item->plane_flight3}}"/></td>
                                         <td>
-                                            <select name="plane_idreturn[]" class="select2">
+                                            <select name="plane_idreturn[]" class="select2 col-md-12">
                                                 <option value="">Pilih Maskapai</option>
                                                 @foreach ($plane as $maska)
                                                     @if ($item->plane_idreturn==$maska->id)
