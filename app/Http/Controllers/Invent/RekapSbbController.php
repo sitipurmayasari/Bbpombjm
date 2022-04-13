@@ -72,7 +72,6 @@ class RekapSbbController extends Controller
         return view('invent/rekapsbb.edit',compact('data','masa','divisi'));
     }
 
-
     public function update(Request $request, $id)
     {
         $user_id = $request->users_id;
