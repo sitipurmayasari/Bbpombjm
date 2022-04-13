@@ -45,12 +45,12 @@ class RekapSbbController extends Controller
     {
         $user_id = $request->users_id;
 
-        $this->validate($request,[
-            'users_id' => 'required',
-            'nama' => 'required',
-            'divisi_id' =>'required',
-            'file' => 'required'
-        ]);
+        // $this->validate($request,[
+        //     // 'users_id' => 'required',
+        //     // 'nama' => 'required',
+        //     'divisi_id' =>'required'
+        //     // 'file' => 'required'
+        // ]);
 
         $dokument = Dosir::create($request->all());
         if($request->hasFile('file')){ // Kalau file ada
