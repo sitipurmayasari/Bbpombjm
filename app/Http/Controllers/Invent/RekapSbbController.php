@@ -45,12 +45,11 @@ class RekapSbbController extends Controller
     {
         $user_id = $request->users_id;
 
-        // $this->validate($request,[
-        //     // 'users_id' => 'required',
-        //     // 'nama' => 'required',
-        //     'divisi_id' =>'required'
-        //     // 'file' => 'required'
-        // ]);
+        $this->validate($request,[
+            'users_id' => 'required',
+            'nama' => 'required',
+            'file' => 'required'
+        ]);
 
         $dokument = Dosir::create($request->all());
         if($request->hasFile('file')){ // Kalau file ada
@@ -87,8 +86,6 @@ class RekapSbbController extends Controller
             $data->upload = $request->file('file')->getClientOriginalName(); 
             $data->save(); 
         }
-
-
         return redirect('/invent/rekapsbb')->with('sukses','Data Diperbaharui');
 
     }
