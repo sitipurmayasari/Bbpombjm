@@ -44,7 +44,7 @@
                         for="form-field-1">  Upload File
                         </label>
                         <div class="col-sm-9">
-                            <input type="file" name="file" class="btn btn-default btn-sm" id="" value="Upload File">      
+                            <input type="file" name="file" class="btn btn-default btn-sm" id="" >      
                             <label><i>ex:Lorem_ipsum.pdf,.doc, .docx,.ppt,.xls, .xlsx,.jpeg,.jpg,.png</i></label>
                         </div>
                     </div>
