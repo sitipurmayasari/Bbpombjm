@@ -32,7 +32,6 @@
                         </label>
                         <div class="col-sm-10">
                             <select name="divisi_id" id="divisi_id" class="col-xs-10 col-sm-10 required " required>
-                                <option value="">Pilih Substansi</option>
                                 @foreach ($divisi as $item)
                                     <option value="{{$item->id}}">{{$item->nama}}</option> 
                                 @endforeach
