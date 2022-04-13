@@ -44,7 +44,7 @@
                         for="form-field-1">  Upload File
                         </label>
                         <div class="col-sm-9">
-                            <input type="file" name="file" class="btn btn-default btn-sm" id="" value="Upload File">      
+                            <input type="file" name="file" class="btn btn-default btn-sm" id="">      
                             <label><a href="{{$data->getFIledosir()}}" target="_blank" >{{$data->file}}</a></label>
                         </div>
                     </div>

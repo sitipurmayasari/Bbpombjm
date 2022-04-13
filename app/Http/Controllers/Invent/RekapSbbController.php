@@ -43,9 +43,8 @@ class RekapSbbController extends Controller
 
     public function store(Request $request)
     {
-        $user_id = $request->users_id;
-
         $this->validate($request,[
+            'users_id' => 'required',
             'file' => 'required'
         ]);
 
@@ -72,18 +71,14 @@ class RekapSbbController extends Controller
 
     public function update(Request $request, $id)
     {
-        $user_id = $request->users_id;
         $data = Dosir::find($id);
         $data->update($request->all());
-        $this->validate($request,[
-            'file' => 'required'
-        ]);
         if($request->hasFile('file')){ // Kalau file ada
             $request->file('file')
                         ->move('images/pegawai/'.$data->users_id.'/dosir',$request
                         ->file('file')
                         ->getClientOriginalName()); 
-            $data->upload = $request->file('file')->getClientOriginalName(); 
+            $data->file = $request->file('file')->getClientOriginalName(); 
             $data->save(); 
         }
         return redirect('/invent/rekapsbb')->with('sukses','Data Diperbaharui');
