@@ -48,7 +48,7 @@ class RekapSbbController extends Controller
         $this->validate($request,[
             'users_id' => 'required',
             'nama' => 'required',
-            'divisi_id' =>'require',
+            'divisi_id' =>'required',
             'file' => 'required'
         ]);
 
