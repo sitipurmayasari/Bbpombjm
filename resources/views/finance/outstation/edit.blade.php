@@ -135,21 +135,31 @@
                                     <option value="Transportasi Darat" selected>Transportasi Darat</option>
                                     <option value="Transportasi Laut">Transportasi Laut</option>
                                     <option value="Transportasi Udara">Transportasi Udara</option>
+                                    <option value="Transportasi Sungai">Transportasi Sungai</option>
                                     <option value="-">Non Transportasi</option>
                                 @elseif($data->transport=="Transportasi Laut") 
                                     <option value="Transportasi Darat">Transportasi Darat</option>
                                     <option value="Transportasi Laut" selected>Transportasi Laut</option>
                                     <option value="Transportasi Udara">Transportasi Udara</option>  
+                                    <option value="Transportasi Sungai">Transportasi Sungai</option>
                                     <option value="-">Non Transportasi</option>
                                 @elseif($data->transport=="Transportasi Udara") 
                                     <option value="Transportasi Darat">Transportasi Darat</option>
                                     <option value="Transportasi Laut">Transportasi Laut</option>
                                     <option value="Transportasi Udara" selected>Transportasi Udara</option>  
+                                    <option value="Transportasi Sungai">Transportasi Sungai</option>
+                                    <option value="-">Non Transportasi</option>
+                                @elseif($data->transport=="Transportasi Sungai") 
+                                    <option value="Transportasi Darat">Transportasi Darat</option>
+                                    <option value="Transportasi Laut">Transportasi Laut</option>
+                                    <option value="Transportasi Udara" >Transportasi Udara</option>  
+                                    <option value="Transportasi Sungai" selected>Transportasi Sungai</option>
                                     <option value="-">Non Transportasi</option>
                                 @else
                                     <option value="Transportasi Darat">Transportasi Darat</option>
                                     <option value="Transportasi Laut">Transportasi Laut</option>
                                     <option value="Transportasi Udara" >Transportasi Udara</option>
+                                    <option value="Transportasi Sungai">Transportasi Sungai</option>
                                     <option value="-" selected>Non Transportasi</option>
                                 @endif
                             </select>

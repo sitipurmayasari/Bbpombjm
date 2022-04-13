@@ -117,6 +117,7 @@
                                 <option value="Transportasi Darat">Transportasi Darat</option>
                                 <option value="Transportasi Laut">Transportasi Laut</option>
                                 <option value="Transportasi Udara">Transportasi Udara</option>
+                                <option value="Transportasi Sungai">Transportasi Sungai</option>
                                 <option value="-">Non Transportasi</option>
                             </select>
                         </div>
