@@ -54,7 +54,7 @@ class NominatifController extends Controller
                         ->leftJoin('travelexpenses','travelexpenses.outst_employee_id','=','outst_employee.id')
                         ->leftJoin('travelexpenses1','travelexpenses1.outst_employee_id','=','outst_employee.id')
                         ->leftJoin('travelexpenses2','travelexpenses2.outst_employee_id','=','outst_employee.id')
-                        ->where('expenses.id',$id)
+                        ->where('travelexpenses2.expenses_id',$id)
                         ->get();
         $tujuan    = Outst_destiny::SelectRaw('outst_destiny.* ')
                         ->leftJoin('outstation','outstation.id','=','outst_destiny.outstation_id')

@@ -307,7 +307,7 @@ class TravelexpensesController extends Controller
                                 ->get();
         $pesawat = Travelexpenses1::orderBy('travelexpenses1.outst_employee_id','asc')
                                 ->LeftJoin('travelexpenses2','travelexpenses2.outst_employee_id','=','travelexpenses1.outst_employee_id')
-                                ->where('travelexpenses1.expenses_id',$id)
+                                ->where('travelexpenses2.expenses_id',$id)
                                 ->get();
         $transport = Travelexpenses1::orderBy('travelexpenses1.outst_employee_id','asc')
                                     ->LeftJoin('travelexpenses','travelexpenses1.outst_employee_id','=','travelexpenses.outst_employee_id')
