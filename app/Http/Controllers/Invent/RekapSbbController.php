@@ -45,11 +45,9 @@ class RekapSbbController extends Controller
     {
         $user_id = $request->users_id;
 
-        // $this->validate($request,[
-        //     'users_id' => 'required',
-        //     'nama' => 'required',
-        //     'file' => 'required'
-        // ]);
+        $this->validate($request,[
+            'file' => 'required'
+        ]);
 
         $dokument = Dosir::create($request->all());
         if($request->hasFile('file')){ // Kalau file ada
@@ -77,6 +75,9 @@ class RekapSbbController extends Controller
         $user_id = $request->users_id;
         $data = Dosir::find($id);
         $data->update($request->all());
+        $this->validate($request,[
+            'file' => 'required'
+        ]);
         if($request->hasFile('file')){ // Kalau file ada
             $request->file('file')
                         ->move('images/pegawai/'.$data->users_id.'/dosir',$request

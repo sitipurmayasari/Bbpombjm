@@ -76,8 +76,12 @@ class SbbController extends Controller
     public function update(Request $request, $id)
     {
         $user_id = $request->users_id;
+        $this->validate($request,[
+            'file' => 'required'
+        ]);
         $data = Dosir::find($id);
         $data->update($request->all());
+        
         if($request->hasFile('file')){ // Kalau file ada
             $request->file('file')
                         ->move('images/pegawai/'.$data->users_id.'/dosir',$request
