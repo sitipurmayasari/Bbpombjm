@@ -177,12 +177,7 @@
                 </tr>
                 <tr>
                     <td class="ttd">
-                        @if ($menyetujui !=null)
-                        NIP. {{$menyetujui->user->no_pegawai}}
-                        @else
-                        SILAHKAN CEK SETUP PEJABAT
-                        @endif
-
+                        {{$petugastik->user->no_pegawai}}
                     </td>
                     <td class="ttd">
                         @if ($mengetahui !=null)

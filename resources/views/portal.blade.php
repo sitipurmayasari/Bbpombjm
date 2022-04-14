@@ -66,7 +66,7 @@ h2, a {
 }
 
 .social {
-  margin: 60px auto;
+  margin: 20px auto;
 }
 
 /* ============================ */
@@ -94,8 +94,8 @@ h2, a {
   background-color: #c4c4c4;
   text-align: center;
   display: inline-block;
-  width: 150px;
-  height: 150px;
+  width: 130px;
+  height: 130px;
   padding: 9px 0px;
   color: white;
   margin: 2px;
@@ -270,11 +270,12 @@ h2, a {
 }
 
 .tgl{
-  width: 18%;
+  width: 15%;
   float: right;
   background: #00a1b2;
   color: white;
   margin-right: 3%;
+  margin-top: -3%;
   border-radius: 20px;
   box-shadow: 3px 6px #888888;
 }
@@ -282,7 +283,42 @@ h2, a {
 .hari{
   background:#ecf0f1;
   color: #00a1b2;
+  font-size:12px;
+  line-height: 1;
   
+}
+
+.bawah{
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding-box;
+  background-clip: padding-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-transition-property: background-color;
+  -moz-transition-property: background-color;
+  transition-property: background-color;
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-timing-function: ease;
+  -moz-transition-timing-function: ease;
+  transition-timing-function: ease;
+  background-color: #c4c4c4;
+  text-align: center;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  padding: 5px 0px;
+  color: white;
+  margin: 2px;
+}
+
+.lain {
+  margin: 5px auto;
 }
 
 </style>
@@ -375,6 +411,7 @@ h2, a {
         </div>
       </nav>
       <div class="content">
+        {{-- kalender --}}
         <a href="/calendars">
           <div class="tgl">
             <div class="tgl_det">{{$hari}}</div>
@@ -382,38 +419,54 @@ h2, a {
               <h1><b>{{$tgl}}</b></h1>
               <i class="material-icons">campaign</i> 
               Klik Untuk melihat Kalender
-              {{-- @if ($keterangan != null)
-                  @foreach ($keterangan as $item)
-                    {{$item->titles}} <br>
-                  @endforeach
-              @endif --}}
             </div>
             <div class="tgl_det">{{$bulan}} {{$tahun}}</div>
           </div>
         </a>   
-        
+        {{-- nama --}}
         <div style="text-align: center;">
-          <div style="padding-left: 18%;">
+          <div style="padding-left: 18%;  line-height: 1;">
             <h4>SELAMAT DATANG DI</h4>
             <h1><b>SI-BOB</b></h1>
             <h5>( SISTEM INFORMASI BBPOM BANJARMASIN )</h5>
           </div>
-          <div class="social">   
-              <a class="social-icon" data-tooltip="AMDK" href="/amdk/dashboard">
-                <img src="{{asset('images/amdk.png')}}" style="height:100%; width:100%">
-              </a>   
-              <a class="social-icon" data-tooltip="Inventaris" href="/invent/dashboard">
-                <img src="{{asset('images/invent.png')}}" style="height:100%; width:100%">
-              </a>
-              <a class="social-icon" data-tooltip="Anang & Galuh" href="/finance/dashboard">
-                <img src="{{asset('images/naga.png')}}" style="height:100%; width:100%">
-              </a>
-          </div>
          </div>
+         {{-- icon --}}
+         <div class="social">   
+            <a class="social-icon" data-tooltip="AMDK" href="/amdk/dashboard">
+              <img src="{{asset('images/amdk.png')}}" style="height:100%; width:100%">
+            </a>   
+            <a class="social-icon" data-tooltip="Inventaris" href="/invent/dashboard">
+              <img src="{{asset('images/invent.png')}}" style="height:100%; width:100%">
+            </a>
+            <a class="social-icon" data-tooltip="Anang & Galuh" href="/finance/dashboard">
+              <img src="{{asset('images/naga.png')}}" style="height:100%; width:100%">
+            </a>
+            <a class="social-icon" data-tooltip="Pengujian" href="/calibration/dashboard">
+              <img src="{{asset('images/lab.png')}}" style="height:100%; width:100%">
+            </a>
+        </div>
+        <br>
+        {{-- <div class="lain"> 
+          ----------------------------Link Terkait----------------------------
+           <br>  
+          <a class="bawah" href="/amdk/dashboard">
+            <img src="{{asset('images/amdk.png')}}" style="height:100%; width:100%">
+          </a>   
+          <a class="bawah" href="/invent/dashboard">
+            <img src="{{asset('images/invent.png')}}" style="height:100%; width:100%">
+          </a>
+          <a class="bawah"  href="/finance/dashboard">
+            <img src="{{asset('images/naga.png')}}" style="height:100%; width:100%">
+          </a>
+          <a class="bawah"  href="/calibration/dashboard">
+            <img src="{{asset('images/lab.png')}}" style="height:100%; width:100%">
+          </a>
+      </div> --}}
       </div>
-      <footer class="footer">
+      <footer class="footer" style="margin: 0; padding:0;">
         <div class="container-fluid">
-          <span class="green bolder">BBPOM KalSel</span> &copy; 2021
+          <span class="green bolder">BBPOM Banjarmasin</span> &copy; 2021 
         </div>
       </footer>
     </div>
