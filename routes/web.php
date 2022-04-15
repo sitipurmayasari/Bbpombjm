@@ -175,6 +175,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/amdk/record','Amdk\RecordController@index')->name('record');
     //Route untuk Surat Izin Pramubakti
     Route::get('/amdk/permit','Amdk\PermitController@index')->name('permit');
+    //Route untuk Setup Angka Kredit
+    Route::get('/amdk/ak','Amdk\CreditsController@index')->name('ak');
     
     
 

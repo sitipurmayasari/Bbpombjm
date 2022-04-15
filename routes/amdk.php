@@ -186,3 +186,10 @@
   Route::get('/amdk/permit/delete/{id}','Amdk\PermitController@delete')->name('permit.delete');
   Route::get('/amdk/permit/edit/{id}','Amdk\PermitController@edit')->name('permit.edit');
   Route::post('/amdk/permit/update/{id}','Amdk\PermitController@update')->name('permit.update');
+
+  //Route untuk Setup Angka Kredit
+  Route::get('/amdk/ak/create','Amdk\CreditsController@create')->name('ak.create');
+  Route::post('/amdk/ak/store','Amdk\CreditsController@store')->name('ak.store');
+  Route::get('/amdk/ak/delete/{id}','Amdk\CreditsController@delete')->name('ak.delete');
+  Route::get('/amdk/ak/edit/{id}','Amdk\CreditsController@edit')->name('ak.edit');
+  Route::post('/amdk/ak/update/{id}','Amdk\CreditsController@update')->name('ak.update');

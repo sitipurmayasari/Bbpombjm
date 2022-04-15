@@ -58,14 +58,13 @@
             <table class="ttd" style="width: 100%">
                 <tr>
                     <td class="ttd col-md-6"></td>
-                    <td class="ttd col-md-6">Banjarmasin, </td>
+                    <td class="ttd col-md-6">Banjarmasin, Tanggal ..................</td>
                 </tr>
                 <tr>
                     <td class="ttd">Mengetahui,</td>
                     <td class="ttd">Pengelola Gudang</td>
                 </tr>
                 <tr>
-                    <td class="ttd">Tanggal .................................</td>
                     <td class="ttd">
                         @if ($mengetahui != null)
                             @if ($mengetahui->pjs != null)
@@ -80,6 +79,7 @@
                         SILAHKAN CEK SETUP PEJABAT
                       @endif
                     </td>
+                    <td class="ttd"></td>
                     <td class="ttd"></td>
                 </tr>
                 <tr >
