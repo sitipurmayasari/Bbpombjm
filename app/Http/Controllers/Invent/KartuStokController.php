@@ -25,7 +25,8 @@ class KartuStokController extends Controller
         $jenis      = Jenisbrg::all();
         $dataman    = Inventaris::whereRaw('kind not in ("R")')->get();
         $lab        = Labory::all();
-        return view('invent/kartustok.index',compact('dataman','jenis','div','lab'));
+        $gudang     = Lokasi::all();
+        return view('invent/kartustok.index',compact('dataman','jenis','div','lab','gudang'));
     }
 
     public function cetak(Request $request)
@@ -46,6 +47,9 @@ class KartuStokController extends Controller
                                 ->LeftJoin('entrystock','inventaris.id','=','entrystock.inventaris_id')
                                 ->Where('kind','!=','R')
                                 ->Where('jenis_barang',$request->kelompok)
+                                ->when($request->gudang, function ($query) use ($request) {
+                                    $query->where('inventaris.lokasi',$request->gudang);
+                                 })
                                 ->GroupBY('inventaris.id')
                                 ->get();
             $petugas = Petugas::where('id', '=', 4)->first();
@@ -54,8 +58,9 @@ class KartuStokController extends Controller
                           ->where('divisi_id', '=', 2)
                           ->whereRaw("pjs IS null")
                           ->first();
+            $gudang = Lokasi::where('id',$request->gudang)->first();
             $data = Jenisbrg::where('id',$request->kelompok)->first();
-            return view('invent/kartustok.stokkelompok',compact('stock','data','request','petugas','mengetahui'));
+            return view('invent/kartustok.stokkelompok',compact('stock','data','request','petugas','mengetahui','gudang'));
             // $pdf = PDF::loadview('invent/kartustok.stokkelompok',compact('stock','data','request'));
             // return $pdf->stream();
         } else if($request->jenis_Laporan=="3"){

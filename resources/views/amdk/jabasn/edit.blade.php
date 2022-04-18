@@ -32,6 +32,46 @@
                         for="form-field-1"> Jabatan
                         </label>
                         <div class="col-sm-8">
+                            <select name="jabatan"  class="col-xs-10 col-sm-10 required " >
+                                @if ($data->jabatan=='Ahli Pertama')
+                                    <option value="" >Pilih Jabatan</option>
+                                    <option value="Ahli Pertama" selected>Ahli Pertama</option>
+                                    <option value="Ahli Muda">Ahli Muda</option>
+                                    <option value="Ahli Madya">Ahli Madya</option>
+                                    <option value="Ahli Utama">Ahli Utama</option>
+                                @elseif ($data->jabatan=='Ahli Muda')
+                                    <option value="" >Pilih Jabatan</option>
+                                    <option value="Ahli Pertama" >Ahli Pertama</option>
+                                    <option value="Ahli Muda" selected>Ahli Muda</option>
+                                    <option value="Ahli Madya">Ahli Madya</option>
+                                    <option value="Ahli Utama">Ahli Utama</option>
+                                @elseif ($data->jabatan=='Ahli Madya')
+                                    <option value="" >Pilih Jabatan</option>
+                                    <option value="Ahli Pertama" >Ahli Pertama</option>
+                                    <option value="Ahli Muda" >Ahli Muda</option>
+                                    <option value="Ahli Madya" selected>Ahli Madya</option>
+                                    <option value="Ahli Utama">Ahli Utama</option>
+                                @elseif ($data->jabatan=='Ahli Utama')
+                                    <option value="" >Pilih Jabatan</option>
+                                    <option value="Ahli Pertama" >Ahli Pertama</option>
+                                    <option value="Ahli Muda" >Ahli Muda</option>
+                                    <option value="Ahli Madya" >Ahli Madya</option>
+                                    <option value="Ahli Utama" selected>Ahli Utama</option>
+                                @else
+                                    <option value="" selected>Pilih Jabatan</option>
+                                    <option value="Ahli Pertama">Ahli Pertama</option>
+                                    <option value="Ahli Muda">Ahli Muda</option>
+                                    <option value="Ahli Madya">Ahli Madya</option>
+                                    <option value="Ahli Utama">Ahli Utama</option>
+                                @endif
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Nama Jabatan
+                        </label>
+                        <div class="col-sm-8">
                             <input type="text"  placeholder=" Masukkan Nama Jabatan" 
                                     class="col-xs-10 col-sm-10 required " value="{{$data->nama}}"
                                     name="nama" required />

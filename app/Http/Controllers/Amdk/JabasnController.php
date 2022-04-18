@@ -11,8 +11,13 @@ class JabasnController extends Controller
     public function index(Request $request)
     {
         $data = Jabasn::orderBy('id','desc')
-                ->paginate('10');
+                        ->paginate('10');
         return view('amdk/jabasn.index',compact('data'));
+    }
+
+    public function create()
+    {
+        return view('amdk/jabasn.create');
     }
 
     public function store(Request $request)
@@ -35,11 +40,5 @@ class JabasnController extends Controller
         return redirect('/amdk/jabasn')->with('sukses','Data Diperbaharui');
     }
 
-   
-    public function delete($id)
-    {
-        $jabatan = Jabasn::find($id);
-        $jabatan->delete();
-        return redirect('/amdk/jabasn')->with('sukses','Data Terhapus');
-    }
+
 }

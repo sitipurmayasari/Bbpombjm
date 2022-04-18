@@ -26,6 +26,9 @@
                 <b><i>{{$data->nama}}</i></b>
             </div><br>
             <div class="col-sm-12 table-responsive row" style="text-align: left">
+                @if ($request->gudang != null)
+                    Lokasi : {{$gudang->nama}}
+                @endif
                 <table id="simple-table" class="table  table-bordered" style="font-size: 11px;" >
                     <thead>
                         <tr>

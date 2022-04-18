@@ -53,6 +53,20 @@
                                 </select>
                             </div>
                         </div>
+                        <br>
+                        <div class="form-group" id="gudang">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Pilih Gudang
+                            </label>
+                            <div class="col-sm-8">
+                                <select name="gudang" class="col-xs-10 col-sm-10">
+                                    <option value="">Semua Lokasi</option>
+                                    @foreach ($gudang as $item)
+                                        <option value="{{$item->id}}">{{$item->nama}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group" id="lab">
                             <label class="col-sm-3 control-label no-padding-right" 
                             for="form-field-1"> Laboratorium
@@ -145,6 +159,7 @@
         $("#barang").hide();
         $("#lab").hide();
         $("#pilihtahun").hide();
+        
 
         
         $("#jenis").on("change", function(){
@@ -155,28 +170,33 @@
                 $("#lab").hide();
                 $("#pilihtahun").hide();
                 $("#pilihbulan").hide();
+                $("#gudang").hide();
             }else if(v=="3"){
                 $("#kelompok").hide();
                 $("#barang").hide();
                 $("#lab").show();
                 $("#pilihtahun").show();
                 $("#pilihbulan").hide();
+                $("#gudang").hide();
             }else if(v=="4"){
                 $("#kelompok").hide();
                 $("#barang").hide();
                 $("#lab").hide();
                 $("#pilihtahun").show();
                  $("#pilihbulan").show();
+                 $("#gudang").hide();
             }else if(v=="5"){
                 $("#kelompok").show();
                 $("#pilihtahun").show();
                  $("#pilihbulan").show();
+                 $("#gudang").hide();
             }else{
                 $("#barang").hide();
                 $("#kelompok").show();
                 $("#lab").hide();
                 $("#pilihtahun").hide();
                 $("#pilihbulan").hide();
+                $("#gudang").show();
                
             } 
         });

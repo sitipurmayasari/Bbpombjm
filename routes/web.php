@@ -177,6 +177,12 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/amdk/permit','Amdk\PermitController@index')->name('permit');
     //Route untuk Setup Angka Kredit
     Route::get('/amdk/ak','Amdk\CreditsController@index')->name('ak');
+    //Route untuk SKP
+    Route::get('/amdk/skp','Amdk\SkpController@index')->name('skp');
+    //Route untuk Kegiatan Perencanaan
+    Route::get('/amdk/planning','Amdk\PlanningController@index')->name('planning');
+    //Route untuk Kegiatan Pengembangan
+    Route::get('/amdk/development','Amdk\DevelopmentController@index')->name('development');
     
     
 

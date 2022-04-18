@@ -194,3 +194,24 @@
   Route::get('/amdk/ak/edit/{id}','Amdk\CreditsController@edit')->name('ak.edit');
   Route::post('/amdk/ak/update/{id}','Amdk\CreditsController@update')->name('ak.update');
   Route::get('/amdk/ak/getSubDivisi','Amdk\CreditsController@getunsur')->name('ak.getunsur');
+
+  //Route untuk SKP
+  Route::get('/amdk/skp/create','Amdk\SkpController@create')->name('skp.create');
+  Route::post('/amdk/skp/store','Amdk\SkpController@store')->name('skp.store');
+  Route::get('/amdk/skp/delete/{id}','Amdk\SkpController@delete')->name('skp.delete');
+  Route::get('/amdk/skp/edit/{id}','Amdk\SkpController@edit')->name('skp.edit');
+  Route::post('/amdk/skp/update/{id}','Amdk\SkpController@update')->name('skp.update');
+
+  //Route untuk Kegiatan Perencanaan
+  Route::get('/amdk/planning/create','Amdk\PlanningController@create')->name('planning.create');
+  Route::post('/amdk/planning/store','Amdk\PlanningController@store')->name('planning.store');
+  Route::get('/amdk/planning/delete/{id}','Amdk\PlanningController@delete')->name('planning.delete');
+  Route::get('/amdk/planning/edit/{id}','Amdk\PlanningController@edit')->name('planning.edit');
+  Route::post('/amdk/planning/update/{id}','Amdk\PlanningController@update')->name('planning.update');
+
+  //Route untuk Kegiatan Pengembangan
+  Route::get('/amdk/development/create','Amdk\DevelopmentController@create')->name('development.create');
+  Route::post('/amdk/development/store','Amdk\DevelopmentController@store')->name('development.store');
+  Route::get('/amdk/development/delete/{id}','Amdk\DevelopmentController@delete')->name('development.delete');
+  Route::get('/amdk/development/edit/{id}','Amdk\DevelopmentController@edit')->name('development.edit');
+  Route::post('/amdk/development/update/{id}','Amdk\DevelopmentController@update')->name('development.update');
