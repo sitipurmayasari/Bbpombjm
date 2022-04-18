@@ -193,3 +193,4 @@
   Route::get('/amdk/ak/delete/{id}','Amdk\CreditsController@delete')->name('ak.delete');
   Route::get('/amdk/ak/edit/{id}','Amdk\CreditsController@edit')->name('ak.edit');
   Route::post('/amdk/ak/update/{id}','Amdk\CreditsController@update')->name('ak.update');
+  Route::get('/amdk/ak/getSubDivisi','Amdk\CreditsController@getunsur')->name('ak.getunsur');
