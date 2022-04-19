@@ -189,9 +189,14 @@ class TukinController extends Controller
                             ->get();
           $user = User::all(); 
 
+          ini_set('max_execution_time', '300'); // 5 mins
+
           $pdf = PDF::loadview('amdk/tukin.print',compact('data','isi','user'));
-      
             return $pdf->stream();
+
+
+
+        // return view('amdk/tukin.print',compact('data','isi','user'));
       }
 
 
