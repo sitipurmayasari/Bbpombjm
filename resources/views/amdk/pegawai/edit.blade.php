@@ -403,7 +403,6 @@
     </div><!-- /.col -->
     
     <div class="col-sm-12">
-       
         <div class="form-actions right">
             <button class="btn btn-success btn-sm " type="submit">
                 <i class="ace-icon fa fa-check bigger-110"></i>Update

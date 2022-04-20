@@ -1,7 +1,7 @@
 @extends('amdk/layouts_amdk.app')
 @section('breadcrumb')
     <li>SiKeren</li>
-    <li>Sasaran Kinerja Pegawai</i></li>
+    <li>Sasaran Kinerja Pegawai {{auth()->user()->name}}</i></li>
 @endsection
 @section('content')
 
@@ -35,20 +35,20 @@
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
                 <th width="40px">No</th>
-                <th>Unsur</th>
-                <th>Sub Unsur</th>
-                <th>Uraian</th>
-                <th>Hasil</th>
-                <th>skpsi</th>
+                <th>Tanggal</th>
+                <th>Nama</th>
+                <th>Jabatan</th>
+                <th>Penilai</th>
+                <th>Aksi</th>
             <thead>
             <tbody>   	
-                {{-- @foreach($data as $key=>$row)
+                @foreach($data as $key=>$row)
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
-                    <td>{{$row->unsur}}</td>
-                    <td>{{$row->sub_unsur}}</td>
-                    <td>{{$row->uraian}}</td>
-                    <td>{{$row->hasil}}</a></td>
+                    <td>{{tgl_indo($row->dates)}}</td>
+                    <td>{{$row->peg->name}}</td>
+                    <td>{{$row->jab->nama}}</td>
+                    <td>{{$row->pejabat->user->name}}</td>
                     <td>
                         <a href="/amdk/skp/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>
@@ -60,7 +60,7 @@
                     </td>
                 </tr>
               
-                @endforeach --}}
+                @endforeach
             <tbody>
         </table>
     </div>

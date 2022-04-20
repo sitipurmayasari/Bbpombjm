@@ -11,6 +11,11 @@ class JabasnController extends Controller
     public function index(Request $request)
     {
         $data = Jabasn::orderBy('id','desc')
+                    ->when($request->keyword, function ($query) use ($request) {
+                        $query->where('nama','LIKE','%'.$request->keyword.'%')
+                                ->orWhere('jabatan', 'LIKE','%'.$request->keyword.'%')
+                                ->orWhere('kelompok', 'LIKE','%'.$request->keyword.'%');
+                        })
                         ->paginate('10');
         return view('amdk/jabasn.index',compact('data'));
     }
