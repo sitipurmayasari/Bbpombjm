@@ -33,8 +33,8 @@
                     <select id="bulan" name="bulan" class="col-xs-10 col-sm-10 select2" required>
                         @php
                         $bulan = array("", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus",
-                                         "September", "Oktober", "November", "Desember");
-                        for($a=1;$a<=12;$a++){
+                                         "September", "Oktober", "November", "Desember","THR");
+                        for($a=1;$a<=13;$a++){
                         if($a==date("m")){ 
                             $pilih="selected";
                         }else {

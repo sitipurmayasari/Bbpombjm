@@ -202,6 +202,7 @@
   Route::get('/amdk/skp/edit/{id}','Amdk\SkpController@edit')->name('skp.edit');
   Route::post('/amdk/skp/update/{id}','Amdk\SkpController@update')->name('skp.update');
   Route::get('/amdk/skp/deletedet/{id}','Amdk\SkpController@deletedet')->name('skp.deletedet');
+  Route::get('/amdk/skp/print/{id}','Amdk\SkpController@print')->name('skp.print');
 
   //Route untuk Kegiatan Perencanaan
   Route::get('/amdk/planning/create','Amdk\PlanningController@create')->name('planning.create');
