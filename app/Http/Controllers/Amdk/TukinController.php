@@ -166,7 +166,7 @@ class TukinController extends Controller
                                                 WHEN bulan= 10  THEN "Oktober"
                                                 WHEN bulan= 11  THEN "November"
                                                 WHEN bulan= 12  THEN "Desember"
-                                                ELSE "THR"
+                                                ELSE "Tunjangan Hari Raya"
                                             END bln , 
                                             CASE
                                                 WHEN blnkasih= 1 THEN "Januari"
