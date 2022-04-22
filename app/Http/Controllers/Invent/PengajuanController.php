@@ -76,7 +76,7 @@ class PengajuanController extends Controller
         $data = Pengajuan::where('id',$id)->first();
         $isi = PengajuanDetail::where('pengajuan_id',$id)->get();
 
-        $jab = User::Select('jabatan_id')
+        $jab = User::Select('jabatan_id','divisi_id','subdivisi_id')
                     ->leftjoin('pengajuan','pengajuan.pegawai_id','=','users.id')
                     ->where('pengajuan.id',$id)->first();
 
@@ -97,7 +97,17 @@ class PengajuanController extends Controller
                                 ->whereRaw('subdivisi_id is null')
                                 ->whereRaw("curdate() BETWEEN dari AND sampai")
                                 ->first();
-        } else {
+        } else if ($jab->jabatan_id == '8' && $jab->subdivisi_id == null) {
+            $mengetahui = Pejabat::orderBy('id','desc')
+                                    ->whereRaw("divisi_id =
+                                                (SELECT u.divisi_id FROM users u
+                                                    LEFT JOIN pengajuan a ON a.pegawai_id=u.id
+                                                        WHERE a.id=$id
+                                                )" )
+                                    ->whereRaw('subdivisi_id is null')
+                                    ->whereRaw("curdate() BETWEEN dari AND sampai")
+                                    ->first();
+            } else  {
             $mengetahui = Pejabat::orderBy('id','desc')
                                 ->whereRaw("subdivisi_id =
                                                 ( SELECT u.subdivisi_id FROM users u 
