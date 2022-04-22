@@ -85,6 +85,19 @@ class CreditsController extends Controller
         ],200);
     }
 
+    public function getnilai(Request $request)
+    {
+        $data = Setup_ak::orderBy('sub_unsur','asc')
+                        ->where('id',$request->setup_id)
+                        ->get();
+        return response()->json([ 
+            'success' => true,
+            'data' => $data
+        ],200);
+    }
+
+
+
 
 
 }

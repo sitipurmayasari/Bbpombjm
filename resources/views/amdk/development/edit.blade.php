@@ -86,7 +86,15 @@
                                     {{$no}}
                                 </td>
                                 <td>
-                                    <textarea name="activity[]" class="form-control" >{{$item->activity}}</textarea>
+                                    <select name="setup_ak_id[]" id="uraian" class="form-control select2" required>
+                                        @foreach ($ak as $daftar)
+                                           @if ($item->setup_ak_id == $daftar->id)
+                                                <option value="{{$daftar->id}}" selected>{{$daftar->uraian}}</option>       
+                                           @else
+                                            <option value="{{$daftar->id}}">{{$daftar->uraian}}</option>
+                                           @endif
+                                        @endforeach
+                                    </select>
                                     <input type="hidden" name="detail_id[]" value="{{$item->id}}">
                                 </td>
                                 <td><input type="number" name="n_ak[]" class="form-control" id="ak-1" step="0.01" value="{{$item->n_ak}}"></td>
@@ -114,7 +122,7 @@
                                 <td><input type="number" name="cost[]" class="form-control" value="{{$item->cost}}" min="0"></td>
                                 <td>
                                     <a href="#" class="btn btn-danger delete"
-                                        r-name="{{$item->activity}}" 
+                                        r-name="{{$item->keg->uraian}}" 
                                         r-id="{{$item->id}}">
                                         <i class="glyphicon glyphicon-trash"></i></a>
                                     {{-- <button type="button" class="btn btn-danger" onclick="deleteRowPeg({{$no}})"><i class="glyphicon glyphicon-trash"></i></button> --}}
@@ -164,8 +172,12 @@
         $isi ='<tr id="cell-'+new_baris+'">'+
                     '<td>'+new_baris+'</td>'+
                     '<td>'+
-                        '<textarea name="activity" class="form-control" ></textarea>'+  
-                        '<input type="hidden" name="detail_id[]">'+             
+                        '<select name="setup_ak_id[]" id="uraian" class="form-control select2">'+
+                            '@foreach ($ak as $item)'+
+                                '<option value="{{$item->id}}">{{$item->uraian}}</option>'+        
+                            '@endforeach'+        
+                        '</select>'+    
+                        '<input type="hidden" name="detail_id[]">'+            
                     '</td>'+
                     '<td><input type="number" name="n_ak[]" class="form-control" id="ak-'+new_baris+'" step="0.01" value="0" ></td>'+        
                     '<td><input type="number" name="tot_ak[]" class="form-control" readonly value="0" id="tot_ak-'+new_baris+'"></td>'+        

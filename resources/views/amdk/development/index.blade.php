@@ -39,7 +39,6 @@
                 <th>Nama</th>
                 <th>Jabatan</th>
                 <th>Penilai</th>
-                <th>Cetak</th>
                 <th>Aksi</th>
             <thead>
             <tbody>   	
@@ -50,9 +49,6 @@
                     <td>{{$row->peg->name}}</td>
                     <td>{{$row->jab->nama}}</td>
                     <td>{{$row->pejabat->user->name}}</td>
-                    <td>
-                        <a class="btn btn-primary" href="/amdk/skp/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
-                    </td>
                     <td>
                         <a href="/amdk/skp/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>

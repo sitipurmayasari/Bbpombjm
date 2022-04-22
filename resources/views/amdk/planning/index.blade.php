@@ -1,7 +1,7 @@
 @extends('amdk/layouts_amdk.app')
 @section('breadcrumb')
     <li>SiKeren</li>
-    <li>Sasaran Kinerja Pegawai {{auth()->user()->name}}</i></li>
+    <li>kegiatan Perencanaan</i></li>
 @endsection
 @section('content')
 
@@ -12,7 +12,7 @@
                 <div class="form-group col-sm-12">
                     <div class="row">
                         <div class="form-group col-xs-12 col-sm-3" style="float: left">
-                           <a href="{{Route('skp.create')}}"  class="btn btn-primary">Tambah Data</a>   
+                           <a href="{{Route('planning.create')}}"  class="btn btn-primary">Tambah Data</a>   
                         </div>
                         <div class="form-group col-xs-12 col-sm-5" style="float: right">
                             <div class="input-group">
@@ -39,22 +39,18 @@
                 <th>Nama</th>
                 <th>Jabatan</th>
                 <th>Penilai</th>
-                <th>Cetak</th>
                 <th>Aksi</th>
             <thead>
             <tbody>   	
                 @foreach($data as $key=>$row)
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
-                    <td>{{tgl_indo($row->dates)}}</td>
-                    <td>{{$row->peg->name}}</td>
-                    <td>{{$row->jab->nama}}</td>
-                    <td>{{$row->pejabat->user->name}}</td>
+                    <td>{{tgl_indo($row->plan_date)}}</td>
+                    <td>{{$row->skp->peg->name}} <br> (SKP tgl : {{tgl_indo($row->skp->dates)}})</td>
+                    <td>{{$row->skp->jab->nama}}</td>
+                    <td>{{$row->skp->pejabat->user->name}}</td>
                     <td>
-                        <a class="btn btn-primary" href="/amdk/skp/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
-                    </td>
-                    <td>
-                        <a href="/amdk/skp/edit/{{$row->id}}" class="btn btn-warning">
+                        <a href="/amdk/planning/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
                         <a href="#" class="btn btn-danger delete"
@@ -79,7 +75,7 @@
                 var name = $(this).attr('r-name');
                 Swal.fire({
                 title: 'Ingin Menghapus?',
-                text: "Yskpin ingin menghapus data  : "+name+" ini ?" ,
+                text: "Yplanningin ingin menghapus data  : "+name+" ini ?" ,
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -88,7 +84,7 @@
             }).then((result) => {
                 console.log(result);
                 if (result.value) {
-                    window.location = "/amdk/skp/delete/"+id;
+                    window.location = "/amdk/planning/delete/"+id;
                 }
             });
         });

@@ -86,7 +86,11 @@
                                 1
                             </td>
                             <td>
-                              <textarea name="activity" class="form-control" ></textarea>
+                                <select name="setup_ak_id[]" id="uraian" class="form-control over select2" required  onchange="getData1()">
+                                    @foreach ($ak as $item)
+                                        <option value="{{$item->id}}">{{$item->uraian}}</option>
+                                    @endforeach
+                                </select>
                             </td>
                             <td><input type="number" name="n_ak[]" class="form-control" id="ak-1" step="0.01" value="0"></td>
                             <td><input type="number" name="tot_ak[]" id="tot_ak-1" class="form-control" readonly value="0" ></td>
@@ -140,7 +144,11 @@
         $isi ='<tr id="cell-'+new_baris+'">'+
                     '<td>'+new_baris+'</td>'+
                     '<td>'+
-                        '<textarea name="activity" class="form-control" ></textarea>'+     
+                        '<select name="setup_ak_id[]" id="uraian" class="form-control select2" required  onchange="getData1()">'+
+                            '@foreach ($ak as $item)'+
+                                '<option value="{{$item->id}}">{{$item->uraian}}</option>'+        
+                            '@endforeach'+        
+                        '</select>'+       
                     '</td>'+
                     '<td><input type="number" name="n_ak[]" class="form-control" id="ak-'+new_baris+'" step="0.01" value="0" ></td>'+        
                     '<td><input type="number" name="tot_ak[]" class="form-control" readonly value="0" id="tot_ak-'+new_baris+'"></td>'+        
