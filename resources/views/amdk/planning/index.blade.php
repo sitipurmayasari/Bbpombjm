@@ -39,6 +39,7 @@
                 <th>Nama</th>
                 <th>Jabatan</th>
                 <th>Penilai</th>
+                <th>Cetak</th>
                 <th>Aksi</th>
             <thead>
             <tbody>   	
@@ -49,6 +50,9 @@
                     <td>{{$row->skp->peg->name}} <br> (SKP tgl : {{tgl_indo($row->skp->dates)}})</td>
                     <td>{{$row->skp->jab->nama}}</td>
                     <td>{{$row->skp->pejabat->user->name}}</td>
+                    <td>
+                        <a class="btn btn-primary" href="/amdk/planning/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
+                    </td>
                     <td>
                         <a href="/amdk/planning/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>

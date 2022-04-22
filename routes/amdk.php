@@ -213,6 +213,7 @@
   Route::get('/amdk/planning/edit/{id}','Amdk\PlanningController@edit')->name('planning.edit');
   Route::post('/amdk/planning/update/{id}','Amdk\PlanningController@update')->name('planning.update');
   Route::get('/amdk/planning/deletedet/{id}','Amdk\PlanningController@deletedet')->name('planning.deletedet');
+  Route::get('/amdk/planning/print/{id}','Amdk\PlanningController@print')->name('planning.print');
 
   //Route untuk Kegiatan Pengembangan
   Route::get('/amdk/development/create','Amdk\DevelopmentController@create')->name('development.create');
@@ -220,3 +221,4 @@
   Route::get('/amdk/development/delete/{id}','Amdk\DevelopmentController@delete')->name('development.delete');
   Route::get('/amdk/development/edit/{id}','Amdk\DevelopmentController@edit')->name('development.edit');
   Route::post('/amdk/development/update/{id}','Amdk\DevelopmentController@update')->name('development.update');
+  Route::get('/amdk/development/print/{id}','Amdk\DevelopmentController@print')->name('development.print');

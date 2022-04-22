@@ -13,6 +13,9 @@ use App\Skp;
 use App\Skp_detail;
 use App\Perencanaan;
 use App\Perencanaan_det;
+use PDF;
+use DateTime;
+use Carbon\Carbon;
 
 class PlanningController extends Controller
 {
@@ -126,7 +129,7 @@ class PlanningController extends Controller
         $data = Perencanaan_det::find($id);
         $out = $data->perencanaan_id;
         $data->delete();
-        return redirect('amdk/skp/edit/'.$out)->with('sukses','data Terhapus');
+        return redirect('amdk/planning/edit/'.$out)->with('sukses','data Terhapus');
     }
 
     public function print($id)
@@ -137,7 +140,7 @@ class PlanningController extends Controller
                           ->get();
       $hit = Perencanaan_det::SelectRaw("SUM(nilai_ak) AS nilai_ak")
                       ->where('perencanaan_id','=',$id)->first();
-      $pdf = PDF::loadview('amdk/skp.print',compact('data','isian','hit'));
+      $pdf = PDF::loadview('amdk/planning.print',compact('data','isian','hit'));
       return $pdf->stream();
     }
 

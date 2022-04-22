@@ -46,7 +46,7 @@
 <body>
     <div class="col-sm-12" style="text-align: center">
        <div style="align=center font-size: 18px">
-           <h3><b>SASARAN KERJA PERGAWAI</b></h3>
+           <h3><b>SASARAN KERJA PEGAWAI</b></h3>
        </div>
        <br>
     </div>
