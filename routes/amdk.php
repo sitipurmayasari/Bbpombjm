@@ -214,6 +214,7 @@
   Route::post('/amdk/planning/update/{id}','Amdk\PlanningController@update')->name('planning.update');
   Route::get('/amdk/planning/deletedet/{id}','Amdk\PlanningController@deletedet')->name('planning.deletedet');
   Route::get('/amdk/planning/print/{id}','Amdk\PlanningController@print')->name('planning.print');
+  Route::get('/amdk/planning/print2/{id}','Amdk\PlanningController@print2')->name('planning.print2');
 
   //Route untuk Kegiatan Pengembangan
   Route::get('/amdk/development/create','Amdk\DevelopmentController@create')->name('development.create');
@@ -222,3 +223,11 @@
   Route::get('/amdk/development/edit/{id}','Amdk\DevelopmentController@edit')->name('development.edit');
   Route::post('/amdk/development/update/{id}','Amdk\DevelopmentController@update')->name('development.update');
   Route::get('/amdk/development/print/{id}','Amdk\DevelopmentController@print')->name('development.print');
+
+  //Route untuk Kegiatan penunjang
+  Route::get('/amdk/support/create','Amdk\SupportController@create')->name('support.create');
+  Route::post('/amdk/support/store','Amdk\SupportController@store')->name('support.store');
+  Route::get('/amdk/support/delete/{id}','Amdk\SupportController@delete')->name('support.delete');
+  Route::get('/amdk/support/edit/{id}','Amdk\SupportController@edit')->name('support.edit');
+  Route::post('/amdk/support/update/{id}','Amdk\SupportController@update')->name('support.update');
+  Route::get('/amdk/support/print/{id}','Amdk\SupportController@print')->name('support.print');

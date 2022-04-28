@@ -183,6 +183,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/amdk/planning','Amdk\PlanningController@index')->name('planning');
     //Route untuk Kegiatan Pengembangan
     Route::get('/amdk/development','Amdk\DevelopmentController@index')->name('development');
+    //Route untuk Kegiatan penunjang
+    Route::get('/amdk/support','Amdk\SupportController@index')->name('support');
     
     
 
