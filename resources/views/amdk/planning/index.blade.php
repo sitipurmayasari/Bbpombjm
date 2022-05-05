@@ -39,7 +39,8 @@
                 <th>Nama</th>
                 <th>Jabatan</th>
                 <th>Penilai</th>
-                <th>Cetak</th>
+                <th>Lampiran SKP</th>
+                <th>Penilai Kegiatan</th>
                 <th>Aksi</th>
             <thead>
             <tbody>   	
@@ -52,6 +53,9 @@
                     <td>{{$row->skp->pejabat->user->name}}</td>
                     <td>
                         <a class="btn btn-primary" href="/amdk/planning/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" href="/amdk/planning/print2/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
                     </td>
                     <td>
                         <a href="/amdk/planning/edit/{{$row->id}}" class="btn btn-warning">

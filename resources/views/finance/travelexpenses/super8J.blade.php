@@ -44,7 +44,7 @@
         <tr>
             <td>NIP</td>
             <td > : 
-                @if ($item->pegawai->status=='PNS')
+                @if ($item->pegawai->golongan_id != null)
                     {{$item->pegawai->no_pegawai}}
                 @else
                     -
@@ -97,7 +97,7 @@
         <tr>
             <td></td>
             <td style="text-align: center;">
-                @if ($item->pegawai->status=="PNS")
+                @if ($item->pegawai->golongan_id != null)
                     NIP. {{$item->pegawai->no_pegawai}}
                 @else
                     NIP. -

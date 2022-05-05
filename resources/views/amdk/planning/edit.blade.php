@@ -167,7 +167,7 @@
                         '</select>'+
                     '</td>'+
                     '<td>'+
-                        '<select name="setup_ak_id[]" class="form-control select2" id="setup_id-'+new_baris+'"  onchange="getnilai1()">'+
+                        '<select name="setup_ak_id[]" class="form-control select2" id="setup_id-'+new_baris+'"  onchange="getnilai('+new_baris+')">'+
                             '<option value="">Pilih Kegiatan</option>'+
                             '@foreach ($ak as $item)'+
                                 '<option value="{{$item->id}}">{{$item->kode_ak}}-{{$item->uraian}}</option>'+

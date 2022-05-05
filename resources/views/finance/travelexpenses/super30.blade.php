@@ -120,7 +120,7 @@
             <td>NIP</td>
             <td>:</td>
             <td colspan="2"> 
-                @if ($item->pegawai->status=='PNS')
+                @if ($item->pegawai->golongan_id != null)
                     {{$item->pegawai->no_pegawai}}
                 @else
                     -
@@ -131,7 +131,7 @@
             <td>Pangkat / Gol.</td>
             <td>:</td>
             <td colspan="2"> 
-                @if ($item->pegawai->status=="PNS")
+                @if ($item->pegawai->golongan_id != null)
                     {{$item->pegawai->gol->jenis}} / 
                     {{$item->pegawai->gol->golongan}} {{$item->pegawai->gol->ruang}}
                 @endif
@@ -186,7 +186,7 @@
         <tr>
             <td></td>
             <td style="text-align: center;">
-                @if ($petugas->user->status=="PNS")
+                @if ($petugas->user->golongan_id != null)
                     NIP. {{$petugas->user->no_pegawai}}
                 @else
                     NIP. -
@@ -195,7 +195,5 @@
         </tr>
     </table>
 </body>
-
 @endforeach
-
 </html>

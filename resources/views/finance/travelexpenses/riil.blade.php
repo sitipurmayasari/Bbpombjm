@@ -127,7 +127,7 @@
                 NIP 
             </td>
             <td>
-                :   @if ($item->pegawai->status=='PNS')
+                :   @if ($item->pegawai->golongan_id != null)
                         {{$item->pegawai->no_pegawai}}
                     @else
                         -
@@ -140,7 +140,7 @@
             </td>
             <td style="line-height:1;">
                 : 
-                @if ($item->pegawai->status=='PNS')
+                @if ($item->pegawai->golongan_id != null)
                     {{$item->pegawai->jabasn->nama}}
                 @else
                     {{$item->pegawai->deskjob}}
@@ -192,15 +192,6 @@
                 </b> 
                 selama
                 {{$lama->hitung}}
-                {{-- @php
-                    $hari=0;
-                @endphp
-                @foreach ($tujuan as $key=>$hr)
-                    @php
-                        $hari += $hr->longday;
-                    @endphp
-                @endforeach --}}
-                {{-- {{$hari}} --}}
                 hari, dengan ini menyatakan dengan sesungguhnya bahwa : 
             </td>
         </tr>
@@ -225,7 +216,7 @@
                 $bbm = 0;
                 $nilai = $injectQuery->getDetail($item->id);
                 $nilai2 = $injectQuery->getTr($item->id);
-                
+                $kkp = $injectQuery->getkkp($item->id);
             @endphp
             <tr>
                 <td style="text-align: center;" class="isi">1</td>
@@ -463,16 +454,28 @@
                 @php
                     $jum1 = 0;
                     $jum2 = 0;
+
+                    if ($nilai->inn_fee_1 != 0 && $kkp->hotelkkp1 == 'N') {
+                       $inap1 = $nilai->inn_fee_1;
+                    } else {
+                        $inap1 = 0;
+                    }
+
+                    if ($nilai->inn_fee_2 != 0 && $kkp->hotelkkp2 == 'N') {
+                       $inap2 = $nilai->inn_fee_2;
+                    } else {
+                        $inap2 = 0;
+                    }
                 @endphp
+
                 <td style="text-align: center;" class="isi">2</td>
-                <td class="isi">
-                    
-                    @if ($nilai->inn_fee_1 != 0 && $nilai->inn_fee_2 == 0)
+                <td class="isi">                   
+                    @if ($inap1 != 0 && $inap2 == 0)
                         @php
                             $fee1 = $nilai->inn_fee_1 / $nilai->isi_1;
                         @endphp
                         Biaya Penginapan :  {{$nilai->long_stay_1}} hari &nbsp; x &nbsp; Rp. &nbsp; &nbsp; &nbsp; &nbsp; {{number_format($fee1)}}
-                    @elseif ($nilai->inn_fee_2 != 0 && $nilai->inn_fee_1 != 0 )
+                    @elseif ($inap1 != 0 && $inap2 != 0 )
                         @php
                             $fee1 = $nilai->inn_fee_1 / $nilai->isi_1;
                             $fee2 = $nilai->inn_fee_2 / $nilai->isi_2;
@@ -480,16 +483,16 @@
                         Biaya Penginapan 1 : {{$nilai->long_stay_1}} hari &nbsp; x &nbsp; Rp. &nbsp; &nbsp; &nbsp; &nbsp; {{number_format($fee1)}} <br>
                         Biaya Penginapan 2 : {{$nilai->long_stay_2}} hari &nbsp; x &nbsp; Rp. &nbsp; &nbsp; &nbsp; &nbsp; {{number_format($fee2)}}
                     @else
-                        {{'-'}} hari &nbsp; x &nbsp; Rp. &nbsp; &nbsp; &nbsp; &nbsp; {{'-'}}
+                        Biaya Penginapan : {{'-'}} hari &nbsp; x &nbsp; Rp. &nbsp; &nbsp; &nbsp; &nbsp; {{'-'}}
                     @endif
                 </td>
                 <td class="isi">
-                    @if ($nilai->klaim_1 != 0 && $nilai->klaim_2 == 0)
+                    @if ($inap1 != 0 && $inap2 == 0)
                         @php
                             $jum1 = $nilai->klaim_1;
                         @endphp
-                        {{number_format($jum1)}}
-                    @elseif ($nilai->klaim_2 != 0)
+                        Rp. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{number_format($jum1)}}
+                    @elseif ($inap1 != 0  && $inap2 != 0)
                         @php
                             $jum1 = $nilai->klaim_1;
                             $jum2 = $nilai->klaim_2;
@@ -497,13 +500,13 @@
                         Rp. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{number_format($jum1)}} <br>
                         Rp. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{number_format($jum2)}}
                     @else
-                        {{'-'}}
+                        Rp. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{'-'}}
                     @endif
                 </td>
                 <td style="text-align: center" class="isi">
-                    @if ($nilai->isi_1 != '0' && $nilai->isi_2 == '0')
+                    @if ($inap1 != '0' && $inap2 == '0')
                             1 kamar untuk {{$nilai->isi_1}} orang
-                    @elseif($nilai->isi_2 != '0' && $nilai->isi_1 != '0')
+                    @elseif($inap1 != '0' && $inap2 != '0')
                             1 kamar untuk {{$nilai->isi_1}} orang <br>
                             1 kamar untuk {{$nilai->isi_2}} orang
                     @else 
@@ -579,7 +582,7 @@
             <td></td>
             <td style="text-align:center;">
                 <u>{{$item->pegawai->name}}</u> <br>
-                @if ($item->pegawai->status=='PNS')
+                @if ($item->pegawai->golongan_id != null)
                     NIP. {{$item->pegawai->no_pegawai}}
                 @else
                     &nbsp;
@@ -621,7 +624,7 @@
                    , {{tgl_indo($data->date)}}
                 </td>
                 <td></td>
-                <td style="text-align: right; line-height: 1; " > Page 1 of 1</td>
+                <td style="text-align: right; line-height: 1; font-size:6;" > Page 1 of 1</td>
             </tr>
         </tr>
     </table>
@@ -696,7 +699,7 @@
                 NIP 
             </td>
             <td>
-                :   @if ($item->pegawai->status=='PNS')
+                :   @if ($item->pegawai->golongan_id != null)
                         {{$item->pegawai->no_pegawai}}
                     @else
                         -
@@ -709,7 +712,7 @@
             </td>
             <td style="line-height:1;">
                 : 
-                @if ($item->pegawai->status=='PNS')
+                @if ($item->pegawai->golongan_id != null)
                     {{$item->pegawai->jabasn->nama}}
                 @else
                     {{$item->pegawai->deskjob}}
@@ -760,15 +763,6 @@
                     @endif
                 </b> 
                 selama
-                {{-- @php
-                    $hari=0;
-                @endphp
-                @foreach ($tujuan as $key=>$hr)
-                    @php
-                        $hari += $hr->longday;
-                    @endphp
-                @endforeach
-                {{$hari}} --}}
                 {{$lama->hitung}}
                 hari, dengan ini menyatakan dengan sesungguhnya bahwa : 
             </td>
@@ -1026,16 +1020,28 @@
                 @php
                     $jum1 = 0;
                     $jum2 = 0;
+
+                    if ($nilai->inn_fee_1 != 0 && $kkp->hotelkkp1 == 'N') {
+                       $inap1 = $nilai->inn_fee_1;
+                    } else {
+                        $inap1 = 0;
+                    }
+
+                    if ($nilai->inn_fee_2 != 0 && $kkp->hotelkkp2 == 'N') {
+                       $inap2 = $nilai->inn_fee_2;
+                    } else {
+                        $inap2 = 0;
+                    }
                 @endphp
+
                 <td style="text-align: center;" class="isi">2</td>
-                <td class="isi">
-                    
-                    @if ($nilai->inn_fee_1 != 0 && $nilai->inn_fee_2 == 0)
+                <td class="isi">                   
+                    @if ($inap1 != 0 && $inap2 == 0)
                         @php
                             $fee1 = $nilai->inn_fee_1 / $nilai->isi_1;
                         @endphp
                         Biaya Penginapan :  {{$nilai->long_stay_1}} hari &nbsp; x &nbsp; Rp. &nbsp; &nbsp; &nbsp; &nbsp; {{number_format($fee1)}}
-                    @elseif ($nilai->inn_fee_2 != 0 && $nilai->inn_fee_1 != 0 )
+                    @elseif ($inap1 != 0 && $inap2 != 0 )
                         @php
                             $fee1 = $nilai->inn_fee_1 / $nilai->isi_1;
                             $fee2 = $nilai->inn_fee_2 / $nilai->isi_2;
@@ -1043,16 +1049,16 @@
                         Biaya Penginapan 1 : {{$nilai->long_stay_1}} hari &nbsp; x &nbsp; Rp. &nbsp; &nbsp; &nbsp; &nbsp; {{number_format($fee1)}} <br>
                         Biaya Penginapan 2 : {{$nilai->long_stay_2}} hari &nbsp; x &nbsp; Rp. &nbsp; &nbsp; &nbsp; &nbsp; {{number_format($fee2)}}
                     @else
-                        {{'-'}} hari &nbsp; x &nbsp; Rp. &nbsp; &nbsp; &nbsp; &nbsp; {{'-'}}
+                        Biaya Penginapan : {{'-'}} hari &nbsp; x &nbsp; Rp. &nbsp; &nbsp; &nbsp; &nbsp; {{'-'}}
                     @endif
                 </td>
                 <td class="isi">
-                    @if ($nilai->klaim_1 != 0 && $nilai->klaim_2 == 0)
+                    @if ($inap1 != 0 && $inap2 == 0)
                         @php
                             $jum1 = $nilai->klaim_1;
                         @endphp
-                        {{number_format($jum1)}}
-                    @elseif ($nilai->klaim_2 != 0)
+                        Rp. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{number_format($jum1)}}
+                    @elseif ($inap1 != 0  && $inap2 != 0)
                         @php
                             $jum1 = $nilai->klaim_1;
                             $jum2 = $nilai->klaim_2;
@@ -1060,13 +1066,13 @@
                         Rp. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{number_format($jum1)}} <br>
                         Rp. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{number_format($jum2)}}
                     @else
-                        {{'-'}}
+                        Rp. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{'-'}}
                     @endif
                 </td>
                 <td style="text-align: center" class="isi">
-                    @if ($nilai->isi_1 != '0' && $nilai->isi_2 == '0')
+                    @if ($inap1 != '0' && $inap2 == '0')
                             1 kamar untuk {{$nilai->isi_1}} orang
-                    @elseif($nilai->isi_2 != '0' && $nilai->isi_1 != '0')
+                    @elseif($inap1 != '0' && $inap2 != '0')
                             1 kamar untuk {{$nilai->isi_1}} orang <br>
                             1 kamar untuk {{$nilai->isi_2}} orang
                     @else 
@@ -1142,7 +1148,7 @@
             <td></td>
             <td style="text-align:center;">
                 <u>{{$item->pegawai->name}}</u> <br>
-                @if ($item->pegawai->status=='PNS')
+                @if ($item->pegawai->golongan_id != null)
                     NIP. {{$item->pegawai->no_pegawai}}
                 @else
                     &nbsp;
@@ -1184,7 +1190,7 @@
                 , {{tgl_indo($data->date)}}
                 </td>
                 <td></td>
-                <td style="text-align: right; line-height: 1; " > Page 1 of 1</td>
+                <td style="text-align: right; line-height: 1; font-size:6;" > Page 1 of 1</td>
             </tr>
         </tr>
     </table>

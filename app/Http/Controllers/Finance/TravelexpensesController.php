@@ -248,6 +248,12 @@ class TravelexpensesController extends Controller
             for ($i = 0; $i < count($request->input('outst_employee_id')); $i++){
                 $inap1         = $request->inap1 != null ?  $request->inap1[$i] : 'N';
                 $inap2         = $request->inap2 != null ?  $request->inap2[$i] : 'N';
+                $hotelkkp1     =  $request->input('hotelkkp1_'.$emId) != null ?  $request->input('hotelkkp1_'.$emId) : 'N';
+                $hotelkkp2     =  $request->input('hotelkkp2_'.$emId) != null ?  $request->input('hotelkkp2_'.$emId) : 'N';
+                $planekkp1     =  $request->input('planekkp1_'.$emId) != null ?  $request->input('planekkp1_'.$emId) : 'N';
+                $planekkp2     =  $request->input('planekkp2_'.$emId) != null ?  $request->input('planekkp2_'.$emId) : 'N';
+                $planekkp3     =  $request->input('planekkp3_'.$emId) != null ?  $request->input('planekkp3_'.$emId) : 'N';
+                $planekkpreturn=  $request->input('planekkpreturn_'.$emId) != null ?  $request->input('planekkpreturn_'.$emId) : 'N';
 
                 $datathree = [
                     'expenses_id'       => $expenses_id,
@@ -274,8 +280,14 @@ class TravelexpensesController extends Controller
                     'plane_flightreturn'=> $request->plane_flightreturn[$i],
                     'inap1'             => $inap1,
                     'inap2'             => $inap2,
-                    'hotelmax1'       => $request->hotelmax1[$i],
-                    'hotelmax2'       => $request->hotelmax2[$i]
+                    'hotelmax1'         => $request->hotelmax1[$i],
+                    'hotelmax2'         => $request->hotelmax2[$i],
+                    'hotelkkp1'         => $hotelkkp1,
+                    'hotelkkp2'         => $hotelkkp2,
+                    'planekkp1'         => $planekkp1,
+                    'planekkp2'         => $planekkp2,
+                    'planekkp3'         => $planekkp3,
+                    'planekkpreturn'    => $planekkpreturn
                 ];
                 Travelexpenses2::create($datathree);     
             }
@@ -499,6 +511,13 @@ class TravelexpensesController extends Controller
             for ($i = 0; $i < count($request->input('outst_employee_id')); $i++){
                 $inap1         = $request->inap1 != null ?  $request->inap1[$i] : 'N';
                 $inap2         = $request->inap2 != null ?  $request->inap2[$i] : 'N';
+                $hotelkkp1     =  $request->input('hotelkkp1_'.$emId) != null ?  $request->input('hotelkkp1_'.$emId) : 'N';
+                $hotelkkp2     =  $request->input('hotelkkp2_'.$emId) != null ?  $request->input('hotelkkp2_'.$emId) : 'N';
+                $planekkp1     =  $request->input('planekkp1_'.$emId) != null ?  $request->input('planekkp1_'.$emId) : 'N';
+                $planekkp2     =  $request->input('planekkp2_'.$emId) != null ?  $request->input('planekkp2_'.$emId) : 'N';
+                $planekkp3     =  $request->input('planekkp3_'.$emId) != null ?  $request->input('planekkp3_'.$emId) : 'N';
+                $planekkpreturn=  $request->input('planekkpreturn_'.$emId) != null ?  $request->input('planekkpreturn_'.$emId) : 'N';
+
                 $datathree = [
                     'expenses_id'       => $expenses_id,
                     'outst_employee_id' => $request->outst_employee_id[$i],
@@ -525,7 +544,13 @@ class TravelexpensesController extends Controller
                     'inap1'             => $inap1,
                     'inap2'             => $inap2,
                     'hotelmax1'         => $request->hotelmax1[$i],
-                    'hotelmax2'         => $request->hotelmax2[$i]
+                    'hotelmax2'         => $request->hotelmax2[$i],
+                    'hotelkkp1'         => $hotelkkp1,
+                    'hotelkkp2'         => $hotelkkp2,
+                    'planekkp1'         => $planekkp1,
+                    'planekkp2'         => $planekkp2,
+                    'planekkp3'         => $planekkp3,
+                    'planekkpreturn'    => $planekkpreturn
                 ];
                 Travelexpenses2::create($datathree);    
             }

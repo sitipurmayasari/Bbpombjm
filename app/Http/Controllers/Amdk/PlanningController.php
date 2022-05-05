@@ -94,22 +94,22 @@ class PlanningController extends Controller
         // dd($request->all());
       $perencanaan = Perencanaan::find($id);
       $perencanaan->update($request->all());
+      Perencanaan_det::where('perencanaan_id', $id)->delete();
 
-      DB::beginTransaction(); 
-        //---------------detail----------------------
-        for ($i = 0; $i < count($request->input('setup_ak_id')); $i++){
-            $data = [
-                'perencanaan_id'  => $id,
-                'kin_date'        => $request->kin_date[$i],
-                'skp_detail_id'   => $request->skp_detail_id[$i],
-                'setup_ak_id'     => $request->setup_ak_id[$i],
-                'nilai_ak'        =>$request->nilai_ak[$i]
-            ];
-            Skp_detail::updateOrCreate([
-              'id'   => $request->detail_id[$i],
-            ],$data);
-        }
-        DB::commit(); 
+        DB::beginTransaction(); 
+            $perencanaan_id = $id;
+          for ($i = 0; $i < count($request->input('setup_ak_id')); $i++){
+              $data = [
+                  'perencanaan_id'  => $perencanaan_id,
+                  'kin_date'        => $request->kin_date[$i],
+                  'skp_detail_id'   => $request->skp_detail_id[$i],
+                  'setup_ak_id'     => $request->setup_ak_id[$i],
+                  'nilai_ak'        =>$request->nilai_ak[$i]
+              ];
+              Perencanaan_det::create($data);
+          }
+
+        DB::commit();
 
       return redirect('/amdk/planning')->with('sukses','Data Diperbaharui');
     }
@@ -133,6 +133,20 @@ class PlanningController extends Controller
     }
 
     public function print($id)
+    {
+      $data = Perencanaan::where('id',$id)->first();
+      $isian = Perencanaan_det::orderBy('skp_detail_id','asc')
+                                ->SelectRaw('skp_detail_id', 'kin_date')
+                                ->where('perencanaan_id','=',$id)
+                                ->GroupBy('skp_detail_id')
+                                ->get();
+      $hit = Perencanaan_det::SelectRaw("SUM(nilai_ak) AS nilai_ak")
+                      ->where('perencanaan_id','=',$id)->first();
+      $pdf = PDF::loadview('amdk/planning.print',compact('data','isian','hit'));
+      return $pdf->stream();
+    }
+
+    public function print2($id)
     {
       $data = Perencanaan::where('id',$id)->first();
       $isian = Perencanaan_det::orderBy('id','asc')

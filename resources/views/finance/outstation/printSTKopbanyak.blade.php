@@ -156,7 +156,7 @@
                     <td class="detail">
                         {{$row->pegawai->name}}
                     </td>
-                    <td class="detail">
+                    <td class="detail" style="text-align: center;">
                         @if ($row->pegawai->golongan_id != null)
                             {{$row->pegawai->no_pegawai}}
                         @else

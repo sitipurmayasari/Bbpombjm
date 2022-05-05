@@ -209,33 +209,51 @@
                                     @if ($data->status==="PNS")
                                         <option value="">Pilih Status</option>
                                         <option value="PNS" selected>PNS</option>
+                                        <option value="CPNS">CPNS</option>
+                                        <option value="PPPK">PPPK</option>
                                         <option value="PPNPN">PPNPN</option>
                                         <option value="Magang">Magang</option>
                                         <option value="OSC">Outsourcing</option>
                                     @elseif ($data->status==="PPNPN")
                                         <option value="">Pilih Status</option>
                                         <option value="PNS">PNS</option>
+                                        <option value="CPNS">CPNS</option>
+                                        <option value="PPPK">PPPK</option>
                                         <option value="PPNPN" selected>PPNPN</option>
                                         <option value="Magang">Magang</option>
                                         <option value="OSC">Outsourcing</option>
                                     @elseif ($data->status==="Magang")
                                         <option value="">Pilih Status</option>
                                         <option value="PNS">PNS</option>
+                                        <option value="CPNS">CPNS</option>
+                                        <option value="PPPK">PPPK</option>
                                         <option value="PPNPN">PPNPN</option>
                                         <option value="Magang" selected>Magang</option>
                                         <option value="OSC">Outsourcing</option>
-                                    @elseif ($data->status==="OSC")
+                                    @elseif ($data->status==="CPNS")
                                         <option value="">Pilih Status</option>
                                         <option value="PNS">PNS</option>
-                                        <option value="PPNPN">PPNPN</option>
-                                        <option value="Magang">Magang</option>
-                                        <option value="OSC" selected>Outsourcing</option>
-                                    @else
-                                        <option value="">Pilih Status</option>
-                                        <option value="PNS">PNS</option>
+                                        <option value="CPNS" selected>CPNS</option>
+                                        <option value="PPPK">PPPK</option>
                                         <option value="PPNPN">PPNPN</option>
                                         <option value="Magang">Magang</option>
                                         <option value="OSC">Outsourcing</option>
+                                    @elseif ($data->status==="PPPK")
+                                        <option value="">Pilih Status</option>
+                                        <option value="PNS">PNS</option>
+                                        <option value="CPNS">CPNS</option>
+                                        <option value="PPPK" selected>PPPK</option>
+                                        <option value="PPNPN">PPNPN</option>
+                                        <option value="Magang">Magang</option>
+                                        <option value="OSC">Outsourcing</option>
+                                    @else
+                                        <option value="">Pilih Status</option>
+                                        <option value="PNS">PNS</option>
+                                        <option value="CPNS">CPNS</option>
+                                        <option value="PPPK">PPPK</option>
+                                        <option value="PPNPN">PPNPN</option>
+                                        <option value="Magang">Magang</option>
+                                        <option value="OSC" selected>Outsourcing</option>
                                     @endif
                                     
                                 </select>

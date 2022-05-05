@@ -114,7 +114,12 @@
     <tr>
         <td class="isi">2.Nama Pegawai yang diperintah / NIP</td>
         <td class="isi">
-             {{$item->pegawai->name}} / {{$item->pegawai->no_pegawai}}
+            {{$item->pegawai->name}} /
+            @if ($item->pegawai->golongan_id != null)
+               {{$item->pegawai->no_pegawai}}
+            @else
+                {{ '-' }}
+            @endif
         </td>
     </tr>
     <tr>

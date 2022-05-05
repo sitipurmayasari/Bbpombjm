@@ -7,34 +7,39 @@
                             <thead>
                                 <tr>
                                     <th rowspan="2" style="text-align: center;">NO</th>
-                                    <th  rowspan="2" class="text-center">Nama</th>
-                                    <th colspan="6"  class="text-center"> Tiket Pergi Kota 1</th>
-                                    <th colspan="6"  class="text-center"> Tiket Pergi Kota 2</th>
-                                    <th colspan="6"  class="text-center"> Tiket Pergi Kota 3</th>
-                                    <th colspan="6"  class="text-center"> Tiket Pulang</th>
+                                    <th rowspan="2" class="text-center">Nama</th>
+                                    <th colspan="7" > Tiket Pergi Kota 1</th>
+                                    <th colspan="7"> Tiket Pergi Kota 2</th>
+                                    <th colspan="7"> Tiket Pergi Kota 3</th>
+                                    <th colspan="7"> Tiket Pulang</th>
                                 </tr>
                                 <tr>
+                                    {{-- ----------kota 1------------ --}}
+                                    <th>KKP</th>
                                     <th>Maskapai Pergi</th>
                                     <th>Nomor Tiket</th>
                                     <th>Harga Tiket (Rp)</th>
                                     <th>Tgl Pergi</th>
                                     <th>Kode Booking</th>
                                     <th>No. Penerbangan</th>
-
+                                    {{-- ----------kota 2------------ --}}
+                                    <th>KKP</th>
                                     <th>Maskapai Pergi</th>
                                     <th>Nomor Tiket</th>
                                     <th>Harga Tiket (Rp)</th>
                                     <th>Tgl Pergi</th>
                                     <th>Kode Booking</th>
                                     <th>No. Penerbangan</th>
-
+                                    {{-- ----------kota 3----------- --}}
+                                    <th>KKP</th>
                                     <th>Maskapai Pergi</th>
                                     <th>Nomor Tiket</th>
                                     <th>Harga Tiket (Rp)</th>
                                     <th>Tgl Pergi</th>
                                     <th>Kode Booking</th>
                                     <th>No. Penerbangan</th>
-
+                                    {{-- ----------Pulang----------- --}}
+                                    <th>KKP</th>
                                     <th>Maskapai Pulang</th>
                                     <th>Nomor Tiket</th>
                                     <th>Harga Tiket Rp.</th>
@@ -51,6 +56,13 @@
                                     <tr id="cellb-{{$nomor}}">
                                         <td style="text-align: center;">{{$nomor}}</td>
                                         <td> {{$item->peg->pegawai->name}}</td>
+                                        <td>
+                                            @if ($item->planekkp1=='Y')
+                                                <input type="checkbox" name="planekkp1_{{$item->outst_employee_id}}" value="Y" checked>&nbsp;
+                                            @else
+                                                <input type="checkbox" name="planekkp1_{{$item->outst_employee_id}}" value="Y" >&nbsp;
+                                            @endif
+                                        </td>
                                         <td>
                                             <select name="plane_id1[]" class="select2 col-md-12">
                                                 <option value="">Pilih Maskapai</option>
@@ -69,6 +81,13 @@
                                         <td><input type="text" name="plane_book1[]" value="{{$item->plane_book1}}"/></td>
                                         <td><input type="text" name="plane_flight1[]" value="{{$item->plane_flight1}}"/></td>
                                         <td>
+                                            @if ($item->planekkp2=='Y')
+                                                <input type="checkbox" name="planekkp2_{{$item->outst_employee_id}}" value="Y" checked>&nbsp;
+                                            @else
+                                                <input type="checkbox" name="planekkp2_{{$item->outst_employee_id}}" value="Y" >&nbsp;
+                                            @endif
+                                        </td>
+                                        <td>
                                             <select name="plane_id2[]" class="select2 col-md-12">
                                                 <option value="">Pilih Maskapai</option>
                                                 @foreach ($plane as $maska)
@@ -86,6 +105,13 @@
                                         <td><input type="text" name="plane_book2[]" value="{{$item->plane_book2}}"/></td>
                                         <td><input type="text" name="plane_flight2[]" value="{{$item->plane_flight2}}"/></td>
                                         <td>
+                                            @if ($item->planekkp3=='Y')
+                                                <input type="checkbox" name="planekkp3_{{$item->outst_employee_id}}" value="Y" checked>&nbsp;
+                                            @else
+                                                <input type="checkbox" name="planekkp3_{{$item->outst_employee_id}}" value="Y" >&nbsp;
+                                            @endif
+                                        </td>
+                                        <td>
                                             <select name="plane_id3[]" class="select2 col-md-12">
                                                 <option value="">Pilih Maskapai</option>
                                                 @foreach ($plane as $maska)
@@ -102,6 +128,13 @@
                                         <td><input type="date" name="godate3[]" value="{{$item->godate3}}"/></td>
                                         <td><input type="text" name="plane_book3[]" value="{{$item->plane_book3}}"/></td>
                                         <td><input type="text" name="plane_flight3[]" value="{{$item->plane_flight3}}"/></td>
+                                        <td>
+                                            @if ($item->planekkpreturn=='Y')
+                                                <input type="checkbox" name="planekkpreturn_{{$item->outst_employee_id}}" value="Y" checked>&nbsp;
+                                            @else
+                                                <input type="checkbox" name="planekkpreturn_{{$item->outst_employee_id}}" value="Y" >&nbsp;
+                                            @endif
+                                        </td>
                                         <td>
                                             <select name="plane_idreturn[]" class="select2 col-md-12">
                                                 <option value="">Pilih Maskapai</option>
@@ -126,6 +159,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        *Centang KKP jika menggunakan Kartu Kredit Pemerintah
                    </div>
     
                 </div>

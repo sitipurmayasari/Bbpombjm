@@ -362,6 +362,7 @@
                         '<td style="width: 120px;">'+response.peg[i].name+
                             '<input type="hidden" name="idpeg[]" class="outid" value='+response.peg[i].id+'>'+
                         '</td>'+
+                        '<td><input type="checkbox" name="hotelkkp1_'+response.peg[i].id+'" value="Y"></td>'+
                         '<td><input type="text" name="innname_1[]" /></td>'+
                         '<td><input type="text" name="inn_loc1[]" /></td>'+
                         '<td><input type="number" name="inn_telp1[]" /></td>'+
@@ -375,6 +376,7 @@
                         '<td><input type="number" min="0" value="0" name="isi_1[]" style="width: 50px"  id="isi1-'+no+'" onkeyup="longstay1('+no+')"/>org</td>'+
                         '<td><input type="number" min="0" value="0" name="klaim_1[]"  id="klaim1-'+no+'"/></td>'+
                         '<td><input type="text" name="innvoice1[]" /></td>'+
+                        '<td><input type="checkbox" name="hotelkkp2_'+response.peg[i].id+'" value="Y"></td>'+
                         '<td><input type="text" name="innname_2[]" /></td>'+
                         '<td><input type="text" name="inn_loc2[]" /></td>'+
                         '<td><input type="number" name="inn_telp2[]" /></td>'+
@@ -403,6 +405,7 @@
                         '<td style="width: 120px;">'+response.peg[i].name+
                             '<input type="hidden" name="idpeg[]" class="outid" value='+response.peg[i].id+'>'+
                         '</td>'+
+                        '<td><input type="checkbox" name="planekkp1_'+response.peg[i].id+'" value="Y"></td>'+
                         '<td>'+
                             '<select name="plane_id1[]"  select2" >'+
                                 '<option value="">Pilih Maskapai</option>'+
@@ -416,6 +419,7 @@
                         '<td><input type="date" name="godate1[]" /></td>'+
                         '<td><input type="text" name="plane_book1[]" /></td>'+
                         '<td><input type="text" name="plane_flight1[]" /></td>'+
+                        '<td><input type="checkbox" name="planekkp2_'+response.peg[i].id+'" value="Y"></td>'+
                         '<td>'+
                             '<select name="plane_id2[]"  select2" >'+
                                 '<option value="">Pilih Maskapai</option>'+
@@ -429,6 +433,7 @@
                         '<td><input type="date" name="godate2[]" /></td>'+
                         '<td><input type="text" name="plane_book2[]" /></td>'+
                         '<td><input type="text" name="plane_flight2[]" /></td>'+
+                        '<td><input type="checkbox" name="planekkp3_'+response.peg[i].id+'" value="Y"></td>'+
                         '<td>'+
                             '<select name="plane_id3[]"  select2" >'+
                                 '<option value="">Pilih Maskapai</option>'+
@@ -442,6 +447,7 @@
                         '<td><input type="date" name="godate3[]" /></td>'+
                         '<td><input type="text" name="plane_book3[]" /></td>'+
                         '<td><input type="text" name="plane_flight3[]" /></td>'+
+                        '<td><input type="checkbox" name="planekkpreturn_'+response.peg[i].id+'" value="Y"></td>'+
                         '<td>'+
                             '<select name="plane_idreturn[]"  select2" >'+
                                 '<option value="">Pilih Maskapai</option>'+

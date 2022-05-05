@@ -48,6 +48,11 @@ class InjectQuery
         return $nilai;
     }
 
+    public function getkkp($id){
+        $nilai = Travelexpenses2::Where('outst_employee_id',$id)->first();
+        return $nilai;
+    }
+
     public function getUH($id){
         $dailyfee = Expenses_daily::Where('outst_employee_id',$id)->first();
         return $dailyfee;
@@ -74,6 +79,7 @@ class InjectQuery
         $nilai = Travelexpenses::Where('outst_employee_id',$id)->first();
         $nilai1 = Travelexpenses1::Where('outst_employee_id',$id)->first();
         $nilai2 = Expenses_daily::Where('outst_employee_id',$id)->first();
+        $kkp = Travelexpenses2::Where('outst_employee_id',$id)->first();
         $days = Outst_destiny::SelectRaw('SUM(longday) AS hari')
                                 ->LeftJoin('outstation','outstation.id','=','outst_destiny.outstation_id')
                                 ->LeftJoin('outst_employee','outstation.id','=','outst_employee.outstation_id')
@@ -82,10 +88,30 @@ class InjectQuery
         // transport
         $bbm            = $nilai1->bbm;
 
-        $plane1         = $nilai1->planefee1;
-        $plane2         = $nilai1->planefee2;
-        $plane3         = $nilai1->planefee3;
-        $planeret       = $nilai1->planereturnfee;
+        if ($kkp->planekkp1 == 'N') {
+            $plane1         = $nilai1->planefee1;
+        } else {
+            $plane1         = 0;
+        }
+
+        if ($kkp->planekkp2 == 'N') {
+            $plane2         = $nilai1->planefee2;
+        } else {
+            $plane2         = 0;
+        }
+
+        if ($kkp->planekkp3 == 'N') {
+            $plane3         = $nilai1->planefee3;
+        } else {
+            $plane3         = 0;
+        }
+
+        if ($kkp->planekkpreturn == 'N') {
+            $planeret         = $nilai1->planereturnfee;
+        } else {
+            $planeret         = 0;
+        }
+
         
         $taxicf         = $nilai1->taxy_count_from;
         $taxict         = $nilai1->taxy_count_to;
@@ -114,8 +140,18 @@ class InjectQuery
         $pertemuan = $meethalf+$meetfull;
 
         // penginapan
-        $inn1 = $nilai1->klaim_1;
-        $inn2 = $nilai1->klaim_2;
+
+        if ($kkp->hotelkkp1 == 'N') {
+            $inn1 = $nilai1->klaim_1;
+        } else {
+            $inn1 = 0;
+        }
+
+        if ($kkp->hotelkkp2 == 'N') {
+            $inn2 = $nilai1->klaim_2;
+        } else {
+            $inn2 = 0;
+        }
 
         $penginapan = $inn1+$inn2;
 

@@ -151,6 +151,8 @@
                             <div class="col-sm-8">
                                 <select id="status" name="status" class="col-xs-10 col-sm-10" required>
                                     <option value="PNS">PNS</option>
+                                    <option value="CPNS">CPNS</option>
+                                    <option value="PPPK">PPPK</option>
                                     <option value="PPNPN">PPNPN</option>
                                     <option value="Magang">Magang</option>
                                     <option value="OSC">Outsourcing</option>
