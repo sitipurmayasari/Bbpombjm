@@ -152,6 +152,9 @@ class TukinController extends Controller
 
 
       public function print($id){
+        ini_set('max_execution_time', 1800); //300 seconds = 5 minutes
+        ini_set('memory_limit', '3000M');
+
           $data = Tukin::where('id',$id)
                 ->select('tukin.*', DB::raw('CASE
                                                 WHEN bulan= 1 THEN "Januari"
@@ -190,7 +193,6 @@ class TukinController extends Controller
                             ->get();
           $user = User::all(); 
 
-          ini_set('max_execution_time', '1800'); // 30 mins
 
           $pdf = PDF::loadview('amdk/tukin.print',compact('data','isi','user'));
             return $pdf->stream();
