@@ -55,9 +55,11 @@
                         <a class="btn btn-primary" href="/finance/travelexpenses/receipt/{{$row->id}}" target="_blank" 
                             rel="noopener noreferrer">Kuitansi</a>
                     </td>
-                    <td>
+                    <td style="text-align: center">
                         <a class="btn btn-primary" href="/finance/travelexpenses/riil/{{$row->id}}" target="_blank" 
                             rel="noopener noreferrer">Riil</a>
+                        <a class="btn btn-warning" href="/finance/travelexpenses/riilkkp/{{$row->id}}" target="_blank" 
+                            rel="noopener noreferrer">KKP</a>
                     </td>
                     <td style="text-align: center">
                         <a class="btn btn-primary" href="/finance/travelexpenses/super/{{$row->id}}" target="_blank" 

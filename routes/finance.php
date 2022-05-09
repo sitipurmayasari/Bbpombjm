@@ -172,6 +172,7 @@
   Route::get('finance/travelexpenses/super8J/{id}','Finance\TravelexpensesController@super8J')->name('travelexpenses.super8J');
   Route::get('finance/travelexpenses/getIsian','Finance\TravelexpensesController@getIsian')->name('travelexpenses.getIsian');
   Route::get('finance/travelexpenses/delete/{id}','Finance\TravelexpensesController@delete')->name('travelexpenses.delete');
+  Route::get('finance/travelexpenses/riilkkp/{id}','Finance\TravelexpensesController@riilkkp')->name('travelexpenses.riilkkp');
 
   //Route untuk petugas
   Route::post('/finance/petugas/store','Finance\PetugasController@store')->name('petugasmon.store');

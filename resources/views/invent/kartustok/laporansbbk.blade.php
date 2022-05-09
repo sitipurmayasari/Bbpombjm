@@ -20,7 +20,7 @@
 @section('content')
         <div class="col-sm-12 isi" style="text-align: center">
             <div class="col-sm-12" style="text-align: center;font-size: 18px;">
-                <b>Laporan Barang Keluar</b><br>
+                <b>Laporan SPB-SBBK</b><br>
             </div><br>
             <div class="col-sm-12" style="text-align: left">
                 Periode :

@@ -33,7 +33,7 @@ class TravelexpensesController extends Controller
     public function index(Request $request)
     {
         $data = Expenses::orderBy('expenses.updated_at','desc')
-                         ->SelectRaw('expenses.*, outstation.number, outstation.purpose')
+                        ->SelectRaw('expenses.*, outstation.number, outstation.purpose')
                         ->leftjoin('outstation','outstation.id','expenses.outstation_id')
                         ->when($request->keyword, function ($query) use ($request) {
                             $query->where('outstation.number','LIKE','%'.$request->keyword.'%')
@@ -651,6 +651,50 @@ class TravelexpensesController extends Controller
         }
                         
         $pdf = PDF::loadview('finance/travelexpenses.riil',compact('petugas','data','pegawai','tujuan','tr','lama'));
+        return $pdf->stream();
+    }
+
+    public function riilkkp($id)
+    {
+        $petugas    = Petugas::where('id', '=', 5)->first();
+
+        $data       = Expenses::where('id',$id)->first();
+        
+        $pegawai    = Outst_employee::SelectRaw('outst_employee.* ')
+                        ->leftJoin('outstation','outstation.id','=','outst_employee.outstation_id')
+                        ->leftJoin('expenses','expenses.outstation_id','=','outstation.id')
+                        ->where('expenses.id',$id)
+                        ->get();
+        $tujuan    = Outst_destiny::SelectRaw('outst_destiny.* ')
+                        ->leftJoin('outstation','outstation.id','=','outst_destiny.outstation_id')
+                        ->leftJoin('expenses','expenses.outstation_id','=','outstation.id')
+                        ->where('expenses.id',$id)
+                        ->get();
+        $tr         = Travelexpenses::where('expenses_id',$id)
+                        ->get();
+        
+        $desti1   = Outst_destiny::orderBy('outst_destiny.id','asc')
+                                ->leftJoin('outstation','outstation.id','=','outst_destiny.outstation_id')
+                                ->leftJoin('expenses','expenses.outstation_id','=','outstation.id')
+                                ->where('expenses.id',$id)
+                                ->first();
+        $desti2   = Outst_destiny::orderBy('outst_destiny.id','desc')
+                                ->leftJoin('outstation','outstation.id','=','outst_destiny.outstation_id')
+                                ->leftJoin('expenses','expenses.outstation_id','=','outstation.id')
+                                ->where('expenses.id',$id)
+                                ->first();
+
+        if ($desti1->go_date==$desti2->go_date) {
+            $lama = Outst_destiny::selectRaw('longday as hitung')
+                                  ->where('outstation_id','=',$desti1->outstation_id)
+                                  ->first();
+        } else {
+            $lama = Outst_destiny::selectRaw('sum(longday) as hitung')
+                                  ->where('outstation_id','=',$desti1->outstation_id)
+                                  ->first();
+        }
+                        
+        $pdf = PDF::loadview('finance/travelexpenses.riilkkp',compact('petugas','data','pegawai','tujuan','tr','lama'));
         return $pdf->stream();
     }
 
