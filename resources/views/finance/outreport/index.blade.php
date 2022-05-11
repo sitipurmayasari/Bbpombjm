@@ -53,6 +53,22 @@
                                 </select>
                             </div>
                         </div>
+                        <br>
+                        <div class="form-group" id="pok">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Anggaran
+                            </label>
+                            <div class="col-sm-8">
+                                <select id="status" name="pok_detail" class="col-xs-10 col-sm-10 select2">
+                                    @foreach ($pok as $item)
+                                        <option value="{{$item->id}}">
+                                            {{$item->pok->act->lengkap}}/{{$item->sub->kodeall}}/
+                                            {{$item->akun->code}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group" id="Datapeg">
                             <label class="col-sm-3 control-label no-padding-right" 
                             for="form-field-1"> Nama Pegawai
@@ -66,8 +82,8 @@
                                 </select>
                             </div>
                         </div>
-                        <br>
-                        <div class="form-group">
+                        {{-- <br> --}}
+                        {{-- <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
                             for="form-field-1"> Tahun
                             </label>
@@ -79,7 +95,7 @@
                                 <label class="control-label no-padding-right" for="form-field-1"> Per Tahun</label>
                             </div>
                         </div>
-                        <br>
+                        <br> --}}
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
                             for="form-field-1">
@@ -153,20 +169,21 @@
 @section('footer')
 <script>
       $(document).ready(function(){
-        $("#mew").hide();
+        // $("#mew").hide();
         $("#brg").hide();
-        $("#tampilbulan").hide();
+        // $("#tampilbulan").hide();
         $("#tampildetilbulan").hide();
         $("#Datapeg").hide();
+        $("#pok").hide();
 
-        $("#thn").click(function(){
-            $("#mew").hide();
-        });
+        // $("#thn").click(function(){
+        //     $("#mew").hide();
+        // });
 
-        $("#thn2").click(function(){
-            $("#mew").show();
-            $("#tampilbulan").show();
-        });
+        // $("#thn2").click(function(){
+        //     $("#mew").show();
+        //     $("#tampilbulan").show();
+        // });
 
         $("#bln").click(function(){
             $("#tampildetilbulan").hide();
@@ -184,9 +201,13 @@
             if(v=="Per"){
                 $("#ruang").hide();
                 $("#Datapeg").show();
+                $("#pok").hide();
+            }else if(v=="Kui"){
+                $("#pok").show();
             }else{
                 $("#Datapeg").hide();
                 $("#ruang").show();
+                $("#pok").hide();
             } 
         });
 </script>

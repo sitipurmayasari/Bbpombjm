@@ -17,6 +17,7 @@ use App\Expenses_daily;
 use App\Travelexpenses;
 use App\Travelexpenses1;
 use App\Travelexpenses2;
+use App\Pok_detail;
 
 class OutReportController extends Controller
 {
@@ -24,7 +25,9 @@ class OutReportController extends Controller
     {
         $user = User::where('aktif','Y')->where('id','!=','1')->OrderBy('name','asc')->get();
         $div = Divisi::where('id','!=','1')->get();
-        return view('finance/outreport.index',compact('div' , 'user'));
+        $pok = Pok_detail::whereraw('pok_detail.id IN (SELECT pok_detail_id FROM outstation WHERE pok_detail_id != 0 GROUP BY pok_detail_id)')
+                        ->get();
+        return view('finance/outreport.index',compact('div' , 'user','pok'));
     }
 
     public function cetak(Request $request)
@@ -35,10 +38,8 @@ class OutReportController extends Controller
                             ->when($request->divisi, function ($query) use ($request) {
                                $query->where('divisi_id',$request->divisi);
                             })
-                            ->when($request->tahun, function ($query) use ($request) {
-                                if($request->tahun==2){
-                                    $query->whereYear('st_date',$request->daftartahun);
-                                }
+                            ->when($request->daftartahun, function ($query) use ($request) {
+                                $query->whereYear('outstation.st_date',$request->daftartahun);
                              })
                              ->when($request->bulan, function ($query) use ($request) {
                                 if($request->bulan==2){
@@ -57,11 +58,9 @@ class OutReportController extends Controller
                                 ->when($request->divisi, function ($query) use ($request) {
                                 $query->where('outstation.divisi_id',$request->divisi);
                                 })
-                                ->when($request->tahun, function ($query) use ($request) {
-                                    if($request->tahun==2){
-                                        $query->whereYear('outstation.st_date',$request->daftartahun);
-                                    }
-                                })
+                                ->when($request->daftartahun, function ($query) use ($request) {
+                                    $query->whereYear('outstation.st_date',$request->daftartahun);
+                                 })
                                 ->when($request->bulan, function ($query) use ($request) {
                                     if($request->bulan==2){
                                         $query->whereMonth('outstation.st_date',$request->daftarbulan);
@@ -78,11 +77,9 @@ class OutReportController extends Controller
                                 ->when($request->divisi, function ($query) use ($request) {
                                 $query->where('outstation.divisi_id',$request->divisi);
                                 })
-                                ->when($request->tahun, function ($query) use ($request) {
-                                    if($request->tahun==2){
-                                        $query->whereYear('outstation.st_date',$request->daftartahun);
-                                    }
-                                })
+                                ->when($request->daftartahun, function ($query) use ($request) {
+                                    $query->whereYear('outstation.st_date',$request->daftartahun);
+                                 })
                                 ->when($request->bulan, function ($query) use ($request) {
                                     if($request->bulan==2){
                                         $query->whereMonth('outstation.st_date',$request->daftarbulan);
@@ -92,28 +89,30 @@ class OutReportController extends Controller
             $pdf = PDF::loadview('finance/outreport.cetakper',compact('data','request','pegawai'));
             return $pdf->stream();                  
         }elseif($request->jenis_Laporan=="Kui"){
-            $data = Expenses_daily::Orderby('outstation.id','asc')
-                            ->SelectRaw('users.name, expenses_daily.*, outst_employee_id, outstation.*')
-                            ->LeftJoin('outst_employee','expenses_daily.outst_employee_id','=','outst_employee.id')
-                            ->LeftJoin('users','users.id','=','outst_employee.users_id')
-                            ->LeftJoin('expenses','expenses.id','=','expenses_daily.expenses_id')
-                            ->LeftJoin('outstation','outstation.id','=','expenses.outstation_id')
+            $data = Travelexpenses::orderBy('outstation_id','asc')
+                            ->SelectRaw('travelexpenses.*')
+                            ->leftjoin('outst_employee','outst_employee.id','travelexpenses.outst_employee_id')
+                            ->leftjoin('outstation','outstation.id','outst_employee.outstation_id')
+                            ->when($request->pok_detail, function ($query) use ($request) {
+                                $query->where('outstation.pok_detail_id',$request->pok_detail);
+                            })
                             ->when($request->divisi, function ($query) use ($request) {
                                $query->where('outstation.divisi_id',$request->divisi);
                             })
-                            ->when($request->tahun, function ($query) use ($request) {
-                                if($request->tahun==2){
-                                    $query->whereYear('expenses.date',$request->daftartahun);
-                                }
+                            ->when($request->daftartahun, function ($query) use ($request) {
+                                $query->whereYear('outstation.st_date',$request->daftartahun);
                              })
                              ->when($request->bulan, function ($query) use ($request) {
                                 if($request->bulan==2){
-                                    $query->whereMonth('expenses.date',$request->daftarbulan);
+                                    $query->whereMonth('outstation.st_date',$request->daftarbulan);
                                 }
                              })
                             ->get();
             $bidang = Divisi::where('id', $request->divisi)->first();
-            return view('finance/outreport.cetaklapkui',compact('data','request','bidang'));                   
+            $pokdet = Pok_detail::where('id', $request->pok_detail)->first();
+            // return view('finance/outreport.cetaklapkui',compact('data','request','bidang')); 
+            $pdf = PDF::loadview('finance/outreport.cetaklapkui',compact('data','request','bidang','pokdet')); 
+            return $pdf->stream();                  
         } else {
             dd($request->all());
 

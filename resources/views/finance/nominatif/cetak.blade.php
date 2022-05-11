@@ -269,10 +269,10 @@
                         Paket H/F Day
                     </td>
                     <td style="vertical-align: top;  text-align:center;">
-                        @if ($item->klaim_1 != 0)
+                        @if ($item->klaim_1 != 0 && $item->hotelkkp1 == 'N')
                             {{$item->long_stay_1}} OH
                         @endif <br>
-                        @if ($item->klaim_2 != 0)
+                        @if ($item->klaim_2 != 0 && $item->hotelkkp2 == 'N')
                             {{$item->long_stay_2}} OH
                         @endif <br>
                         @if ($item->totdaysfull != 0)
@@ -283,13 +283,13 @@
                         @endif
                     </td>
                     <td style="vertical-align: top; text-align:right;">
-                        @if ($item->klaim_1 != 0)
+                        @if ($item->klaim_1 != 0 && $item->hotelkkp1 == 'N')
                             @php
                                 $fee1 = $item->inn_fee_1 / $item->isi_1;
                             @endphp
                             {{number_format($fee1)}}
                         @endif <br>
-                        @if ($item->klaim_2 != 0)
+                        @if ($item->klaim_2 != 0 && $item->hotelkkp2 == 'N')
                             @php
                                 $fee2 = $item->inn_fee_2 / $item->isi_2;
                             @endphp
@@ -303,10 +303,10 @@
                         @endif
                     </td>
                     <td style="vertical-align: top; text-align:right;">
-                        @if ($item->klaim_1 != 0)
+                        @if ($item->klaim_1 != 0 && $item->hotelkkp1 == 'N')
                             {{number_format($item->klaim_1)}}
                         @endif <br>
-                        @if ($item->klaim_2 != 0)
+                        @if ($item->klaim_2 != 0 && $item->hotelkkp2 == 'N')
                             {{number_format($item->klaim_2)}}
                         @endif <br>
                         @if ($item->totdaysfull != 0)
@@ -326,36 +326,49 @@
                         Trans Lokal(DK)
                     </td>
                     <td style="vertical-align: top;  text-align:center;">
-                        @if ($item->planefee1 != 0)
+                        {{-- tiket 1 --}}
+                        @if ($item->planefee1 != 0 && $item->planekkp1 == 'N')
                             1 OK
                         @endif <br>
-                        @if ($item->planefee2 != 0)
+                        {{-- tiket 2 --}}
+                        @if ($item->planefee2 != 0 && $item->planekkp2 == 'N')
                             1 OK
                         @endif <br>
-                        @if ($item->planereturnfee != 0)
+                        @if ($item->planefee3 != 0 && $item->planekkp3 == 'N')
                             1 OK
                         @endif <br>
+                        {{-- tiket pulang --}}
+                        @if ($item->planereturnfee != 0 && $item->planekkpreturn == 'N')
+                            1 OK
+                        @endif <br>
+                        {{-- taxi 1 --}}
                         @if ($item->taxy_fee_from != 0)
                             {{$item->taxy_count_from}} OK
                         @endif <br>
+                        {{-- taxi 2 --}}
                         @if ($item->taxy_fee_to != 0)
                             {{$item->taxy_count_to}} OK
                         @endif <br>
+                        {{-- bbm --}}
                         @if ($item->bbm != 0)
                             1 OK
                         @endif <br>
+                        {{-- lokal --}}
                         @if ($item->tlokal == 'Y')
                            {{$item->hittlokal}} OK
                         @endif 
                     </td>
                     <td style="vertical-align: top; text-align:right;">
-                        @if ($item->planefee1 != 0)
+                        @if ($item->planefee1 != 0 && $item->planekkp1 == 'N')
                             {{number_format($item->planefee1)}}
                         @endif <br>
-                        @if ($item->planefee2 != 0)
+                        @if ($item->planefee2 != 0 && $item->planekkp2 == 'N')
                             {{number_format($item->planefee2)}}
                         @endif <br>
-                        @if ($item->planereturnfee != 0)
+                        @if ($item->planefee3 != 0 && $item->planekkp3 == 'N')
+                            {{number_format($item->planefee3)}}
+                        @endif <br>
+                        @if ($item->planereturnfee != 0 && $item->planekkpreturn == 'N')
                             {{number_format($item->planereturnfee)}}
                         @endif <br>
                         @if ($item->taxy_fee_from != 0)
@@ -372,13 +385,16 @@
                         @endif 
                     </td>
                     <td style="vertical-align: top; text-align:right;">
-                        @if ($item->planefee1 != 0)
+                        @if ($item->planefee1 != 0 && $item->planekkp1 == 'N')
                             {{number_format($item->planefee1)}}
                         @endif <br>
-                        @if ($item->planefee2 != 0)
+                        @if ($item->planefee2 != 0 && $item->planekkp2 == 'N')
                             {{number_format($item->planefee2)}}
                         @endif <br>
-                        @if ($item->planereturnfee != 0)
+                        @if ($item->planefee3 != 0 && $item->planekkp3 == 'N')
+                            {{number_format($item->planefee3)}}
+                        @endif <br>
+                        @if ($item->planereturnfee != 0 && $item->planekkpreturn == 'N')
                             {{number_format($item->planereturnfee)}}
                         @endif <br>
                         @if ($item->taxy_fee_from != 0)
