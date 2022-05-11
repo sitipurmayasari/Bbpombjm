@@ -110,9 +110,9 @@ class OutReportController extends Controller
                             ->get();
             $bidang = Divisi::where('id', $request->divisi)->first();
             $pokdet = Pok_detail::where('id', $request->pok_detail)->first();
-            // return view('finance/outreport.cetaklapkui',compact('data','request','bidang')); 
-            $pdf = PDF::loadview('finance/outreport.cetaklapkui',compact('data','request','bidang','pokdet')); 
-            return $pdf->stream();                  
+            // return view('finance/outreport.cetaklapkui',compact('data','request','bidang','pokdet'));
+             $pdf = PDF::loadview('finance/outreport.cetaklapkui',compact('data','request','bidang','pokdet')); 
+             return $pdf->stream();                  
         } else {
             dd($request->all());
 

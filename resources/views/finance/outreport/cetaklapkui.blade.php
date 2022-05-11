@@ -119,6 +119,7 @@
                             <th width="20px" style="vertical-align: middle;">No</th>
                             <th style="vertical-align: middle;">Nomor Surat Tugas</th>
                             <th style="vertical-align: middle;">Nama Kegiatan</th>
+                            <th style="vertical-align: middle;">Tanggal Kegiatan</th>
                             <th style="vertical-align: middle;">Nama Pegawai</th>
                             <th style="vertical-align: middle;">Sub Total</th>
                          </tr>
@@ -133,25 +134,40 @@
                             <td style="text-align: center">{{$no++}}</td>
                             <td>{{$row->peg->out->number}}</td>
                             <td>{{$row->peg->out->purpose}}</td>
+                            <td style="text-align: center">
+                                @foreach ($row->peg->out->outst_destiny as $key=>$item)
+                                    @if ($loop->first)
+                                        {{tgl_indo($item->go_date)}}
+                                    @endif
+                                    @endforeach
+                                    <br> s/d <br> 
+                                    @foreach ($row->peg->out->outst_destiny as $key=>$item)
+                                    @if ($loop->last)
+                                        {{tgl_indo($item->return_date)}}
+                                    @endif
+                                @endforeach
+
+                            </td>
                             <td style="vertical-align: top">
                                 {{$row->peg->pegawai->name}}
                             </td>
                             <td>
                                 @php
-                                    $total = $injectQuery->totalHarga($row->outst_employee_id)
+                                    $total = $injectQuery->totalHarga($row->outst_employee_id);
                                     $akhir += $total;
                                 @endphp
-                                <b>{{number_format($total)}}</b> 
+                                <b>Rp. {{number_format($total)}} ,-</b> 
                             </td>
                         </tr>
                         @endforeach
                     <tbody>
                     <tfoot>
                         <tr>
-                            
-                            <td colspan="4"><b>Total Penggunaan Anggaran {{$pokdet->pok->act->lengkap}}/{{$pokdet->sub->kodeall}}/
+                            <td colspan="5"><b>Total Penggunaan Anggaran {{$pokdet->pok->act->lengkap}}/{{$pokdet->sub->kodeall}}/
                                 {{$pokdet->akun->code}}</b></td>
-                            <td><b>{{number_format($akhir)}}</b> </td>
+                            <td><b>
+                                Rp. {{number_format($akhir)}} ,-
+                            </b> </td>
                         </tr>
                     </tfoot>
                          
