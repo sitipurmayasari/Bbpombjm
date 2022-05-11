@@ -40,8 +40,12 @@
                             <tr>
                                 <td style="text-align: center">{{$no++}}</td>
                                 <td>{{$item->nama_barang}}</td>
-                                <td>{{$item->jenis->nama}}</td>
-                                <td style="text-align: center">{{$item->jumlah}}  {{$item->satuan->satuan}}</td>
+                                <td>
+                                    {{$item->jenis->nama}}
+                                </td>
+                                <td style="text-align: center">
+                                    {{$item->jumlah}}
+                                </td>
                             </tr>
                         @endforeach 
                     </tbody>

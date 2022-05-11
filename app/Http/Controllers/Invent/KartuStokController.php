@@ -64,12 +64,13 @@ class KartuStokController extends Controller
             // $pdf = PDF::loadview('invent/kartustok.stokkelompok',compact('stock','data','request'));
             // return $pdf->stream();
         } else if($request->jenis_Laporan=="3"){
-            $stock = Inventaris::SelectRaw('inventaris.*, SUM(sbb_detail.jumlah) AS jumlah')
+            $stock = Inventaris::SelectRaw('inventaris_id, SUM(jumlah) AS jumlah, inventaris.*')
                                 ->LeftJoin('sbb_detail','inventaris.id','=','sbb_detail.inventaris_id')
                                 ->LeftJoin('sbb','sbb.id','=','sbb_detail.sbb_id')
                                 ->Where('sbb.labory_id',$request->labory)
                                 ->Where('sbb_detail.status','Y')
                                 ->whereYear('sbb.tanggal',$request->years)
+                                ->GroupBy('inventaris_id')
                                 ->get();
             $data = Labory::where('id',$request->labory)->first();
             $pdf = PDF::loadview('invent/kartustok.stoklab',compact('stock','data','request'));
