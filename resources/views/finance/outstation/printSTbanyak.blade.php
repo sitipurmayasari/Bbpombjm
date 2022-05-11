@@ -266,18 +266,29 @@
                    </div>
                 </td>
                 <td><b>
-                    @if ($menyetujui->pjs !=null)
-                        {{$menyetujui->pjs}} Kepala,
+                    @if ($menyetujui != null)
+                         @if ($menyetujui->pjs !=null)
+                             {{$menyetujui->pjs}} Kepala,
+                         @else
+                             Kepala,
+                         @endif
                     @else
-                        Kepala,
+                         <b>Pejabat Belum Ditentukan</b>
                     @endif
-                    </b></td>
-            </tr>
-            <tr>
-                <td style="height: 10%"></td>
-            </tr>
-            <tr>
-                <td><b>{{$menyetujui->user->name}}</b></td>
+                     </b></td>
+             </tr>
+             <tr>
+                 <td style="height: 10%"></td>
+             </tr>
+             <tr>
+                 <td>
+                     @if ($menyetujui != null)
+                         <b>{{$menyetujui->user->name}}</b>
+                     @else
+                         <b>Silahkan Cek Setup Pejabat</b>
+                     @endif
+                     
+                 </td>
             </tr>
         </table>
     </div>
