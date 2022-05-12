@@ -1,7 +1,7 @@
-@extends('layouts.mon')
+@extends('amdk/layouts_amdk.app')
 @section('breadcrumb')
     <li>Setup</li>
-    <li><a href="/finance/mailsubgroup">Subkelompok Surat</a></li>
+    <li><a href="/amdk/mailclasification">Klasifikasi Surat</a></li>
     <li>Tambah Baru</li>
 @endsection
 @section('content')
@@ -9,12 +9,12 @@
 
 <div class="row">
     <form class="form-horizontal validate-form" role="form" 
-         method="post" action="{{route('mailsubgroup.store')}}" enctype="multipart/form-data">
+         method="post" action="{{route('mailclasification.store')}}" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div class="col-sm-12">
         <div class="widget-box">
             <div class="widget-header">
-                <h4 class="widget-title"> Input Subkelompok Surat</h4>
+                <h4 class="widget-title"> Input Klasifikasi Surat</h4>
                 <div class="widget-toolbar">
                     <a href="#" data-action="collapse">
                         <i class="ace-icon fa fa-chevron-down"></i>
@@ -27,12 +27,12 @@
                         <br>
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Kode Kelompok
+                            for="form-field-1"> Kode SubKelompok
                             </label>
                             <div class="col-sm-8">
-                                <select name="mailgroup_id" class="col-xs-10 col-sm-10 required " required>
+                                <select name="mailsubgroup_id" class="col-xs-10 col-sm-10 required " required>
                                     <option value="">Pilih Kode</option>
-                                    @foreach ($group as $peg)
+                                    @foreach ($subg as $peg)
                                         <option value="{{$peg->id}}">{{$peg->code}} || {{$peg->names}}</option>
                                     @endforeach
                                 </select>
@@ -40,7 +40,7 @@
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Kode SubKelompok
+                            for="form-field-1"> Kode Klasifikasi
                             </label>
                             <div class="col-sm-8">
                                 <input type="text"  placeholder="mis : 02" 
@@ -50,12 +50,38 @@
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Nama Sub Kelompok
+                            for="form-field-1"> Nama Klasifikasi
                             </label>
                             <div class="col-sm-8">
-                                <input type="text"  placeholder="Nama Rincian" 
+                                <input type="text"  placeholder="Nama Klasifikasi" 
                                         class="col-xs-10 col-sm-10 required " 
                                         name="names" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Masa Aktif
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="number"  placeholder="0" value="0"
+                                        class="col-xs-1 col-sm-1 required " 
+                                        name="actived" required />
+                                <label class="col-sm-1 control-label no-padding-right" 
+                                        for="form-field-1"> Tahun
+                                        </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Masa Inaktif
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="number"  placeholder="0" value="0"
+                                        class="col-xs-1 col-sm-1 required " 
+                                        name="innactive" required />
+                                <label class="col-sm-1 control-label no-padding-right" 
+                                        for="form-field-1"> Tahun
+                                        </label>
                             </div>
                         </div>
                         </fieldset>        

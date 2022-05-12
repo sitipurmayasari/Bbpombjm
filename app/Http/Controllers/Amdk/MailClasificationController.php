@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Finance;
+namespace  App\Http\Controllers\Amdk;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -22,13 +22,13 @@ class MailclasificationController extends Controller
                                         ->orWhere('mailsubgroup.code', 'LIKE','%'.$request->keyword.'%');
                             })
                             ->paginate('10');
-        return view('finance/mailclasification.index',compact('data'));
+        return view('amdk/mailclasification.index',compact('data'));
     }
 
     public function create()
     {
         $subg = Mailsubgroup::all();
-        return view('finance/mailclasification.create',compact('subg'));
+        return view('amdk/mailclasification.create',compact('subg'));
     }
 
     public function store(Request $request)
@@ -41,14 +41,14 @@ class MailclasificationController extends Controller
 
         
         Mailclasification::create($request->all());
-        return redirect('/finance/mailclasification')->with('sukses','Data Tersimpan');
+        return redirect('/amdk/mailclasification')->with('sukses','Data Tersimpan');
     }
    
     public function edit($id)
     {
         $subg = Mailsubgroup::all();
         $data = Mailclasification::where('id',$id)->first();
-        return view('finance/mailclasification.edit',compact('data','subg'));
+        return view('amdk/mailclasification.edit',compact('data','subg'));
     }
 
    
@@ -62,7 +62,7 @@ class MailclasificationController extends Controller
         
         $data = Mailclasification::find($id);
         $data->update($request->all());
-        return redirect('/finance/mailclasification')->with('sukses','Data Diperbaharui');
+        return redirect('/amdk/mailclasification')->with('sukses','Data Diperbaharui');
     }
 
    
@@ -70,6 +70,6 @@ class MailclasificationController extends Controller
     {
         $petugas = Mailclasification::find($id);
         $petugas->delete();
-        return redirect('/finance/mailclasification')->with('sukses','Data Terhapus');
+        return redirect('/amdk/mailclasification')->with('sukses','Data Terhapus');
     }
 }

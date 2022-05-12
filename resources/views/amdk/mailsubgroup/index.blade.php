@@ -1,5 +1,4 @@
-@extends('layouts.mon')
-@section('breadcrumb')
+@extends('amdk/layouts_amdk.app')
 @section('breadcrumb')
     <li>Setup</li>
     <li>Subkelompok Surat</i></li>
@@ -39,6 +38,7 @@
                 <th class="col-md-2">Kode Kelompok</th>
                 <th class="col-md-2">Kode Sub Kelompok</th>
                 <th>Nama</th>
+                <th>Keamanan</th>
                 <th class="col-md-2">Aksi</th>
             </thead>
             <tbody>   	
@@ -49,7 +49,18 @@
                     <td>{{$row->code}}</td>
                     <td>{{$row->names}}</td>
                     <td>
-                        <a href="/finance/mailsubgroup/edit/{{$row->id}}" class="btn btn-warning">
+                        @if ($row->securities=='T')
+                            Terbatas
+                        @elseif ($row->securities=='R')
+                            Rahasia
+                        @elseif ($row->securities=='S')
+                            Sangat Rahasia
+                        @else
+                            Biasa
+                        @endif
+                    </td>
+                    <td>
+                        <a href="/amdk/mailsubgroup/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
                     </td>

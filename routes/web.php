@@ -185,7 +185,10 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/amdk/development','Amdk\DevelopmentController@index')->name('development');
     //Route untuk Kegiatan penunjang
     Route::get('/amdk/support','Amdk\SupportController@index')->name('support');
-    
+     //Route untuk Subkelompok Surat
+     Route::get('/amdk/mailsubgroup','Amdk\MailSubGroupController@index')->name('mailsubgroup');
+     //Route untuk Klasifikasi Surat
+     Route::get('/amdk/mailclasification','Amdk\MailClasificationController@index')->name('mailclasification');
     
 
 
@@ -256,10 +259,6 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/finance/lapRAPK','Finance\LapRAPKController@index')->name('lapRAPK');
     //Route untuk buku ST
     Route::get('/finance/stbook','Finance\STBookController@index')->name('stbook');
-    //Route untuk Subkelompok Surat
-    Route::get('/finance/mailsubgroup','Finance\MailSubGroupController@index')->name('mailsubgroup');
-    //Route untuk Klasifikasi Surat
-    Route::get('/finance/mailclasification','Finance\MailClasificationController@index')->name('mailclasification');
     //Route untuk laporan nominatif Surat
     Route::get('/finance/nominatif','Finance\NominatifController@index')->name('nominatif');
 

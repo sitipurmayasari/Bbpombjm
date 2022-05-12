@@ -1,5 +1,4 @@
-@extends('layouts.mon')
-@section('breadcrumb')
+@extends('amdk/layouts_amdk.app')
 @section('breadcrumb')
     <li>Setup</li>
     <li>Klasifikasi Surat</i></li>
@@ -39,6 +38,8 @@
                 <th class="col-md-2">Kode Sub Kelompok</th>
                 <th class="col-md-2">Kode Klasifikasi</th>
                 <th>Nama Klasifikasi</th>
+                <th>Aktif</th>
+                <th>Inaktif</th>
                 <th class="col-md-2">Aksi</th>
             </thead>
             <tbody>   	
@@ -48,8 +49,10 @@
                     <td>{{$row->group}}.{{$row->subg}}</td>
                     <td>{{$row->code}}</td>
                     <td>{{$row->names}}</td>
+                    <td>{{$row->actived}}</td>
+                    <td>{{$row->innactive}}</td>
                     <td>
-                        <a href="/finance/mailclasification/edit/{{$row->id}}" class="btn btn-warning">
+                        <a href="/amdk/mailclasification/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
                         <a href="#" class="btn btn-danger delete"
@@ -83,7 +86,7 @@
             }).then((result) => {
                 console.log(result);
                 if (result.value) {
-                    window.location = "/finance/krocode/delete/"+id;
+                    window.location = "/amdk/krocode/delete/"+id;
                 }
             });
         });

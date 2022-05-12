@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Mailsubgroup extends Model
 {
     protected $table = "mailsubgroup";
-    protected $fillable = ["mailgroup_id","code","names","alias"
+    protected $fillable = ["mailgroup_id","code","names","alias","securities"
 
 ];
 

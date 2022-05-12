@@ -82,6 +82,7 @@
 
 </style>
 <body>
+    <br>
     <div class="col-sm-12" style="text-align: center">
         <div style="align=center;" id="kop">
             <u><b style="font-size: 14">SURAT TUGAS</b></u><br>

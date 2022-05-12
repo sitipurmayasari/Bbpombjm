@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Mailclasification extends Model
 {
     protected $table = "mailclasification";
-    protected $fillable = ["mailsubgroup_id","code","names","alias"
+    protected $fillable = ["mailsubgroup_id","code","names","alias","actived","innactive"
 
 ];
 

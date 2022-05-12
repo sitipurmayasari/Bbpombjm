@@ -1,7 +1,7 @@
-@extends('layouts.mon')
+@extends('amdk/layouts_amdk.app')
 @section('breadcrumb')
     <li>Setup</li>
-    <li><a href="/finance/mailclasification">Klasifikasi Surat</a></li>
+    <li><a href="/amdk/mailclasification">Klasifikasi Surat</a></li>
     <li>Edit</li>
 @endsection
 @section('content')
@@ -9,7 +9,7 @@
 
 <div class="row">
     <form class="form-horizontal validate-form" role="form" 
-    method="post" action="/finance/mailclasification/update/{{$data->id}}">
+    method="post" action="/amdk/mailclasification/update/{{$data->id}}">
     {{ csrf_field() }}
     <div class="col-sm-12">
         <div class="widget-box">
@@ -60,6 +60,33 @@
                                 <input type="text"  placeholder="Nama Klasifikasi" value="{{$data->names}}"
                                         class="col-xs-10 col-sm-10 required " 
                                         name="names" required/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Masa Aktif
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="number"  placeholder="0"  value="{{$data->actived}}"
+                                        class="col-xs-1 col-sm-1 required " 
+                                        name="actived" required />
+                                <label class="col-sm-1 control-label no-padding-right" 
+                                        for="form-field-1"> Tahun
+                                        </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Masa Inaktif
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="number"  placeholder="0"  value="{{$data->innactive}}"
+                                        class="col-xs-1 col-sm-1 required " 
+                                        name="innactive" required />
+                                <label class="col-sm-1 control-label no-padding-right" 
+                                        for="form-field-1"> Tahun
+                                        </label>
                             </div>
                         </div>
                         </fieldset>        

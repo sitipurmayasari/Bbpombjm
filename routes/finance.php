@@ -262,18 +262,5 @@
     Route::get('finance/stbook/getnosppd','Finance\STBookController@getnosppd')->name('stbook.getnosppd');
     Route::get('finance/stbook/getnosppdnext','Finance\STBookController@getnosppdnext')->name('stbook.getnosppdnext');
 
-    //Route untuk Subkelompok Surat
-    Route::get('/finance/mailsubgroup/create','Finance\MailSubGroupController@create')->name('mailsubgroup.create');
-    Route::post('finance/mailsubgroup/store','Finance\MailSubGroupController@store')->name('mailsubgroup.store');
-    Route::get('finance/mailsubgroup/edit/{id}','Finance\MailSubGroupController@edit')->name('mailsubgroup.edit');
-    Route::post('finance/mailsubgroup/update/{id}','Finance\MailSubGroupController@update')->name('mailsubgroup.update');
-    
-    //Route untuk Klasifikasi Surat
-    Route::get('/finance/mailclasification/create','Finance\MailClasificationController@create')->name('mailclasification.create');
-    Route::post('finance/mailclasification/store','Finance\MailClasificationController@store')->name('mailclasification.store');
-    Route::get('finance/mailclasification/edit/{id}','Finance\MailClasificationController@edit')->name('mailclasification.edit');
-    Route::post('finance/mailclasification/update/{id}','Finance\MailClasificationController@update')->name('mailclasification.update');
-    Route::post('finance/mailclasification/delete/{id}','Finance\MailClasificationController@delete')->name('mailclasification.delete');
-
     //Route untuk laporan nominatif Surat
     Route::get('finance/nominatif/cetak/{id}','Finance\NominatifController@cetak')->name('nominatif.cetak');

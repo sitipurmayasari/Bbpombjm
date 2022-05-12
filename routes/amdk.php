@@ -231,3 +231,16 @@
   Route::get('/amdk/support/edit/{id}','Amdk\SupportController@edit')->name('support.edit');
   Route::post('/amdk/support/update/{id}','Amdk\SupportController@update')->name('support.update');
   Route::get('/amdk/support/print/{id}','Amdk\SupportController@print')->name('support.print');
+
+  //Route untuk Subkelompok Surat
+  Route::get('/amdk/mailsubgroup/create','Amdk\MailSubGroupController@create')->name('mailsubgroup.create');
+  Route::post('/amdk/mailsubgroup/store','Amdk\MailSubGroupController@store')->name('mailsubgroup.store');
+  Route::get('/amdk/mailsubgroup/edit/{id}','Amdk\MailSubGroupController@edit')->name('mailsubgroup.edit');
+  Route::post('/amdk/mailsubgroup/update/{id}','Amdk\MailSubGroupController@update')->name('mailsubgroup.update');
+  
+  //Route untuk Klasifikasi Surat
+  Route::get('/amdk/mailclasification/create','Amdk\MailClasificationController@create')->name('mailclasification.create');
+  Route::post('/amdk/mailclasification/store','Amdk\MailClasificationController@store')->name('mailclasification.store');
+  Route::get('/amdk/mailclasification/edit/{id}','Amdk\MailClasificationController@edit')->name('mailclasification.edit');
+  Route::post('/amdk/mailclasification/update/{id}','Amdk\MailClasificationController@update')->name('mailclasification.update');
+  Route::post('/amdk/mailclasification/delete/{id}','Amdk\MailClasificationController@delete')->name('mailclasification.delete');

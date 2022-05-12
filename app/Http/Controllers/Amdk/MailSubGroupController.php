@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Finance;
+namespace App\Http\Controllers\Amdk;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -20,13 +20,13 @@ class MailsubgroupController extends Controller
                                         ->orWhere('mailsubgroup.code', 'LIKE','%'.$request->keyword.'%');
                             })
                             ->paginate('10');
-        return view('finance/mailsubgroup.index',compact('data'));
+        return view('amdk/mailsubgroup.index',compact('data'));
     }
 
     public function create()
     {
         $group = Mailgroup::all();
-        return view('finance/mailsubgroup.create',compact('group'));
+        return view('amdk/mailsubgroup.create',compact('group'));
     }
 
     public function store(Request $request)
@@ -37,14 +37,14 @@ class MailsubgroupController extends Controller
         $request->merge([ 'alias' => $alias]);
 
         Mailsubgroup::create($request->all());
-        return redirect('/finance/mailsubgroup')->with('sukses','Data Tersimpan');
+        return redirect('/amdk/mailsubgroup')->with('sukses','Data Tersimpan');
     }
    
     public function edit($id)
     {
         $group = Mailgroup::all();
         $data = Mailsubgroup::where('id',$id)->first();
-        return view('finance/mailsubgroup.edit',compact('data','group'));
+        return view('amdk/mailsubgroup.edit',compact('data','group'));
     }
 
    
@@ -58,6 +58,6 @@ class MailsubgroupController extends Controller
 
         $data = Mailsubgroup::find($id);
         $data->update($request->all());
-        return redirect('/finance/mailsubgroup')->with('sukses','Data Diperbaharui');
+        return redirect('/amdk/mailsubgroup')->with('sukses','Data Diperbaharui');
     }
 }

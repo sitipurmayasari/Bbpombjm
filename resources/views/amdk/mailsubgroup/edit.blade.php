@@ -1,7 +1,7 @@
-@extends('layouts.mon')
+@extends('amdk/layouts_amdk.app')
 @section('breadcrumb')
     <li>Setup</li>
-    <li><a href="/finance/mailsubgroup">Subkelompok Surat</a></li>
+    <li><a href="/amdk/mailsubgroup">Subkelompok Surat</a></li>
     <li>Edit</li>
 @endsection
 @section('content')
@@ -9,7 +9,7 @@
 
 <div class="row">
     <form class="form-horizontal validate-form" role="form" 
-    method="post" action="/finance/mailsubgroup/update/{{$data->id}}">
+    method="post" action="/amdk/mailsubgroup/update/{{$data->id}}">
     {{ csrf_field() }}
     <div class="col-sm-12">
         <div class="widget-box">
@@ -60,6 +60,36 @@
                                 <input type="text"  placeholder="Nama SubKelompok" value="{{$data->names}}"
                                         class="col-xs-10 col-sm-10 required " 
                                         name="names" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Kode Kelompok
+                            </label>
+                            <div class="col-sm-8">
+                                <select name="securities" class="col-xs-10 col-sm-10 required " required>
+                                    @if ($data->securities=='T')
+                                        <option value="B">Biasa</option>
+                                        <option value="T" selected>Terbatas</option>
+                                        <option value="R">Rahasia</option>
+                                        <option value="S">Sangat Rahasia</option>
+                                    @elseif ($data->securities=='R')
+                                        <option value="B">Biasa</option>
+                                        <option value="T">Terbatas</option>
+                                        <option value="R" selected>Rahasia</option>
+                                        <option value="S">Sangat Rahasia</option>
+                                    @elseif ($data->securities=='S')
+                                        <option value="B">Biasa</option>
+                                        <option value="T">Terbatas</option>
+                                        <option value="R">Rahasia</option>
+                                        <option value="S" selected>Sangat Rahasia</option>
+                                    @else
+                                        <option value="B" selected>Biasa</option>
+                                        <option value="T">Terbatas</option>
+                                        <option value="R">Rahasia</option>
+                                        <option value="S">Sangat Rahasia</option>
+                                    @endif
+                                </select>
                             </div>
                         </div>
                         </fieldset>        
