@@ -310,7 +310,7 @@
                     <td > :
                         @foreach ($data->outst_destiny as $key=>$item)
                             @if ($loop->first)
-                                {{$item->destiny->capital}} a
+                                {{$item->destiny->capital}}
                             @endif
                         @endforeach
                     </td>
