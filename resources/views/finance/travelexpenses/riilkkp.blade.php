@@ -581,9 +581,6 @@
             @endphp
             <tr>
                 @php
-                    $jum1 = 0;
-                    $jum2 = 0;
-
                     if ($nilai->planefee1 != '0' && $kkp->planekkp1 == 'Y') {
                         $fee1 = $nilai->planefee1;
                     } else {
