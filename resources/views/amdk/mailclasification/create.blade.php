@@ -30,7 +30,7 @@
                             for="form-field-1"> Kode SubKelompok
                             </label>
                             <div class="col-sm-8">
-                                <select name="mailsubgroup_id" class="col-xs-10 col-sm-10 required " required>
+                                <select name="mailsubgroup_id" class="col-xs-10 col-sm-10 required select2" required>
                                     <option value="">Pilih Kode</option>
                                     @foreach ($subg as $peg)
                                         <option value="{{$peg->id}}">{{$peg->alias}} || {{$peg->names}}</option>
