@@ -34,9 +34,9 @@
                                     <option value="">Pilih Kode</option>
                                     @foreach ($subg as $peg)
                                         @if ($data->mailsubgroup_id==$peg->id)
-                                            <option value="{{$peg->id}}" selected>{{$peg->code}} || {{$peg->names}}</option>
+                                            <option value="{{$peg->id}}" selected>{{$peg->alias}} || {{$peg->names}}</option>
                                         @else
-                                            <option value="{{$peg->id}}">{{$peg->code}} || {{$peg->names}}</option>
+                                            <option value="{{$peg->id}}">{{$peg->alias}} || {{$peg->names}}</option>
                                         @endif
                                     @endforeach
                                 </select>

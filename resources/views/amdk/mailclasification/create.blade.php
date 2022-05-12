@@ -33,7 +33,7 @@
                                 <select name="mailsubgroup_id" class="col-xs-10 col-sm-10 required " required>
                                     <option value="">Pilih Kode</option>
                                     @foreach ($subg as $peg)
-                                        <option value="{{$peg->id}}">{{$peg->code}} || {{$peg->names}}</option>
+                                        <option value="{{$peg->id}}">{{$peg->alias}} || {{$peg->names}}</option>
                                     @endforeach
                                 </select>
                             </div>
