@@ -90,9 +90,9 @@
                                     @endforeach
                                 </select>
                             </td>
-                            <td><input type="text" readonly class="form-control" id="butir-1" name="butir[]"></td>
-                            <td><input type="text" readonly class="form-control" id="keluaran-1" name="keluaran[]"></td>
-                            <td><input type="text" readonly class="form-control" id="pelaksana-1" name="pelaksana[]"></td>
+                            <td><input type="text" readonly class="form-control" id="butir1" name="butir[]"></td>
+                            <td><input type="text" readonly class="form-control" id="keluaran1" name="keluaran[]"></td>
+                            <td><input type="text" readonly class="form-control" id="pelaksana1" name="pelaksana[]"></td>
                             <td><input type="text" readonly class="form-control" id="ak-1" name="ak[]"></td>
                             <td></td>
                         
@@ -202,6 +202,7 @@
         );
     }
 
+    
     function getnilai1(){
         var setup_id = $("#setup_id-1").val();
         var jabasn = $("#jabasn").val();
@@ -223,9 +224,9 @@
                      ak = response.data.utama;
                 }
 
-                $("#butir-1").val(response.data.kode_ak);
-                $("#keluaran-1").val(response.data.uraian);
-                $("#pelaksana-1").val(response.data.hasil);
+                document.getElementById("butir1").value = response.data.kode_ak;
+                $("#keluaran1").val(response.data.uraian);
+                $("#pelaksana1").val(response.data.hasil);
                 $("#ak-1").val(ak);
             }
         );
