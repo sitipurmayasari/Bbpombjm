@@ -136,7 +136,7 @@
                 @foreach ($isian as $item)
                 <tr>
                     <td style="text-align: center">{{$no}}</td>
-                    <td>{{$item->keg->uraian}}</td>
+                    <td>{{$item->activity}}</td>
                     <td style="text-align: center">{{$item->n_ak}}</td>
                     <td style="text-align: center">{{$item->tot_ak}}</td>
                     <td style="text-align: center">{{$item->quan}} {{$item->jen}}</td>

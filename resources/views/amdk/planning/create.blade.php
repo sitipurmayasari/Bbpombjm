@@ -212,6 +212,7 @@
                 setup_id: setup_id
             },
             function(response) {
+
                 if (jabasn == 'Ahli Pertama') {
                      ak = response.data.pertama;
                 }else if (jabasn == 'Ahli Muda') {
@@ -221,6 +222,7 @@
                 } else {
                      ak = response.data.utama;
                 }
+
                 $("#butir-1").val(response.data.kode_ak);
                 $("#keluaran-1").val(response.data.uraian);
                 $("#pelaksana-1").val(response.data.hasil);
@@ -228,34 +230,5 @@
             }
         );
     }
-
-    function getnilai(i){
-        var setup_id = $("#setup_id-"+i).val();
-        var jabasn = $("#jabasn").val();
-
-        $.get(
-            "{{route('ak.getnilai') }}",
-            {
-                setup_id: setup_id
-            },
-            function(response) {
-                if (jabasn == 'Ahli Pertama') {
-                     ak = response.data.pertama;
-                }else if (jabasn == 'Ahli Muda') {
-                     ak = response.data.muda;
-                }else if (jabasn == 'Ahli Madya') {
-                     ak = response.data.madya;
-                } else {
-                     ak = response.data.utama;
-                }
-
-                $("#butir-"+i).val(response.data.kode_ak);
-                $("#keluaran-"+i).val(response.data.uraian);
-                $("#pelaksana-"+i).val(response.data.hasil);
-                $("#ak-"+i).val(ak);
-            }
-        );
-    }
-
 </script>
 @endsection

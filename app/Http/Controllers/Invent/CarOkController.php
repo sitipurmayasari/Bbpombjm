@@ -89,40 +89,6 @@ class CarOkController extends Controller
         $data = Vehiclerent::find($id);
         $data->update($request->all());
 
-        // if ($request->status == "Y") {
-        //     $car = Car::LeftJoin('vehiclerent','vehiclerent.car_id','=','car.id')
-        //             ->where('car.id',$data->car_id)->first();
-        //     $driver = User::LeftJoin('vehiclerent','vehiclerent.driver_id','=','users.id')
-        //             ->where('users.id',$data->driver_id)->first();
-                 
-        //     if ($data->driver_id != null) {
-        //         $jdl = $car->merk."(".$car->police_number.") Telah Dipinjam Dengan Supir ".$driver->name;
-        //     } else {
-        //         $jdl = $car->merk."(".$car->police_number.") Telah Dipinjam ";
-        //     }
-
-        //     $kale = [
-        //         'agenda_kategori_id' => 5,
-        //         'titles' => $jdl,
-        //         'detail' => $jdl,
-        //         'date_from' => $request->date_from,
-        //         'date_to' => $request->date_to
-        //     ];
-        //     Agenda::create($kale);
-        // }
-        return redirect('/invent/carok')->with('sukses','Data Diperbaharui');
-    }
-
-    public function revisi(Request $request, $id)
-    {
-        $data = Vehiclerent::find($id);
-        $car = Car::where('id',$data->car_id)->first();
-        $kal = Agenda::WhereRaw("titles LIKE '%$car->police_number%' AND date_from = '$request->date_from'")
-                        ->first();
-        $kal->delete();
-        
-        $data->update($request->all());
-
         if ($request->status == "Y") {
             $car = Car::LeftJoin('vehiclerent','vehiclerent.car_id','=','car.id')
                     ->where('car.id',$data->car_id)->first();
@@ -144,6 +110,40 @@ class CarOkController extends Controller
             ];
             Agenda::create($kale);
         }
+        return redirect('/invent/carok')->with('sukses','Data Diperbaharui');
+    }
+
+    public function revisi(Request $request, $id)
+    {
+        $data = Vehiclerent::find($id);
+        $car = Car::where('id',$data->car_id)->first();
+        // $kal = Agenda::WhereRaw("titles LIKE '%$car->police_number%' AND date_from = '$request->date_from'")
+        //                 ->first();
+        // $kal->delete();
+        
+        // $data->update($request->all());
+
+        // if ($request->status == "Y") {
+        //     $car = Car::LeftJoin('vehiclerent','vehiclerent.car_id','=','car.id')
+        //             ->where('car.id',$data->car_id)->first();
+        //     $driver = User::LeftJoin('vehiclerent','vehiclerent.driver_id','=','users.id')
+        //             ->where('users.id',$data->driver_id)->first();
+                 
+        //     if ($data->driver_id != null) {
+        //         $jdl = $car->merk."(".$car->police_number.") Telah Dipinjam Dengan Supir ".$driver->name;
+        //     } else {
+        //         $jdl = $car->merk."(".$car->police_number.") Telah Dipinjam ";
+        //     }
+
+        //     $kale = [
+        //         'agenda_kategori_id' => 5,
+        //         'titles' => $jdl,
+        //         'detail' => $jdl,
+        //         'date_from' => $request->date_from,
+        //         'date_to' => $request->date_to
+        //     ];
+        //     Agenda::create($kale);
+        // }
         return redirect('/invent/carok')->with('sukses','Data Diperbaharui');
     }
 
