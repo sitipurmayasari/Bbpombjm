@@ -121,7 +121,7 @@ class CarOkController extends Controller
         //                 ->first();
         // $kal->delete();
         
-        // $data->update($request->all());
+        $data->update($request->all());
 
         // if ($request->status == "Y") {
         //     $car = Car::LeftJoin('vehiclerent','vehiclerent.car_id','=','car.id')
