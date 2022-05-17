@@ -1,29 +1,22 @@
 @extends('amdk/layouts_amdk.app')
 @section('breadcrumb')
     <li>skp</li>
-    <li><a href="/amdk/skp">SKP</a></li>
-    <li>Input SKP</li>
+    <li><a href="/amdk/planning">Kegiatan Perencanaan</a></li>
+    <li>Input Perencanaan</li>
 @endsection
 @section('content')
 @include('layouts.validasi')
-<style>
-    .over{
-        height: 50px;
-        line-height: 50px;
-        -webkit-appearance: menulist-button;  
-        -moz-appearance:none;
-    }
-</style>
- <form class="form-horizontal validate-form" role="form" 
-         method="post" action="{{route('skp.store')}}" enctype="multipart/form-data"   >
-    {{ csrf_field() }}
+
 <div class="row">
+    <form class="form-horizontal validate-form" role="form" 
+            method="post" action="{{route('planning.store')}}" enctype="multipart/form-data"   >
+        {{ csrf_field() }}
     <div class="col-md-12">
         <div class="panel panel-info">
-            <div class="panel-heading"><h3 class="panel-title">Input SKP</h3></div>
+            <div class="panel-heading"><h3 class="panel-title">Input Perencanaan</h3></div>
             <div class="panel-body">
-               <div class="col-md-12">
-                   <div class="col-md-6">
+                <div class="col-md-12">
+                    <div class="col-md-6">
                         <div class="col-md-12">
                             <label>Nama*</label><br>
                             <input type="text" readonly class="col-xs-10 col-sm-10 " 
@@ -34,27 +27,26 @@
                             <label> Jabatan</label><br>
                             <input type="text" readonly class="col-xs-10 col-sm-10 " 
                             name="jabatan" value="{{$jab->nama}}"/>
-                            <input type="hidden" name="jabasn_id"  value="{{auth()->user()->jabasn_id}}"/>
+                            <input type="hidden" name="jabasn" id="jabasn"  value="{{$jab->jabatan}}"/>
                         </div>
-                   </div>
-                   <div class="col-md-6">
+                    </div>
+                    <div class="col-md-6">
                         <div class="col-md-12">
                             <label>Tanggal *</label><br>
-                            <input type="date" required id="dates" value="{{date('Y-m-d')}}"
-                            class="col-xs-10 col-sm-10 required " name="dates"/>
+                            <input type="date" required value="{{date('Y-m-d')}}"
+                            class="col-xs-10 col-sm-10 required " name="plan_date"/>
                         </div>
                         <div class="col-md-12">
-                            <label> Pejabat Penilai *</label><br>
-                            <select id="peg" name="pejabat_id" class="col-xs-10 col-sm-10 select2" required>
-                                <option value="">pilih nama Pejabat</option>
-                                @foreach ($tahu as $lok)
-                                    <option value="{{$lok->id}}">{{$lok->user->name}} ({{$lok->jabatan->jabatan}} {{$lok->divisi->nama}})</option>
+                            <label> SKP *</label><br>
+                            <select id="skp" name="skp_id" class="col-xs-10 col-sm-10 select2" required onchange="getkelompok()">
+                                <option value="">pilih SKP</option>
+                                @foreach ($skp as $lok)
+                                    <option value="{{$lok->id}}">{{tgl_indo($lok->dates)}}</option>
                                 @endforeach
                             </select>
                         </div>
-                    </div>
-               </div>          
-           </div>
+                    </div>         
+                </div>
             </div>
         </div>
     </div>
@@ -63,21 +55,17 @@
             <div class="panel-heading"><h3 class="panel-title">Sasaran</h3></div>
             <div class="panel-body">
                <div class="col-md-12">
-                <table id="myTable" class="table table-bordered table-hover text-center">
+                <table id="myTable" class="table table-bordered table-hover scrollit text-center">
                     <thead>
                         <tr>
-                            <th class="text-center col-md-1" rowspan="2">No</th>
-                            <th class="text-center col-md-4" rowspan="2">Kegiatan Tugas Jabatan</th>
-                            <th class="text-center col-md-1" rowspan="2">AK</th>
-                            <th class="text-center col-md-1" rowspan="2">Total KAK</th>
-                            <th class="text-center" colspan="4">Target</th>
-                            <th class="text-center col-md-1" rowspan="2">Aksi</th>
-                        </tr>
-                        <tr>
-                            <th class="text-center">KUAN / OUTPUT</th>
-                            <th class="text-center">KUAL / MUTU</th>
-                            <th class="text-center">time (Bulan)</th>
-                            <th class="text-center">cost (Rp.)</th>
+                            <th class="text-center" >No</th>
+                            <th class="text-center">Tanggal</th>
+                            <th class="text-center col-md-4">Butir Kegiatan</th>
+                            <th class="text-center col-md-2">keluaran Kegiatan</th>
+                            <th class="text-center col-md-1">Angka Kredit</th>
+                            <th class="text-center col-md-1">Volume Kegiatan</th>
+                            <th class="text-center col-md-3">Bukti Fisik</th>
+                            <th class="text-center col-md-1">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -86,25 +74,20 @@
                                 1
                             </td>
                             <td>
-                                <select name="setup_ak_id[]" id="uraian" class="form-control over select2" required  onchange="getData1()">
+                                <input type="date" required value="{{date('Y-m-d')}}"  class="form-control" name="kin_date[]"/>
+                            </td>
+                            <td>
+                                <select name="setup_ak_id[]" class="form-control select2" id="setup_id-1"  onchange="getnilai1()">
+                                    <option value="">Pilih Kegiatan</option>
                                     @foreach ($ak as $item)
-                                        <option value="{{$item->id}}">{{$item->uraian}}</option>
+                                        <option value="{{$item->id}}">{{$item->kode_ak}}-{{$item->uraian}}</option>
                                     @endforeach
                                 </select>
                             </td>
-                            <td><input type="number" name="n_ak[]" class="form-control" id="ak-1" step="0.01" value="0"></td>
-                            <td><input type="number" name="tot_ak[]" id="tot_ak-1" class="form-control" readonly value="0" ></td>
-                            <td>
-                                <input type="number" name="quan[]" id="kuan-1" class="form-control"  value="0" min="0" onchange="hitung()" onclick="hitung()">
-                                <select name="jen[]" class="form-control" style="font-size: 9.5px">
-                                    <option value="Laporan">Laporan</option>
-                                    <option value="Dokumen">Dokumen</option>
-                                    <option value="Jam Pelajaran">Jam Pelajaran</option>
-                                </select>
-                            </td>
-                            <td><input type="number" name="kual[]" class="form-control" value="0" min="0"></td>
-                            <td><input type="number" name="time[]" class="form-control" value="0" min="0"></td>
-                            <td><input type="number" name="cost[]" class="form-control" value="0" min="0"></td>
+                            <td><input type="text" readonly class="form-control" id="keluaran1" name="keluaran[]"></td>
+                            <td><input type="text" readonly class="form-control" id="credit" name="credit[]"></td>
+                            <td><input type="text" readonly class="form-control" id="vol-1" name="vol[]"></td>
+                            <td><input type="text" class="form-control" id="ket-1" name="ket[]"></td>
                             <td></td>
                         
                         </tr>
@@ -125,68 +108,122 @@
             </div>
         </div>
     </div>
-</div>
-<div class="panel-footer">
-    <div class="form-actions right">
-        <button class="btn btn-success btn-sm " type="submit">
-            <i class="ace-icon fa fa-check bigger-110"></i>Simpan
-        </button>
+    <div class="panel-footer">
+        <div class="form-actions right">
+            <button class="btn btn-success btn-sm " type="submit">
+                <i class="ace-icon fa fa-check bigger-110"></i>Simpan
+            </button>
+        </div>
     </div>
 </div>
 </form>
-
 @endsection
 @section('footer')
-   <script>
+<script>
     function addBarisNew(){
         var last_baris = $("#countRow").val();
         var new_baris = parseInt(last_baris)+1;
         $isi ='<tr id="cell-'+new_baris+'">'+
                     '<td>'+new_baris+'</td>'+
                     '<td>'+
-                        '<select name="setup_ak_id[]" id="uraian" class="form-control select2" required  onchange="getData1()">'+
-                            '@foreach ($ak as $item)'+
-                                '<option value="{{$item->id}}">{{$item->uraian}}</option>'+        
-                            '@endforeach'+        
-                        '</select>'+       
-                    '</td>'+
-                    '<td><input type="number" name="n_ak[]" class="form-control" id="ak-'+new_baris+'" step="0.01" value="0" ></td>'+        
-                    '<td><input type="number" name="tot_ak[]" class="form-control" readonly value="0" id="tot_ak-'+new_baris+'"></td>'+        
-                    '<td>'+
-                        '<input type="number" name="quan[]" class="form-control" id="kuan-'+new_baris+'"  value="0" min="0" onchange="hitung2('+new_baris+')" onclick="hitung2('+new_baris+')">'+        
-                        '<select name="jen[]" class="form-control" style="font-size: 9.5px">'+        
-                            '<option value="Laporan">Laporan</option>'+        
-                            '<option value="Dokumen">Dokumen</option>'+        
-                            '<option value="Jam Pelajaran">Jam Pelajaran</option>'+        
-                        '</select>'+        
+                        '<input type="date" id="dates" value="{{date("Y-m-d")}}" class="form-control" name="kin_date"/>'+        
                     '</td>'+        
-                    '<td><input type="number" name="kual[]" class="form-control" value="0" min="0"></td>'+        
-                    '<td><input type="number" name="time[]" class="form-control" value="0" min="0"></td>'+        
-                    '<td><input type="number" name="cost[]" class="form-control" value="0" min="0"></td>'+        
+                    '<td>'+
+                        '<select name="skp_detail_id[]" id="uraian-'+new_baris+'" class="form-control select2">'+        
+                            '<option value="">Pilih Rencana</option>'+
+                        '</select>'+
+                    '</td>'+
+                    '<td>'+
+                        '<select name="setup_ak_id[]" class="form-control select2" id="setup_id-'+new_baris+'"  onchange="getnilai1()">'+
+                            '<option value="">Pilih Kegiatan</option>'+
+                            '@foreach ($ak as $item)'+
+                                '<option value="{{$item->id}}">{{$item->kode_ak}}-{{$item->uraian}}</option>'+
+                            '@endforeach'+        
+                        '</select>'+
+                    '</td>'+
+                    '<td><input type="text" readonly class="form-control" id="butir-'+new_baris+'" name="butir[]"></td>'+
+                    '<td><input type="text" readonly class="form-control" id="keluaran-'+new_baris+'" name="keluaran[]"></td>'+
+                    '<td><input type="text" readonly class="form-control" id="pelaksana-'+new_baris+'" name="pelaksana[]"></td>'+
+                    '<td><input type="text" readonly class="form-control" id="ak-'+new_baris+'" name="ak[]"></td>'+          
                     '<td><button type="button" class="btn btn-danger" onclick="deleteRow('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button></td>'+
                 '</tr>';
         $("#myTable").find('tbody').append($isi);
         $("#countRow").val(new_baris);
         $('.select2').select2();
-       }
+        getkelompoknext(new_baris);
+    }
 
-       function deleteRow(cell) {
-            $("#cell-"+cell).remove();
-            this.hitungTotal();
-        }
+    function deleteRow(cell) {
+        $("#cell-"+cell).remove();
+        this.hitungTotal();
+    }
 
-        function hitung() {
-            var a = $("#ak-1").val();
-            var b = $("#kuan-1").val();
-            var c = a*b;
-            $("#tot_ak-1").val(c);
-        }
+    function getkelompok(){
+        var skp_id = $("#skp").val();
 
-        function hitung2(i) {
-            var a = $("#ak-"+i).val();
-            var b = $("#kuan-"+i).val();
-            var c = a*b;
-            $("#tot_ak-"+i).val(c);
-        }
-   </script>
+        $.get(
+            "{{route('skp.getdata') }}",
+            {
+            skp_id: skp_id
+            },
+            function(response) {
+                var data2 = response.data;
+                var string ="<option value=''>Pilih Rencana</option>";
+                    $.each(data2, function(index, value) {
+                        string = string + '<option value="'+ value.id +'">'+ value.activity +'</option>';
+                    })
+                $(".rencana1").html(string);
+            }
+        );
+    }
+
+    function getkelompoknext(i){
+        var skp_id = $("#skp").val();
+
+        $.get(
+            "{{route('skp.getdata') }}",
+            {
+            skp_id: skp_id
+            },
+            function(response) {
+                var data2 = response.data;
+                var string ="<option value=''>Pilih Rencana</option>";
+                    $.each(data2, function(index, value) {
+                        string = string + '<option value="'+ value.id +'">'+ value.activity +'</option>';
+                    })
+                $("#uraian-"+i).html(string);
+            }
+        );
+    }
+
+    
+    function getnilai1(){
+        var setup_id = $("#setup_id-1").val();
+        var jabasn = $("#jabasn").val();
+
+        $.get(
+            "{{route('ak.getnilai') }}",
+            {
+                setup_id: setup_id
+            },
+            function(response) {
+
+                if (jabasn == 'Ahli Pertama') {
+                     ak = response.data.pertama;
+                }else if (jabasn == 'Ahli Muda') {
+                     ak = response.data.muda;
+                }else if (jabasn == 'Ahli Madya') {
+                     ak = response.data.madya;
+                } else {
+                     ak = response.data.utama;
+                }
+
+                document.getElementById("butir1").value = response.data.kode_ak;
+                $("#keluaran1").val(response.data.uraian);
+                $("#pelaksana1").val(response.data.hasil);
+                $("#ak-1").val(ak);
+            }
+        );
+    }
+</script>
 @endsection

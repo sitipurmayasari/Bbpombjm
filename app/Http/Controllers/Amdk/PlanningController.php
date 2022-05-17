@@ -136,12 +136,10 @@ class PlanningController extends Controller
     {
       $data = Perencanaan::where('id',$id)->first();
       $isian = Perencanaan_det::orderBy('skp_detail_id','asc')
-                                ->SelectRaw('skp_detail_id', 'kin_date')
                                 ->where('perencanaan_id','=',$id)
-                                ->GroupBy('skp_detail_id')
                                 ->get();
       $hit = Perencanaan_det::SelectRaw("SUM(nilai_ak) AS nilai_ak")
-                      ->where('perencanaan_id','=',$id)->first();
+                            ->where('perencanaan_id','=',$id)->first();
       $pdf = PDF::loadview('amdk/planning.print',compact('data','isian','hit'));
       return $pdf->stream();
     }
@@ -154,7 +152,7 @@ class PlanningController extends Controller
                           ->get();
       $hit = Perencanaan_det::SelectRaw("SUM(nilai_ak) AS nilai_ak")
                       ->where('perencanaan_id','=',$id)->first();
-      $pdf = PDF::loadview('amdk/planning.print',compact('data','isian','hit'));
+      $pdf = PDF::loadview('amdk/planning.print2',compact('data','isian','hit'));
       return $pdf->stream();
     }
 

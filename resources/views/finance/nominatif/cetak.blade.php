@@ -382,7 +382,8 @@
                             {{number_format($item->bbm)}}
                         @endif <br>
                         @if ($item->tlokal == 'Y')
-                           {{number_format($item->jumtlokal)}}
+                            {{number_format($item->tottlokal)}}
+                           
                         @endif 
                     </td>
                     <td style="vertical-align: top; text-align:right;">
@@ -418,8 +419,8 @@
                             {{number_format($item->bbm)}}
                         @endif <br>
                         @if ($item->tlokal == 'Y')
-                        {{number_format($item->tottlokal)}}
-                     @endif 
+                            {{number_format($item->jumtlokal)}}
+                        @endif 
                     </td>
                     <td style="vertical-align: top; text-align:right;">
                         @php

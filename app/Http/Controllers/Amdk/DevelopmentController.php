@@ -23,11 +23,11 @@ class DevelopmentController extends Controller
     public function index(Request $request)
     {
         $data = Perencanaan::OrderBy('id','desc')
-                        ->when($request->keyword, function ($query) use ($request) {
-                            $query->where('plan_date','LIKE','%'.$request->keyword.'%');
-                        })
-                        ->paginate('10');
-        return view('amdk/planning.index',compact('data'));
+                            ->when($request->keyword, function ($query) use ($request) {
+                                $query->where('plan_date','LIKE','%'.$request->keyword.'%');
+                            })
+                            ->paginate('10');
+        return view('amdk/development.index',compact('data'));
     }
 
     public function create()
@@ -43,7 +43,7 @@ class DevelopmentController extends Controller
 
         $tahu = Pejabat::selectraw('DISTINCT(jabatan_id), id, divisi_id, subdivisi_id, users_id, pjs')
                                 -> whereraw('pjs is null and jabatan_id != 6 and subdivisi_id is null')->Orderby('id','desc')->get();
-        return view('amdk/planning.create',compact('skp','tahu','jab','ak'));
+        return view('amdk/development.create',compact('skp','tahu','jab','ak'));
     }
 
     public function store(Request $request)
@@ -69,7 +69,7 @@ class DevelopmentController extends Controller
 
           DB::commit();
 
-        return redirect('/amdk/planning');  
+        return redirect('/amdk/development');  
     }
 
     public function edit($id)
@@ -86,7 +86,7 @@ class DevelopmentController extends Controller
         $tahu = Pejabat::selectraw('DISTINCT(jabatan_id), id, divisi_id, subdivisi_id, users_id, pjs')
                                 -> whereraw('pjs is null and jabatan_id != 6 and subdivisi_id is null')->Orderby('id','desc')->get();
         $detail = Perencanaan_det::where('perencanaan_id',$id)->get();
-        return view('amdk/planning.edit',compact('data','detail','skp','tahu','jab','ak','skp_det'));
+        return view('amdk/development.edit',compact('data','detail','skp','tahu','jab','ak','skp_det'));
     }
 
     public function update(Request $request, $id)
@@ -111,7 +111,7 @@ class DevelopmentController extends Controller
         }
         DB::commit(); 
 
-      return redirect('/amdk/planning')->with('sukses','Data Diperbaharui');
+      return redirect('/amdk/development')->with('sukses','Data Diperbaharui');
     }
 
     
@@ -121,7 +121,7 @@ class DevelopmentController extends Controller
         $data->delete();
         $detail = Perencanaan_det::where('skp_id',$id)->get();
         $detail->delete();
-        return redirect('/amdk/planning')->with('sukses','Data Terhapus');
+        return redirect('/amdk/development')->with('sukses','Data Terhapus');
     }
 
     public function deletedet($id)
@@ -129,7 +129,7 @@ class DevelopmentController extends Controller
         $data = Perencanaan_det::find($id);
         $out = $data->perencanaan_id;
         $data->delete();
-        return redirect('amdk/planning/edit/'.$out)->with('sukses','data Terhapus');
+        return redirect('amdk/development/edit/'.$out)->with('sukses','data Terhapus');
     }
 
     public function print($id)
@@ -140,7 +140,7 @@ class DevelopmentController extends Controller
                           ->get();
       $hit = Perencanaan_det::SelectRaw("SUM(nilai_ak) AS nilai_ak")
                       ->where('perencanaan_id','=',$id)->first();
-      $pdf = PDF::loadview('amdk/planning.print',compact('data','isian','hit'));
+      $pdf = PDF::loadview('amdk/development.print',compact('data','isian','hit'));
       return $pdf->stream();
     }
 

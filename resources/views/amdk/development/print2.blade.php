@@ -7,10 +7,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     {{-- <link href="{{asset('assets/css/no_header.css')}}" rel="stylesheet"> --}}
-    <title>Lampiran SKP</title>
+    <title>SKP {{$data->dates}}</title>
     <style>
         @page {
-            size: A4;
+            size: A4 landscape;
             font-size: 10px;
             /* margin: 150px 0px 100px 0px; */
         }
@@ -34,7 +34,7 @@
             border: none;
         }
         
-        thead,th{
+        thead,th,tfoot{
             font-weight: bold;
             background-color:#DCDCDC;
         }
@@ -44,7 +44,7 @@
 <body>
     <div class="col-sm-12" style="text-align: center">
        <div style="align=center font-size: 18px">
-           <h3><b>LAMPIRAN SKP (KEG. PERENCANAAN)</b></h3>
+           <h3><b>PENILAIAN KEGIATAN PERENCANAAN PEMBANGUNAN</b></h3>
        </div>
        <br>
     </div>
@@ -126,6 +126,9 @@
                     <td style="text-align: center">KELUARAN</td>
                     <td style="text-align: center">PELAKSANA</td>
                     <td style="text-align: center">AK</td>
+                    <td style="text-align: center">SEKERTARIAT TIM PENILAI</td>
+                    <td style="text-align: center">TIM PENILAI I</td>
+                    <td style="text-align: center">TIM PENILAI II</td>
                 </tr>
                 <tr>
                     <td style="text-align: center">(1)</td>
@@ -136,6 +139,9 @@
                     <td style="text-align: center">(6)</td>
                     <td style="text-align: center">(7)</td>
                     <td style="text-align: center">(8)</td>
+                    <td style="text-align: center">(9)</td>
+                    <td style="text-align: center">(10)</td>
+                    <td style="text-align: center">(11)</td>
                 </tr>
             </thead>
            <tbody>
@@ -153,7 +159,10 @@
                    <td>{{$item->set->pelaksana}}</td>
                    <td style="text-align: center">
                     {{$item->nilai_ak}}
-                </td>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 @php
                     $no++
@@ -165,8 +174,11 @@
                    @php
                        $a = number_format((float)$hit->nilai_ak, 2, '.', '');
                    @endphp          
-                    <td colspan="7" style="text-align: center">Total</td>
+                    <td colspan="7" style="text-align: center">Total AK</td>
                     <td style="text-align: center">{{$a}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                </tr>
            </tfoot>
 
