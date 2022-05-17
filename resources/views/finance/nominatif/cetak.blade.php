@@ -356,7 +356,7 @@
                         @endif <br>
                         {{-- lokal --}}
                         @if ($item->tlokal == 'Y')
-                           {{number_format($item->hittlokal)}} OK
+                            {{number_format($item->jumtlokal)}} OK
                         @endif 
                     </td>
                     <td style="vertical-align: top; text-align:right;">
@@ -382,7 +382,7 @@
                             {{number_format($item->bbm)}}
                         @endif <br>
                         @if ($item->tlokal == 'Y')
-                            {{number_format($item->jumtlokal)}}
+                            {{number_format($item->hittlokal)}}
                         @endif 
                     </td>
                     <td style="vertical-align: top; text-align:right;">
