@@ -222,37 +222,42 @@
                 <td style="text-align: center;" class="isi">1</td>
                 <td class="isi">
                     Biaya Transport : <br>
-                    <b>{{$item->out->cityfrom->capital}}</b> 
-                    <b> -
-                        &nbsp;&nbsp;&nbsp;
-                            @if (count($item->out->outst_destiny) == 1)
-                            @foreach ($tujuan as $key=>$kota)
-                                @if ($loop->first)
-                                    {{$kota->destiny->capital}} 
-                                @endif
-                                
-                            @endforeach
+                    @if ($nilai2->tlokal == 'Y' && $nilai->bbm == '0'  && $nilai->taxyriil == 'N' && $nilai->taxyriil2 == 'N')
+                        Transport Lokal
+                    @else
+                        <b>{{$item->out->cityfrom->capital}}</b> 
+                        <b> -
+                            &nbsp;&nbsp;&nbsp;
+                                @if (count($item->out->outst_destiny) == 1)
+                                @foreach ($tujuan as $key=>$kota)
+                                    @if ($loop->first)
+                                        {{$kota->destiny->capital}} 
+                                    @endif
+                                    
+                                @endforeach
 
-                        @elseif (count($item->out->outst_destiny) == 2)
-                            @foreach ($tujuan as $key=>$kota)
-                                {{$kota->destiny->capital}}
-                                @if ($tujuan->count()-1 != $key)
-                                    {{' dan '}}
-                                @endif
-                            @endforeach
+                            @elseif (count($item->out->outst_destiny) == 2)
+                                @foreach ($tujuan as $key=>$kota)
+                                    {{$kota->destiny->capital}}
+                                    @if ($tujuan->count()-1 != $key)
+                                        {{' dan '}}
+                                    @endif
+                                @endforeach
 
-                        @else
-                            @foreach ($tujuan as $key=>$kota)
-                                @if ($loop->last-1)
-                                    {{$kota->destiny->capital}}{{','}} 
-                                @endif
-                                @if ($loop->last)
-                                    {{' dan '}} {{$kota->destiny->capital}}
-                                @endif
-                                
-                            @endforeach
-                        @endif
-                    </b>
+                            @else
+                                @foreach ($tujuan as $key=>$kota)
+                                    @if ($loop->last-1)
+                                        {{$kota->destiny->capital}}{{','}} 
+                                    @endif
+                                    @if ($loop->last)
+                                        {{' dan '}} {{$kota->destiny->capital}}
+                                    @endif
+                                    
+                                @endforeach
+                            @endif
+                        </b>
+                    @endif
+                    
                 </td>
                 <td class="isi">
                     {{-- bbm --}}
