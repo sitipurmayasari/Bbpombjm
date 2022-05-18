@@ -106,6 +106,7 @@ class OutstationController extends Controller
 
       public function printST($id)
       {
+        $now = Budget::whereraw('code LIKE "D%"')->orderBy('id','desc')->first(); 
         $data = Outstation::where('id',$id)->first();
         $isian = Outst_employee::orderBy('id','asc')
                             ->where('outstation_id','=',$id)
@@ -116,10 +117,10 @@ class OutstationController extends Controller
         $jmlpeg  = Outst_employee::SelectRaw('count(*) as hitung')   
                                   ->where('outstation_id',$id)
                                   ->first(); 
-        if ($jmlpeg->hitung >= 8) {
+        if ($jmlpeg->hitung > 4) {
           $pdf = PDF::loadview('finance/outstation.printSTbanyak',compact('data','isian','menyetujui'));
         } else {
-          $pdf = PDF::loadview('finance/outstation.printST',compact('data','isian','menyetujui'));
+          $pdf = PDF::loadview('finance/outstation.printST',compact('data','isian','menyetujui','now'));
         }
         return $pdf->stream();
 
@@ -138,7 +139,7 @@ class OutstationController extends Controller
         $jmlpeg  = Outst_employee::SelectRaw('count(*) as hitung')   
                             ->where('outstation_id',$id)
                             ->first(); 
-        if ($jmlpeg->hitung >= 20) {
+        if ($jmlpeg->hitung >= 3) {
           $pdf = PDF::loadview('finance/outstation.printSTKopbanyak',compact('data','isian','menyetujui'));
         } else {
           $pdf = PDF::loadview('finance/outstation.printSTKop',compact('data','isian','menyetujui'));

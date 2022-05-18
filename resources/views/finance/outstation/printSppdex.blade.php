@@ -244,6 +244,9 @@
                 &nbsp; &nbsp; b. Mata Anggaran
             </td>
             <td class="isi">     Hanya instansi yang dikuasainya <br>
+                @if ($data->budget->nomor != null)
+                    {{$data->budget->nomor}}
+                @endif
                  {{$data->budget->name}} <br>
                  @if ($data->pok_detail_id == 0)
                     {{' Non Anggaran '}}

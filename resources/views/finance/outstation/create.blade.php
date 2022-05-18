@@ -137,6 +137,16 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Dasar Pelaksanaan (*Tidak Wajib)
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text"  placeholder="Dasar Pelaksanaan" 
+                                    class="col-xs-10 col-sm-10 " 
+                                    name="dasar"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
                         for="form-field-1"> Jenis Dinas
                         </label>
                         <div class="col-sm-8">

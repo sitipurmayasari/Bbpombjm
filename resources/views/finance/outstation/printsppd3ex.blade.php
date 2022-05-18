@@ -252,8 +252,11 @@
                 &nbsp; &nbsp; b. Mata Anggaran
             </td>
             <td class="isi">     Hanya instansi yang dikuasainya <br>
-                 {{$data->budget->name}} <br>
-                 @if ($data->pok_detail_id == 0)
+                 {@if ($data->budget->nomor != null)
+                    {{$data->budget->nomor}}
+                @endif
+                {{$data->budget->name}} <br>
+                @if ($data->pok_detail_id == 0)
                     {{' Non Anggaran '}}
                 @else
                     {{$data->pok->sub->komponen->code}} / {{$data->pok->akun->code}}
