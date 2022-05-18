@@ -20,6 +20,7 @@ use App\Setuprenker;
 use App\Tagging;
 use App\Travelexpenses;
 use App\Travelexpenses1;
+use App\Travelexpenses2;
 use App\User;
 use App\Vehiclerent;
 use Illuminate\Support\Facades\DB;
@@ -49,7 +50,7 @@ class InjectQuery
     }
 
     public function getkkp($id){
-        $nilai = Travelexpenses2::Where('outst_employee_id',$id)->first();
+        $nilai = Travelexpenses2::where('outst_employee_id',$id)->first();
         return $nilai;
     }
 
