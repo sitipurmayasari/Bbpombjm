@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.mon')
 @section('breadcrumb')
     <li>Setup Umum</li>
     <li><a href="/finance/budget"> Kode Anggaran Dinas</a></li>
@@ -45,6 +45,36 @@
                             <input type="text"  placeholder="Nama Anggaran Dinas" value="{{$data->name}}"
                                     class="col-xs-10 col-sm-10 required " 
                                     name="name" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Nomor Angaran
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text"  placeholder="Nomor Anggaran" value="{{$data->nomor}}"
+                                    class="col-xs-10 col-sm-10 required " 
+                                    name="nomor" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Tanggal Anggaran
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="date"  placeholder="Nama Anggaran Dinas" 
+                                    cl class="col-xs-3 col-sm-3 required " value="{{$data->tanggal}}"
+                                    name="tanggal" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Tahun Anggaran
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="number"  placeholder="20XX"  value="{{$data->tahun}}"
+                            class="col-xs-3 col-sm-3 required " 
+                                    name="tahun" required/>
                         </div>
                     </div>
                     </fieldset>        

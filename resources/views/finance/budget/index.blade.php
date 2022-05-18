@@ -36,8 +36,10 @@
             <thead>
                 <th width="40px">No</th>
                 <th class="col-md-2">Kode</th>
-                <th>Nama Anggaran Instansi
-                </th>
+                <th>Nama Anggaran Instansi</th>
+                <th>Nomor Anggaran</th>
+                <th>Tanggal</th>
+                <th>TA</th>
                 <th  class="col-md-2">Aksi</th>
             </thead>
             <tbody>   	
@@ -46,6 +48,9 @@
                     <td>{{$data->firstItem() + $key}}</td>
                     <td>{{$row->code}}</td>
                     <td>{{$row->name}}</td>
+                    <td>{{$row->nomor}}</td>
+                    <td>{{tgl_indo($row->tanggal)}}</td>
+                    <td>{{$row->tahun}}</td>
                     <td>
                         <a href="/finance/budget/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>

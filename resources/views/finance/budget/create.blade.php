@@ -46,6 +46,36 @@
                                         name="name" required/>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right" 
+                            for="form-field-1"> Nomor Angaran
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text"  placeholder="Nomor Anggaran" 
+                                        class="col-xs-10 col-sm-10 required " 
+                                        name="nomor" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right" 
+                            for="form-field-1"> Tanggal Anggaran
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="date"  placeholder="Nama Anggaran Dinas" 
+                                        class="col-xs-3 col-sm-3 required " 
+                                        name="tanggal" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right" 
+                            for="form-field-1"> Tahun Anggaran
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="number"  placeholder="20XX" 
+                                class="col-xs-3 col-sm-3 required " 
+                                        name="tahun" required/>
+                            </div>
+                        </div>
                         </fieldset>        
                    
                </div>
