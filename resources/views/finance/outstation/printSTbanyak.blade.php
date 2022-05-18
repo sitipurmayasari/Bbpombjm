@@ -438,22 +438,6 @@
             </td>
         </tr>
     </table>
-        <tr>
-            <td></td>
-            <td style="height: 10%"></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                @if ($menyetujui != null)
-                    <b>{{$menyetujui->user->name}}</b>
-                @else
-                    <b>Silahkan Cek Setup Pejabat</b>
-                @endif
-                
-            </td>
-        </tr>
-    </table>
 </div>
 </body>
 </html>
