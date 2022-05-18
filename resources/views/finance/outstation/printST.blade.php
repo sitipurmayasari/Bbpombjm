@@ -45,7 +45,7 @@
 
         .ttdini{
             font-family: "Bookman Old Style";
-            margin-right: 10%;
+            /* margin-right: 10%; */
             font-size: 12;
             width: 100%;
         }
