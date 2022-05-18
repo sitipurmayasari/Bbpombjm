@@ -287,7 +287,7 @@
                 </td>
                 <td><b>
                    @if ($menyetujui != null)
-                        {{$menyetujui->jabatan->jabatan}} {{$menyetujui->divisi->nama}}
+                        Kepala {{$menyetujui->divisi->nama}}
                    @else
                         <b>Pejabat Belum Ditentukan</b>
                    @endif
@@ -416,12 +416,28 @@
             </td>
             <td><b>
                @if ($menyetujui != null)
-                    {{$menyetujui->jabatan->jabatan}} {{$menyetujui->divisi->nama}}
+                    Kepala {{$menyetujui->divisi->nama}}
                @else
                     <b>Pejabat Belum Ditentukan</b>
                @endif
                 </b></td>
         </tr>
+        <tr>
+            <td></td>
+            <td style="height: 10%"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                @if ($menyetujui != null)
+                    <b>{{$menyetujui->user->name}}</b>
+                @else
+                    <b>Silahkan Cek Setup Pejabat</b>
+                @endif
+                
+            </td>
+        </tr>
+    </table>
         <tr>
             <td></td>
             <td style="height: 10%"></td>

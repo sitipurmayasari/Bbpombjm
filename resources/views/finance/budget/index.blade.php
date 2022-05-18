@@ -49,7 +49,7 @@
                     <td>{{$row->code}}</td>
                     <td>{{$row->name}}</td>
                     <td>{{$row->nomor}}</td>
-                    <td>{{tgl_indo($row->tanggal)}}</td>
+                    <td>{{$row->tanggal}}</td>
                     <td>{{$row->tahun}}</td>
                     <td>
                         <a href="/finance/budget/edit/{{$row->id}}" class="btn btn-warning">
