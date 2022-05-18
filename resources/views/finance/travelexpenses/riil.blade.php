@@ -223,7 +223,7 @@
                 <td class="isi">
                     Biaya Transport : <br>
                     @if ($nilai2->tlokal == 'Y' && $nilai->bbm == '0'  && $nilai->taxyriil == 'N' && $nilai->taxyriil2 == 'N')
-                        Transport Lokal
+                        <b>Transport Lokal</b>
                     @else
                         <b>{{$item->out->cityfrom->capital}}</b> 
                         <b> -
