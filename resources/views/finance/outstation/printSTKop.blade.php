@@ -354,7 +354,7 @@
          <br><br>
          &nbsp;Agar yang bersangkutan melaksanakan tugas dengan baik dan penuh tanggungjawab.
          <br><br><br>
-         <table class="ttdini">
+         <table class="ttdini" style="width: 100%" >
             <tr>
                 <td></td>
                 <td style="width: 55%;">Banjarmasin, 
@@ -365,19 +365,37 @@
                 </td>
             </tr>
             <tr>
-                <td></td>
-                <td><b>
+                <td style="text-align: right">
                     @if ($menyetujui != null)
                         @if ($menyetujui->pjs !=null)
-                            {{$menyetujui->pjs}} {{$menyetujui->jabatan->jabatan}} {{$menyetujui->divisi->nama}}
-                        @else
-                        {{$menyetujui->jabatan->jabatan}} {{$menyetujui->divisi->nama}}
+                            {{$menyetujui->pjs}}
                         @endif
-                    @else
+                    @endif     
+                </td>
+                <td><b>
+                   @if ($menyetujui != null)
+                        {{$menyetujui->jabatan->jabatan}} {{$menyetujui->divisi->nama}}
+                   @else
                         <b>Pejabat Belum Ditentukan</b>
-                    @endif
+                   @endif
                     </b></td>
             </tr>
+            <tr>
+                <td></td>
+                <td style="height: 10%"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    @if ($menyetujui != null)
+                        <b>{{$menyetujui->user->name}}</b>
+                    @else
+                        <b>Silahkan Cek Setup Pejabat</b>
+                    @endif
+                    
+                </td>
+            </tr>
+        </table>
             <tr>
                 <td></td>
                 <td style="height: 10%"></td>
