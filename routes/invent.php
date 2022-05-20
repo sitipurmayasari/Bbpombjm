@@ -55,17 +55,25 @@
   Route::get('/invent/maintenance/delete/{id}','Invent\MaintenanceController@delete')->name('maintenance.delete');
 
   //Route untuk aduan
+  Route::get('/invent/aduan/create','Invent\AduanController@create')->name('aduan.create');
   Route::post('/invent/aduan/store','Invent\AduanController@store')->name('aduan.store');
   Route::post('/invent/aduan/update/{id}','Invent\AduanController@update')->name('aduan.update');
   Route::get('/invent/aduan/print/{id}','Invent\AduanController@print')->name('aduan.print');
   Route::get('/invent/aduan/detail/{id}','Invent\AduanController@detail')->name('aduan.detail');
+  Route::get('/invent/aduan/edit/{id}','Invent\AduanController@edit')->name('aduan.edit');
+  Route::post('/invent/aduan/perbaharui/{id}','Invent\AduanController@perbaharui')->name('aduan.perbaharui');
+  Route::get('/invent/aduan/delete/{id}','Invent\AduanController@delete')->name('aduan.delete');
+  Route::get('/invent/aduan/deletedet/{id}','Invent\AduanController@deletedet')->name('aduan.deletedet');
 
   //Route untuk aduan TIK
+  Route::get('/invent/aduantik/create','Invent\AduanTikController@create')->name('aduantik.create');
   Route::post('/invent/aduantik/store','Invent\AduanTikController@store')->name('aduantik.store');
+  Route::get('/invent/aduantik/edit/{id}','Invent\AduanTikController@edit')->name('aduantik.edit');
   Route::post('/invent/aduantik/update/{id}','Invent\AduanTikController@update')->name('aduantik.update');
+  Route::post('/invent/aduantik/perbaharui/{id}','Invent\AduanTikController@perbaharui')->name('aduantik.perbaharui');
   Route::get('/invent/aduantik/print/{id}','Invent\AduanTikController@print')->name('aduantik.print');
   Route::get('/invent/aduantik/detail/{id}','Invent\AduanTikController@detail')->name('aduantik.detail');
-  Route::get('/invent/aduantik/printhasil/{id}','Invent\AduanTikController@printhasil')->name('aduantik.printhasil');
+  Route::get('/invent/aduantik/delete/{id}','Invent\AduanTikController@delete')->name('aduantik.delete');
 
   //Route untuk pengajuan barang baru
   Route::get('/invent/pengajuan/create','Invent\PengajuanController@create')->name('pengajuan.create');

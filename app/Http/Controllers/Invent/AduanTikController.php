@@ -9,6 +9,7 @@ use App\Aduan;
 use App\User;
 use App\Pejabat;
 use App\Petugas;
+use App\Divisi;
 use PDF;
 use Illuminate\Support\Facades\DB;
 use App\AduanDetail;
@@ -32,16 +33,44 @@ class AduanTikController extends Controller
         return view('invent/aduantik.index',compact('data'));
     }
 
+    public function bidang(Request $request)
+    {   
+        $div =auth()->user()->divisi_id;
+        $data = Aduan::orderBy('aduan_status','asc')
+                    ->orderBy('id','desc')
+                    ->select('aduan.*','users.name')
+                    ->leftJoin('users','users.id','=','aduan.pegawai_id')
+                    ->where('aduan.jenis','=','T')
+                    ->where('aduan.divisi_id','=',$div)
+                    ->when($request->keyword, function ($query) use ($request) {
+                        $query->where('no_aduan','LIKE','%'.$request->keyword.'%')
+                                ->orWhere('tanggal', 'LIKE','%'.$request->keyword.'%')
+                                ->orWhere('name', 'LIKE','%'.$request->keyword.'%');
+                    })
+                    ->paginate('10');
+        $divisi = Divisi::where('id',$div)->first();
+        return view('invent/aduantik.bidang',compact('data','divisi'));
+    }
+
     public function create()
     {
 
+        $div = auth()->user()->divisi_id;
+        $user = User::where('id','!=','1')->where('aktif','=','Y')->where('divisi_id','=',$div)->get();
         $data = Inventaris::all()
                 ->where('kind','=','R')
                 ->where('jenis_barang','=','4');
-        $user = User::all()
-                ->where('id','!=','1');
         $no_aduan = $this->getNoAduan();
-        return view('invent/aduantik.create',compact('data','user','no_aduan'));
+        return view('invent/aduantik.create',compact('data','user','no_aduan','div'));
+    }
+
+    public function edit($id)
+    {
+        $inventaris = Inventaris::all()
+                ->where('kind','=','R')
+                ->where('jenis_barang','=','4');
+        $data = Aduan::where('id',$id)->first();
+       return view('invent/aduantik.edit',compact('data','inventaris'));
     }
 
     public function detail($id)
@@ -185,6 +214,13 @@ class AduanTikController extends Controller
         return redirect('/invent/aduantik')->with('sukses','Status Aduan Telah Diperbaharui');
     }
 
+    public function perbaharui(Request $request, $id)
+    {
+        $data = Aduan::find($id);
+        $data->update($request->all());
+        return redirect('/invent/aduantik/bidang')->with('sukses','Data Diperbaharui');
+    }
+
 
     function getNoAduan(){
       $aduan = Aduan::orderBy('id','desc')->whereYear('tanggal',date('Y'))->get(); // get last no aduan berdasarkan reset per tahun
@@ -199,6 +235,13 @@ class AduanTikController extends Controller
       }
       $no_aduan = $first."/SPI/BBPOM/".date('m')."/".date('Y');
       return $no_aduan;
+    }
+
+    public function delete($id)
+    {
+        $data = Aduan::find($id);
+        $data->delete();
+        return redirect('/invent/aduantik/bidang')->with('sukses','Data Terhapus');
     }
 
 

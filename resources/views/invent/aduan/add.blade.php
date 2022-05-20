@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('breadcrumb')
     <li>Aduan</li>
+    <li><a href="/invent/aduan/bidang">Aduan</a></li>
     <li>Input Aduan</li>
 @endsection
 @section('content')
@@ -21,6 +22,7 @@
                     name="no_aduan"
                     value="{{$no_aduan}}"/>
                     <input type="hidden" name="jenis" value="U"/>
+                    <input type="hidden" name="divisi_id" value={{$div}}/>
                 </div>
                 <div class="col-md-4">
                     <label for="">TANGGAL ADUAN *</label>
@@ -59,7 +61,7 @@
                                 1
                             </td>
                             <td>
-                                <select name="aduan_detail[]" class="form-control select2" required>
+                                <select name="inventaris_id[]" class="form-control select2" required>
                                     <option value="">-Pilih-</option>
                                     @foreach ($data as $item)
                                         <option value="{{$item->id}}">{{$item->kode_barang}} | {{$item->nama_barang}}</option>
@@ -67,7 +69,7 @@
                                 </select>
                             </td>
                             <td>
-                                <input type="text" name="note[]" class="form-control">
+                                <input type="text" name="keterangan[]" class="form-control">
                             </td>
                             <td>
                                 {{-- <button type="button"  class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button> --}}

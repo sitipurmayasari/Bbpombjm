@@ -18,14 +18,14 @@
             width: 100%;
             border-collapse: collapse;
             text-align: center;
-            font-size: 12px;
+            font-size: 11px;
         }
 
         .lara{ 
             border: 1px solid black;
-            padding: 20px;
+            padding: 15px;
             text-align: center;
-            height: 75%;
+            height: 85%;
 
             }
         .kiri1{
@@ -47,6 +47,13 @@
             text-align: center;
         }
 
+        .aduan{
+            border: 1px solid black;
+            height: 35px;
+            padding: 5px 5px 5px 5px;
+        }
+        
+
         </style>
 
 </head>
@@ -55,7 +62,7 @@
         <table>
             <tr>
                 <td rowspan="5" style="width: 20%;"> <img src="{{asset('images/BBRI.jpg')}}" style="height:80px"></td>
-                <td rowspan="2" style="width: 30%; font-size: 16px;">BALAI BESAR POM DI BANJARMASIN</td>
+                <td rowspan="2" style="width: 30%; font-size: 14px;">BALAI BESAR POM DI BANJARMASIN</td>
                 <td class="kiri1">No. Bagian</td>
                 <td class="kiri2">: A 19</td>
             </tr>
@@ -64,7 +71,7 @@
                 <td class="kiri2">: 2/30 Des 2009</td>
             </tr>
             <tr>
-                <td rowspan="2" style="width: 85%; font-size: 16px;"><b>FORMAT - FORMAT</b></td>
+                <td rowspan="2" style="width: 85%; font-size: 14px;"><b>FORMAT - FORMAT</b></td>
                 <td class="kiri1">Revisi/Tgl</td>
                 <td class="kiri2">: 1/12 Apr 2013</td>
             </tr>
@@ -73,16 +80,17 @@
                 <td class="kiri2">: 1 dari 1</td>
             </tr>
             <tr>
-                <td colspan="3" style="width: 30%; font-size: 18px;"><b>SURAT PERBAIKAN INVENTARIS</b></td>           
+                <td colspan="3" style="width: 30%; font-size: 16px;">
+                    <b>SURAT PERBAIKAN INVENTARIS</b>
+                </td>           
             </tr>
         </table>
     </div>  
-    <br>  
     <div class="lara">
-        <h6>BALAI BESAR PENGAWASAN OBAT DAN MAKANAN DI BANJARMASIN</h6>
-        <u><h5>SURAT PERMINTAAN PERBAIKAN INVENTARIS</h5></u>
-        <h6>NO. {{$data->no_aduan}}</h6>
-        <br>
+        <p style="text-align: center; font-size: 12px;">
+            <u><b>Surat Permintaan Perbaikan TIK</b></u> <br>
+            NO. {{$data->no_aduan}}
+        </p>
         <div >
             <table class="rapi">
                 <tr>
@@ -102,99 +110,48 @@
                     <td class="rapi">{{$data->tanggal}}</td>
                 </tr>
             </table>
-        </div>
         <br>
-        <table >
+        <table style="width: 100%">
             <thead>
                 <tr>
+                    <th>NO</th>
                     <th>NAMA BARANG</th>
                     <th>TEMPAT</th>
-                    <th>ADUAN KERUSAKAN</th>
+                    <th>KETERANGAN</th>
+                    <th>TINDAK LANJUT*</th>
+                    <th>HASIL*</th>
                 </tr>
             </thead>
             <tbody>
+                @php
+                    $no = 1;
+                @endphp
+               @foreach ($isi as $item)
                 <tr>
-                    <td style="vertical-align: top; align:left; width: 30%;">
-                        {{$data->barang->nama_barang}} - {{$data->barang->merk}}
-                        <br><br><br>
+                    <td style="height: 100px;">
+                        {{$no}}
                     </td>
-                    <td style="vertical-align: top; width: 20%;">{{$data->barang->location->nama}}</td>
-                    <td style="vertical-align: top; align:left;">{{$data->problem}}</td>
+                    <td style="width: 25%">{{$item->barang->nama_barang}} {{$item->barang->merk}}</td>
+                    <td>{{$item->barang->location->nama}}</td>
+                    <td>{{$item->keterangan}}</td>
+                    <td></td>
+                    <td></td>
                 </tr>
+                @php
+                    $no++;
+                @endphp
+               @endforeach
             </tbody>
         </table>
-        <br>
+       <p style="font-size: 11px;text-align:left;"> *Diisi Oleh Petugas</p>
         <div id="ttd">
             <table class="ttd">
-                <tr>
-                    <td class="ttd">Pemeriksa,</td>
-                    <td class="ttd">Mengetahui,</td>
-                    <td class="ttd">Yang Meminta,</td>
-                </tr>
-                <tr>
-                    <td class="ttd"> Petugas BMN,     
-                    </td>
-                    <td class="ttd">
-                                @if ($mengetahui!= null)
-                                    @if ($mengetahui->pjs != null)
-                                    {{$mengetahui->pjs}}
-                                    {{$mengetahui->jabatan->jabatan}} 
-                                    {{$mengetahui->divisi->nama}}
-                                    @else
-                                    {{$mengetahui->jabatan->jabatan}} 
-                                    {{$mengetahui->divisi->nama}}
-                                    @endif
-                                @else
-                                    SILAHKAN CEK SETUP PEJABAT
-                                @endif
-                    </td>
-                    <td class="ttd"></td>
-                </tr>
-                <tr >
-                    <td style="height: 10%" class="ttd"></td>
-                    <td style="height: 10%" class="ttd"></td>
-                    <td style="height: 10%" class="ttd"></td>
-                </tr>
-                <tr>
-                    <td class="ttd"><u>
-                        {{$petugas->user->name}}
-                    </u></td>
-                    <td class="ttd"><u>
-                        @if ($mengetahui !=null)
-                        {{$mengetahui->user->name}}
-                        @else
-                        SILAHKAN CEK SETUP PEJABAT
-                        @endif
-                    </u>
-                    </td>
-                    <td class="ttd"><u>{{$data->lapor->name}}</u></td>
-                </tr>
-                <tr>
-                    <td class="ttd">
-                        @if ($menyetujui !=null)
-                        NIP. {{$menyetujui->user->no_pegawai}}
-                        @else
-                        SILAHKAN CEK SETUP PEJABAT
-                        @endif
-
-                    </td>
-                    <td class="ttd">
-                        @if ($mengetahui !=null)
-                        NIP.  {{$mengetahui->user->no_pegawai}}
-                        @else
-                        SILAHKAN CEK SETUP PEJABAT
-                        @endif
-                    </td>
-                    <td class="ttd">NIP. {{$data->lapor->no_pegawai}}</td>
-                </tr>
-            </table>
-        </div><br><br>
-        <div class="col-sm-12">
-            <table class="ttd" >
-                <tr>
+                <tr class="ttd">
                     <td class="ttd">Menyetujui,</td>
+                    <td class="ttd">Mengetahui,</td>
+                    <td class="ttd" style="width: 34%">Yang Meminta,</td>
                 </tr>
-                <tr>
+                <tr class="ttd">
                     <td class="ttd">
                         @if ($menyetujui != null)
                             @if ($menyetujui->pjs != null)
@@ -209,34 +166,104 @@
                             SILAHKAN CEK SETUP PEJABAT
                         @endif
                     </td>
+                    <td class="ttd">
+                                @if ($mengetahui!= null)
+                                    @if ($mengetahui->pjs != null)
+                                        {{$mengetahui->pjs}}
+                                        {{$mengetahui->jabatan->jabatan}} 
+                                    @else
+                                        {{$mengetahui->jabatan->jabatan}} 
+                                    @endif
+                                    @if ($mengetahui->jabatan_id == 5 )
+                                        {{$mengetahui->subdivisi->nama_subdiv}}
+                                    @elseif ($mengetahui->jabatan_id == 7 or $mengetahui->jabatan_id==11)
+                                        {{$mengetahui->divisi->nama}}
+                                    @else
+                                        Kepala Balai Besar POM di Banjarmasin
+                                    @endif
+                                @else
+                                    SILAHKAN CEK SETUP PEJABAT
+                                @endif
+                    </td>
+                    <td class="ttd"></td>
                 </tr>
-                <tr >
+                <tr class="ttd">
                     <td style="height: 10%" class="ttd"></td>
+                    <td class="ttd"></td>
                 </tr>
-                <tr>
+                <tr class="ttd">
+                    <td class="ttd">
+                        <u>
+                            @if ($menyetujui !=null)
+                                {{$menyetujui->user->name}}
+                            @else
+                                SILAHKAN CEK SETUP PEJABAT
+                            @endif   
+                        </u>
+                    </td>
                     <td class="ttd"><u>
-                        @if ($menyetujui !=null)
-                        {{$menyetujui->user->name}}
+                        @if ($mengetahui !=null)
+                        {{$mengetahui->user->name}}
                         @else
-                            SILAHKAN CEK SETUP PEJABAT
-                        @endif        
-                    </u></td>
+                        SILAHKAN CEK SETUP PEJABAT
+                        @endif
+                    </u>
+                    </td>
+                    <td class="ttd"><u>{{$data->lapor->name}}</u></td>
                 </tr>
-                <tr>
+                <tr class="ttd">
                     <td class="ttd">
                         @if ($menyetujui !=null)
                         NIP. {{$menyetujui->user->no_pegawai}}
                         @else
                         SILAHKAN CEK SETUP PEJABAT
                         @endif
-
+                    </td>
+                    <td class="ttd">
+                        @if ($mengetahui !=null)
+                        NIP.  {{$mengetahui->user->no_pegawai}}
+                        @else
+                        SILAHKAN CEK SETUP PEJABAT
+                        @endif
+                    </td>
+                    <td class="ttd">
+                        @if ($data->lapor->jabasn_id != null)
+                            NIP. {{$data->lapor->no_pegawai}}
+                        @endif
                     </td>
                 </tr>
             </table>
-
         </div><br>
-
-    
+        <br>
+        <div style="font-size: 11px; text-align:left;">
+            <b>Selesai Diperbaiki tanggal : </b>
+        </div>
+        <br>
+        <div class="col-sm-12">
+            <table class="ttd">
+                <tr class="ttd">
+                    <td class="ttd">Petugas Perlengkapan,</td>
+                    <td class="ttd" style="width: 50%">Yang Menerima,</td>
+                </tr>
+                <tr class="ttd">
+                    <td style="height: 20%" class="ttd"></td>
+                    <td class="ttd"></td>
+                </tr>
+                <tr class="ttd">
+                  <td class="ttd"><u> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</u></td>
+                    <td class="ttd"> <u>{{$data->lapor->name}}</u>
+                    </td>
+                </tr>
+                <tr class="ttd">
+                    <td class="ttd">NIP. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td>
+                    <td class="ttd">
+                        @if ($data->lapor->jabasn_id != null)
+                            NIP. {{$data->lapor->no_pegawai}}
+                        @endif
+                    </td>
+                </tr>
+            </table>
+        </div><br>
     </div>
 </body>
 </html>

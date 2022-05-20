@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('breadcrumb')
     <li>Aduan</li>
+    <li><a href="/invent/aduantik/bidang">Aduan TIK</a></li>
     <li>Input Aduan TIK</li>
 @endsection
 @section('content')
@@ -22,6 +23,7 @@
                     name="no_aduan"
                     value="{{$no_aduan}}"/>
                     <input type="hidden" name="jenis" value="T"/>
+                    <input type="hidden" name="divisi_id" value={{$div}}/>
                 </div>
                 <div class="col-md-4">
                     <label for="">TANGGAL ADUAN *</label>

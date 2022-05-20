@@ -81,10 +81,10 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/invent/broken','Invent\BrokenController@index')->name('broken');
     //Route untuk aduan
     Route::get('/invent/aduan','Invent\AduanController@index')->name('aduan');
-    Route::get('/invent/aduan/create','Invent\AduanController@create')->name('aduan.create');
+    Route::get('/invent/aduan/bidang','Invent\AduanController@bidang')->name('aduan.bidang');
     //Route untuk aduanTIK
     Route::get('/invent/aduantik','Invent\AduanTikController@index')->name('aduantik');
-    Route::get('/invent/aduantik/create','Invent\AduanTikController@create')->name('aduantik.create');
+    Route::get('/invent/aduantik/bidang','Invent\AduanTikController@bidang')->name('aduantik.bidang');
     //Route untuk Pengajuan Barang Baru
     Route::get('/invent/pengajuan','Invent\PengajuanController@index')->name('pengajuan');
     //Route untuk Permintaan Barang Lab di gudang
@@ -109,7 +109,7 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/invent/carok','Invent\CarOkController@index')->name('carok');
     //Route untuk Laporan
     Route::get('/invent/laporan','Invent\LaporanController@index')->name('laporan');
-    //Route untuk Laporan Aduan
+    //Route untuk Laporan peminjaman
     Route::get('/invent/lappinjam','Invent\LapPinjamController@index')->name('lappinjam');
     //Route untuk Laporan Pengajuan
     Route::get('/invent/lapajuan','Invent\LapAjuController@index')->name('lapajuan');

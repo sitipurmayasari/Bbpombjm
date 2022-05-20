@@ -12,6 +12,7 @@ use App\Aduan;
 use App\User;
 use App\Pejabat;
 use App\Petugas;
+use App\Divisi;
 
 
 use App\AduanDetail;
@@ -35,15 +36,32 @@ class AduanController extends Controller
         return view('invent/aduan.index',compact('data','detail'));
     }
 
+    public function bidang(Request $request)
+    {   
+        $div =auth()->user()->divisi_id;
+        $data = Aduan::orderBy('aduan_status','asc')
+                    ->orderBy('id','desc')
+                    ->select('aduan.*','users.name')
+                    ->leftJoin('users','users.id','=','aduan.pegawai_id')
+                    ->where('aduan.jenis','=','U')
+                    ->where('aduan.divisi_id','=',$div)
+                    ->when($request->keyword, function ($query) use ($request) {
+                        $query->where('no_aduan','LIKE','%'.$request->keyword.'%')
+                                ->orWhere('tanggal', 'LIKE','%'.$request->keyword.'%')
+                                ->orWhere('name', 'LIKE','%'.$request->keyword.'%');
+                    })
+                    ->paginate('10');
+        $divisi = Divisi::where('id',$div)->first();
+        return view('invent/aduan.bidang',compact('data','divisi'));
+    }
+
     public function create()
     {
-        $data = Inventaris::all()
-                ->where('kind','=','R')
-                ->where('jenis_barang','!=','4');
-        $user = User::all()
-                ->where('id','!=','1');
+        $div =auth()->user()->divisi_id;
+        $data = Inventaris::whereraw('KIND = "R" and jenis_barang not in (4,19)')->get();
+        $user = User::where('id','!=','1')->where('aktif','=','Y')->where('divisi_id','=',$div)->get();
         $no_aduan = $this->getNoAduan();
-        return view('invent/aduan.add',compact('data','user','no_aduan'));
+        return view('invent/aduan.add',compact('data','user','no_aduan','div'));
     }
 
     public function detail($id)
@@ -65,11 +83,11 @@ class AduanController extends Controller
         DB::beginTransaction(); // kegunaan untuk multiple insert (banyak aksi k database)
             $aduan =Aduan::create($request->all());
             $aduan_id = $aduan->id;
-            for ($i = 0; $i < count($request->input('aduan_detail')); $i++){
+            for ($i = 0; $i < count($request->input('inventaris_id')); $i++){
                 $data = [
                     'aduan_id' => $aduan_id,
-                    'inventaris_id' => $request->aduan_detail[$i] ,
-                    'keterangan' => $request->note[$i]
+                    'inventaris_id' => $request->inventaris_id[$i] ,
+                    'keterangan' => $request->keterangan[$i]
                 ];
                 AduanDetail::create($data);
             }
@@ -123,8 +141,10 @@ class AduanController extends Controller
    
     public function edit($id)
     {
+        $inventaris = Inventaris::whereraw('KIND = "R" and jenis_barang not in (4,19)')->get();
         $data = Aduan::where('id',$id)->first();
-        return view('invent/aduan.edit',compact('data'));
+        $isi = AduanDetail::where('aduan_id',$id)->get();
+        return view('invent/aduan.edit',compact('data','inventaris','isi'));
     }
 
    
@@ -140,6 +160,34 @@ class AduanController extends Controller
         $aduan->update(['aduan_status' => $request->aduan_status]);
         return redirect('/invent/aduan/detail/'.$id)->with('sukses','Barang sudah diperbaharui');
     }
+
+    public function perbaharui(Request $request, $id)
+    {
+        $data = Aduan::find($id);
+        $data->touch();
+
+        $aduan_id = $id;
+        DB::beginTransaction(); 
+          //---------------Aduan----------------------
+            $data = Aduan::find($id);
+            $data->update($request->all());
+          //---------------outst_employee----------------------
+           for ($i = 0; $i < count($request->input('inventaris_id')); $i++){
+                $data = [
+                    'aduan_id'      => $id,
+                    'inventaris_id' => $request->inventaris_id[$i],
+                    'keterangan'    => $request->keterangan[$i]
+                ];
+                AduanDetail::updateOrCreate([
+                  'id'   => $request->det_id[$i],
+                ],$data);
+          }
+
+        DB::commit();
+
+        return redirect('/invent/aduan/bidang')->with('sukses','Data Diperbaharui');
+    }
+
 
 
     function getNoAduan(){
@@ -157,5 +205,24 @@ class AduanController extends Controller
       return $no_aduan;
     }
 
+    public function delete($id)
+    {
+        $data = Aduan::find($id);
+        $data->delete();
+
+        $isi = AduanDetail::where('aduan_id',$id)->get();
+        $isi->delete();
+
+        return redirect('/invent/aduan/bidang')->with('sukses','Data Terhapus');
+    }
+
+    public function deletedet($id)
+    {
+        $data = AduanDetail::find($id);
+        $out = $data->aduan_id;
+
+        $data->delete();
+        return redirect('/invent/aduan/bidang/'.$out)->with('sukses','Data Terhapus');
+    }
 
 }
