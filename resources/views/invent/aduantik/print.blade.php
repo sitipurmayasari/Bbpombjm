@@ -288,7 +288,7 @@
                     </td>
                 </tr>
             </table>
-        </div><br>
+        </div>
     </div>
 </body>
 </html>
