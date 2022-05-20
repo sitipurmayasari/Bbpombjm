@@ -87,7 +87,7 @@
     </div>  
     <div class="lara">
         <p style="text-align: center; font-size: 12px;">
-            <u><b>Surat Permintaan Perbaikan Inventaris</b></u> <br>
+            <u><b>Surat Permintaan Perbaikan Inventaris TIK</b></u> <br>
             NO. {{$data->no_aduan}}
         </p>
         <div >

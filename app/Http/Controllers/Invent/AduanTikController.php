@@ -233,7 +233,7 @@ class AduanTikController extends Controller
             $first = "0".$first;
         }
       }
-      $no_aduan = $first."/SPI/BBPOM/".date('m')."/".date('Y');
+      $no_aduan = $first."/SPTIK/BBPOM/".date('m')."/".date('Y');
       return $no_aduan;
     }
 
