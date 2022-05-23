@@ -432,7 +432,7 @@
                 @if ($menyetujui != null)
                     @if ($menyetujui->pjs !=null)
                         <u><b>{{$menyetujui->user->name}}</b></u><br>
-                        <b>{{$menyetujui->user->no_pegawai}}</b>
+                        <b>NIP. {{$menyetujui->user->no_pegawai}}</b>
                     @else
                         <b>{{$menyetujui->user->name}}</b>
                     @endif
