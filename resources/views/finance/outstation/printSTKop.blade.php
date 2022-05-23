@@ -395,6 +395,17 @@
                     
                 </td>
             </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <hr>
+                    @if ($menyetujui != null)
+                        @if ($menyetujui->pjs !=null)
+                            <b>{{$menyetujui->user->no_pegawai}}</b>
+                        @endif
+                    @endif   
+                </td>
+            </tr>
         </table>
          <br><br>
          <div id="gratis">
