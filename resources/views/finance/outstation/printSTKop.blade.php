@@ -388,22 +388,16 @@
                 <td></td>
                 <td>
                     @if ($menyetujui != null)
-                        <b>{{$menyetujui->user->name}}</b>
+                        @if ($menyetujui->pjs !=null)
+                            <u><b>{{$menyetujui->user->name}}</b></u><br>
+                            <b>{{$menyetujui->user->no_pegawai}}</b>
+                        @else
+                            <b>{{$menyetujui->user->name}}</b>
+                        @endif
                     @else
                         <b>Silahkan Cek Setup Pejabat</b>
                     @endif
                     
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <hr>
-                    @if ($menyetujui != null)
-                        @if ($menyetujui->pjs !=null)
-                            <b>{{$menyetujui->user->no_pegawai}}</b>
-                        @endif
-                    @endif   
                 </td>
             </tr>
         </table>
