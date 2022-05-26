@@ -244,3 +244,24 @@
   Route::get('/amdk/mailclasification/edit/{id}','Amdk\MailClasificationController@edit')->name('mailclasification.edit');
   Route::post('/amdk/mailclasification/update/{id}','Amdk\MailClasificationController@update')->name('mailclasification.update');
   Route::post('/amdk/mailclasification/delete/{id}','Amdk\MailClasificationController@delete')->name('mailclasification.delete');
+
+  //Route untuk Arsip
+  Route::get('/amdk/archives/create','Amdk\ArchivesController@create')->name('archives.create');
+  Route::post('/amdk/archives/store','Amdk\ArchivesController@store')->name('archives.store');
+  Route::get('/amdk/archives/delete/{id}','Amdk\ArchivesController@delete')->name('archives.delete');
+  Route::get('/amdk/archives/edit/{id}','Amdk\ArchivesController@edit')->name('archives.edit');
+  Route::post('/amdk/archives/update/{id}','Amdk\ArchivesController@update')->name('archives.update');
+  
+  //Route untuk Arsip bidang
+  Route::get('/amdk/archivesbid/create','Amdk\ArchivesbidController@create')->name('archivesbid.create');
+  Route::post('/amdk/archivesbid/store','Amdk\ArchivesbidController@store')->name('archivesbid.store');
+  Route::get('/amdk/archivesbid/delete/{id}','Amdk\ArchivesbidController@delete')->name('archivesbid.delete');
+  Route::get('/amdk/archivesbid/edit/{id}','Amdk\ArchivesbidController@edit')->name('archivesbid.edit');
+  Route::post('/amdk/archivesbid/update/{id}','Amdk\ArchivesbidController@update')->name('archivesbid.update');
+  
+  //Route untuk rekap Arsip
+  Route::get('/amdk/archivesrek/create','Amdk\ArchivesrekController@create')->name('archivesrek.create');
+  Route::post('/amdk/archivesrek/store','Amdk\ArchivesrekController@store')->name('archivesrek.store');
+  Route::get('/amdk/archivesrek/delete/{id}','Amdk\ArchivesrekController@delete')->name('archivesrek.delete');
+  Route::get('/amdk/archivesrek/edit/{id}','Amdk\ArchivesrekController@edit')->name('archivesrek.edit');
+  Route::post('/amdk/archivesrek/update/{id}','Amdk\ArchivesrekController@update')->name('archivesrek.update');

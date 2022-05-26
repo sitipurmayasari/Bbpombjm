@@ -299,10 +299,6 @@ class OutstationController extends Controller
     {
         $data = Outstation::find($id);
         $data->delete();
-        $petugas = Outst_employee::where('outstation_id',$id)->get();
-        $petugas->delete();
-        $kota = Outst_destiny::where('outstation_id',$id)->get();
-        $kota->delete();
         return redirect('/finance/outstation')->with('sukses','Data Terhapus');
     }
 

@@ -3,14 +3,17 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Inventaris extends Model
 {
+    use SoftDeletes;
     protected $table = "inventaris";
     protected $fillable = ["kode_barang","nama_barang","harga","kode_bmn","jenis_barang","jumlah_barang",
                             "tanggal_diterima","merk","no_seri","lokasi","penanggung_jawab","spesifikasi","satuan_id",
                             "file_user_manual","file_ika","file_trouble","file_foto","status_barang","kind"
                         ];
+    protected $dates = ['deleted_at'];
 
     public function penanggung() //Relasi dari inventaris k user / pegawai
     {

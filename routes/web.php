@@ -189,6 +189,12 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
      Route::get('/amdk/mailsubgroup','Amdk\MailSubGroupController@index')->name('mailsubgroup');
      //Route untuk Klasifikasi Surat
      Route::get('/amdk/mailclasification','Amdk\MailClasificationController@index')->name('mailclasification');
+     //Route untuk Arsip
+     Route::get('/amdk/archives','Amdk\ArchivesController@index')->name('archives');
+     //Route untuk Arsip bidang
+     Route::get('/amdk/archivesbid','Amdk\ArchivesbidController@index')->name('archivesbid');
+     //Route untuk rekap Arsip
+     Route::get('/amdk/archivesrek','Amdk\ArchivesrekController@index')->name('archivesrek');
     
 
 
