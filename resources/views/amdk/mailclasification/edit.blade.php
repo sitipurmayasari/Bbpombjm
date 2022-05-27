@@ -116,12 +116,23 @@
                                     <input type="radio" required value="permanen" checked 
                                     name="thelast" id="L"/> &nbsp; permanen  &nbsp;
                                     <input type="radio" required value="musnah"
-                                    name="thelast" id="P"/> &nbsp; musnah
+                                    name="thelast" id="P"/> &nbsp; musnah &nbsp;
+                                    <input type="radio" required value="dinilai kembali"
+                                    name="thelast" id="P"/> &nbsp; dinilai kembali
+                                @elseif($data->thelast=="dinilai kembali")   
+                                    <input type="radio" required value="permanen"  
+                                    name="thelast" id="L"/> &nbsp; permanen  &nbsp;
+                                    <input type="radio" required value="musnah"
+                                    name="thelast" id="P"/> &nbsp; musnah &nbsp;
+                                    <input type="radio" required value="dinilai kembali" checked
+                                    name="thelast" id="P"/> &nbsp; dinilai kembali
                                 @else
                                     <input type="radio" required value="permanen"  
                                     name="thelast" id="L"/> &nbsp; permanen  &nbsp;
                                     <input type="radio" required value="musnah" checked
-                                    name="thelast" id="P"/> &nbsp; musnah
+                                    name="thelast" id="P"/> &nbsp; musnah &nbsp;
+                                    <input type="radio" required value="dinilai kembali"
+                                    name="thelast" id="P"/> &nbsp; dinilai kembali
                                 @endif
                             </div>
                         </div>

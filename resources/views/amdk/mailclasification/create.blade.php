@@ -105,8 +105,10 @@
                             <div class="col-sm-8">
                                 <input type="radio" required value="permanen" checked 
                                     name="thelast" id="L"/> &nbsp; permanen  &nbsp;
-                                <input type="radio" required value="musnah"
-                                    name="thelast" id="P"/> &nbsp; musnah
+                                <input type="radio" required value="musnah" 
+                                    name="thelast" id="P"/> &nbsp; musnah &nbsp;
+                                <input type="radio" required value="dinilai kembali"
+                                    name="thelast" id="P"/> &nbsp; dinilai kembali
                             </div>
                         </div>
                         </fieldset>        
