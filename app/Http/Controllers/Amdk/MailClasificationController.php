@@ -36,7 +36,11 @@ class MailclasificationController extends Controller
 
         $group = Mailsubgroup::where('id',$request->mailsubgroup_id)->first();
 
-        $alias = $group->alias.".".$request->code;
+        if ($request->code == "00") {
+            $alias = $group->alias;
+        } else {
+            $alias = $group->alias.".".$request->code;
+        }
         $request->merge([ 'alias' => $alias]);
 
         
@@ -57,7 +61,11 @@ class MailclasificationController extends Controller
 
         $group = Mailsubgroup::where('id',$request->mailsubgroup_id)->first();
 
-        $alias = $group->alias.".".$request->code;
+        if ($request->code == "00") {
+            $alias = $group->alias;
+        } else {
+            $alias = $group->alias.".".$request->code;
+        }
         $request->merge([ 'alias' => $alias]);
         
         $data = Mailclasification::find($id);

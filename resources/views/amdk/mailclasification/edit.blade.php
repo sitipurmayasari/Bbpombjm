@@ -89,6 +89,42 @@
                                         </label>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Melewati Pengececkan
+                            </label>
+                            <div class="col-sm-8">
+                                @if ($data->ceking=='N')
+                                    <input type="radio" required value="Y"  
+                                    name="ceking" id="L"/> &nbsp; Ya  &nbsp;
+                                    <input type="radio" required value="N" checked
+                                    name="ceking" id="P"/> &nbsp; Tidak
+                               @else
+                                    <input type="radio" required value="Y" checked 
+                                    name="ceking" id="L"/> &nbsp; Ya  &nbsp;
+                                    <input type="radio" required value="N"
+                                    name="ceking" id="P"/> &nbsp; Tidak
+                               @endif
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Status Akhir
+                            </label>
+                            <div class="col-sm-8">
+                                @if ($data->thelast=="permanen")
+                                    <input type="radio" required value="permanen" checked 
+                                    name="thelast" id="L"/> &nbsp; permanen  &nbsp;
+                                    <input type="radio" required value="musnah"
+                                    name="thelast" id="P"/> &nbsp; musnah
+                                @else
+                                    <input type="radio" required value="permanen"  
+                                    name="thelast" id="L"/> &nbsp; permanen  &nbsp;
+                                    <input type="radio" required value="musnah" checked
+                                    name="thelast" id="P"/> &nbsp; musnah
+                                @endif
+                            </div>
+                        </div>
                         </fieldset>        
                </div>
            </div>

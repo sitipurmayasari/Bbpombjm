@@ -44,9 +44,12 @@
                             </label>
                             <div class="col-sm-8">
                                 <input type="text"  placeholder="mis : 02" 
-                                        class="col-xs-10 col-sm-10 required " 
+                                        class="col-xs-2 col-sm-2 required " 
                                         name="code" required />
+                                <label> *jika tidak ada klasifikasi turunan ketik : 00
+                                </label>
                             </div>
+                            
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
@@ -82,6 +85,28 @@
                                 <label class="col-sm-1 control-label no-padding-right" 
                                         for="form-field-1"> Tahun
                                         </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Melewati Pengececkan
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="radio" required value="Y" checked 
+                                    name="ceking" id="L"/> &nbsp; Ya  &nbsp;
+                                <input type="radio" required value="N"
+                                    name="ceking" id="P"/> &nbsp; Tidak
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Status Akhir
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="radio" required value="permanen" checked 
+                                    name="thelast" id="L"/> &nbsp; permanen  &nbsp;
+                                <input type="radio" required value="musnah"
+                                    name="thelast" id="P"/> &nbsp; musnah
                             </div>
                         </div>
                         </fieldset>        

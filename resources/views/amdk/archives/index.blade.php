@@ -1,7 +1,7 @@
 @extends('amdk/layouts_amdk.app')
 @section('breadcrumb')
-    <li>Setup</li>
-    <li>Klasifikasi Surat</i></li>
+    <li>Arsiparis</li>
+    <li>Arsip {{auth()->user()->name}}</i></li>
 @endsection
 @section('content')
 
@@ -12,7 +12,7 @@
                 <div class="form-group col-sm-12">
                     <div class="row">
                         <div class="form-group col-xs-12 col-sm-3" style="float: left">
-                           <a href="{{Route('mailclasification.create')}}"  class="btn btn-primary">Tambah Data</a>   
+                           <a href="{{Route('archives.create')}}"  class="btn btn-primary">Tambah Data</a>   
                         </div>
                         <div class="form-group col-xs-12 col-sm-5" style="float: right">
                             <div class="input-group">
@@ -35,19 +35,22 @@
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
                 <th width="40px">No</th>
-                <th class="col-md-2">Kode Klasifikasi</th>
-                <th>Nama Klasifikasi</th>
-                <th>Aktif</th>
-                <th>Inaktif</th>
-                <th>Deactived</th>
-                <th class="col-md-2">Aksi</th>
-            </thead>
+                <th>Klasifikasi</th>
+                <th>Nama Dokumen</th>
+                <th>Tanggal</th>
+                <th>aktif</th>
+                <th>inaktif</th>
+                <th>status</th>
+                <th>File</th>
+                <th>Aksi</th>
+            <thead>
             <tbody>   	
                 @foreach($data as $key=>$row)
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
                     <td>{{$row->alias}}</td>
-                    <td>{{$row->names}}</td>
+                    <td>{{$row->uraian}}</td>
+                    <td>{{$row->date}}</td>
                     <td>{{$row->actived}} tahun 
                         @if ($row->ceking=="Y")
                             Setelah Pengecekkan
@@ -56,26 +59,27 @@
                     <td>{{$row->innactive}} tahun 
                     </td>
                     <td>{{$row->thelast}}</td>
+                    <td><a href="{{$row->getFIlearsip()}}" target="_blank" >{{$row->file}}</a></td>
                     <td>
-                        <a href="/amdk/mailclasification/edit/{{$row->id}}" class="btn btn-warning">
+                        <a href="/amdk/archives/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
-                        {{-- <a href="#" class="btn btn-danger delete"
-                            r-name="{{$row->names}}" 
+                        <a href="#" class="btn btn-danger delete"
+                            r-name="{{$row->nama}}" 
                             r-id="{{$row->id}}">
-                            <i class="glyphicon glyphicon-trash"></i></a> --}}
+                            <i class="glyphicon glyphicon-trash"></i></a>
                     </td>
                 </tr>
               
                 @endforeach
-            </tbody>
+            <tbody>
         </table>
     </div>
 {{$data->appends(Request::all())->links()}}
 @endsection
 
 @section('footer')
-{{-- <script>
+<script>
     $().ready( function () {
         $(".delete").click(function() {
                 var id = $(this).attr('r-id');
@@ -91,10 +95,10 @@
             }).then((result) => {
                 console.log(result);
                 if (result.value) {
-                    window.location = "/amdk/krocode/delete/"+id;
+                    window.location = "/amdk/archives/delete/"+id;
                 }
             });
         });
     } );
-</script> --}}
+</script>
 @endsection
