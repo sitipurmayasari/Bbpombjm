@@ -53,6 +53,8 @@
             <td style="width: 18%">:
                 @if ($data->pok_detail_id == 0)
                     {{' Non Anggaran '}}
+                @elseif ($data->pok_detail_id == 1)
+                    {{' - '}}
                 @else
                     {{$data->pok->pok->act->prog->unit->klcode->code}}.{{$data->pok->pok->act->prog->unit->code}}.
                     {{$data->pok->pok->act->prog->code}}
@@ -67,6 +69,8 @@
             <td>:
                 @if ($data->pok_detail_id == 0)
                     {{' Non Anggaran '}}
+                @elseif ($data->pok_detail_id == 1)
+                    {{' - '}}
                 @else
                     {{$data->pok->sub->komponen->det->unit->code}}
                     / {{$data->pok->sub->komponen->det->code}}
@@ -80,6 +84,8 @@
             <td>:
                 @if ($data->pok_detail_id == 0)
                     {{' Non Anggaran '}}
+                @elseif ($data->pok_detail_id == 1)
+                    {{' - '}}
                 @else
                     {{$data->pok->sub->code}} / {{$data->pok->akun->code}}
                 @endif
@@ -252,12 +258,14 @@
                 &nbsp; &nbsp; b. Mata Anggaran
             </td>
             <td class="isi">     Hanya instansi yang dikuasainya <br>
-                 {@if ($data->budget->nomor != null)
+                @if ($data->budget->nomor != null)
                     {{$data->budget->nomor}}
                 @endif
                 {{$data->budget->name}} <br>
                 @if ($data->pok_detail_id == 0)
                     {{' Non Anggaran '}}
+                @elseif ($data->pok_detail_id == 1)
+                    {{' - '}}
                 @else
                     {{$data->pok->sub->komponen->code}} / {{$data->pok->akun->code}}
                 @endif

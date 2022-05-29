@@ -98,6 +98,7 @@
                         <div class="col-sm-8">
                             <select name="pok_detail_id" class="col-xs-10 col-sm-10 required select2" required>
                                 <option value="0">Non Anggaran</option>
+                                <option value="1"> -  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(*mis : menggunakan anggaran pusat)</option>
                                 @foreach ($pok as $item)
                                     <option value="{{$item->id}}">
                                         {{$item->pok->act->lengkap}}/{{$item->sub->kodeall}}/

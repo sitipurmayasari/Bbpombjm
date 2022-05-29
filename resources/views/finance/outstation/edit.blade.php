@@ -109,6 +109,7 @@
                         <div class="col-sm-8">
                             <select name="pok_detail_id" class="col-xs-10 col-sm-10 required select2" required>
                                 <option value="0">non Anggaran</option>
+                                <option value="1" selected> -  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  (*mis : menggunakan anggaran pusat)</option>
                                 @foreach ($pok as $item)
                                     @if ($item->id==$data->pok_detail_id)
                                         <option value="{{$item->id}}" selected>{{$item->pok->act->lengkap}}/{{$item->sub->kodeall}}/

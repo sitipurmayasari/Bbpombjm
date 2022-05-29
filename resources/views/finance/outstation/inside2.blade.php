@@ -51,6 +51,8 @@
                 <td style="width: 18%">:
                     @if ($data->pok_detail_id == 0)
                         {{' Non Anggaran '}}
+                    @elseif ($data->pok_detail_id == 1)
+                        {{' - '}}
                     @else
                         {{$data->pok->pok->act->prog->unit->klcode->code}}.{{$data->pok->pok->act->prog->unit->code}}.
                         {{$data->pok->pok->act->prog->code}} / {{$data->pok->pok->act->code}}
@@ -62,6 +64,8 @@
                 <td>:
                     @if ($data->pok_detail_id == 0)
                         {{' Non Anggaran '}}
+                    @elseif ($data->pok_detail_id == 1)
+                        {{' - '}}
                     @else
                         {{$data->pok->sub->komponen->det->unit->code}} / {{$data->pok->sub->komponen->det->code}} / {{$data->pok->sub->komponen->code}}
                     @endif
@@ -73,6 +77,8 @@
                 <td>:
                     @if ($data->pok_detail_id == 0)
                         {{' Non Anggaran '}}
+                    @elseif ($data->pok_detail_id == 1)
+                        {{' - '}}
                     @else
                         {{$data->pok->sub->code}} / {{$data->pok->akun->code}}
                     @endif

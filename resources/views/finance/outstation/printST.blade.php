@@ -297,6 +297,8 @@
                                 MAK :
                                 @if ($data->pok_detail_id == 0)
                                     {{' Non Anggaran '}}
+                                @elseif ($data->pok_detail_id == 1)
+                                    {{' - '}}
                                 @else
                                     {{$data->pok->pok->act->prog->unit->klcode->code}}.{{$data->pok->pok->act->prog->unit->code}}.
                                     {{$data->pok->pok->act->prog->code}}.{{$data->pok->pok->act->code}}.
