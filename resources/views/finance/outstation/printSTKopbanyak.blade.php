@@ -309,7 +309,7 @@
                     @if ($menyetujui != null)
                         @if ($menyetujui->pjs !=null)
                             {{$menyetujui->user->name}}<br>
-                            NIP. {{$menyetujui->user->no_pegawai}}
+                            NIP: {{$menyetujui->user->no_pegawai}}
                         @else
                             {{$menyetujui->user->name}}
                         @endif
@@ -443,7 +443,7 @@
                 @if ($menyetujui != null)
                     @if ($menyetujui->pjs !=null)
                         {{$menyetujui->user->name}}<br>
-                        NIP. {{$menyetujui->user->no_pegawai}}
+                        NIP: {{$menyetujui->user->no_pegawai}}
                     @else
                         {{$menyetujui->user->name}}
                     @endif
