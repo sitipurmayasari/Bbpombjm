@@ -303,7 +303,12 @@
                 <td></td>
                 <td>
                     @if ($menyetujui != null)
-                        <b>{{$menyetujui->user->name}}</b>
+                        @if ($menyetujui->pjs !=null)
+                            <b>{{$menyetujui->user->name}}</b><br>
+                            <b>NIP. {{$menyetujui->user->no_pegawai}}</b>
+                        @else
+                            <b>{{$menyetujui->user->name}}</b>
+                        @endif
                     @else
                         <b>Silahkan Cek Setup Pejabat</b>
                     @endif
