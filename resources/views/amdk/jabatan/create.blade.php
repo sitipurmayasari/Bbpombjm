@@ -111,10 +111,10 @@
                                 <input type="radio" name="pjs" value="" checked>
                                 <label class="control-label no-padding-right"> Asli</label> 
                                 &nbsp;&nbsp;
-                                <input type="radio" name="pjs" value="Plt.">
+                                <input type="radio" name="pjs" value="Plt">
                                 <label class="control-label no-padding-right"> PLT</label> 
                                 &nbsp;&nbsp;
-                                <input type="radio" name="pjs" value="Plh.">
+                                <input type="radio" name="pjs" value="Plh">
                                 <label class="control-label no-padding-right"> PLH</label>
                             </div>
                         </div>

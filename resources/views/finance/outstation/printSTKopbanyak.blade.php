@@ -291,13 +291,13 @@
                         @endif
                     @endif     
                 </td>
-                <td><b>
+                <td>
                    @if ($menyetujui != null)
-                        kepala {{$menyetujui->divisi->nama}}
+                        Kepala {{$menyetujui->divisi->nama}}
                    @else
                         <b>Pejabat Belum Ditentukan</b>
                    @endif
-                    </b></td>
+                </td>
             </tr>
             <tr>
                 <td></td>
@@ -308,10 +308,10 @@
                 <td>
                     @if ($menyetujui != null)
                         @if ($menyetujui->pjs !=null)
-                            <b>{{$menyetujui->user->name}}</b><br>
-                            <b>NIP. {{$menyetujui->user->no_pegawai}}</b>
+                            {{$menyetujui->user->name}}<br>
+                            NIP. {{$menyetujui->user->no_pegawai}}
                         @else
-                            <b>{{$menyetujui->user->name}}</b>
+                            {{$menyetujui->user->name}}
                         @endif
                     @else
                         <b>Silahkan Cek Setup Pejabat</b>
@@ -329,13 +329,13 @@
     </div>
 </div>
 <div style="page-break-before: always;" class="isi">
-    <div style="text-align: center; margin-top: 140px;"> - 2 - </div>
+    <div style="text-align: center;"> - 2 - </div>
     <br><br>
     <div>
         <table style="width: 100%">
             <tr>
                 <td style="width: 55%"></td>
-                <td colspan="3">Lampiran Surat Tugas</td>
+                <td colspan="3">Lampiran <br>Surat Tugas</td>
             </tr>
             <tr>
                 <td></td>
@@ -425,13 +425,13 @@
                     @endif
                 @endif     
             </td>
-            <td><b>
+            <td>
                @if ($menyetujui != null)
                     Kepala {{$menyetujui->divisi->nama}}
                @else
                     <b>Pejabat Belum Ditentukan</b>
                @endif
-                </b></td>
+            </td>
         </tr>
         <tr>
             <td></td>
@@ -442,10 +442,10 @@
             <td>
                 @if ($menyetujui != null)
                     @if ($menyetujui->pjs !=null)
-                        <b>{{$menyetujui->user->name}}</b><br>
-                        <b>NIP. {{$menyetujui->user->no_pegawai}}</b>
+                        {{$menyetujui->user->name}}<br>
+                        NIP. {{$menyetujui->user->no_pegawai}}
                     @else
-                        <b>{{$menyetujui->user->name}}</b>
+                        {{$menyetujui->user->name}}
                     @endif
                 @else
                     <b>Silahkan Cek Setup Pejabat</b>

@@ -12,7 +12,7 @@
 <style>
     @page {
         size:8.5in 13in ;
-        margin: 160px 0px 100px 0px;
+        margin: 180px 0px 100px 0px;
     }
     html, table{
             font-family: "Bookman Old Style";
@@ -333,13 +333,13 @@
                         @endif
                     @endif     
                 </td>
-                <td><b>
+                <td>
                    @if ($menyetujui != null)
                         Kepala {{$menyetujui->divisi->nama}}
                    @else
                         <b>Pejabat Belum Ditentukan</b>
                    @endif
-                    </b></td>
+                </td>
             </tr>
             <tr>
                 <td></td>
@@ -350,10 +350,10 @@
                 <td>
                     @if ($menyetujui != null)
                         @if ($menyetujui->pjs !=null)
-                            <b>{{$menyetujui->user->name}}</b><br>
-                            <b>NIP. {{$menyetujui->user->no_pegawai}}</b>
+                            {{$menyetujui->user->name}}<br>
+                            NIP. {{$menyetujui->user->no_pegawai}}
                         @else
-                            <b>{{$menyetujui->user->name}}</b>
+                            {{$menyetujui->user->name}}
                         @endif
                     @else
                         <b>Silahkan Cek Setup Pejabat</b>

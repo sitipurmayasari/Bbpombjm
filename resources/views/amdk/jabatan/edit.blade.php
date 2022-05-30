@@ -148,32 +148,32 @@
                             </label>
                             <div class="col-sm-9">
                                 &nbsp;&nbsp;
-                                @if ($data->pjs=='Plt.')
+                                @if ($data->pjs=='Plt')
                                     <input type="radio" name="pjs" value="">
                                     <label class="control-label no-padding-right"> Asli</label> 
                                     &nbsp;&nbsp;
-                                    <input type="radio" name="pjs" value="Plt." checked>
+                                    <input type="radio" name="pjs" value="Plt" checked>
                                     <label class="control-label no-padding-right"> PLT</label> 
                                     &nbsp;&nbsp;
-                                    <input type="radio" name="pjs" value="Plh.">
+                                    <input type="radio" name="pjs" value="Plh">
                                     <label class="control-label no-padding-right"> PLH</label>
-                                @elseif($data->pjs=='Plh.')
+                                @elseif($data->pjs=='Plh')
                                     <input type="radio" name="pjs" value="">
                                     <label class="control-label no-padding-right"> Asli</label> 
                                     &nbsp;&nbsp;
-                                    <input type="radio" name="pjs" value="Plt.">
+                                    <input type="radio" name="pjs" value="Plt">
                                     <label class="control-label no-padding-right"> PLT</label> 
                                     &nbsp;&nbsp;
-                                    <input type="radio" name="pjs" value="Plh." checked>
+                                    <input type="radio" name="pjs" value="Plh" checked>
                                     <label class="control-label no-padding-right"> PLH</label>
                                 @else
                                     <input type="radio" name="pjs" value="" checked>
                                     <label class="control-label no-padding-right"> Asli</label> 
                                     &nbsp;&nbsp;
-                                    <input type="radio" name="pjs" value="Plt.">
+                                    <input type="radio" name="pjs" value="Plt">
                                     <label class="control-label no-padding-right"> PLT</label> 
                                     &nbsp;&nbsp;
-                                    <input type="radio" name="pjs" value="Plh.">
+                                    <input type="radio" name="pjs" value="Plh">
                                     <label class="control-label no-padding-right"> PLH</label>
                                 @endif
                             </div>

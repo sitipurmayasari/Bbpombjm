@@ -38,7 +38,7 @@
                         </div>
                         <div class="col-md-12">
                             <label> SKP *</label><br>
-                            <select id="skp" name="skp_id" class="col-xs-10 col-sm-10 select2" required onchange="getkelompok()">
+                            <select id="skp" name="skp_id" class="col-xs-10 col-sm-10 select2" required>
                                 @foreach ($skp as $lok)
                                     @if ($data->skp_id == $lok->id)
                                         <option value="{{$lok->id}}" selected>{{tgl_indo($lok->dates)}}</option>
@@ -61,14 +61,13 @@
                 <table id="myTable" class="table table-bordered table-hover text-center">
                     <thead>
                         <tr>
-                            <th class="text-center">No</th>
+                            <th class="text-center" >No</th>
                             <th class="text-center">Tanggal</th>
-                            <th class="text-center col-md-3">Rencana Kinerja Utama</th>
-                            <th class="text-center col-md-3">Butir Kegiatan</th>
-                            <th class="text-center col-md-1">Kode Butir</th>
-                            <th class="text-center col-md-3">keluaran Kegiatan</th>
-                            <th class="text-center col-md-1">pelaksana</th>
-                            <th class="text-center col-md-1">AK</th>
+                            <th class="text-center col-md-4">Butir Kegiatan</th>
+                            <th class="text-center col-md-2">keluaran Kegiatan</th>
+                            <th class="text-center col-md-1">Angka Kredit</th>
+                            <th class="text-center col-md-1">Volume Kegiatan</th>
+                            <th class="text-center col-md-3">Bukti Fisik</th>
                             <th class="text-center col-md-1">Aksi</th>
                         </tr>
                     </thead>
@@ -81,7 +80,7 @@
                                 <td id="cell-{{$no}}">{{$no}}</td>
                                 <td>
                                     <input type="date" required value="{{$item->kin_date}}"  class="form-control" name="kin_date[]"/>
-                                    <input type="hidden" name="detail_id[]" value="$item->id">
+                                    <input type="hidden" name="detail_id[]" value="{{$item->id}}">
                                 </td>
                                 <td>
                                     <select name="setup_ak_id[]" class="form-control select2" id="setup_id-{{$no}}"  onchange="getnilai({{$no}})">

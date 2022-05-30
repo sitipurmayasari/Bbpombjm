@@ -38,7 +38,7 @@
                         </div>
                         <div class="col-md-12">
                             <label> SKP *</label><br>
-                            <select id="skp" name="skp_id" class="col-xs-10 col-sm-10 select2" required onchange="getkelompok()">
+                            <select id="skp" name="skp_id" class="col-xs-10 col-sm-10 select2" required>
                                 <option value="">pilih SKP</option>
                                 @foreach ($skp as $lok)
                                     <option value="{{$lok->id}}">{{tgl_indo($lok->dates)}}</option>
@@ -77,7 +77,7 @@
                                 <input type="date" required value="{{date('Y-m-d')}}"  class="form-control" name="kin_date[]"/>
                             </td>
                             <td>
-                                <select name="setup_ak_id[]" class="form-control select2" id="setup_id-1"  onchange="getnilai1()">
+                                <select name="setup_ak_id[]" class="form-control select2" id="setupid1"  onchange="getnilai1()">
                                     <option value="">Pilih Kegiatan</option>
                                     @foreach ($ak as $item)
                                         <option value="{{$item->id}}">{{$item->kode_ak}}-{{$item->uraian}}</option>
@@ -85,8 +85,8 @@
                                 </select>
                             </td>
                             <td><input type="text" readonly class="form-control" id="keluaran1" name="keluaran[]"></td>
-                            <td><input type="text" readonly class="form-control" id="credit" name="credit[]"></td>
-                            <td><input type="text" readonly class="form-control" id="ak-1" name="ak[]"></td>
+                            <td><input type="number" min=0 class="form-control" id="volume1" name="volume[]" value="0"></td>
+                            <td><input type="text" readonly class="form-control" id="ak1" name="ak[]"></td>
                             <td><input type="number" min=0 class="form-control" name="bukti[]" value="0"></td>
                             <td></td>
                         
@@ -126,10 +126,10 @@
         $isi ='<tr id="cell-'+new_baris+'">'+
                     '<td>'+new_baris+'</td>'+
                     '<td>'+
-                        '<input type="date" id="dates" value="{{date("Y-m-d")}}" class="form-control" name="kin_date"/>'+        
+                        '<input type="date" id="dates" value="{{date("Y-m-d")}}" class="form-control" name="kin_date[]"/>'+        
                     '</td>'+        
                     '<td>'+
-                        '<select name="setup_ak_id[]" class="form-control select2" id="setup_id-'+new_baris+'"  onchange="getnilai1()">'+
+                        '<select name="setup_ak_id[]" class="form-control select2" id="setupid-'+new_baris+'"  onchange="getnilainext('+new_baris+')">'+
                             '<option value="">Pilih Kegiatan</option>'+
                             '@foreach ($ak as $item)'+
                                 '<option value="{{$item->id}}">{{$item->kode_ak}}-{{$item->uraian}}</option>'+
@@ -137,7 +137,7 @@
                         '</select>'+
                     '</td>'+
                     '<td><input type="text" readonly class="form-control" id="keluaran-'+new_baris+'" name="keluaran[]"></td>'+
-                    '<td><input type="text" readonly class="form-control" id="credit-'+new_baris+'" name="credit[]"></td>'+
+                    '<td><input type="number" min=0 class="form-control" name="volume[]" value="0"></td>'+
                     '<td><input type="text" readonly class="form-control" id="ak-'+new_baris+'" name="ak[]"></td>'+
                     '<td><input type="number" min=0 class="form-control" name="bukti[]" value="0"></td>'+     
                     '<td><button type="button" class="btn btn-danger" onclick="deleteRow('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button></td>'+
@@ -145,55 +145,15 @@
         $("#myTable").find('tbody').append($isi);
         $("#countRow").val(new_baris);
         $('.select2').select2();
-        getkelompoknext(new_baris);
     }
 
     function deleteRow(cell) {
         $("#cell-"+cell).remove();
         this.hitungTotal();
     }
-
-    function getkelompok(){
-        var skp_id = $("#skp").val();
-
-        $.get(
-            "{{route('skp.getdata') }}",
-            {
-            skp_id: skp_id
-            },
-            function(response) {
-                var data2 = response.data;
-                var string ="<option value=''>Pilih Rencana</option>";
-                    $.each(data2, function(index, value) {
-                        string = string + '<option value="'+ value.id +'">'+ value.activity +'</option>';
-                    })
-                $(".rencana1").html(string);
-            }
-        );
-    }
-
-    function getkelompoknext(i){
-        var skp_id = $("#skp").val();
-
-        $.get(
-            "{{route('skp.getdata') }}",
-            {
-            skp_id: skp_id
-            },
-            function(response) {
-                var data2 = response.data;
-                var string ="<option value=''>Pilih Rencana</option>";
-                    $.each(data2, function(index, value) {
-                        string = string + '<option value="'+ value.id +'">'+ value.activity +'</option>';
-                    })
-                $("#uraian-"+i).html(string);
-            }
-        );
-    }
-
     
     function getnilai1(){
-        var setup_id = $("#setup_id-1").val();
+        var setup_id = $("#setupid1").val();
         var jabasn = $("#jabasn").val();
 
         $.get(
@@ -201,6 +161,7 @@
             {
                 setup_id: setup_id
             },
+
             function(response) {
 
                 if (jabasn == 'Ahli Pertama') {
@@ -213,10 +174,36 @@
                      ak = response.data.utama;
                 }
 
-                document.getElementById("butir1").value = response.data.kode_ak;
-                $("#keluaran1").val(response.data.uraian);
-                $("#pelaksana1").val(response.data.hasil);
-                $("#ak-1").val(ak);
+                $("#keluaran1").val(response.data.hasil);
+                $("#ak1").val(ak);
+            }
+        );
+    }
+
+    function getnilainext(i){
+        var setup_id = $("#setupid-"+i).val();
+        var jabasn = $("#jabasn").val();
+
+        $.get(
+            "{{route('ak.getnilai') }}",
+            {
+                setup_id: setup_id
+            },
+
+            function(response) {
+
+                if (jabasn == 'Ahli Pertama') {
+                     ak = response.data.pertama;
+                }else if (jabasn == 'Ahli Muda') {
+                     ak = response.data.muda;
+                }else if (jabasn == 'Ahli Madya') {
+                     ak = response.data.madya;
+                } else {
+                     ak = response.data.utama;
+                }
+
+                $("#keluaran-"+i).val(response.data.hasil);
+                $("#ak-"+i).val(ak);
             }
         );
     }
