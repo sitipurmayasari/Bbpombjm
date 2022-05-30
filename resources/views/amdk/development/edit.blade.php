@@ -93,10 +93,10 @@
                                         @endforeach
                                     </select>
                                 </td>
-                                <td><input type="text" readonly class="form-control" id="butir-{{$no}}" name="butir[]" value="{{$item->set->kode_ak}}"></td>
                                 <td><input type="text" readonly class="form-control" id="keluaran-{{$no}}" name="keluaran[]" value="{{$item->set->hasil}}"></td>
-                                <td><input type="text" readonly class="form-control" id="pelaksana-{{$no}}" name="pelaksana[]" value="{{$item->set->pelaksana}}"></td>
-                                <td><input type="text" readonly class="form-control" id="ak-{{$no}}" name="nilai_ak[]" value="{{$item->nilai_ak}}"></td>
+                                <td><input type="number" min=0 class="form-control" name="volume[]" value="{{$item->volume}}"></td>
+                                <td><input type="text" readonly class="form-control" id="ak-{{$no}}" name="ak[]" value="{{$item->ak}}"></td>
+                                <td><input type="number" min=0 class="form-control" name="bukti[]" value="{{$item->bukti}}"></td>
                                 <td>
                                     <a href="#" class="btn btn-danger delete"
                                         r-name="{{$item->activity}}" 
@@ -146,78 +146,32 @@
         $isi ='<tr id="cell-'+new_baris+'">'+
                     '<td>'+new_baris+'</td>'+
                     '<td>'+
-                        '<input type="date" id="dates" value="{{date("Y-m-d")}}" class="form-control" name="kin_date"/>'+   
-                        '<input type="hidden" name="detail_id[]">'+      
+                        '<input type="date" id="dates" value="{{date("Y-m-d")}}" class="form-control" name="kin_date[]"/>'+        
                     '</td>'+        
                     '<td>'+
-                        '<select name="skp_detail_id[]" id="uraian-'+new_baris+'" class="form-control select2">'+        
-                            '<option value="">Pilih Rencana</option>'+
-                        '</select>'+
-                    '</td>'+
-                    '<td>'+
-                        '<select name="setup_ak_id[]" class="form-control select2" id="setup_id-'+new_baris+'"  onchange="getnilai('+new_baris+')">'+
+                        '<select name="setup_ak_id[]" class="form-control select2" id="setupid-'+new_baris+'"  onchange="getnilai('+new_baris+')">'+
                             '<option value="">Pilih Kegiatan</option>'+
                             '@foreach ($ak as $item)'+
                                 '<option value="{{$item->id}}">{{$item->kode_ak}}-{{$item->uraian}}</option>'+
                             '@endforeach'+        
                         '</select>'+
                     '</td>'+
-                    '<td><input type="text" readonly class="form-control" id="butir-'+new_baris+'" name="butir[]"></td>'+
                     '<td><input type="text" readonly class="form-control" id="keluaran-'+new_baris+'" name="keluaran[]"></td>'+
-                    '<td><input type="text" readonly class="form-control" id="pelaksana-'+new_baris+'" name="pelaksana[]"></td>'+
-                    '<td><input type="text" readonly class="form-control" id="ak-'+new_baris+'" name="nilai_ak[]"></td>'+          
+                    '<td><input type="number" min=0 class="form-control" name="volume[]" value="0"></td>'+
+                    '<td><input type="text" readonly class="form-control" id="ak-'+new_baris+'" name="ak[]"></td>'+
+                    '<td><input type="number" min=0 class="form-control" name="bukti[]" value="0"></td>'+     
                     '<td><button type="button" class="btn btn-danger" onclick="deleteRow('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button></td>'+
                 '</tr>';
         $("#myTable").find('tbody').append($isi);
         $("#countRow").val(new_baris);
         $('.select2').select2();
-        getkelompoknext(new_baris);
     }
 
     function deleteRow(cell) {
         $("#cell-"+cell).remove();
-        this.hitungTotal();
     }
 
-    function getkelompok(){
-        var skp_id = $("#skp").val();
-
-        $.get(
-            "{{route('skp.getdata') }}",
-            {
-            skp_id: skp_id
-            },
-            function(response) {
-                var data2 = response.data;
-                var string ="<option value=''>Pilih Rencana</option>";
-                    $.each(data2, function(index, value) {
-                        string = string + '<option value="'+ value.id +'">'+ value.activity +'</option>';
-                    })
-                $(".rencana1").html(string);
-            }
-        );
-    }
-
-    function getkelompoknext(i){
-        var skp_id = $("#skp").val();
-
-        $.get(
-            "{{route('skp.getdata') }}",
-            {
-            skp_id: skp_id
-            },
-            function(response) {
-                var data2 = response.data;
-                var string ="<option value=''>Pilih Rencana</option>";
-                    $.each(data2, function(index, value) {
-                        string = string + '<option value="'+ value.id +'">'+ value.activity +'</option>';
-                    })
-                $("#uraian-"+i).html(string);
-            }
-        );
-    }
-
-
+    
     function getnilai(i){
         var setup_id = $("#setup_id-"+i).val();
         var jabasn = $("#jabasn").val();
@@ -238,9 +192,7 @@
                      ak = response.data.utama;
                 }
 
-                $("#butir-"+i).val(response.data.kode_ak);
-                $("#keluaran-"+i).val(response.data.uraian);
-                $("#pelaksana-"+i).val(response.data.hasil);
+                $("#keluaran-"+i).val(response.data.hasil);
                 $("#ak-"+i).val(ak);
             }
         );

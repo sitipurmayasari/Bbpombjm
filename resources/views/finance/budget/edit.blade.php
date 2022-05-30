@@ -53,8 +53,8 @@
                         </label>
                         <div class="col-sm-8">
                             <input type="text"  placeholder="Nomor Anggaran" value="{{$data->nomor}}"
-                                    class="col-xs-10 col-sm-10 required " 
-                                    name="nomor" required/>
+                                    class="col-xs-10 col-sm-10 " 
+                                    name="nomor"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -63,8 +63,8 @@
                         </label>
                         <div class="col-sm-8">
                             <input type="date"  placeholder="Nama Anggaran Dinas" 
-                                    cl class="col-xs-3 col-sm-3 required " value="{{$data->tanggal}}"
-                                    name="tanggal" required/>
+                                    cl class="col-xs-3 col-sm-3 " value="{{$data->tanggal}}"
+                                    name="tanggal"/>
                         </div>
                     </div>
                     <div class="form-group">
