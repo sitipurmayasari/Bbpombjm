@@ -110,7 +110,7 @@
                         for="form-field-1">  Upload File
                         </label>
                         <div class="col-sm-9">
-                            <input type="file" name="file" class="btn btn-default btn-sm" id="" value="Upload File">      
+                            <input type="file" name="file" class="btn btn-default btn-sm" id="" value="Upload File" required>      
                             <label><i>ex:Lorem_ipsum.pdf</i></label>
                         </div>
                     </div>
