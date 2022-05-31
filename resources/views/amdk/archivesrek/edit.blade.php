@@ -1,7 +1,7 @@
 @extends('amdk/layouts_amdk.app')
 @section('breadcrumb')
     <li>Arsiparis</li>
-    <li><a href="/amdk/archivesbid">Arsip  Bidang {{$div->nama}}</a></li>
+    <li><a href="/amdk/archivesrek">Rekapitulasi Arsip</a></li>
     <li>Tambah Baru</li>
 @endsection
 @section('content')
@@ -9,7 +9,7 @@
 
 <div class="row">
     <form class="form-horizontal validate-form" role="form" 
-    method="post" action="/amdk/archivesbid/update/{{$data->id}}" enctype="multipart/form-data">
+    method="post" action="/amdk/archivesrek/update/{{$data->id}}" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div class="col-sm-12">
         <div class="widget-box">

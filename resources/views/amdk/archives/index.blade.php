@@ -38,6 +38,7 @@
                 <th>Klasifikasi</th>
                 <th>Nama Dokumen</th>
                 <th>Tanggal</th>
+                <th>divisi</th>
                 <th>aktif</th>
                 <th>inaktif</th>
                 <th>status</th>
@@ -51,6 +52,7 @@
                     <td>{{$row->alias}}</td>
                     <td>{{$row->uraian}}</td>
                     <td>{{$row->date}}</td>
+                    <td>{{$row->div->nama}}</td>
                     <td>{{$row->actived}} tahun 
                         @if ($row->ceking=="Y")
                             Setelah Pengecekkan
@@ -61,13 +63,15 @@
                     <td>{{$row->thelast}}</td>
                     <td><a href="{{$row->getFIlearsip()}}" target="_blank" >{{$row->file}}</a></td>
                     <td>
-                        <a href="/amdk/archives/edit/{{$row->id}}" class="btn btn-warning">
-                            <i class="glyphicon glyphicon-edit"></i>
-                        </a>
-                        <a href="#" class="btn btn-danger delete"
+                        @if ($row->hari_ini < $row->batas_aktif)
+                            <a href="/amdk/archives/edit/{{$row->id}}" class="btn btn-warning">
+                                <i class="glyphicon glyphicon-edit"></i>
+                            </a>
+                            <a href="#" class="btn btn-danger delete"
                             r-name="{{$row->nama}}" 
                             r-id="{{$row->id}}">
                             <i class="glyphicon glyphicon-trash"></i></a>
+                        @endif
                     </td>
                 </tr>
               

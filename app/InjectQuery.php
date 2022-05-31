@@ -23,6 +23,10 @@ use App\Travelexpenses1;
 use App\Travelexpenses2;
 use App\User;
 use App\Vehiclerent;
+use App\Archives;
+use App\Mailclasification;
+use App\Mailsubgroup;
+use App\Mailgroup;
 use Illuminate\Support\Facades\DB;
 
 class InjectQuery
@@ -411,5 +415,40 @@ class InjectQuery
         return $main;
     }
    
+    //-------------------Arsiparis--------------------
+    public function groupberkas($id){
+        $datagroup = Mailsubgroup::where('mailgroup_id',$id)
+                    ->get();
+        return $datagroup;
+    }
+
+    public function subberkas($id){
+        $datasub = Mailclasification::where('mailsubgroup_id',$id)
+                    ->get();
+        return $datasub;
+    }
+
+    public function berkas($id){
+        $data = Archives::orderBy('archives.id','desc')
+                        ->leftjoin('mailclasification','mailclasification.id','archives.mailclasification_id')
+                        ->whereRaw('CURDATE() BETWEEN DATE(archives.date) 
+                            and DATE_ADD(DATE(archives.date),INTERVAL mailclasification.actived YEAR)')
+                        ->get();
+        return $data;
+    }
+
+    public function berkasin($id){
+        $data = Archives::orderBy('archives.id','desc')
+                        ->leftjoin('mailclasification','mailclasification.id','archives.mailclasification_id')
+                        ->whereRaw('curdate() > DATE_ADD(archives.date,INTERVAL mailclasification.actived YEAR)')
+                        ->get();
+        return $data;
+    }
+   
+    public function berkasdel($id){
+        $data = Archives::where('mailclasification_id',$id)->onlyTrashed()
+                    ->get();
+        return $data;
+    }
    
 }

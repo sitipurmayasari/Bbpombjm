@@ -31,7 +31,7 @@
                         </label>
                         <div class="col-sm-8">
                             <input type="hidden" name="users_id" value="{{auth()->user()->id}}">
-                            <input type="hidden" name="users_id" value="{{auth()->user()->divisi_id}}">
+                            <input type="hidden" name="divisi_id" value="{{auth()->user()->divisi_id}}">
                             <input type="date" required value="{{date('Y-m-d')}}"
                                     class="col-xs-3 col-sm-3 required " 
                                     name="date"/>

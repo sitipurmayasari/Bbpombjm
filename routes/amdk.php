@@ -253,7 +253,6 @@
   Route::post('/amdk/archives/update/{id}','Amdk\ArchivesController@update')->name('archives.update');
   
   //Route untuk Arsip bidang
-  Route::get('/amdk/archivesbid/create','Amdk\ArchivesbidController@create')->name('archivesbid.create');
   Route::post('/amdk/archivesbid/store','Amdk\ArchivesbidController@store')->name('archivesbid.store');
   Route::get('/amdk/archivesbid/delete/{id}','Amdk\ArchivesbidController@delete')->name('archivesbid.delete');
   Route::get('/amdk/archivesbid/edit/{id}','Amdk\ArchivesbidController@edit')->name('archivesbid.edit');
@@ -265,3 +264,4 @@
   Route::get('/amdk/archivesrek/delete/{id}','Amdk\ArchivesrekController@delete')->name('archivesrek.delete');
   Route::get('/amdk/archivesrek/edit/{id}','Amdk\ArchivesrekController@edit')->name('archivesrek.edit');
   Route::post('/amdk/archivesrek/update/{id}','Amdk\ArchivesrekController@update')->name('archivesrek.update');
+  Route::get('/amdk/archivesrek/deleteper/{id}','Amdk\ArchivesrekController@deleteper')->name('archivesrek.deleteper');

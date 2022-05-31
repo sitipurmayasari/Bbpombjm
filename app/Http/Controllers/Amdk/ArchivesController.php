@@ -16,7 +16,9 @@ class ArchivesController extends Controller
     {
         $peg =auth()->user()->id;
         $data = Archives::selectraw('archives.*, mailclasification.alias,mailclasification.names,mailclasification.actived,
-                                    mailclasification.ceking,mailclasification.innactive,mailclasification.thelast')
+                                    mailclasification.ceking,mailclasification.innactive,mailclasification.thelast,
+                                    CURDATE() AS hari_ini,
+                                    DATE_ADD(DATE(archives.date),INTERVAL mailclasification.actived YEAR) batas_aktif')
                         ->orderBy('archives.id','desc')
                         ->leftjoin('mailclasification','mailclasification.id','archives.mailclasification_id')
                         ->where('users_id','=',$peg)
@@ -87,7 +89,7 @@ class ArchivesController extends Controller
     public function delete($id)
     {
         $data = Archives::find($id);
-        $data->delete();
+        $data->forceDelete();
         return redirect('/amdk/archives')->with('sukses','Data Terhapus');
     }
 

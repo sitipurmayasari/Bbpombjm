@@ -65,50 +65,46 @@
                             <label class="col-sm-3 control-label no-padding-right" 
                             for="form-field-1"> Masa Aktif
                             </label>
-                            <div class="col-sm-8">
+                            <div class="col-sm-2">
                                 <input type="number"  placeholder="0" value="0"
-                                        class="col-xs-1 col-sm-1 required " 
+                                        class="col-xs-5 col-sm-5 required " 
                                         name="actived" required />
-                                <label class="col-sm-1 control-label no-padding-right" 
+                                <label class="col-sm-2 control-label no-padding-right" 
                                         for="form-field-1"> Tahun
                                         </label>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text"  placeholder="keterangan" 
+                                    class="col-xs-9 col-xs-9 required "   name="ketactive" />
+                                       
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
                             for="form-field-1"> Masa Inaktif
                             </label>
-                            <div class="col-sm-8">
-                                <input type="number"  placeholder="0" value="0"
-                                        class="col-xs-1 col-sm-1 required " 
-                                        name="innactive" required />
-                                <label class="col-sm-1 control-label no-padding-right" 
+                            <div class="col-sm-2">
+                                <input type="number" placeholder="0" required value="0"
+                                        class="col-xs-5 col-sm-5 required "  name="innactive" />
+                                       
+                                <label class="col-sm-2 control-label no-padding-right" 
                                         for="form-field-1"> Tahun
                                         </label>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Melewati Pengececkan
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="radio" required value="Y" checked 
-                                    name="ceking" id="L"/> &nbsp; Ya  &nbsp;
-                                <input type="radio" required value="N"
-                                    name="ceking" id="P"/> &nbsp; Tidak
+                            <div class="col-sm-6">
+                                <input type="text"  placeholder="keterangan"
+                                        class="col-xs-9 col-xs-9 keterangan " name="ketinnactive"  />
+                                        
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Status Akhir
+                            for="form-field-1"> Nama Klasifikasi
                             </label>
                             <div class="col-sm-8">
-                                <input type="radio" required value="permanen" checked 
-                                    name="thelast" id="L"/> &nbsp; permanen  &nbsp;
-                                <input type="radio" required value="musnah" 
-                                    name="thelast" id="P"/> &nbsp; musnah &nbsp;
-                                <input type="radio" required value="dinilai kembali"
-                                    name="thelast" id="P"/> &nbsp; dinilai kembali
+                                <input type="text"  placeholder="Nama Klasifikasi" 
+                                        class="col-xs-10 col-sm-10 required " 
+                                        name="thelast" required/>
                             </div>
                         </div>
                         </fieldset>        

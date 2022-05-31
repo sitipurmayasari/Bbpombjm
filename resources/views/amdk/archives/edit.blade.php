@@ -2,7 +2,7 @@
 @section('breadcrumb')
     <li>Arsiparis</li>
     <li><a href="/amdk/archives">Arsip {{auth()->user()->name}}</a></li>
-    <li>Tambah Baru</li>
+    <li>Ubah Data</li>
 @endsection
 @section('content')
 @include('layouts.validasi')

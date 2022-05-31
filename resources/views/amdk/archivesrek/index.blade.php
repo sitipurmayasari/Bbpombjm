@@ -1,10 +1,24 @@
 @extends('amdk/layouts_amdk.app')
 @section('breadcrumb')
     <li>Arsiparis</li>
-    <li>Arsip {{$div->nama}}</i></li>
+    <li>Rekapitulasi Arsip</li>
 @endsection
 @section('content')
-
+<form method="get" action="{{ url()->current() }}">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="row">
+                <div class="form-group col-sm-12">
+                    <div class="row">
+                        <div class="form-group col-xs-12 col-sm-3" style="float: left">
+                           <a href="{{Route('archivesrek.create')}}"  class="btn btn-primary">Tambah Data</a>   
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 <div class="clearfix"></div>
  <ul class="nav nav-tabs">
      <li class="active"><a href="#tab-aktif" data-toggle="tab">Aktif</a></li>
@@ -13,9 +27,9 @@
 
  </ul>
  <div class="tab-content">
-    @include('amdk.archivesbid.partials.aktif')
-    @include('amdk.archivesbid.partials.inaktif')
-    @include('amdk.archivesbid.partials.deleted')
+    @include('amdk.archivesrek.partials.aktif')
+    @include('amdk.archivesrek.partials.inaktif')
+    @include('amdk.archivesrek.partials.deleted')
 
  </div>
 @endsection
@@ -37,7 +51,7 @@
             }).then((result) => {
                 console.log(result);
                 if (result.value) {
-                    window.location = "/amdk/archivesbid/delete/"+id;
+                    window.location = "/amdk/archives/deleteper/"+id;
                 }
             });
         });

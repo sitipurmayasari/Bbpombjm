@@ -1,7 +1,7 @@
 @extends('amdk/layouts_amdk.app')
 @section('breadcrumb')
     <li>Arsiparis</li>
-    <li><a href="/amdk/archivesbid">Arsip  Bidang {{$div->nama}}</a></li>
+    <li><a href="/amdk/archivesrek">Rekapitulasi Arsip</a></li>
     <li>Tambah Baru</li>
 @endsection
 @section('content')
@@ -9,19 +9,18 @@
 
 <div class="row">
     <form class="form-horizontal validate-form" role="form" 
-    method="post" action="/amdk/archivesbid/update/{{$data->id}}" enctype="multipart/form-data">
+    method="post" action="{{route('archivesrek.store')}}" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div class="col-sm-12">
         <div class="widget-box">
             <div class="widget-header">
-                <h4 class="widget-title">Form Ubah Arsip</h4>
+                <h4 class="widget-title">Form input Arsip</h4>
                 <div class="widget-toolbar">
                     <a href="#" data-action="collapse">
                         <i class="ace-icon fa fa-chevron-down"></i>
                     </a>
                 </div>
             </div>
-
             <div class="widget-body">
                 <div class="widget-main no-padding">
                     <fieldset>
@@ -31,9 +30,23 @@
                         for="form-field-1">Tanggal
                         </label>
                         <div class="col-sm-8">
-                            <input type="date" required value="{{$data->date}}"
+                            <input type="hidden" name="users_id" value="{{auth()->user()->id}}">
+                            <input type="date" required value="{{date('Y-m-d')}}"
                                     class="col-xs-3 col-sm-3 required " 
                                     name="date"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1">Bagian
+                        </label>
+                        <div class="col-sm-8">
+                            <select name="divisi_id" class="col-xs-10 col-sm-10 required select2" required>
+                                <option value="">Pilih Bagian</option>
+                                @foreach ($div as $isi)
+                                    <option value="{{$isi->id}}">{{$isi->nama}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -44,11 +57,7 @@
                             <select name="mailclasification_id" class="col-xs-10 col-sm-10 required select2" required>
                                 <option value="">Pilih Klasifikasi</option>
                                 @foreach ($masa as $isi)
-                                    @if ($isi->id == $data->mailclasification_id)
-                                        <option value="{{$isi->id}}" selected>{{$isi->alias}} - {{$isi->names}}</option>
-                                    @else
-                                        <option value="{{$isi->id}}">{{$isi->alias}} - {{$isi->names}}</option>
-                                    @endif
+                                    <option value="{{$isi->id}}">{{$isi->alias}} - {{$isi->names}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -59,28 +68,10 @@
                         </label>
                         <div class="col-sm-10">
                             <select name="kualifikasi" class="col-xs-10 col-sm-10 required select2" required>
-                                @if ($data->kualifikasi=='B')
-                                    <option value="B" selected>Biasa</option>
-                                    <option value="T">Terbatas</option>
-                                    <option value="R">Rahasia</option>
-                                    <option value="S" >Sangat Rahasia</option>
-                                @elseif($data->kualifikasi=='T')
-                                    <option value="B">Biasa</option>
-                                    <option value="T" selected>Terbatas</option>
-                                    <option value="R">Rahasia</option>
-                                    <option value="S" >Sangat Rahasia</option>
-                                @elseif($data->kualifikasi=='R')
-                                    <option value="B">Biasa</option>
-                                    <option value="T">Terbatas</option>
-                                    <option value="R" selected>Rahasia</option>
-                                    <option value="S" >Sangat Rahasia</option>
-                                @else
-                                    <option value="B">Biasa</option>
-                                    <option value="T">Terbatas</option>
-                                    <option value="R">Rahasia</option>
-                                    <option value="S" selected>Sangat Rahasia</option>
-                                @endif
-                               
+                                <option value="B">Biasa</option>
+                                <option value="T">Terbatas</option>
+                                <option value="R">Rahasia</option>
+                                <option value="S">Sangat Rahasia</option>
                                
                             </select>
                         </div>
@@ -90,17 +81,10 @@
                         for="form-field-1"> Tingkat Keaslian
                         </label>
                         <div class="col-sm-10">
-                            @if ($data->tingkat=="asli")
-                                <input type="radio" required value="asli" checked 
+                            <input type="radio" required value="asli" checked 
                                 name="tingkat" id="L"/> &nbsp; Asli  &nbsp;
-                                <input type="radio" required value="copy"
+                            <input type="radio" required value="copy"
                                 name="tingkat" id="P"/> &nbsp; Copy
-                            @else
-                                <input type="radio" required value="asli"  
-                                name="tingkat" id="L"/> &nbsp; Asli  &nbsp;
-                                <input type="radio" required value="copy" checked
-                                name="tingkat" id="P"/> &nbsp; Copy
-                            @endif
                         </div>
                     </div>
                     <div class="form-group">
@@ -108,7 +92,10 @@
                         for="form-field-1"> Uraian
                         </label>
                         <div class="col-sm-10">
-                            <textarea name="uraian" id="" cols="95%" rows="5" required>{{$data->uraian}}</textarea>
+                            {{-- <input type="text"  placeholder="uraian" class="col-xs-10 col-sm-10 required " 
+                                    name="uraian" required /> --}}
+
+                            <textarea name="uraian" id="" cols="95%" rows="5" required></textarea>
                         </div>
                     </div>
                     <div class="form-group">
@@ -116,8 +103,8 @@
                         for="form-field-1"> Jumlah (lembar)
                         </label>
                         <div class="col-sm-10">
-                            <input type="number"  class="col-xs-1 col-sm-1" value="{{$data->jumlah}}"
-                                name="jumlah"  />
+                            <input type="number"  placeholder="0" class="col-xs-1 col-sm-1 " value="0"
+                                    name="jumlah"  />
                         </div>
                     </div>
                     <div class="form-group">
@@ -126,7 +113,7 @@
                         </label>
                         <div class="col-sm-9">
                             <input type="file" name="file" class="btn btn-default btn-sm" id="" value="Upload File">      
-                            <label><a href="{{$data->getFIlearsip()}}" target="_blank" >{{$data->file}}</a></label>
+                            <label><i>ex:Lorem_ipsum.pdf</i></label>
                         </div>
                     </div>
                     </fieldset>        
@@ -138,7 +125,7 @@
     <div class="col-sm-12">
         <div class="form-actions right">
             <button class="btn btn-success btn-sm " type="submit">
-                <i class="ace-icon fa fa-check bigger-110"></i>Update
+                <i class="ace-icon fa fa-check bigger-110"></i>Simpan
             </button>
         </div>
     </div>
