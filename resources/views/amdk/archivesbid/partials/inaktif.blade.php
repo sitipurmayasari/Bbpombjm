@@ -42,9 +42,7 @@
                         <td>{{$row->uraian}}</td>
                         <td>{{$row->date}}</td>
                         <td>{{$row->klas->actived}} tahun 
-                            @if ($row->klas->ceking=="Y")
-                                Setelah Pengecekkan
-                            @endif
+                           
                         </td>
                         <td>{{$row->klas->innactive}} tahun 
                         </td>

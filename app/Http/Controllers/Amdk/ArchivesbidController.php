@@ -17,7 +17,7 @@ class ArchivesbidController extends Controller
     {
         $div_id =auth()->user()->divisi_id;
         $data = Archives::selectraw('archives.*, mailclasification.alias,mailclasification.names,mailclasification.actived,
-                mailclasification.ceking,mailclasification.innactive,mailclasification.thelast,
+               mailclasification.innactive,mailclasification.thelast,
                 CURDATE() AS hari_ini,
                 DATE_ADD(DATE(archives.date),INTERVAL mailclasification.actived YEAR) batas_aktif')
                 ->orderBy('archives.id','desc')
@@ -32,7 +32,7 @@ class ArchivesbidController extends Controller
                 })
                 ->paginate('10');
         $datainac = Archives::selectraw('archives.*, mailclasification.alias,mailclasification.names,mailclasification.actived,
-                    mailclasification.ceking,mailclasification.innactive,mailclasification.thelast,
+                   mailclasification.innactive,mailclasification.thelast,
                     CURDATE() AS hari_ini,
                     DATE_ADD(DATE(archives.date),INTERVAL mailclasification.actived YEAR) batas_aktif')
                     ->orderBy('archives.id','desc')

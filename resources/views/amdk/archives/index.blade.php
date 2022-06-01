@@ -54,9 +54,6 @@
                     <td>{{$row->date}}</td>
                     <td>{{$row->div->nama}}</td>
                     <td>{{$row->actived}} tahun 
-                        @if ($row->ceking=="Y")
-                            Setelah Pengecekkan
-                        @endif
                     </td>
                     <td>{{$row->innactive}} tahun 
                     </td>

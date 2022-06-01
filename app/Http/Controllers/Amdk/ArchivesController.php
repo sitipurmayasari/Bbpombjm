@@ -16,7 +16,7 @@ class ArchivesController extends Controller
     {
         $peg =auth()->user()->id;
         $data = Archives::selectraw('archives.*, mailclasification.alias,mailclasification.names,mailclasification.actived,
-                                    mailclasification.ceking,mailclasification.innactive,mailclasification.thelast,
+                                    mailclasification.innactive,mailclasification.thelast,
                                     CURDATE() AS hari_ini,
                                     DATE_ADD(DATE(archives.date),INTERVAL mailclasification.actived YEAR) batas_aktif')
                         ->orderBy('archives.id','desc')
