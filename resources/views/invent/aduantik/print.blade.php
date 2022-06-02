@@ -192,7 +192,8 @@
             </table>
         </div><br>
         <div style="font-size: 11px; text-align:left;">
-            <b>ANALISA PEMERIKSA</b>
+            <b>ANALISA PEMERIKSA</b><br>
+            Tanggal Analisa : 
             <div class="aduan">
             </div>
             <br>
