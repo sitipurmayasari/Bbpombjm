@@ -1,7 +1,7 @@
 @extends('amdk/layouts_amdk.app')
 @section('breadcrumb')
     <li>SiKeren</li>
-    <li>kegiatan Pengembangan</i></li>
+    <li>kegiatan Penunjang Perencanaan</i></li>
 @endsection
 @section('content')
 
@@ -12,7 +12,7 @@
                 <div class="form-group col-sm-12">
                     <div class="row">
                         <div class="form-group col-xs-12 col-sm-3" style="float: left">
-                           <a href="{{Route('development.create')}}"  class="btn btn-primary">Tambah Data</a>   
+                           <a href="{{Route('support.create')}}"  class="btn btn-primary">Tambah Data</a>   
                         </div>
                         <div class="form-group col-xs-12 col-sm-5" style="float: right">
                             <div class="input-group">
@@ -52,10 +52,10 @@
                     <td>{{$row->skp->jab->nama}}</td>
                     <td>{{$row->skp->pejabat->user->name}}</td>
                     <td>
-                        <a class="btn btn-primary" href="/amdk/development/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
+                        <a class="btn btn-primary" href="/amdk/support/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
                     </td>
                     <td>
-                        <a href="/amdk/development/edit/{{$row->id}}" class="btn btn-warning">
+                        <a href="/amdk/support/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
                         <a href="#" class="btn btn-danger delete"
@@ -89,7 +89,7 @@
             }).then((result) => {
                 console.log(result);
                 if (result.value) {
-                    window.location = "/amdk/development/delete/"+id;
+                    window.location = "/amdk/support/delete/"+id;
                 }
             });
         });

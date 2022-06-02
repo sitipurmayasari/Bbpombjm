@@ -89,7 +89,7 @@ class CreditsController extends Controller
     {
         $data = Setup_ak::orderBy('sub_unsur','asc')
                         ->where('id',$request->setup_id)
-                        ->get();
+                        ->first();
         return response()->json([ 
             'success' => true,
             'data' => $data

@@ -40,7 +40,6 @@
                 <th>Jabatan</th>
                 <th>Penilai</th>
                 <th>Lampiran</th>
-                <th>Penilai Kegiatan</th>
                 <th>Aksi</th>
             <thead>
             <tbody>   	

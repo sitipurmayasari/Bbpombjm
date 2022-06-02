@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     {{-- <link href="{{asset('assets/css/no_header.css')}}" rel="stylesheet"> --}}
-    <title>Pengembangan Profesi Perencanaan</title>
+    <title>Penunjang Perencanaan</title>
     <style>
         @page {
             size: A4 landscape;
@@ -50,7 +50,7 @@
     <div class="col-sm-12" style="text-align: center">
        <div style="align=center font-size: 18px">
             <h3><b>SURAT PERNYATAAN <br> 
-                MELAKUKAN KEGIATAN PENGEMBANGAN PROFESI 
+                MELAKUKAN KEGIATAN PENUNJANG 
             </b></h3>
        </div>
        <br>

@@ -30,7 +30,8 @@
                     <th>Nama Dokumen</th>
                     <th>Tanggal</th>
                     <th>File</th>
-                    <th></th>
+                    <th>Status</th>
+                    <th>Aksi</th>
                 <thead>
                 <tbody>   	
                     @foreach($datadel as $key=>$row)
@@ -39,6 +40,7 @@
                         <td>{{$row->klas->alias}}</td>
                         <td>{{$row->uraian}}</td>
                         <td>{{$row->date}}</td>
+                        <td>{{$row->klas->thelast}}</td>
                         <td><a href="{{$row->getFIlearsip()}}" target="_blank" >{{$row->file}}</a></td>
                         <td>
                             <a href="#" class="btn btn-danger delete"

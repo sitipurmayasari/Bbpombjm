@@ -48,8 +48,6 @@
                                                                                     <th>Klasifikasi {{$item->alias}}</th>
                                                                                     <th>Nama Dokumen</th>
                                                                                     <th>Tanggal</th>
-                                                                                    <th>aktif</th>
-                                                                                    <th>inaktif</th>
                                                                                     <th>status</th>
                                                                                     <th>File</th>
                                                                                     <th>Aksi</th>
@@ -65,11 +63,6 @@
                                                                                         <td>{{$row->klas->alias}}</td>
                                                                                         <td>{{$row->uraian}}</td>
                                                                                         <td>{{$row->date}}</td>
-                                                                                        <td>{{$row->klas->actived}} tahun 
-                                                                                          
-                                                                                        </td>
-                                                                                        <td>{{$row->klas->innactive}} tahun 
-                                                                                        </td>
                                                                                         <td>{{$row->klas->thelast}}</td>
                                                                                         <td><a href="{{$row->getFIlearsip()}}" target="_blank" >{{$row->file}}</a></td>
                                                                                         <td>

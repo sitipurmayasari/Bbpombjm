@@ -1,19 +1,19 @@
 @extends('amdk/layouts_amdk.app')
 @section('breadcrumb')
 <li>skp</li>
-<li><a href="/amdk/development">kegiatan Pengembangan Profesi</a></li>
-<li>Ubah Pengembangan Profesi</li>
+<li><a href="/amdk/support">kegiatan Penunjang Perencanaan</a></li>
+<li>Ubah Penunjang Perencanaan</li>
 @endsection
 @section('content')
 @include('layouts.validasi')
 
 <div class="row">
     <form class="form-horizontal validate-form" role="form" 
-    method="post" action="/amdk/development/update/{{$data->id}}" enctype="multipart/form-data">
+    method="post" action="/amdk/support/update/{{$data->id}}" enctype="multipart/form-data">
         {{ csrf_field() }}
     <div class="col-md-12">
         <div class="panel panel-info">
-            <div class="panel-heading"><h3 class="panel-title">Ubah Pengembangan Profesi</h3></div>
+            <div class="panel-heading"><h3 class="panel-title">Ubah Penunjang Perencanaan</h3></div>
             <div class="panel-body">
                 <div class="col-md-12">
                     <div class="col-md-6">
@@ -83,7 +83,7 @@
                                     <input type="hidden" name="detail_id[]" value="{{$item->id}}">
                                 </td>
                                 <td>
-                                    <select name="setup_ak_id[]" class="form-control select2" id="setup_id-{{$no}}"  onchange="getnilai({{$no}})">
+                                    <select name="setup_ak_id[]" class="form-control select2" id="setup_id-{{$no}}"  onchange="getnilainext({{$no}})">
                                         @foreach ($ak as $isi)
                                             @if ($isi->id == $item->setup_ak_id)
                                                 <option value="{{$isi->id}}" selected>{{$isi->kode_ak}}-{{$isi->uraian}}</option>
@@ -146,10 +146,11 @@
         $isi ='<tr id="cell-'+new_baris+'">'+
                     '<td>'+new_baris+'</td>'+
                     '<td>'+
-                        '<input type="date" id="dates" value="{{date("Y-m-d")}}" class="form-control" name="kin_date[]"/>'+        
+                        '<input type="date" id="dates" value="{{date("Y-m-d")}}" class="form-control" name="kin_date[]"/>'+ 
+                        '<input type="hidden" name="detail_id[]">'+       
                     '</td>'+        
                     '<td>'+
-                        '<select name="setup_ak_id[]" class="form-control select2" id="setupid-'+new_baris+'"  onchange="getnilai('+new_baris+')">'+
+                        '<select name="setup_ak_id[]" class="form-control select2" id="setupid-'+new_baris+'"  onchange="getnilainext('+new_baris+')">'+
                             '<option value="">Pilih Kegiatan</option>'+
                             '@foreach ($ak as $item)'+
                                 '<option value="{{$item->id}}">{{$item->kode_ak}}-{{$item->uraian}}</option>'+
@@ -172,8 +173,8 @@
     }
 
     
-    function getnilai(i){
-        var setup_id = $("#setup_id-"+i).val();
+    function getnilainext(i){
+        var setup_id = $("#setupid-"+i).val();
         var jabasn = $("#jabasn").val();
 
         $.get(
@@ -181,7 +182,9 @@
             {
                 setup_id: setup_id
             },
+
             function(response) {
+
                 if (jabasn == 'Ahli Pertama') {
                      ak = response.data.pertama;
                 }else if (jabasn == 'Ahli Muda') {
@@ -213,7 +216,7 @@
             }).then((result) => {
                 console.log(result);
                 if (result.value) {
-                   window.location = "/amdk/development/deletedet/"+id;
+                   window.location = "/amdk/support/deletedet/"+id;
                 }
             });
         });

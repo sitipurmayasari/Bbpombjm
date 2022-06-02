@@ -158,7 +158,7 @@
         $isi ='<tr id="cell-'+new_baris+'">'+
                     '<td>'+new_baris+'</td>'+
                     '<td>'+
-                        '<input type="date" id="dates" value="{{date("Y-m-d")}}" class="form-control" name="kin_date"/>'+   
+                        '<input type="date" id="dates" value="{{date("Y-m-d")}}" class="form-control" name="kin_date[]"/>'+   
                         '<input type="hidden" name="detail_id[]">'+      
                     '</td>'+        
                     '<td>'+

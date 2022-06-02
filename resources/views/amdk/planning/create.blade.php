@@ -93,7 +93,7 @@
                             <td><input type="text" readonly class="form-control" id="butir1" name="butir[]"></td>
                             <td><input type="text" readonly class="form-control" id="keluaran1" name="keluaran[]"></td>
                             <td><input type="text" readonly class="form-control" id="pelaksana1" name="pelaksana[]"></td>
-                            <td><input type="text" readonly class="form-control" id="ak-1" name="ak[]"></td>
+                            <td><input type="text" readonly class="form-control" id="ak-1" name="nilai_ak[]"></td>
                             <td></td>
                         
                         </tr>
@@ -132,7 +132,7 @@
         $isi ='<tr id="cell-'+new_baris+'">'+
                     '<td>'+new_baris+'</td>'+
                     '<td>'+
-                        '<input type="date" id="dates" value="{{date("Y-m-d")}}" class="form-control" name="kin_date"/>'+        
+                        '<input type="date" id="dates" value="{{date("Y-m-d")}}" class="form-control" name="kin_date[]"/>'+        
                     '</td>'+        
                     '<td>'+
                         '<select name="skp_detail_id[]" id="uraian-'+new_baris+'" class="form-control select2">'+        
@@ -140,7 +140,7 @@
                         '</select>'+
                     '</td>'+
                     '<td>'+
-                        '<select name="setup_ak_id[]" class="form-control select2" id="setup_id-'+new_baris+'"  onchange="getnilai1()">'+
+                        '<select name="setup_ak_id[]" class="form-control select2" id="setup_id-'+new_baris+'"  onchange="getnilainext('+new_baris+')">'+
                             '<option value="">Pilih Kegiatan</option>'+
                             '@foreach ($ak as $item)'+
                                 '<option value="{{$item->id}}">{{$item->kode_ak}}-{{$item->uraian}}</option>'+
@@ -150,7 +150,7 @@
                     '<td><input type="text" readonly class="form-control" id="butir-'+new_baris+'" name="butir[]"></td>'+
                     '<td><input type="text" readonly class="form-control" id="keluaran-'+new_baris+'" name="keluaran[]"></td>'+
                     '<td><input type="text" readonly class="form-control" id="pelaksana-'+new_baris+'" name="pelaksana[]"></td>'+
-                    '<td><input type="text" readonly class="form-control" id="ak-'+new_baris+'" name="ak[]"></td>'+          
+                    '<td><input type="text" readonly class="form-control" id="ak-'+new_baris+'" name="nilai_ak[]"></td>'+          
                     '<td><button type="button" class="btn btn-danger" onclick="deleteRow('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button></td>'+
                 '</tr>';
         $("#myTable").find('tbody').append($isi);
@@ -228,6 +228,35 @@
                 $("#keluaran1").val(response.data.uraian);
                 $("#pelaksana1").val(response.data.hasil);
                 $("#ak-1").val(ak);
+            }
+        );
+    }
+
+    function getnilainext(i){
+        var setup_id = $("#setup_id-1").val();
+        var jabasn = $("#jabasn").val();
+
+        $.get(
+            "{{route('ak.getnilai') }}",
+            {
+                setup_id: setup_id
+            },
+            function(response) {
+
+                if (jabasn == 'Ahli Pertama') {
+                     ak = response.data.pertama;
+                }else if (jabasn == 'Ahli Muda') {
+                     ak = response.data.muda;
+                }else if (jabasn == 'Ahli Madya') {
+                     ak = response.data.madya;
+                } else {
+                     ak = response.data.utama;
+                }
+
+                document.getElementById("butir-"+i).value = response.data.kode_ak;
+                $("#keluaran-"+i).val(response.data.uraian);
+                $("#pelaksana-"+i).val(response.data.hasil);
+                $("#ak-"+i).val(ak);
             }
         );
     }

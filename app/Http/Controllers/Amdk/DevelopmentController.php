@@ -62,7 +62,8 @@ class DevelopmentController extends Controller
                   'kin_date'        => $request->kin_date[$i],
                   'setup_ak_id'     => $request->setup_ak_id[$i],
                   'ak'              => $request->ak[$i],
-                  'bukti'           =>$request->bukti[$i]
+                  'bukti'           =>$request->bukti[$i],
+                  'volume'           =>$request->volume[$i]
               ];
               Development_det::create($data);
           }
@@ -101,7 +102,8 @@ class DevelopmentController extends Controller
                 'kin_date'        => $request->kin_date[$i],
                 'setup_ak_id'     => $request->setup_ak_id[$i],
                 'ak'              => $request->ak[$i],
-                'bukti'           =>$request->bukti[$i]
+                'bukti'           =>$request->bukti[$i],
+                'volume'           =>$request->volume[$i]
             ];
             Development_det::updateOrCreate([
               'id'   => $request->detail_id[$i],
@@ -115,17 +117,17 @@ class DevelopmentController extends Controller
     
     public function delete($id)
     {
+        $detail = Development_det::where('development_id',$id );
+        $detail->delete();
         $data = Development::find($id);
         $data->delete();
-        $detail = Development_det::where('skp_id',$id)->get();
-        $detail->delete();
         return redirect('/amdk/development')->with('sukses','Data Terhapus');
     }
 
     public function deletedet($id)
     {
         $data = Development_det::find($id);
-        $out = $data->perencanaan_id;
+        $out = $data->development_id;
         $data->delete();
         return redirect('amdk/development/edit/'.$out)->with('sukses','data Terhapus');
     }

@@ -41,7 +41,7 @@ class ArsipHapus extends Command
     {
         $datainac = Archives::orderBy('archives.id','desc')
         ->leftjoin('mailclasification','mailclasification.id','archives.mailclasification_id')
-        ->whereRaw('curdate() > DATE_ADD(archives.date,INTERVAL mailclasification.actived YEAR)');
+        ->whereRaw('curdate() > DATE_ADD(archives.date,INTERVAL mailclasification.akhir YEAR)');
         $datainac->delete();
     }
 }

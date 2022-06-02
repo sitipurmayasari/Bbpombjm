@@ -119,7 +119,7 @@ class PlanningController extends Controller
     {
         $data = Perencanaan::find($id);
         $data->delete();
-        $detail = Perencanaan_det::where('skp_id',$id)->get();
+        $detail = Perencanaan_det::where('perencanaan_id',$id)->get();
         $detail->delete();
         return redirect('/amdk/planning')->with('sukses','Data Terhapus');
     }

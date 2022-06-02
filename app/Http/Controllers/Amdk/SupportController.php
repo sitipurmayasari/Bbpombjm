@@ -62,7 +62,8 @@ class SupportController extends Controller
                   'kin_date'        => $request->kin_date[$i],
                   'setup_ak_id'     => $request->setup_ak_id[$i],
                   'ak'              => $request->ak[$i],
-                  'bukti'           =>$request->bukti[$i]
+                  'bukti'           =>$request->bukti[$i],
+                  'volume'           =>$request->volume[$i]
               ];
               Support_det::create($data);
           }
@@ -97,16 +98,17 @@ class SupportController extends Controller
         //---------------detail----------------------
         for ($i = 0; $i < count($request->input('setup_ak_id')); $i++){
             $data = [
-                'support_id'  => $id,
-                'kin_date'        => $request->kin_date[$i],
-                'setup_ak_id'     => $request->setup_ak_id[$i],
-                'ak'              => $request->ak[$i],
-                'bukti'           =>$request->bukti[$i]
+                'support_id'    => $id,
+                'kin_date'      => $request->kin_date[$i],
+                'setup_ak_id'   => $request->setup_ak_id[$i],
+                'ak'            => $request->ak[$i],
+                'bukti'         =>$request->bukti[$i],
+                'volume'        =>$request->volume[$i]
             ];
             Support_det::updateOrCreate([
               'id'   => $request->detail_id[$i],
             ],$data);
-        }
+      }
         DB::commit(); 
 
       return redirect('/amdk/support')->with('sukses','Data Diperbaharui');
@@ -115,17 +117,17 @@ class SupportController extends Controller
     
     public function delete($id)
     {
+        $detail = Support_det::where('support_id',$id);
+        $detail->delete();
         $data = Support::find($id);
         $data->delete();
-        $detail = Support_det::where('skp_id',$id)->get();
-        $detail->delete();
         return redirect('/amdk/support')->with('sukses','Data Terhapus');
     }
 
     public function deletedet($id)
     {
         $data = Support_det::find($id);
-        $out = $data->perencanaan_id;
+        $out = $data->support_id;
         $data->delete();
         return redirect('amdk/support/edit/'.$out)->with('sukses','data Terhapus');
     }

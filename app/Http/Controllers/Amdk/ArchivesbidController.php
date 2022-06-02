@@ -16,8 +16,7 @@ class ArchivesbidController extends Controller
     public function index(Request $request)
     {
         $div_id =auth()->user()->divisi_id;
-        $data = Archives::selectraw('archives.*, mailclasification.alias,mailclasification.names,mailclasification.actived,
-               mailclasification.innactive,mailclasification.thelast,
+        $data = Archives::selectraw('archives.*, mailclasification.alias,mailclasification.names,
                 CURDATE() AS hari_ini,
                 DATE_ADD(DATE(archives.date),INTERVAL mailclasification.actived YEAR) batas_aktif')
                 ->orderBy('archives.id','desc')
@@ -31,8 +30,7 @@ class ArchivesbidController extends Controller
                         ->orWhere('mailclasification.names', 'LIKE','%'.$request->keyword.'%');
                 })
                 ->paginate('10');
-        $datainac = Archives::selectraw('archives.*, mailclasification.alias,mailclasification.names,mailclasification.actived,
-                   mailclasification.innactive,mailclasification.thelast,
+        $datainac = Archives::selectraw('archives.*, mailclasification.alias,mailclasification.names,
                     CURDATE() AS hari_ini,
                     DATE_ADD(DATE(archives.date),INTERVAL mailclasification.actived YEAR) batas_aktif')
                     ->orderBy('archives.id','desc')
@@ -45,7 +43,7 @@ class ArchivesbidController extends Controller
                     ->orWhere('mailclasification.names', 'LIKE','%'.$request->keyword.'%');
                     })
                     ->paginate('10');
-        $datadel = Archives::onlyTrashed()->paginate('10');
+        $datadel = Archives::onlyTrashed()->where('divisi_id','=',$div_id)->paginate('10');
         $div = Divisi::where('id',$div_id)->first();
         return view('amdk/archivesbid.index',compact('data','div','datainac','datadel'));
     }

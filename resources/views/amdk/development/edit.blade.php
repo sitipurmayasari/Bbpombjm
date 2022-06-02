@@ -83,7 +83,7 @@
                                     <input type="hidden" name="detail_id[]" value="{{$item->id}}">
                                 </td>
                                 <td>
-                                    <select name="setup_ak_id[]" class="form-control select2" id="setup_id-{{$no}}"  onchange="getnilai({{$no}})">
+                                    <select name="setup_ak_id[]" class="form-control select2" id="setup_id-{{$no}}"  onchange="getnilainext({{$no}})">
                                         @foreach ($ak as $isi)
                                             @if ($isi->id == $item->setup_ak_id)
                                                 <option value="{{$isi->id}}" selected>{{$isi->kode_ak}}-{{$isi->uraian}}</option>
@@ -146,10 +146,11 @@
         $isi ='<tr id="cell-'+new_baris+'">'+
                     '<td>'+new_baris+'</td>'+
                     '<td>'+
-                        '<input type="date" id="dates" value="{{date("Y-m-d")}}" class="form-control" name="kin_date[]"/>'+        
+                        '<input type="date" id="dates" value="{{date("Y-m-d")}}" class="form-control" name="kin_date[]"/>'+ 
+                        '<input type="hidden" name="detail_id[]">'+        
                     '</td>'+        
                     '<td>'+
-                        '<select name="setup_ak_id[]" class="form-control select2" id="setupid-'+new_baris+'"  onchange="getnilai('+new_baris+')">'+
+                        '<select name="setup_ak_id[]" class="form-control select2" id="setupid-'+new_baris+'"  onchange="getnilainext('+new_baris+')">'+
                             '<option value="">Pilih Kegiatan</option>'+
                             '@foreach ($ak as $item)'+
                                 '<option value="{{$item->id}}">{{$item->kode_ak}}-{{$item->uraian}}</option>'+
@@ -171,9 +172,8 @@
         $("#cell-"+cell).remove();
     }
 
-    
-    function getnilai(i){
-        var setup_id = $("#setup_id-"+i).val();
+    function getnilainext(i){
+        var setup_id = $("#setupid-"+i).val();
         var jabasn = $("#jabasn").val();
 
         $.get(
@@ -181,7 +181,9 @@
             {
                 setup_id: setup_id
             },
+
             function(response) {
+
                 if (jabasn == 'Ahli Pertama') {
                      ak = response.data.pertama;
                 }else if (jabasn == 'Ahli Muda') {

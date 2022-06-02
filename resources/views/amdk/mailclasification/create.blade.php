@@ -66,7 +66,7 @@
                             for="form-field-1"> Masa Aktif
                             </label>
                             <div class="col-sm-2">
-                                <input type="number"  placeholder="0" value="0"
+                                <input type="number"  placeholder="0" value="0" id="aktif" onkeyup="hitung()" onclick="hitung()"
                                         class="col-xs-5 col-sm-5 required " 
                                         name="actived" required />
                                 <label class="col-sm-2 control-label no-padding-right" 
@@ -84,25 +84,26 @@
                             for="form-field-1"> Masa Inaktif
                             </label>
                             <div class="col-sm-2">
-                                <input type="number" placeholder="0" required value="0"
+                                <input type="number" placeholder="0" required value="0" id="pasif" onkeyup="hitung()" onclick="hitung()"
                                         class="col-xs-5 col-sm-5 required "  name="innactive" />
                                        
                                 <label class="col-sm-2 control-label no-padding-right" 
                                         for="form-field-1"> Tahun
                                         </label>
+                                <input type="hidden" value="0" name="akhir" id="akhir">
                             </div>
                             <div class="col-sm-6">
                                 <input type="text"  placeholder="keterangan"
-                                        class="col-xs-9 col-xs-9 keterangan " name="ketinnactive"  />
+                                        class="col-xs-9 col-xs-9 keterangan " name="ketinactive"  />
                                         
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Nama Klasifikasi
+                            for="form-field-1"> Status Akhir
                             </label>
                             <div class="col-sm-8">
-                                <input type="text"  placeholder="Nama Klasifikasi" 
+                                <input type="text"  placeholder="mis: permanen, musnah, dll" 
                                         class="col-xs-10 col-sm-10 required " 
                                         name="thelast" required/>
                             </div>
@@ -123,4 +124,14 @@
     </form>
 </div>
 
+@endsection
+@section('footer')
+   <script>
+    function hitung() {
+        var a = parseInt($("#aktif").val());
+        var b = parseInt($("#pasif").val());
+        var c = a+b;
+        $("#akhir").val(c);
+    }
+   </script>
 @endsection

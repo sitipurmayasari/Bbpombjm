@@ -21,6 +21,7 @@
         table, tr, td, th{
             border: solid 1px;
             vertical-align: top;
+            border-collapse: collapse;
         }
 
         .ttdini{

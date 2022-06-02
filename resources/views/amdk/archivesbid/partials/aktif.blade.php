@@ -42,12 +42,17 @@
                         <td>{{$row->alias}}</td>
                         <td>{{$row->uraian}}</td>
                         <td>{{$row->date}}</td>
-                        <td>{{$row->actived}} tahun 
-                          
+                        <td>{{$row->klas->actived}} tahun 
+                            @if ($row->klas->ketactive != null)
+                                {{$row->klas->ketactive}}
+                            @endif
                         </td>
-                        <td>{{$row->innactive}} tahun 
+                        <td>{{$row->klas->innactive}} tahun 
+                            @if ($row->klas->ketinactive != null)
+                                {{$row->klas->ketinactive}}
+                            @endif
                         </td>
-                        <td>{{$row->thelast}}</td>
+                        <td>{{$row->klas->thelast}}</td>
                         <td><a href="{{$row->getFIlearsip()}}" target="_blank" >{{$row->file}}</a></td>
                         <td>
                             <a href="/amdk/archivesbid/edit/{{$row->id}}" class="btn btn-warning">

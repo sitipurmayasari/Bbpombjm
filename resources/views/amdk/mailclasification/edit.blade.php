@@ -67,16 +67,15 @@
                             for="form-field-1"> Masa Aktif
                             </label>
                             <div class="col-sm-2">
-                                <input type="number"  placeholder="0" value="{{$data->actived}}"
-                                        class="col-xs-5 col-sm-5 required " 
-                                        name="actived" required />
+                                <input type="number"  placeholder="0" id="aktif" onkeyup="hitung()" onclick="hitung()"
+                                        class="col-xs-5 col-sm-5 required" name="actived" required  value="{{$data->actived}}"/>
                                 <label class="col-sm-2 control-label no-padding-right" 
                                         for="form-field-1"> Tahun
                                         </label>
                             </div>
                             <div class="col-sm-6">
                                 <input type="text"  placeholder="keterangan" value="{{$data->ketactive}}"
-                                    class="col-xs-9 col-xs-9 required "   name="ketactive" />
+                                    class="col-xs-9 col-xs-9 required " name="ketactive" />
                                        
                             </div>
                         </div>
@@ -85,29 +84,28 @@
                             for="form-field-1"> Masa Inaktif
                             </label>
                             <div class="col-sm-2">
-                                <input type="number" placeholder="0" required value="{{$data->innactive}}"
-                                        class="col-xs-5 col-sm-5 required "  name="innactive" />
+                                <input type="number" required value="{{$data->innactive}}"  onkeyup="hitung()" onclick="hitung()"
+                                        class="col-xs-5 col-sm-5 required " id="pasif"  name="innactive"  placeholder="0"/>
                                        
                                 <label class="col-sm-2 control-label no-padding-right" 
                                         for="form-field-1"> Tahun
                                         </label>
+                                <input type="hidden" value="{{$data->akhir}}" name="akhir" id="akhir">
                             </div>
                             <div class="col-sm-6">
-                                <input type="text"  placeholder="keterangan" value="{{$data->ketinnactive}}"
-                                        class="col-xs-9 col-xs-9 keterangan " name="ketinnactive"  />
+                                <input type="text"  placeholder="keterangan" value="{{$data->ketinactive}}"
+                                        class="col-xs-9 col-xs-9 keterangan " name="ketinactive"  />
                                         
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Nama Klasifikasi
+                            for="form-field-1"> Status Akhir
                             </label>
                             <div class="col-sm-8">
-                                <input type="text"  placeholder="Nama Klasifikasi" value="{{$data->thelast}}"
-                                        class="col-xs-10 col-sm-10 required " 
-                                        name="thelast" required/>
+                                <input type="text"  placeholder="mis: permanen, musnah, dll"  name="thelast"
+                                        class="col-xs-10 col-sm-10 required "  value="{{$data->thelast}}" required/>
                             </div>
-                        </div>
                         </div>
                         </fieldset>        
                </div>
@@ -124,4 +122,14 @@
     </form>
 </div>
 
+@endsection
+@section('footer')
+   <script>
+    function hitung() {
+        var a = parseInt($("#aktif").val());
+        var b = parseInt($("#pasif").val());
+        var c = a+b;
+        $("#akhir").val(c);
+    }
+   </script>
 @endsection

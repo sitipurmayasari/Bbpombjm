@@ -220,6 +220,7 @@
   Route::get('/amdk/development/create','Amdk\DevelopmentController@create')->name('development.create');
   Route::post('/amdk/development/store','Amdk\DevelopmentController@store')->name('development.store');
   Route::get('/amdk/development/delete/{id}','Amdk\DevelopmentController@delete')->name('development.delete');
+  Route::get('/amdk/development/deletedet/{id}','Amdk\DevelopmentController@deletedet')->name('development.deletedet');
   Route::get('/amdk/development/edit/{id}','Amdk\DevelopmentController@edit')->name('development.edit');
   Route::post('/amdk/development/update/{id}','Amdk\DevelopmentController@update')->name('development.update');
   Route::get('/amdk/development/print/{id}','Amdk\DevelopmentController@print')->name('development.print');
@@ -228,6 +229,7 @@
   Route::get('/amdk/support/create','Amdk\SupportController@create')->name('support.create');
   Route::post('/amdk/support/store','Amdk\SupportController@store')->name('support.store');
   Route::get('/amdk/support/delete/{id}','Amdk\SupportController@delete')->name('support.delete');
+  Route::get('/amdk/support/deletedet/{id}','Amdk\SupportController@deletedet')->name('support.deletedet');
   Route::get('/amdk/support/edit/{id}','Amdk\SupportController@edit')->name('support.edit');
   Route::post('/amdk/support/update/{id}','Amdk\SupportController@update')->name('support.update');
   Route::get('/amdk/support/print/{id}','Amdk\SupportController@print')->name('support.print');

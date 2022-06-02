@@ -1,19 +1,19 @@
 @extends('amdk/layouts_amdk.app')
 @section('breadcrumb')
     <li>skp</li>
-    <li><a href="/amdk/development">kegiatan Pengembangan Profesi</a></li>
-    <li>Input Pengembangan Profesi</li>
+    <li><a href="/amdk/support">kegiatanPenunjang Perencanaan</a></li>
+    <li>Input Penunjang Perencanaan</li>
 @endsection
 @section('content')
 @include('layouts.validasi')
 
 <div class="row">
     <form class="form-horizontal validate-form" role="form" 
-            method="post" action="{{route('development.store')}}" enctype="multipart/form-data"   >
+            method="post" action="{{route('support.store')}}" enctype="multipart/form-data"   >
         {{ csrf_field() }}
     <div class="col-md-12">
         <div class="panel panel-info">
-            <div class="panel-heading"><h3 class="panel-title">Input Pengembangan Profesi</h3></div>
+            <div class="panel-heading"><h3 class="panel-title">InputPenunjang Perencanaan</h3></div>
             <div class="panel-body">
                 <div class="col-md-12">
                     <div class="col-md-6">
