@@ -23,7 +23,7 @@
 </head>
 <body>
     <div class="col-sm-12" style="text-align: center;font-size: 18px;">
-        <b>Laporan Daftar Aduan Kerusakan Barang</b>
+        <b>Laporan Daftar Aduan Kerusakan TIK</b>
     </div><br>
     <div class="col-sm-12" style="text-align: left">
         periode :
