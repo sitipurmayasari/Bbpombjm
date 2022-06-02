@@ -46,6 +46,16 @@ method="post" action="/invent/aduantik/update/{{$aduan->id}}">
                 <br>
                 <div class="form-group">
                     <label class="col-sm-2 control-label no-padding-right" 
+                    for="form-field-1"> Tanggal Analisa 
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="date" name="analyze_date" 
+                        class="col-xs-3 col-sm-3 required" value="{{date('Y-m-d')}}" required
+                        data-date-format="yyyy-mm-dd" data-provide="datepicker">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" 
                     for="form-field-1"> Nama Barang
                     </label>
                     <div class="col-sm-8">

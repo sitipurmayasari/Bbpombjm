@@ -10,6 +10,7 @@ use App\Inventaris;
 use App\Pengajuan;
 use App\PengajuanDetail;
 use App\Satuan;
+use App\AduanDetail;
 
 use PDF;
 class LapAjuController extends Controller
@@ -36,19 +37,35 @@ class LapAjuController extends Controller
             $pdf = PDF::loadview('invent/lapajuan.ajuan',compact('user','data','request'));
             return $pdf->stream();
 
-        }else if($request->jenis_Laporan=="rusak"){
+        }else if($request->jenis_Laporan=="rusaktik"){
             $user   = User::all();
-            $data   = Aduan::orderBy('id','desc')
-                                ->whereYear('tanggal',$request->daftartahun)
-                                ->when($request->daftarbulan, function ($query) use ($request) {
-                                    $query->whereMonth('tanggal',$request->daftarbulan);
-                                 })
-                                ->get();
+            $data   = Aduan::orderBy('id','asc')
+                            ->where('jenis','T')
+                            ->whereYear('tanggal',$request->daftartahun)
+                            ->when($request->daftarbulan, function ($query) use ($request) {
+                                $query->whereYear('tanggal',$request->daftartahun);
+                                $query->whereMonth('tanggal',$request->daftarbulan);
+                            })
+                            ->get();
             
             $pdf = PDF::loadview('invent/lapajuan.aduan',compact('user','data','request'));
             return $pdf->stream();
-        // }else{
-        //     dd($request->all());
+        }else if($request->jenis_Laporan=="rusak"){
+            $user   = User::all();
+            $data   = AduanDetail::orderBy('aduan_detail.id','asc')
+                            ->leftjoin('aduan','aduan.id','aduan_detail.aduan_id')
+                            ->where('aduan.jenis','U')
+                            ->whereYear('aduan.tanggal',$request->daftartahun)
+                            ->when($request->daftarbulan, function ($query) use ($request) {
+                                $query->whereYear('aduan.tanggal',$request->daftartahun);
+                                $query->whereMonth('aduan.tanggal',$request->daftarbulan);
+                                })
+                            ->get();
+            
+            $pdf = PDF::loadview('invent/lapajuan.aduan2',compact('user','data','request'));
+            return $pdf->stream();
+        }else{
+            dd($request->all());
         }
     }
 

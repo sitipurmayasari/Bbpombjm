@@ -65,7 +65,7 @@
                     <th>Nomor Aduan</th>
                     <th>Tanggal Aduan</th>
                     <th>Nama Pegawai</th>
-                    <th>Daftar Barang</th>
+                    <th>Nama Barang</th>
                     <th style="width: 20%">Masalah / Kerusakan</th>
                     <th style="width: 20%">Tindak Lanjut</th>
                     <th style="width: 15%">Hasil</th>
@@ -78,14 +78,17 @@
                     @foreach ($data as $item)
                     <tr>
                         <td style="text-align: center">{{$no}}</td>
-                        <td>{{$item->no_aduan}}</td>
-                        <td>{{$item->tanggal}}</td>
-                        <td>{{$item->lapor->name}}</td>
-                        <td>{{$item->barang->nama_barang}}</td>
-                        <td>{{$item->problem}}</td>
+                        <td>{{$item->aduan->no_aduan}}</td>
+                        <td>{{$item->aduan->tanggal}}</td>
+                        <td>{{$item->aduan->lapor->name}}</td>
+                        <td>
+                            {{$item->barang->nama_barang}}  {{$item->barang->merk}}
+                        </td>
+                        <td>
+                            {{$item->keterangan}}
+                        </td>
                         <td>
                             @if ($item->follow_up != null)
-                                tgl analisa : {{$item->analyze_date}} <br>
                                 {{$item->follow_up}}
                             @else
                                 Belum Diperiksa

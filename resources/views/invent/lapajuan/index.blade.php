@@ -32,7 +32,8 @@
                             <div class="col-sm-8">
                                 <select name="jenis_Laporan" id="jenis" class="col-xs-10 col-sm-10">
                                     <option value="baru">Laporan Pengajuan barang Baru</option>
-                                    <option value="rusak">Laporan Kerusakan </option>
+                                    <option value="rusaktik">Laporan Kerusakan TIK</option>
+                                    <option value="rusak">Laporan Kerusakan Inventaris</option>
                                 </select>
                             </div>
                         </div>
@@ -69,13 +70,17 @@
                             for="form-field-1"> Pilih Bulan
                             </label>
                             <div class="col-sm-8">
-                                <select id="bulan" name="daftarbulan" class="col-xs-10 col-sm-10">
-                                    <option value="">Pilih Bulan</option>
+                                <select id="bulan" name="daftarbulan" class="col-xs-10 col-sm-10" required>
                                     @php
                                     $bulan = array("", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus",
                                                      "September", "Oktober", "November", "Desember");
                                     for($a=1;$a<=12;$a++){
-                                        echo("<option value=\"$a\">$bulan[$a]</option>"."\n");
+                                    if($a==date("m")){ 
+                                        $pilih="selected";
+                                    }else {
+                                        $pilih="";
+                                    }
+                                        echo("<option value=\"$a\" $pilih>$bulan[$a]</option>"."\n");
                                     }
                                     @endphp
                                 </select>

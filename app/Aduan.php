@@ -8,7 +8,7 @@ class Aduan extends Model
 {
     protected $table = "aduan";
     protected $fillable = ['no_aduan','tanggal','aduan_status','pegawai_id','jenis','inventaris_id','problem','divisi_id',
-                            'follow_up','result'];
+                            'follow_up','result','analyze_date'];
 
     public function getFoto() 
     {

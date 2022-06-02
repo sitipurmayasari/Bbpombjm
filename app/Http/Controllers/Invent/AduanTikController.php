@@ -207,9 +207,10 @@ class AduanTikController extends Controller
         $aduan = Aduan::find($id);
         $aduan->update(
             [
-                'result' => $request->result,
-                'aduan_status' => $request->aduan_status,
-                'follow_up' => $request->follow_up,
+                'result'        => $request->result,
+                'aduan_status'  => $request->aduan_status,
+                'follow_up'     => $request->follow_up,
+                'analyze_date'  => $request->analyze_date
         ]);
         return redirect('/invent/aduantik')->with('sukses','Status Aduan Telah Diperbaharui');
     }
