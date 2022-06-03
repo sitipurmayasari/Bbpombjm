@@ -14,6 +14,12 @@
         size:8.5in 13in ;
         margin: 180px 0px 100px 0px;
     }
+
+    @font-face {
+        font-family: "Bookman Old Style";
+        src: url('{{asset('assets/font/Bookman-old-style.tff')}}');
+    }
+    
     html, table{
             font-family: "Bookman Old Style";
             font-size: 12;

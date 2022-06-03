@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>SPPD TAMU</title>
+    <title>SPPD EXTERNAL</title>
     <style>
         @page {
             size:8.5in 13in;
@@ -516,7 +516,7 @@
                         @endif
                     </td>
                 </tr>
-                <tr style="text-align: center;">
+                {{-- <tr style="text-align: center;">
                     <td colspan="4" style="text-align: center;">Kepala Bagian Tata Usaha</td>
                 </tr>
                 <tr>
@@ -531,7 +531,7 @@
                     <td colspan="4" style="text-align: center;">
                         NIP. {{$menyetujui->user->no_pegawai}}
                     </td>
-                </tr>
+                </tr> --}}
             </table>
         </td>
         <td class="isi">
@@ -566,7 +566,7 @@
                         @endif
                     </td>
                 </tr>
-                <tr style="text-align: center;">
+                {{-- <tr style="text-align: center;">
                     <td colspan="4" style="text-align: center;">Kepala Bagian Tata Usaha</td>
                 </tr>
                 <tr>
@@ -581,7 +581,7 @@
                     <td colspan="4" style="text-align: center;">
                         NIP. {{$menyetujui->user->no_pegawai}}
                     </td>
-                </tr>
+                </tr> --}}
             </table>
         </td>
     </tr>

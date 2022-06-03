@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>SPPD EXTERNAL</title>
+    <title>SPPD TAMU</title>
     <style>
         @page {
             size:8.5in 13in;

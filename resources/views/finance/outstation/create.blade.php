@@ -161,13 +161,15 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1"> Petugas External
+                        for="form-field-1"> Petugas
                         </label>
                         <div class="col-sm-8">
                             <input type="radio" required value="N" checked
-                            name="external"/> &nbsp; Tidak &nbsp;
+                            name="external"/> &nbsp; Internal &nbsp;
+                            <input type="radio" required value="L"
+                            name="external"/> &nbsp; External &nbsp;
                             <input type="radio" required value="Y"
-                            name="external"/> &nbsp; Ya
+                            name="external"/> &nbsp; Tamu (diundang ke BPOM)
                         </div>
                     </div>
                 </fieldset>   

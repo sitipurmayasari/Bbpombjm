@@ -225,19 +225,32 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1"> Petugas External
+                        for="form-field-1"> Petugas
                         </label>
                         <div class="col-sm-8">
                            @if ($data->external=='N')
                                 <input type="radio" required value="N" checked
-                                name="external"/> &nbsp; Tidak &nbsp;
+                                name="external"/> &nbsp; Internal &nbsp;
+                                <input type="radio" required value="L"
+                                name="external"/> &nbsp; External &nbsp;
                                 <input type="radio" required value="Y"
-                                name="external"/> &nbsp; Ya
+                                name="external"/> &nbsp; Tamu (diundang ke BPOM)
+                            
+                            @elseif($data->external=='L')
+                                <input type="radio" required value="N" 
+                                name="external"/> &nbsp; Internal &nbsp;
+                                <input type="radio" required value="L" checked
+                                name="external"/> &nbsp; External &nbsp;
+                                <input type="radio" required value="Y"
+                                name="external"/> &nbsp; Tamu (diundang ke BPOM)
+
                            @else
                                 <input type="radio" required value="N"
-                                name="external"/> &nbsp; Tidak &nbsp;
+                                name="external"/> &nbsp; Internal &nbsp;
+                                <input type="radio" required value="L"
+                                name="external"/> &nbsp; External &nbsp;
                                 <input type="radio" required value="Y" checked
-                                name="external"/> &nbsp; Ya
+                                name="external"/> &nbsp; Tamu (diundang ke BPOM)
                            @endif
                         </div>
                     </div>
