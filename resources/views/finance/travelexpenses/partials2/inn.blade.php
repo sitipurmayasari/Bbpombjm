@@ -67,11 +67,18 @@
                                         <td><input type="date" name="checkin1[]" value="{{$item->checkin1}}"/></td>
                                         <td><input type="date" name="checkout1[]" value="{{$item->checkout1}}"/></td>
                                         <td>
-                                            @if ($item->inap1=='Y')
+                                            {{-- @if ($item->inap1=='Y')
                                                 <input type="checkbox" name="inap1[]" value="Y" checked> Ya
                                             @else
                                                 <input type="checkbox" name="inap1[]" value="Y" >
+                                            @endif --}}
+
+                                            @if ($item->inap1=='Y')
+                                                <input type="checkbox" name="inap1_{{$item->outst_employee_id}}" value="Y" checked> Ya
+                                            @else
+                                                <input type="checkbox" name="inap1_{{$item->outst_employee_id}}" value="Y" >
                                             @endif
+                                            
                                         </td>
                                         <td><input type="number" min="0" name="hotelmax1[]" value="{{$item->hotelmax1}}"/></td>
                                         <td><input type="number" min="0" value="{{$item->inn_fee_1}}" name="inn_fee_1[]" id="innfee1-{{$nomor}}"/></td>

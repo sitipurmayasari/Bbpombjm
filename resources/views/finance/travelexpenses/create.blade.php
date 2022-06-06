@@ -369,7 +369,7 @@
                         '<td><input type="text" name="inn_room1[]" /></td>'+
                         '<td><input type="date" name="checkin1[]" /></td>'+
                         '<td><input type="date" name="checkout1[]" /></td>'+
-                        '<td><input type="checkbox" name="inap1[]" value="Y"> Ya </td>'+
+                        '<td><input type="checkbox" name="inap1_'+response.peg[i].id+'" value="Y"> Ya </td>'+
                         '<td><input type="number" min="0" value="0" name="hotelmax1[]"/></td>'+
                         '<td><input type="number" min="0" value="0" name="inn_fee_1[]" id="innfee1-'+no+'"/></td>'+
                         '<td><input type="number" min="0" value="0" name="long_stay_1[]" id="longstay1-'+no+'" style="width: 50px"/></td>' +

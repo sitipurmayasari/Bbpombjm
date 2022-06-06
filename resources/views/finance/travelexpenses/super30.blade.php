@@ -150,9 +150,13 @@
     <br><br><br>
     <p>Untuk :</p>
     <table>
+        @php
+            $detail = $injectQuery->getDetail($item->id);
+            $nilai = $injectQuery->getkkp($item->id);
+        @endphp
         <tr>
             <td style="vertical-align: top">1.</td>
-            <td>Tidak menginap di Hotel/Tempat Penginapan Umum dan menginap di {{$nilai->innname_1}}</td>
+            <td>Tidak menginap di Hotel/Tempat Penginapan Umum dan menginap di {{$detail->innname_1}}</td>
         </tr>
         <tr>
             @php

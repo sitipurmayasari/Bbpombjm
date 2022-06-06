@@ -246,7 +246,8 @@ class TravelexpensesController extends Controller
 
             //Travelexpenses2
             for ($i = 0; $i < count($request->input('outst_employee_id')); $i++){
-                $inap1         = $request->inap1 != null ?  $request->inap1[$i] : 'N';
+                $inap1     =  $request->input('inap1_'.$emId) != null ?  $request->input('inap1_'.$emId) : 'N';
+                // $inap1         = $request->inap1 != null ?  $request->inap1[$i] : 'N';
                 $inap2         = $request->inap2 != null ?  $request->inap2[$i] : 'N';
                 $hotelkkp1     =  $request->input('hotelkkp1_'.$emId) != null ?  $request->input('hotelkkp1_'.$emId) : 'N';
                 $hotelkkp2     =  $request->input('hotelkkp2_'.$emId) != null ?  $request->input('hotelkkp2_'.$emId) : 'N';
@@ -509,7 +510,8 @@ class TravelexpensesController extends Controller
 
             //Travelexpenses2
             for ($i = 0; $i < count($request->input('outst_employee_id')); $i++){
-                $inap1         = $request->inap1 != null ?  $request->inap1[$i] : 'N';
+                // $inap1         = $request->inap1 != null ?  $request->inap1[$i] : 'N';
+                $inap1         =  $request->input('inap1_'.$emId) != null ?  $request->input('inap1_'.$emId) : 'N';
                 $inap2         = $request->inap2 != null ?  $request->inap2[$i] : 'N';
                 $hotelkkp1     =  $request->input('hotelkkp1_'.$emId) != null ?  $request->input('hotelkkp1_'.$emId) : 'N';
                 $hotelkkp2     =  $request->input('hotelkkp2_'.$emId) != null ?  $request->input('hotelkkp2_'.$emId) : 'N';
@@ -730,14 +732,14 @@ class TravelexpensesController extends Controller
                         ->leftJoin('expenses','expenses.outstation_id','=','outstation.id')
                         ->where('expenses.id',$id)
                         ->get();
-        $nilai      = Travelexpenses2::SelectRaw('travelexpenses2.*, travelexpenses1.innname_1')
-                        ->leftJoin('travelexpenses1','travelexpenses1.outst_employee_id','=','travelexpenses2.outst_employee_id')
-                        ->where('inap1','Y')
-                        ->where('travelexpenses2.expenses_id',$id)
-                        ->first();
+        // $nilai      = Travelexpenses2::SelectRaw('travelexpenses2.*, travelexpenses1.innname_1')
+        //                 ->leftJoin('travelexpenses1','travelexpenses1.outst_employee_id','=','travelexpenses2.outst_employee_id')
+        //                 ->where('inap1','Y')
+        //                 ->where('travelexpenses2.expenses_id',$id)
+        //                 ->first();
         $petugas    = Petugas::where('id', 7)->first();
 
-        $pdf = PDF::loadview('finance/travelexpenses.super30',compact('data','pegawai','tujuan','petugas','nilai'));
+        $pdf = PDF::loadview('finance/travelexpenses.super30',compact('data','pegawai','tujuan','petugas'));
         return $pdf->stream();
     }
 
