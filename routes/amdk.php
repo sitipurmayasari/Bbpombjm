@@ -267,3 +267,10 @@
   Route::get('/amdk/archivesrek/edit/{id}','Amdk\ArchivesrekController@edit')->name('archivesrek.edit');
   Route::post('/amdk/archivesrek/update/{id}','Amdk\ArchivesrekController@update')->name('archivesrek.update');
   Route::get('/amdk/archivesrek/deleteper/{id}','Amdk\ArchivesrekController@deleteper')->name('archivesrek.deleteper');
+
+   //Route untuk Disposisi
+  Route::get('/amdk/disposisi/create','Amdk\DisposisiController@create')->name('disposisi.create');
+  Route::post('/amdk/disposisi/store','Amdk\DisposisiController@store')->name('disposisi.store');
+  Route::get('/amdk/disposisi/delete/{id}','Amdk\DisposisiController@delete')->name('disposisi.delete');
+  Route::get('/amdk/disposisi/edit/{id}','Amdk\DisposisiController@edit')->name('disposisi.edit');
+  Route::post('/amdk/disposisi/update/{id}','Amdk\DisposisiController@update')->name('disposisi.update');

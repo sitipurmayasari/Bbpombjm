@@ -195,6 +195,9 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
      Route::get('/amdk/archivesbid','Amdk\ArchivesbidController@index')->name('archivesbid');
      //Route untuk rekap Arsip
      Route::get('/amdk/archivesrek','Amdk\ArchivesrekController@index')->name('archivesrek');
+    //Route untuk Disposisi
+    Route::get('/amdk/disposisi','Amdk\DisposisiController@index')->name('disposisi');
+    Route::get('/amdk/rekdisposisi','Amdk\DisposisiController@index')->name('disposisi.rekdisposisi');
     
 
 
