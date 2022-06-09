@@ -168,8 +168,9 @@
                              <td> 2.</td>
                              <td>
                                  @if ($data->budget_id == 3)
-                                     {{$now->name}} Tahun Anggaran {{$now->tahun}}, <br>
-                                     Nomor {{$now->nomor}} tanggal {{tgl_indo($now->tanggal)}}
+                                 {{$data->budget->name}}
+                                     {{-- {{$now->name}} Tahun Anggaran {{$now->tahun}}, <br>
+                                     Nomor {{$now->nomor}} tanggal {{tgl_indo($now->tanggal)}} --}}
                                  @else
                                      {{$data->budget->name}} Tahun Anggaran {{$data->budget->tahun}}
                                      @if ($data->budget->nomor != null && $data->budget->tanggal == null)
@@ -331,7 +332,8 @@
                              <td>:</td>
                              <td>
                                  @if ($data->budget_id == 3)
-                                     {{$now->name}} Tahun Anggaran {{$now->tahun}}
+                                 {{$data->budget->name}}
+                                     {{-- {{$now->name}} Tahun Anggaran {{$now->tahun}} --}}
                                  @else
                                      {{$data->budget->name}} Tahun Anggaran {{$data->budget->tahun}}
                                  @endif <br>
