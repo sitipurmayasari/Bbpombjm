@@ -11,6 +11,7 @@
     overflow:scroll;
     height:100px;
 }
+
 </style>
 
 <form class="form-horizontal validate-form" role="form" 
@@ -63,6 +64,27 @@
                             <input type="text"  placeholder="Nama kegiatan" 
                                     class="col-xs-10 col-sm-10 required " 
                                     name="purpose" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Menimbang
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="checkbox" id="reset" name="reset" value="Y" onclick="respe();">&nbsp;
+                            <label class="control-label" for="form-field-1"> Manual </label> <br>
+                            <textarea name="menimbang" id="menimbang" cols="70%" rows="5">Bahwa untuk menunjang pelaksanaan tugas dan fungsi Balai Besar POM di Banjarmasin sebagai unit Pelaksana Teknis di lingkungan Badan POM RI, dipandang perlu untuk menerbitkan Surat Tugas.
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Dasar Pelaksanaan (*Tidak Wajib)
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text"  placeholder="Dasar Pelaksanaan" 
+                                    class="col-xs-10 col-sm-10 " 
+                                    name="dasar"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -134,16 +156,6 @@
                                     <option value="{{$item->id}}">{{$item->code}}-{{$item->capital}}</option>
                                 @endforeach
                             </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1"> Dasar Pelaksanaan (*Tidak Wajib)
-                        </label>
-                        <div class="col-sm-8">
-                            <input type="text"  placeholder="Dasar Pelaksanaan" 
-                                    class="col-xs-10 col-sm-10 " 
-                                    name="dasar"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -375,6 +387,19 @@
 
 @section('footer')
    <script>
+        $().ready( function () {
+            $("#menimbang").hide();
+        } );
+
+       function respe(){
+        if (document.getElementById('reset').checked) 
+            {
+                $("#menimbang").show();
+            } else {
+                $("#menimbang").hide();
+            }
+        }
+        
         function getnomorst(){
             var divisi_id = $("#divisi_id").val();
 

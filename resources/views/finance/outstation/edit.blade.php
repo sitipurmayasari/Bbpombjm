@@ -71,6 +71,25 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Menimbang
+                        </label>
+                        <div class="col-sm-8">
+                            <textarea name="menimbang" id="menimbang" cols="70%" rows="5">{{$data->menimbang}}
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Dasar Pelaksanaan (*Tidak Wajib)
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text"  placeholder="Dasar Pelaksanaan" 
+                                    class="col-xs-10 col-sm-10 " value="{{$data->dasar}}"
+                                    name="dasar"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
                         for="form-field-1"> Beban Anggaran
                         </label>
                         <div class="col-sm-8">
@@ -181,16 +200,6 @@
                                     @endif
                                 @endforeach
                             </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1"> Dasar Pelaksanaan (*Tidak Wajib)
-                        </label>
-                        <div class="col-sm-8">
-                            <input type="text"  placeholder="Dasar Pelaksanaan" value="{{$data->dasar}}"
-                                    class="col-xs-10 col-sm-10 " 
-                                    name="dasar"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -493,7 +502,7 @@
 
 @section('footer')
    <script>
-       $().ready( function () {
+    $().ready( function () {
         $(".delete").click(function() {
                 var id = $(this).attr('r-id');
                 var name = $(this).attr('r-name');
@@ -512,7 +521,7 @@
                 }
             });
         });
-    } );
+    });
 
         function addBarisNew(){
         var last_baris = $("#countRow").val();

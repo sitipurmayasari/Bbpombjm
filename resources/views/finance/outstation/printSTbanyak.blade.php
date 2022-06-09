@@ -43,6 +43,7 @@
             vertical-align: top;
             line-height: 1;
             font-size: 12;
+            border-collapse: collapse;
         }
 
         .ttdini{
@@ -101,8 +102,7 @@
                     <table>
                         <tr>
                             <td> a.</td>
-                            <td>Bahwa untuk menunjang pelaksanaan tugas dan fungsi Balai Besar POM di Banjarmasin sebagai unit
-                                Pelaksana Teknis di lingkungan Badan POM RI, dipandang perlu untuk menerbitkan Surat Tugas.
+                            <td>{{$data->menimbang}}
                             </td>
                         </tr>
                         <tr>

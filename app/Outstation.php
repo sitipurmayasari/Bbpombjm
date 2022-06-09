@@ -12,7 +12,7 @@ class Outstation extends Model
     protected $table = "outstation";
     protected $fillable = ['divisi_id','st_date','number','purpose','budget_id','ppk_id','pok_detail_id',
                             'subcode_id','accountcode_id','city_from','type','transport','activitycode_id','external','file',
-                            'nama_petugas','jab_petugas','nip_petugas','dasar',
+                            'nama_petugas','jab_petugas','nip_petugas','dasar','reset','menimbang',
                             'nama_petugas2','jab_petugas2','nip_petugas2','nama_petugas3','jab_petugas3','nip_petugas3'
                             
                         ];
