@@ -140,7 +140,7 @@
                      <table>
                          <tr>
                              <td> a.</td>
-                             <td>Bahwa untuk menunjang pelasanaan tugas dan fungsi Balai Besar POM di Banjarmasin sebagai unit
+                             <td>Bahwa untuk menunjang pelaksanaan tugas dan fungsi Balai Besar POM di Banjarmasin sebagai unit
                                  Pelaksana Teknis di lingkungan Badan POM RI, dipandang perlu untuk menerbitkan Surat Tugas.
                              </td>
                          </tr>
