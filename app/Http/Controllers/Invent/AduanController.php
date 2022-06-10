@@ -13,8 +13,6 @@ use App\User;
 use App\Pejabat;
 use App\Petugas;
 use App\Divisi;
-
-
 use App\AduanDetail;
 
 
@@ -23,10 +21,7 @@ class AduanController extends Controller
     public function index(Request $request)
     {   
         $detail = AduanDetail::all();
-        $data = Aduan::orderBy('aduan_status','asc')
-                    ->SelectRaw('aduan.*,users.name')
-                    ->leftJoin('users','users.id','=','aduan.pegawai_id')
-                    ->where('aduan.jenis','=','U')
+        $data = Aduan::orderBy('id','desc')
                     ->when($request->keyword, function ($query) use ($request) {
                         $query->where('no_aduan','LIKE','%'.$request->keyword.'%')
                                 ->orWhere('tanggal', 'LIKE','%'.$request->keyword.'%')
@@ -57,7 +52,7 @@ class AduanController extends Controller
 
     public function create()
     {
-        $div =auth()->user()->divisi_id;
+        $div =Divisi::where('id','!=','1')->get();
         $data = Inventaris::whereraw('KIND = "R" and jenis_barang not in (4,19)')->get();
         $user = User::where('id','!=','1')->where('aktif','=','Y')->where('divisi_id','=',$div)->get();
         $no_aduan = $this->getNoAduan();
@@ -73,26 +68,26 @@ class AduanController extends Controller
 
    
     public function store(Request $request)
-    {
+    {      
+        // dd($request->all()); 
         $this->validate($request,[
             'no_aduan' => 'required|unique:aduan',
-            'tanggal' => 'required|date',
+            'tanggal' => 'required',
             'pegawai_id'=> 'required'
         ]);
 
-        DB::beginTransaction(); // kegunaan untuk multiple insert (banyak aksi k database)
+        DB::beginTransaction();
             $aduan =Aduan::create($request->all());
             $aduan_id = $aduan->id;
-            for ($i = 0; $i < count($request->input('inventaris_id')); $i++){
+            for ($i = 0; $i < count($request->input('barang_id')); $i++){
                 $data = [
                     'aduan_id' => $aduan_id,
-                    'inventaris_id' => $request->inventaris_id[$i] ,
+                    'barang_id' => $request->barang_id[$i],
                     'keterangan' => $request->keterangan[$i]
                 ];
                 AduanDetail::create($data);
             }
         DB::commit(); 
-
         return redirect('/invent/aduan/print/'.$aduan_id);
 
     }
@@ -172,10 +167,10 @@ class AduanController extends Controller
             $data = Aduan::find($id);
             $data->update($request->all());
           //---------------outst_employee----------------------
-           for ($i = 0; $i < count($request->input('inventaris_id')); $i++){
+           for ($i = 0; $i < count($request->input('barang_id')); $i++){
                 $data = [
                     'aduan_id'      => $id,
-                    'inventaris_id' => $request->inventaris_id[$i],
+                    'barang_id' => $request->barang_id[$i],
                     'keterangan'    => $request->keterangan[$i]
                 ];
                 AduanDetail::updateOrCreate([

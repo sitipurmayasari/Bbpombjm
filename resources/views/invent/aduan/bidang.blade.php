@@ -46,7 +46,7 @@
             @foreach($data as $key=>$row)
             <tr>
                 <td>{{$data->firstItem() + $key}}</td>
-                <td><a href="/invent/aduan/detail/{{$row->id}}">{{$row->no_aduan}}</a></td>
+                <td>{{$row->no_aduan}}</td>
                 <td>{{$row->tanggal}}</td>
                 <td>{{$row->lapor->no_pegawai}}<br>{{$row->lapor->name}}</td>
                 <td>@if ($row->aduan_status==0)
