@@ -35,6 +35,7 @@
                         @foreach ($div as $isi)
                             <option value="{{$isi->id}}">{{$isi->nama}} </option>
                         @endforeach
+                        
                     </select>
                 </div>
                 <div class="col-md-3">
