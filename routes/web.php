@@ -61,7 +61,7 @@ Route::get('/qR/{id}/inventaris','Invent\InventarisController@detail')->name('in
   //--------------------------Finance------------------------------------------
   require __DIR__.'/finance.php';
   //--------------------------Arsiparis------------------------------------------
-  require __DIR__.'/Arsip.php';
+  require __DIR__.'/arsip.php';
   // //--------------------------calibration------------------------------------------
   // require __DIR__.'/calibration.php';
 
