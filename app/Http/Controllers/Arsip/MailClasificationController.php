@@ -1,6 +1,6 @@
 <?php
 
-namespace  App\Http\Controllers\Amdk;
+namespace  App\Http\Controllers\Arsip;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -22,13 +22,13 @@ class MailclasificationController extends Controller
                                         ->orWhere('mailsubgroup.code', 'LIKE','%'.$request->keyword.'%');
                             })
                             ->paginate('10');
-        return view('amdk/mailclasification.index',compact('data'));
+        return view('arsip/mailclasification.index',compact('data'));
     }
 
     public function create()
     {
         $subg = Mailsubgroup::all();
-        return view('amdk/mailclasification.create',compact('subg'));
+        return view('arsip/mailclasification.create',compact('subg'));
     }
 
     public function store(Request $request)
@@ -45,14 +45,14 @@ class MailclasificationController extends Controller
 
         
         Mailclasification::create($request->all());
-        return redirect('/amdk/mailclasification')->with('sukses','Data Tersimpan');
+        return redirect('/arsip/mailclasification')->with('sukses','Data Tersimpan');
     }
    
     public function edit($id)
     {
         $subg = Mailsubgroup::all();
         $data = Mailclasification::where('id',$id)->first();
-        return view('amdk/mailclasification.edit',compact('data','subg'));
+        return view('arsip/mailclasification.edit',compact('data','subg'));
     }
 
    
@@ -70,7 +70,7 @@ class MailclasificationController extends Controller
         
         $data = Mailclasification::find($id);
         $data->update($request->all());
-        return redirect('/amdk/mailclasification')->with('sukses','Data Diperbaharui');
+        return redirect('/arsip/mailclasification')->with('sukses','Data Diperbaharui');
     }
 
    
@@ -78,6 +78,6 @@ class MailclasificationController extends Controller
     {
         $petugas = Mailclasification::find($id);
         $petugas->delete();
-        return redirect('/amdk/mailclasification')->with('sukses','Data Terhapus');
+        return redirect('/arsip/mailclasification')->with('sukses','Data Terhapus');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Amdk;
+namespace App\Http\Controllers\Arsip;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -27,13 +27,13 @@ class ArchivesController extends Controller
                                     ->orWhere('mailclasification.names', 'LIKE','%'.$request->keyword.'%');
                             })
                         ->paginate('10');
-        return view('amdk/archives.index',compact('data'));
+        return view('arsip/archives.index',compact('data'));
     }
 
     public function create()
     {
         $masa = Mailclasification::all();
-        return view('amdk/archives.create',compact('masa'));
+        return view('arsip/archives.create',compact('masa'));
     }
 
     public function store(Request $request)
@@ -55,14 +55,14 @@ class ArchivesController extends Controller
           }
 
 
-        return redirect('/amdk/archives')->with('sukses','Data Tersimpan');
+        return redirect('/arsip/archives')->with('sukses','Data Tersimpan');
     }
 
     public function edit($id)
     {
         $masa = Mailclasification::all();
         $data = Archives::where('id',$id)->first();
-        return view('amdk/archives.edit',compact('data','masa'));
+        return view('arsip/archives.edit',compact('data','masa'));
     }
 
 
@@ -80,7 +80,7 @@ class ArchivesController extends Controller
             $data->save();
           }
 
-        return redirect('/amdk/archives')->with('sukses','Data Diperbaharui');
+        return redirect('/arsip/archives')->with('sukses','Data Diperbaharui');
 
     }
 
@@ -89,7 +89,7 @@ class ArchivesController extends Controller
     {
         $data = Archives::find($id);
         $data->forceDelete();
-        return redirect('/amdk/archives')->with('sukses','Data Terhapus');
+        return redirect('/arsip/archives')->with('sukses','Data Terhapus');
     }
 
 

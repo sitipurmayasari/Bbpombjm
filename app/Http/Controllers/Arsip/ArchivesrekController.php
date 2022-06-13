@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Amdk;
+namespace App\Http\Controllers\Arsip;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -9,19 +9,17 @@ use Illuminate\Support\Facades\DB;
 use App\Archives;
 use App\Mailclasification;
 use App\Divisi;
+use App\Mailsubgroup;
+use App\Mailgroup;
 
-class ArchivesbidController extends Controller
+class ArchivesrekController extends Controller
 {
 
     public function index(Request $request)
     {
-        $div_id =auth()->user()->divisi_id;
-        $data = Archives::selectraw('archives.*, mailclasification.alias,mailclasification.names,
-                CURDATE() AS hari_ini,
-                DATE_ADD(DATE(archives.date),INTERVAL mailclasification.actived YEAR) batas_aktif')
-                ->orderBy('archives.id','desc')
+        $klas = Mailgroup::all();
+        $data = Archives::orderBy('archives.id','desc')
                 ->leftjoin('mailclasification','mailclasification.id','archives.mailclasification_id')
-                ->where('divisi_id','=',$div_id)
                 ->whereRaw('CURDATE() BETWEEN DATE(archives.date) 
                 and DATE_ADD(DATE(archives.date),INTERVAL mailclasification.actived YEAR)')
                 ->when($request->keyword, function ($query) use ($request) {
@@ -30,12 +28,8 @@ class ArchivesbidController extends Controller
                         ->orWhere('mailclasification.names', 'LIKE','%'.$request->keyword.'%');
                 })
                 ->paginate('10');
-        $datainac = Archives::selectraw('archives.*, mailclasification.alias,mailclasification.names,
-                    CURDATE() AS hari_ini,
-                    DATE_ADD(DATE(archives.date),INTERVAL mailclasification.actived YEAR) batas_aktif')
-                    ->orderBy('archives.id','desc')
+                $datainac = Archives::orderBy('archives.id','desc')
                     ->leftjoin('mailclasification','mailclasification.id','archives.mailclasification_id')
-                    ->where('divisi_id','=',$div_id)
                     ->whereRaw('curdate() > DATE_ADD(archives.date,INTERVAL mailclasification.actived YEAR)')
                     ->when($request->keyword, function ($query) use ($request) {
                     $query->where('uraian','LIKE','%'.$request->keyword.'%')
@@ -43,18 +37,44 @@ class ArchivesbidController extends Controller
                     ->orWhere('mailclasification.names', 'LIKE','%'.$request->keyword.'%');
                     })
                     ->paginate('10');
-        $datadel = Archives::onlyTrashed()->where('divisi_id','=',$div_id)->paginate('10');
-        $div = Divisi::where('id',$div_id)->first();
-        return view('amdk/archivesbid.index',compact('data','div','datainac','datadel'));
+        $datadel = Archives::onlyTrashed()->paginate('10');
+        return view('arsip/archivesrek.index',compact('data','datainac','datadel','klas'));
+    }
+
+    public function create()
+    {
+        $div = Divisi::where('id','!=','1')->get();
+        $masa = Mailclasification::all();
+        return view('arsip/archivesrek.create',compact('masa','div'));
+    }
+
+    public function store(Request $request)
+    {
+        $user_id = $request->users_id;
+
+        $this->validate($request,[
+            'uraian' => 'required'
+        ]);
+
+        $dokument = Archives::create($request->all());
+        if($request->hasFile('file')){ // Kalau file ada
+            $request->file('file')
+                        ->move('images/arsiparis/'.$dokument->id,$request
+                        ->file('file')
+                        ->getClientOriginalName()); 
+            $dokument->file = $request->file('file')->getClientOriginalName(); 
+            $dokument->save();
+          }
+
+
+        return redirect('/arsip/archivesrek')->with('sukses','Data Tersimpan');
     }
 
     public function edit($id)
     {
-        $div_id =auth()->user()->divisi_id;
-        $div = Divisi::where('id',$div_id)->first();
         $masa = Mailclasification::all();
         $data = Archives::where('id',$id)->first();
-        return view('amdk/archivesbid.edit',compact('data','masa','div'));
+        return view('arsip/archivesrek.edit',compact('data','masa'));
     }
 
 
@@ -72,15 +92,23 @@ class ArchivesbidController extends Controller
             $data->save();
           }
 
-        return redirect('/amdk/archivesbid')->with('sukses','Data Diperbaharui');
+        return redirect('/arsip/archivesrek')->with('sukses','Data Diperbaharui');
 
     }
     
     public function delete($id)
     {
         $data = Archives::find($id);
+        $data->delete();
+        return redirect('/arsip/archivesrek')->with('sukses','Data Terhapus');
+    }
+
+      
+    public function deleteper($id)
+    {
+        $data = Archives::find($id);
         $data->forceDelete();
-        return redirect('/amdk/archivesbid')->with('sukses','Data Terhapus');
+        return redirect('/arsip/archivesrek')->with('sukses','Data Terhapus');
     }
 
 }

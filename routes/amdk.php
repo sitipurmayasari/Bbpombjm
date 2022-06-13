@@ -234,40 +234,6 @@
   Route::post('/amdk/support/update/{id}','Amdk\SupportController@update')->name('support.update');
   Route::get('/amdk/support/print/{id}','Amdk\SupportController@print')->name('support.print');
 
-  //Route untuk Subkelompok Surat
-  Route::get('/amdk/mailsubgroup/create','Amdk\MailSubGroupController@create')->name('mailsubgroup.create');
-  Route::post('/amdk/mailsubgroup/store','Amdk\MailSubGroupController@store')->name('mailsubgroup.store');
-  Route::get('/amdk/mailsubgroup/edit/{id}','Amdk\MailSubGroupController@edit')->name('mailsubgroup.edit');
-  Route::post('/amdk/mailsubgroup/update/{id}','Amdk\MailSubGroupController@update')->name('mailsubgroup.update');
-  
-  //Route untuk Klasifikasi Surat
-  Route::get('/amdk/mailclasification/create','Amdk\MailClasificationController@create')->name('mailclasification.create');
-  Route::post('/amdk/mailclasification/store','Amdk\MailClasificationController@store')->name('mailclasification.store');
-  Route::get('/amdk/mailclasification/edit/{id}','Amdk\MailClasificationController@edit')->name('mailclasification.edit');
-  Route::post('/amdk/mailclasification/update/{id}','Amdk\MailClasificationController@update')->name('mailclasification.update');
-  Route::post('/amdk/mailclasification/delete/{id}','Amdk\MailClasificationController@delete')->name('mailclasification.delete');
-
-  //Route untuk Arsip
-  Route::get('/amdk/archives/create','Amdk\ArchivesController@create')->name('archives.create');
-  Route::post('/amdk/archives/store','Amdk\ArchivesController@store')->name('archives.store');
-  Route::get('/amdk/archives/delete/{id}','Amdk\ArchivesController@delete')->name('archives.delete');
-  Route::get('/amdk/archives/edit/{id}','Amdk\ArchivesController@edit')->name('archives.edit');
-  Route::post('/amdk/archives/update/{id}','Amdk\ArchivesController@update')->name('archives.update');
-  
-  //Route untuk Arsip bidang
-  Route::post('/amdk/archivesbid/store','Amdk\ArchivesbidController@store')->name('archivesbid.store');
-  Route::get('/amdk/archivesbid/delete/{id}','Amdk\ArchivesbidController@delete')->name('archivesbid.delete');
-  Route::get('/amdk/archivesbid/edit/{id}','Amdk\ArchivesbidController@edit')->name('archivesbid.edit');
-  Route::post('/amdk/archivesbid/update/{id}','Amdk\ArchivesbidController@update')->name('archivesbid.update');
-  
-  //Route untuk rekap Arsip
-  Route::get('/amdk/archivesrek/create','Amdk\ArchivesrekController@create')->name('archivesrek.create');
-  Route::post('/amdk/archivesrek/store','Amdk\ArchivesrekController@store')->name('archivesrek.store');
-  Route::get('/amdk/archivesrek/delete/{id}','Amdk\ArchivesrekController@delete')->name('archivesrek.delete');
-  Route::get('/amdk/archivesrek/edit/{id}','Amdk\ArchivesrekController@edit')->name('archivesrek.edit');
-  Route::post('/amdk/archivesrek/update/{id}','Amdk\ArchivesrekController@update')->name('archivesrek.update');
-  Route::get('/amdk/archivesrek/deleteper/{id}','Amdk\ArchivesrekController@deleteper')->name('archivesrek.deleteper');
-
    //Route untuk Disposisi
   Route::get('/amdk/disposisi/create','Amdk\DisposisiController@create')->name('disposisi.create');
   Route::post('/amdk/disposisi/store','Amdk\DisposisiController@store')->name('disposisi.store');

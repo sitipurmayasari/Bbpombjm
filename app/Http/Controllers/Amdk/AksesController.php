@@ -59,6 +59,16 @@ class AksesController extends Controller
                     UserPermission::create($data);
                 }
             }
+
+            if ($request->input('akses_arsip')) {
+                for ($i = 0; $i < count($request->input('akses_arsip')); $i++){
+                    $data = [
+                        'user_id' => $request->user_id,
+                        'menu_id' => $request->akses_arsip[$i] ,
+                    ];
+                    UserPermission::create($data);
+                }
+            }
            
         DB::commit(); 
         return redirect()->route('akses')->with('sukses','Data Tersimpan');
@@ -87,6 +97,12 @@ class AksesController extends Controller
             ->where('menu.modul','finance')
             ->get();
 
+        $arsip = Submenu::orderBy('menu.id','asc')
+            ->select('submenu.*','menu.modul','menu.nama as group_nama')
+            ->leftJoin('menu','submenu.menu_id','=','menu.id')
+            ->where('menu.modul','arsip')
+            ->get();
+
         $outputAmdk = array();
         foreach ($amdk as $am) {
             $outputAmdk[] = array(
@@ -112,11 +128,22 @@ class AksesController extends Controller
             );
         }
 
+        $outputArsip = array();
+        foreach ($arsip as $in) {
+            $outputArsip[] = array(
+                'id' => $in->id,
+                'nama' => $in->nama,
+                'checked' => $this->checkPermissonMenu($user_id,$in->id)
+            );
+        }
+
+
         return response()->json([ 
             'success' => true,
             'amdk'=>$outputAmdk,
             'inventaris' => $outputInventaris,
-            'finance' => $outputFinance
+            'finance' => $outputFinance,
+            'arsip' => $outputArsip
         ],200);
     }
 

@@ -38,8 +38,10 @@ Route::get('/qR/{id}/inventaris','Invent\InventarisController@detail')->name('in
   Route::get('/finance/dashboard','Finance\DashboardController@index')->name('dashboard');
   //--------------------------AMDK------------------------------------------
   Route::get('/amdk/dashboard','Amdk\DashboardController@index')->name('dashboard');
-  //--------------------------calibration------------------------------------------
-  Route::get('/calibration/dashboard','Calibration\DashboardController@index')->name('dashboard');
+    //--------------------------Arsiparis------------------------------------------
+  Route::get('/arsip/dashboard','arsip\DashboardController@index')->name('dashboard');
+  // //--------------------------calibration------------------------------------------
+  // Route::get('/calibration/dashboard','Calibration\DashboardController@index')->name('dashboard');
 
 
   //Route untuk Profile
@@ -58,6 +60,8 @@ Route::get('/qR/{id}/inventaris','Invent\InventarisController@detail')->name('in
   require __DIR__.'/amdk.php';
   //--------------------------Finance------------------------------------------
   require __DIR__.'/finance.php';
+  //--------------------------Arsiparis------------------------------------------
+  require __DIR__.'/Arsip.php';
   // //--------------------------calibration------------------------------------------
   // require __DIR__.'/calibration.php';
 
@@ -119,8 +123,6 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/invent/sbbfiles','Invent\SbbController@index')->name('sbbfiles');
     //Route untuk rekapsbb
     Route::get('/invent/rekapsbb','Invent\RekapSbbController@index')->name('rekapsbb');
-    
-
 
     //--------------------------AMDK------------------------------------------
     //Route untuk pegawai
@@ -185,17 +187,7 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/amdk/development','Amdk\DevelopmentController@index')->name('development');
     //Route untuk Kegiatan penunjang
     Route::get('/amdk/support','Amdk\SupportController@index')->name('support');
-     //Route untuk Subkelompok Surat
-     Route::get('/amdk/mailsubgroup','Amdk\MailSubGroupController@index')->name('mailsubgroup');
-     //Route untuk Klasifikasi Surat
-     Route::get('/amdk/mailclasification','Amdk\MailClasificationController@index')->name('mailclasification');
-     //Route untuk Arsip
-     Route::get('/amdk/archives','Amdk\ArchivesController@index')->name('archives');
-     //Route untuk Arsip bidang
-     Route::get('/amdk/archivesbid','Amdk\ArchivesbidController@index')->name('archivesbid');
-     //Route untuk rekap Arsip
-     Route::get('/amdk/archivesrek','Amdk\ArchivesrekController@index')->name('archivesrek');
-    //Route untuk Disposisi
+    //disposisi
     Route::get('/amdk/disposisi','Amdk\DisposisiController@index')->name('disposisi');
     Route::get('/amdk/rekdisposisi','Amdk\DisposisiController@index')->name('disposisi.rekdisposisi');
     
@@ -270,6 +262,21 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/finance/stbook','Finance\STBookController@index')->name('stbook');
     //Route untuk laporan nominatif Surat
     Route::get('/finance/nominatif','Finance\NominatifController@index')->name('nominatif');
+
+
+
+    //--------------------------Arsip------------------------------------------
+     //Route untuk Subkelompok Surat
+     Route::get('/arsip/mailsubgroup','Arsip\MailSubGroupController@index')->name('mailsubgroup');
+     //Route untuk Klasifikasi Surat
+     Route::get('/arsip/mailclasification','Arsip\MailClasificationController@index')->name('mailclasification');
+     //Route untuk Arsip
+     Route::get('/arsip/archives','Arsip\ArchivesController@index')->name('archives');
+     //Route untuk Arsip bidang
+     Route::get('/arsip/archivesbid','Arsip\ArchivesbidController@index')->name('archivesbid');
+     //Route untuk rekap Arsip
+     Route::get('/arsip/archivesrek','Arsip\ArchivesrekController@index')->name('archivesrek');
+    //Route untuk Disposisi
 
 });
 
