@@ -39,7 +39,7 @@ Route::get('/qR/{id}/inventaris','Invent\InventarisController@detail')->name('in
   //--------------------------AMDK------------------------------------------
   Route::get('/amdk/dashboard','Amdk\DashboardController@index')->name('dashboard');
     //--------------------------Arsiparis------------------------------------------
-  Route::get('/arsip/dashboard','arsip\DashboardController@index')->name('dashboard');
+  Route::get('/arsip/dashboard','Arsip\DashboardController@index')->name('dashboard');
   // //--------------------------calibration------------------------------------------
   // Route::get('/calibration/dashboard','Calibration\DashboardController@index')->name('dashboard');
 
