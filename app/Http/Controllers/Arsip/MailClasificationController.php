@@ -16,10 +16,10 @@ class MailclasificationController extends Controller
                             ->leftJoin('mailsubgroup','mailsubgroup.id','=','mailclasification.mailsubgroup_id')
                             ->leftJoin('mailgroup','mailgroup.id','=','mailsubgroup.mailgroup_id')
                             ->when($request->keyword, function ($query) use ($request) {
-                                $query->where('mailclasification.code','LIKE','%'.$request->keyword.'%')
-                                ->orWhere('mailgroup.code', 'LIKE','%'.$request->keyword.'%')
-                                        ->orWhere('mailclasification.names', 'LIKE','%'.$request->keyword.'%')
-                                        ->orWhere('mailsubgroup.code', 'LIKE','%'.$request->keyword.'%');
+                                $query->where('mailclasification.alias','LIKE','%'.$request->keyword.'%')
+                                    ->orWhere('mailgroup.code', 'LIKE','%'.$request->keyword.'%')
+                                    ->orWhere('mailclasification.names', 'LIKE','%'.$request->keyword.'%')
+                                    ->orWhere('mailsubgroup.code', 'LIKE','%'.$request->keyword.'%');
                             })
                             ->paginate('10');
         return view('arsip/mailclasification.index',compact('data'));

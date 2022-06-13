@@ -23,7 +23,7 @@ class ArchivesrekController extends Controller
                 ->whereRaw('CURDATE() BETWEEN DATE(archives.date) 
                 and DATE_ADD(DATE(archives.date),INTERVAL mailclasification.actived YEAR)')
                 ->when($request->keyword, function ($query) use ($request) {
-                $query->where('uraian','LIKE','%'.$request->keyword.'%')
+                    $query->where('uraian','LIKE','%'.$request->keyword.'%')
                         ->orWhere('mailclasification.alias', 'LIKE','%'.$request->keyword.'%')
                         ->orWhere('mailclasification.names', 'LIKE','%'.$request->keyword.'%');
                 })
@@ -32,9 +32,9 @@ class ArchivesrekController extends Controller
                     ->leftjoin('mailclasification','mailclasification.id','archives.mailclasification_id')
                     ->whereRaw('curdate() > DATE_ADD(archives.date,INTERVAL mailclasification.actived YEAR)')
                     ->when($request->keyword, function ($query) use ($request) {
-                    $query->where('uraian','LIKE','%'.$request->keyword.'%')
-                    ->orWhere('mailclasification.alias', 'LIKE','%'.$request->keyword.'%')
-                    ->orWhere('mailclasification.names', 'LIKE','%'.$request->keyword.'%');
+                        $query->where('uraian','LIKE','%'.$request->keyword.'%')
+                            ->orWhere('mailclasification.alias', 'LIKE','%'.$request->keyword.'%')
+                            ->orWhere('mailclasification.names', 'LIKE','%'.$request->keyword.'%');
                     })
                     ->paginate('10');
         $datadel = Archives::onlyTrashed()->paginate('10');
