@@ -1,6 +1,4 @@
 <?php
-  //Profile
-
 //Route untuk Subkelompok Surat
 Route::get('/arsip/mailsubgroup/create','Arsip\MailSubGroupController@create')->name('mailsubgroup.create');
 Route::post('/arsip/mailsubgroup/store','Arsip\MailSubGroupController@store')->name('mailsubgroup.store');
