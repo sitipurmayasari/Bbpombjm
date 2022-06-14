@@ -120,7 +120,8 @@
                         </label>
                         <div class="col-sm-9">
                             <input type="file" name="file" class="btn btn-default btn-sm" id="" value="Upload File">      
-                            <label><a href="{{$data->getFIleSert()}}" target="_blank" >{{$data->file}}</a></label>
+                            <label><a href="{{$data->getFIleSert()}}" target="_blank" >{{$data->file}}</a></label> <br>
+                            <label><i>max : 2 MB</i></label>
                         </div>
                     </div>
                     </fieldset>        

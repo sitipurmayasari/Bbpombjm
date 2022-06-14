@@ -175,3 +175,10 @@
    Route::get('/invent/rekapsbb/delete/{id}','Invent\RekapSbbController@delete')->name('rekapsbb.delete');
    Route::get('/invent/rekapsbb/edit/{id}','Invent\RekapSbbController@edit')->name('rekapsbb.edit');
    Route::post('/invent/rekapsbb/update/{id}','Invent\RekapSbbController@update')->name('rekapsbb.update');
+
+   //Route untuk BMN Rusak
+  Route::post('/invent/brokenBMN/store','Invent\BrokenBMNController@store')->name('brokenBMN.store');
+  Route::get('/invent/brokenBMN/print/{id}','Invent\BrokenBMNController@print')->name('brokenBMN.print');
+  Route::get('/invent/brokenBMN/getBarang','Invent\BrokenBMNController@getBarang')->name('brokenBMN.getbarang');
+  Route::get('/invent/brokenBMN/edit/{id}','Invent\BrokenBMNController@edit')->name('brokenBMN.edit');
+  Route::post('/invent/brokenBMN/update/{id}','Invent\BrokenBMNController@update')->name('brokenBMN.update');

@@ -84,7 +84,8 @@ class PelatihanController extends Controller
             'jenis_pelatihan_id' => 'required',
             'dari' => 'required',
             'sampai' => 'required',
-            'lama' => 'required'
+            'lama' => 'required',
+            'file'  => 'max:2048'
         ]);
 
         $dokument = Pelatihan::create($request->all());

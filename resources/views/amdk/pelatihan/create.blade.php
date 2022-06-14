@@ -111,7 +111,7 @@
                         </label>
                         <div class="col-sm-9">
                             <input type="file" name="file" class="btn btn-default btn-sm" id="" value="Upload File" required>      
-                            <label><i>ex:Lorem_ipsum.pdf</i></label>
+                            <label><i>max : 2 MB</i></label>
                         </div>
                     </div>
                     </fieldset>        
