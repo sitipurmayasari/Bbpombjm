@@ -55,7 +55,7 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1"> Kualifikasi Surat
+                        for="form-field-1"> Kualifikasi Keamanan
                         </label>
                         <div class="col-sm-10">
                             <select name="kualifikasi" class="col-xs-10 col-sm-10 required select2" required>
