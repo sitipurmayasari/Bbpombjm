@@ -442,7 +442,7 @@ h2, a {
             <a class="social-icon" data-tooltip="Anang & Galuh" href="/finance/dashboard">
               <img src="{{asset('images/naga.png')}}" style="height:100%; width:100%">
             </a>
-            <a class="social-icon" data-tooltip="Arsiparis" href="/arsip/dashboard">
+            <a class="social-icon" data-tooltip="Kearsipan" href="/arsip/dashboard">
               <img src="{{asset('images/arsiparis.png')}}" style="height:100%; width:100%">
             </a>
         </div>
