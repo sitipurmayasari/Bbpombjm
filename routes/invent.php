@@ -177,6 +177,7 @@
    Route::post('/invent/rekapsbb/update/{id}','Invent\RekapSbbController@update')->name('rekapsbb.update');
 
    //Route untuk BMN Rusak
+   Route::get('/invent/brokenBMN/create','Invent\BrokenBMNController@create')->name('brokenBMN.create');
   Route::post('/invent/brokenBMN/store','Invent\BrokenBMNController@store')->name('brokenBMN.store');
   Route::get('/invent/brokenBMN/print/{id}','Invent\BrokenBMNController@print')->name('brokenBMN.print');
   Route::get('/invent/brokenBMN/getBarang','Invent\BrokenBMNController@getBarang')->name('brokenBMN.getbarang');

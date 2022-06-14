@@ -35,6 +35,7 @@ class OutReportController extends Controller
         // dd($request->all());
         if ($request->jenis_Laporan=="ST") {
             $data = Outstation::orderBy('id','desc')
+                            ->whereraw('outstation.deleted_at IS null')
                             ->when($request->divisi, function ($query) use ($request) {
                                $query->where('divisi_id',$request->divisi);
                             })
@@ -54,7 +55,7 @@ class OutReportController extends Controller
             // dd($request->all());
             $data = Outst_employee::orderBy('outst_employee.id','asc')
                                 ->leftJoin('outstation','outstation.id','=','outst_employee.outstation_id')
-                                
+                                ->whereraw('outstation.deleted_at IS null')
                                 ->when($request->divisi, function ($query) use ($request) {
                                 $query->where('outstation.divisi_id',$request->divisi);
                                 })
@@ -74,6 +75,7 @@ class OutReportController extends Controller
             $data = Outst_employee::orderBy('outst_employee.id','asc')
                                 ->leftJoin('outstation','outstation.id','=','outst_employee.outstation_id')
                                 ->where('outst_employee.users_id',$request->users)
+                                ->whereraw('outstation.deleted_at IS null')
                                 ->when($request->divisi, function ($query) use ($request) {
                                 $query->where('outstation.divisi_id',$request->divisi);
                                 })
