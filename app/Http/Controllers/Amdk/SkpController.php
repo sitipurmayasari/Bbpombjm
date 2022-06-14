@@ -47,7 +47,7 @@ class SkpController extends Controller
       DB::beginTransaction(); 
           $skp = Skp::create($request->all());
           $skp_id = $skp->id;
-          for ($i = 0; $i < count($request->input('activity')); $i++){
+          for ($i = 0; $i < count($request->input('n_ak')); $i++){
               $data = [
                   'skp_id' => $skp_id,
                   'activity' => $request->activity[$i],
@@ -95,7 +95,7 @@ class SkpController extends Controller
 
       DB::beginTransaction(); 
         //---------------detail----------------------
-        for ($i = 0; $i < count($request->input('quan')); $i++){
+        for ($i = 0; $i < count($request->input('n_ak')); $i++){
             $data = [
                 'skp_id'        => $id,
                 'activity'      => $request->activity[$i],
