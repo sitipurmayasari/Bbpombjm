@@ -180,6 +180,7 @@
    Route::get('/invent/brokenBMN/create','Invent\BrokenBMNController@create')->name('brokenBMN.create');
   Route::post('/invent/brokenBMN/store','Invent\BrokenBMNController@store')->name('brokenBMN.store');
   Route::get('/invent/brokenBMN/print/{id}','Invent\BrokenBMNController@print')->name('brokenBMN.print');
-  Route::get('/invent/brokenBMN/getBarang','Invent\BrokenBMNController@getBarang')->name('brokenBMN.getbarang');
   Route::get('/invent/brokenBMN/edit/{id}','Invent\BrokenBMNController@edit')->name('brokenBMN.edit');
   Route::post('/invent/brokenBMN/update/{id}','Invent\BrokenBMNController@update')->name('brokenBMN.update');
+  Route::get('/invent/brokenBMN/delete/{id}','Invent\BrokenBMNController@delete')->name('brokenBMN.delete');
+  Route::get('/invent/brokenBMN/deletelist/{id}','Invent\BrokenBMNController@deletelist')->name('brokenBMN.deletelist');
