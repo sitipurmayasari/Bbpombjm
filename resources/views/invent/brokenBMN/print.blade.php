@@ -11,11 +11,13 @@
     <style>
         @page {
             size: A4;
+            font-family: Arial;
+            margin: 100px 0px 100px 0px;
         }
 
-        html{
+        html,table{
             font-family: Arial;
-            font-size: 12px;
+            font-size: 11;
         }
 
         table, td, th {
@@ -25,6 +27,14 @@
             border:none;
         }
 
+        #isi{
+            font-family: Arial;
+            font-size: 11;
+            margin-left: 10%;
+            margin-right: 10%;
+            /* line-height: 2; */
+        }
+
         #kop{
             text-align: center;
             font-size: 16px;
@@ -32,6 +42,12 @@
 
         .atas{
             border: solid 1px;
+        }
+
+        #isiatas{
+            border: solid 1px;
+            padding-left: 5px;
+            width: 40%;
         }
 
         th{
@@ -47,10 +63,10 @@
 </head>
 <body>
     <div id="kop">
-        <b>Form Berita Acara Penyerahan BMN Rusak Berat</b>
+        <b>Berita Acara Penyerahan BMN Rusak Berat</b>
     </div>
     <br><br>
-    <div>
+    <div id="isi">
         @php
         $a = strtotime($data->tanggal);
         $b = date('d', $a);
@@ -172,7 +188,7 @@
         <table style="width: 100%" class="atas">
             <thead class="atas">
                 <tr class="atas">
-                    <th class="atas"> NO</th>
+                    <th class="atas" style="width: 5%;"> NO</th>
                     <th class="atas"> NAMA BARANG</th>
                     <th class="atas"> NUP</th>
                     <th class="atas"> KODE BARANG</th>
@@ -185,8 +201,8 @@
                 @endphp
                 @foreach ($detail as $item)
                     <tr class="atas">
-                        <td class="atas" style="text-align: center; height: 50px;"> {{$no++}}</td>
-                        <td class="atas">&nbsp; {{$item->barang->nama_barang}} {{$item->barang->merk}}</td>
+                        <td class="atas" style="text-align: center; height: 40px;"> {{$no++}}</td>
+                        <td id="isiatas"> {{$item->barang->nama_barang}} {{$item->barang->merk}}</td>
                         <td class="atas" style="text-align: center;"> {{$item->barang->no_seri}}</td>
                         <td class="atas">&nbsp; {{$item->barang->kode_barang}}</td>
                         <td class="atas">&nbsp; {{$item->barang->location->nama}}</td>
@@ -198,7 +214,7 @@
         <br>
         Demikian Berita Acara Serah Terima ini dibuat untuk dapat dipergunakan sebagaimana mestinya.
     </div>
-    <br><br><br>
+    <br><br>
     <div>
         <table style="width: 100%" class="ttd">
             <tr class="ttd">
@@ -220,7 +236,7 @@
                 </td>
             </tr>
         </table>
-        <br><br>
+        <br>
         <table style="width: 100%" class="ttd">
             <tr class="ttd">
                 <td class="ttd">Mengetahui,</td>
@@ -236,6 +252,5 @@
             </tr>
         </table>
     </div>
-    
 </body>
 </html>
