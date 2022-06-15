@@ -10,13 +10,19 @@
 
     <style>
         @page {
-            font-family: "Arial";
+            size: A4;
+        }
+
+        html{
+            font-family: Arial;
             font-size: 12px;
         }
 
         table, td, th {
             border: 1px solid black;
-            text-align: center;
+            text-align: left;
+            border-collapse: collapse;
+            border:none;
         }
 
         #kop{
@@ -24,36 +30,15 @@
             font-size: 16px;
         }
 
-        /* table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: center;
-            font-size: 12px;
-        } */
-
-        /* .lara{ 
-            border: 1px solid black;
-            padding: 20px;
-            text-align: center;
-            height: 75%;
-
-            }
-        .kiri1{
-            border:none; font-size: 10px; padding-left: 5px; text-align:left;width: 15%;
-        }
-        .kiri2{
-            border: none; font-size: 10px; text-align:left;width: 20%;
+        .atas{
+            border: solid 1px;
         }
 
-        .rapi{
-            border:none;
-            border-collapse: collapse;
-            text-align: left;
-        } */
+        th{
+            text-align: center
+        }
 
         .ttd{
-            border:none;
-            border-collapse: collapse;
             text-align: center;
         }
 
@@ -64,12 +49,13 @@
     <div id="kop">
         <b>Form Berita Acara Penyerahan BMN Rusak Berat</b>
     </div>
+    <br><br>
     <div>
         @php
         $a = strtotime($data->tanggal);
         $b = date('d', $a);
         $c = date('D', $a);
-        $d = date('M', $a);
+        $d = date('m', $a);
         $e = date('Y', $a);
 
         if ($c=='sun') {
@@ -87,55 +73,168 @@
         }else{
             $days='Sabtu';
         };
+
+        if ($d=='01') {
+            $mon='Januari';
+        }else if ($d=='02') {
+            $mon='Februari';
+        }else if ($d=='03') {
+            $mon='Maret';
+        }else if ($d=='04') {
+            $mon='April';
+        }else if ($d=='05') {
+            $mon='Mei';
+        }else if ($d=='06') {
+            $mon='Juni';
+        }else if ($d=='07') {
+            $mon='Juli';
+        }else if ($d=='08') {
+            $mon='Agustus';
+        }else if ($d=='09') {
+            $mon='September';
+        }else if ($d=='10') {
+            $mon='Oktober';
+        }else if ($d=='11') {
+            $mon='November';
+        }else{
+            $mon='Desember';
+        };
+
     @endphp
 
-        Pada hari {{$days}} tanggal {{$b}} bulan {{$d}} tahun {{$e}},
-        telah dilakukan serah terima BMN rusak berat antara
+        Pada hari {{$days}} tanggal {{$b}} bulan {{$mon}} tahun {{$e}},
+        telah dilakukan serah terima BMN rusak berat antara :
         <table style="width: 100%">
             <tr>
-<td style="text-align: center; width:5%"> 1. </td>
-<td> Nama</td>
-<td>:</td>
-<td></td>
+                <td style="text-align: center; width:5%"> 1. </td>
+                <td style="width: 10%"> Nama</td>
+                <td style="width: 1%">:</td>
+                <td> {{$data->pegawai->name}}</td>
             </tr>
             <tr>
-<td> NIP</td>
-<td></td>
-<td>:</td>
-<td></td>
+                <td></td>
+                <td> NIP</td>
+                <td>:</td>
+                <td> 
+                    @if ($data->pegawai->golongan_id != null)
+                        {{$data->pegawai->no_pegawai}}
+                    @else
+                        {{ '-' }}
+                    @endif
+                </td>
             </tr>
             <tr>
-<td> Jabatan</td>
-<td></td>
-<td>:</td>
-<td></td>
+                <td></td>
+                <td> Jabatan</td>
+                <td>:</td>
+                <td> {{$data->pegawai->jabatan->jabatan}}
+                    {{$data->pegawai->divisi->nama}}
+                    @if ($data->pegawai->subdivisi_id != null)
+                        {{$data->pegawai->subdivisi->nama}}
+                    @endif
+                </td>
             </tr>
             <tr>
-<td colspan="3"> Yang selanjutnya disebut sebagai PIHAK PERTAMA</td>
+                <td></td>
+                <td colspan="3"> Yang selanjutnya disebut sebagai PIHAK PERTAMA</td>
             </tr>
             <tr>
-<td style="text-align: center"> 2. </td>
-<td> Nama</td>
-<td>:</td>
-<td></td>
+                <td style="text-align: center"> 2. </td>
+                <td> Nama</td>
+                <td>:</td>
+                <td> 
+                    {{$petugas->user->name}}
+                </td>
             </tr>
             <tr>
-<td> NIP</td>
-<td></td>
-<td>:</td>
-<td></td>
+                <td></td>
+                <td> NIP</td>
+                <td>:</td>
+                <td> 
+                    {{$petugas->user->no_pegawai}}
+                </td>
             </tr>
             <tr>
-<td> Jabatan</td>
-<td></td>
-<td>:</td>
-<td></td>
-            </tr>
+                <td></td>
+                <td> Jabatan</td>
+                <td>:</td>
+                <td> 
+                    {{$petugas->jenis}}
+                </td>
             <tr>
-<td colspan="3"> Yang selanjutnya disebut sebagai PIHAK KEDUA</td>
+                <td></td>
+                <td colspan="3"> Yang selanjutnya disebut sebagai PIHAK KEDUA</td>
             </tr>
         </table>
-
+        <br>
+        Dengan ini menyatakan bahwa PIHAK PERTAMA telah menyerahkan barang tersebut kepada PIHAK KEDUA, yaitu :
+        <br><br>
+        <table style="width: 100%" class="atas">
+            <thead class="atas">
+                <tr class="atas">
+                    <th class="atas"> NO</th>
+                    <th class="atas"> NAMA BARANG</th>
+                    <th class="atas"> NUP</th>
+                    <th class="atas"> KODE BARANG</th>
+                    <th class="atas"> LOKASI</th>
+                </tr>
+            </thead>
+            <tbody class="atas">
+                @php
+                    $no = 1;
+                @endphp
+                @foreach ($detail as $item)
+                    <tr class="atas">
+                        <td class="atas" style="text-align: center; height: 50px;"> {{$no++}}</td>
+                        <td class="atas">&nbsp; {{$item->barang->nama_barang}} {{$item->barang->merk}}</td>
+                        <td class="atas" style="text-align: center;"> {{$item->barang->no_seri}}</td>
+                        <td class="atas">&nbsp; {{$item->barang->kode_barang}}</td>
+                        <td class="atas">&nbsp; {{$item->barang->location->nama}}</td>
+                    </tr>
+                @endforeach
+                
+            </tbody>
+        </table>
+        <br>
+        Demikian Berita Acara Serah Terima ini dibuat untuk dapat dipergunakan sebagaimana mestinya.
+    </div>
+    <br><br><br>
+    <div>
+        <table style="width: 100%" class="ttd">
+            <tr class="ttd">
+                <td class="ttd">PIHAK PERTAMA</td>
+                <td class="ttd">PIHAK KEDUA</td>
+            </tr>
+            <tr class="ttd">
+                <td class="ttd">Yang Menyerahkan,</td>
+                <td class="ttd">Yang Menerima,</td>
+            </tr>
+            <tr class="ttd">
+                <td style="height: 50px" class="ttd"></td>
+                <td class="ttd"></td>
+            </tr>
+            <tr class="ttd">
+                <td class="ttd">{{$data->pegawai->name}}</td>
+                <td class="ttd">
+                    {{$petugas->user->name}}
+                </td>
+            </tr>
+        </table>
+        <br><br>
+        <table style="width: 100%" class="ttd">
+            <tr class="ttd">
+                <td class="ttd">Mengetahui,</td>
+            </tr>
+            <tr class="ttd">
+                <td class="ttd">KEPALA BAGIAN TATA USAHA</td>
+            </tr>
+            <tr class="ttd">
+                <td style="height: 50px" class="ttd"></td>
+            </tr>
+            <tr class="ttd">
+                <td class="ttd">{{$mengetahui->user->name}}</td>
+            </tr>
+        </table>
     </div>
     
 </body>
