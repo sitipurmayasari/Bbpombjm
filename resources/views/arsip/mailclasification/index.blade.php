@@ -40,6 +40,7 @@
                 <th>Aktif</th>
                 <th>Inaktif</th>
                 <th>Deactived</th>
+                <th>Sekuritas</th>
                 <th class="col-md-2">Aksi</th>
             </thead>
             <tbody>   	
@@ -59,6 +60,17 @@
                         @endif
                     </td>
                     <td>{{$row->thelast}}</td>
+                    <td>
+                        @if ($row->securitiesklas=='T')
+                            Terbatas
+                        @elseif ($row->securitiesklas=='R')
+                            Rahasia
+                        @elseif ($row->securitiesklas=='S')
+                            Sangat Rahasia
+                        @else
+                            Biasa / Terbuka
+                        @endif
+                    </td>
                     <td>
                         <a href="/arsip/mailclasification/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>

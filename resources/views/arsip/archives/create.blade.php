@@ -52,16 +52,10 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1"> Kualifikasi Keamanan
+                        for="form-field-1"> Nomor Surat
                         </label>
                         <div class="col-sm-10">
-                            <select name="kualifikasi" class="col-xs-10 col-sm-10 required select2" required>
-                                <option value="B">Biasa</option>
-                                <option value="T">Terbatas</option>
-                                <option value="R">Rahasia</option>
-                                <option value="S">Sangat Rahasia</option>
-                               
-                            </select>
+                            <input type="text" name="nomor" class="col-xs-10 col-sm-10 required"  required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -72,7 +66,9 @@
                             <input type="radio" required value="asli" checked 
                                 name="tingkat" id="L"/> &nbsp; Asli  &nbsp;
                             <input type="radio" required value="copy"
-                                name="tingkat" id="P"/> &nbsp; Copy
+                                name="tingkat" id="P"/> &nbsp; Copy &nbsp;
+                            <input type="radio" required value="soft copy"
+                                name="tingkat" id="P"/> &nbsp; Soft Copy
                         </div>
                     </div>
                     <div class="form-group">

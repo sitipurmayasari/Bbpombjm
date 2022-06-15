@@ -107,6 +107,36 @@
                                         class="col-xs-10 col-sm-10 required "  value="{{$data->thelast}}" required/>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Klasifikasi Keamanan
+                            </label>
+                            <div class="col-sm-8">
+                                <select name="securitiesklas" class="col-xs-10 col-sm-10 required " required>
+                                    @if ($data->securitiesklas=='T')
+                                        <option value="B">Biasa / Terbuka</option>
+                                        <option value="T" selected>Terbatas</option>
+                                        <option value="R">Rahasia</option>
+                                        <option value="S">Sangat Rahasia</option>
+                                    @elseif ($data->securitiesklas=='R')
+                                        <option value="B">Biasa / Terbuka</option>
+                                        <option value="T">Terbatas</option>
+                                        <option value="R" selected>Rahasia</option>
+                                        <option value="S">Sangat Rahasia</option>
+                                    @elseif ($data->securitiesklas=='S')
+                                        <option value="B">Biasa / Terbuka</option>
+                                        <option value="T">Terbatas</option>
+                                        <option value="R">Rahasia</option>
+                                        <option value="S" selected>Sangat Rahasia</option>
+                                    @else
+                                        <option value="B" selected>Biasa / Terbuka</option>
+                                        <option value="T">Terbatas</option>
+                                        <option value="R">Rahasia</option>
+                                        <option value="S">Sangat Rahasia</option>
+                                    @endif
+                                </select>
+                            </div>
+                        </div>
                         </fieldset>        
                </div>
            </div>

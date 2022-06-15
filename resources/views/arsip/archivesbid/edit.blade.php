@@ -55,34 +55,10 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1"> Kualifikasi Keamanan
+                        for="form-field-1"> Nomor Surat
                         </label>
                         <div class="col-sm-10">
-                            <select name="kualifikasi" class="col-xs-10 col-sm-10 required select2" required>
-                                @if ($data->kualifikasi=='B')
-                                    <option value="B" selected>Biasa</option>
-                                    <option value="T">Terbatas</option>
-                                    <option value="R">Rahasia</option>
-                                    <option value="S" >Sangat Rahasia</option>
-                                @elseif($data->kualifikasi=='T')
-                                    <option value="B">Biasa</option>
-                                    <option value="T" selected>Terbatas</option>
-                                    <option value="R">Rahasia</option>
-                                    <option value="S" >Sangat Rahasia</option>
-                                @elseif($data->kualifikasi=='R')
-                                    <option value="B">Biasa</option>
-                                    <option value="T">Terbatas</option>
-                                    <option value="R" selected>Rahasia</option>
-                                    <option value="S" >Sangat Rahasia</option>
-                                @else
-                                    <option value="B">Biasa</option>
-                                    <option value="T">Terbatas</option>
-                                    <option value="R">Rahasia</option>
-                                    <option value="S" selected>Sangat Rahasia</option>
-                                @endif
-                               
-                               
-                            </select>
+                            <input type="text" name="nomor" class="col-xs-10 col-sm-10 required"  required value="{{$data->nomor}}">
                         </div>
                     </div>
                     <div class="form-group">
@@ -94,13 +70,24 @@
                                 <input type="radio" required value="asli" checked 
                                 name="tingkat" id="L"/> &nbsp; Asli  &nbsp;
                                 <input type="radio" required value="copy"
-                                name="tingkat" id="P"/> &nbsp; Copy
+                                name="tingkat" id="P"/> &nbsp; Copy &nbsp;
+                                <input type="radio" required value="soft copy"
+                                name="tingkat" id="P"/> &nbsp; Soft Copy
+                            @elseif ($data->tingkat=="soft copy")
+                                <input type="radio" required value="asli"  
+                                name="tingkat" id="L"/> &nbsp; Asli  &nbsp;
+                                <input type="radio" required value="copy"
+                                name="tingkat" id="P"/> &nbsp; Copy &nbsp;
+                                <input type="radio" required value="soft copy" checked
+                                name="tingkat" id="P"/> &nbsp; Soft Copy
                             @else
                                 <input type="radio" required value="asli"  
                                 name="tingkat" id="L"/> &nbsp; Asli  &nbsp;
                                 <input type="radio" required value="copy" checked
-                                name="tingkat" id="P"/> &nbsp; Copy
-                            @endif
+                                name="tingkat" id="P"/> &nbsp; Copy &nbsp;
+                                <input type="radio" required value="soft copy"
+                                name="tingkat" id="P"/> &nbsp; Soft Copy
+                        @endif
                         </div>
                     </div>
                     <div class="form-group">

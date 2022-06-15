@@ -8,6 +8,7 @@ use App\Inventaris;
 use App\User;
 use App\Satuan;
 use App\Pejabat;
+use App\Petugas;
 use App\Labory;
 use App\BrokenBMN; 
 use App\BrokenBMN_det;
@@ -63,30 +64,22 @@ class BrokenBMNController extends Controller
                 BrokenBMN_det::create($data);
             }
             DB::commit(); 
-            return redirect('/invent/brokenBMN/')->with('sukses','Tersimpan');
-        // return redirect('/invent/brokenBMN/print/'.$sbb_id);
+            // return redirect('/invent/brokenBMN/')->with('sukses','Tersimpan');
+        return redirect('/invent/brokenBMN/print/'.$sbb_id);
     }
 
-    // public function print($id)
-    // {
-    //     $data = Broken::where('id',$id)->first();
-    //     $tahu = $data->pejabat_id;
-    //     $mengetahui = Pejabat::where('id',$tahu)->first();
-    //     $pdf = PDF::loadview('invent/brokenBMN.print',compact('data','mengetahui'));
-    //     return $pdf->stream();
-    // }
+    public function print($id)
+    {
+        $data = BrokenBMN::where('id',$id)->first();
+        $detail = BrokenBMN_det::where('brokenbmn_id',$id)->get();
+        $petugas = $data->pejabat_id;
+        $mengetahui = Pejabat::where('jabatan_id', '=', 11)
+                                ->whereRaw("(SELECT st_date FROM outstation WHERE id=$id) BETWEEN dari AND sampai")
+                                ->first();
+        $pdf = PDF::loadview('invent/brokenBMN.print',compact('data','mengetahui','petugas','detail'));
+        return $pdf->stream();
+    }
 
-    // public function getBarang(Request $request)
-    // {
-    //     $id = $request->barang_id;
-
-    //     $data = Inventaris::selectRaw('inventaris.id, inventaris.nama_barang, inventaris.satuan_id, satuan.satuan, SUM(entrystock.stock) AS sisa')
-    //                     ->leftJoin('satuan', 'inventaris.satuan_id', '=', 'satuan.id')
-    //                     ->leftJoin('entrystock','entrystock.inventaris_id','=','inventaris.id')
-    //                     ->where('inventaris.id',$id)
-    //                     ->first();
-    //     return response()->json([ 'success' => true,'data' => $data],200);
-    // }
    
     public function edit($id)
     {

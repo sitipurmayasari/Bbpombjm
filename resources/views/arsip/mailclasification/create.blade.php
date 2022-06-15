@@ -108,6 +108,19 @@
                                         name="thelast" required/>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Klasifikasi Keamanan
+                            </label>
+                            <div class="col-sm-8">
+                                <select name="securitiesklas" class="col-xs-10 col-sm-10 required " required>
+                                    <option value="B">Biasa / Terbuka</option>
+                                    <option value="T">Terbatas</option>
+                                    <option value="R">Rahasia</option>
+                                    <option value="S">Sangat Rahasia</option>
+                                </select>
+                            </div>
+                        </div>
                         </fieldset>        
                    
                </div>

@@ -38,7 +38,6 @@
                 <th class="col-md-2">Kode Kelompok</th>
                 <th class="col-md-2">Kode Sub Kelompok</th>
                 <th>Nama</th>
-                <th>Keamanan</th>
                 <th class="col-md-2">Aksi</th>
             </thead>
             <tbody>   	
@@ -48,17 +47,6 @@
                     <td>{{$row->group}}</td>
                     <td>{{$row->code}}</td>
                     <td>{{$row->names}}</td>
-                    <td>
-                        @if ($row->securities=='T')
-                            Terbatas
-                        @elseif ($row->securities=='R')
-                            Rahasia
-                        @elseif ($row->securities=='S')
-                            Sangat Rahasia
-                        @else
-                            Biasa
-                        @endif
-                    </td>
                     <td>
                         <a href="/arsip/mailsubgroup/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>

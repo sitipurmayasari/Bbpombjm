@@ -10,7 +10,7 @@ class Archives extends Model
 {
     use SoftDeletes;
     protected $table = "archives";
-    protected $fillable = ['divisi_id','users_id','mailclasification_id','uraian','tingkat','date','kualifikasi','jumlah',
+    protected $fillable = ['divisi_id','users_id','mailclasification_id','uraian','tingkat','date','nomor','jumlah',
                             'file'
                         ];
     protected $dates = ['deleted_at'];

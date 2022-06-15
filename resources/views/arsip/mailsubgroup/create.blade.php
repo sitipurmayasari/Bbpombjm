@@ -58,7 +58,7 @@
                                         name="names" required/>
                             </div>
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
                             for="form-field-1"> Kode Kelompok
                             </label>
@@ -70,7 +70,7 @@
                                     <option value="S">Sangat Rahasia</option>
                                 </select>
                             </div>
-                        </div>
+                        </div> --}}
                         </fieldset>        
                    
                </div>

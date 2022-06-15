@@ -9,19 +9,29 @@
     <title>Document</title>
 
     <style>
+        @page {
+            font-family: "Arial";
+            font-size: 12px;
+        }
+
         table, td, th {
             border: 1px solid black;
             text-align: center;
         }
 
-        table {
+        #kop{
+            text-align: center;
+            font-size: 16px;
+        }
+
+        /* table {
             width: 100%;
             border-collapse: collapse;
             text-align: center;
             font-size: 12px;
-        }
+        } */
 
-        .lara{ 
+        /* .lara{ 
             border: 1px solid black;
             padding: 20px;
             text-align: center;
@@ -39,7 +49,7 @@
             border:none;
             border-collapse: collapse;
             text-align: left;
-        }
+        } */
 
         .ttd{
             border:none;
@@ -51,104 +61,82 @@
 
 </head>
 <body>
-    <div id="kepala">
-        <table>
-            <tr>
-                <td rowspan="5" style="width: 20%;"> <img src="{{asset('images/BBRI.jpg')}}" style="height:80px"></td>
-                <td rowspan="2" style="width: 30%; font-size: 16px;">BALAI BESAR POM DI BANJARMASIN</td>
-                <td class="kiri1">No. Bagian</td>
-                <td class="kiri2">: A 19</td>
-            </tr>
-            <tr>
-                <td class="kiri1">Terbitan/Tgl</td>
-                <td class="kiri2">: 2/30 Des 2009</td>
-            </tr>
-            <tr>
-                <td rowspan="2" style="width: 85%; font-size: 16px;"><b>FORMAT - FORMAT</b></td>
-                <td class="kiri1">Revisi/Tgl</td>
-                <td class="kiri2">: 1/12 Apr 2013</td>
-            </tr>
-            <tr>
-                <td class="kiri1">Halaman</td>
-                <td class="kiri2">: 1 dari 1</td>
-            </tr>
-            <tr>
-                <td colspan="3" style="width: 30%; font-size: 18px;"><b>LAPORAN KERUSAKAN</b></td>           
-            </tr>
-        </table>
-    </div>  
-    <br>  
-    <div class="lara">
-        <h6>BALAI BESAR PENGAWASAN OBAT DAN MAKANAN DI BANJARMASIN</h6>
-        <u><h5>LAPORAN KERUSAKAN STOK BARANG</h5></u>
-        <h6>NO. {{$data->nomor}}</h6>
-        <br>
-        <div >
-            <table class="rapi">
-                <tr>
-                    <td class="rapi" style="width: 20%; ">Lab</td>
-                    <td  class="rapi"style="width: 2%;">:</td>
-                    <td class="rapi">
-                        {{$data->lab->name}}
-                    </td>
-                </tr>
-                <tr>
-                    <td  class="rapi"style="width: 20%;">Tanggal</td>
-                    <td  class="rapi"style="width: 2%; ">:</td>
-                    <td class="rapi">{{tgl_indo($data->tanggal)}}</td>
-                </tr>
-            </table>
-        </div>
-        <br>
-        <table >
-            <thead>
-                <tr>
-                    <th>NAMA BARANG</th>
-                    <th>JUMLAH</th>
-                    <th>KETERANGAN</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td style="vertical-align: top; align:left; width: 30%;">
-                        {{$data->barang->nama_barang}} - {{$data->barang->merk}}
-                        <br><br><br>
-                    </td>
-                    <td style="vertical-align: top; align:left;">{{$data->jumlah}}</td>
-                    <td style="vertical-align: top; align:left;">{{$data->ket}}</td>
-                </tr>
-            </tbody>
-        </table>
-        <br>
-        <div class="col-sm-12">
-            <table class="ttd">
-                <tr>
-                    <td class="ttd">Penanggung Jawab,</td>
-                    <td class="ttd">Mengetahui,</td>
-                </tr>
-                <tr >
-                    <td style="height: 10%" class="ttd"></td>
-                    <td style="height: 10%" class="ttd"></td>
-                </tr>
-                <tr>
-                    <td class="ttd"><u>
-                        {{$data->pegawai->name}}
-                    </u></td>
-                    <td class="ttd"> <u>{{$data->mengetahui->user->name}}</u></td>
-                </tr>
-                <tr>
-                    <td class="ttd">
-                        @if ($data->pegawai->status == 'PNS')
-                            NIP. {{$data->pegawai->no_pegawai}} 
-                        @endif
-                       </td>
-                    <td class="ttd">NIP. {{$data->mengetahui->user->no_pegawai}}</td>
-                </tr>
-            </table>
-
-        </div><br>
-
-    
+    <div id="kop">
+        <b>Form Berita Acara Penyerahan BMN Rusak Berat</b>
     </div>
+    <div>
+        @php
+        $a = strtotime($data->tanggal);
+        $b = date('d', $a);
+        $c = date('D', $a);
+        $d = date('M', $a);
+        $e = date('Y', $a);
+
+        if ($c=='sun') {
+            $days='Minggu';
+        }else if ($c=='Mon') {
+            $days='Senin';
+        }else if ($c=='Tue') {
+            $days='Selasa';
+        }else if ($c=='Wed') {
+            $days='Rabu';
+        }else if ($c=='Thu') {
+            $days='Kamis';
+        }else if ($c=='Fri') {
+            $days='Jumat';
+        }else{
+            $days='Sabtu';
+        };
+    @endphp
+
+        Pada hari {{$days}} tanggal {{$b}} bulan {{$d}} tahun {{$e}},
+        telah dilakukan serah terima BMN rusak berat antara
+        <table style="width: 100%">
+            <tr>
+<td style="text-align: center; width:5%"> 1. </td>
+<td> Nama</td>
+<td>:</td>
+<td></td>
+            </tr>
+            <tr>
+<td> NIP</td>
+<td></td>
+<td>:</td>
+<td></td>
+            </tr>
+            <tr>
+<td> Jabatan</td>
+<td></td>
+<td>:</td>
+<td></td>
+            </tr>
+            <tr>
+<td colspan="3"> Yang selanjutnya disebut sebagai PIHAK PERTAMA</td>
+            </tr>
+            <tr>
+<td style="text-align: center"> 2. </td>
+<td> Nama</td>
+<td>:</td>
+<td></td>
+            </tr>
+            <tr>
+<td> NIP</td>
+<td></td>
+<td>:</td>
+<td></td>
+            </tr>
+            <tr>
+<td> Jabatan</td>
+<td></td>
+<td>:</td>
+<td></td>
+            </tr>
+            <tr>
+<td colspan="3"> Yang selanjutnya disebut sebagai PIHAK KEDUA</td>
+            </tr>
+        </table>
+
+    </div>
+    
 </body>
 </html>
