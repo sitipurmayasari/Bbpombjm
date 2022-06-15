@@ -88,9 +88,6 @@
                         for="form-field-1"> Uraian
                         </label>
                         <div class="col-sm-10">
-                            {{-- <input type="text"  placeholder="uraian" class="col-xs-10 col-sm-10 required " 
-                                    name="uraian" required /> --}}
-
                             <textarea name="uraian" id="" cols="95%" rows="5" required></textarea>
                         </div>
                     </div>

@@ -430,6 +430,7 @@ class InjectQuery
 
     public function berkas($id){
         $data = Archives::orderBy('archives.id','desc')
+                        ->SelectRaw('archives.*')
                         ->leftjoin('mailclasification','mailclasification.id','archives.mailclasification_id')
                         ->whereRaw('CURDATE() BETWEEN DATE(archives.date) 
                             and DATE_ADD(DATE(archives.date),INTERVAL mailclasification.actived YEAR)')
@@ -439,6 +440,7 @@ class InjectQuery
 
     public function berkasin($id){
         $data = Archives::orderBy('archives.id','desc')
+                        ->SelectRaw('archives.*')
                         ->leftjoin('mailclasification','mailclasification.id','archives.mailclasification_id')
                         ->whereRaw('curdate() > DATE_ADD(archives.date,INTERVAL mailclasification.actived YEAR)')
                         ->get();
