@@ -49,11 +49,14 @@
                     <td>{{$row->alias}}</td>
                     <td>{{$row->names}}</td>
                     <td>{{$row->actived}} tahun 
-                        @if ($row->ceking=="Y")
-                            Setelah Pengecekkan
+                        @if ($row->ketactive != null)
+                            {{$row->ketactive}}
                         @endif
                     </td>
                     <td>{{$row->innactive}} tahun 
+                        @if ($row->ketinactive != null)
+                            {{$row->ketinactive}}
+                        @endif
                     </td>
                     <td>{{$row->thelast}}</td>
                     <td>
