@@ -115,10 +115,10 @@
                 @foreach ($isi as $item)
                 <tr>
                     <td>{{$no++}}</td>
-                    <td>{{$item->barang->nama_barang}}</td>
+                    <td style="text-align: left;">{{$item->barang->nama_barang}}</td>
                     <td>{{$item->satuan->satuan}}</td>
                     <td>{{$item->jumlah}}</td>
-                    <td>{{$item->ket}}</td>
+                    <td style="text-align: left;">{{$item->ket}}</td>
                 </tr>
                 @endforeach
             </tbody>
