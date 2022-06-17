@@ -17,18 +17,18 @@ class PelatihanController extends Controller
     public function index(Request $request)
     {
         $peg =auth()->user()->id;
-        $jenis = Jenis_pelatihan::all();
         $data = Pelatihan::orderBy('id','desc')
-                ->where('users_id','=',$peg)
-                ->when($request->keyword, function ($query) use ($request) {
-                    $query->where('nama','LIKE','%'.$request->keyword.'%')
-                            ->orWhere('pelatihan.jenis', 'LIKE','%'.$request->keyword.'%')
-                            ->orWhere('dari', 'LIKE','%'.$request->keyword.'%')
-                            ->orWhere('sampai', 'LIKE','%'.$request->keyword.'%')
-                            ->orWhere('lama', 'LIKE','%'.$request->keyword.'%');
-                    })
-                ->paginate('10');
-        return view('amdk/pelatihan.index',compact('data','jenis'));
+                        ->select('pelatihan.*')
+                        ->leftjoin('jenis_pelatihan','jenis_pelatihan.id','pelatihan.jenis_pelatihan_id')
+                        ->where('pelatihan.users_id','=',$peg)
+                        ->when($request->keyword, function ($query) use ($request) {
+                            $query->where('nama','LIKE','%'.$request->keyword.'%')
+                                    ->orWhere('dari', 'LIKE','%'.$request->keyword.'%')
+                                    ->orWhere('sampai', 'LIKE','%'.$request->keyword.'%')
+                                    ->orWhere('lama', 'LIKE','%'.$request->keyword.'%');
+                            })
+                        ->paginate('10');
+        return view('amdk/pelatihan.index',compact('data'));
     }
 
     public function rekappelatihan(Request $request)
@@ -39,10 +39,11 @@ class PelatihanController extends Controller
         $data = Pelatihan::orderBy('id','desc')
                 ->select('pelatihan.*','users.name')
                 ->leftJoin('users','users.id','=','pelatihan.users_id')
+                ->leftjoin('jenis_pelatihan','jenis_pelatihan.id','pelatihan.jenis_pelatihan_id')
                 ->when($request->keyword, function ($query) use ($request) {
-                    $query->where('name','LIKE','%'.$request->keyword.'%')
+                    $query->where('users.name','LIKE','%'.$request->keyword.'%')
                             ->orWhere('nama', 'LIKE','%'.$request->keyword.'%')
-                            ->orWhere('pelatihan.jenis', 'LIKE','%'.$request->keyword.'%')
+                            ->orWhere('jenis_pelatihan.name', 'LIKE','%'.$request->keyword.'%') 
                             ->orWhere('dari', 'LIKE','%'.$request->keyword.'%')
                             ->orWhere('sampai', 'LIKE','%'.$request->keyword.'%')
                             ->orWhere('lama', 'LIKE','%'.$request->keyword.'%');

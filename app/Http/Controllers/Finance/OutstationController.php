@@ -176,6 +176,10 @@ class OutstationController extends Controller
             $lama = Outst_destiny::selectRaw('longday as hitung')
                   ->where('outstation_id','=',$id)
                   ->first();
+        } elseif($desti1->return_date==$desti2->go_date){
+          $lama = Outst_destiny::selectRaw('((sum(longday)) - 1) as hitung')
+                  ->where('outstation_id','=',$id)
+                  ->first();
         } else {
             $lama = Outst_destiny::selectRaw('sum(longday) as hitung')
                   ->where('outstation_id','=',$id)
