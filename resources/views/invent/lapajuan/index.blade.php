@@ -57,12 +57,21 @@
                             <label class="col-sm-3 control-label no-padding-right" 
                             for="form-field-1"> Pilih Daftar
                             </label>
-                            <div class="col-sm-8">
-                                <input type="radio" name="piltgl" value="1" checked id="tgl">
-                                <label class="control-label no-padding-right" for="form-field-1"> Per Bulan</label> 
-                                &nbsp;&nbsp;
-                                <input type="radio" name="piltgl" value="2" id="tgl2">
-                                <label class="control-label no-padding-right" for="form-field-1"> Per Tanggal</label>
+                            <div class="col-sm-9">
+                                <div id ="allthn" class="col-xs-2 col-sm-4">
+                                    <input type="radio" name="piltgl" value="3" id="tgl3">
+                                    <label class="control-label no-padding-right" for="form-field-1"> Per Tahun</label> 
+                                    &nbsp;&nbsp;
+                                </div>
+                                <div id="allbln" class="col-xs-2 col-sm-4">
+                                    <input type="radio" name="piltgl" value="1" checked id="tgl">
+                                    <label class="control-label no-padding-right" for="form-field-1"> Per Bulan</label> 
+                                    &nbsp;&nbsp;
+                                </div>
+                                <div id="alltgl" class="col-xs-2 col-sm-4">
+                                    <input type="radio" name="piltgl" value="2" id="tgl2">
+                                    <label class="control-label no-padding-right" for="form-field-1"> Per Tanggal</label>
+                                </div>
                             </div>
                         </div>
                         <div  class="form-group" id="pilihbulan">
@@ -126,20 +135,29 @@
         $("#pilihminggu").show();
         $("#a").hide();
         $("#b").hide();
+        $("#allthn").hide();
 
         $("#jenis").on("change", function(){
             var v = $(this).val();
             if(v=="baru"){
                 $("#pilihbulan").show();
                 $("#pilihminggu").show();
+                $("#alltgl").show();
+                $("#allthn").hide();
                 $("#a").hide();
                 $("#b").hide();
+            }else if(v=="rusaktik"){
+                $("#pilihbulan").show();
+                $("#pilihminggu").show();
+                $("#alltgl").hide();
+                $("#allthn").show();
+                $("#a").hide();
+                $("#b").hide();      
             }else{
                 $("#pilihbulan").show();
                 $("#pilihminggu").hide();
                 $("#a").hide();
-                $("#b").hide();
-               
+                $("#b").hide();             
             } 
         });
 
@@ -151,6 +169,11 @@
         $("#tgl2").click(function(){
             $("#a").show();
             $("#b").show();
+            $("#pilihbulan").hide();
+        });
+        $("#tgl3").click(function(){
+            $("#a").hide();
+            $("#b").hide();
             $("#pilihbulan").hide();
         });
 

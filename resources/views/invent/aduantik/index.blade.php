@@ -35,7 +35,8 @@
                 <th>Tanggal</th>
                 <th>Pelapor</th>
                 <th>Status</th>
-                <th>Aksi</th>
+                <th>Cetak</th>
+                <th>Hapus</th>
             <thead>
             <tbody>   	
                 @foreach($data as $key=>$row)
@@ -55,9 +56,12 @@
                     </td>
                     <td>
                         <a class="btn btn-primary" href="/invent/aduantik/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">PENGAJUAN</a>
-                        {{-- @if ($row->aduan_status==2)
-                            <a class="btn btn-primary" href="/invent/aduantik/printhasil/{{$row->id}}" target="_blank" rel="noopener noreferrer">HASIL</a>
-                        @endif --}}
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-danger delete"
+                        r-name="BA tanggal {{$row->no_aduan}}" 
+                        r-id="{{$row->id}}">
+                        <i class="glyphicon glyphicon-trash"></i></a>
                     </td>
                     
                 </tr>
@@ -71,7 +75,25 @@
 
 @section('footer')
 <script>
-    $().ready( function () {
+     $().ready( function () {
+        $(".delete").click(function() {
+                var id = $(this).attr('r-id');
+                var name = $(this).attr('r-name');
+                Swal.fire({
+                title: 'Ingin Menghapus?',
+                text: "Yakin ingin menghapus data  : "+name+" ini ?" ,
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, hapus !'
+            }).then((result) => {
+                console.log(result);
+                if (result.value) {
+                   window.location = "/invent/aduantik/delete/"+id;
+                }
+            });
+        });
     } );
 </script>
 @endsection

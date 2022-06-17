@@ -42,9 +42,12 @@ class LapAjuController extends Controller
             $data   = Aduan::orderBy('id','asc')
                             ->where('jenis','T')
                             ->whereYear('tanggal',$request->daftartahun)
-                            ->when($request->daftarbulan, function ($query) use ($request) {
-                                $query->whereYear('tanggal',$request->daftartahun);
-                                $query->whereMonth('tanggal',$request->daftarbulan);
+                            ->when($request->piltgl, function ($query) use ($request) {
+                                if($request->piltgl==1){
+                                    $query->whereYear('tanggal',$request->daftartahun);
+                                    $query->whereMonth('tanggal',$request->daftarbulan); 
+                                }
+                                
                             })
                             ->get();
             

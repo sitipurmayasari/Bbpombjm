@@ -26,35 +26,38 @@
         <b>Laporan Daftar Aduan Kerusakan TIK</b>
     </div><br>
     <div class="col-sm-12" style="text-align: left">
-        periode :
-        @php
-            if ($request->daftarbulan=='1') {
-                $request->daftarbulan = "Januari";
-            } else if($request->daftarbulan=='2') {
-                $bulan = "Februari";
-            } else if($request->daftarbulan=='3') {
-                $bulan = "Maret";
-            } else if($request->daftarbulan=='4') {
-                $bulan = "April";
-            } else if($request->daftarbulan=='5') {
-                $bulan = "Mei";
-            } else if($request->daftarbulan=='6') {
-                $bulan = "Juni";
-            } else if($request->daftarbulan=='7') {
-                $bulan = "Juli";
-            } else if($request->daftarbulan=='8') {
-                $bulan = "Agustus";
-            } else if($request->daftarbulan=='9') {
-                $bulan = "September";
-            } else if($request->daftarbulan=='10') {
-                $bulan = "Oktober";
-            } else if($request->daftarbulan=='11') {
-                $bulan = "November";
-            } else {
-                $bulan = "Desember";
+        Periode :
+        @if ($request->piltgl==1)
+            @php
+                if ($request->daftarbulan=='1') {
+                    $request->daftarbulan = "Januari";
+                } else if($request->daftarbulan=='2') {
+                    $bulan = "Februari";
+                } else if($request->daftarbulan=='3') {
+                    $bulan = "Maret";
+                } else if($request->daftarbulan=='4') {
+                    $bulan = "April";
+                } else if($request->daftarbulan=='5') {
+                    $bulan = "Mei";
+                } else if($request->daftarbulan=='6') {
+                    $bulan = "Juni";
+                } else if($request->daftarbulan=='7') {
+                    $bulan = "Juli";
+                } else if($request->daftarbulan=='8') {
+                    $bulan = "Agustus";
+                } else if($request->daftarbulan=='9') {
+                    $bulan = "September";
+                } else if($request->daftarbulan=='10') {
+                    $bulan = "Oktober";
+                } else if($request->daftarbulan=='11') {
+                    $bulan = "November";
+                } else {
+                    $bulan = "Desember";
             }
-        @endphp            
-        {{$bulan}}
+            @endphp    
+            {{$bulan}}        
+        @endif
+        
         {{$request->daftartahun}}
     </div><br>
     <div class="col-sm-12 table-responsive row" style="text-align: left">
