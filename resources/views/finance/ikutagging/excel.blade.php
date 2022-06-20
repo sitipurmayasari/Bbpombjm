@@ -30,8 +30,7 @@ header("Content-Disposition: attachment; filename=DataTagingAnggaran.xls");
     th{
         text-align: center;
     }
- 
-    }
+
     .tbl{
         border-collapse: collapse;
         border: none;

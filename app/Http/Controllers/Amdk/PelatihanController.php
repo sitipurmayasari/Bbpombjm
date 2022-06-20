@@ -10,6 +10,7 @@ use App\Jenis_pelatihan;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use PDF;
+use Excel;
 
 class PelatihanController extends Controller
 {
@@ -156,13 +157,17 @@ class PelatihanController extends Controller
     {
         
         if ($request->peg==1) {
+            // $data = Pelatihan::orderBy('users_id','asc')
+            //                     ->selectRaw('sum(lama) AS poin , users_id')
+            //                     ->WhereRaw("YEAR(dari) =".$request->daftartahun)
+            //                     ->groupBy('users_id')
+            //                     ->get();
             $data = Pelatihan::orderBy('users_id','asc')
-                                ->selectRaw('sum(lama) AS poin , users_id')
                                 ->WhereRaw("YEAR(dari) =".$request->daftartahun)
-                                ->groupBy('users_id')
                                 ->get();
-            $pdf = PDF::loadview('amdk/pelatihan.cetakall',compact('data','request'));
-            return $pdf->stream();
+            // $pdf = PDF::loadview('amdk/pelatihan.cetakall',compact('data','request'));
+            // return $pd)f->stream();
+            return view('amdk/pelatihan.cetakall',compact('data','request'));
         }else{
             $atas = Pelatihan::orderBy('id','asc')
                     ->where('users_id', $request->user)
