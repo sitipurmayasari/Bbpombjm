@@ -20,9 +20,8 @@ class DisposableController extends Controller
     public function index(Request $request)
     {
         $data = Inventaris::orderBy('inventaris.id','desc')
-                    ->selectRaw('inventaris.*, users.name, SUM(entrystock.stock) AS stok')
+                    ->selectRaw('inventaris.*, users.name')
                     ->leftJoin('users','users.id','=','inventaris.penanggung_jawab')
-                    ->leftJoin('entrystock','entrystock.inventaris_id','=','inventaris.id')
                     ->where('inventaris.kind','=','D')
                     ->groupBy('inventaris.id')
                     ->when($request->keyword, function ($query) use ($request) {
@@ -125,12 +124,14 @@ class DisposableController extends Controller
     public function stock($id)
     {
 
-        $stok = Entrystock::orderBy('id','asc')
+        $stok = Entrystock::orderBy('entry_date','desc')
                     ->where('inventaris_id',$id)
                     ->get();
         $data = Inventaris::where('id',$id)->first();
-        
-        return view('invent/disposable.stock',compact('data','stok'));
+        $sisa = Entrystock::selectraw('SUM(stock) isi')
+                        ->where('inventaris_id',$id)
+                        ->first();
+        return view('invent/disposable.stock',compact('data','stok','sisa'));
     }
 
     public function storestock(Request $request)

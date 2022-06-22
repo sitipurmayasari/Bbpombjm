@@ -11,7 +11,7 @@
 
 <div class="row">
     <form class="form-horizontal validate-form" role="form" 
-        method="post" action="/invent/disposable/updatestok/{{$data->id}}" enctype="multipart/form-data">
+        method="post" action="/invent/labsuply/updatestok/{{$data->id}}" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div class="col-sm-12">
         <div class="widget-box">
@@ -91,6 +91,16 @@
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1">Barang keluar
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text" name="keluar" class="col-xs-2 col-sm-2" id="keluar" 
+                                value="{{$data->keluar}}"  >
+                                <label>{{$data->barang->satuan->satuan}}</label> 
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" 
                             for="form-field-1"> Sisa Stok
                             </label>
                             <div class="col-sm-8">
@@ -136,12 +146,4 @@
     </form>
 </div>
 
-@endsection
-@section('footer')
-    <script>
-        function hitung() {
-            var a = $("#stok").val();
-            $("#awal").val(a);
-        }
-    </script>
 @endsection

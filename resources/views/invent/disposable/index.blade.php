@@ -1,3 +1,4 @@
+@inject('injectQuery', 'App\InjectQuery')
 @extends('layouts.app')
 @section('breadcrumb')
     <li>Inventaris</li>
@@ -50,7 +51,14 @@
                     <td>{{$row->merk}}</td>
                     <td>{{$row->location->nama}}</td>
                     <td> <a href="/invent/disposable/stock/{{$row->id}}" class="btn btn-success">
-                        {{$row->stok}}
+                        @php
+                            $total = $injectQuery->laststock($row->id)
+                        @endphp
+                        @if ($total != null)
+                            {{$total->stock}}
+                        @else
+                            {{0}}
+                        @endif
                     </a></td>
                     <td> <a href="/invent/inventaris/qrcode/{{$row->id}}" class="btn btn-success">
                         <i class="glyphicon glyphicon-qrcode"></i>

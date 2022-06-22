@@ -49,7 +49,7 @@
                                 <td>{{$item->kode_barang}}</td>
                                 <td>{{$item->nama_barang}} {{$item->merk}} ({{$item->no_seri}})</td>
                                 <td>{{$item->location->nama}}</td>
-                                <td style="text-align: center">{{$item->stok}}  {{$item->satuan->satuan}}</td>
+                                <td style="text-align: center">{{$item->stock }}  {{$item->satuan->satuan}}</td>
                             </tr>
                         @endforeach 
                     </tbody>

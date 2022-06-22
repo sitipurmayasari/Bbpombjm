@@ -66,35 +66,20 @@ class AtkRequestOkController extends Controller
                 Sbbdetail::create($data);
 
                 if ($request->status[$i] == 'Y') {
-                    $stok1 = Entrystock::Where('inventaris_id',$request->inventaris_id[$i])
-                                    ->WhereRaw('stock != 0')->orderBy('id','asc')->first();
-                    $stok2 = Entrystock::Where('inventaris_id',$request->inventaris_id[$i])
-                                    ->WhereRaw('stock != 0')->orderBy('id','desc')->first();
-
-                    $minta = $request->jumlah[$i];
-                    $rest =   $stok1->stock - $minta;
-                    $rest2 = $minta - $stok1->stock;
-                    $sisa = $stok2->stock - $rest2;
-
-                    if ($rest < 0) {
-                        Entrystock::where('id',$stok1->id)->update([
-                        'stock' => 0
-                        ]);
-                        Entrystock::where('id',$stok2->id)->update([
-                        'stock' => $sisa
-                        ]);
-                        } else {
-                        Entrystock::where('id',$stok1->id)->update([
-                        'stock' => $rest
-                        ]);
-                    }
+                    $now = Carbon::now();
+                    $stok = [
+                        'entry_date' => $now,
+                        'inventaris_id' => $request->inventaris_id[$i],
+                        'stock' => $request->stock[$i],
+                        'keluar' => $request->jumlah[$i],
+                        'exp_date' => $now];
+                    Entrystock::create($stok);
                }
                
-
             }
         DB::commit(); 
 
-        if ($request->status == 'Y') {
+        if ($request->status == 'S') {
             return redirect('/invent/atkrequestok/print/'.$id)->with('sukses','Data Diperbaharui');
         } else {
             return redirect('/invent/atkrequestok/')->with('sukses','Data Diperbaharui');

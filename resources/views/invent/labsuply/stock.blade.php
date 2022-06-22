@@ -70,8 +70,17 @@
                             for="form-field-1"> Jumlah Barang
                             </label>
                             <div class="col-sm-8">
-                                <input type="number" name="stock" class="col-xs-2 col-sm-2" required  id="stok"  onkeyup="hitung()" onclick="hitung()">&nbsp;&nbsp;
-                                <input type="hidden" name="stockawal" class="col-xs-2 col-sm-2" id="awal">
+                                <input type="number" name="stockawal" class="col-xs-2 col-sm-2" required value="0"  id="stok"  onkeyup="hitung()" onclick="hitung()">&nbsp;&nbsp;
+                                @php
+                                    if ($sisa->isi != null) {
+                                        $isi = $sisa->isi;
+                                    } else {
+                                       $isi = 0;
+                                    }
+                                    
+                                @endphp
+                                <input type="hidden" class="col-xs-2 col-sm-2" id="sisa" value="{{$isi}}">
+                                <input type="hidden" name="stock" class="col-xs-2 col-sm-2" id="awal">
                                 <label>{{$data->satuan->satuan}}</label> 
                             </div>
                         </div>
@@ -106,7 +115,7 @@
             <table id="myTable" class="table table-bordered table-hover text-center">
                 <thead>
                     <th width="40px">No</th>
-                    <th>Tgl Masuk</th>
+                    <th>Tanggal</th>
                     <th>Barang Masuk</th>
                     <th>Barang keluar</th>
                     <th>Sisa</th>
@@ -121,12 +130,7 @@
                         <td style="text-align: center">{{$no++}}</td>
                         <td>{{$row->entry_date}}</td>
                         <td>{{$row->stockawal}}</td>
-                        <td>
-                            @php
-                                $sisa = $row->stockawal - $row->stock
-                            @endphp
-                            {{$sisa}}
-                        </td>
+                        <td>{{$row->keluar}}</td>
                         <td>{{$row->stock}}</td>
                         <td>{{$row->exp_date}}</td>
                         <td>{{$row->harga}}</td>
@@ -145,7 +149,9 @@
     <script>
         function hitung() {
             var a = $("#stok").val();
-            $("#awal").val(a);
+            var b = $("#sisa").val();
+            var c =  parseFloat(a) +  parseFloat(b);
+            $("#awal").val(c);
         }
     </script>
 @endsection

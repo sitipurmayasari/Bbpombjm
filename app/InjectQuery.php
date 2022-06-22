@@ -196,6 +196,12 @@ class InjectQuery
             return $data;
     }
 
+    public function laststock($id)
+    {
+        $data = Entrystock::where('inventaris_id',$id)->orderby('id','desc')->first();
+            return $data;
+    }
+
     public function getHarga($id)
     {
         // $nilai = DB::select(DB::raw(" 

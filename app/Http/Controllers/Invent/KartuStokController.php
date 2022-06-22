@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Invent;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\View;
 use App\Inventaris;
 use App\Jenisbrg;
 use App\Divisi;
@@ -31,10 +33,10 @@ class KartuStokController extends Controller
 
     public function cetak(Request $request)
     {       
-        if ($request->jenis_Laporan=='1') {
+        if ($request->jenis_Laporan=="1") {
             $now = Carbon::now()->month;
 
-            $stock = EntryStock::SelectRaw('entrystock.*, (stockawal-stock) AS keluar')
+            $stock = EntryStock::orderby('entry_date','asc')
                                 ->LeftJoin('inventaris','inventaris.id','=','entrystock.inventaris_id')
                                 ->Where('inventaris_id',$request->inventaris_id)
                                 ->get();
@@ -42,16 +44,19 @@ class KartuStokController extends Controller
             $pdf = PDF::loadview('invent/kartustok.stokbarang',compact('stock','request','data','now'));
             return $pdf->stream();
         }else if($request->jenis_Laporan=="2"){
-            $stock = Inventaris::Orderby('stok','desc')
-                                ->SelectRaw('DISTINCT(inventaris.id),nama_barang, inventaris.satuan_id,merk,no_seri, lokasi, kode_barang, SUM(stock) AS stok')
-                                ->LeftJoin('entrystock','inventaris.id','=','entrystock.inventaris_id')
-                                ->Where('kind','!=','R')
-                                ->Where('jenis_barang',$request->kelompok)
-                                ->when($request->gudang, function ($query) use ($request) {
-                                    $query->where('inventaris.lokasi',$request->gudang);
-                                 })
-                                ->GroupBY('inventaris.id')
-                                ->get();
+
+            $stock = Inventaris::OrderBy('stock','desc')
+                        ->SelectRaw('inventaris.*,  entrystock.stock')
+                        ->LeftJoin(DB::raw("(SELECT MAX(id) as max_id, inventaris_id FROM entrystock GROUP BY inventaris_id) stok"),
+                                            'stok.inventaris_id','=','inventaris.id')
+                        ->LeftJoin('entrystock','stok.max_id','=','entrystock.id')
+                        ->Where('kind','!=','R')                   
+                        ->Where('jenis_barang',$request->kelompok)
+                        ->when($request->gudang, function ($query) use ($request) {
+                                $query->where('inventaris.lokasi',$request->gudang);
+                            })
+                        ->get();
+
             $petugas = Petugas::where('id', '=', 4)->first();
 
             $mengetahui = Pejabat::where('jabatan_id', '=', 11)
@@ -61,8 +66,7 @@ class KartuStokController extends Controller
             $gudang = Lokasi::where('id',$request->gudang)->first();
             $data = Jenisbrg::where('id',$request->kelompok)->first();
             return view('invent/kartustok.stokkelompok',compact('stock','data','request','petugas','mengetahui','gudang'));
-            // $pdf = PDF::loadview('invent/kartustok.stokkelompok',compact('stock','data','request'));
-            // return $pdf->stream();
+
         } else if($request->jenis_Laporan=="3"){
             $stock = Inventaris::SelectRaw('inventaris_id, SUM(jumlah) AS jumlah, inventaris.*')
                                 ->LeftJoin('sbb_detail','inventaris.id','=','sbb_detail.inventaris_id')

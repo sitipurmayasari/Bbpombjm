@@ -28,7 +28,7 @@ class ArchivesrekController extends Controller
                         ->orWhere('mailclasification.names', 'LIKE','%'.$request->keyword.'%');
                 })
                 ->paginate('10');
-                $datainac = Archives::orderBy('archives.id','desc')
+        $datainac = Archives::orderBy('archives.id','desc')
                     ->leftjoin('mailclasification','mailclasification.id','archives.mailclasification_id')
                     ->whereRaw('curdate() > DATE_ADD(archives.date,INTERVAL mailclasification.actived YEAR)')
                     ->when($request->keyword, function ($query) use ($request) {

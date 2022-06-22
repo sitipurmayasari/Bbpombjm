@@ -39,7 +39,7 @@ class RealRAPKController extends Controller
         $pagu = Pagu::all();
         $rapk = Eselontwo::all();
         $user = User::where('aktif','=','Y')->whereRaw('jabatan_id IN ("6","7","11")')->get();
-        $kapom = User::where('aktif','=','Y')->where('jabatan_id','=','1')->get();
+        $kapom = User::where('aktif','=','N')->where('jabatan_id','=','1')->get();
 
         return view('finance/realRAPK.create',compact('user','kapom','rapk','pagu'));
     }

@@ -40,6 +40,16 @@
                                                             @foreach ($isi as $item)
                                                             <div class="tab-pane" id="det-{{$item->id}}">
                                                                 <div class="row">
+                                                                    {{-- <div class="form-group col-xs-12 col-sm-5" style="float: right">
+                                                                        <div class="input-group">
+                                                                            <input type="text" class="form-control gp-search" name="keyword" placeholder="Cari " value="{{request('keyword')}}" autocomplete="off">
+                                                                            <div class="input-group-btn">
+                                                                                <button type="submit" class="btn btn-default no-border btn-sm gp-search">
+                                                                                <i class="ace-icon fa fa-search icon-on-right bigger-110"></i>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div> --}}
                                                                     <div class="col-sm-12">
                                                                         <div class="table-responsive">
                                                                             <table id="simple-table" class="table  table-bordered table-hover">
@@ -93,6 +103,7 @@
                                                                                     @endforeach
                                                                                 <tbody>
                                                                             </table>
+                                                                            {{-- {{$data->appends(Request::all())->links()}} --}}
                                                                         </div>
                                                                     </div>    
                                                                 </div>

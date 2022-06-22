@@ -43,7 +43,7 @@
                         </div>
                         <div class="col-md-12">
                             <label>TANGGAL PENGAJUAN *</label><br>
-                            <input type="text"readonly 
+                            <input type="text"readonly  name="entry_date"
                                 class="col-xs-9 col-sm-9 required" value="{{tgl_indo($data->tanggal)}}">
                         </div>
                     </div>
@@ -87,17 +87,17 @@
                                     @php
                                          $stok = $injectQuery->getSTokBarang($item->inventaris_id)
                                     @endphp
-                                    <input type="number" name="stok[]" class="form-control" readonly value="{{$stok->stok}}">
+                                    <input type="number" name="stok[]" class="form-control" readonly value="{{$stok->stok}}" id="stok-{{$no}}">
                                 </td>
                                 <td>
-                                    <input type="number"  min="1"  name="jumlah[]" class="form-control" value={{$item->jumlah}}>
-                                    <input type="hidden" name="sisa[]" class="form-control" value="0" id="sisa-1">
+                                    <input type="number"  min="1"  name="jumlah[]" class="form-control" value={{$item->jumlah}} id="minta-{{$no}}">
+                                    <input type="hidden" name="stock[]" class="form-control" value="0" id="sisa-{{$no}}">
                                 </td>
                                 <td>
                                     <input type="text" name="ket[]" class="form-control" value="{{$item->ket}}" readonly>
                                 </td>
                                 <td>
-                                    <select name="status[]" class="form-control">
+                                    <select name="status[]" class="form-control" id="status-{{$no}}" onchange="hitung({{$no}})">
                                         <option value="">Pilih Status</option>
                                         <option value="Y"> Disetujui</option>
                                         <option value="N"> Ditolak</option>
@@ -126,7 +126,18 @@
 
 @endsection
 @section('footer')
-   <script>
-       
-   </script>
+<script>
+    function hitung(i) {
+        var x = $("#status-"+i).val();
+        var a = $("#stok-"+i).val();
+        var b = $("#minta-"+i).val();
+
+        if (x == "Y"){
+            var c = a - b;
+            $("#sisa-"+i).val(c);
+        }else{
+            $("#sisa-"+i).val(a);
+        }    
+    }
+</script>
 @endsection
