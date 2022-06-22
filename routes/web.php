@@ -34,8 +34,15 @@ Route::get('/qR/{id}/inventaris','Invent\InventarisController@detail')->name('in
   //Route untuk dashboard
   //--------------------------Invent------------------------------------------
   Route::get('/invent/dashboard','Invent\DashboardController@index')->name('dashboard');
-  //--------------------------Finance------------------------------------------
+
+  //--------------------------ANANG GALUH------------------------------------------
+  Route::get('/finance/portalAG','Finance\PortalAGController@index')->name('dashboard');
+
   Route::get('/finance/dashboard','Finance\DashboardController@index')->name('dashboard');
+  Route::get('/finance/dashboarddin','Finance\DashboarddinController@index')->name('dashboard');
+  
+  
+  
   //--------------------------AMDK------------------------------------------
   Route::get('/amdk/dashboard','Amdk\DashboardController@index')->name('dashboard');
     //--------------------------Arsiparis------------------------------------------
@@ -129,8 +136,6 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     //--------------------------AMDK------------------------------------------
     //Route untuk pegawai
     Route::get('/amdk/pegawai','Amdk\PegawaiController@index')->name('pegawai');
-    //Route untuk pegawai
-    Route::get('/amdk/outsourcing','Amdk\OutsourcingController@index')->name('outsourcing');
     //Route untuk pengumuman
     Route::get('/amdk/pengumuman','Amdk\PengumumanController@index')->name('pengumuman');
     //Route untuk keluarga
@@ -196,75 +201,86 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
 
 
     //--------------------------Finance------------------------------------------
-    //Route untuk Kode Kementrian Lembaga
-    Route::get('/finance/klcode','Finance\KlcodeController@index')->name('klcode');
-    //Route untuk Kode Unit Kementrian Lembaga
-    Route::get('/finance/unitcode','Finance\UnitcodeController@index')->name('unitcode');
-    //Route untuk Kode Program Lembaga
-    Route::get('/finance/programcode','Finance\ProgramcodeController@index')->name('programcode');
-    //Route untuk Kode kegiatan
-    Route::get('/finance/activitycode','Finance\ActivitycodeController@index')->name('activitycode');
-    //Route untuk Kode KRO
-    Route::get('/finance/krocode','Finance\KrocodeController@index')->name('krocode');
-    //Route untuk Kode Rincian KRO
-    Route::get('/finance/detailcode','Finance\DetailcodeController@index')->name('detailcode');
-    //Route untuk Kode komponen
-    Route::get('/finance/komponencode','Finance\KomponencodeController@index')->name('komponencode');
-    //Route untuk Kode Sub komponen
-    Route::get('/finance/subcode','Finance\SubcodeController@index')->name('subcode');
-    //Route untuk Kode Akun
-    Route::get('/finance/accountcode','Finance\AccountcodeController@index')->name('accountcode');
-    //Route untuk Loka
-    Route::get('/finance/loka','Finance\LokaController@index')->name('loka');
-    //Route untuk Pelaksanaan Anggaran
-    Route::get('/finance/implementation','Finance\ImplementController@index')->name('implementation');
-    //Route untuk Revisi Pelaksanaan Anggaran
-    Route::get('/finance/revision','Finance\RevisionController@index')->name('revision');
-    //Route untuk Rekap Anggaran
-    Route::get('/finance/rera','Finance\ReraController@index')->name('rera');
-    //Route untuk Realisasi anggaran Anggaran
-    Route::get('/finance/realisasi','Finance\RealisasiController@index')->name('realiasi');
-    //Route untuk Sasaran Kegiatan
-    Route::get('/finance/ikuTarget','Finance\IkuTargetController@index')->name('ikuTarget');
-    //Route untuk Indikator Kinerja
-    Route::get('/finance/ikuIndicator','Finance\IkuIndicatorController@index')->name('ikuIndicator');
-    //Route untuk Daerah Tujuan
-    Route::get('/finance/destination','Finance\DestinationController@index')->name('destination');
-    //Route untuk PPK
-    Route::get('/finance/ppk','Finance\PPKController@index')->name('ppk');
-    //Route untuk Maskapai
-    Route::get('/finance/plane','Finance\PlaneController@index')->name('plane');
-    //Route untuk kode anggaran
-    Route::get('/finance/budget','Finance\BudgetController@index')->name('budget');
-    //Route untuk surat tugas
-    Route::get('/finance/outstation','Finance\OutstationController@index')->name('outstation');
-    //Route untuk Kuitansi
-    Route::get('/finance/travelexpenses','Finance\TravelexpensesController@index')->name('travelexpenses');
-    //Route untuk petugas
-    Route::get('/finance/petugas','Finance\PetugasController@index')->name('petugasmon');
-    //Route untuk laporan DL
-    Route::get('/finance/outreport','Finance\OutReportController@index')->name('outreport');
-    //Route untuk Tagging
-    Route::get('/finance/ikutagging','Finance\IkuTaggingController@index')->name('ikutagging');
-    //Route untuk Renstra Nasional
-    Route::get('/finance/renstranas','Finance\RenstranasController@index')->name('renstranas');
-    //Route untuk Renstra Lokal
-    Route::get('/finance/renstrakal','Finance\RenstrakalController@index')->name('renstrakal');
-    //Route untuk laporan Renstra
-    Route::get('/finance/renstrapot','Finance\RenstraPotController@index')->name('renstrapot');
-    //Route untuk Eselon II
-    Route::get('/finance/eselontwo','Finance\EselonTwoController@index')->name('eselontwo');
-    //Route untuk Realisasi RAPK
-    Route::get('/finance/realRAPK','Finance\RealRAPKController@index')->name('realRAPK');
-    //Route untuk Setup RAPK
-    Route::get('/finance/setupRAPK','Finance\SetupRAPKController@index')->name('setupRAPK');
-    //Route untuk laporan RAPK
-    Route::get('/finance/lapRAPK','Finance\LapRAPKController@index')->name('lapRAPK');
-    //Route untuk buku ST
-    Route::get('/finance/stbook','Finance\STBookController@index')->name('stbook');
-    //Route untuk laporan nominatif Surat
-    Route::get('/finance/nominatif','Finance\NominatifController@index')->name('nominatif');
+    //-----Surat Tugas--------
+      //Route untuk pegawai
+      Route::get('/amdk/outsourcing','Amdk\OutsourcingController@index')->name('outsourcing');
+      //Route untuk Daerah Tujuan
+      Route::get('/finance/destination','Finance\DestinationController@index')->name('destination');
+      //Route untuk PPK
+      Route::get('/finance/ppk','Finance\PPKController@index')->name('ppk');
+      //Route untuk Maskapai
+      Route::get('/finance/plane','Finance\PlaneController@index')->name('plane');
+      //Route untuk kode anggaran
+      Route::get('/finance/budget','Finance\BudgetController@index')->name('budget');
+      //Route untuk surat tugas
+      Route::get('/finance/outstation','Finance\OutstationController@index')->name('outstation');
+      //Route untuk Kuitansi
+      Route::get('/finance/travelexpenses','Finance\TravelexpensesController@index')->name('travelexpenses');
+      //Route untuk laporan DL
+      Route::get('/finance/outreport','Finance\OutReportController@index')->name('outreport');
+      //Route untuk buku ST
+      Route::get('/finance/stbook','Finance\STBookController@index')->name('stbook');
+      //Route untuk laporan nominatif Surat
+      Route::get('/finance/nominatif','Finance\NominatifController@index')->name('nominatif');
 
+    //-----Anggaran--------
+   
+      //Route untuk Kode Kementrian Lembaga
+      Route::get('/finance/klcode','Finance\KlcodeController@index')->name('klcode');
+      //Route untuk Kode Unit Kementrian Lembaga
+      Route::get('/finance/unitcode','Finance\UnitcodeController@index')->name('unitcode');
+      //Route untuk Kode Program Lembaga
+      Route::get('/finance/programcode','Finance\ProgramcodeController@index')->name('programcode');
+      //Route untuk Kode kegiatan
+      Route::get('/finance/activitycode','Finance\ActivitycodeController@index')->name('activitycode');
+      //Route untuk Kode KRO
+      Route::get('/finance/krocode','Finance\KrocodeController@index')->name('krocode');
+      //Route untuk Kode Rincian KRO
+      Route::get('/finance/detailcode','Finance\DetailcodeController@index')->name('detailcode');
+      //Route untuk Kode komponen
+      Route::get('/finance/komponencode','Finance\KomponencodeController@index')->name('komponencode');
+      //Route untuk Kode Sub komponen
+      Route::get('/finance/subcode','Finance\SubcodeController@index')->name('subcode');
+      //Route untuk Kode Akun
+      Route::get('/finance/accountcode','Finance\AccountcodeController@index')->name('accountcode');
+      //Route untuk Loka
+      Route::get('/finance/loka','Finance\LokaController@index')->name('loka');
+      //Route untuk Pelaksanaan Anggaran
+      Route::get('/finance/implementation','Finance\ImplementController@index')->name('implementation');
+      //Route untuk Revisi Pelaksanaan Anggaran
+      Route::get('/finance/revision','Finance\RevisionController@index')->name('revision');
+      //Route untuk Rekap Anggaran
+      Route::get('/finance/rera','Finance\ReraController@index')->name('rera');
+      //Route untuk Realisasi anggaran Anggaran
+      Route::get('/finance/realisasi','Finance\RealisasiController@index')->name('realiasi');
+      
+   
+    //-----e-planning--------
+
+      //Route untuk Sasaran Kegiatan
+      Route::get('/finance/ikuTarget','Finance\IkuTargetController@index')->name('ikuTarget');
+      //Route untuk Indikator Kinerja
+      Route::get('/finance/ikuIndicator','Finance\IkuIndicatorController@index')->name('ikuIndicator');
+      //Route untuk petugas
+      Route::get('/finance/petugas','Finance\PetugasController@index')->name('petugasmon');
+      //Route untuk Tagging
+      Route::get('/finance/ikutagging','Finance\IkuTaggingController@index')->name('ikutagging');
+      //Route untuk Renstra Nasional
+      Route::get('/finance/renstranas','Finance\RenstranasController@index')->name('renstranas');
+      //Route untuk Renstra Lokal
+      Route::get('/finance/renstrakal','Finance\RenstrakalController@index')->name('renstrakal');
+      //Route untuk laporan Renstra
+      Route::get('/finance/renstrapot','Finance\RenstraPotController@index')->name('renstrapot');
+      //Route untuk Eselon II
+      Route::get('/finance/eselontwo','Finance\EselonTwoController@index')->name('eselontwo');
+
+    //-----e-performance--------
+     //Route untuk Realisasi RAPK
+     Route::get('/finance/realRAPK','Finance\RealRAPKController@index')->name('realRAPK');
+     //Route untuk Setup RAPK
+     Route::get('/finance/setupRAPK','Finance\SetupRAPKController@index')->name('setupRAPK');
+     //Route untuk laporan RAPK
+     Route::get('/finance/lapRAPK','Finance\LapRAPKController@index')->name('lapRAPK');
 
 
     //--------------------------Arsip------------------------------------------

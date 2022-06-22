@@ -1,4 +1,4 @@
-@extends('layouts.lab')
+@extends('layouts.app')
 @section('content')
 <style>
     .sidebar{
@@ -7,7 +7,7 @@
     }
 </style>
 <div>
-  <img src="{{asset('images/coomingsoon.png')}}" style="width: 100%;">
+  <img src="{{asset('images/mainten.jpg')}}" style="width: 100%;">
 </div>
 
 @endsection

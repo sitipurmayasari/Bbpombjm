@@ -24,17 +24,18 @@ class LabRequestOkController extends Controller
 
     public function index(Request $request)
     {   
-        $data = Sbb::orderBy('id','desc')
-                ->select('sbb.*','users.name')
-                ->leftJoin('users','users.id','=','sbb.users_id')
-                ->where('sbb.jenis','L')
-                ->when($request->keyword, function ($query) use ($request) {
-                    $query->where('tanggal','LIKE','%'.$request->keyword.'%')
-                            ->orWhere('nomor', 'LIKE','%'.$request->keyword.'%')
-                            ->orWhere('name', 'LIKE','%'.$request->keyword.'%');
-                })
-                ->paginate('10');
-        return view('invent/labrequestok.index',compact('data'));
+        // $data = Sbb::orderBy('id','desc')
+        //         ->select('sbb.*','users.name')
+        //         ->leftJoin('users','users.id','=','sbb.users_id')
+        //         ->where('sbb.jenis','L')
+        //         ->when($request->keyword, function ($query) use ($request) {
+        //             $query->where('tanggal','LIKE','%'.$request->keyword.'%')
+        //                     ->orWhere('nomor', 'LIKE','%'.$request->keyword.'%')
+        //                     ->orWhere('name', 'LIKE','%'.$request->keyword.'%');
+        //         })
+        //         ->paginate('10');
+        // return view('invent/labrequestok.index',compact('data'));
+        return view('mainten');
     }
 
     public function yes($id)
