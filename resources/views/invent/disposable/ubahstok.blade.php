@@ -81,7 +81,7 @@
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Stok Awal
+                            for="form-field-1"> Barang Masuk
                             </label>
                             <div class="col-sm-8">
                                 <input type="text" name="stockawal" class="col-xs-2 col-sm-2" id="awal" 

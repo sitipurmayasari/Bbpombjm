@@ -23,20 +23,19 @@ class AtkRequestController extends Controller
 {
     public function index(Request $request)
     {   
-        // $peg =auth()->user()->id;
-        // $data = Sbb::orderBy('id','desc')
-        //             ->select('sbb.*','users.name')
-        //             ->leftJoin('users','users.id','=','sbb.users_id')
-        //             ->where('sbb.jenis','A')
-        //             ->where('sbb.users_id',$peg)
-        //             ->when($request->keyword, function ($query) use ($request) {
-        //                 $query->where('tanggal','LIKE','%'.$request->keyword.'%')
-        //                         ->orWhere('nomor', 'LIKE','%'.$request->keyword.'%')
-        //                         ->orWhere('name', 'LIKE','%'.$request->keyword.'%');
-        //             })
-        //             ->paginate('10');
-        // return view('invent/atkrequest.index',compact('data'));
-        return view('mainten');
+        $peg =auth()->user()->id;
+        $data = Sbb::orderBy('id','desc')
+                    ->select('sbb.*','users.name')
+                    ->leftJoin('users','users.id','=','sbb.users_id')
+                    ->where('sbb.jenis','A')
+                    ->where('sbb.users_id',$peg)
+                    ->when($request->keyword, function ($query) use ($request) {
+                        $query->where('tanggal','LIKE','%'.$request->keyword.'%')
+                                ->orWhere('nomor', 'LIKE','%'.$request->keyword.'%')
+                                ->orWhere('name', 'LIKE','%'.$request->keyword.'%');
+                    })
+                    ->paginate('10');
+        return view('invent/atkrequest.index',compact('data'));
     }
 
     public function create()

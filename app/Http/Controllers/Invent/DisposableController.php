@@ -128,7 +128,7 @@ class DisposableController extends Controller
                     ->where('inventaris_id',$id)
                     ->get();
         $data = Inventaris::where('id',$id)->first();
-        $sisa = Entrystock::selectraw('SUM(stock) isi')
+        $sisa = Entrystock::orderby('id','desc')
                         ->where('inventaris_id',$id)
                         ->first();
         return view('invent/disposable.stock',compact('data','stok','sisa'));

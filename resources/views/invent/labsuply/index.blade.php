@@ -50,7 +50,7 @@
                     <td>{{$row->nama_barang}}</td>
                     <td>{{$row->merk}}</td>
                     <td>{{$row->location->nama}}</td>
-                    <td> <a href="/invent/disposable/stock/{{$row->id}}" class="btn btn-success">
+                    <td> <a href="/invent/labsuply/stock/{{$row->id}}" class="btn btn-success">
                         @php
                             $total = $injectQuery->laststock($row->id)
                         @endphp

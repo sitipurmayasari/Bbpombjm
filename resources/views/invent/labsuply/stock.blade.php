@@ -72,8 +72,8 @@
                             <div class="col-sm-8">
                                 <input type="number" name="stockawal" class="col-xs-2 col-sm-2" required value="0"  id="stok"  onkeyup="hitung()" onclick="hitung()">&nbsp;&nbsp;
                                 @php
-                                    if ($sisa->isi != null) {
-                                        $isi = $sisa->isi;
+                                    if ($sisa->stock != null) {
+                                        $isi = $sisa->stock;
                                     } else {
                                        $isi = 0;
                                     }
