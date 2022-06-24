@@ -109,11 +109,13 @@ class AtkRequestController extends Controller
     {
         $id = $request->barang_id;
 
-        $data = Inventaris::selectRaw('inventaris.id, inventaris.nama_barang, inventaris.satuan_id, satuan.satuan, SUM(entrystock.stock) AS sisa')
-                    ->leftJoin('satuan', 'inventaris.satuan_id', '=', 'satuan.id')
-                    ->leftJoin('entrystock','entrystock.inventaris_id','=','inventaris.id')
-                    ->where('inventaris.id',$id)
-                    ->first();
+        $data =Inventaris::SelectRaw('inventaris.*,  entrystock.stock, satuan.satuan' )
+            ->LeftJoin(DB::raw("(SELECT MAX(id) as max_id, inventaris_id FROM entrystock GROUP BY inventaris_id) stok"),
+                                    'stok.inventaris_id','=','inventaris.id')
+            ->LeftJoin('entrystock','stok.max_id','=','entrystock.id')
+            ->leftJoin('satuan', 'inventaris.satuan_id', '=', 'satuan.id')
+            ->where('inventaris.id',$id)
+            ->first();
         return response()->json([ 'success' => true,'data' => $data],200);
     }
 
