@@ -1,4 +1,4 @@
-@extends('layouts.mon')
+@extends('layouts.ren')
 @section('breadcrumb')
 @section('breadcrumb')
     <li>Indikator Kinerja</li>

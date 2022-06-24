@@ -439,7 +439,7 @@ h2, a {
             <a class="social-icon" data-tooltip="Inventaris" href="/invent/dashboard">
               <img src="{{asset('images/invent.png')}}" style="height:100%; width:100%">
             </a>
-            <a class="social-icon" data-tooltip="Anang & Galuh" href="/finance/dashboard">
+            <a class="social-icon" data-tooltip="Anang & Galuh" href="/finance/portalAG">
               <img src="{{asset('images/naga.png')}}" style="height:100%; width:100%">
             </a>
             <a class="social-icon" data-tooltip="Kearsipan" href="/arsip/dashboard">

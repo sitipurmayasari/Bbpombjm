@@ -40,6 +40,8 @@ Route::get('/qR/{id}/inventaris','Invent\InventarisController@detail')->name('in
 
   Route::get('/finance/dashboard','Finance\DashboardController@index')->name('dashboard');
   Route::get('/finance/dashboarddin','Finance\DashboarddinController@index')->name('dashboard');
+  Route::get('/finance/dashboardren','Finance\DashboardrenController@index')->name('dashboard');
+  Route::get('/finance/dashboardforma','Finance\DashboardformaController@index')->name('dashboard');
   
   
   

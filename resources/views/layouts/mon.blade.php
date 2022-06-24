@@ -71,10 +71,10 @@
 				</button>
 
 				<div class="navbar-header pull-left">
-					<a href="/portal" class="navbar-brand">
+					<a href="/finance/portalAG" class="navbar-brand">
 						<small>
 						<img src="{{asset('images/bbpom.jpg')}}" alt="" srcset="" style="height:35px">
-							SI ANANG & GALUH
+							SI ANANG GALUH - ANGGARAN
 						</small>
 					</a>
 				</div>

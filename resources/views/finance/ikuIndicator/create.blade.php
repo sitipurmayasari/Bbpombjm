@@ -1,4 +1,4 @@
-@extends('layouts.mon')
+@extends('layouts.ren')
 @section('breadcrumb')
     <li>Indikator Kinerja</li>
     <li><a href="/finance/ikuIndicator">Indikator Kinerja Utama</a></li>

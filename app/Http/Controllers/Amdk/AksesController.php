@@ -69,6 +69,36 @@ class AksesController extends Controller
                     UserPermission::create($data);
                 }
             }
+
+            if ($request->input('akses_dinas')) {
+                for ($i = 0; $i < count($request->input('akses_dinas')); $i++){
+                    $data = [
+                        'user_id' => $request->user_id,
+                        'menu_id' => $request->akses_dinas[$i] ,
+                    ];
+                    UserPermission::create($data);
+                }
+            }
+
+            if ($request->input('akses_plan')) {
+                for ($i = 0; $i < count($request->input('akses_plan')); $i++){
+                    $data = [
+                        'user_id' => $request->user_id,
+                        'menu_id' => $request->akses_plan[$i] ,
+                    ];
+                    UserPermission::create($data);
+                }
+            }
+
+            if ($request->input('akses_forma')) {
+                for ($i = 0; $i < count($request->input('akses_forma')); $i++){
+                    $data = [
+                        'user_id' => $request->user_id,
+                        'menu_id' => $request->akses_forma[$i] ,
+                    ];
+                    UserPermission::create($data);
+                }
+            }
            
         DB::commit(); 
         return redirect()->route('akses')->with('sukses','Data Tersimpan');
@@ -101,6 +131,24 @@ class AksesController extends Controller
             ->select('submenu.*','menu.modul','menu.nama as group_nama')
             ->leftJoin('menu','submenu.menu_id','=','menu.id')
             ->where('menu.modul','arsip')
+            ->get();
+
+        $dinas = Submenu::orderBy('menu.id','asc')
+            ->select('submenu.*','menu.modul','menu.nama as group_nama')
+            ->leftJoin('menu','submenu.menu_id','=','menu.id')
+            ->where('menu.modul','dinas')
+            ->get();
+
+        $plan = Submenu::orderBy('menu.id','asc')
+            ->select('submenu.*','menu.modul','menu.nama as group_nama')
+            ->leftJoin('menu','submenu.menu_id','=','menu.id')
+            ->where('menu.modul','plan')
+            ->get();
+
+        $forma = Submenu::orderBy('menu.id','asc')
+            ->select('submenu.*','menu.modul','menu.nama as group_nama')
+            ->leftJoin('menu','submenu.menu_id','=','menu.id')
+            ->where('menu.modul','forma')
             ->get();
 
         $outputAmdk = array();
@@ -137,13 +185,43 @@ class AksesController extends Controller
             );
         }
 
+        $outputDinas = array();
+        foreach ($dinas as $in) {
+            $outputDinas[] = array(
+                'id' => $in->id,
+                'nama' => $in->nama,
+                'checked' => $this->checkPermissonMenu($user_id,$in->id)
+            );
+        }
+
+        $outputPlan = array();
+        foreach ($plan as $in) {
+            $outputPlan[] = array(
+                'id' => $in->id,
+                'nama' => $in->nama,
+                'checked' => $this->checkPermissonMenu($user_id,$in->id)
+            );
+        }
+
+        $outputForma = array();
+        foreach ($forma as $in) {
+            $outputForma[] = array(
+                'id' => $in->id,
+                'nama' => $in->nama,
+                'checked' => $this->checkPermissonMenu($user_id,$in->id)
+            );
+        }
+
 
         return response()->json([ 
             'success' => true,
             'amdk'=>$outputAmdk,
             'inventaris' => $outputInventaris,
             'finance' => $outputFinance,
-            'arsip' => $outputArsip
+            'arsip' => $outputArsip,
+            'forma' => $outputForma,
+            'dinas' => $outputDinas,
+            'plan' => $outputPlan
         ],200);
     }
 

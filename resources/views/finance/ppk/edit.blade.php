@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.din')
 @section('breadcrumb')
     <li>Setup Umum</li>
     <li><a href="/finance/ppk"> Pejabat Pembuat Komitmen</a></li>

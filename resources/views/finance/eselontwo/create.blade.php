@@ -1,4 +1,4 @@
-@extends('layouts.mon')
+@extends('layouts.ren')
 @section('breadcrumb')
     <li>Perjanjian Kinerja</li>
     <li><a href="/finance/eselontwo">PK Eselon II</a></li>

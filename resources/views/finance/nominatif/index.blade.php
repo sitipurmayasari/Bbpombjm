@@ -1,4 +1,4 @@
-@extends('layouts.mon')
+@extends('layouts.din')
 @section('breadcrumb')
     <li>Laporan Nominatif Biaya Perjalanan Dinas</i></li>
 @endsection

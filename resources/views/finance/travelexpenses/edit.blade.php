@@ -1,4 +1,4 @@
-@extends('layouts.mon')
+@extends('layouts.din')
 @section('breadcrumb')
     <li><a href="/finance/travelexpenses">Biaya Perjalanan Dinas</a></li>
     <li>Ubah Data</li>

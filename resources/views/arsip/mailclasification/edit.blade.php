@@ -137,6 +137,26 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1">Akses Internal
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text"  value="{{$data->internal}}"
+                                        class="col-xs-10 col-sm-10 required " 
+                                        name="internal" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Akses Eksternal
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text"  value="{{$data->eksternal}}"
+                                        class="col-xs-10 col-sm-10 required " 
+                                        name="eksternal" required/>
+                            </div>
+                        </div>
                         </fieldset>        
                </div>
            </div>

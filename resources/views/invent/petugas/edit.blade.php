@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.ren')
 @section('breadcrumb')
     <li>Setup</li>
     <li><a href="/invent/petugas"> Petugas</a></li>

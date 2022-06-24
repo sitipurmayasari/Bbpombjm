@@ -1,4 +1,4 @@
-@extends('layouts.mon')
+@extends('layouts.din')
 @section('breadcrumb')
     <li>Surat Tugas</li>
     <li>Nomor ST & SPPD</i></li>

@@ -1,4 +1,4 @@
-@extends('layouts.mon')
+@extends('layouts.din')
 @section('breadcrumb')
     <li>Setup Umum</li>
     <li>Pejabat Pembuat Komitmen</li>

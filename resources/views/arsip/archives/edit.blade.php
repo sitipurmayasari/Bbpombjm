@@ -1,7 +1,7 @@
 @extends('arsip/layouts_arsip.app')
 @section('breadcrumb')
     <li>Arsiparis</li>
-    <li><a href="/arsip/archives">Arsip {{auth()->user()->name}}</a></li>
+    <li><a href="/arsip/archives/bidang/{{$div->id}}">Arsip {{$div->nama}}</a></li>
     <li>Ubah Data</li>
 @endsection
 @section('content')
@@ -9,7 +9,7 @@
 
 <div class="row">
     <form class="form-horizontal validate-form" role="form" 
-    method="post" action="/arsip/archives/update/{{$data->id}}" enctype="multipart/form-data">
+    method="post" action="/arsip/archives/update/{{$div->id}}/{{$data->id}}" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div class="col-sm-12">
         <div class="widget-box">
@@ -48,6 +48,23 @@
                                         <option value="{{$isi->id}}" selected>{{$isi->alias}} - {{$isi->names}}</option>
                                     @else
                                         <option value="{{$isi->id}}">{{$isi->alias}} - {{$isi->names}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Bentuk Naskah
+                        </label>
+                        <div class="col-sm-10">
+                            <select name="naskah_id" class="col-xs-10 col-sm-10 required select2" required>
+                                <option value="">Pilih bentuk naskah</option>
+                                @foreach ($naskah as $isi)
+                                    @if ($isi->id == $data->naskah_id)
+                                        <option value="{{$isi->id}}" selected>{{$isi->bentuk}}</option>
+                                    @else
+                                        <option value="{{$isi->id}}">{{$isi->bentuk}}</option>
                                     @endif
                                 @endforeach
                             </select>
@@ -105,6 +122,15 @@
                         <div class="col-sm-10">
                             <input type="number"  class="col-xs-1 col-sm-1" value="{{$data->jumlah}}"
                                 name="jumlah"  />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Lokasi Penyimpanan
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="text"  placeholder="bantex dengan nama x" class="col-xs-10 col-sm-10 "
+                                    name="lokasi"  value="{{$data->lokasi}}"/>
                         </div>
                     </div>
                     <div class="form-group">

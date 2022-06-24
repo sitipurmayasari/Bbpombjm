@@ -47,9 +47,11 @@
                                                                                     <th width="40px">No</th>
                                                                                     <th>Klasifikasi {{$item->alias}}</th>
                                                                                     <th>Nama Dokumen</th>
+                                                                                    <th>Nomor</th>
                                                                                     <th>Tanggal</th>
                                                                                     <th>status</th>
                                                                                     <th>File</th>
+                                                                                    <th>Dibuat Oleh</th>
                                                                                     <th>Aksi</th>
                                                                                 <thead>
                                                                                 <tbody>
@@ -62,9 +64,11 @@
                                                                                         <td>{{$no}}</td>
                                                                                         <td>{{$row->klas->alias}}</td>
                                                                                         <td>{{$row->uraian}}</td>
+                                                                                        <td>{{$row->nomor}}</td>
                                                                                         <td>{{$row->date}}</td>
                                                                                         <td>{{$row->klas->thelast}}</td>
                                                                                         <td><a href="{{$row->getFIlearsip()}}" target="_blank" >{{$row->file}}</a></td>
+                                                                                        <th>{{$row->user->name}}</th>
                                                                                         <td>
                                                                                             <a href="#" class="btn btn-danger delete"
                                                                                                 r-name="{{$row->nama}}" 

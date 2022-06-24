@@ -54,6 +54,9 @@
                         <li class="active"><a href="#amdk" data-toggle="tab">AMDK</a></li>
                         <li><a href="#inventaris" data-toggle="tab">Inventaris</a></li>
                         <li><a href="#finance" data-toggle="tab">Keuangan</a></li>
+                        <li><a href="#dinas" data-toggle="tab">Surat Dinas</a></li>
+                        <li><a href="#plan" data-toggle="tab">e-Planning</a></li>
+                        <li><a href="#forma" data-toggle="tab">e-Performance</a></li>
                         <li><a href="#arsip" data-toggle="tab">Arsiparis</a></li>
                     </ul>
 
@@ -150,7 +153,7 @@
                                 <div class="col-md-12">
                                     <div class="panel panel-success">
                                         <div class="panel-heading">
-                                            <h3 class="panel-title">ARSIPARIS</h3>
+                                            <h3 class="panel-title">ARSIP</h3>
                                         </div>
                         
                                         <div class="panel-body">
@@ -159,10 +162,88 @@
                                                     <th width="5%" style="text-align: center;">No</th>
                                                     <th style="text-align: center;">Menu</th>
                                                     <th width="20%" style="text-align: center;">
-                                                        <input type="checkbox" name="arsipCheckAll" id="financeCheckAll" >
+                                                        <input type="checkbox" name="arsipCheckAll" id="arsipCheckAll" >
                                                     </th>
                                                 </thead>
                                                 <tbody id="isi_arsip">
+                                                   
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="dinas">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-success">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">SURAT TUGAS</h3>
+                                        </div>
+                        
+                                        <div class="panel-body">
+                                            <table id="simple-table" class="table  table-bordered table-hover" >
+                                                <thead >
+                                                    <th width="5%" style="text-align: center;">No</th>
+                                                    <th style="text-align: center;">Menu</th>
+                                                    <th width="20%" style="text-align: center;">
+                                                        <input type="checkbox" name="dinasCheckAll" id="dinasCheckAll" >
+                                                    </th>
+                                                </thead>
+                                                <tbody id="isi_dinas">
+                                                   
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="plan">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-success">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">e-PLANNING</h3>
+                                        </div>
+                        
+                                        <div class="panel-body">
+                                            <table id="simple-table" class="table  table-bordered table-hover" >
+                                                <thead >
+                                                    <th width="5%" style="text-align: center;">No</th>
+                                                    <th style="text-align: center;">Menu</th>
+                                                    <th width="20%" style="text-align: center;">
+                                                        <input type="checkbox" name="planCheckAll" id="planCheckAll" >
+                                                    </th>
+                                                </thead>
+                                                <tbody id="isi_plan">
+                                                   
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="forma">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-success">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">e-PERFORMANCE</h3>
+                                        </div>
+                        
+                                        <div class="panel-body">
+                                            <table id="simple-table" class="table  table-bordered table-hover" >
+                                                <thead >
+                                                    <th width="5%" style="text-align: center;">No</th>
+                                                    <th style="text-align: center;">Menu</th>
+                                                    <th width="20%" style="text-align: center;">
+                                                        <input type="checkbox" name="formaCheckAll" id="formaCheckAll" >
+                                                    </th>
+                                                </thead>
+                                                <tbody id="isi_forma">
                                                    
                                                 </tbody>
                                             </table>
@@ -222,6 +303,30 @@
                 $('.cekArsip').prop('checked', true);
             } else {
                 $('.cekArsip').prop('checked', false);
+            }
+        });
+
+        $('#dinasCheckAll').click(function() {
+            if ($(this).prop('checked')) {
+                $('.cekDinas').prop('checked', true);
+            } else {
+                $('.cekDinas').prop('checked', false);
+            }
+        });
+
+        $('#planCheckAll').click(function() {
+            if ($(this).prop('checked')) {
+                $('.cekPlan').prop('checked', true);
+            } else {
+                $('.cekPlan').prop('checked', false);
+            }
+        });
+
+        $('#formaCheckAll').click(function() {
+            if ($(this).prop('checked')) {
+                $('.cekForma').prop('checked', true);
+            } else {
+                $('.cekForma').prop('checked', false);
             }
         });
     });
@@ -304,10 +409,62 @@
                     '</tr>';
               }
 
+              for (let i = 0; i < response.dinas.length; i++) {
+                  var is_check = '';
+                  var no = i+1;
+                  if (response.dinas[i].checked){
+                      is_check = 'checked';
+                  }
+                  isi_dinas+='<tr>'+
+                        '<td style="text-align: center;">'+no+'</td>'+
+                        '<td>'+response.dinas[i].nama+'</td>'+
+                        '<td style="text-align: center;">'+
+                            '<input type="checkbox" class="menu cekDinas" name="akses_dinas[]" '+is_check
+                            +' value="'+response.dinas[i].id+'">'+
+                        '</td>'+
+                    '</tr>';
+              }
+
+              for (let i = 0; i < response.plan.length; i++) {
+                  var is_check = '';
+                  var no = i+1;
+                  if (response.plan[i].checked){
+                      is_check = 'checked';
+                  }
+                  isi_plan+='<tr>'+
+                        '<td style="text-align: center;">'+no+'</td>'+
+                        '<td>'+response.plan[i].nama+'</td>'+
+                        '<td style="text-align: center;">'+
+                            '<input type="checkbox" class="menu cekPlan" name="akses_plan[]" '+is_check
+                            +' value="'+response.plan[i].id+'">'+
+                        '</td>'+
+                    '</tr>';
+              }
+
+              for (let i = 0; i < response.forma.length; i++) {
+                  var is_check = '';
+                  var no = i+1;
+                  if (response.forma[i].checked){
+                      is_check = 'checked';
+                  }
+                  isi_forma+='<tr>'+
+                        '<td style="text-align: center;">'+no+'</td>'+
+                        '<td>'+response.forma[i].nama+'</td>'+
+                        '<td style="text-align: center;">'+
+                            '<input type="checkbox" class="menu cekForma" name="akses_forma[]" '+is_check
+                            +' value="'+response.forma[i].id+'">'+
+                        '</td>'+
+                    '</tr>';
+              }
+
               $("#isi_amdk").html(isi_amdk);
               $("#isi_inv").html(isi_inv);
               $("#isi_fin").html(isi_fin);
               $("#isi_arsip").html(isi_arsip);
+              $("#isi_dinas").html(isi_dinas);
+              $("#isi_plan").html(isi_plan);
+              $("#isi_forma").html(isi_forma);
+
 
             }
         );

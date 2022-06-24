@@ -47,10 +47,12 @@
                                                                                     <th width="40px">No</th>
                                                                                     <th>Klasifikasi {{$item->alias}}</th>
                                                                                     <th>Nama Dokumen</th>
+                                                                                    <th>Nomor</th>
                                                                                     <th>Tanggal</th>
                                                                                     <th>aktif</th>
                                                                                     <th>inaktif</th>
                                                                                     <th>status</th>
+                                                                                    <th>Dibuat Oleh</th>
                                                                                     <th>File</th>
                                                                                 <thead>
                                                                                 <tbody>
@@ -63,6 +65,7 @@
                                                                                         <td>{{$no}}</td>
                                                                                         <td>{{$row->klas->alias}}</td>
                                                                                         <td>{{$row->uraian}}</td>
+                                                                                        <td>{{$row->nomor}}</td>
                                                                                         <td>{{$row->date}}</td>
                                                                                         <td>{{$row->klas->actived}} tahun 
                                                                                             @if ($row->klas->ketactive != null)
@@ -76,6 +79,7 @@
                                                                                         </td>
                                                                                         <td>{{$row->klas->thelast}}</td>
                                                                                         <td><a href="{{$row->getFIlearsip()}}" target="_blank" >{{$row->file}}</a></td>
+                                                                                        <th>{{$row->user->name}}</th>
                                                                                     </tr>
                                                                                     @php
                                                                                         $no++;

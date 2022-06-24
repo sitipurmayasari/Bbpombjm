@@ -8,7 +8,7 @@ class Mailclasification extends Model
 {
     protected $table = "mailclasification";
     protected $fillable = ["mailsubgroup_id","code","names","alias","actived","innactive","thelast",
-                            "ketactive","ketinactive","akhir","securitiesklas"
+                            "ketactive","ketinactive","akhir","securitiesklas","internal","eksternal"
 
 ];
 

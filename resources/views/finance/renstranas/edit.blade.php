@@ -1,4 +1,4 @@
-@extends('layouts.mon')
+@extends('layouts.ren')
 @inject('injectQuery', 'App\InjectQuery')
 @section('breadcrumb')
     <li>Rencana Strategi</li>

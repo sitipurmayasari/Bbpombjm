@@ -11,14 +11,14 @@ class Archives extends Model
     use SoftDeletes;
     protected $table = "archives";
     protected $fillable = ['divisi_id','users_id','mailclasification_id','uraian','tingkat','date','nomor','jumlah',
-                            'file'
+                            'file','naskah_id','lokasi'
                         ];
     protected $dates = ['deleted_at'];
 
 
     public function user()
     {
-        return $this->belongsTo(Users::class,'users_id','id');
+        return $this->belongsTo(User::class,'users_id','id');
     }
     public function div()
     {

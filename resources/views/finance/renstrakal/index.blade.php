@@ -1,4 +1,4 @@
-@extends('layouts.mon')
+@extends('layouts.ren')
 @section('breadcrumb')
     <li>Rencana Strategi</li>
     <li>Renstra Balai</li>

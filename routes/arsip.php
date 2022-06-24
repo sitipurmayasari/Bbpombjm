@@ -13,11 +13,12 @@ Route::post('/arsip/mailclasification/update/{id}','Arsip\MailClasificationContr
 Route::post('/arsip/mailclasification/delete/{id}','Arsip\MailClasificationController@delete')->name('mailclasification.delete');
 
 //Route untuk Arsip
-Route::get('/arsip/archives/create','Arsip\ArchivesController@create')->name('archives.create');
-Route::post('/arsip/archives/store','Arsip\ArchivesController@store')->name('archives.store');
+Route::get('/arsip/archives/bidang/{id}','Arsip\ArchivesController@bidang')->name('archives.bidang');
+Route::get('/arsip/archives/create/{id}','Arsip\ArchivesController@create')->name('archives.create');
+Route::post('/arsip/archives/store/{id}','Arsip\ArchivesController@store')->name('archives.store');
 Route::get('/arsip/archives/delete/{id}','Arsip\ArchivesController@delete')->name('archives.delete');
-Route::get('/arsip/archives/edit/{id}','Arsip\ArchivesController@edit')->name('archives.edit');
-Route::post('/arsip/archives/update/{id}','Arsip\ArchivesController@update')->name('archives.update');
+Route::get('/arsip/archives/edit/{div}/{id}','Arsip\ArchivesController@edit')->name('archives.edit');
+Route::post('/arsip/archives/update/{div}/{id}','Arsip\ArchivesController@update')->name('archives.update');
 
 //Route untuk Arsip bidang
 Route::post('/arsip/archivesbid/store','Arsip\ArchivesbidController@store')->name('archivesbid.store');
