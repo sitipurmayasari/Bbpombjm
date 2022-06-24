@@ -396,7 +396,7 @@ class InjectQuery
     }
 
     public function getSTokBarang($id){
-        $stok = Entrystock::selectraw('SUM(stock) AS stok')
+        $stok = Entrystock::orderby('id','desc')
                             ->where('inventaris_id',$id)
                             ->first();
         return $stok;
