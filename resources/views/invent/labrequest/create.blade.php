@@ -239,7 +239,7 @@
                 function(response) {
                     $("#satuan_id-1").val(response.data.satuan_id);
                     $("#satuan-1").val(response.data.satuan);
-                    $("#stok-1").val(response.data.sisa);
+                    $("#stok-1").val(response.data.stock);
                     $("#inventaris_id-1").val(response.data.id);
                     var x = $("#stok-1").val();
                     document.getElementById("jum-1").setAttribute("max", x);
@@ -258,14 +258,14 @@
             var barang_id =  $("#barang_id-"+i).val();
             if (barang_id == '') return false;
             $.get(
-                "{{route('atkrequest.getbarang') }}",
+                "{{route('labrequest.getbarang') }}",
                 {
                     barang_id: barang_id
                 },
                 function(response) {
                     $("#satuan_id-"+i).val(response.data.satuan_id);
                     $("#satuan-"+i).val(response.data.satuan);
-                    $("#stok-"+i).val(response.data.sisa);
+                    $("#stok-"+i).val(response.data.stock);
                     var x = $("#stok-"+i).val();
                     document.getElementById("jum-"+i).setAttribute("max", x);
                 }

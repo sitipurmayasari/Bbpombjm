@@ -224,10 +224,10 @@
                 },
                 function(response) {
 
-                    if (response.data.sisa == null) {
+                    if (response.data.stock == null) {
                         v = 0;
                     } else {
-                        v = response.data.sisa;
+                        v = response.data.stock;
                     }
 
                     $("#satuan_id-1").val(response.data.satuan_id);
@@ -255,10 +255,10 @@
                     barang_id: barang_id
                 },
                 function(response) {
-                    if (response.data.sisa == null) {
+                    if (response.data.stock == null) {
                         v = 0;
                     } else {
-                        v = response.data.sisa;
+                        v = response.data.stock;
                     }
                     $("#satuan_id-"+i).val(response.data.satuan_id);
                     $("#satuan-"+i).val(response.data.satuan);

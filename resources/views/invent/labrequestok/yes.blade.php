@@ -87,7 +87,7 @@
                                     @php
                                          $stok = $injectQuery->getSTokBarang($item->inventaris_id)
                                     @endphp
-                                    <input type="number" name="stok[]" class="form-control" readonly value="{{$stok->stok}}" id="stok-{{$no}}">
+                                    <input type="number" name="stok[]" class="form-control" readonly value="{{$stok->stock}}" id="stok-{{$no}}">
                                 </td>
                                 <td>
                                     <input type="number"  min="1"  name="jumlah[]" class="form-control" value={{$item->jumlah}} id="minta-{{$no}}">
