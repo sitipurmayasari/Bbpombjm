@@ -38,12 +38,12 @@ class RenstrakalController extends Controller
 
     public function generate(Request $request)
     {
-        // $this->validate($request,[
-        //     'yearfrom' => 'required',
-        //     'tanggal' => 'required',
-        //     'filename' => 'required'
-        // ]);
-       $data = Renstrakal::create($request->all());
+        $this->validate($request,[
+            'yearfrom' => 'required',
+            'tanggal' => 'required',
+            'filename' => 'required'
+        ]);
+        $data = Renstrakal::create($request->all());
         $rens = $data->id;
 
         return redirect('/finance/renstrakal/entrynas/'.$rens);

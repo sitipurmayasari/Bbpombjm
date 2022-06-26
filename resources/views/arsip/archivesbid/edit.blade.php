@@ -1,8 +1,8 @@
 @extends('arsip/layouts_arsip.app')
 @section('breadcrumb')
     <li>Arsiparis</li>
-    <li><a href="/arsip/archivesbid">Arsip  Bidang {{$div->nama}}</a></li>
-    <li>Tambah Baru</li>
+    <li><a href="/arsip/archivesbid">Bentuk Naskah</a></li>
+    <li>Ubah Data</li>
 @endsection
 @section('content')
 @include('layouts.validasi')

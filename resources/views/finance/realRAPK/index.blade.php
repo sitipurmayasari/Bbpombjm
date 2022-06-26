@@ -1,4 +1,4 @@
-@extends('layouts.mon')
+@extends('layouts.forma')
 @section('breadcrumb')
     <li>RAPK</li>
     <li>Realisasi Capaian</li>

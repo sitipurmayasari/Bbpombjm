@@ -292,7 +292,7 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
      Route::get('/arsip/mailclasification','Arsip\MailClasificationController@index')->name('mailclasification');
      //Route untuk Arsip
      Route::get('/arsip/archives','Arsip\ArchivesController@index')->name('archives');
-     //Route untuk Arsip bidang
+     //Route untuk Bentuk NAskah
      Route::get('/arsip/archivesbid','Arsip\ArchivesbidController@index')->name('archivesbid');
      //Route untuk rekap Arsip
      Route::get('/arsip/archivesrek','Arsip\ArchivesrekController@index')->name('archivesrek');

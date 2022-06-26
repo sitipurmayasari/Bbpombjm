@@ -20,9 +20,9 @@ Route::get('/arsip/archives/delete/{id}','Arsip\ArchivesController@delete')->nam
 Route::get('/arsip/archives/edit/{div}/{id}','Arsip\ArchivesController@edit')->name('archives.edit');
 Route::post('/arsip/archives/update/{div}/{id}','Arsip\ArchivesController@update')->name('archives.update');
 
-//Route untuk Arsip bidang
+//Route untuk Bentuk NAskah
+Route::get('/arsip/archivesbid/create','Arsip\ArchivesbidController@create')->name('archivesbid.create');
 Route::post('/arsip/archivesbid/store','Arsip\ArchivesbidController@store')->name('archivesbid.store');
-Route::get('/arsip/archivesbid/delete/{id}','Arsip\ArchivesbidController@delete')->name('archivesbid.delete');
 Route::get('/arsip/archivesbid/edit/{id}','Arsip\ArchivesbidController@edit')->name('archivesbid.edit');
 Route::post('/arsip/archivesbid/update/{id}','Arsip\ArchivesbidController@update')->name('archivesbid.update');
 

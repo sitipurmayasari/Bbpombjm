@@ -1,5 +1,5 @@
 
-@extends('layouts.mon')
+@extends('layouts.forma')
 @inject('injectQuery', 'App\InjectQuery')
 @section('breadcrumb')
     <li>RAPK</li>
