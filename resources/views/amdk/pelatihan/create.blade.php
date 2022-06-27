@@ -30,7 +30,7 @@
                         for="form-field-1"> Jenis Kegiatan
                         </label>
                         <div class="col-sm-10">
-                            <select name="jenis_pelatihan_id" id="" class="col-xs-10 col-sm-10 select2">
+                            <select name="jenis_pelatihan_id" id="" class="col-xs-10 col-sm-10 select2" required>
                                <option value="">Pilih Jenis</option>
                                @foreach ($jenis as $item)
                                     <option value="{{$item->id}}">{{$item->name}}</option>
