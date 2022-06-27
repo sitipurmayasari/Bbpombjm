@@ -78,7 +78,7 @@
                     <td>{{$data->firstItem() + $key}}</td>
                     <td>{{$row->bentuk}}</td>
                     <td>
-                        <a href="/amdk/archivesbid/edit/{{$row->id}}" class="btn btn-warning">
+                        <a href="/arsip/archivesbid/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
                     </td>

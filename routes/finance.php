@@ -234,8 +234,6 @@
     Route::get('finance/eselontwo/editmeta/{id}','Finance\EselonTwoController@editmeta')->name('eselontwo.editmeta');
     Route::post('finance/eselontwo/updatemeta/{id}','Finance\EselonTwoController@updatemeta')->name('eselontwo.updatemeta');
 
-
-
      //Route untuk Realisasi RAPK
     Route::get('/finance/realRAPK/create','Finance\RealRAPKController@create')->name('realRAPK.create');
     Route::post('finance/realRAPK/generate','Finance\RealRAPKController@generate')->name('realRAPK.generate');

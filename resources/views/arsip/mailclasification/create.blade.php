@@ -126,7 +126,7 @@
                             for="form-field-1">Akses Internal
                             </label>
                             <div class="col-sm-8">
-                                <input type="text"  value="Pejabat Eseslon II terkait, Pengawas Internal"
+                                <input type="text"  value="Pejabat Eselon III Terkait yang diberikan izin, pengawas internal"
                                         class="col-xs-10 col-sm-10 required " 
                                         name="internal" required/>
                             </div>
@@ -136,7 +136,7 @@
                             for="form-field-1"> Akses Eksternal
                             </label>
                             <div class="col-sm-8">
-                                <input type="text"  value="Pejabat Eseslon II terkait, Pengawas Internal"
+                                <input type="text"  value="Pengawas eksternal, penegak hukum, publik (masyarakat umum)"
                                         class="col-xs-10 col-sm-10 required " 
                                         name="eksternal" required/>
                             </div>

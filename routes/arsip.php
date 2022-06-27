@@ -33,3 +33,6 @@ Route::get('/arsip/archivesrek/delete/{id}','Arsip\ArchivesrekController@delete'
 Route::get('/arsip/archivesrek/edit/{id}','Arsip\ArchivesrekController@edit')->name('archivesrek.edit');
 Route::post('/arsip/archivesrek/update/{id}','Arsip\ArchivesrekController@update')->name('archivesrek.update');
 Route::get('/arsip/archivesrek/deleteper/{id}','Arsip\ArchivesrekController@deleteper')->name('archivesrek.deleteper');
+
+//Route untuk Laporan Arsip
+Route::post('/arsip/reportarchive/cetak','Arsip\ReportarchiveController@cetak')->name('reportarchive.cetak');

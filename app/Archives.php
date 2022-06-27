@@ -28,10 +28,12 @@ class Archives extends Model
     {
         return $this->belongsTo(Mailclasification::class,'mailclasification_id','id');
     }
-    // public function outst_destiny()
-    // {
-    //     return $this->hasMany(Outst_destiny::class,'outstation_id','id');
-    // }
+
+    public function naskah()
+    {
+        return $this->belongsTo(Naskah::class,'naskah_id','id');
+    }
+
     public function getFIlearsip() 
     {
         return $this->file==null ? 'Tidak Ada File' : asset('images/arsiparis').'/'.$this->id.'/'.$this->file;
