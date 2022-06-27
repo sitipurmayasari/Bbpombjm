@@ -160,7 +160,15 @@
         </tr>
         <tr>
             @php
-                $hotelmax = $nilai->hotelmax1;
+                $a = $nilai->hotelmax1;
+                $b = $nilai->hotelmax2;
+
+                if ($b != null) {
+                    $hotelmax = $nilai->hotelmax2;
+                } else {
+                    $hotelmax = $nilai->hotelmax1;
+                }
+                
                 $terima30 = $hotelmax*(30/100);
             @endphp
             <td style="vertical-align: top">2.</td>
