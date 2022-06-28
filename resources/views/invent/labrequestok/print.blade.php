@@ -115,7 +115,7 @@
                 @foreach ($isi as $item)
                 <tr>
                     <td>{{$no++}}</td>
-                    <td>{{$item->barang->nama_barang}}</td>
+                    <td>{{$item->barang->nama_barang}} (No. Seri : {{$item->barang->no_seri}})</td>
                     <td>{{$item->satuan->satuan}}</td>
                     <td>{{$item->jumlah}}</td>
                     <td>{{$item->ket}}</td>

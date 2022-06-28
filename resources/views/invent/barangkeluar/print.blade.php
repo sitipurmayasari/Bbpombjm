@@ -115,7 +115,11 @@
                 @foreach ($isi as $item)
                 <tr>
                     <td>{{$no++}}</td>
-                    <td style="text-align: left;">{{$item->barang->nama_barang}}</td>
+                    <td style="text-align: left;">{{$item->barang->nama_barang}} 
+                        @if ($item->barang->kind=='L')
+                            (No. Seri : {{$item->barang->no_seri}})
+                        @endif
+                    </td>
                     <td>{{$item->satuan->satuan}}</td>
                     <td>{{$item->jumlah}}</td>
                     <td style="text-align: left;">{{$item->ket}}</td>
