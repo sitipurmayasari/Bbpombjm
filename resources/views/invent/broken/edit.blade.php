@@ -46,9 +46,9 @@
                             <option value="0">Non Lab / Gudang</option>
                         @foreach ($lab as $peg)
                            @if ($peg->id == $data->labory_id)
-                            <option value="{{$peg->id}}" selected>{{$peg->nama}}</option>
+                            <option value="{{$peg->id}}" selected>{{$peg->name}}</option>
                            @else
-                            <option value="{{$peg->id}}">{{$peg->nama}}</option>
+                            <option value="{{$peg->id}}">{{$peg->name}}</option>
                            @endif
                         @endforeach
                     </select>

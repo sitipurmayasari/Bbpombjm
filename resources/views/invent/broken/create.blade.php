@@ -47,7 +47,7 @@
                     <select id="peg" name="labory_id" class="col-xs-10 col-sm-10 select2" required>
                             <option value="0">Non Lab / Gudang</option>
                         @foreach ($lab as $peg)
-                            <option value="{{$peg->id}}">{{$peg->nama}}</option>
+                            <option value="{{$peg->id}}">{{$peg->name}}</option>
                         @endforeach
                     </select>
                 </div>
