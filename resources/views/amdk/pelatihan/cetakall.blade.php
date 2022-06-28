@@ -11,7 +11,7 @@
 </head> --}}
 <?php
 header("Content-type: application/vnd-ms-excel");
-header("Content-Disposition: attachment; filename=DataTagingAnggaran.xls");
+header("Content-Disposition: attachment; filename=Pelatihan.xls");
 ?>
 
 <!DOCTYPE html>
