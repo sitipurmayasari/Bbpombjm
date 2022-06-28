@@ -17,7 +17,7 @@ class Sbbdetail extends Model
 
     public function barang()
     {
-        return $this->belongsTo(Inventaris::class,'inventaris_id','id');
+        return $this->belongsTo(Inventaris::class,'inventaris_id','id')->withTrashed();
     }
 
     public function satuan()
