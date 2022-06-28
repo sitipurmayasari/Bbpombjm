@@ -40,9 +40,10 @@ class BrokenController extends Controller
                 ->where('id','!=','1');
         $satuan = Satuan::all();
         $norusak = $this->getNoRusak();
+        $lab    = Labory::all();
         $tahu = Pejabat::selectraw('DISTINCT(jabatan_id), id, divisi_id, subdivisi_id, users_id, pjs')
                         -> whereraw('pjs is null and jabatan_id != 6')->Orderby('id','desc')->get();
-        return view('invent/broken.create',compact('data','user','norusak','satuan','tahu'));
+        return view('invent/broken.create',compact('data','user','norusak','satuan','tahu','lab'));
     }
 
    
@@ -102,10 +103,11 @@ class BrokenController extends Controller
         $user = User::all()
         ->where('id','!=','1');
         $satuan = Satuan::all();
+        $lab    = Labory::all();
         $tahu = Pejabat::selectraw('DISTINCT(jabatan_id), id, divisi_id, subdivisi_id, users_id, pjs')
             -> whereraw('pjs is null and jabatan_id != 6')->Orderby('id','desc')->get();
 
-        return view('invent/broken.edit',compact('data','barang','user','satuan','tahu'));
+        return view('invent/broken.edit',compact('data','barang','user','satuan','tahu','lab'));
     }
 
    

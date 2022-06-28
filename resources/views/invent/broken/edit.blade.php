@@ -16,14 +16,14 @@
             <div class="panel-body">
                <div class="col-md-12">
                 <fieldset>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label for="">NO. ADUAN*</label>
                     <input type="text" id="no_adu" readonly required
                     class="col-xs-10 col-sm-10 required " 
                     name="nomor"
                     value="{{$data->nomor}}"/>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label > Mengetahui *</label>
                     <select id="peg" name="pejabat_id" class="col-xs-10 col-sm-10 select2" required>
                             <option value="">pilih nama pejabat</option>
@@ -36,9 +36,22 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label >Pegawai *</label>
                     <input type="text" readonly class="col-xs-10 col-sm-10 required " value="{{$data->pegawai->name}}"/>
+                </div>
+                <div class="col-md-3">
+                    <label >Laboratorium *</label>
+                    <select id="peg" name="labory_id" class="col-xs-10 col-sm-10 select2" required>
+                            <option value="0">Non Lab / Gudang</option>
+                        @foreach ($lab as $peg)
+                           @if ($peg->id == $data->labory_id)
+                            <option value="{{$peg->id}}" selected>{{$peg->nama}}</option>
+                           @else
+                            <option value="{{$peg->id}}">{{$peg->nama}}</option>
+                           @endif
+                        @endforeach
+                    </select>
                 </div>
                 
                 </fieldset>

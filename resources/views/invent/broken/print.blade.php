@@ -89,7 +89,11 @@
                     <td class="rapi" style="width: 20%; ">Lab</td>
                     <td  class="rapi"style="width: 2%;">:</td>
                     <td class="rapi">
-                        {{$data->lab->name}}
+                        @if ($data->labory_id == 0)
+                            Non Lab / Gudang
+                       @else
+                            {{$data->lab->name}}
+                       @endif
                     </td>
                 </tr>
                 <tr>

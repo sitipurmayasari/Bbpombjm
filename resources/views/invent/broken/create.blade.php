@@ -16,7 +16,7 @@
             <div class="panel-body">
                <div class="col-md-12">
                 <fieldset>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label for="">NO. ADUAN*</label>
                     <input type="text" id="no_adu" readonly required
                     class="col-xs-10 col-sm-10 required " 
@@ -24,7 +24,7 @@
                     value="{{$norusak}}"/>
                     <input type="hidden" name="tanggal" value="{{date('Y-m-d')}}"/>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label > Mengetahui *</label>
                     <select id="peg" name="pejabat_id" class="col-xs-10 col-sm-10 select2" required>
                             <option value="">pilih nama pejabat</option>
@@ -33,12 +33,21 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label >Pegawai *</label>
                     <select id="peg" name="users_id" class="col-xs-10 col-sm-10 select2" required>
                             <option value="">pilih nama pegawai</option>
                         @foreach ($user as $peg)
                             <option value="{{$peg->id}}">{{$peg->no_pegawai}} || {{$peg->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label >Laboratorium *</label>
+                    <select id="peg" name="labory_id" class="col-xs-10 col-sm-10 select2" required>
+                            <option value="0">Non Lab / Gudang</option>
+                        @foreach ($lab as $peg)
+                            <option value="{{$peg->id}}">{{$peg->nama}}</option>
                         @endforeach
                     </select>
                 </div>

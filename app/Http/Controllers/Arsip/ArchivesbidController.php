@@ -24,7 +24,7 @@ class ArchivesbidController extends Controller
     public function store(Request $request)
     {        
         Naskah::create($request->all());
-        return redirect('/arsip/mailclasification')->with('sukses','Data Tersimpan');
+        return redirect('/arsip/archivesbid')->with('sukses','Data Tersimpan');
     }
 
     public function edit($id)

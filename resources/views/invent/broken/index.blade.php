@@ -54,7 +54,13 @@
                     <td style="text-align: center">{{$data->firstItem() + $key}}</td>
                     <td>{{$row->nomor}}</td>
                     <td>{{$row->tanggal}}</td>
-                    <td>{{$row->lab->name}}</td>
+                    <td>
+                       @if ($row->labory_id == 0)
+                        Non Lab / Gudang
+                       @else
+                        {{$row->lab->name}}
+                       @endif
+                    </td>
                     <td>{{$row->barang->nama_barang}} - {{$row->barang->merk}}</td>
                     <td>
                         <a class="btn btn-primary" href="/invent/broken/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
