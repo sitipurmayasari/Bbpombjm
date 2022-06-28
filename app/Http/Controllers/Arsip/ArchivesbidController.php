@@ -21,6 +21,12 @@ class ArchivesbidController extends Controller
         return view('arsip/archivesbid.index',compact('data'));
     }
 
+    public function store(Request $request)
+    {        
+        Naskah::create($request->all());
+        return redirect('/arsip/mailclasification')->with('sukses','Data Tersimpan');
+    }
+
     public function edit($id)
     {
         $data = Naskah::where('id',$id)->first();
