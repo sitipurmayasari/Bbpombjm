@@ -47,6 +47,24 @@
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Tanggal Input
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="date" name="entry_date" readonly class="col-xs-5 col-sm-5"  value="{{date('Y-m-d')}}"
+                                data-date-format="yyyy-mm-dd"  data-provide="datepicker" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Tanggal Expired 
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="date" name="exp_date" readonly class="col-xs-5 col-sm-5" 
+                                data-date-format="yyyy-mm-dd"  data-provide="datepicker" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" 
                             for="form-field-1"> Harga Satuan
                             </label>
                             <div class="col-sm-8">
@@ -58,41 +76,41 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="col-sm-4 control-label no-padding-right" 
-                            for="form-field-1"> Tanggal Barang Masuk
+                            for="form-field-1">Stok Akhir
                             </label>
                             <div class="col-sm-8">
-                                <input type="date" name="entry_date" readonly class="col-xs-5 col-sm-5" 
-                                data-date-format="yyyy-mm-dd"  data-provide="datepicker" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label no-padding-right" 
-                            for="form-field-1"> Tanggal Expired
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="date" name="exp_date" readonly class="col-xs-5 col-sm-5" 
-                                data-date-format="yyyy-mm-dd"  data-provide="datepicker" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label no-padding-right" 
-                            for="form-field-1"> Jumlah Barang
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="number" name="stockawal" class="col-xs-2 col-sm-2" required value="0"  id="stok"  onkeyup="hitung()" onclick="hitung()">&nbsp;&nbsp;
                                 @php
                                     if ($sisa != null) {
                                         $isi = $sisa->stock;
                                     } else {
                                        $isi = 0;
                                     }
-                                    
                                 @endphp
-                                <input type="hidden" class="col-xs-2 col-sm-2" id="sisa" value="{{$isi}}">
-                                <input type="hidden" name="stock" class="col-xs-2 col-sm-2" id="awal">
+                                <input type="text" class="col-xs-2 col-sm-2" id="sisa" value="{{$isi}}" readonly> &nbsp;&nbsp;
                                 <label>{{$data->satuan->satuan}}</label> 
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label no-padding-right" 
+                            for="form-field-1"> Barang Masuk
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="number" name="stockawal" class="col-xs-2 col-sm-2" required value="0"  id="stok"  onkeyup="hitung()" onclick="hitung()">&nbsp;&nbsp;
+                                <label>{{$data->satuan->satuan}}</label> 
+                                <input type="hidden" name="keluar" class="col-xs-2 col-sm-2" 
+                                required value="0"  id="keluar"  onkeyup="hitung()" onclick="hitung()">&nbsp;&nbsp;
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label no-padding-right" 
+                            for="form-field-1"> Sisa Stok
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text" name="stock" class="col-xs-2 col-sm-2" id="awal" readonly>&nbsp;&nbsp;
+                                <label>{{$data->satuan->satuan}}</label> 
+                            </div>
+                        </div>
+                        
                     </div>
                </div>          
            </div>
@@ -150,7 +168,7 @@
          function hitung() {
             var a = $("#stok").val();
             var b = $("#sisa").val();
-            var c =  parseFloat(a) +  parseFloat(b);
+            var c = parseFloat(a) +  parseFloat(b);
             $("#awal").val(c);
         }
     </script>
