@@ -117,7 +117,7 @@
                     <td>{{$no++}}</td>
                     <td style="text-align: left;">{{$item->barang->nama_barang}} 
                         @if ($item->barang->kind=='L')
-                            (No. Seri : {{$item->barang->no_seri}})
+                            (No. Katalog : {{$item->barang->no_seri}})
                         @endif
                     </td>
                     <td>{{$item->satuan->satuan}}</td>
