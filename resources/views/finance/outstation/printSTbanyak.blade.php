@@ -343,20 +343,24 @@
     <div>
         <table style="width: 100%">
             <tr>
-                <td style="width: 45%"></td>
-                <td colspan="3">Lampiran <br>Surat Tugas</td>
+                <td style="width: 43%"></td>
+                <td colspan="3" style="font-size: 11">LAMPIRAN</td>
             </tr>
             <tr>
                 <td></td>
-                <td>Nomor &nbsp; &nbsp;</td>
-                <td> : </td>
-                <td> {{$data->number}}</td>
+                <td colspan="3" style="font-size: 9">SURAT TUGAS KEPALA BALAI BESAR POM BANJARMASIN 
             </tr>
             <tr>
                 <td></td>
-                <td>Tanggal &nbsp;&nbsp;</td>
-                <td> : </td>
-                <td> {{tgl_indo($data->st_date)}}</td>
+                <td style="font-size: 9; width: 10%">NOMOR</td>
+                <td style="font-size: 9; width:3%"> : </td>
+                <td style="font-size: 9"> {{$data->number}}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td style="font-size: 9">TANGGAL</td>
+                <td style="font-size: 9"> : </td>
+                <td style="font-size: 9"> {{tgl_indo($data->st_date)}}</td>
             </tr>
         </table>
     </div>
