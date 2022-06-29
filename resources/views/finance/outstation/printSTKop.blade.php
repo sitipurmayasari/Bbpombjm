@@ -217,13 +217,13 @@
                  <td>
                      <table style="width:100%" class="detail">
                          <thead>
-                             <tr >
-                                 <<th style="width: 5%">NO</th>
-                                 <th style="width: 28%">NAMA</th>
-                                 <th style="width: 20%">NIP</th>
-                                 <th >PANGKAT / GOLONGAN</th>
-                                 <th style="width: 33%">JABATAN</th>
-                             </tr>
+                            <tr >
+                                <th style="width: 5%">NO</th>
+                                <th style="width: 28%">NAMA</th>
+                                <th style="width: 20%">NIP</th>
+                                <th >PANGKAT / GOLONGAN</th>
+                                <th style="width: 33%">JABATAN</th>
+                            </tr>
                          </thead>
                          <tbody>
                              @php
