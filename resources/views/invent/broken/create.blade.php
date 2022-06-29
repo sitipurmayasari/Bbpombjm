@@ -100,8 +100,11 @@
                         for="form-field-1"> Jumlah
                         </label>
                         <div class="col-sm-8">
-                            <input type="number" min="1" class="col-xs-2 col-sm-2" name="jumlah" value="0" required> 
+                            <input type="number" min="1" class="col-xs-2 col-sm-2" name="jumlah" value="0" required id="jumlah"
+                                onkeyup="hitung()" onclick="hitung()"> 
                             <label for="form-field-1" class="control-label"> &nbsp;  Buah </label>
+                            <input type="hidden" name="asal" id="asal">
+                            <input type="hidden" name="stock" id="sisa">
                         </div>
                     </div>
                     <div class="form-group">
@@ -146,15 +149,23 @@
             var barang_id = $("#inventaris_id").val();
 
             $.get(
-                "{{route('inventaris.getbarang') }}",
+                "{{route('labrequest.getbarang') }}",
                 {
                     barang_id: barang_id
                 },
                 function(response) {
                     $("#merk").val(response.data.merk);
                     $("#no_seri").val(response.data.no_seri);
+                    $("#asal").val(response.data.stock);
                 }
             );
+        }
+
+         function hitung() {
+            var a = $("#asal").val();
+            var b = $("#jumlah").val();
+            var c = parseFloat(a) -  parseFloat(b);
+            $("#sisa").val(c);
         }
     </script>
 @endsection

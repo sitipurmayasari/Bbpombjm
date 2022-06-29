@@ -119,13 +119,14 @@ class OutstationController extends Controller
         $jmlpeg  = Outst_employee::SelectRaw('count(*) as hitung')   
                                   ->where('outstation_id',$id)
                                   ->first(); 
-        if ($jmlpeg->hitung > 3) {
+        if ($jmlpeg->hitung > 1) {
           $pdf = PDF::loadview('finance/outstation.printSTbanyak',compact('data','isian','menyetujui'));
+          return $pdf->stream();
         } else {
           $pdf = PDF::loadview('finance/outstation.printST',compact('data','isian','menyetujui','now'));
+          return $pdf->stream();
         }
-        return $pdf->stream();
-
+       
         
       }
 
@@ -141,7 +142,7 @@ class OutstationController extends Controller
         $jmlpeg  = Outst_employee::SelectRaw('count(*) as hitung')   
                             ->where('outstation_id',$id)
                             ->first(); 
-        if ($jmlpeg->hitung > 3) {
+        if ($jmlpeg->hitung > 1) {
           $pdf = PDF::loadview('finance/outstation.printSTKopbanyak',compact('data','isian','menyetujui'));
         } else {
           $pdf = PDF::loadview('finance/outstation.printSTKop',compact('data','isian','menyetujui'));

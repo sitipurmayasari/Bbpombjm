@@ -11,21 +11,32 @@
 </head>
 <style>
     @page {
-        size:8.5in 13in ;
+        /* size:8.5in 13in ; */
         margin-bottom: 100px;
+        size: 21cm 33cm ;
         /* margin: 160px 0px 100px 0px; */
     }
+
+    @font-face {
+        font-family: "Bookman Old Style";
+        /* src: url('{{asset('assets/font/Bookman-old-style.ttf')}}') format('truetype'); */
+        src: url('{{ storage_path('fonts\Bookman-old-style.ttf') }}') format("truetype");
+        font-style: normal;
+        font-variant: normal;
+        font-weight: normal;
+    }
+
     html, table{
             font-family: "Bookman Old Style";
             font-size: 12;
         }
 
         #kop{
-            margin-top: 130px;
+            margin-top: 110px;
             font-family: "Bookman Old Style";
             margin-left: 10%;
             margin-right: 10%;
-            line-height: 1.5;
+            line-height: 1;
         }
 
         .isi{
@@ -57,14 +68,14 @@
             border: 1px solid black;
             font-size: 11;
             text-align: left;
-            line-height: 1.5;
+            line-height: 1;
             vertical-align: top
         }
         th{
             font-family: "Bookman Old Style";
             border: 1px solid black;
             font-weight: bold;
-            font-size: 10; 
+            font-size: 11; 
             vertical-align: middle;
             text-align: center;
             line-height: 1;
@@ -161,7 +172,7 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="3" style="text-align: center">Memberi perintah 
+                <td colspan="3" style="text-align: center">Memberi Perintah 
                     <br><br>
                 </td>
             </tr>
@@ -268,7 +279,7 @@
                 </td>
             </tr>
        </table>
-        <br><br>
+        <br>
         &nbsp;Agar yang bersangkutan melaksanakan tugas dengan baik dan penuh tanggungjawab.
         <br><br><br>
         <table class="ttdini" style="width: 100%" >
@@ -299,7 +310,7 @@
             </tr>
             <tr>
                 <td></td>
-                <td style="height: 10%"></td>
+                <td style="height: 8%"></td>
             </tr>
             <tr>
                 <td></td>
@@ -318,7 +329,7 @@
                 </td>
             </tr>
         </table>
-        <br><br>
+        <br>
         <div id="gratis">
             Petugas Tidak diperkenankan menerima gratifikasi dalam bentuk apapun <br>
             Pengaduan Gratifikasi/KKN ditujukan kepada  <br>
@@ -332,7 +343,7 @@
     <div>
         <table style="width: 100%">
             <tr>
-                <td style="width: 55%"></td>
+                <td style="width: 45%"></td>
                 <td colspan="3">Lampiran <br>Surat Tugas</td>
             </tr>
             <tr>
@@ -433,7 +444,7 @@
         </tr>
         <tr>
             <td></td>
-            <td style="height: 10%"></td>
+            <td style="height: 8%"></td>
         </tr>
         <tr>
             <td></td>

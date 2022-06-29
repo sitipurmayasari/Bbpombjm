@@ -10,6 +10,7 @@ use App\Satuan;
 use App\Pejabat;
 use App\Labory;
 use App\Broken;
+use App\Entrystock;
 use PDF;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -49,6 +50,7 @@ class BrokenController extends Controller
    
     public function store(Request $request)
     {
+        $now = Carbon::now();
         $this->validate($request,[
             'nomor'         => 'required|unique:broken',
             'users_id'    => 'required',
@@ -57,9 +59,7 @@ class BrokenController extends Controller
             'jumlah' => 'required',
             'file_foto' => 'mimes:jpg,png,jpeg|max:2048',
         ]);
-
         $rusak = Broken::create($request->all());
-
         $rusak_id = $rusak->id;
 
         if($request->hasFile('foto')){ // Kalau file ada
@@ -70,6 +70,15 @@ class BrokenController extends Controller
             $rusak->foto = $request->file('foto')->getClientOriginalName(); // update isi kolum file user dengan origin gambar
             $rusak->save(); // save ke database
         }
+
+        $stok = [
+            'entry_date' => $now,
+            'inventaris_id' => $request->inventaris_id,
+            'stock' => $request->stock,
+            'keluar' => $request->jumlah,
+            'exp_date' => $now];
+        Entrystock::create($stok);
+
         return redirect('/invent/broken/print/'.$rusak_id);
     }
 

@@ -11,7 +11,7 @@
 </head>
 <style>
     @page {
-        size:8.5in 13in ;
+        size: 21cm 33cm ;
         margin: 0px 0px 100px 0px;
         /* margin: 160px 0px 100px 0px; */
     }
@@ -25,7 +25,7 @@
             font-family: "Bookman Old Style";
             margin-left: 10%;
             margin-right: 10%;
-            line-height: 1.5;
+            line-height: 1;
         }
 
         .isi{
@@ -57,7 +57,7 @@
             border: 1px solid black;
             font-size: 11;
             text-align: left;
-            line-height: 1.5;
+            line-height: 1;
             vertical-align: top
         }
         th{
@@ -82,16 +82,21 @@
             padding-bottom: 5px; */
         }
 
-        #bgimg {
-            margin: 0px 0px -100px 0px;
-            background-image: url('{{asset('images/KOPF4.png')}}');
+        #images, html{
+            height: 100%;
+            margin: 0;
+            width:100%;
+            background-position: center;
+            background-repeat: no-repeat;
             background-size: cover;
         }
+
 </style>
-<body>
-<div id="bgimg">
+<body background="{{asset('images/KOPF4.png')}}">
+<div id="images">
     <div class="col-sm-12" style="text-align: center">
         <div style="align=center;" id="kop">
+            <br>
             <u><b style="font-size: 14">SURAT TUGAS</b></u><br>
             <p style="font-size: 12">NOMOR : {{$data->number}}</p>
         </div>
@@ -331,6 +336,7 @@
     </div>
 </div>
 <div style="page-break-before: always;" class="isi">
+    <br><br>
     <div style="text-align: center;"> - 2 - </div>
     <br><br>
     <div>
@@ -412,7 +418,7 @@
     <table class="ttdini" style="width: 100%" >
         <tr>
             <td></td>
-            <td style="width: 55%;">Banjarmasin, 
+            <td style="width: 45%;">Banjarmasin, 
                 @php
                     $a = $data->st_date;
                     echo tgl_indo($a); 

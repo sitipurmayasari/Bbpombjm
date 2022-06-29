@@ -6,35 +6,40 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    {{-- <link href="{{asset('assets/css/no_header.css')}}" rel="stylesheet"> --}}
     <title>Surat Tugas</title>
 </head>
 <style>
     @page {
-        size:8.5in 13in ;
-        margin: 180px 0px 100px 0px;
+        size: 21cm 33cm ;
+        margin: 160px 0px 100px 0px;
     }
 
     @font-face {
         font-family: "Bookman Old Style";
-        src: url('{{asset('assets/font/Bookman-old-style.tff')}}');
+        /* src: url('{{asset('assets/font/Bookman-old-style.ttf')}}') format('truetype'); */
+        src: url('{{ storage_path('fonts\Bookman-old-style.ttf') }}') format("truetype");
+        font-style: normal;
+        font-variant: normal;
+        font-weight: normal;
     }
     
     html, table{
-            font-family: "Bookman Old Style";
-            font-size: 12;
-        }
+        font-family: "Bookman Old Style";
+        font-size: 12;
+    }
 
         #kop{
             font-family: "Bookman Old Style";
             margin-left: 10%;
             margin-right: 10%;
-            line-height: 1.5;
+            line-height: 1;
         }
 
         #isi{
-            font-family: "Bookman Old Style";
+            font-family: "Bookman Old Style"; 
             font-size: 12;
+            font-weight: normal;
+            font-style: normal;;
             margin-left: 8%;
             margin-right: 8%;
             line-height: 1;
@@ -42,11 +47,13 @@
         }
 
         table, td, tr {
-            font-family: "Bookman Old Style";
+            font-family: "Bookman Old Style"; 
             text-align: justify;
             vertical-align: top;
             line-height: 1;
             font-size: 12;
+            font-weight: normal;
+            font-style: normal;;
             border-collapse: collapse;
         }
 
@@ -54,30 +61,34 @@
             font-family: "Bookman Old Style";
             /* margin-right: 10%; */
             font-size: 12;
+            font-weight: normal;
+            font-style: normal;;
             width: 100%;
         }
 
         .detail{
-            font-family: "Bookman Old Style";
+            font-family: "Bookman Old Style";  
             border: 1px solid black;
             font-size: 11;
             text-align: left;
-            line-height: 1.5;
+            line-height: 1;
             vertical-align: top
         }
         th{
-            font-family: "Bookman Old Style";
+            font-family: "Bookman Old Style"; 
             border: 1px solid black;
             font-weight: bold;
-            font-size: 10; 
+            font-size: 11; 
             vertical-align: middle;
             text-align: center;
             line-height: 1;
         }
 
         #gratis{
-            font-family: "Bookman Old Style";
-            font-size: 12;
+            font-family: "Bookman Old Style";  
+            font-size: 11;
+            font-weight: normal;
+            font-style: normal;;
             color: brown;
             line-height: 1;
             text-align: center;
@@ -166,7 +177,7 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="3" style="text-align: center">Memberi perintah 
+                <td colspan="3" style="text-align: center">Memberi Perintah 
                     <br><br>
                 </td>
             </tr>
@@ -178,9 +189,9 @@
                         <thead>
                             <tr >
                                 <th style="width: 5%">NO</th>
-                                <th style="width: 30%">NAMA</th>
+                                <th style="width: 28%">NAMA</th>
                                 <th style="width: 20%">NIP</th>
-                                <th style="width: 22%">PANGKAT / GOLONGAN</th>
+                                <th >PANGKAT / GOLONGAN</th>
                                 <th style="width: 33%">JABATAN</th>
                             </tr>
                         </thead>
@@ -321,8 +332,8 @@
                 </td>
             </tr>
        </table>
-        <br><br>
-        &nbsp;Agar yang bersangkutan melaksanakan tugas dengan baik dan penuh tanggungjawab.
+        <br>
+        Agar yang bersangkutan melaksanakan tugas dengan baik dan penuh tanggungjawab.
         <br><br><br>
         <table class="ttdini" style="width: 100%" >
             <tr>
@@ -352,7 +363,7 @@
             </tr>
             <tr>
                 <td></td>
-                <td style="height: 10%"></td>
+                <td style="height: 8%"></td>
             </tr>
             <tr>
                 <td></td>
@@ -371,7 +382,7 @@
                 </td>
             </tr>
         </table>
-        <br><br>
+        <br>
         <div id="gratis">
             Petugas Tidak diperkenankan menerima gratifikasi dalam bentuk apapun <br>
             Pengaduan Gratifikasi/KKN ditujukan kepada  <br>

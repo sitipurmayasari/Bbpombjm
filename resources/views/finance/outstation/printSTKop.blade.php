@@ -12,16 +12,25 @@
 <style>
         @page {
             /* size: legal; */
-            size:8.5in 13in ;
+            size: 21cm 33cm ;
             font-family: 'Bookman Old Style';
             font-size: 11px;
             page-break-after: always;
             page-break-inside: avoid;
             
         }
+
+        @font-face {
+            font-family: "Bookman Old Style";
+            src: url('{{ storage_path('fonts\Bookman-old-style.ttf') }}') format("truetype");
+            font-style: normal;
+            font-variant: normal;
+            font-weight: normal;
+        }
         
 
         body, html {
+            font-family: "Bookman Old Style";
             height: 100%;
             margin: 0;
             width:100%;
@@ -62,7 +71,7 @@
             font-family: "Bookman Old Style";
             margin-left: 10%;
             margin-right: 10%;
-            line-height: 1.5;
+            line-height: 1;
             margin-top: 130px;
         }
 
@@ -94,7 +103,7 @@
         .detail{
             font-family: "Bookman Old Style";
             border: 1px solid black;
-            font-size: 10;
+            font-size: 11;
             text-align: left;
             line-height: 1;
             vertical-align: top
@@ -102,7 +111,7 @@
         th{
             border: 1px solid black;
             font-weight: bold;
-            font-size: 10; 
+            font-size: 11; 
             vertical-align: middle;
             text-align: center;
             line-height: 1;
@@ -122,11 +131,9 @@
 
 </style>
 <body background="{{asset('images/KOPF4.png')}}">
-     {{-- <header>
-        <img src="{{asset('images/kop.png')}}" style="width: 100%"> <br>
-    </header> --}}
     <div class="col-sm-12" style="text-align: center">
         <div style="align=center;" id="kop">
+            <br>
             <u><b style="font-size: 14">SURAT TUGAS</b></u><br>
             <p style="font-size: 12">NOMOR : {{$data->number}}</p>
         </div>
@@ -355,8 +362,8 @@
                  </td>
              </tr>
         </table>
-         <br><br>
-         &nbsp;Agar yang bersangkutan melaksanakan tugas dengan baik dan penuh tanggungjawab.
+         <br>
+         Agar yang bersangkutan melaksanakan tugas dengan baik dan penuh tanggungjawab.
          <br><br><br>
          <table class="ttdini" style="width: 100%" >
             <tr>
@@ -405,7 +412,7 @@
                 </td>
             </tr>
         </table>
-         <br><br>
+         <br>
          <div id="gratis">
              Petugas Tidak diperkenankan menerima gratifikasi dalam bentuk apapun <br>
              Pengaduan Gratifikasi/KKN ditujukan kepada  <br>
