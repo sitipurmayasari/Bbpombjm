@@ -15,9 +15,23 @@
         margin: 0px 0px 100px 0px;
         /* margin: 160px 0px 100px 0px; */
     }
+
+    @font-face {
+            font-family: "Bookman Old Style";
+            src: url('{{ storage_path('fonts\Bookman-old-style.ttf') }}') format("truetype");
+            font-style: normal;
+            font-variant: normal;
+            font-weight: normal;
+        }
+        
     html, table{
             font-family: "Bookman Old Style";
             font-size: 12;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
         }
 
         #kop{
@@ -82,18 +96,18 @@
             padding-bottom: 5px; */
         }
 
-        #images, html{
-            height: 100%;
-            margin: 0;
-            width:100%;
-            background-position: center;
-            background-repeat: no-repeat;
+        #bgimg {
+            margin: 0px 0px -100px 0px;
+            background-image: url('{{asset('images/KOPF4.png')}}');
             background-size: cover;
+            min-height: 100%; 
+            width: 100%;
+            height: 100%;
         }
 
 </style>
-<body background="{{asset('images/KOPF4.png')}}">
-<div id="images">
+<body>
+<div id="bgimg">
     <div class="col-sm-12" style="text-align: center">
         <div style="align=center;" id="kop">
             <br>
@@ -277,7 +291,7 @@
                 </td>
             </tr>
        </table>
-        <br><br>
+        <br>
         &nbsp;Agar yang bersangkutan melaksanakan tugas dengan baik dan penuh tanggungjawab.
         <br><br><br>
         <table class="ttdini" style="width: 100%" >
@@ -327,7 +341,7 @@
                 </td>
             </tr>
         </table>
-        <br><br>
+        <br>
         <div id="gratis">
             Petugas Tidak diperkenankan menerima gratifikasi dalam bentuk apapun <br>
             Pengaduan Gratifikasi/KKN ditujukan kepada  <br>
