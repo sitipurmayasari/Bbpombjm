@@ -11,7 +11,7 @@
 <style>
     @page {
         size: 21cm 33cm ;
-        margin: 160px 0px 100px 0px;
+        margin: 160px 0px 30px 0px;
     }
 
     @font-face {
@@ -78,7 +78,7 @@
             font-family: "Bookman Old Style"; 
             border: 1px solid black;
             font-weight: bold;
-            font-size: 11; 
+            font-size: 10; 
             vertical-align: middle;
             text-align: center;
             line-height: 1;
@@ -106,7 +106,6 @@
             <u><b style="font-size: 14">SURAT TUGAS</b></u><br>
             <p style="font-size: 12">NOMOR : {{$data->number}}</p>
         </div>
-        <br>
     </div>
      <div id="isi">
        <table>
@@ -178,7 +177,7 @@
             </tr>
             <tr>
                 <td colspan="3" style="text-align: center">Memberi Perintah 
-                    <br><br>
+                    <br>
                 </td>
             </tr>
             <tr>
@@ -189,10 +188,10 @@
                         <thead>
                             <tr >
                                 <th style="width: 5%">NO</th>
-                                <th style="width: 28%">NAMA</th>
+                                <th style="width: 25%">NAMA</th>
                                 <th style="width: 20%">NIP</th>
                                 <th >PANGKAT / GOLONGAN</th>
-                                <th style="width: 33%">JABATAN</th>
+                                <th style="width: 35%">JABATAN</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -307,7 +306,7 @@
                         <tr>
                             <td>Biaya&nbsp;</td>
                             <td>:</td>
-                            <td>
+                            <td style="font-size:11">
                                 @if ($data->budget_id == 3)
                                     {{-- {{$now->name}} Tahun Anggaran {{$now->tahun}} --}}
                                     {{$data->budget->name}}
@@ -334,7 +333,7 @@
        </table>
         <br>
         Agar yang bersangkutan melaksanakan tugas dengan baik dan penuh tanggungjawab.
-        <br><br><br>
+        <br><br>
         <table class="ttdini" style="width: 100%" >
             <tr>
                 <td></td>
@@ -384,9 +383,9 @@
         </table>
         <br>
         <div id="gratis">
-            Petugas Tidak diperkenankan menerima gratifikasi dalam bentuk apapun <br>
-            Pengaduan Gratifikasi/KKN ditujukan kepada  <br>
-            kepala Balai Besar POM di Banjarmasin melalui Hp : 082149000821
+            Petugas Tidak diperkenankan menerima gratifikasi dalam bentuk apapun. <br>        
+            Pengaduan Gratifikasi/KKN ditujukan kepada <br>
+            Kepala Balai Besar POM di Banjarmasin melalui Hp : 082149000821
         </div>
     </div>
 </body>
