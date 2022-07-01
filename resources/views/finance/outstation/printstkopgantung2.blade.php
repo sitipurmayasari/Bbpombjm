@@ -11,7 +11,7 @@
 <style>
     @page {
         size: 21cm 33cm ;
-        margin: 160px 0px 50px 0px;
+        margin: 160px 0px 5px 0px;
     }
 
     @font-face {
@@ -98,7 +98,8 @@
             /* padding-top: 5px;
             padding-bottom: 5px; */
         }
-        
+
+           
         body, html {
             height: 100%;
             margin: 0;
@@ -108,6 +109,7 @@
             background-size: cover;
             /* background-size: auto; */
         }
+        
 
 </style>
 <body background="{{asset('images/KOPF42.png')}}">
@@ -245,10 +247,10 @@
                     <br>
                 </td>
             </tr>
-        </table>
+            </table>
     </div>
-    <div style="page-break-before: always;" class="isi">
-        <table>
+    <div  style="page-break-before: always;" class="isi">
+        <table style="margin-top: 130px;">
             <tr>
                 <td>Untuk</td>
                 <td>:</td>
@@ -376,7 +378,7 @@
             </tr>
             <tr>
                 <td></td>
-                <td style="height: 10%"></td>
+                <td style="height: 8%"></td>
             </tr>
             <tr>
                 <td></td>

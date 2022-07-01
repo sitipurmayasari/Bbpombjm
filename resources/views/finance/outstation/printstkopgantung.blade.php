@@ -11,7 +11,7 @@
 <style>
     @page {
         size: 21cm 33cm ;
-        margin: 160px 0px 50px 0px;
+        margin: 160px 0px 5px 0px;
     }
 
     @font-face {
@@ -36,7 +36,7 @@
             margin-top: 130px;
         }
 
-        #isi{
+        .isi{
             font-family: "Bookman Old Style"; 
             font-size: 12;
             font-weight: normal;
@@ -98,7 +98,8 @@
             /* padding-top: 5px;
             padding-bottom: 5px; */
         }
-        
+
+           
         body, html {
             height: 100%;
             margin: 0;
@@ -108,6 +109,7 @@
             background-size: cover;
             /* background-size: auto; */
         }
+        
 
 </style>
 <body background="{{asset('images/KOPF42.png')}}">
@@ -117,7 +119,7 @@
             <p style="font-size: 12">NOMOR : {{$data->number}}</p>
         </div>
     </div>
-     <div id="isi">
+     <div class="isi">
        <table>
            <tr>
                <td>Menimbang</td>
@@ -343,8 +345,9 @@
        </table>
         <br>
         Agar yang bersangkutan melaksanakan tugas dengan baik dan penuh tanggungjawab.
-        <br><br>
-        <table class="ttdini" style="width: 100%" >
+    </div>
+    <div  style="page-break-before: always;" class="isi">
+        <table class="ttdini" style="width: 100%; margin-top: 130px;" >
             <tr>
                 <td></td>
                 <td style="width: 55%;">Banjarmasin, 
@@ -372,7 +375,7 @@
             </tr>
             <tr>
                 <td></td>
-                <td style="height: 10%"></td>
+                <td style="height: 8%"></td>
             </tr>
             <tr>
                 <td></td>

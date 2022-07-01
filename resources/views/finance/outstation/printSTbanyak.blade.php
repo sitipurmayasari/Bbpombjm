@@ -66,7 +66,7 @@
         .detail{
             font-family: "Bookman Old Style";
             border: 1px solid black;
-            font-size: 10;
+            font-size: 11;
             text-align: left;
             line-height: 1;
             vertical-align: top
