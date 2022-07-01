@@ -119,14 +119,16 @@ class OutstationController extends Controller
         $jmlpeg  = Outst_employee::SelectRaw('count(*) as hitung')   
                                   ->where('outstation_id',$id)
                                   ->first(); 
-        if ($jmlpeg->hitung > 2) {
+        if ($jmlpeg->hitung > 8) {
           $pdf = PDF::loadview('finance/outstation.printSTbanyak',compact('data','isian','menyetujui'));
-          return $pdf->stream();
-        } else {
+        }elseif ($jmlpeg->hitung > 3 && $jmlpeg->hitung <= 5 ){
+          $pdf = PDF::loadview('finance/outstation.printstgantung',compact('data','isian','menyetujui','now'));
+        }elseif ($jmlpeg->hitung > 5 && $jmlpeg->hitung <= 8){
+          $pdf = PDF::loadview('finance/outstation.printstgantung2',compact('data','isian','menyetujui','now'));
+        } else{
           $pdf = PDF::loadview('finance/outstation.printST',compact('data','isian','menyetujui','now'));
-          return $pdf->stream();
         }
-       
+        return $pdf->stream();
         
       }
 
@@ -142,8 +144,12 @@ class OutstationController extends Controller
         $jmlpeg  = Outst_employee::SelectRaw('count(*) as hitung')   
                             ->where('outstation_id',$id)
                             ->first(); 
-        if ($jmlpeg->hitung > 2) {
+        if ($jmlpeg->hitung > 8) {
           $pdf = PDF::loadview('finance/outstation.printSTKopbanyak',compact('data','isian','menyetujui'));
+        }elseif ($jmlpeg->hitung > 3 && $jmlpeg->hitung <= 5 ){
+          $pdf = PDF::loadview('finance/outstation.printstkopgantung',compact('data','isian','menyetujui'));
+        }elseif ($jmlpeg->hitung > 5 && $jmlpeg->hitung <= 8){
+          $pdf = PDF::loadview('finance/outstation.printstkopgantung2',compact('data','isian','menyetujui'));
         } else {
           $pdf = PDF::loadview('finance/outstation.printSTKop',compact('data','isian','menyetujui'));
         }

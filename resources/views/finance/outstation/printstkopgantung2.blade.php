@@ -6,76 +6,77 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    {{-- <link href="{{asset('assets/css/no_header.css')}}" rel="stylesheet"> --}}
     <title>Surat Tugas</title>
 </head>
 <style>
     @page {
         size: 21cm 33cm ;
-        margin: 0px 0px 100px 0px;
-        /* margin: 160px 0px 100px 0px; */
+        margin: 160px 0px 50px 0px;
     }
 
     @font-face {
-            font-family: "Bookman Old Style";
-            src: url('{{ storage_path('fonts\Bookman-old-style.ttf') }}') format("truetype");
-            font-style: normal;
-            font-variant: normal;
-            font-weight: normal;
-        }
-        
+        font-family: "Bookman Old Style";
+        /* src: url('{{asset('assets/font/Bookman-old-style.ttf')}}') format('truetype'); */
+        src: url('{{ storage_path('fonts\Bookman-old-style.ttf') }}') format("truetype");
+        font-style: normal;
+        font-variant: normal;
+        font-weight: normal;
+    }
+    
     html, table{
-            font-family: "Bookman Old Style";
-            font-size: 12;
-        }
-
-        html, body {
-            height: 100%;
-            margin: 0;
-        }
+        font-family: "Bookman Old Style";
+        font-size: 12;
+    }
 
         #kop{
-            margin-top: 160px;
             font-family: "Bookman Old Style";
             margin-left: 10%;
             margin-right: 10%;
             line-height: 1;
+            margin-top: 130px;
         }
 
         .isi{
-            font-family: "Bookman Old Style";
+            font-family: "Bookman Old Style"; 
             font-size: 12;
-            margin-left: 5%;
-            margin-right: 5%;
+            font-weight: normal;
+            font-style: normal;;
+            margin-left: 8%;
+            margin-right: 8%;
             line-height: 1;
             text-align: justify;
         }
 
         table, td, tr {
-            font-family: "Bookman Old Style";
+            font-family: "Bookman Old Style"; 
             text-align: justify;
             vertical-align: top;
             line-height: 1;
             font-size: 12;
+            font-weight: normal;
+            font-style: normal;;
             border-collapse: collapse;
         }
 
         .ttdini{
             font-family: "Bookman Old Style";
+            /* margin-right: 10%; */
             font-size: 12;
+            font-weight: normal;
+            font-style: normal;;
             width: 100%;
         }
 
         .detail{
-            font-family: "Bookman Old Style";
+            font-family: "Bookman Old Style";  
             border: 1px solid black;
-            font-size: 10;
+            font-size: 11;
             text-align: left;
             line-height: 1;
             vertical-align: top
         }
         th{
-            font-family: "Bookman Old Style";
+            font-family: "Bookman Old Style"; 
             border: 1px solid black;
             font-weight: bold;
             font-size: 10; 
@@ -85,8 +86,10 @@
         }
 
         #gratis{
-            font-family: "Bookman Old Style";
-            font-size: 12;
+            font-family: "Bookman Old Style";  
+            font-size: 11;
+            font-weight: normal;
+            font-style: normal;;
             color: brown;
             line-height: 1;
             text-align: center;
@@ -95,26 +98,24 @@
             /* padding-top: 5px;
             padding-bottom: 5px; */
         }
-
-        #bgimg {
-            margin: 0px 0px -100px 0px;
-            background-image: url('{{asset('images/KOPF4.png')}}');
-            background-size: cover;
-            min-height: 100%; 
-            width: 100%;
+        
+        body, html {
             height: 100%;
+            margin: 0;
+            width:100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            /* background-size: auto; */
         }
 
 </style>
-<body>
-<div id="bgimg">
+<body background="{{asset('images/KOPF42.png')}}">
     <div class="col-sm-12" style="text-align: center">
         <div style="align=center;" id="kop">
-            <br>
             <u><b style="font-size: 14">SURAT TUGAS</b></u><br>
             <p style="font-size: 12">NOMOR : {{$data->number}}</p>
         </div>
-        <br>
     </div>
      <div class="isi">
        <table>
@@ -126,6 +127,7 @@
                         <tr>
                             <td> a.</td>
                             <td>{{$data->menimbang}}
+                                
                             </td>
                         </tr>
                         <tr>
@@ -152,7 +154,7 @@
                             <td> 2.</td>
                             <td>
                                 @if ($data->budget_id == 3)
-                                {{$data->budget->name}}
+                                    {{$data->budget->name}}
                                     {{-- {{$now->name}} Tahun Anggaran {{$now->tahun}}, <br>
                                     Nomor {{$now->nomor}} tanggal {{tgl_indo($now->tanggal)}} --}}
                                 @else
@@ -184,17 +186,69 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="3" style="text-align: center">Memberi perintah 
-                    <br><br>
+                <td colspan="3" style="text-align: center">Memberi Perintah 
+                    <br>
                 </td>
             </tr>
             <tr>
                 <td>Kepada</td>
                 <td>:</td>
-                <td> - T e r l a m p i r -
-                    <br><br>
+                <td>
+                    <table style="width:100%" class="detail">
+                        <thead>
+                            <tr >
+                                <th style="width: 5%">NO</th>
+                                <th style="width: 25%">NAMA</th>
+                                <th style="width: 20%">NIP</th>
+                                <th >PANGKAT / GOLONGAN</th>
+                                <th style="width: 35%">JABATAN</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                                $no= 1;
+                            @endphp
+                            @foreach($isian as $key=>$row)
+                            <tr>
+                                <td class="detail" style="text-align: center;">
+                                    {{$no++}}
+                                </td>
+                                <td class="detail">
+                                    {{$row->pegawai->name}}
+                                </td>
+                                <td class="detail" style="text-align: center;">
+                                    @if ($row->pegawai->golongan_id != null)
+                                        {{$row->pegawai->no_pegawai}}
+                                    @else
+                                        {{' - '}}
+                                    @endif
+                                </td>
+                                <td class="detail" style="text-align: center; vertical-align:top;">
+                                   @if ($row->pegawai->golongan_id != null)
+                                    {{$row->pegawai->gol->jenis}} /  
+                                    {{$row->pegawai->gol->golongan}} {{$row->pegawai->gol->ruang}}
+                                   @else
+                                       {{' - '}}
+                                   @endif
+                                </td>
+                                <td class="detail">
+                                    @if ($row->pegawai->jabasn_id != null)
+                                        {{$row->pegawai->jabasn->nama}}
+                                    @else
+                                        {{$row->pegawai->deskjob}}
+                                    @endif
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <br>
                 </td>
             </tr>
+        </table>
+    </div>
+    <div style="page-break-before: always;" class="isi">
+        <table>
             <tr>
                 <td>Untuk</td>
                 <td>:</td>
@@ -266,10 +320,10 @@
                         <tr>
                             <td>Biaya&nbsp;</td>
                             <td>:</td>
-                            <td>
+                            <td style="font-size:11">
                                 @if ($data->budget_id == 3)
-                                {{$data->budget->name}}
                                     {{-- {{$now->name}} Tahun Anggaran {{$now->tahun}} --}}
+                                    {{$data->budget->name}}
                                 @else
                                     {{$data->budget->name}} Tahun Anggaran {{$data->budget->tahun}}
                                 @endif <br>
@@ -292,8 +346,8 @@
             </tr>
        </table>
         <br>
-        &nbsp;Agar yang bersangkutan melaksanakan tugas dengan baik dan penuh tanggungjawab.
-        <br><br><br>
+        Agar yang bersangkutan melaksanakan tugas dengan baik dan penuh tanggungjawab.
+        <br><br>
         <table class="ttdini" style="width: 100%" >
             <tr>
                 <td></td>
@@ -343,143 +397,10 @@
         </table>
         <br>
         <div id="gratis">
-            Petugas Tidak diperkenankan menerima gratifikasi dalam bentuk apapun <br>
-            Pengaduan Gratifikasi/KKN ditujukan kepada  <br>
-            kepala Balai Besar POM di Banjarmasin melalui Hp : 082149000821
+            Petugas Tidak diperkenankan menerima gratifikasi dalam bentuk apapun. <br>        
+            Pengaduan Gratifikasi/KKN ditujukan kepada <br>
+            Kepala Balai Besar POM di Banjarmasin melalui Hp : 082149000821
         </div>
     </div>
-</div>
-<div style="page-break-before: always;" class="isi">
-    <br><br>
-    <div style="text-align: center;"> - 2 - </div>
-    <br><br>
-    <div>
-        <table style="width: 100%">
-            <tr>
-                <td style="width: 43%"></td>
-                <td colspan="3" style="font-size: 11">LAMPIRAN</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td colspan="3" style="font-size: 9">SURAT TUGAS KEPALA BALAI BESAR POM BANJARMASIN 
-            </tr>
-            <tr>
-                <td></td>
-                <td style="font-size: 9; width: 10%">NOMOR</td>
-                <td style="font-size: 9; width:3%"> : </td>
-                <td style="font-size: 9"> {{$data->number}}</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td style="font-size: 9">TANGGAL</td>
-                <td style="font-size: 9"> : </td>
-                <td style="font-size: 9"> {{tgl_indo($data->st_date)}}</td>
-            </tr>
-        </table>
-    </div>
-    <br><br>
-    <div style="text-align: center">
-        <b style="font-size: 14">DATA PEJABAT / PEGAWAI YANG DITUGASKAN</b><br>
-    </div>
-    <br>
-    <div>
-        <table style="width:100%" class="detail">
-            <thead>
-                <tr >
-                    <th style="width: 5%">NO</th>
-                    <th style="width: 30%">NAMA</th>
-                    <th style="width: 20%">NIP</th>
-                    <th style="width: 22%">PANGKAT / GOLONGAN</th>
-                    <th style="width: 33%">JABATAN</th>
-                </tr>
-            </thead>
-            <tbody>
-                @php
-                    $no= 1;
-                @endphp
-                @foreach($isian as $key=>$row)
-                <tr>
-                    <td class="detail" style="text-align: center;">
-                        {{$no++}}
-                    </td>
-                    <td class="detail">
-                        {{$row->pegawai->name}}
-                    </td>
-                    <td class="detail" style="text-align: center;">
-                        @if ($row->pegawai->golongan_id != null)
-                            {{$row->pegawai->no_pegawai}}
-                        @else
-                            {{' - '}}
-                        @endif
-                    </td>
-                    <td class="detail" style="text-align: center; vertical-align:top;">
-                       @if ($row->pegawai->golongan_id != null)
-                        {{$row->pegawai->gol->jenis}} /  
-                        {{$row->pegawai->gol->golongan}} {{$row->pegawai->gol->ruang}}
-                       @else
-                           {{' - '}}
-                       @endif
-                    </td>
-                    <td class="detail">
-                        @if ($row->pegawai->jabasn_id != null)
-                            {{$row->pegawai->jabasn->nama}}
-                        @else
-                            {{$row->pegawai->deskjob}}
-                        @endif
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-    {{-- <br><br>
-    <table class="ttdini" style="width: 100%" >
-        <tr>
-            <td></td>
-            <td style="width: 55%;">Banjarmasin, 
-                @php
-                    $a = $data->st_date;
-                    echo tgl_indo($a); 
-                @endphp
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right">
-                @if ($menyetujui != null)
-                    @if ($menyetujui->pjs !=null)
-                        {{$menyetujui->pjs}}
-                    @endif
-                @endif     
-            </td>
-            <td>
-               @if ($menyetujui != null)
-                    Kepala {{$menyetujui->divisi->nama}}
-               @else
-                    <b>Pejabat Belum Ditentukan</b>
-               @endif
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td style="height: 10%"></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                @if ($menyetujui != null)
-                    @if ($menyetujui->pjs !=null)
-                        {{$menyetujui->user->name}}<br>
-                        NIP: {{$menyetujui->user->no_pegawai}}
-                    @else
-                        {{$menyetujui->user->name}}
-                    @endif
-                @else
-                    <b>Silahkan Cek Setup Pejabat</b>
-                @endif
-                
-            </td>
-        </tr>
-    </table> --}}
-</div>
 </body>
 </html>

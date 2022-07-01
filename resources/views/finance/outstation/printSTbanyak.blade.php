@@ -66,7 +66,7 @@
         .detail{
             font-family: "Bookman Old Style";
             border: 1px solid black;
-            font-size: 11;
+            font-size: 10;
             text-align: left;
             line-height: 1;
             vertical-align: top
@@ -94,10 +94,10 @@
         }
         
 
-</style>
+</style> 
 <body>
 <div>
-    <div class="col-sm-12" style="text-align: center">
+   <div class="col-sm-12" style="text-align: center">
         <div style="align=center;" id="kop">
             <u><b style="font-size: 14">SURAT TUGAS</b></u><br>
             <p style="font-size: 12">NOMOR : {{$data->number}}</p>
@@ -419,8 +419,7 @@
             </tbody>
         </table>
     </div>
-    <br><br>
-    <table class="ttdini" style="width: 100%" >
+    {{-- <table class="ttdini" style="width: 100%" >
         <tr>
             <td></td>
             <td style="width: 55%;">Banjarmasin, 
@@ -466,7 +465,7 @@
                 
             </td>
         </tr>
-    </table>
+    </table> --}}
 </div>
 </body>
 </html>
