@@ -436,7 +436,7 @@ h2, a {
             <a class="social-icon" data-tooltip="AMDK" href="/amdk/dashboard">
               <img src="{{asset('images/amdk.png')}}" style="height:100%; width:100%">
             </a>   
-            <a class="social-icon" data-tooltip="Inventaris" href="/invent/dashboard">
+            <a class="social-icon" data-tooltip="BMN & Persediaan" href="/invent/dashboard">
               <img src="{{asset('images/invent.png')}}" style="height:100%; width:100%">
             </a>
             <a class="social-icon" data-tooltip="Anang & Galuh" href="/finance/portalAG">

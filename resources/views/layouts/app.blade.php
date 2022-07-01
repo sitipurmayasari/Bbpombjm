@@ -66,7 +66,7 @@
 					<a href="/portal" class="navbar-brand">
 						<small>
 						<img src="{{asset('images/bbpom.jpg')}}" alt="" srcset="" style="height:35px">
-							SISTEM INVENTARIS BARANG
+							BMN DAN PERSEDIAAN
 						</small>
 					</a>
 				</div>
