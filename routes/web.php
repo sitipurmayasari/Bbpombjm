@@ -43,14 +43,17 @@ Route::get('/qR/{id}/inventaris','Invent\InventarisController@detail')->name('in
   Route::get('/finance/dashboardren','Finance\DashboardrenController@index')->name('dashboard');
   Route::get('/finance/dashboardforma','Finance\DashboardformaController@index')->name('dashboard');
   
-  
-  
   //--------------------------AMDK------------------------------------------
   Route::get('/amdk/dashboard','Amdk\DashboardController@index')->name('dashboard');
-    //--------------------------Arsiparis------------------------------------------
+
+  //--------------------------Arsiparis------------------------------------------
   Route::get('/arsip/dashboard','Arsip\DashboardController@index')->name('dashboard');
-  // //--------------------------calibration------------------------------------------
-  // Route::get('/calibration/dashboard','Calibration\DashboardController@index')->name('dashboard');
+
+  //--------------------------calibration------------------------------------------
+  Route::get('/calibration/dashboard','Calibration\DashboardController@index')->name('dashboard');
+
+   //--------------------------QMS------------------------------------------
+   Route::get('/qms/dashboard','Qms\DashboardController@index')->name('dashboard');
 
 
   //Route untuk Profile
@@ -71,6 +74,8 @@ Route::get('/qR/{id}/inventaris','Invent\InventarisController@detail')->name('in
   require __DIR__.'/finance.php';
   //--------------------------Arsiparis------------------------------------------
   require __DIR__.'/arsip.php';
+  // //--------------------------QMS------------------------------------------
+  // require __DIR__.'/qms.php';
   // //--------------------------calibration------------------------------------------
   // require __DIR__.'/calibration.php';
 
@@ -298,6 +303,11 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
      Route::get('/arsip/archivesrek','Arsip\ArchivesrekController@index')->name('archivesrek');
      //Route untuk Laporan Arsip
      Route::get('/arsip/reportarchive','Arsip\ReportarchiveController@index')->name('reportarchive');
+
+
+     //--------------------------QMS------------------------------------------
+     //Route untuk qms
+     Route::get('/qms/uploads','Qms\UploadsController@index')->name('uploads');
 
 });
 

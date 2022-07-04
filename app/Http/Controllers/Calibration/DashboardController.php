@@ -15,7 +15,7 @@ class DashboardController extends Controller
     {
         $peg =auth()->user()->id;
         $now = Carbon::now()->month;
-
+         
         return view('calibration/dashboard.index',compact('peg','now'));
     }
 }

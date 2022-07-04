@@ -44,7 +44,7 @@
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
                     <td>{{$row->judul}}</td>
-                    <td>{{$row->daDri}}</td>
+                    <td>{{$row->dari}}</td>
                     <td>{{$row->sampai}}</td>
                     <td>{{$row->user->name}}</td>
                     <td>

@@ -11,7 +11,7 @@
 <style>
     @page {
         size: 21cm 33cm ;
-        margin: 160px 0px 30px 0px;
+        margin: 180px 0px 30px 0px;
     }
 
     @font-face {
@@ -86,7 +86,7 @@
 
         #gratis{
             font-family: "Bookman Old Style";  
-            font-size: 11;
+            font-size: 10;
             font-weight: normal;
             font-style: normal;;
             color: brown;
