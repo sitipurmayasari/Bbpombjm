@@ -275,7 +275,7 @@ h2, a {
   background: #00a1b2;
   color: white;
   margin-right: 3%;
-  margin-top: -3%;
+  margin-top: -5%;
   border-radius: 20px;
   box-shadow: 3px 6px #888888;
 }
@@ -425,12 +425,12 @@ h2, a {
         </a>   
         {{-- nama --}}
         <div style="text-align: center;">
-          <div style="padding-left: 18%;  line-height: 1;">
+          <div style="padding-left: 18%;  line-height: 1; margin-top:-25px">
             <h4>SELAMAT DATANG DI</h4>
             <h1><b>SI-BOB</b></h1>
             <h5>( SISTEM INFORMASI BBPOM BANJARMASIN )</h5>
           </div>
-         </div>
+        </div>
          {{-- icon --}}
          <div class="social">   
             <a class="social-icon" data-tooltip="AMDK" href="/amdk/dashboard">
@@ -441,7 +441,9 @@ h2, a {
             </a>
             <a class="social-icon" data-tooltip="Anang & Galuh" href="/finance/portalAG">
               <img src="{{asset('images/naga.png')}}" style="height:100%; width:100%">
-            </a> <br>
+            </a><br><br>
+        </div>
+        <div class="social">
             <a class="social-icon" data-tooltip="Kearsipan" href="/arsip/dashboard">
               <img src="{{asset('images/arsiparis.png')}}" style="height:100%; width:100%">
             </a>
@@ -452,7 +454,6 @@ h2, a {
               <img src="{{asset('images/qms2.png')}}" style="height:100%; width:100%">
             </a>
         </div>
-        <br>
         {{-- <div class="lain"> 
           ----------------------------Link Terkait----------------------------
            <br>  
