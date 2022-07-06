@@ -47,8 +47,12 @@ class LapAjuController extends Controller
                                     $query->whereYear('tanggal',$request->daftartahun);
                                     $query->whereMonth('tanggal',$request->daftarbulan); 
                                 }
-                                
                             })
+                            ->when($request->piltgl, function ($query) use ($request) {
+                                if($request->piltgl==2){
+                                    $query->WhereRaw('tanggal between "'.$request->awal.'" AND "'.$request->akhir.'"');
+                                }
+                             })
                             ->get();
             
             $pdf = PDF::loadview('invent/lapajuan.aduan',compact('user','data','request'));

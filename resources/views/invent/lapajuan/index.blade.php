@@ -37,22 +37,6 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Pilih Tahun
-                            </label>
-                            <div class="col-sm-8">
-                                <select name="daftartahun" class="col-xs-10 col-sm-10">
-                                    <?php
-                                        $now=date('Y');
-                                        for ($a=2022;$a<=$now;$a++)
-                                        {
-                                            echo "<option value='$a'>$a</option>";
-                                        }
-                                        ?>
-                                </select>
-                            </div>
-                        </div>
                         <div  class="form-group" id="pilihminggu">
                             <label class="col-sm-3 control-label no-padding-right" 
                             for="form-field-1"> Pilih Daftar
@@ -72,6 +56,22 @@
                                     <input type="radio" name="piltgl" value="2" id="tgl2">
                                     <label class="control-label no-padding-right" for="form-field-1"> Per Tanggal</label>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Pilih Tahun
+                            </label>
+                            <div class="col-sm-8">
+                                <select name="daftartahun" class="col-xs-10 col-sm-10">
+                                    <?php
+                                        $now=date('Y');
+                                        for ($a=2022;$a<=$now;$a++)
+                                        {
+                                            echo "<option value='$a'>$a</option>";
+                                        }
+                                        ?>
+                                </select>
                             </div>
                         </div>
                         <div  class="form-group" id="pilihbulan">
@@ -149,7 +149,7 @@
             }else if(v=="rusaktik"){
                 $("#pilihbulan").show();
                 $("#pilihminggu").show();
-                $("#alltgl").hide();
+                $("#alltgl").show();
                 $("#allthn").show();
                 $("#a").hide();
                 $("#b").hide();      

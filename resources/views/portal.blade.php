@@ -327,7 +327,7 @@ h2, a {
 </head>
 
 <body background="{{asset('images/background.jpg')}}">
-   <div class="wrapper">
+  <div class="wrapper">
     <div class="sidebar" data-background-color="white">
       <div class="card">
         <div class="card-header card-header-warning">
@@ -441,9 +441,15 @@ h2, a {
             </a>
             <a class="social-icon" data-tooltip="Anang & Galuh" href="/finance/portalAG">
               <img src="{{asset('images/naga.png')}}" style="height:100%; width:100%">
-            </a>
+            </a> <br>
             <a class="social-icon" data-tooltip="Kearsipan" href="/arsip/dashboard">
               <img src="{{asset('images/arsiparis.png')}}" style="height:100%; width:100%">
+            </a>
+            <a class="social-icon" data-tooltip="Pengujian" href="/calibration/dashboard">
+              <img src="{{asset('images/lab.png')}}" style="height:100%; width:100%">
+            </a>
+            <a class="social-icon" data-tooltip="QMS" href="/qms/dashboard">
+              <img src="{{asset('images/qms2.png')}}" style="height:100%; width:100%">
             </a>
         </div>
         <br>
@@ -463,14 +469,16 @@ h2, a {
             <img src="{{asset('images/lab.png')}}" style="height:100%; width:100%">
           </a>
       </div> --}}
-      </div>
-      <footer class="footer" style="margin: 0; padding:0;">
         <div class="container-fluid">
           <span class="green bolder">BBPOM Banjarmasin</span> &copy; 2021 
         </div>
-      </footer>
+      </div>
+      {{-- <footer class="footer" style="margin: 0; padding:0;">
+        <div class="container-fluid">
+          <span class="green bolder">BBPOM Banjarmasin</span> &copy; 2021 
+        </div>
+      </footer> --}}
     </div>
-   </div>
 
     <script src="{{asset('assets/js/ace-extra.min.js')}}"></script>
 		<script src="{{asset('assets/js/jQuery-2.1.4.min.js')}}"></script>
@@ -507,7 +515,6 @@ h2, a {
 		<script src="{{asset('assets/js/dataTables.select.min.js')}}"></script>
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 		<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-   
     <script>
       $(document).ready(function() {
 
