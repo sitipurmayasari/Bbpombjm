@@ -306,8 +306,12 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
 
 
      //--------------------------QMS------------------------------------------
+     //Route untuk input qms
+     Route::get('/qms/inputqms','Qms\InputQMSController@index')->name('inputqms');
+     //Route untuk qms mikro
+     Route::get('/qms/mikro','Qms\MikroController@index')->name('mikro');
      //Route untuk qms
-     Route::get('/qms/uploads','Qms\UploadsController@index')->name('uploads');
+     Route::get('/qms/makro','Qms\MakroController@index')->name('makro');
 
 });
 

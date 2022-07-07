@@ -58,6 +58,7 @@
                         <li><a href="#plan" data-toggle="tab">e-Planning</a></li>
                         <li><a href="#forma" data-toggle="tab">e-Performance</a></li>
                         <li><a href="#arsip" data-toggle="tab">Arsiparis</a></li>
+                        <li><a href="#qms" data-toggle="tab">QMS</a></li>
                     </ul>
 
                     <div class="tab-content">
@@ -252,6 +253,32 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="tab-pane" id="qms">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-success">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">QMS</h3>
+                                        </div>
+                        
+                                        <div class="panel-body">
+                                            <table id="simple-table" class="table  table-bordered table-hover" >
+                                                <thead >
+                                                    <th width="5%" style="text-align: center;">No</th>
+                                                    <th style="text-align: center;">Menu</th>
+                                                    <th width="20%" style="text-align: center;">
+                                                        <input type="checkbox" name="qmsCheckAll" id="qmsCheckAll" >
+                                                    </th>
+                                                </thead>
+                                                <tbody id="isi_qms">
+                                                   
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                </div>
 
@@ -327,6 +354,14 @@
                 $('.cekForma').prop('checked', true);
             } else {
                 $('.cekForma').prop('checked', false);
+            }
+        });
+
+        $('#qmsCheckAll').click(function() {
+            if ($(this).prop('checked')) {
+                $('.cekqms').prop('checked', true);
+            } else {
+                $('.cekqms').prop('checked', false);
             }
         });
     });
@@ -457,6 +492,22 @@
                     '</tr>';
               }
 
+              for (let i = 0; i < response.qms.length; i++) {
+                  var is_check = '';
+                  var no = i+1;
+                  if (response.qms[i].checked){
+                      is_check = 'checked';
+                  }
+                  isi_qms+='<tr>'+
+                        '<td style="text-align: center;">'+no+'</td>'+
+                        '<td>'+response.qms[i].nama+'</td>'+
+                        '<td style="text-align: center;">'+
+                            '<input type="checkbox" class="menu cekqms" name="akses_qms[]" '+is_check
+                            +' value="'+response.qms[i].id+'">'+
+                        '</td>'+
+                    '</tr>';
+              }
+
               $("#isi_amdk").html(isi_amdk);
               $("#isi_inv").html(isi_inv);
               $("#isi_fin").html(isi_fin);
@@ -464,6 +515,7 @@
               $("#isi_dinas").html(isi_dinas);
               $("#isi_plan").html(isi_plan);
               $("#isi_forma").html(isi_forma);
+              $("#isi_qms").html(isi_qms);
 
 
             }

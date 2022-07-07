@@ -1,7 +1,8 @@
 <?php
-//Route untuk Subkelompok Surat
-Route::get('/qms/mailsubgroup/create','Qms\MailSubGroupController@create')->name('mailsubgroup.create');
-Route::post('/qms/mailsubgroup/store','Qms\MailSubGroupController@store')->name('mailsubgroup.store');
-Route::get('/qms/mailsubgroup/edit/{id}','Qms\MailSubGroupController@edit')->name('mailsubgroup.edit');
-Route::post('/qms/mailsubgroup/update/{id}','Qms\MailSubGroupController@update')->name('mailsubgroup.update');
+//Route untuk Input QMS
+Route::get('/qms/inputqms/create','Qms\InputQMSController@create')->name('inputqms.create');
+Route::post('/qms/inputqms/store','Qms\InputQMSController@store')->name('inputqms.store');
+Route::get('/qms/inputqms/edit/{id}','Qms\InputQMSController@edit')->name('inputqms.edit');
+Route::post('/qms/inputqms/update/{id}','Qms\InputQMSController@update')->name('inputqms.update');
+Route::get('qms/inputqms/delete/{id}','Qms\InputQMSController@delete')->name('inputqms.delete');
 
