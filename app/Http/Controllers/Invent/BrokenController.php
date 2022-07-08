@@ -35,7 +35,7 @@ class BrokenController extends Controller
     public function create()
     {
         $data = Inventaris::orderBy('nama_barang','asc')
-                            ->whereraw('jenis_barang IN (3,8)')
+                            ->whereraw('jenis_barang IN (3,8,21)')
                             ->get();
         $user = User::all()
                 ->where('id','!=','1');
@@ -107,7 +107,7 @@ class BrokenController extends Controller
     {
         $data = Broken::where('id',$id)->first();
         $barang = Inventaris::orderBy('nama_barang','asc')
-                ->whereraw('jenis_barang IN (3,8)')
+                ->whereraw('jenis_barang IN (3,8,21)')
                 ->get();
         $user = User::all()
         ->where('id','!=','1');
