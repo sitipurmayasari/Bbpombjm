@@ -27,7 +27,7 @@
                     <br>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1">Tanggal
+                        for="form-field-1">Tanggal Surat
                         </label>
                         <div class="col-sm-8">
                             <input type="hidden" name="users_id" value="{{auth()->user()->id}}">
