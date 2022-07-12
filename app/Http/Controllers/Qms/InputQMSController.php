@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use App\Qms;
+use App\Folder;
 
 class InputQMSController extends Controller
 {
@@ -14,9 +15,12 @@ class InputQMSController extends Controller
     public function index(Request $request)
     {
         $data = Qms::orderBy('id','desc')
+                        ->Selectraw('qms.*')
+                        ->Leftjoin('folder','folder.id','qms.folder_id')
                         ->when($request->keyword, function ($query) use ($request) {
                             $query->where('names','LIKE','%'.$request->keyword.'%')
-                                    ->orWhere('type', 'LIKE','%'.$request->keyword.'%');
+                                    ->orWhere('type', 'LIKE','%'.$request->keyword.'%')
+                                    ->orWhere('folder.name', 'LIKE','%'.$request->keyword.'%');
                         })
                         ->paginate('10');
         return view('qms/inputqms.index',compact('data'));
@@ -24,7 +28,8 @@ class InputQMSController extends Controller
 
     public function create()
     {
-        return view('qms/inputqms.create');
+        $folder = Folder::all();
+        return view('qms/inputqms.create',compact('folder'));
     }
 
     public function store(Request $request)
@@ -47,8 +52,9 @@ class InputQMSController extends Controller
 
     public function edit($id)
     {
+        $folder = Folder::all();
         $data = Qms::where('id',$id)->first();
-        return view('qms/inputqms.edit',compact('data'));
+        return view('qms/inputqms.edit',compact('data','folder'));
     }
 
 

@@ -3,50 +3,30 @@
     <li>Makro</li>
 @endsection
 @section('content')
-
-<form method="get" action="{{ url()->current() }}">
+<style>
+    .kotak{
+        padding: 10px;
+        text-align: center;
+        vertical-align: middle;
+    }
+</style>
     <div class="row">
         <div class="col-xs-12">
             <div class="row">
+                <h1 style="text-align: center">Pilih Folder SOP Makro</h1>
                 <div class="form-group col-sm-12">
-                    <div class="row">
-                        <div class="form-group col-xs-12 col-sm-5" style="float: right">
-                            <div class="input-group">
-                                <input type="text" class="form-control gp-search" name="keyword" placeholder="Cari " value="{{request('keyword')}}" autocomplete="off">
-                                <div class="input-group-btn">
-                                    <button type="submit" class="btn btn-default no-border btn-sm gp-search">
-                                    <i class="ace-icon fa fa-search icon-on-right bigger-110"></i>
-                                    </button>
-                                </div>
+                    <form action="/qms/mikro" method="get">
+                        @foreach ($data as $item)
+                            <div class="kotak col-sm-1" >
+                                <a class="social-icon" href="/qms/mikro/folder/{{$item->id}}" >
+                                    <img src="{{asset('images/3d-folder.png')}}" style="height:100%; width:100%">
+                                    {{$item->name}}
+                                </a>   
                             </div>
-                        </div>
-                    </div>
+                        @endforeach
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-</form>
-
-    <div class="table-responsive">
-        <table id="simple-table" class="table  table-bordered table-hover">
-            <thead>
-                <th width="40px">No</th>
-                <th>Nama File</th>
-                <th>file</th>
-            </thead>
-            <tbody>   	
-                @foreach($data as $key=>$row)
-                <tr>
-                    <td>{{$data->firstItem() + $key}}</td>
-                    <td>{{$row->names}}</td>
-                    <td>
-                        <a href="{{$row->getFIleQms()}}" target="_blank" >{{$row->file}}</a>
-                    </td>
-                </tr>
-              
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-{{$data->appends(Request::all())->links()}}
 @endsection

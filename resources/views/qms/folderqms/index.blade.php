@@ -1,6 +1,6 @@
 @extends('qms/layouts_qms.app')
 @section('breadcrumb')
-    <li>Input QMS</li>
+    <li>Folder QMS</li>
 @endsection
 @section('content')
 
@@ -11,7 +11,7 @@
                 <div class="form-group col-sm-12">
                     <div class="row">
                         <div class="form-group col-xs-12 col-sm-3" style="float: left">
-                           <a href="{{Route('inputqms.create')}}"  class="btn btn-primary">Tambah Data</a>   
+                           <a href="{{Route('folderqms.create')}}"  class="btn btn-primary">Tambah Data</a>   
                         </div>
                         <div class="form-group col-xs-12 col-sm-5" style="float: right">
                             <div class="input-group">
@@ -34,26 +34,24 @@
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
                 <th width="40px">No</th>
-                <th>Nama File</th>
-                <th>Jenis SOP</th>
                 <th>Nama Folder</th>
-                <th>file</th>
+                <th>Jenis</th>
                 <th  class="col-md-2">Aksi</th>
             </thead>
             <tbody>   	
                 @foreach($data as $key=>$row)
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
-                    <td>{{$row->names}}</td>
-                    <td>{{$row->type}}</td>
+                    <td>{{$row->name}}</td>
                     <td>
-                        {{$row->folder->name}}
+                        @if ($row->type == 1)
+                            Mikro
+                        @else
+                            Makro
+                        @endif
                     </td>
                     <td>
-                        <a href="{{$row->getFIleQms()}}" target="_blank" >{{$row->file}}</a>
-                    </td>
-                    <td>
-                        <a href="/qms/inputqms/edit/{{$row->id}}" class="btn btn-warning">
+                        <a href="/qms/folderqms/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
                         <a href="#" class="btn btn-danger delete"
@@ -87,7 +85,7 @@
             }).then((result) => {
                 console.log(result);
                 if (result.value) {
-                    window.location = "/qms/inputqms/delete/"+id;
+                    window.location = "/qms/folderqms/delete/"+id;
                 }
             });
         });

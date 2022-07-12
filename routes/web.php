@@ -312,6 +312,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
      Route::get('/qms/mikro','Qms\MikroController@index')->name('mikro');
      //Route untuk qms
      Route::get('/qms/makro','Qms\MakroController@index')->name('makro');
+     //Route untuk folder QMS
+     Route::get('/qms/folderqms','Qms\FolderQMSController@index')->name('folderqms');
 
 });
 

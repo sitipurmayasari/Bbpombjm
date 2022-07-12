@@ -44,6 +44,23 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field1"> Nama folder
+                        </label>
+                        <div class="col-sm-8">
+                            <select id="peg" name="folder_id" class="col-xs-10 col-sm-10 select2" required>
+                                <option value="">pilih Folder</option>
+                            @foreach ($folder as $peg)
+                                @if ($peg->id == $data->folder_id)
+                                <option value="{{$peg->id}}" selected>{{$peg->name}} ({{$peg->type == '1' ? 'Mikro' : 'Makro'}}) </option>
+                                @else
+                                <option value="{{$peg->id}}">{{$peg->name}} ({{$peg->type == '1' ? 'Mikro' : 'Makro'}}) </option>
+                                @endif
+                            @endforeach
+                        </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
                             for="form-field1"> Nama File
                         </label>
                         <div class="col-sm-8">

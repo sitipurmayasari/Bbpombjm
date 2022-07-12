@@ -7,8 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Qms extends Model
 {
     protected $table = "qms";
-    protected $fillable = ['names','type','file'
+    protected $fillable = ['names','type','file','folder_id'
 ];
+
+    public function folder()
+    {
+        return $this->belongsTo(Folder::class,'folder_id','id');
+    }
 
     public function getFIleQms() 
     {
