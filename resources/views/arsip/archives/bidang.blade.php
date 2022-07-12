@@ -39,9 +39,9 @@
                 <th>Nama Dokumen</th>
                 <th>Tanggal</th>
                 <th>No. Surat</th>
-                <th>aktif</th>
-                <th>inaktif</th>
-                <th>status</th>
+                <th>Klasifikasi Keamanan</th>
+                <th>Akses Internal</th>
+                <th>Akses Eksternal</th>
                 <th>File</th>
                 <th>Aksi</th>
             <thead>
@@ -53,17 +53,20 @@
                     <td>{{$row->uraian}}</td>
                     <td>{{$row->date}}</td>
                     <td>{{$row->nomor}}</td>
-                    <td>{{$row->klas->actived}} tahun 
-                        @if ($row->klas->ketactive != null)
-                            {{$row->klas->ketactive}}
+                    <td>
+                        @if ($row->klas->securitiesklas == 'B')
+                            Biasa / Terbuka
+                        @elseif($row->klas->securitiesklas == 'T')
+                            Terbatas
+                        @elseif($row->klas->securitiesklas == 'R')
+                            Rahasia
+                        @else
+                            Sangat Rahasia
                         @endif
                     </td>
-                    <td>{{$row->klas->innactive}} tahun 
-                        @if ($row->klas->ketinactive != null)
-                            {{$row->klas->ketinactive}}
-                        @endif
+                    <td>{{$row->klas->internal}}
                     </td>
-                    <td>{{$row->klas->thelast}}</td>
+                    <td>{{$row->klas->eksternal}}</td>
                     <td><a href="{{$row->getFIlearsip()}}" target="_blank" >{{$row->file}}</a></td>
                     <td>
                         @if ($row->hari_ini < $row->batas_aktif)
