@@ -112,7 +112,7 @@
                             for="form-field-1"> Klasifikasi Keamanan
                             </label>
                             <div class="col-sm-8">
-                                <select name="securitiesklas" class="col-xs-10 col-sm-10 required " required>
+                                <select name="securitiesklas" class="col-xs-10 col-sm-10 required " id="klas" required onchange="getklas()">
                                     @if ($data->securitiesklas=='T')
                                         <option value="B">Biasa / Terbuka</option>
                                         <option value="T" selected>Terbatas</option>
@@ -142,7 +142,7 @@
                             for="form-field-1">Akses Internal
                             </label>
                             <div class="col-sm-8">
-                                <input type="text"  value="{{$data->internal}}"
+                                <input type="text"  value="{{$data->internal}}" id="inter"
                                         class="col-xs-10 col-sm-10 required " 
                                         name="internal" required/>
                             </div>
@@ -152,7 +152,7 @@
                             for="form-field-1"> Akses Eksternal
                             </label>
                             <div class="col-sm-8">
-                                <input type="text"  value="{{$data->eksternal}}"
+                                <input type="text"  value="{{$data->eksternal}}" id="ekster"
                                         class="col-xs-10 col-sm-10 required " 
                                         name="eksternal" required/>
                             </div>
@@ -180,6 +180,27 @@
         var b = parseInt($("#pasif").val());
         var c = a+b;
         $("#akhir").val(c);
+    }
+
+    function getklas(){
+        var klas = $("#klas").val();
+
+        if (klas=='S') {
+            var a = "Pejabat Eselon I terkait, Pengawas Internal";
+            var b = "Pengawas Eksternal, Penegak Hukum";
+        } else if (klas=='T') {
+            var a = "Pejabat Eselon II terkait, Pengawas Internal";
+            var b = "Pengawas Eksternal, Penegak Hukum";
+        } else if (klas=='R') {
+            var a = "Pejabat Eselon I terkait, Pengawas Internal";
+            var b = "Pengawas Eksternal, Penegak Hukum";
+        } else {
+            var a = "Pejabat Eselon III Terkait yang diberikan izin, pengawas internal";
+            var b = "Pengawas eksternal, penegak hukum, publik (masyarakat umum)";
+        }
+        $("#inter").val(a);
+        $("#ekster").val(b);
+
     }
    </script>
 @endsection
