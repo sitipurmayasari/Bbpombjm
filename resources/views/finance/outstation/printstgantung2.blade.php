@@ -11,7 +11,7 @@
 <style>
     @page {
         size: 21cm 33cm ;
-        margin: 180px 0px 5px 0px;
+        margin: 170px 0px 5px 0px;
     }
 
     @font-face {
