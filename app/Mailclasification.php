@@ -14,8 +14,7 @@ class Mailclasification extends Model
 
     public function subgroup()
     {
-        return $this->belongsTo(Mailgroup::class,'mailsubgroup_id','id');
+        return $this->belongsTo(Mailsubgroup::class,'mailsubgroup_id','id');
     }
 
-  
 }
