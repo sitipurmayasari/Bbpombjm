@@ -19,6 +19,7 @@ class ArchivesrekController extends Controller
     {
         $klas = Mailgroup::all();
         $data = Archives::orderBy('archives.id','desc')
+                ->Selectraw('archives.*')
                 ->leftjoin('mailclasification','mailclasification.id','archives.mailclasification_id')
                 ->whereRaw('CURDATE() BETWEEN DATE(archives.date) 
                 and DATE_ADD(DATE(archives.date),INTERVAL mailclasification.actived YEAR)')
@@ -29,6 +30,7 @@ class ArchivesrekController extends Controller
                 })
                 ->paginate('10');
         $datainac = Archives::orderBy('archives.id','desc')
+                    ->Selectraw('archives.*')
                     ->leftjoin('mailclasification','mailclasification.id','archives.mailclasification_id')
                     ->whereRaw('curdate() > DATE_ADD(archives.date,INTERVAL mailclasification.actived YEAR)')
                     ->when($request->keyword, function ($query) use ($request) {

@@ -7,8 +7,7 @@
                         <ul class="nav nav-tabs">
                             @foreach ($klas as $item)
                                 <li><a href="#isi-{{$item->id}}" data-toggle="tab">{{$item->alias}}</a></li>
-                            @endforeach
-                            
+                            @endforeach     
                         </ul>    
                         <div class="tab-content">
                             @foreach ($klas as $item)
@@ -16,46 +15,36 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         @php
-                                            $isi = $injectQuery->groupberkas($item->id);
+                                             $isi = $injectQuery->groupberkas($item->id);
                                         @endphp
-                                        <ul class="nav nav-tabs">      
-                                            @foreach ($isi as $item)
-                                                <li><a href="#sub-{{$item->id}}" data-toggle="tab">{{$item->alias}}</a></li>
+                                         <ul class="nav nav-tabs">      
+                                            @foreach ($isi as $subgroup)
+                                                <li><a href="#sub-{{$subgroup->id}}" data-toggle="tab">{{$subgroup->alias}}</a></li>
                                             @endforeach
                                         </ul>
-                                        <div class="tab-content">
-                                            @foreach ($isi as $item)
-                                            <div class="tab-pane" id="sub-{{$item->id}}">
+                                        <div  class="tab-content">
+                                            @foreach ($isi as $subgroup)
+                                            <div class="tab-pane" id="sub-{{$subgroup->id}}">
                                                 <div class="row">
                                                     <div class="col-sm-12">
                                                         <ul class="nav nav-tabs">
                                                             @php
-                                                                $sub = $injectQuery->subberkas($item->id);
+                                                                $sub = $injectQuery->subberkas($subgroup->id);
                                                             @endphp
-                                                            @foreach ($sub as $item)
-                                                                <li><a href="#det-{{$item->id}}" data-toggle="tab">{{$item->alias}}</a></li>
+                                                            @foreach ($sub as $detail)
+                                                                <li><a href="#det-{{$detail->id}}" data-toggle="tab">{{$detail->alias}}</a></li>
                                                             @endforeach
                                                         </ul>
                                                         <div class="tab-content">
-                                                            @foreach ($isi as $item)
-                                                            <div class="tab-pane" id="det-{{$item->id}}">
+                                                            @foreach ($sub as $detail)
+                                                            <div class="tab-pane" id="det-{{$detail->id}}">
                                                                 <div class="row">
-                                                                    {{-- <div class="form-group col-xs-12 col-sm-5" style="float: right">
-                                                                        <div class="input-group">
-                                                                            <input type="text" class="form-control gp-search" name="keyword" placeholder="Cari " value="{{request('keyword')}}" autocomplete="off">
-                                                                            <div class="input-group-btn">
-                                                                                <button type="submit" class="btn btn-default no-border btn-sm gp-search">
-                                                                                <i class="ace-icon fa fa-search icon-on-right bigger-110"></i>
-                                                                                </button>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div> --}}
                                                                     <div class="col-sm-12">
                                                                         <div class="table-responsive">
                                                                             <table id="simple-table" class="table  table-bordered table-hover">
                                                                                 <thead>
                                                                                     <th width="40px">No</th>
-                                                                                    <th>Klasifikasi {{$item->alias}}</th>
+                                                                                    <th>Klasifikasi {{$detail->alias}}</th>
                                                                                     <th>Nomor</th>
                                                                                     <th>Nama Dokumen</th>
                                                                                     <th>Tanggal</th>
@@ -68,7 +57,7 @@
                                                                                 <thead>
                                                                                 <tbody>
                                                                                     @php
-                                                                                        $daftar = $injectQuery->berkas($item->id);
+                                                                                        $daftar = $injectQuery->berkas($detail->id);
                                                                                         $no = 1;
                                                                                     @endphp  
                                                                                     @foreach ($daftar as $row)
@@ -109,17 +98,18 @@
                                                                             </table>
                                                                             {{-- {{$data->appends(Request::all())->links()}} --}}
                                                                         </div>
-                                                                    </div>    
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                             @endforeach
                                                         </div>
-                                                    </div>    
+                                                    </div>
                                                 </div>
                                             </div>
                                             @endforeach
+
                                         </div>
-                                    </div>    
+                                    </div>
                                 </div>
                             </div>
                             @endforeach

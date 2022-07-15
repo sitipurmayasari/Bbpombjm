@@ -11,9 +11,11 @@
             <div class="row">
                 <div class="form-group col-sm-12">
                     <div class="row">
-                        <div class="form-group col-xs-12 col-sm-3" style="float: left">
-                           <a href="/arsip/archives/create/{{$div->id}}"  class="btn btn-primary">Tambah Data</a> 
-                        </div>
+                        @if (auth()->user()->divisi_id == $div->id)
+                            <div class="form-group col-xs-12 col-sm-3" style="float: left">
+                                <a href="/arsip/archives/create/{{$div->id}}"  class="btn btn-primary">Tambah Data</a> 
+                            </div>
+                        @endif
                         <div class="form-group col-xs-12 col-sm-5" style="float: right">
                             <div class="input-group">
                                 <input type="text" class="form-control gp-search" name="keyword" placeholder="Cari " value="{{request('keyword')}}" autocomplete="off">
@@ -69,10 +71,12 @@
                     <td>{{$row->klas->eksternal}}</td>
                     <td><a href="{{$row->getFIlearsip()}}" target="_blank" >{{$row->file}}</a></td>
                     <td>
-                        @if ($row->hari_ini < $row->batas_aktif)
-                            <a href="/arsip/archives/edit/{{$div->id}}/{{$row->id}}" class="btn btn-warning">
-                                <i class="glyphicon glyphicon-edit"></i>
-                            </a>
+                        @if (auth()->user()->divisi_id == $div->id)
+                            @if ($row->hari_ini < $row->batas_aktif)
+                                <a href="/arsip/archives/edit/{{$div->id}}/{{$row->id}}" class="btn btn-warning">
+                                    <i class="glyphicon glyphicon-edit"></i>
+                                </a>
+                            @endif
                         @endif
                     </td>
                 </tr>
