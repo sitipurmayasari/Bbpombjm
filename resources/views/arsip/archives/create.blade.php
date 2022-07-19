@@ -86,13 +86,23 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1"> Uraian
+                        for="form-field-1"> Uraian Berkas
                         </label>
                         <div class="col-sm-10">
-                            {{-- <input type="text"  placeholder="uraian" class="col-xs-10 col-sm-10 required " 
-                                    name="uraian" required /> --}}
+                            <textarea name="uraian_berkas" id="" cols="95%" rows="5" required
+                            placeholder="ex : Perihal"
+                            ></textarea>
 
-                            <textarea name="uraian" id="" cols="95%" rows="5" required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Uraian Isi Informasi
+                        </label>
+                        <div class="col-sm-10">
+                            <textarea name="uraian" id="" cols="95%" rows="5" required
+                            placeholder="ex : Surat Kepala Badan nomor xxx tentang xxx"
+                            ></textarea>
                         </div>
                     </div>
                     <div class="form-group">

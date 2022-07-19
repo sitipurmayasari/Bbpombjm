@@ -11,6 +11,7 @@ use App\Mailclasification;
 use App\Divisi;
 use App\Mailsubgroup;
 use App\Mailgroup;
+use App\Naskah;
 
 class ArchivesrekController extends Controller
 {
@@ -47,7 +48,8 @@ class ArchivesrekController extends Controller
     {
         $div = Divisi::where('id','!=','1')->get();
         $masa = Mailclasification::all();
-        return view('arsip/archivesrek.create',compact('masa','div'));
+        $naskah = Naskah::all();
+        return view('arsip/archivesrek.create',compact('masa','div','naskah'));
     }
 
     public function store(Request $request)
@@ -74,9 +76,11 @@ class ArchivesrekController extends Controller
 
     public function edit($id)
     {
+        $div = Divisi::where('id','!=','1')->get();
         $masa = Mailclasification::all();
         $data = Archives::where('id',$id)->first();
-        return view('arsip/archivesrek.edit',compact('data','masa'));
+        $naskah = Naskah::all();
+        return view('arsip/archivesrek.edit',compact('data','masa','div','naskah'));
     }
 
 

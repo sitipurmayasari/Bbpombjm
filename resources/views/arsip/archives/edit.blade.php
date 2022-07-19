@@ -109,10 +109,21 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1"> Uraian
+                        for="form-field-1"> Uraian Berkas
                         </label>
                         <div class="col-sm-10">
-                            <textarea name="uraian" id="" cols="95%" rows="5" required>{{$data->uraian}}</textarea>
+                            <textarea name="uraian_berkas" id="" cols="95%" rows="5" required
+                            placeholder="ex : Perihal" >{{$data->uraian_berkas}}</textarea>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Uraian Isi Informasi
+                        </label>
+                        <div class="col-sm-10">
+                            <textarea name="uraian" id="" cols="95%" rows="5" required
+                            placeholder="ex : Surat Kepala Badan nomor xxx tentang xxx">{{$data->uraian}}</textarea>
                         </div>
                     </div>
                     <div class="form-group">

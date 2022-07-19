@@ -301,6 +301,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
      Route::get('/arsip/archivesbid','Arsip\ArchivesbidController@index')->name('archivesbid');
      //Route untuk rekap Arsip
      Route::get('/arsip/archivesrek','Arsip\ArchivesrekController@index')->name('archivesrek');
+     //Route untuk daftar Arsip
+     Route::get('/arsip/archiveslist','Arsip\ArchiveslistController@index')->name('archiveslist');
      //Route untuk Laporan Arsip
      Route::get('/arsip/reportarchive','Arsip\ReportarchiveController@index')->name('reportarchive');
 

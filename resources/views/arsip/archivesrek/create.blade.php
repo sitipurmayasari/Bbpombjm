@@ -64,6 +64,19 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Bentuk Naskah
+                        </label>
+                        <div class="col-sm-10">
+                            <select name="naskah_id" class="col-xs-10 col-sm-10 required select2" required>
+                                <option value="">Pilih bentuk naskah</option>
+                                @foreach ($naskah as $isi)
+                                    <option value="{{$isi->id}}">{{$isi->bentuk}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
                         for="form-field-1"> Nomor Surat
                         </label>
                         <div class="col-sm-10">
@@ -76,19 +89,32 @@
                         </label>
                         <div class="col-sm-10">
                             <input type="radio" required value="asli" checked 
-                            name="tingkat" id="L"/> &nbsp; Asli  &nbsp;
+                                name="tingkat" id="L"/> &nbsp; Asli  &nbsp;
                             <input type="radio" required value="copy"
-                            name="tingkat" id="P"/> &nbsp; Copy &nbsp;
+                                name="tingkat" id="P"/> &nbsp; Copy &nbsp;
                             <input type="radio" required value="soft copy"
-                            name="tingkat" id="P"/> &nbsp; Soft Copy
+                                name="tingkat" id="P"/> &nbsp; Soft Copy
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1"> Uraian
+                        for="form-field-1"> Uraian Berkas
                         </label>
                         <div class="col-sm-10">
-                            <textarea name="uraian" id="" cols="95%" rows="5" required></textarea>
+                            <textarea name="uraian_berkas" id="" cols="95%" rows="5" required
+                            placeholder="ex : Perihal"
+                            ></textarea>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Uraian Isi Informasi
+                        </label>
+                        <div class="col-sm-10">
+                            <textarea name="uraian" id="" cols="95%" rows="5" required
+                            placeholder="ex : Surat Kepala Badan nomor xxx tentang xxx"
+                            ></textarea>
                         </div>
                     </div>
                     <div class="form-group">
@@ -102,11 +128,20 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1">  Upload File
+                        for="form-field-1"> Lokasi Penyimpanan
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="text"  placeholder="bantex dengan nama x" class="col-xs-10 col-sm-10"
+                                    name="lokasi"  />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1">  Upload File*
                         </label>
                         <div class="col-sm-9">
                             <input type="file" name="file" class="btn btn-default btn-sm" id="" value="Upload File">      
-                            <label><i>ex:Lorem_ipsum.pdf</i></label>
+                            <label><i>Tidak wajib, max : 2Mb</i></label>
                         </div>
                     </div>
                     </fieldset>        

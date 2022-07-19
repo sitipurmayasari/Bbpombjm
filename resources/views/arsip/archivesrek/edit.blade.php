@@ -38,6 +38,23 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1">Bagian
+                        </label>
+                        <div class="col-sm-8">
+                            <select name="divisi_id" class="col-xs-10 col-sm-10 required select2" required>
+                                <option value="">Pilih Bagian</option>
+                                @foreach ($div as $isi)
+                                    @if ($isi->id == $data->divisi_id)
+                                        <option value="{{$isi->id}}" selected>{{$isi->nama}}</option>
+                                    @else
+                                        <option value="{{$isi->id}}">{{$isi->nama}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
                         for="form-field-1"> Klasifikasi Surat
                         </label>
                         <div class="col-sm-10">
@@ -48,6 +65,23 @@
                                         <option value="{{$isi->id}}" selected>{{$isi->alias}} - {{$isi->names}}</option>
                                     @else
                                         <option value="{{$isi->id}}">{{$isi->alias}} - {{$isi->names}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Bentuk Naskah
+                        </label>
+                        <div class="col-sm-10">
+                            <select name="naskah_id" class="col-xs-10 col-sm-10 required select2" required>
+                                <option value="">Pilih bentuk naskah</option>
+                                @foreach ($naskah as $isi)
+                                    @if ($isi->id == $data->naskah_id)
+                                        <option value="{{$isi->id}}" selected>{{$isi->bentuk}}</option>
+                                    @else
+                                        <option value="{{$isi->id}}">{{$isi->bentuk}}</option>
                                     @endif
                                 @endforeach
                             </select>
@@ -92,10 +126,21 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1"> Uraian
+                        for="form-field-1"> Uraian Berkas
                         </label>
                         <div class="col-sm-10">
-                            <textarea name="uraian" id="" cols="95%" rows="5" required>{{$data->uraian}}</textarea>
+                            <textarea name="uraian_berkas" id="" cols="95%" rows="5" required
+                            placeholder="ex : Perihal" >{{$data->uraian_berkas}}</textarea>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Uraian Isi Informasi
+                        </label>
+                        <div class="col-sm-10">
+                            <textarea name="uraian" id="" cols="95%" rows="5" required
+                            placeholder="ex : Surat Kepala Badan nomor xxx tentang xxx">{{$data->uraian}}</textarea>
                         </div>
                     </div>
                     <div class="form-group">
@@ -105,6 +150,15 @@
                         <div class="col-sm-10">
                             <input type="number"  class="col-xs-1 col-sm-1" value="{{$data->jumlah}}"
                                 name="jumlah"  />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Lokasi Penyimpanan
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="text"  placeholder="bantex dengan nama x" class="col-xs-10 col-sm-10 "
+                                    name="lokasi"  value="{{$data->lokasi}}"/>
                         </div>
                     </div>
                     <div class="form-group">
