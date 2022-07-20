@@ -71,10 +71,10 @@
 				</button>
 
 				<div class="navbar-header pull-left">
-					<a href="/portal" class="navbar-brand">
+					<a href="/calibration/dashboard" class="navbar-brand">
 						<small>
 						<img src="{{asset('images/bbpom.jpg')}}" alt="" srcset="" style="height:35px">
-							PENGUJIAN
+							PENGUJIAN - LAB OBAT DAN NAPZA
 						</small>
 					</a>
 				</div>
@@ -119,15 +119,7 @@
 			</div><!-- /.navbar-container -->
 		</div>
 
-        
-        {{-- -------------------------- --}}
-        <div class="page-content">
-
-            @yield('content')
-
-        </div><!-- /.page-content -->
-
-		{{-- <div class="main-container ace-save-state" id="main-container">
+		<div class="main-container ace-save-state" id="main-container">
 			<script type="text/javascript">
 				try{ace.settings.loadState('main-container')}catch(e){}
 			</script>
@@ -143,13 +135,13 @@
 						</li>
 
 						<li class=" ">
-							<a href="/finance/dashboard">
+							<a href="/calibration/dashboardnapza">
 								<i class="menu-icon fa fa-tachometer"></i>
 								<span class="menu-text"> Dashboard </span>
 							</a>
 							<b class="arrow"></b>
 						</li>
-						@foreach (myMenu('finance') as $item)
+						@foreach (myMenu('napza') as $item)
 						@if ($item->link!='')
 							<li class="{{ (request()->segment(2) == strtolower($item->nama) ) ? 'active' : '' }}">
 								<a href="{{$item->link}}">
@@ -223,7 +215,7 @@
 			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
 				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
 			</a>
-		</div><!-- /.main-container --> --}}
+		</div><!-- /.main-container -->
 
 		<!-- JS -->
 		<script src="{{asset('assets/js/ace-extra.min.js')}}"></script>

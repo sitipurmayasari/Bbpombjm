@@ -144,7 +144,16 @@
                                 <label class="control-label no-padding-right" for="form-field-1"> Rusak</label>
                             </div>
                         </div>
-
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Link Video Penggunaan
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text"  placeholder="merk" 
+                                        class="col-xs-10 col-sm-10 required " 
+                                        name="link_video" />
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" s
                             for="form-field-1"> Spesifikasi Barang
@@ -175,7 +184,7 @@
                         for="form-field-1"> Troubleshouting
                         </label>
                         <div class="col-sm-9">
-                                <input type="file" name="file_user_manual" class="btn btn-default btn-sm" id="" value="Upload File User Manual">      
+                                <input type="file" name="file_user_manual" class="btn btn-default btn-sm" id="" value="Upload File Troubleshouting">      
                                 <label><i>ex:Lorem_ipsum.pdf</i></label>
                         </div>
                     </div>
@@ -184,7 +193,16 @@
                         for="form-field-1"> IKA
                         </label>
                         <div class="col-sm-9">
-                            <input type="file" name="file_user_manual" class="btn btn-default btn-sm" id="" value="Upload File User Manual">      
+                            <input type="file" name="file_user_manual" class="btn btn-default btn-sm" id="" value="Upload File IKA">      
+                            <label><i>ex:Lorem_ipsum.pdf</i></label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" 
+                        for="form-field-1"> SERTIFIKAT KALIBRASI
+                        </label>
+                        <div class="col-sm-9">
+                            <input type="file" name="file_sert" class="btn btn-default btn-sm" id="" value="Upload File Sertifikasi">      
                             <label><i>ex:Lorem_ipsum.pdf</i></label>
                         </div>
                     </div>

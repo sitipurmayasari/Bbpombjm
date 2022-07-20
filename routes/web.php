@@ -51,6 +51,7 @@ Route::get('/qR/{id}/inventaris','Invent\InventarisController@detail')->name('in
 
   //--------------------------calibration------------------------------------------
   Route::get('/calibration/dashboard','Calibration\DashboardController@index')->name('dashboard');
+  Route::get('/calibration/dashboardnapza','Calibration\DashboardNapzaController@index')->name('dashboard');
 
    //--------------------------QMS------------------------------------------
    Route::get('/qms/dashboard','Qms\DashboardController@index')->name('dashboard');
@@ -77,7 +78,7 @@ Route::get('/qR/{id}/inventaris','Invent\InventarisController@detail')->name('in
   //--------------------------QMS------------------------------------------
   require __DIR__.'/qms.php';
   // //--------------------------calibration------------------------------------------
-  // require __DIR__.'/calibration.php';
+  require __DIR__.'/calibration.php';
 
 });
 
@@ -316,6 +317,10 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
      Route::get('/qms/makro','Qms\MakroController@index')->name('makro');
      //Route untuk folder QMS
      Route::get('/qms/folderqms','Qms\FolderQMSController@index')->name('folderqms');
+
+
+     //-------------------Pengujian-------------------------------------------------
+    // Route::get('/finance/portalAG','Finance\PortalAGController@index')->name('dashboard');
 
 });
 

@@ -87,6 +87,15 @@ class InventarisController extends Controller
             $inventaris->save(); // save ke database
         }
 
+        if($request->hasFile('file_sert')){ // Kalau file ada
+            $request->file('file_sert')
+                        ->move('images/inventaris/'.$inventaris->id,$request
+                        ->file('file_sert')
+                        ->getClientOriginalName()); // pindah file user manual k inventaris folder id file
+            $inventaris->file_sert = $request->file('file_sert')->getClientOriginalName(); // update isi kolum file user dengan origin gambar
+            $inventaris->save(); // save ke database
+        }
+
         if($request->hasFile('file_foto')){ // Kalau file ada
             $request->file('file_foto')
                         ->move('images/inventaris/'.$inventaris->id,$request
@@ -197,6 +206,15 @@ class InventarisController extends Controller
                         ->file('file_ika2')
                         ->getClientOriginalName()); // pindah file user manual k inventaris folder id file
             $inventaris->file_ika = $request->file('file_ika2')->getClientOriginalName(); // update isi kolum file user dengan origin gambar
+            $inventaris->save(); // save ke database
+        }
+
+        if($request->hasFile('file_sert2')){ // Kalau file ada
+            $request->file('file_sert2')
+                        ->move('images/inventaris/'.$inventaris->id,$request
+                        ->file('file_sert2')
+                        ->getClientOriginalName()); // pindah file user manual k inventaris folder id file
+            $inventaris->file_sert = $request->file('file_sert2')->getClientOriginalName(); // update isi kolum file user dengan origin gambar
             $inventaris->save(); // save ke database
         }
 

@@ -11,7 +11,7 @@ class Inventaris extends Model
     protected $table = "inventaris";
     protected $fillable = ["kode_barang","nama_barang","harga","kode_bmn","jenis_barang","jumlah_barang",
                             "tanggal_diterima","merk","no_seri","lokasi","penanggung_jawab","spesifikasi","satuan_id",
-                            "file_user_manual","file_ika","file_trouble","file_foto","status_barang","kind"
+                            "file_user_manual","file_ika","file_trouble","file_foto","status_barang","kind","link_video","file_sert"
                         ];
     protected $dates = ['deleted_at'];
 
@@ -47,6 +47,10 @@ class Inventaris extends Model
     public function getFIleUserManual() 
     {
         return $this->file_user_manual==null ? 'Tidak Ada File' : asset('images/inventaris').'/'.$this->id.'/'.$this->file_user_manual;
+    }
+    public function getFIleSert() 
+    {
+        return $this->file_sert==null ? 'Tidak Ada File' : asset('images/inventaris').'/'.$this->id.'/'.$this->file_sert;
     }
 
     public function getFoto() 

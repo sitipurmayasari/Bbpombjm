@@ -164,7 +164,17 @@
                                 <label class="control-label no-padding-right" for="form-field-1"> Rusak</label>
                             </div>
                         </div>
-
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Link Video Penggunaan
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text"  placeholder="merk" value="{{$data->link_video}}"
+                                        class="col-xs-10 col-sm-10 required " 
+                                        name="link_video" />
+                            </div>
+                        </div>
+                        <div class="for
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" s
                             for="form-field-1"> Spesifikasi Barang
@@ -208,7 +218,15 @@
                             <label><a href="{{$data->getFIleIka()}}" target="_blank" >{{$data->file_ika}}</a></label>
                         </div>
                     </div>
-
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" 
+                        for="form-field-1"> SERTIFIKAT KALIBRASI
+                        </label>
+                        <div class="col-sm-9">
+                            <input type="file" name="file_sert2" class="btn btn-default btn-sm" id="" value="Upload File Sertifikasi">      
+                            <label><a href="{{$data->getFIleSert()}}" target="_blank" >{{$data->file_sert}}</a></label>
+                        </div>
+                    </div>
                     <div class="form-actions" style="text-align: center">
                         <input type="file" name="file_foto2" class="btn btn-success btn-sm" id="" 
                             value="Upload Ulang Foto Barang">   

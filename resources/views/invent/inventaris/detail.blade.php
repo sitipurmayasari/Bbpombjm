@@ -63,6 +63,16 @@
                 <td>:</td>
                 <td><a href="{{$data->getFIleIka()}}" target="_blank" >{{$data->file_ika}}</a></td>
             </tr>
+            <tr>
+                <td>SERTIFIKAT KALIBRASI</td>
+                <td>:</td>
+                <td><a href="{{$data->getFIleSert()}}" target="_blank" >{{$data->file_sert}}</a></td>
+            </tr>
+            <tr>
+                <td>Video Penggunaan</td>
+                <td>:</td>
+                <td><a href="{{$data->link_video}}">Klik Disini</a></td>
+            </tr>
        </table>
    </main>
 </body>

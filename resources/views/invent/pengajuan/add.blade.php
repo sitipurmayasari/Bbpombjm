@@ -80,7 +80,8 @@
                                 <input type="text" name="nama_barang[]" class="form-control">
                             </td>
                             <td>
-                                <textarea name="spek[]" class="form-control"></textarea>
+                                <textarea name="spek[]" class="form-control" placeholder="*contoh : 1 box isi 5" required></textarea>
+                                *wajib sertakan jumlah pcs / box/ kotak/dus/roll
                             </td>
                             <td>
                                 <select name="satuan_id[]" class="col-xs-9 col-sm-9 select2" required>
