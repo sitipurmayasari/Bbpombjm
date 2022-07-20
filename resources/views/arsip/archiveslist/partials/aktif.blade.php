@@ -22,7 +22,8 @@
                                 <th width="40px">No</th>
                                 <th>Klasifikasi</th>
                                 <th>Nomor</th>
-                                <th>Nama Dokumen</th>
+                                <th>Uraian Berkas</th>
+                                <th>Uraian Informasi</th>
                                 <th>Tanggal</th>
                                 <th>aktif</th>
                                 <th>inaktif</th>
@@ -38,8 +39,9 @@
                                 <tr>
                                     <td>{{$no}}</td>
                                     <td>{{$row->klas->alias}}</td>
-                                    <td>{{$row->uraian}}</td>
                                     <td>{{$row->nomor}}</td>
+                                    <td>{{$row->uraian_berkas}}</td>
+                                    <td>{{$row->uraian}}</td>
                                     <td>{{$row->date}}</td>
                                     <td>{{$row->klas->actived}} tahun 
                                         @if ($row->klas->ketactive != null)

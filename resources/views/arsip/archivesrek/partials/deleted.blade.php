@@ -46,8 +46,8 @@
                                                                                 <thead>
                                                                                     <th width="40px">No</th>
                                                                                     <th>Klasifikasi {{$item->alias}}</th>
-                                                                                    <th>Nama Dokumen</th>
-                                                                                    <th>Nomor</th>
+                                                                                    <th>Uraian Berkas</th>
+                                                                                    <th>Uraian Informasi</th>
                                                                                     <th>Tanggal</th>
                                                                                     <th>status</th>
                                                                                     <th>File</th>
@@ -63,8 +63,8 @@
                                                                                     <tr>
                                                                                         <td>{{$no}}</td>
                                                                                         <td>{{$row->klas->alias}}</td>
+                                                                                        <td>{{$row->uraian_berkas}}</td>
                                                                                         <td>{{$row->uraian}}</td>
-                                                                                        <td>{{$row->nomor}}</td>
                                                                                         <td>{{$row->date}}</td>
                                                                                         <td>{{$row->klas->thelast}}</td>
                                                                                         <td><a href="{{$row->getFIlearsip()}}" target="_blank" >{{$row->file}}</a></td>
