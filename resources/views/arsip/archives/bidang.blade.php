@@ -38,9 +38,9 @@
             <thead>
                 <th width="40px">No</th>
                 <th>Klasifikasi</th>
+                <th>Uraian Berkas</th>
                 <th>Nama Dokumen</th>
                 <th>Tanggal</th>
-                <th>No. Surat</th>
                 <th>Klasifikasi Keamanan</th>
                 <th>Akses Internal</th>
                 <th>Akses Eksternal</th>
@@ -52,9 +52,9 @@
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
                     <td>{{$row->alias}}</td>
+                    <td>{{$row->uraian_berkas}}</td>
                     <td>{{$row->uraian}}</td>
                     <td>{{$row->date}}</td>
-                    <td>{{$row->nomor}}</td>
                     <td>
                         @if ($row->klas->securitiesklas == 'B')
                             Biasa / Terbuka
