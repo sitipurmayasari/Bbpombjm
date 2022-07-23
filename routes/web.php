@@ -320,7 +320,11 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
 
 
      //-------------------Pengujian-------------------------------------------------
-    // Route::get('/finance/portalAG','Finance\PortalAGController@index')->name('dashboard');
+     //Route untuk Alat Gelas Kualitatif
+     Route::get('/calibration/glasskual','Calibration\GlassKualController@index')->name('glasskual');
+     //Route untuk Alat Gelas Kuantitatif
+     Route::get('/calibration/glasskuan','Calibration\GlassKuanController@index')->name('galsskuan');
+
 
 });
 

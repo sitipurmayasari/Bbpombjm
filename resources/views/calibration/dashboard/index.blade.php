@@ -424,7 +424,7 @@ h2, a {
          </div>
          {{-- icon --}}
          <div class="social">   
-            <a class="social-icon" data-tooltip="Lab Obat dan Napza" href="/calibration/dashboardnapza">
+            <a class="social-icon" data-tooltip="Lab Obat dan Nappza" href="/calibration/dashboardnapza">
               <img src="{{asset('images/napza.png')}}" style="height:100%; width:100%">
             </a>   
             {{-- <a class="social-icon" data-tooltip="e-Performance" href="/finance/dashboardforma">

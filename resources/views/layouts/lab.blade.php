@@ -74,7 +74,7 @@
 					<a href="/calibration/dashboard" class="navbar-brand">
 						<small>
 						<img src="{{asset('images/bbpom.jpg')}}" alt="" srcset="" style="height:35px">
-							PENGUJIAN - LAB OBAT DAN NAPZA
+							PENGUJIAN - LAB OBAT DAN NAPPZA
 						</small>
 					</a>
 				</div>

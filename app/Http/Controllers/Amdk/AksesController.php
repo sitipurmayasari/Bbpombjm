@@ -109,6 +109,16 @@ class AksesController extends Controller
                     UserPermission::create($data);
                 }
             }
+
+            if ($request->input('akses_nappza')) {
+                for ($i = 0; $i < count($request->input('akses_nappza')); $i++){
+                    $data = [
+                        'user_id' => $request->user_id,
+                        'menu_id' => $request->akses_nappza[$i] ,
+                    ];
+                    UserPermission::create($data);
+                }
+            }
            
         DB::commit(); 
         return redirect()->route('akses')->with('sukses','Data Tersimpan');
@@ -165,6 +175,12 @@ class AksesController extends Controller
             ->select('submenu.*','menu.modul','menu.nama as group_nama')
             ->leftJoin('menu','submenu.menu_id','=','menu.id')
             ->where('menu.modul','qms')
+            ->get();
+
+        $nappza = Submenu::orderBy('menu.id','asc')
+            ->select('submenu.*','menu.modul','menu.nama as group_nama')
+            ->leftJoin('menu','submenu.menu_id','=','menu.id')
+            ->where('menu.modul','napza')
             ->get();
 
         $outputAmdk = array();
@@ -237,6 +253,15 @@ class AksesController extends Controller
             );
         }
 
+        $outputnappza = array();
+        foreach ($nappza as $in) {
+            $outputnappza[] = array(
+                'id' => $in->id,
+                'nama' => $in->nama,
+                'checked' => $this->checkPermissonMenu($user_id,$in->id)
+            );
+        }
+
 
         return response()->json([ 
             'success' => true,
@@ -247,7 +272,8 @@ class AksesController extends Controller
             'forma' => $outputForma,
             'dinas' => $outputDinas,
             'plan' => $outputPlan,
-            'qms' => $outputqms
+            'qms' => $outputqms,
+            'nappza' => $outputnappza
         ],200);
     }
 
