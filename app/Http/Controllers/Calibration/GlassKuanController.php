@@ -15,7 +15,7 @@ use App\Entrystock;
 use Illuminate\Support\Facades\DB;
 use QrCode;
 
-class GlassKualController extends Controller
+class GlassKuanController extends Controller
 {
     public function index(Request $request)
     {
