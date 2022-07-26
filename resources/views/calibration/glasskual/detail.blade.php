@@ -42,7 +42,7 @@
         <img src="{{asset('images/kopsurat1.jpg')}}" style="width:100%">
     </div>
     <div>
-        <table style="width: 100%" class="table table-striped">
+        <table class="table table-striped col-md-12 col-sm-12">
             <tr>
                 <td colspan="4" style="text-align: center; background-color: #291670; font-size: 16px; color:white;">
                     <b>Detail Inventaris</b>
