@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Calibration;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Crypt;
 use App\Inventaris;
 use App\Divisi;
 use App\User;
@@ -12,8 +14,8 @@ use App\JadwalMain;
 use App\Satuan;
 use App\Jenisbrg;
 use App\Entrystock;
-use Illuminate\Support\Facades\DB;
 use QrCode;
+use PDF;
 
 class GlassKualController extends Controller
 {
@@ -74,9 +76,10 @@ class GlassKualController extends Controller
 
     public function qrcode($id)
     {
-        $data = Inventaris::where('id',$id)->first();
+        $invent = Inventaris::where('id',$id)->first();
+        $data = Crypt::encryptString($invent->id);
         
-        return view('invent/inventaris.qrcode',compact('data'));
+        return view('calibration/glasskual.qrcode',compact('data'));
     }
    
 
@@ -158,4 +161,49 @@ class GlassKualController extends Controller
         $data->update($request->all());
         return redirect('/calibration/glasskual/stock/'.$data->inventaris_id)->with('sukses','Data Tersimpan');
     }
+
+    public function viewimg($id)
+    {
+        $data = Inventaris::where('id',$id)->first();
+        return view('calibration/glasskual.viewimg',compact('data'));
+    }
+
+    public function kartustock($id)
+    {
+        $stock = EntryStock::orderby('entry_date','asc')
+                ->LeftJoin('inventaris','inventaris.id','=','entrystock.inventaris_id')
+                ->Where('inventaris_id',$id)
+                ->get();
+        $data = Inventaris::Where('id',$id)->first();
+
+        $pdf = PDF::loadview('calibration/glasskual.kartustock',compact('data','stock'));
+        return $pdf->stream();
+    }
+
+    public function detail($idEncy)
+    {
+    //    $id = Crypt::decrypt($idEncy);
+        try {
+            $id = Crypt::decryptString($idEncy);
+            $satuan = Satuan::all();
+            $data = Inventaris::where('id',$id)->first();
+            if ($data) {
+                $divisi = Divisi::all();
+                $user = User::all()
+                        ->where('id','!=','1');
+                $lokasi = Lokasi::all();
+                $jenis = Jenisbrg::all();
+                return view('calibration/glasskual.detail',compact('data','divisi','user','lokasi','jenis','satuan'));
+            }else{
+                return view('404');
+            }
+        }catch (DecryptException $e) {
+            return view('404');
+        }
+
+    }
+
+
+
+    
 }

@@ -17,6 +17,7 @@ Route::post('/import/users','ImportExcelController@users')->name('import.users')
 Route::post('/import/inventaris','ImportExcelController@inventaris')->name('import.inventaris');
 Route::post('/import/stok','ImportExcelController@stok')->name('import.stok');
 Route::get('/qR/{id}/inventaris','Invent\InventarisController@detail')->name('inventaris.detail');
+Route::get('/qR/{id}/calibration','Calibration\GlassKualController@detail')->name('calibration.detail');
 
   Route::group(['middleware' => 'auth'], function(){
   Route::get('/portal','PortalController@index')->name('dashboard');

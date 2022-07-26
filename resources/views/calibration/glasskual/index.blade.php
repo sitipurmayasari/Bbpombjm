@@ -36,20 +36,22 @@
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
                 <th width="40px">No</th>
+                <th>Kode Barang</th>
+                <th>No. Katalog</th>
                 <th class="col-md-4">Nama Barang</th>
-                <th>Merk</th>
-                <th>Lokasi</th>
                 <th class="col-md-1">Stok</th>
                 <th class="col-md-1">Qr Code</th>
+                <th>Gambar</th>
+                <th>Kartu Stok</th>
                 <th class="col-md-2">Aksi</th>
             <thead>
             <tbody>   	
                 @foreach($data as $key=>$row)
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
+                    <td>{{$row->kode_barang}}</td>
+                    <td>{{$row->no_seri}}</td>
                     <td>{{$row->nama_barang}}</td>
-                    <td>{{$row->merk}}</td>
-                    <td>{{$row->location->nama}}</td>
                     <td> <a href="/calibration/glasskual/stock/{{$row->id}}" class="btn btn-success">
                         @php
                             $total = $injectQuery->laststock($row->id)
@@ -60,9 +62,15 @@
                             {{0}}
                         @endif
                     </a></td>
-                    <td> <a href="/invent/inventaris/qrcode/{{$row->id}}" class="btn btn-success">
+                    <td> <a href="/calibration/glasskual/qrcode/{{$row->id}}" class="btn btn-success">
                         <i class="glyphicon glyphicon-qrcode"></i>
                     </a></td>
+                    <td>
+                        <a class="btn btn-primary" href="/calibration/glasskual/viewimg/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" href="/calibration/glasskual/kartustock/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
+                    </td>
                     <td>
                         <a href="/calibration/glasskual/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>

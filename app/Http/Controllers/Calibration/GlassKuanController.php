@@ -158,4 +158,17 @@ class GlassKuanController extends Controller
         $data->update($request->all());
         return redirect('/calibration/glasskuan/stock/'.$data->inventaris_id)->with('sukses','Data Tersimpan');
     }
+    
+    public function kartustock($id)
+    {
+        $stok = Entrystock::orderBy('entry_date','desc')
+                    ->where('inventaris_id',$id)
+                    ->get();
+        $data = Inventaris::where('id',$id)->first();
+        return view('calibration/glasskuan.kartustock',compact('data','stok'));
+
+        // $pdf = PDF::loadview('calibration/glasskuan.kartustock',compact('data','stok'));
+        // return $pdf->stream();
+    }
+
 }

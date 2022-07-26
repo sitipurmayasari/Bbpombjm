@@ -12,6 +12,8 @@
   Route::post('/calibration/glasskual/storestock','Calibration\GlassKualController@storestock')->name('glasskual.storestock');
   Route::get('/calibration/glasskual/ubahstok/{id}','Calibration\GlassKualController@ubahstok')->name('glasskual.ubahstok');
   Route::post('/calibration/glasskual/updatestok/{id}','Calibration\GlassKualController@updatestok')->name('glasskual.updatestok');
+  Route::get('/calibration/glasskual/viewimg/{id}','Calibration\GlassKualController@viewimg')->name('glasskual.viewimg');
+  Route::get('/calibration/glasskual/kartustock/{id}','Calibration\GlassKualController@kartustock')->name('glasskual.kartustock');
   
   //Route untuk Alat Gelas Kuantitatif
   Route::get('/calibration/glasskuan/create','Calibration\GlassKuanController@create')->name('glasskuan.create');
@@ -24,6 +26,8 @@
   Route::post('/calibration/glasskuan/storestock','Calibration\GlassKuanController@storestock')->name('glasskuan.storestock');
   Route::get('/calibration/glasskuan/ubahstok/{id}','Calibration\GlassKuanController@ubahstok')->name('glasskuan.ubahstok');
   Route::post('/calibration/glasskuan/updatestok/{id}','Calibration\GlassKuanController@updatestok')->name('glasskuan.updatestok');
+  Route::get('/calibration/glasskuan/viewimg/{id}','Calibration\GlassKuanController@viewimg')->name('glasskuan.viewimg');
+  Route::get('/calibration/glasskuan/kartustock/{id}','Calibration\GlassKuanController@kartustock')->name('glasskuan.kartustock');
   
 
 

@@ -108,25 +108,22 @@
                     </div>
                </div>
                <div class="col-sm-6">
-                   <br>
+                <br>
                 <div class="widget-main no-padding">
-                    <div class="form-group">
-
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" 
-                        for="form-field-1"> Foto Barang
-                        </label>
-                        <div class="form-actions" align="center">
-                            <input type="file" name="file_foto2" class="btn btn-success btn-sm" id="" 
-                                value="Upload Ulang Foto Barang">   
-                            <img src="{{$data->getFoto()}}"  style="height:250px;width:250px">
-                            <br>
-                            <label><i class="bg bg-warning">** Kosongkan Upload ulang jika tidak ingin merubah gambar</i></label>
-                        </div> 
-                        
-                    </div>
-                </div>
+                     <div class="form-group">
+                         <label class="col-sm-3 control-label no-padding-right" 
+                         for="form-field-1"> Foto Barang
+                         </label>
+                         <div class="form-actions" style="text-align: center">
+                             <input type="file" name="file_foto2" class="btn btn-success btn-sm" id="" 
+                                 value="Upload Ulang Foto Barang">   
+                             <img src="{{$data->getFoto()}}"  style="height:250px;width:250px">
+                             <br>
+                             <label><i class="bg bg-warning">** Kosongkan Upload ulang jika tidak ingin merubah gambar</i></label>
+                         </div> 
+                     </div>
+                 </div>
+             </div>
            </div>
             </div>
         </div>

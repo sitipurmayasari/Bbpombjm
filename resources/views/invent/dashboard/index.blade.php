@@ -24,41 +24,7 @@
       <div class="card-footer">
       </div>
     </div>
-    <div class="col-sm-12" style="text-align: center">
-      <div class="card">
-          <div class="card-header card-header-warning">
-            <h4 class="card-title">Jadwal Maintenance Inventaris Bulan ini</h4>
-          </div>
-          <div class="card-body">
-          
-            <table class="table table-hover" style="font-size: 12px;">
-              <thead>
-                  <th>Penanggung Jawab</th>
-                  <th>Merk</th>
-                  <th>Nama Barang</th>
-                  <th>tanggal</th>
-                  <th>No</th>
-              </thead>
-              <tbody>
-                  @foreach($jadwal as $key=>$row)
-                  <tr>
-                    @if ($row != null)
-                      <td>{{$row->barang->penanggung->name}}</td>
-                      <td>{{$row->barang->merk}}</td>
-                      <td>{{$row->barang->nama_barang}}</td>
-                      <td>{{$row->tanggal}}</td>
-                      <td>{{$jadwal->firstItem() + $key}}</td>
-                    @else
-                      <td colspan="5">TIDAK ADA JADWAL MAINTENACE</td>
-                    @endif
-                  </tr>
-                  @endforeach
-              </tbody> 
-            </table>
-          
-          </div>
-        </div>
-  </div>
+    
   <div class="col-sm-12" style="text-align: center">
     <div class="card">
         <div class="card-header card-header-warning">
@@ -171,6 +137,41 @@
         </div>
       </div>
   </div>
+  <div class="col-sm-12" style="text-align: center">
+    <div class="card">
+        <div class="card-header card-header-warning">
+          <h4 class="card-title">Media Mikrobiologi Yang Akan Kadaluarsa</h4>
+        </div>
+        <div class="card-body">
+        
+          <table class="table table-hover" style="font-size: 12px;">
+            <thead>
+                <th>Sisa</th>
+                <th>Kadaluarsa</th>
+                <th>No. Katalog</th>
+                <th>Nama Barang</th>
+                <th>No</th>
+            </thead>
+            <tbody>
+                {{-- @foreach($jadwal as $key=>$row)
+                <tr>
+                  @if ($row != null)
+                    <td>{{$row->barang->penanggung->name}}</td>
+                    <td>{{$row->barang->merk}}</td>
+                    <td>{{$row->barang->nama_barang}}</td>
+                    <td>{{$row->tanggal}}</td>
+                    <td>{{$jadwal->firstItem() + $key}}</td>
+                  @else
+                    <td colspan="5">TIDAK ADA JADWAL MAINTENACE</td>
+                  @endif
+                </tr>
+                @endforeach --}}
+            </tbody> 
+          </table>
+        
+        </div>
+      </div>
+</div>
 </div>
 
 @endsection
