@@ -54,7 +54,7 @@ header("Content-Disposition: attachment; filename=Daftar-Informasi-Arsip-Aktif-t
 <body>
     <div class="col-sm-12 isi" style="text-align: center">
         <div style="align=center font-size: 18px">
-            <b>DAFTAR ARSIP AKTIF TAHUN {{$request->tahun}}</b>
+            <b>DAFTAR INFORMASI ARSIP AKTIF TAHUN {{$request->tahun}}</b>
         </div>
         <br>
         <div style="text-align: left">
