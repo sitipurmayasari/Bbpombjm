@@ -18,7 +18,7 @@
         table,tr,td,th {
             border: 1px solid black;
             border-collapse: collapse;
-            font-size: 14px;
+            font-size: 11px;
         }
 
         td {
@@ -35,64 +35,74 @@
             font-weight: bold;
             
         }
+
+        #head{
+           align-content: center;
+        }
+
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            }
     </style>
 </head>
 <body>
-    <div>
+    <div id="head" class="col-xs-12">
         <img src="{{asset('images/kopsurat1.jpg')}}" style="width:100%">
     </div>
     <div>
-        <table class="table table-striped col-md-12 col-sm-12">
+        <table class="table table-striped col-xs-12">
             <tr>
-                <td colspan="4" style="text-align: center; background-color: #291670; font-size: 16px; color:white;">
+                <td colspan="3" style="text-align: center; background-color: #291670; font-size: 16px; color:white;">
                     <b>Detail Inventaris</b>
                 </td>
             </tr>
             <tr>
-                <td style="width: 13%">Kode Barang</td>
-                <td style="width: 1%; text-align:center">:</td>
-                <td style="width: 40%">{{$data->kode_barang}}</td>
+                <td class="col-xs-2">Kode Barang</td>
+                
+                <td class="col-xs-7">{{$data->kode_barang}}</td>
                 <td>Foto Barang :</td>
             </tr>
             <tr>
                 <td>Nama Barang</td>
-                <td>:</td>
+                
                 <td>{{$data->nama_barang}}</td>
-                <td rowspan="8" style="text-align: center"><img src="{{$data->getFoto()}}"  style="height:250px;width:250px"></td>
+                <td rowspan="8" style="text-align: center"><img src="{{$data->getFoto()}}"  style="width:100px"></td>
             </tr>
             <tr>
                 <td>Nama Lain / Sinonim</td>
-                <td>:</td>
+                
                 <td>{{$data->sinonim}}</td>
             </tr>
             <tr>
                 <td>No. Katalog</td>
-                <td>:</td>
+                
                 <td>{{$data->no_seri}}</td>
             </tr>
             <tr>
                 <td>Merk / Type</td>
-                <td>:</td>
+                
                 <td>{{$data->merk}}</td>
             </tr>
             <tr>
                 <td>Jenis Barang</td>
-                <td>:</td>
+                
                 <td>{{$data->jenis->nama}}</td>
             </tr>
             <tr>
                 <td>Lokasi</td>
-                <td>:</td>
+                
                 <td>{{$data->location->nama}}</td>
             </tr>
             <tr>
                 <td>Keterangan</td>
-                <td>:</td>
+                
                 <td>{{$data->spesifikasi}}</td>
             </tr>
             <tr>
                 <td>Sisa Stok</td>
-                <td>:</td>
+                
                 <td>
                     @php
                             $total = $injectQuery->laststock($data->id)
