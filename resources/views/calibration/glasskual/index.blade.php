@@ -39,6 +39,7 @@
                 <th>Kode Barang</th>
                 <th>No. Katalog</th>
                 <th class="col-md-4">Nama Barang</th>
+                <th>Nama Lain / Sinonim</th>
                 <th class="col-md-1">Stok</th>
                 <th class="col-md-1">Qr Code</th>
                 <th>Gambar</th>
@@ -52,6 +53,7 @@
                     <td>{{$row->kode_barang}}</td>
                     <td>{{$row->no_seri}}</td>
                     <td>{{$row->nama_barang}}</td>
+                    <td>{{$row->sinonim}}</td>
                     <td> <a href="/calibration/glasskual/stock/{{$row->id}}" class="btn btn-success">
                         @php
                             $total = $injectQuery->laststock($row->id)
@@ -66,7 +68,7 @@
                         <i class="glyphicon glyphicon-qrcode"></i>
                     </a></td>
                     <td>
-                        <a class="btn btn-primary" href="/calibration/glasskual/viewimg/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
+                        <a class="btn btn-primary" href="/calibration/glasskual/viewimg/{{$row->id}}" target="_blank" rel="noopener noreferrer">LIHAT</a>
                     </td>
                     <td>
                         <a class="btn btn-primary" href="/calibration/glasskual/kartustock/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>

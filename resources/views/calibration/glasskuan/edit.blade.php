@@ -1,7 +1,7 @@
 @extends('layouts.lab')
 @section('breadcrumb')
     <li>Persediaan Lab</li>
-    <li><a href="/calibration/glasskuan">Alat Gelas Kualitatif</a></li>
+    <li><a href="/calibration/glasskuan">Alat Gelas Kuantitatif</a></li>
     <li>Ubah Data</li>
 @endsection
 @section('content')
@@ -14,7 +14,7 @@
     <div class="col-sm-12">
         <div class="widget-box">
             <div class="widget-header">
-                <h4 class="widget-title"> Ubah Persediaan Alat gelas Kualitatif</h4>
+                <h4 class="widget-title"> Ubah Persediaan Alat gelas Kuantitatif</h4>
                 <div class="widget-toolbar">
                     <a href="#" data-action="collapse">
                         <i class="ace-icon fa fa-chevron-down"></i>

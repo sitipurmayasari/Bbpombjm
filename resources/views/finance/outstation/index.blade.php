@@ -59,8 +59,8 @@
                         @endforeach
                     </td>
                     <td style="text-align: center">
-                        <a class="btn btn-info" href="/finance/outstation/printST/{{$row->id}}" target="_blank" rel="noopener noreferrer">TANPA KOP</a> <br>
-                        <a class="btn btn-success" href="/finance/outstation/printSTKop/{{$row->id}}" target="_blank" rel="noopener noreferrer">+KOP SURAT</a>
+                        <a class="btn btn-info" href="/finance/outstation/printST/{{$row->id}}" target="_blank" rel="noopener noreferrer">Tanpa KOP</a> <br>
+                        <a class="btn btn-success" href="/finance/outstation/printSTKop/{{$row->id}}" target="_blank" rel="noopener noreferrer">+ KOP (TTE)</a>
                     </td>
                     <td>
                         <a class="btn btn-primary" href="/finance/outstation/printSppd/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>

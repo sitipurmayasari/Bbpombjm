@@ -378,7 +378,7 @@
             </tr>
             <tr>
                 <td></td>
-                <td style="height: 8%"></td>
+                <td>${ttd_pengirim}</td>
             </tr>
             <tr>
                 <td></td>
