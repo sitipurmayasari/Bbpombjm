@@ -49,13 +49,13 @@ class CarOkController extends Controller
         $date4 = date('Y-m-d', strtotime("+2 day", strtotime($data->date_from)));
 
         if ($daylong == 1) {
-            $driver =User::where("deskjob","LIKE","%Sopir%")
+            $driver =User::where("deskjob","LIKE","%Sopir%")->where("aktif","Y")
                         ->WhereRaw("id NOT IN (SELECT driver_id from vehiclerent WHERE '".$data->date_from."' 
                                     BETWEEN date_from AND date_to and driver_id is not null AND status = 'Y') ")
                         ->get();
 
         } elseif ($daylong == 2) {
-            $driver =User::where("deskjob","LIKE","%Sopir%")
+            $driver =User::where("deskjob","LIKE","%Sopir%")->where("aktif","Y")
                         ->WhereRaw("id NOT IN (SELECT driver_id from vehiclerent WHERE '".$data->date_from."' 
                                     BETWEEN date_from AND date_to and driver_id is not null AND status = 'Y') ")
                         ->WhereRaw("id NOT IN (SELECT driver_id from vehiclerent WHERE '".$data->date_to."' 
@@ -63,7 +63,7 @@ class CarOkController extends Controller
                         ->get();
 
         } else{
-                        $driver =User::where("deskjob","LIKE","%Sopir%")
+                        $driver =User::where("deskjob","LIKE","%Sopir%")->where("aktif","Y")
                                     ->WhereRaw("id NOT IN (SELECT driver_id from vehiclerent WHERE '".$data->date_from."' 
                                                 BETWEEN date_from AND date_to and driver_id is not null AND status = 'Y') ")
                                     ->WhereRaw("id NOT IN (SELECT driver_id from vehiclerent WHERE '".$date."' 
@@ -79,7 +79,7 @@ class CarOkController extends Controller
     {
         $data = Vehiclerent::where('id',$id)->first();
         $car = Car::where("type",$data->type)->get();
-        $driver =User::where("deskjob","LIKE","%Sopir%")->get();
+        $driver =User::where("deskjob","LIKE","%Sopir%")->where("aktif","Y")->get();
         
         return view('invent/carok.edit',compact('data','car','driver'));
     }
