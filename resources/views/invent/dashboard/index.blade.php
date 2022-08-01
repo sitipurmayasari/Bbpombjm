@@ -1,3 +1,4 @@
+@inject('injectQuery', 'App\InjectQuery')
 @extends('layouts.app')
 @section('breadcrumb')
     <li><i class="fa fa-tachometer"> Dashboard</i></li>
@@ -7,6 +8,10 @@
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 <style>
+  th{
+    text-align: center;
+    font-weight: bold;
+  }
 </style>   
 
 <div class="col-sm-6" style="text-align: center">
@@ -147,25 +152,35 @@
           <table class="table table-hover" style="font-size: 12px;">
             <thead>
                 <th>Sisa</th>
-                <th>Kadaluarsa</th>
+                <th>Tgl. Kadaluarsa</th>
                 <th>No. Katalog</th>
                 <th>Nama Barang</th>
                 <th>No</th>
             </thead>
             <tbody>
-                {{-- @foreach($jadwal as $key=>$row)
+                @php
+                    $no = 1;
+                @endphp
+                @foreach($mikro as $row)
                 <tr>
                   @if ($row != null)
-                    <td>{{$row->barang->penanggung->name}}</td>
-                    <td>{{$row->barang->merk}}</td>
-                    <td>{{$row->barang->nama_barang}}</td>
-                    <td>{{$row->tanggal}}</td>
-                    <td>{{$jadwal->firstItem() + $key}}</td>
+                    <td>
+                      {{-- @php
+                          $kadaluarsa = $injectQuery->getkada($row->barang->id);
+                      @endphp --}}
+                    </td>
+                    <td>
+
+                    </td>
+                    <td>{{$row->barang->no_seri}}</td>
+                    <td style="text-align: left">{{$row->barang->nama_barang}}</td>
+                    <td>{{$no}}</td>
                   @else
-                    <td colspan="5">TIDAK ADA JADWAL MAINTENACE</td>
+                    <td colspan="5">TIDAK ADA STOK KADALUARSA</td>
                   @endif
                 </tr>
-                @endforeach --}}
+                @php $no++; @endphp
+                @endforeach
             </tbody> 
           </table>
         

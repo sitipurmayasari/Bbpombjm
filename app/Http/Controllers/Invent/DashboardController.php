@@ -14,6 +14,7 @@ use App\Car;
 use App\Vehiclerent;
 use App\Pengajuan;
 use App\PengajuanDetail;
+use App\Entrystock;
 
 
 
@@ -36,6 +37,15 @@ class DashboardController extends Controller
         $dinas  = Vehiclerent::orderBy('id','desc')
                         ->where('users_id',$peg)
                         ->first();
+        // media mikro --
+        $mikro = Entrystock::SelectRaw('DISTINCT( inventaris_id)') 
+                            ->LeftJoin('inventaris','inventaris.id','entrystock.inventaris_id')  
+                            ->Where('jenis_barang',15)
+                            ->where('stockawal','!=',0)
+                            ->WhereRaw('exp_date between CURDATE() AND CURDATE()+ INTERVAL 1 MONTH')
+                            ->GroupBy('inventaris_id')->get();  
+        //-----
+
         $tglaju = Pengajuan::orderBy('id','desc')
                         ->where('pegawai_id',$peg)
                         ->first();
@@ -44,9 +54,9 @@ class DashboardController extends Controller
                     ->where('pengajuan_id',$tglaju->id)
                     ->get();
 
-            return view('invent/dashboard.index',compact('jadwal','aduan','car','dinas','tglaju','aju'));
+            return view('invent/dashboard.index',compact('jadwal','aduan','car','dinas','tglaju','aju','mikro'));
         }else{
-            return view('invent/dashboard.index',compact('jadwal','aduan','car','dinas','tglaju'));
+            return view('invent/dashboard.index',compact('jadwal','aduan','car','dinas','tglaju','mikro'));
         }
         
         

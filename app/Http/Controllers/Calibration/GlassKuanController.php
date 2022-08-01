@@ -14,6 +14,7 @@ use App\Jenisbrg;
 use App\Entrystock;
 use Illuminate\Support\Facades\DB;
 use QrCode;
+use PDF;
 
 class GlassKuanController extends Controller
 {
@@ -161,14 +162,14 @@ class GlassKuanController extends Controller
     
     public function kartustock($id)
     {
-        $stok = Entrystock::orderBy('entry_date','desc')
-                    ->where('inventaris_id',$id)
-                    ->get();
-        $data = Inventaris::where('id',$id)->first();
-        return view('calibration/glasskuan.kartustock',compact('data','stok'));
+        $stock = EntryStock::orderby('entry_date','asc')
+                ->LeftJoin('inventaris','inventaris.id','=','entrystock.inventaris_id')
+                ->Where('inventaris_id',$id)
+                ->get();
+        $data = Inventaris::Where('id',$id)->first();
 
-        // $pdf = PDF::loadview('calibration/glasskuan.kartustock',compact('data','stok'));
-        // return $pdf->stream();
+        $pdf = PDF::loadview('calibration/glasskuan.kartustock',compact('data','stock'));
+        return $pdf->stream();
     }
 
 }

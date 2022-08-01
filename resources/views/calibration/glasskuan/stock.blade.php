@@ -155,8 +155,7 @@
                     <th>Barang Masuk</th>
                     <th>Barang keluar</th>
                     <th>Sisa</th>
-                    <th>Exp Date</th>
-                    <th>Harga Satuan</th>
+                    <th>Keterangan</th>
                     <th>Aksi</th>
                 </thead>
                 <tbody>
@@ -168,8 +167,7 @@
                         <td>{{$row->stockawal}}</td>
                         <td>{{$row->keluar}}</td>
                         <td>{{$row->stock}}</td>
-                        <td>{{$row->exp_date}}</td>
-                        <td>{{$row->harga}}</td>
+                        <td>{{$row->keterangan}}</td>
                         <td><a href="/calibration/glasskuan/ubahstok/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i></td>
                     </tr>
