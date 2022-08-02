@@ -521,6 +521,8 @@ class TravelexpensesController extends Controller
                 // $inap1         = $request->inap1 != null ?  $request->inap1[$i] : 'N';
                 $inap1         =  $request->input('inap1_'.$emId) != null ?  $request->input('inap1_'.$emId) : 'N';
                 $inap2         = $request->inap2 != null ?  $request->inap2[$i] : 'N';
+                $hotelriil1    =  $request->input('hotelriil1_'.$emId) != null ?  $request->input('hotelriil1_'.$emId) : 'N';
+                $hotelriil2    =  $request->input('hotelriil2_'.$emId) != null ?  $request->input('hotelriil2_'.$emId) : 'N';
                 $hotelkkp1     =  $request->input('hotelkkp1_'.$emId) != null ?  $request->input('hotelkkp1_'.$emId) : 'N';
                 $hotelkkp2     =  $request->input('hotelkkp2_'.$emId) != null ?  $request->input('hotelkkp2_'.$emId) : 'N';
                 $planekkp1     =  $request->input('planekkp1_'.$emId) != null ?  $request->input('planekkp1_'.$emId) : 'N';
@@ -560,7 +562,9 @@ class TravelexpensesController extends Controller
                     'planekkp1'         => $planekkp1,
                     'planekkp2'         => $planekkp2,
                     'planekkp3'         => $planekkp3,
-                    'planekkpreturn'    => $planekkpreturn
+                    'planekkpreturn'    => $planekkpreturn,
+                    'hotelriil1'        => $hotelriil1,
+                    'hotelriil2'        => $hotelriil2,
                 ];
                 Travelexpenses2::create($datathree);    
             }
