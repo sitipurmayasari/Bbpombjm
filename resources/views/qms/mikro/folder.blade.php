@@ -40,7 +40,7 @@
                     <td>{{$data->firstItem() + $key}}</td>
                     <td>{{$row->names}}</td>
                     <td>
-                        <a href="{{$row->getFIleQms()}}" target="_blank" >{{$row->file}}</a>
+                        <a href="{{$row->getFIleQms()}}" target="_blank" >{{$row->names}}</a>
                     </td>
                 </tr>
               
