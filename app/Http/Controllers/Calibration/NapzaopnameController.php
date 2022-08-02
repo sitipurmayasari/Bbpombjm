@@ -23,6 +23,12 @@ class NapzaopnameController extends Controller
         return view('calibration/napzaopname.index',compact('jenis'));
     }
 
+    public function create()
+    {
+        return view('calibration/napzaopname.create');
+    }
+
+
     public function cetak(Request $request)
     {
         // dd($request->all());

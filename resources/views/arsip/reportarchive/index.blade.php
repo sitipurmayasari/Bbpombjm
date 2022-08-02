@@ -41,8 +41,8 @@
                             for="form-field-1">Bidang
                             </label>
                             <div class="col-sm-8">
-                                <select name="divisi" class="col-xs-10 col-sm-10 required select2" required>
-                                    <option value="">Pilih Bidang</option>
+                                <select name="divisi" class="col-xs-10 col-sm-10 select2">
+                                    <option value="">Semua Bidang</option>
                                     @foreach ($divisi as $item)
                                         <option value="{{$item->id}}">{{$item->nama}}</option>
                                     @endforeach

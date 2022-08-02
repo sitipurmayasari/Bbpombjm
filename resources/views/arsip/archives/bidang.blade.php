@@ -11,11 +11,11 @@
             <div class="row">
                 <div class="form-group col-sm-12">
                     <div class="row">
-                        @if (auth()->user()->divisi_id == $div->id)
+                        {{-- @if (auth()->user()->divisi_id == $div->id) --}}
                             <div class="form-group col-xs-12 col-sm-3" style="float: left">
                                 <a href="/arsip/archives/create/{{$div->id}}"  class="btn btn-primary">Tambah Data</a> 
                             </div>
-                        @endif
+                        {{-- @endif --}}
                         <div class="form-group col-xs-12 col-sm-5" style="float: right">
                             <div class="input-group">
                                 <input type="text" class="form-control gp-search" name="keyword" placeholder="Cari " value="{{request('keyword')}}" autocomplete="off">

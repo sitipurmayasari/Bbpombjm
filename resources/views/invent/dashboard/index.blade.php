@@ -165,12 +165,17 @@
                 <tr>
                   @if ($row != null)
                     <td>
-                      {{-- @php
-                          $kadaluarsa = $injectQuery->getkada($row->barang->id);
-                      @endphp --}}
+                      @php
+                            $total = $injectQuery->laststock($row->inventaris_id)
+                        @endphp
+                        @if ($total != null)
+                            {{$total->stock}}
+                        @else
+                            {{0}}
+                        @endif
                     </td>
                     <td>
-
+                      
                     </td>
                     <td>{{$row->barang->no_seri}}</td>
                     <td style="text-align: left">{{$row->barang->nama_barang}}</td>

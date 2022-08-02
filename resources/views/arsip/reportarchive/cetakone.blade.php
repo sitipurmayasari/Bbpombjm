@@ -49,29 +49,37 @@ header("Content-Disposition: attachment; filename=Daftar-Arsip-Aktif-Tahunan.xls
         <div style="text-align: left">
             <table class="atas">
                 <tr class="atas">
-                    <td class="atas">Pencipta Arsip</td>
-                    <td class="atas">:</td>
-                    <td class="atas"> Balai Besar POM di Banjarmasin</td>
+                    <td class="atas" colspan="3">Pencipta Arsip</td>
+                    <td class="atas" style="text-align: center">:</td>
+                    <td class="atas" colspan="3"> Balai Besar POM di Banjarmasin</td>
                 </tr>
                 <tr class="atas">
-                    <td class="atas">Unit Kerja / Unit Pengolah</td>
-                    <td class="atas">:</td>
-                    <td class="atas"> {{$div->nama}}</td>
+                    <td class="atas" colspan="3">Unit Kerja / Unit Pengolah</td>
+                    <td class="atas" style="text-align: center">:</td>
+                    <td class="atas" colspan="3">
+                       <b>
+                        @if ($request->divisi != null)
+                            {{$div->nama}}
+                        @else
+                            Semua Unit
+                        @endif
+                       </b>
+                    </td>
                 </tr>
                 <tr class="atas">
-                    <td class="atas">Nama Pemimpin unit kerja / unit pengolah</td>
-                    <td class="atas">:</td>
-                    <td class="atas"></td>
+                    <td class="atas" colspan="3">Nama Pemimpin unit kerja / unit pengolah</td>
+                    <td class="atas" style="text-align: center">:</td>
+                    <td class="atas" colspan="3"></td>
                 </tr>
                 <tr class="atas">
-                    <td class="atas">Jabatan Pimpinan Unit Kerja / Unit Pengolah</td>
-                    <td class="atas">:</td>
-                    <td class="atas"></td>
+                    <td class="atas" colspan="3">Jabatan Pimpinan Unit Kerja / Unit Pengolah</td>
+                    <td class="atas" style="text-align: center">:</td>
+                    <td class="atas" colspan="3"></td>
                 </tr>
                 <tr class="atas">
-                    <td class="atas">Alamat Unit Kerja/ Unit Pengolah</td>
-                    <td class="atas">:</td>
-                    <td class="atas"> Jl. Brigjend. H. Hasan Basri No. 40 - Banjarmasin</td>
+                    <td class="atas" colspan="3">Alamat Unit Kerja/ Unit Pengolah</td>
+                    <td class="atas" style="text-align: center">:</td>
+                    <td class="atas" colspan="3"> Jl. Brigjend. H. Hasan Basri No. 40 - Banjarmasin</td>
                 </tr>    
             </table>
         </div>
