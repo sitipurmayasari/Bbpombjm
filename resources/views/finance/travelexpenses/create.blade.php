@@ -363,6 +363,7 @@
                             '<input type="hidden" name="idpeg[]" class="outid" value='+response.peg[i].id+'>'+
                         '</td>'+
                         '<td><input type="checkbox" name="hotelkkp1_'+response.peg[i].id+'" value="Y"></td>'+
+                        '<td><input type="checkbox" name="hotelriil1_'+response.peg[i].id+'" value="Y"></td>'+
                         '<td><input type="text" name="innname_1[]" /></td>'+
                         '<td><input type="text" name="inn_loc1[]" /></td>'+
                         '<td><input type="number" name="inn_telp1[]" /></td>'+
@@ -377,6 +378,7 @@
                         '<td><input type="number" min="0" value="0" name="klaim_1[]"  id="klaim1-'+no+'"/></td>'+
                         '<td><input type="text" name="innvoice1[]" /></td>'+
                         '<td><input type="checkbox" name="hotelkkp2_'+response.peg[i].id+'" value="Y"></td>'+
+                        '<td><input type="checkbox" name="hotelriil2_'+response.peg[i].id+'" value="Y"></td>'+
                         '<td><input type="text" name="innname_2[]" /></td>'+
                         '<td><input type="text" name="inn_loc2[]" /></td>'+
                         '<td><input type="number" name="inn_telp2[]" /></td>'+

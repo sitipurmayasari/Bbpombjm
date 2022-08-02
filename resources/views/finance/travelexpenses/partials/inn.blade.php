@@ -8,12 +8,13 @@
                                 <tr>
                                     <th style="text-align: center;" rowspan="2">NO</th>
                                     <th class="text-center col-md-3" rowspan="2">Nama Pegawai</th>
-                                    <th colspan="14">Penginapan 1</th>
-                                    <th colspan="14">Penginapan 2</th>
+                                    <th colspan="15">Penginapan 1</th>
+                                    <th colspan="15">Penginapan 2</th>
                                 </tr>
                                 <tr>
                                     {{-- hotel 1 --}}
                                     <th class="text-center">KKP</th>
+                                    <th class="text-center">Riil</th>
                                     <th class="text-center">Nama Penginapan</th>
                                     <th class="text-center">Alamat Penginapan</th>
                                     <th class="text-center">No. Telp Penginapan</th>
@@ -29,6 +30,7 @@
                                     <th class="text-center">No. Invoice Hotel</th>
                                     {{-- hotel 2 --}}
                                     <th class="text-center">KKP</th>
+                                    <th class="text-center">Riil</th>
                                     <th class="text-center">Nama Penginapan</th>
                                     <th class="text-center">Alamat Penginapan</th>
                                     <th class="text-center">No. Telp Penginapan</th>

@@ -14,6 +14,7 @@
                                 <tr>
                                     {{-- hotel 1 --}}
                                     <th class="text-center">KKP</th>
+                                    <th class="text-center">riil</th>
                                     <th class="text-center">Nama Penginapan</th>
                                     <th class="text-center">Alamat Penginapan</th>
                                     <th class="text-center">No. Telp Penginapan</th>
@@ -29,6 +30,7 @@
                                     <th class="text-center">No. Invoice Hotel</th>
                                     {{-- hotel 2 --}}
                                     <th class="text-center">KKP</th>
+                                    <th class="text-center">riil</th>
                                     <th class="text-center">Nama Penginapan</th>
                                     <th class="text-center">Alamat Penginapan</th>
                                     <th class="text-center">No. Telp Penginapan</th>
@@ -58,6 +60,13 @@
                                                 <input type="checkbox" name="hotelkkp1_{{$item->outst_employee_id}}" value="Y" checked>&nbsp;
                                             @else
                                                 <input type="checkbox" name="hotelkkp1_{{$item->outst_employee_id}}" value="Y" >&nbsp;
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($item->hotelriil1=='Y')
+                                                <input type="checkbox" name="hotelriil1_{{$item->outst_employee_id}}" value="Y" checked>&nbsp;
+                                            @else
+                                                <input type="checkbox" name="hotelriil1_{{$item->outst_employee_id}}" value="Y" >&nbsp;
                                             @endif
                                         </td>
                                         <td><input type="text" name="innname_1[]" value="{{$item->innname_1}}"/></td>
@@ -92,6 +101,13 @@
                                                 <input type="checkbox" name="hotelkkp2_{{$item->outst_employee_id}}" value="Y" checked>&nbsp;
                                             @else
                                                 <input type="checkbox" name="hotelkkp2_{{$item->outst_employee_id}}" value="Y" >&nbsp;
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($item->hotelriil2=='Y')
+                                                <input type="checkbox" name="hotelriil2_{{$item->outst_employee_id}}" value="Y" checked>&nbsp;
+                                            @else
+                                                <input type="checkbox" name="hotelriil2_{{$item->outst_employee_id}}" value="Y" >&nbsp;
                                             @endif
                                         </td>
                                         <td><input type="text" name="innname_2[]" value="{{$item->innname_2}}"/></td>

@@ -13,7 +13,8 @@ class Travelexpenses2 extends Model
                             'plane_book1','plane_flight1','planekkp1',
                             'plane_book2','plane_flight2','planekkp2',
                             'plane_book3','plane_flight3','planekkp3',
-                            'plane_bookreturn','plane_flightreturn','planekkpreturn'
+                            'plane_bookreturn','plane_flightreturn','planekkpreturn',
+                            'hotelriil1','hotelriil2'
     ];
 
     public function peg()

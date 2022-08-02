@@ -460,13 +460,13 @@
                     $jum1 = 0;
                     $jum2 = 0;
 
-                    if ($nilai->inn_fee_1 != 0 && $kkp->hotelkkp1 == 'N') {
+                    if ($kkp->hotelriil1 == 'Y' && $kkp->hotelkkp1 == 'N') {
                        $inap1 = $nilai->inn_fee_1;
                     } else {
                         $inap1 = 0;
                     }
 
-                    if ($nilai->inn_fee_2 != 0 && $kkp->hotelkkp2 == 'N') {
+                    if ($kkp->hotelriil2 == 'Y' && $kkp->hotelkkp2 == 'N') {
                        $inap2 = $nilai->inn_fee_2;
                     } else {
                         $inap2 = 0;
@@ -1031,13 +1031,13 @@
                     $jum1 = 0;
                     $jum2 = 0;
 
-                    if ($nilai->inn_fee_1 != 0 && $kkp->hotelkkp1 == 'N') {
+                    if ($kkp->hotelriil1 == 'Y' && $kkp->hotelkkp1 == 'N') {
                        $inap1 = $nilai->inn_fee_1;
                     } else {
                         $inap1 = 0;
                     }
 
-                    if ($nilai->inn_fee_2 != 0 && $kkp->hotelkkp2 == 'N') {
+                    if ($kkp->hotelriil2 == 'Y' && $kkp->hotelkkp2 == 'N') {
                        $inap2 = $nilai->inn_fee_2;
                     } else {
                         $inap2 = 0;
