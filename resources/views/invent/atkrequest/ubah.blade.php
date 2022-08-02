@@ -244,31 +244,6 @@
         );
         }
 
-        function getData1(){
-            var barang_id = $("#barang_id-1").val();
-
-            $.get(
-                "{{route('atkrequest.getbarang') }}",
-                {
-                    barang_id: barang_id
-                },
-                function(response) {
-
-                    if (response.data.stock == null) {
-                        v = 0;
-                    } else {
-                        v = response.data.stock;
-                    }
-
-                    $("#satuan_id-1").val(response.data.satuan_id);
-                    $("#satuan-1").val(response.data.satuan);
-                    $("#stok-1").val(v);
-                    var x = $("#stok-1").val();
-                    document.getElementById("jum-1").setAttribute("max", x);
-                }
-            );
-        }
-
         function hitung() {
         var a = $("#stok-1").val();
         var b =  $("#jum-1").val();
@@ -285,10 +260,10 @@
                     barang_id: barang_id
                 },
                 function(response) {
-                    if (response.data.sisa == null) {
+                    if (response.data.stock == null) {
                         v = 0;
                     } else {
-                        v = response.data.sisa;
+                        v = response.data.stock;
                     }
                     $("#satuan_id-"+i).val(response.data.satuan_id);
                     $("#satuan-"+i).val(response.data.satuan);
