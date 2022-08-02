@@ -47,7 +47,11 @@
                     <td>{{$row->names}}</td>
                     <td>{{$row->type}}</td>
                     <td>
-                        {{$row->folder->name}}
+                        @if ($row->folder_id != null)
+                         {{$row->folder->name}}
+                        @else
+                            Tidak ada Folder
+                        @endif
                     </td>
                     <td>
                         <a href="{{$row->getFIleQms()}}" target="_blank" >{{$row->file}}</a>
