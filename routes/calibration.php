@@ -35,8 +35,12 @@
   //Route untuk Laporan Stok Opname
   Route::get('/calibration/napzaopname/create','Calibration\NapzaopnameController@create')->name('napzaopname.create');
   Route::post('/calibration/napzaopname/store','Calibration\NapzaopnameController@store')->name('napzaopname.store');
+  Route::get('/calibration/napzaopname/edit/{id}','Calibration\NapzaopnameController@edit')->name('napzaopname.edit');
+  Route::post('/calibration/napzaopname/update/{id}','Calibration\NapzaopnameController@update')->name('napzaopname.update');
+  Route::get('/calibration/napzaopname/delete/{id}','Calibration\NapzaopnameController@delete')->name('napzaopname.delete');
   Route::get('/calibration/napzaopname/formopname','Calibration\NapzaopnameController@formopname')->name('napzaopname.formopname');
   Route::post('/calibration/napzaopname/cetak','Calibration\NapzaopnameController@cetak')->name('napzaopname.cetak');
+  Route::post('/calibration/napzaopname/cetakopname','Calibration\NapzaopnameController@cetakopname')->name('napzaopname.cetakopname');
 
 
 

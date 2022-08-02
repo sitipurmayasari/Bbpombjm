@@ -3,7 +3,9 @@ namespace App\Http\Controllers\Calibration;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use App\Inventaris;
 use App\Lokasi;
 use App\Satuan;
@@ -11,8 +13,10 @@ use App\Jenisbrg;
 use App\Entrystock;
 use App\Petugas;
 use App\Pejabat;
-use Carbon\Carbon;
+use App\Opname;
+use App\Opnamedetail;
 use PDF;
+use Excel;
 
 class NapzaopnameController extends Controller
 {
@@ -23,9 +27,45 @@ class NapzaopnameController extends Controller
         return view('calibration/napzaopname.index',compact('jenis'));
     }
 
+    public function formopname()
+    {
+        $data = Inventaris::where('lokasi','10')
+                        ->whereraw('jenis_barang in (3,21)')
+                        ->OrderBy('id','asc')
+                        ->get();
+        return view('calibration/napzaopname.formopname', compact('data'));
+    }
+
     public function create()
     {
-        return view('calibration/napzaopname.create');
+        $data = Opname::all();
+        return view('calibration/napzaopname.create',compact('data'));
+    }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'imporfile' => 'required|mimes:csv,xls,xlsx',
+            'dates' => 'required|date',
+            'periode'=> 'required'
+        ]);
+
+        $file = $request->imporfile;
+        $nama_file = $file->getClientOriginalName();
+
+        $file->move('excel',$nama_file);
+ 
+      //   // import data
+      DB::beginTransaction();
+          $opname =Opname::create($request->all());
+          $opname_id = $opname->id;
+        //   Excel::import(new OpnameImport($opname_id), public_path('/excel/'.$nama_file));
+        Excel::import(new OpnameImport($opname_id), urlStorage().'/excel/'.$nama_file);
+      
+      DB::commit();
+
+        return redirect('/calibration/napzaopname')->with('sukses','Data Berhasil Diimport');
+ 
     }
 
 
