@@ -79,7 +79,13 @@
                                <td style="text-align: center">{{$item->stockawal}} {{$item->barang->satuan->satuan}}</td>
                                <td style="text-align: center">{{$item->keluar}}  {{$item->barang->satuan->satuan}}</td>
                                <td style="text-align: center">{{$item->stock}}  {{$item->barang->satuan->satuan}}</td>
-                               <td>Exp. Date : {{$item->exp_date}}</td>
+                               <td>
+                                    @if ($item->barang->kind == 'L')
+                                        Exp. Date : {{$item->exp_date}}
+                                    @else
+                                        -
+                                    @endif
+                               </td>
                             </tr>
                             @php
                                 $no++
