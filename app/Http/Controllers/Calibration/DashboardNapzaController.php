@@ -9,6 +9,7 @@ use App\User;
 use App\Agenda;
 use App\Vehiclerent;
 use App\UserPermission;
+use App\Inventaris;
 
 
 class DashboardNapzaController extends Controller
@@ -20,7 +21,11 @@ class DashboardNapzaController extends Controller
         $bulan = Carbon::now()->isoFormat('MMMM');
         $tahun = Carbon::now()->year;
         $hari = Carbon::now()->isoFormat('dddd');
+        $dataglass = Inventaris::selectRaw(" jenis_barang, COUNT(*) AS jumlah ")
+                        ->whereraw('jenis_barang in (3,21)')
+                        ->groupByRaw('jenis_barang')
+                        ->get();
         
-        return view('calibration/dashboardnapza.index');
+        return view('calibration/dashboardnapza.index',compact('dataglass','tahun'));
     }
 }

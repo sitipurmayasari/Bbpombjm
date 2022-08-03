@@ -323,8 +323,10 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
      //-------------------Pengujian-------------------------------------------------
     //Route untuk Alat Gelas Kualitatif
     Route::get('/calibration/glasskual','Calibration\GlassKualController@index')->name('glasskual');
-    //Route untuk Alat Gelas Kuantitatif
+    Route::get('/calibration/glasskual/read','Calibration\GlassKualController@read')->name('glasskual.read');
+    //Route untuk input Alat Gelas Kuantitatif
     Route::get('/calibration/glasskuan','Calibration\GlassKuanController@index')->name('glasskuan');
+    Route::get('/calibration/glasskuan/read','Calibration\GlassKuanController@read')->name('glasskuan.read');
     //Route untuk Laporan Stok Barang
     Route::get('/calibration/napzastock','Calibration\NapzastockController@index')->name('napzastock');
     //Route untuk Laporan Stok Opname

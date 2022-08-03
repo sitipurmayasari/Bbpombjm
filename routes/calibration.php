@@ -9,6 +9,7 @@
   Route::get('/calibration/glasskual/delete/{id}','Calibration\GlassKualController@delete')->name('glasskual.delete');
   Route::get('/calibration/glasskual/qrcode/{id}','Calibration\GlassKualController@qrcode')->name('glasskual.qrcode');
   Route::get('/calibration/glasskual/stock/{id}','Calibration\GlassKualController@stock')->name('glasskual.stock');
+  Route::get('/calibration/glasskual/stockread/{id}','Calibration\GlassKualController@stockread')->name('glasskual.stockread');
   Route::post('/calibration/glasskual/storestock','Calibration\GlassKualController@storestock')->name('glasskual.storestock');
   Route::get('/calibration/glasskual/ubahstok/{id}','Calibration\GlassKualController@ubahstok')->name('glasskual.ubahstok');
   Route::post('/calibration/glasskual/updatestok/{id}','Calibration\GlassKualController@updatestok')->name('glasskual.updatestok');
@@ -23,6 +24,7 @@
   Route::get('/calibration/glasskuan/delete/{id}','Calibration\GlassKuanController@delete')->name('glasskuan.delete');
   Route::get('/calibration/glasskuan/qrcode/{id}','Calibration\GlassKuanController@qrcode')->name('glasskuan.qrcode');
   Route::get('/calibration/glasskuan/stock/{id}','Calibration\GlassKuanController@stock')->name('glasskuan.stock');
+  Route::get('/calibration/glasskuan/stockread/{id}','Calibration\GlassKuanController@stockread')->name('glasskuan.stockread');
   Route::post('/calibration/glasskuan/storestock','Calibration\GlassKuanController@storestock')->name('glasskuan.storestock');
   Route::get('/calibration/glasskuan/ubahstok/{id}','Calibration\GlassKuanController@ubahstok')->name('glasskuan.ubahstok');
   Route::post('/calibration/glasskuan/updatestok/{id}','Calibration\GlassKuanController@updatestok')->name('glasskuan.updatestok');

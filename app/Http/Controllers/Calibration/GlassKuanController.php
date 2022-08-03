@@ -37,6 +37,25 @@ class GlassKuanController extends Controller
         return view('calibration/glasskuan.index',compact('data'));
     }
 
+    public function read(Request $request)
+    {
+        $data = Inventaris::orderBy('inventaris.id','desc')
+                    ->selectRaw('inventaris.*, users.name')
+                    ->leftJoin('users','users.id','=','inventaris.penanggung_jawab')
+                    ->leftJoin('entrystock','entrystock.inventaris_id','=','inventaris.id')
+                    ->where('inventaris.jenis_barang','=','21')
+                    ->where('inventaris.lokasi','=','10')
+                    ->groupBy('inventaris.id')
+                    ->when($request->keyword, function ($query) use ($request) {
+                        $query->where('nama_barang','LIKE','%'.$request->keyword.'%')
+                                ->orWhere('merk', 'LIKE','%'.$request->keyword.'%')
+                                ->orWhere('sinonim', 'LIKE','%'.$request->keyword.'%')
+                                ->orWhere('name', 'LIKE','%'.$request->keyword.'%');
+                    })
+                    ->paginate('10');
+        return view('calibration/glasskuan.read',compact('data'));
+    }
+
     public function create()
     {
 
@@ -135,6 +154,19 @@ class GlassKuanController extends Controller
                         ->where('inventaris_id',$id)
                         ->first();
     return view('calibration/glasskuan.stock',compact('data','stok','sisa'));
+    }
+
+    public function stockread($id)
+    {
+
+        $stok = Entrystock::orderBy('entry_date','desc')
+                    ->where('inventaris_id',$id)
+                    ->get();
+        $data = Inventaris::where('id',$id)->first();
+        $sisa = Entrystock::orderby('id','desc')
+                        ->where('inventaris_id',$id)
+                        ->first();
+    return view('calibration/glasskuan.stockread',compact('data','stok','sisa'));
     }
 
     public function storestock(Request $request)
