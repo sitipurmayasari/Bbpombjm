@@ -275,7 +275,7 @@
                         for="form-field-1">Start Poin
                         </label>
                         <div class="col-sm-9" >
-                            <input type="number" step="0.001" min="0" class="col-xs-1 col-sm-1 required "  placeholder="0" onkeyup="reskredit()"
+                            <input type="number" step="0.0001" min="0" class="col-xs-1 col-sm-1 required "  placeholder="0" onkeyup="reskredit()"
                             name="startpoin" id="darinol" value="{{$data->startpoin}}" step="c" />&nbsp;
                         </div>
                     </div>
@@ -314,7 +314,7 @@
                             <td style="width: 80%">Pendidikan: <br>
                                 1. Pendidikan sekolah dan memperoleh ijasah / gelar
                             </td>
-                            <td><input type="number" min="0" step="0.001" name="sa1" placeholder="0" value="{{$data->sa1}}" id="1a1" onkeyup="hitung(); sum()"></td>
+                            <td><input type="number" min="0" step="0.0001" name="sa1" placeholder="0" value="{{$data->sa1}}" id="1a1" onkeyup="hitung(); sum()"></td>
                         </tr>
                         <tr>
                             <td></td>
@@ -322,28 +322,28 @@
                             <td>2. Pendidikan dan pelatihan fungsional di bidang Pengawas Farmasi dan Makanan
                                 dan mendapatkan Surat Tanda Tamat Pendididikan dan Pelatihan (STTPL)
                             </td>
-                            <td><input type="number" min="0"  step="0.001" name="sa2" placeholder="0" id="1a2"   value="{{$data->sa2}}" onkeyup="hitung(); sum()"></td>
+                            <td><input type="number" min="0"  step="0.0001" name="sa2" placeholder="0" id="1a2"   value="{{$data->sa2}}" onkeyup="hitung(); sum()"></td>
                         </tr>
                         <tr>
                             <td></td>
                             <td style="width: 5%">b.</td>
                             <td>Pengawas Farmasi dan Makanan
                             </td>
-                            <td><input type="number" min="0" step="0.001" name="sb" placeholder="0" id="1b"  value="{{$data->sb}}" onkeyup=onkeyup="hitung(); sum()"></td>
+                            <td><input type="number" min="0" step="0.0001" name="sb" placeholder="0" id="1b"  value="{{$data->sb}}" onkeyup=onkeyup="hitung(); sum()"></td>
                         </tr>
                         <tr>
                             <td></td>
                             <td style="width: 5%">c.</td>
                             <td>Pengembangan Profesi
                             </td>
-                            <td><input type="number" min="0" step="0.001" name="sc" placeholder="0" id="1c"  value="{{$data->sc}}" onkeyup="hitung(); sum()"></td>
+                            <td><input type="number" min="0" step="0.0001" name="sc" placeholder="0" id="1c"  value="{{$data->sc}}" onkeyup="hitung(); sum()"></td>
                         </tr>
                         <tr>
                             <td></td>
                             <td style="width: 5%"></td>
                             <td style="text-align: right">JUMLAH
                             </td>
-                            <td><input type="number" min="0" step="0.001" name="jum1" placeholder="0" readonly id="jum1" value="{{$data->jum1}}"></td>
+                            <td><input type="number" min="0" step="0.0001" name="jum1" placeholder="0" readonly id="jum1" value="{{$data->jum1}}"></td>
                         </tr>
                         <tr>
                             <td>1</td>
@@ -352,19 +352,19 @@
                         <tr>
                             <td></td>
                             <td colspan="2">Penunjang Tugas FPM</td>
-                            <td><input type="number" min="0" step="0.001" name="da" placeholder="0" id="2a"  value="{{$data->da}}" onkeyup="hitung(); sum()"></td>
+                            <td><input type="number" min="0" step="0.0001" name="da" placeholder="0" id="2a"  value="{{$data->da}}" onkeyup="hitung(); sum()"></td>
                         </tr>
                         <tr>
                             <td colspan="3"><b>JUMLAH UNSUR UTAMA DAN UNSUR PENUNJANG</b></td>
-                            <td><input type="number" min="0"  step="0.001" name="jumlah" placeholder="0" readonly id="jumlah" value="{{$data->jumlah}}"></td>
+                            <td><input type="number" min="0"  step="0.0001" name="jumlah" placeholder="0" readonly id="jumlah" value="{{$data->jumlah}}"></td>
                         </tr>
                         <tr>
                             <td colspan="3"><b>JUMLAH KREDIT LAMA</b></td>
-                            <td><input type="number" min="0" step="0.001" name="jumlama" placeholder="0" readonly id="jumlama" value="{{$data->jumlama}}"></td>
+                            <td><input type="number" min="0" step="0.0001" name="jumlama" placeholder="0" readonly id="jumlama" value="{{$data->jumlama}}"></td>
                         </tr>
                         <tr>
                             <td colspan="3" style="text-align: right"><b>TOTAL AKUMULASI KREDIT</b></td>
-                            <td><input type="number" min="0" step="0.001" name="total" placeholder="0" readonly id="total" value="{{$data->total}}"></td>
+                            <td><input type="number" min="0" step="0.0001" name="total" placeholder="0" readonly id="total" value="{{$data->total}}"></td>
                         </tr>
                     </table>
                </div>
