@@ -23,6 +23,7 @@ class DashboardNapzaController extends Controller
         $hari = Carbon::now()->isoFormat('dddd');
         $dataglass = Inventaris::selectRaw(" jenis_barang, COUNT(*) AS jumlah ")
                         ->whereraw('jenis_barang in (3,21)')
+                        ->where('lokasi','=','10')
                         ->groupByRaw('jenis_barang')
                         ->get();
         
