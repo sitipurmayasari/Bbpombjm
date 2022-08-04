@@ -55,11 +55,18 @@ class LabRequestOkController extends Controller
         Sbbdetail::where('sbb_id', $sbb->id)->delete();
 
         for ($i = 0; $i < count($request->input('inventaris_id')); $i++){
+
+            if ( $request->status[$i]=='N') {
+                $jumlah = 0;
+            } else {
+                $jumlah = $request->jumlah[$i];
+            }
+
                 $data = [
                     'sbb_id' => $id,
                     'inventaris_id' => $request->inventaris_id[$i],
                     'satuan_id' => $request->satuan_id[$i] ,
-                    'jumlah' => $request->jumlah[$i] ,
+                    'jumlah' => $jumlah ,
                     'ket' => $request->ket[$i],
                     'status' => $request->status[$i]
 

@@ -80,9 +80,11 @@
                                <td>{{$item->pegawai->divisi->nama}}</td>
                                <td>
                                     @foreach ($item->isi as $list)
-                                        <li>{{$list->barang->nama_barang}}
-                                            ({{$list->jumlah}} {{$list->barang->satuan->satuan}})
-                                        </li>
+                                        @if ($list->status == 'Y')
+                                            <li>{{$list->barang->nama_barang}}
+                                                ({{$list->jumlah}} {{$list->barang->satuan->satuan}})
+                                            </li>
+                                        @endif
                                     @endforeach
                                </td>
                                <td>
