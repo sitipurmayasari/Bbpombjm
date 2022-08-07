@@ -162,28 +162,30 @@
                     $no = 1;
                 @endphp
                 @foreach($mikro as $row)
-                <tr>
-                  @if ($row != null)
-                    <td>
-                      @php
-                            $total = $injectQuery->laststock($row->inventaris_id)
-                        @endphp
-                        @if ($total != null)
-                            {{$total->stock}}
-                        @else
-                            {{0}}
-                        @endif
-                    </td>
-                    <td>
-                      {{$row->exp_date}}
-                    </td>
-                    <td>{{$row->barang->no_seri}}</td>
-                    <td style="text-align: left">{{$row->barang->nama_barang}}</td>
-                    <td>{{$no}}</td>
-                  @else
-                    <td colspan="5">TIDAK ADA STOK KADALUARSA</td>
-                  @endif
-                </tr>
+                   @php
+                            $total = $injectQuery->hitsisaexp($row->inventaris_id, $row->exp_date);
+                            $ins = $row->stockawal;
+                            $outs = $total->keluar;
+                            $sisanya = $ins - $outs;
+                    @endphp
+
+                    @if ($sisanya >= 1)
+                    <tr>
+                      <td>
+                          {{$sisanya}}
+                      </td>
+                      <td>
+                        {{$row->exp_date}}
+                      </td>
+                      <td>
+                        {{$row->barang->no_seri}}
+                      </td>
+                      <td style="text-align: left">
+                        {{$row->barang->nama_barang}}
+                      </td>
+                      <td>{{$no}}</td>
+                    </tr>
+                    @endif
                 @php $no++; @endphp
                 @endforeach
             </tbody> 

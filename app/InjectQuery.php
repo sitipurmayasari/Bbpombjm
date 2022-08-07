@@ -202,6 +202,15 @@ class InjectQuery
             return $data;
     }
 
+    public function hitsisaexp($id, $exp_date)
+    {
+        $data = Entrystock::SelectRaw('SUM(keluar) AS keluar')
+                            ->WhereRaw('entry_date BETWEEN '.$exp_date.' and CURDATE()')
+                            ->Where('inventaris_id',$id)
+                            ->first();
+            return $data;
+    }
+
     public function getHarga($id)
     {
         // $nilai = DB::select(DB::raw(" 
