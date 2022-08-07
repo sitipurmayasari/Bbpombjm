@@ -175,7 +175,7 @@
                         @endif
                     </td>
                     <td>
-                      
+                      {{$row->exp_date}}
                     </td>
                     <td>{{$row->barang->no_seri}}</td>
                     <td style="text-align: left">{{$row->barang->nama_barang}}</td>

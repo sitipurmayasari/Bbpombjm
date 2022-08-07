@@ -38,12 +38,11 @@ class DashboardController extends Controller
                         ->where('users_id',$peg)
                         ->first();
         // media mikro --
-        $mikro = Entrystock::SelectRaw('DISTINCT( inventaris_id)') 
-                            ->LeftJoin('inventaris','inventaris.id','entrystock.inventaris_id')  
+        $mikro = Entrystock::LeftJoin('inventaris','inventaris.id','entrystock.inventaris_id')  
                             ->Where('jenis_barang',15)
                             ->where('stockawal','!=',0)
                             ->WhereRaw('exp_date between CURDATE() AND CURDATE()+ INTERVAL 1 MONTH')
-                            ->GroupBy('inventaris_id')->get();  
+                            ->get();  
         //-----
 
         $tglaju = Pengajuan::orderBy('id','desc')
