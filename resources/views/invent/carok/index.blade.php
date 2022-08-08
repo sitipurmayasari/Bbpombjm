@@ -32,6 +32,7 @@
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
                 <th width="40px">No</th>
+                <th>Tanggal Pengajuan</th>
                 <th>Kode Peminjaman</th>
                 <th>Nama Peminjam</th>
                 <th>Tanggal Peminjaman</th>
@@ -44,6 +45,9 @@
                 @foreach($data as $key=>$row)
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
+                    <td>
+                        {{date('d-m-Y', strtotime($row->created_at))}}
+                    </td>
                     <td>{{$row->code}}</td>
                     <td>
                         {{$row->pegawai->name}} <br>

@@ -67,6 +67,11 @@
                     <td> {{$data->pegawai->name}} ({{$data->pegawai->divisi->nama}})</td>
                 </tr>
                 <tr>
+                    <td style="vertical-align: top;">Tanggal Pengajuan</td>
+                    <td>:</td>
+                    <td> {{tgl_indo(date('Y-m-d', strtotime($data->created_at)))}}</td>
+                </tr>
+                <tr>
                     <td style="vertical-align: top;">Tanggal Peminjaman</td>
                     <td>:</td>
                     <td> {{tgl_indo($data->date_from)}} s/d {{tgl_indo($data->date_to)}}</td>

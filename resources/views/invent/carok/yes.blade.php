@@ -27,6 +27,15 @@
                         <br>
                         <div class="form-group">
                             <label class="col-sm-2 control-label no-padding-right" 
+                            for="form-field-1"> Tanggal Pengajuan
+                            </label>
+                            <div class="col-sm-9">
+                                <input type="text" value="{{tgl_indo(date('Y-m-d', strtotime($data->created_at)))}}" readonly
+                                class="col-xs-10 col-sm-10 required " />  
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right" 
                             for="form-field-1"> Nomor Ajuan
                             </label>
                             <div class="col-sm-9">
