@@ -21,7 +21,7 @@
                                     <td>
                                         @php
                                         $a = array(1 => "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus",
-                                         "September", "Oktober", "November", "Desember","Tunjangan Hari Raya","Gaji Ke-13");
+                                         "September", "Oktober", "November", "Desember","Tunjangan Hari Raya","Gaji 13");
 
                                         echo $a[$row->bulan]."&nbsp; ".$row->tahun;
                                         

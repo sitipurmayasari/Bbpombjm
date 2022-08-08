@@ -33,7 +33,7 @@
                     <select id="bulan" name="bulan" class="col-xs-10 col-sm-10 select2" required>
                         @php
                         $bulan = array("", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus",
-                                         "September", "Oktober", "November", "Desember","Tunjangan Hari Raya","Gaji Ke-13");
+                                         "September", "Oktober", "November", "Desember","Tunjangan Hari Raya","Gaji 13");
                         for($a=1;$a<=14;$a++){
                         if($a==date("m")){ 
                             $pilih="selected";
