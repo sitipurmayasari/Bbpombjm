@@ -446,7 +446,8 @@
         var y = parseFloat(e) + parseFloat(x);
         var m = parseFloat(y).toFixed(4);
         $("#jumlah").val(m);  
-
+    }
+    
     function sum() {
         var y = $("#jumlah").val();
         var jumlama = $("#jumlama").val();
