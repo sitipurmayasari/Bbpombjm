@@ -486,7 +486,8 @@
         var jumlama = $("#jumlama").val();
 
         var z = parseFloat(y) + parseFloat(jumlama);
-        $("#total").val(z);
+        var n =parseFloat(z).toFixed(4);
+        $("#total").val(n);
         
     }
 

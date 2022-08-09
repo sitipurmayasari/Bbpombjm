@@ -447,13 +447,14 @@
         var m = parseFloat(y).toFixed(4);
         $("#jumlah").val(m);  
     }
-    
+
     function sum() {
         var y = $("#jumlah").val();
         var jumlama = $("#jumlama").val();
 
         var z = parseFloat(y) + parseFloat(jumlama);
-        $("#total").val(z);
+        var n =parseFloat(z).toFixed(4);
+        $("#total").val(n);
         
     }
 
