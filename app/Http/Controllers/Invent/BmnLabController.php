@@ -16,21 +16,24 @@ use QrCode;
 use Illuminate\Support\Facades\Crypt;
 
 
-class InventarisController extends Controller
+class BmnLabController extends Controller
 {
     public function index(Request $request)
     {
         $data = Inventaris::orderBy('inventaris.id','desc')
                     ->select('inventaris.*','users.name')
                     ->leftJoin('users','users.id','=','inventaris.penanggung_jawab')
+                    ->leftJoin('lokasi','lokasi.id','=','inventaris.lokasi')
                     ->where('inventaris.kind','=','R')
+                    ->where('inventaris.jenis_barang','=','22')
                     ->when($request->keyword, function ($query) use ($request) {
                         $query->where('nama_barang','LIKE','%'.$request->keyword.'%')
                                 ->orWhere('merk', 'LIKE','%'.$request->keyword.'%')
-                                ->orWhere('name', 'LIKE','%'.$request->keyword.'%');
+                                ->orWhere('lokasi.nama', 'LIKE','%'.$request->keyword.'%')
+                                ->orWhere('users.name', 'LIKE','%'.$request->keyword.'%');
                     })
                     ->paginate('10');
-        return view('invent/inventaris.index',compact('data'));
+        return view('invent/bmnlab.index',compact('data'));
     }
 
     public function create()
@@ -40,10 +43,10 @@ class InventarisController extends Controller
         $user = User::all()
         ->where('id','!=','1');
         $lokasi = Lokasi::all();
-        $jenis = Jenisbrg::where('id','!=','22')->get();
+        $jenis = Jenisbrg::all();
         $satuan = Satuan::all();
 
-        return view('invent/inventaris.create',compact('divisi','user','lokasi','jenis','satuan'));
+        return view('invent/bmnlab.create',compact('divisi','user','lokasi','jenis','satuan'));
     }
 
 
@@ -104,15 +107,7 @@ class InventarisController extends Controller
             $inventaris->file_foto = $request->file('file_foto')->getClientOriginalName(); // update isi kolum file user dengan origin gambar
             $inventaris->save(); // save ke database
         }
-        return redirect('/invent/inventaris')->with('sukses','Data Tersimpan');
-    }
-
-    public function qrcode($id)
-    {
-        $invent = Inventaris::where('id',$id)->first();
-        $data = Crypt::encryptString($invent->id);
-        
-        return view('invent/inventaris.qrcode',compact('data'));
+        return redirect('/invent/bmnlab')->with('sukses','Data Tersimpan');
     }
 
     public function jadwal($id)
@@ -123,13 +118,13 @@ class InventarisController extends Controller
                     ->get();
         $data = Inventaris::where('id',$id)->first();
 
-        return view('invent/inventaris.jadwal',compact('data','jadwal'));
+        return view('invent/bmnlab.jadwal',compact('data','jadwal'));
     }
 
     public function storejadwal(Request $request)
     {
         $jadwal = JadwalMain::create($request->all());
-        return redirect('/invent/inventaris/jadwal/'.$jadwal->inventaris_id)->with('sukses','Data Tersimpan');
+        return redirect('/invent/bmnlab/jadwal/'.$jadwal->inventaris_id)->with('sukses','Data Tersimpan');
     }
 
     public function edit($id)
@@ -140,8 +135,8 @@ class InventarisController extends Controller
         $user = User::all()
                 ->where('id','!=','1');
         $lokasi = Lokasi::all();
-        $jenis = Jenisbrg::where('id','!=','22')->get();
-        return view('invent/inventaris.edit',compact('data','divisi','user','lokasi','jenis','satuan'));
+        $jenis = Jenisbrg::all();
+        return view('invent/bmnlab.edit',compact('data','divisi','user','lokasi','jenis','satuan'));
     }
 
     public function detail($idEncy)
@@ -157,7 +152,7 @@ class InventarisController extends Controller
                         ->where('id','!=','1');
                 $lokasi = Lokasi::all();
                 $jenis = Jenisbrg::all();
-                return view('invent/inventaris.detail',compact('data','divisi','user','lokasi','jenis','satuan'));
+                return view('invent/bmnlab.detail',compact('data','divisi','user','lokasi','jenis','satuan'));
             }else{
                 return view('404');
             }
@@ -229,7 +224,7 @@ class InventarisController extends Controller
 
 
 
-        return redirect('/invent/inventaris')->with('sukses','Data Diperbaharui');
+        return redirect('/invent/bmnlab')->with('sukses','Data Diperbaharui');
     }
 
 
@@ -237,7 +232,7 @@ class InventarisController extends Controller
     {
         $inventaris = Inventaris::find($id);
         $inventaris->delete();
-        return redirect('/invent/inventaris')->with('sukses','Data Terhapus');
+        return redirect('/invent/bmnlab')->with('sukses','Data Terhapus');
     }
 
     public function deleteJadwal($id)
@@ -245,7 +240,7 @@ class InventarisController extends Controller
         $jadwalMain = JadwalMain::find($id);
         $inventaris_id = $jadwalMain->inventaris_id;
         $jadwalMain->delete();
-        return redirect('/invent/inventaris/jadwal/'.$inventaris_id)->with('sukses','Data Terhapus');
+        return redirect('/invent/bmnlab/jadwal/'.$inventaris_id)->with('sukses','Data Terhapus');
     }
 
     //JSON get data barang 200 is success api

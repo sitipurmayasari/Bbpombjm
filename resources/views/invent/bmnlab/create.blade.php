@@ -1,21 +1,20 @@
 @extends('layouts.app')
 @section('breadcrumb')
     <li>Inventaris</li>
-    <li><a href="/invent/inventaris"> Inventaris Asset Tetap</a></li>
-    <li>Edit</li>
+    <li><a href="/invent/bmnlab">BMN LAB</a></li>
+    <li>Tambah Baru</li>
 @endsection
 @section('content')
-
 @include('layouts.validasi')
 
 <div class="row">
     <form class="form-horizontal validate-form" role="form" 
-        method="post" action="/invent/inventaris/update/{{$data->id}}" enctype="multipart/form-data">
+         method="post" action="{{route('bmnlab.store')}}" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div class="col-sm-12">
         <div class="widget-box">
             <div class="widget-header">
-                <h4 class="widget-title"> Ubah Data Inventaris Asset Tetap</h4>
+                <h4 class="widget-title"> Input BMN LAB</h4>
                 <div class="widget-toolbar">
                     <a href="#" data-action="collapse">
                         <i class="ace-icon fa fa-chevron-down"></i>
@@ -33,10 +32,9 @@
                             </label>
                             <div class="col-sm-8">
                                 <input type="hidden" value="R" name="kind"  />
-                                <input type="text" 
+                                <input type="text"  placeholder="nomor pegawai" 
                                         class="col-xs-10 col-sm-10 required " 
-                                        name="kode_barang" readonly 
-                                        value="{{$data->kode_barang}}"/>
+                                        name="kode_barang" required />
                             </div>
                         </div>
 
@@ -45,7 +43,7 @@
                             for="form-field-1"> Nama barang
                             </label>
                             <div class="col-sm-8">
-                                <input type="text" value="{{$data->nama_barang}}"
+                                <input type="text"  placeholder="Nama" 
                                         class="col-xs-10 col-sm-10 required " 
                                         name="nama_barang" />
                             </div>
@@ -56,7 +54,7 @@
                             for="form-field-1"> Merk/Type
                             </label>
                             <div class="col-sm-8">
-                                <input type="text" value="{{$data->merk}}"
+                                <input type="text"  placeholder="merk" 
                                         class="col-xs-10 col-sm-10 required " 
                                         name="merk" />
                             </div>
@@ -66,9 +64,9 @@
                             <label class="col-sm-3 control-label no-padding-right" 
                             for="form-field-1"> Tanggal Terima
                             </label>
-                            <div class="col-sm-8 date">
-                                <input type="text" name="tanggal_diterima" readonly class="col-xs-10 col-sm-10" 
-                                data-date-format="yyyy-mm-dd" data-provide="datepicker" value="{{$data->tanggal_diterima}}">
+                            <div class="col-sm-8">
+                                <input type="date" name="tanggal_diterima" readonly class="col-xs-10 col-sm-10" 
+                                data-date-format="yyyy-mm-dd" data-provide="datepicker">
                             </div>
                         </div>
 
@@ -77,27 +75,10 @@
                             for="form-field-1"> No. Seri
                             </label>
                             <div class="col-sm-8">
-                                <input type="text" value="{{$data->no_seri}}"
+                                <input type="text"  placeholder="merk" 
                                         class="col-xs-10 col-sm-10 required " 
                                         name="no_seri" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Jenis Barang
-                            </label>
-                            <div class="col-sm-8">
-                                <select name="jenis_barang" id="jenis" class="col-xs-10 col-sm-10">
-                                    <option value="">Pilih Jenis Barang</option>
-                                    @foreach ($jenis as $lok)
-                                        @if ($data->jenis_barang==$lok->id)
-                                            <option value="{{$lok->id}}" selected>{{$lok->nama}}</option>
-                                        @else
-                                            <option value="{{$lok->id}}">{{$lok->nama}}</option>
-                                        @endif
-                                    @endforeach
-                                       
-                                </select>
+                                <input type="hidden" value="22" name="jenis_barang">
                             </div>
                         </div>
                         <div class="form-group">
@@ -107,11 +88,7 @@
                             <div class="col-sm-8">
                                 <select name="satuan_id" id="satuan_id" class="col-xs-10 col-sm-10">
                                         @foreach ($satuan as $lok)
-                                            @if ($data->satuan_id==$lok->id)
-                                                <option value="{{$lok->id}}" selected>{{$lok->satuan}}</option>
-                                            @else
-                                                <option value="{{$lok->id}}">{{$lok->satuan}}</option>
-                                            @endif
+                                            <option value="{{$lok->id}}">{{$lok->satuan}}</option>
                                         @endforeach
                                 </select>
                             </div>
@@ -124,11 +101,7 @@
                                 <select id="status" name="lokasi" class="col-xs-10 col-sm-10">
                                     <option value="">Pilih Lokasi Barang</option>
                                     @foreach ($lokasi as $lok)
-                                        @if ($data->lokasi==$lok->id)
-                                            <option value="{{$lok->id}}" selected>{{$lok->nama}}</option>
-                                        @else
-                                            <option value="{{$lok->id}}">{{$lok->nama}}</option>
-                                        @endif
+                                        <option value="{{$lok->id}}">{{$lok->nama}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -140,18 +113,13 @@
                             </label>
                             <div class="col-sm-8">
                                 <select id="status" name="penanggung_jawab" class="col-xs-10 col-sm-10 select2">
+                                    <option value="">Pilih Nama Pegawai</option>
                                     @foreach ($user as $peg)
-                                        @if ($data->pegawai_id==$peg->id)
-                                            <option value="{{$peg->id}}" selected>{{$peg->no_pegawai}} || {{$peg->name}}</option> 
-                                        @else
                                         <option value="{{$peg->id}}">{{$peg->no_pegawai}} || {{$peg->name}}</option>
-                                        @endif
                                     @endforeach
                                 </select>
-                                
                             </div>
                         </div>
-
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
                             for="form-field-1"> Status
@@ -165,12 +133,22 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right"
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Link Video Penggunaan
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text"  placeholder="merk" 
+                                        class="col-xs-10 col-sm-10 required " 
+                                        name="link_video" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" s
                             for="form-field-1"> Spesifikasi Barang
                             </label>
                             <div class="col-sm-8">
                                 <textarea  placeholder="" class="col-xs-10 col-sm-10"  
-                                name="spesifikasi">{{$data->spesifikasi}}</textarea>
+                                name="spesifikasi"></textarea>
                             </div>
                         </div>
                         
@@ -182,20 +160,11 @@
                 <div class="widget-main no-padding">
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right" 
-                        for="form-field-1"> User Manual
+                        for="form-field-1"> Prosedur Maintenace
                         </label>
                         <div class="col-sm-9">
-                            <input type="file" name="file_user_manual2" class="btn btn-default btn-sm" id="" value="Upload Ulang File User Manual">
-                            <label><a href="{{$data->getFIleUserManual()}}" target="_blank" >{{$data->file_user_manual}}</a></label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" 
-                        for="form-field-1"> Troubleshouting
-                        </label>
-                        <div class="col-sm-9">
-                            <input type="file" name="file_trouble2" class="btn btn-default btn-sm" id="" value="Upload Ulang File Troubleshouting">
-                            <label><a href="{{$data->getFIleTrouble()}}" target="_blank" >{{$data->file_trouble}}</a></label>
+                                <input type="file" name="file_user_manual" class="btn btn-default btn-sm" id="" value="Upload File Prosedur Maintenance">      
+                                <label><i>ex:Lorem_ipsum.pdf</i></label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -203,17 +172,43 @@
                         for="form-field-1"> IKA
                         </label>
                         <div class="col-sm-9">
-                            <input type="file" name="file_ika2" class="btn btn-default btn-sm" id="" value="Upload Ulang File IKA">
-                            <label><a href="{{$data->getFIleIka()}}" target="_blank" >{{$data->file_ika}}</a></label>
+                            <input type="file" name="file_user_manual" class="btn btn-default btn-sm" id="" value="Upload File IKA">      
+                            <label><i>ex:Lorem_ipsum.pdf</i></label>
                         </div>
                     </div>
-                    <div class="form-actions" style="text-align: center">
-                        <input type="file" name="file_foto2" class="btn btn-success btn-sm" id="" 
-                            value="Upload Ulang Foto Barang">   
-                        <img src="{{$data->getFoto()}}"  style="height:250px;width:250px">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" 
+                        for="form-field-1"> SERTIFIKAT KALIBRASI
+                        </label>
+                        <div class="col-sm-9">
+                            <input type="file" name="file_sert" class="btn btn-default btn-sm" id="" value="Upload File Sertifikasi">      
+                            <label><i>ex:Lorem_ipsum.pdf</i></label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" 
+                        for="form-field-1"> Foto Barang
+                        </label>
+                        <div class="col-sm-9">
+                            <input type="file" name="file_foto" class="btn btn-success btn-sm" id="" 
+                            value="Upload Foto Barang">   
+                            <label><i>ex:Lorem_ipsum.jpg/.jpeg/.png</i></label>   
+                        </div>
+                        
+                    </div>
+{{-- 
+                    <div class="form-actions" align="center">
+                        <div class="col-sm-9">
+                            <input type="file" name="file_foto" class="btn btn-default btn-sm" id="" 
+                            value="Upload File User Manual">      
+                            <label><i>ex:Lorem_ipsum_dolor_sit_amet.jpg</i></label>
+                        </div>
+                         <button class="btn btn-success btn-sm " type="submit">
+                            <i class="ace-icon fa fa-check bigger-110"></i>Upload Foto Barang
+                        </button><br>
+                        <img src="{{asset('images/user/userempty.png')}}"  style="height:250px;width:200px">
                         <br>
-                        <label><i class="bg bg-warning">** Kosongkan Upload ulang jika tidak ingin merubah gambar</i></label>
-                    </div>     
+                    </div>      --}}
                 </div>
            </div>
             </div>
@@ -223,7 +218,7 @@
     <div class="col-sm-12">
         <div class="form-actions right">
             <button class="btn btn-success btn-sm " type="submit">
-                <i class="ace-icon fa fa-check bigger-110"></i>Update
+                <i class="ace-icon fa fa-check bigger-110"></i>Simpan
             </button>
         </div>
     </div>

@@ -89,6 +89,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
 
     //Route untuk inventaris
     Route::get('/invent/inventaris','Invent\InventarisController@index')->name('inventaris');
+    //Route untuk BMN LAB
+    Route::get('/invent/bmnlab','Invent\BmnLabController@index')->name('bmnlab');
     //Route untuk disposable inventaris
     Route::get('/invent/disposable','Invent\DisposableController@index')->name('disposable');
     //Route untuk persediaan Lab

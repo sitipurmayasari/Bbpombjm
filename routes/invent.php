@@ -22,6 +22,16 @@
   Route::get('/invent/inventaris/getBarang','Invent\InventarisController@getBarang')->name('inventaris.getbarang');
   Route::get('/invent/inventaris/qrcode/{id}','Invent\InventarisController@qrcode')->name('inventaris.qrcode');
 
+  //Route untuk BMN LAB
+  Route::get('/invent/bmnlab/create','Invent\BmnLabController@create')->name('bmnlab.create');
+  Route::post('/invent/bmnlab/store','Invent\BmnLabController@store')->name('bmnlab.store');
+  Route::get('/invent/bmnlab/edit/{id}','Invent\BmnLabController@edit')->name('bmnlab.edit');
+  Route::post('/invent/bmnlab/update/{id}','Invent\BmnLabController@update')->name('bmnlab.update');
+  Route::get('/invent/bmnlab/delete/{id}','Invent\BmnLabController@delete')->name('bmnlab.delete');
+  Route::get('/invent/bmnlab/jadwal/{id}','Invent\BmnLabController@jadwal')->name('bmnlab.jadwal');
+  Route::post('/invent/bmnlab/storejadwal','Invent\BmnLabController@storejadwal')->name('bmnlab.storejadwal');
+  Route::get('/invent/bmnlab/getBarang','Invent\BmnLabController@getBarang')->name('bmnlab.getbarang');
+
   //Route untuk disposable inventaris
   Route::get('/invent/disposable/create','Invent\DisposableController@create')->name('disposable.create');
   Route::post('/invent/disposable/store','Invent\DisposableController@store')->name('disposable.store');

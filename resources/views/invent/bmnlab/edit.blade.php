@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('breadcrumb')
     <li>Inventaris</li>
-    <li><a href="/invent/inventaris"> Inventaris Asset Tetap</a></li>
+    <li><a href="/invent/bmnlab"> BMN LAB</a></li>
     <li>Edit</li>
 @endsection
 @section('content')
@@ -10,12 +10,12 @@
 
 <div class="row">
     <form class="form-horizontal validate-form" role="form" 
-        method="post" action="/invent/inventaris/update/{{$data->id}}" enctype="multipart/form-data">
+        method="post" action="/invent/bmnlab/update/{{$data->id}}" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div class="col-sm-12">
         <div class="widget-box">
             <div class="widget-header">
-                <h4 class="widget-title"> Ubah Data Inventaris Asset Tetap</h4>
+                <h4 class="widget-title"> Ubah Data BMN LAB</h4>
                 <div class="widget-toolbar">
                     <a href="#" data-action="collapse">
                         <i class="ace-icon fa fa-chevron-down"></i>
@@ -84,24 +84,6 @@
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Jenis Barang
-                            </label>
-                            <div class="col-sm-8">
-                                <select name="jenis_barang" id="jenis" class="col-xs-10 col-sm-10">
-                                    <option value="">Pilih Jenis Barang</option>
-                                    @foreach ($jenis as $lok)
-                                        @if ($data->jenis_barang==$lok->id)
-                                            <option value="{{$lok->id}}" selected>{{$lok->nama}}</option>
-                                        @else
-                                            <option value="{{$lok->id}}">{{$lok->nama}}</option>
-                                        @endif
-                                    @endforeach
-                                       
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
                             for="form-field-1"> Satuan
                             </label>
                             <div class="col-sm-8">
@@ -165,7 +147,18 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right"
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Link Video Penggunaan
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text"  placeholder="merk" value="{{$data->link_video}}"
+                                        class="col-xs-10 col-sm-10 required " 
+                                        name="link_video" />
+                            </div>
+                        </div>
+                        <div class="for
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" s
                             for="form-field-1"> Spesifikasi Barang
                             </label>
                             <div class="col-sm-8">
@@ -182,19 +175,10 @@
                 <div class="widget-main no-padding">
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right" 
-                        for="form-field-1"> User Manual
+                        for="form-field-1"> Prosedur Maintenace
                         </label>
                         <div class="col-sm-9">
-                            <input type="file" name="file_user_manual2" class="btn btn-default btn-sm" id="" value="Upload Ulang File User Manual">
-                            <label><a href="{{$data->getFIleUserManual()}}" target="_blank" >{{$data->file_user_manual}}</a></label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" 
-                        for="form-field-1"> Troubleshouting
-                        </label>
-                        <div class="col-sm-9">
-                            <input type="file" name="file_trouble2" class="btn btn-default btn-sm" id="" value="Upload Ulang File Troubleshouting">
+                            <input type="file" name="file_trouble2" class="btn btn-default btn-sm" id="" value="Upload Ulang File Prosedur Maintenace">
                             <label><a href="{{$data->getFIleTrouble()}}" target="_blank" >{{$data->file_trouble}}</a></label>
                         </div>
                     </div>
@@ -205,6 +189,15 @@
                         <div class="col-sm-9">
                             <input type="file" name="file_ika2" class="btn btn-default btn-sm" id="" value="Upload Ulang File IKA">
                             <label><a href="{{$data->getFIleIka()}}" target="_blank" >{{$data->file_ika}}</a></label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" 
+                        for="form-field-1"> SERTIFIKAT KALIBRASI
+                        </label>
+                        <div class="col-sm-9">
+                            <input type="file" name="file_sert2" class="btn btn-default btn-sm" id="" value="Upload File Sertifikasi">      
+                            <label><a href="{{$data->getFIleSert()}}" target="_blank" >{{$data->file_sert}}</a></label>
                         </div>
                     </div>
                     <div class="form-actions" style="text-align: center">
