@@ -24,6 +24,7 @@ class InventarisController extends Controller
                     ->select('inventaris.*','users.name')
                     ->leftJoin('users','users.id','=','inventaris.penanggung_jawab')
                     ->where('inventaris.kind','=','R')
+                    ->where('inventaris.jenis_barang','!=','22')
                     ->when($request->keyword, function ($query) use ($request) {
                         $query->where('nama_barang','LIKE','%'.$request->keyword.'%')
                                 ->orWhere('kode_barang', 'LIKE','%'.$request->keyword.'%')
