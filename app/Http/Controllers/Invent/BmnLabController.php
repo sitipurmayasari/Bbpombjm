@@ -21,16 +21,12 @@ class BmnLabController extends Controller
     public function index(Request $request)
     {
         $data = Inventaris::orderBy('inventaris.id','desc')
-                    ->select('inventaris.*','users.name')
-                    ->leftJoin('users','users.id','=','inventaris.penanggung_jawab')
-                    ->leftJoin('lokasi','lokasi.id','=','inventaris.lokasi')
                     ->where('inventaris.kind','=','R')
                     ->where('inventaris.jenis_barang','=','22')
                     ->when($request->keyword, function ($query) use ($request) {
                         $query->where('nama_barang','LIKE','%'.$request->keyword.'%')
-                                ->orWhere('merk', 'LIKE','%'.$request->keyword.'%')
-                                ->orWhere('lokasi.nama', 'LIKE','%'.$request->keyword.'%')
-                                ->orWhere('users.name', 'LIKE','%'.$request->keyword.'%');
+                                ->orWhere('kode_barang', 'LIKE','%'.$request->keyword.'%')
+                                ->orWhere('merk', 'LIKE','%'.$request->keyword.'%');
                     })
                     ->paginate('10');
         return view('invent/bmnlab.index',compact('data'));
@@ -54,7 +50,7 @@ class BmnLabController extends Controller
     {
         $this->validate($request,[
             'kode_barang' => 'required|unique:inventaris',
-            'file_user_manual' => 'mimes:pdf|max:10048',
+            'file_sert' => 'mimes:pdf|max:10048',
             'file_trouble' => 'mimes:pdf|max:10048',
             'file_ika' => 'mimes:pdf|max:10048',
             'file_foto' => 'mimes:jpg,png,jpeg|max:2048',

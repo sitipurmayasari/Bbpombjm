@@ -26,6 +26,7 @@ class InventarisController extends Controller
                     ->where('inventaris.kind','=','R')
                     ->when($request->keyword, function ($query) use ($request) {
                         $query->where('nama_barang','LIKE','%'.$request->keyword.'%')
+                                ->orWhere('kode_barang', 'LIKE','%'.$request->keyword.'%')
                                 ->orWhere('merk', 'LIKE','%'.$request->keyword.'%')
                                 ->orWhere('name', 'LIKE','%'.$request->keyword.'%');
                     })

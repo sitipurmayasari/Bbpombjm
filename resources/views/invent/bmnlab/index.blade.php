@@ -35,6 +35,7 @@
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
                 <th width="40px">No</th>
+                <th>Kode Barang</th>
                 <th class="col-md-2">Nama Barang</th>
                 <th>Merk</th>
                 <th>Lokasi</th>
@@ -47,6 +48,7 @@
                 @foreach($data as $key=>$row)
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
+                    <td>{{$row->kode_barang}}</td>
                     <td>{{$row->nama_barang}}</td>
                     <td>{{$row->merk}}</td>
                     <td>{{$row->location->nama}}</td>
