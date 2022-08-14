@@ -103,6 +103,7 @@
   Route::get('/invent/labrequest/getKelompok','Invent\LabRequestController@getKelompok')->name('labrequest.getKelompok');
   Route::get('/invent/labrequest/ubah/{id}','Invent\LabRequestController@ubah')->name('labrequest.ubah');
   Route::post('/invent/labrequest/update/{id}','Invent\LabRequestController@update')->name('labrequest.update');
+  Route::get('/invent/labrequest/getExp','Invent\LabRequestController@getExp')->name('labrequest.getExp');
 
   //Route untuk Permintaan Barang ATK di gudang
   Route::get('/invent/atkrequest/create','Invent\AtkRequestController@create')->name('atkrequest.create');

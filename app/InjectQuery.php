@@ -411,6 +411,14 @@ class InjectQuery
         return $stok;
     }
 
+    public function getExpBarang($id){
+        $data = entrystock::where('inventaris_id',$id)
+                        ->where('stockawal', '!=', '0')
+                        ->orderby('id','desc')
+                        ->first();
+        return $data;
+    }
+
     //-------------------Matriks Mobil--------------------
     public function pajak($id, $year, $mon){
         $pajak = Car::Where('id',$id)

@@ -83,13 +83,14 @@
                <div class="col-md-12">
                 <table id="myTable" class="table table-bordered table-hover text-center">
                     <thead>
-                        <th class="text-center col-md-1">No</th>
+                        <th class="text-center">No</th>
                         <th class="text-center col-md-3">Nama Barang</th>
-                        <th class="text-center col-md-2">Satuan</th>
+                        <th class="text-center col-md-2">Exp. Date</th>
+                        <th class="text-center col-md-1">Satuan</th>
                         <th class="text-center col-md-1">Stok</th>
                         <th class="text-center col-md-1">Jumlah</th>
                         <th class="text-center col-md-4">Keterangan</th>
-                        <th class="text-center col-md-1">Aksi</th>
+                        <th class="text-center">Aksi</th>
                     </thead>
                     <tbody>
                         <tr id="cell-1">
@@ -97,11 +98,14 @@
                                 1
                             </td>       
                             <td>
-                                <select name="inventaris_id[]" class="col-xs-11 col-sm-11 select2 kelompok" required id="barang_id-1"
-                                onchange="getData1()">
+                                <select name="inventaris_id[]" class="form-control select2 kelompok" required id="barang_id-1"
+                                onchange="getData1(); getExp()">
                                     <option value="">Pilih Barang</option>
                                 </select>
                                 <input type="hidden" name="status[]" value="N">
+                            </td>
+                            <td>
+                                <input type="text" name="tglex[]" class="form-control" readonly id="tglex-1">
                             </td>
                             <td>
                                 <input type=hidden name="satuan_id[]" class="form-control" id="satuan_id-1">
@@ -125,7 +129,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="7">
+                            <td colspan="8">
                                 <button type="button" class="form-control btn-default" onclick="addBarisNew()">
                                     <i class="glyphicon glyphicon-plus"></i>TAMBAH BARIS BARU</button>
                                 <input type="hidden" id="countRow" value="1">
@@ -157,9 +161,12 @@
         $isi ='<tr id="cell-'+new_baris+'">'+
                 '<td>'+new_baris+'</td>'+
                     '<td>'+
-                        '<select name="inventaris_id[]" class="col-xs-11 col-sm-11 select2" required id="barang_id-'+new_baris+'" onchange="getDataBarang('+new_baris+')">'+
+                        '<select name="inventaris_id[]" class="form-control select2" required id="barang_id-'+new_baris+'" onchange="getDataBarang('+new_baris+'), getExpl('+new_baris+')">'+
                             '<option value="">Pilih Barang</option>'+                      
                         '</select>'+            
+                    '</td>'+
+                    '<td>'+
+                        '<input type="text"  class="form-control" readonly id="tglex-'+new_baris+'">'+
                     '</td>'+
                     '<td>'+
                         '<input type=hidden name="satuan_id[]" class="form-control" id="satuan_id-'+new_baris+'">'+
@@ -247,6 +254,20 @@
             );
         }
 
+        function getExp() {
+            var barang_id = $("#barang_id-1").val();
+
+            $.get(
+                "{{route('labrequest.getExp') }}",
+                {
+                    barang_id: barang_id
+                },
+                function(response) {
+                    $("#tglex-1").val(response.data.exp_date);
+                }
+            );
+        }
+
         function hitung() {
         var a = $("#stok-1").val();
         var b =  $("#jum-1").val();
@@ -268,6 +289,20 @@
                     $("#stok-"+i).val(response.data.stock);
                     var x = $("#stok-"+i).val();
                     document.getElementById("jum-"+i).setAttribute("max", x);
+                }
+            );
+        }
+
+        function getExpl(i) {
+            var barang_id = $("#barang_id-"+i).val();
+
+            $.get(
+                "{{route('labrequest.getExp') }}",
+                {
+                    barang_id: barang_id
+                },
+                function(response) {
+                    $("#tglex-"+i).val(response.data.exp_date);
                 }
             );
         }

@@ -94,26 +94,31 @@
                <div class="col-md-12">
                 <table id="myTable" class="table table-bordered table-hover text-center">
                     <thead>
-                        <th class="text-center col-md-1">No</th>
+                        <th class="text-center">No</th>
                         <th class="text-center col-md-3">Nama Barang</th>
-                        <th class="text-center col-md-2">Satuan</th>
+                        <th class="text-center col-md-2">Exp. Date</th>
+                        <th class="text-center col-md-1">Satuan</th>
                         <th class="text-center col-md-1">Stok</th>
                         <th class="text-center col-md-1">Jumlah</th>
                         <th class="text-center col-md-4">Keterangan</th>
-                        <th class="text-center col-md-1">Aksi</th>
+                        <th class="text-center">Aksi</th>
                     </thead>
                     <tbody>
                         @php
                             $no = 1;
                         @endphp
                         @foreach ($ajuan as $item)
+                            @php
+                                $stok = $injectQuery->getSTokBarang($item->inventaris_id);
+                                $exp = $injectQuery->getExpBarang($item->inventaris_id);
+                            @endphp
                             <tr id="cell-{{$no}}">
                                 <td class=>
                                     {{$no}}
                                 </td>       
                                 <td>
                                     <select name="inventaris_id[]" class="col-xs-11 col-sm-11 select2 kelompok" required id="barang_id-{{$no}}"
-                                    onchange="getDataBarang({{$no}})">
+                                    onchange="getDataBarang({{$no}}),getExpl({{$no}})">
                                         @foreach ($inv as $brg)
                                             @if ($brg->id == $item->inventaris_id)
                                                 <option value="{{$brg->id}}" selected>{{$brg->nama_barang}}</option>
@@ -124,14 +129,14 @@
                                     </select>
                                 </td>
                                 <td>
+                                    <input type="text" name="tglex[]" class="form-control" readonly id="tglex-{{$no}}" value="{{$exp->exp_date}}">
+                                </td>
+                                <td>
                                     <input type=hidden name="satuan_id[]" class="form-control" id="satuan_id-{{$no}}" value="{{$item->satuan_id}}">
                                     <input type="text" name="satuan[]" class="form-control" readonly id="satuan-{{$no}}" value="{{$item->satuan->satuan}}">
                                 </td>
-                                @php
-                                    $stok = $injectQuery->getSTokBarang($item->inventaris_id);
-                                @endphp
                                 <td>
-                                    <input type="number" name="stok[]" class="form-control" readonly id="stok-{{$no}}" value="{{$stok->stok}}">
+                                    <input type="number" name="stok[]" class="form-control" readonly id="stok-{{$no}}" value="{{$stok->stock}}">
                                 </td>
                                 <td>
                                     <input type="number"  min="1" name="jumlah[]" class="form-control" value="{{$item->jumlah}}" id="jum-{{$no}}" onchange="hitung2({{$no}})">
@@ -190,9 +195,12 @@
         $isi ='<tr id="cell-'+new_baris+'">'+
                 '<td>'+new_baris+'</td>'+
                     '<td>'+
-                        '<select name="inventaris_id[]" class="col-xs-11 col-sm-11 select2" required id="barang_id-'+new_baris+'" onchange="getDataBarang('+new_baris+')">'+
+                        '<select name="inventaris_id[]" class="col-xs-11 col-sm-11 select2" required id="barang_id-'+new_baris+'" onchange="getDataBarang('+new_baris+'), getExpl('+new_baris+')">'+
                             '<option value="">Pilih Barang</option>'+                      
                         '</select>'+            
+                    '</td>'+
+                    '<td>'+
+                        '<input type="text"  class="form-control" readonly id="tglex-'+new_baris+'">'+
                     '</td>'+
                     '<td>'+
                         '<input type=hidden name="satuan_id[]" class="form-control" id="satuan_id-'+new_baris+'">'+
@@ -298,6 +306,20 @@
         var c = a - b;
         $("#sisa-"+i).val(c);
     }
+
+    function getExpl(i) {
+            var barang_id = $("#barang_id-"+i).val();
+
+            $.get(
+                "{{route('labrequest.getExp') }}",
+                {
+                    barang_id: barang_id
+                },
+                function(response) {
+                    $("#tglex-"+i).val(response.data.exp_date);
+                }
+            );
+        }
     
    </script>
 @endsection

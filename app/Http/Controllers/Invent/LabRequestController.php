@@ -181,5 +181,16 @@ class LabRequestController extends Controller
         return redirect('/invent/labrequest/print/'.$id);
     }
 
+    public function getExp(Request $request)
+    {
+        $inventaris_id = $request->barang_id;
+
+        $data = entrystock::where('inventaris_id',$inventaris_id)
+                            ->where('stockawal', '!=', '0')
+                            ->orderby('id','desc')
+                            ->first();
+        return response()->json([ 'success' => true,'data' => $data],200);
+    }
+
 
 }
