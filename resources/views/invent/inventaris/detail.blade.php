@@ -90,11 +90,13 @@
                 
                 <td>{{$data->location->nama}}</td>
             </tr>
+            @if ($data->jenis_barang = 22)
             <tr>
                 <td>User Manual</td>
                 
                 <td><a href="{{$data->getFIleUserManual()}}" target="_blank" >{{$data->file_user_manual}}</a></td>
-            </tr>
+            </tr>              
+            @endif
             <tr>
                 <td>Prosedur Maintenace</td>
                 
@@ -105,7 +107,8 @@
                 
                 <td><a href="{{$data->getFIleIka()}}" target="_blank" >{{$data->file_ika}}</a></td>
             </tr>
-            <tr>
+           @if ($data->jenis_barang = 22)
+           <tr>
                 <td>SERTIFIKAT KALIBRASI</td>
                 
                 <td><a href="{{$data->getFIleSert()}}" target="_blank" >{{$data->file_sert}}</a></td>
@@ -115,6 +118,8 @@
                 
                 <td><a href="{{$data->link_video}}">Klik Disini</a></td>
             </tr>
+           @endif
+           
         </table>
     </div>
 </html>
