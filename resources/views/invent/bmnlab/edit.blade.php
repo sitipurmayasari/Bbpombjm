@@ -178,7 +178,7 @@
                         for="form-field-1"> Prosedur Maintenace
                         </label>
                         <div class="col-sm-9">
-                            <input type="file" name="file_trouble2" class="btn btn-default btn-sm" id="" value="Upload Ulang File Prosedur Maintenace">
+                            <input type="file" name="file_trouble2" class="btn btn-default btn-sm" id="" value="Upload Ulang File Troubleshouting">
                             <label><a href="{{$data->getFIleTrouble()}}" target="_blank" >{{$data->file_trouble}}</a></label>
                         </div>
                     </div>
@@ -206,7 +206,7 @@
                         <img src="{{$data->getFoto()}}"  style="height:250px;width:250px">
                         <br>
                         <label><i class="bg bg-warning">** Kosongkan Upload ulang jika tidak ingin merubah gambar</i></label>
-                    </div>     
+                    </div>      
                 </div>
            </div>
             </div>

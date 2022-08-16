@@ -59,15 +59,6 @@ class BmnLabController extends Controller
 
         $inventaris =Inventaris::create($request->all());
 
-        if($request->hasFile('file_user_manual')){ // Kalau file ada
-            $request->file('file_user_manual')
-                        ->move('images/inventaris/'.$inventaris->id,$request
-                        ->file('file_user_manual')
-                        ->getClientOriginalName()); // pindah file user manual k inventaris folder id file
-            $inventaris->file_user_manual = $request->file('file_user_manual')->getClientOriginalName(); // update isi kolum file user dengan origin gambar
-            $inventaris->save(); // save ke database
-        }
-
         if($request->hasFile('file_trouble')){ // Kalau file ada
             $request->file('file_trouble')
                         ->move('images/inventaris/'.$inventaris->id,$request
@@ -173,14 +164,6 @@ class BmnLabController extends Controller
 
         $inventaris = Inventaris::find($id);
         $inventaris->update($request->all());
-        if($request->hasFile('file_user_manual2')){ // Kalau file ada
-            $request->file('file_user_manual2')
-                        ->move('images/inventaris/'.$inventaris->id,$request
-                        ->file('file_user_manual2')
-                        ->getClientOriginalName()); // pindah file user manual k inventaris folder id file
-            $inventaris->file_user_manual = $request->file('file_user_manual2')->getClientOriginalName(); // update isi kolum file user dengan origin gambar
-            $inventaris->save(); // save ke database
-        }
 
         if($request->hasFile('file_trouble2')){ // Kalau file ada
             $request->file('file_trouble2')
