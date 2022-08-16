@@ -36,12 +36,12 @@ class Inventaris extends Model
 
     public function getFIleTrouble() 
     {
-        return $this->file_trouble==null ? 'Tidak Ada File' : asset('images/inventaris').'/'.$this->id.'/'.$this->file_user_manual;
+        return $this->file_trouble==null ? 'Tidak Ada File' : asset('images/inventaris').'/'.$this->id.'/'.$this->file_trouble;
     }
 
     public function getFIleIka() 
     {
-        return $this->file_ika==null ? 'Tidak Ada File' : asset('images/inventaris').'/'.$this->id.'/'.$this->file_user_manual;
+        return $this->file_ika==null ? 'Tidak Ada File' : asset('images/inventaris').'/'.$this->id.'/'.$this->file_ika;
     }
 
     public function getFIleUserManual() 
