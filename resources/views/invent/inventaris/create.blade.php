@@ -174,7 +174,7 @@
                         for="form-field-1"> Troubleshouting
                         </label>
                         <div class="col-sm-9">
-                                <input type="file" name="file_user_manual" class="btn btn-default btn-sm" id="" value="Upload File Troubleshouting">      
+                                <input type="file" name="file_trouble" class="btn btn-default btn-sm" id="" value="Upload File Troubleshouting">      
                                 <label><i>ex:Lorem_ipsum.pdf</i></label>
                         </div>
                     </div>
@@ -183,7 +183,7 @@
                         for="form-field-1"> IKA
                         </label>
                         <div class="col-sm-9">
-                            <input type="file" name="file_user_manual" class="btn btn-default btn-sm" id="" value="Upload File IKA">      
+                            <input type="file" name="file_ika" class="btn btn-default btn-sm" id="" value="Upload File IKA">      
                             <label><i>ex:Lorem_ipsum.pdf</i></label>
                         </div>
                     </div>

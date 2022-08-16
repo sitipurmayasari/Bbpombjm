@@ -163,8 +163,8 @@
                         for="form-field-1"> Prosedur Maintenace
                         </label>
                         <div class="col-sm-9">
-                                <input type="file" name="file_user_manual" class="btn btn-default btn-sm" id="" value="Upload File Prosedur Maintenance">      
-                                <label><i>ex:Lorem_ipsum.pdf</i></label>
+                            <input type="file" name="file_trouble" class="btn btn-default btn-sm" id="" value="Upload File Prosedur Maintenace">      
+                            <label><i>ex:Lorem_ipsum.pdf</i></label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -172,7 +172,7 @@
                         for="form-field-1"> IKA
                         </label>
                         <div class="col-sm-9">
-                            <input type="file" name="file_user_manual" class="btn btn-default btn-sm" id="" value="Upload File IKA">      
+                            <input type="file" name="file_ika" class="btn btn-default btn-sm" id="" value="Upload File IKA">      
                             <label><i>ex:Lorem_ipsum.pdf</i></label>
                         </div>
                     </div>
