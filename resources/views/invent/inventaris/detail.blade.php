@@ -90,7 +90,7 @@
                 
                 <td>{{$data->location->nama}}</td>
             </tr>
-            @if ($data->jenis_barang = 22)
+            @if ($data->jenis_barang != 22)
             <tr>
                 <td>User Manual</td>
                 
