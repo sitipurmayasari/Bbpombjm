@@ -53,7 +53,7 @@ class InventarisController extends Controller
     {
         $this->validate($request,[
             'kode_barang' => 'required|unique:inventaris',
-            'file_user_manual' => 'mimes:pdf|max:10048',
+            'file_sert' => 'mimes:pdf|max:10048',
             'file_trouble' => 'mimes:pdf|max:10048',
             'file_ika' => 'mimes:pdf|max:10048',
             'file_foto' => 'mimes:jpg,png,jpeg|max:2048',
@@ -175,6 +175,7 @@ class InventarisController extends Controller
          $this->validate($request,[
             'file_user_manual2' => 'mimes:pdf|max:10048',
             'file_trouble2' => 'mimes:pdf|max:10048',
+            'file_sert2' => 'mimes:pdf|max:10048',
             'file_ika2' => 'mimes:pdf|max:10048',
             'file_foto2' => 'mimes:jpg,png,jpeg|max:2048',
             'tanggal_diterima' => 'required|date'

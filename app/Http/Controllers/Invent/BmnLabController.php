@@ -122,7 +122,8 @@ class BmnLabController extends Controller
         $user = User::all()
                 ->where('id','!=','1');
         $lokasi = Lokasi::all();
-        $jenis = Jenisbrg::all();
+        $jenis = Jenisbrg::where('id','!=','22')->get();
+
         return view('invent/bmnlab.edit',compact('data','divisi','user','lokasi','jenis','satuan'));
     }
 
@@ -152,9 +153,10 @@ class BmnLabController extends Controller
 
     public function update(Request $request, $id)
     {
-         $this->validate($request,[
+        $this->validate($request,[
             'file_user_manual2' => 'mimes:pdf|max:10048',
             'file_trouble2' => 'mimes:pdf|max:10048',
+            'file_sert2' => 'mimes:pdf|max:10048',
             'file_ika2' => 'mimes:pdf|max:10048',
             'file_foto2' => 'mimes:jpg,png,jpeg|max:2048',
             'tanggal_diterima' => 'required|date'
@@ -164,7 +166,6 @@ class BmnLabController extends Controller
 
         $inventaris = Inventaris::find($id);
         $inventaris->update($request->all());
-
         if($request->hasFile('file_trouble2')){ // Kalau file ada
             $request->file('file_trouble2')
                         ->move('images/inventaris/'.$inventaris->id,$request
@@ -200,8 +201,6 @@ class BmnLabController extends Controller
             $inventaris->file_foto = $request->file('file_foto2')->getClientOriginalName(); // update isi kolum file user dengan origin gambar
             $inventaris->save(); // save ke database
         }
-
-
 
         return redirect('/invent/bmnlab')->with('sukses','Data Diperbaharui');
     }
