@@ -43,7 +43,6 @@ class Inventaris extends Model
     {
         return $this->file_ika==null ? 'Tidak Ada File' : asset('images/inventaris').'/'.$this->id.'/'.$this->file_ika;
     }
-
     public function getFIleUserManual() 
     {
         return $this->file_user_manual==null ? 'Tidak Ada File' : asset('images/inventaris').'/'.$this->id.'/'.$this->file_user_manual;
