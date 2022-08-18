@@ -25,7 +25,7 @@
                         </div>
                         <div class="col-md-12">
                             <label>Status</label><br>
-                            <select name="stat_aduan" class="col-xs-9 col-sm-9" >
+                            <select name="stat_aduan" class="col-xs-9 col-sm-9" required>
                                 @if ($data->stat_aduan == "B")
                                     <option value="B" selected>Belum Diproses</option>
                                     <option value="S">Telah Diproses</option>
@@ -97,7 +97,7 @@
                                     <input type="text" name="ket[]" class="form-control" value="{{$item->ket}}" readonly>
                                 </td>
                                 <td>
-                                    <select name="status[]" class="form-control" id="status-{{$no}}" onchange="hitung({{$no}})">
+                                    <select name="status[]" class="form-control" id="status-{{$no}}" onchange="hitung({{$no}})" required>
                                         <option value="">Pilih Status</option>
                                         <option value="Y"> Disetujui</option>
                                         <option value="N"> Ditolak</option>
