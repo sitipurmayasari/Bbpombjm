@@ -344,7 +344,7 @@
             </tr>
        </table>
         <br>
-        Agar yang bersangkutan melaksanakan tugas dengan baik dan penuh tanggungjawab.
+        Agar yang bersangkutan melaksanakan tugas dengan baik dan penuh tanggung jawab.
     </div>
     <div  style="page-break-before: always;" class="isi">
         <table class="ttdini" style="width: 100%; margin-top: 130px;" >

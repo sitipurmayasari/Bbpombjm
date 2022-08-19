@@ -1,3 +1,11 @@
+{{-- @php
+    header("Content-Type: text/html; charset=utf-8");
+    header("Content-Disposition: attachment; filename=surat-tugas.doc");  //File name extension was wrong
+    header("Expires: 0");
+    header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+    header("Cache-Control: private",false);
+@endphp --}}
+{{--  --}}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -342,7 +350,7 @@
             </tr>
        </table>
         <br>
-        Agar yang bersangkutan melaksanakan tugas dengan baik dan penuh tanggungjawab.
+        Agar yang bersangkutan melaksanakan tugas dengan baik dan penuh tanggung jawab.
         <br><br>
         <table class="ttdini" style="width: 100%" >
             <tr>
