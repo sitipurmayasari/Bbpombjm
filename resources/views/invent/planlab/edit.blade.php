@@ -7,7 +7,7 @@
 @section('content')
 @include('layouts.validasi')
 <form class="form-horizontal validate-form" role="form" 
-         method="post" action="{{route('planlab.store')}}" enctype="multipart/form-data"   >
+    method="post" action="/invent/planlab/update/{{$data->id}}" enctype="multipart/form-data"   >
     {{ csrf_field() }}
     <div class="row">
         <div class="col-md-12">
@@ -21,14 +21,18 @@
                                 <input type="text" id="no_adu" readonly required
                                 class="col-xs-9 col-sm-9 required " 
                                 name="no_ajuan"
-                                value="{{$no_ajuan}}"
+                                value="{{$data->no_ajuan}}"
                                 />
                             </div>
                             <div class="col-md-12">
                                 <label>Asal Lab *</label><br>
                                 <select name="labory_id" id="labory_id" class="col-xs-9 col-sm-9 required" required>
                                     @foreach ($lab as $lok)
+                                        @if ($lok->id == $data->labory_id)
+                                        <option value="{{$lok->id}}" selected>{{$lok->name}}</option>
+                                        @else
                                         <option value="{{$lok->id}}">{{$lok->name}}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>
@@ -37,21 +41,24 @@
                             <div class="col-md-12">
                                 <label>TANGGAL AJUAN *</label><br>
                                 <input type="text" name="tgl_ajuan" readonly 
-                                            class="col-xs-9 col-sm-9 " value="{{date('Y-m-d')}}">
+                                            class="col-xs-9 col-sm-9 " value="{{$data->tgl_ajuan}}">
                             </div>
                             <div class="col-md-12">
                                 <label> Tahun Ajuan *</label><br>
                                 <select id="tahun" name="years" class="col-xs-9 col-sm-9" required>
                                     @php
-                                        $now=date('Y');
-                                        $c = $now+1;
-                                            for ($a=$now;$a<=$c;$a++)
-                                                {
-                                                    echo "<option value='$a'>$a</option>";
-                                                }
-                                    @endphp
+                                    $now=date('Y');
+                                    $a = $now+1;
+                                    if($a==$data->years){ 
+                                            $pilih="selected";
+                                        }else {
+                                            $pilih="";
+                                        }
+                                     echo 
+                                     "<option value=\"$now\" $pilih>$now</option>
+                                     <option value=\"$a\" $pilih>$a</option>";
+                                @endphp
                                 </select>
-                                <input type="hidden" name="users_id" value="{{auth()->user()->id}}">
                             </div>
                         </div>
                     </div>
@@ -75,28 +82,37 @@
                                 <th>Aksi</th>
                             </thead>
                             <tbody>
-                                <tr id="cell-1">
+                                @php
+                                    $no = 1;
+                                @endphp
+                               @foreach ($detail as $item)
+                               <tr id="cell-{{$no}}">
                                     <td>
-                                        1
+                                        {{$no}}
                                     </td>       
                                     <td> 
-                                        <input type="text" name="names[]" class="form-control required" required>
+                                        <input type="hidden" name="plandet_id[]" value="{{$item->id}}">
+                                        <input type="text" name="names[]" class="form-control required" required value="{{$item->names}}">
                                     </td>
                                     <td>
-                                        <input type="text" name="katalog[]" class="form-control required" required>
+                                        <input type="text" name="katalog[]" class="form-control required" required value="{{$item->katalog}}">
                                     </td>
                                     <td>
-                                        <input type="text" name="kemasan[]" class="form-control required" required placeholder="2,5L">
+                                        <input type="text" name="kemasan[]" class="form-control required" required value="{{$item->kemasan}}">
                                     </td>
                                     <td>
                                         <select name="satuan_id[]" class="form-control select2" required>
                                             @foreach ($satuan as $brg)
+                                               @if ($brg->id == $data->satuan_id)
+                                                <option value="{{$brg->id}}" selected>{{$brg->satuan}}</option>
+                                               @else
                                                 <option value="{{$brg->id}}">{{$brg->satuan}}</option>
+                                               @endif
                                             @endforeach
                                         </select>
                                     </td>
                                     <td>
-                                        <input type="number" name="jumlah[]" class="form-control" value="0" required>
+                                        <input type="number" name="jumlah[]" class="form-control" value="{{$item->jumlah}}" required>
                                     </td>
                                     <td>
                                         <input type="file" name="file_foto[]" class="btn btn-success form-control">   
@@ -105,6 +121,10 @@
                                     <td>
                                     </td>
                                 </tr>
+                                @php
+                                    $no++;
+                                @endphp
+                               @endforeach
                                 <span id="row-new"></span>
                             </tbody>  
                             <tfoot>
@@ -112,7 +132,7 @@
                                     <td colspan="8">
                                         <button type="button" class="form-control btn-default" onclick="addBarisNew()">
                                             <i class="glyphicon glyphicon-plus"></i>TAMBAH BARIS BARU</button>
-                                        <input type="hidden" id="countRow" value="1">
+                                        <input type="hidden" id="countRow" value="{{$no}}">
                                     </td>
                                 </tr>
                                 
@@ -137,10 +157,11 @@
    <script>
        function addBarisNew(){
         var last_baris = $("#countRow").val();
-        var new_baris = parseInt(last_baris)+1;
+        var new_baris = parseInt(last_baris);
         $isi =  '<tr id="cell-'+new_baris+'">'+
                 '<td>'+new_baris+'</td>'+
                 '<td>'+
+                    '<input type="hidden" name="plandet_id[]">'+
                     '<input type="text" name="names[]" class="form-control required" required>'+
                 '</td>'+
                 '<td>'+

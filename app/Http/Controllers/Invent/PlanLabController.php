@@ -12,6 +12,7 @@ use App\Planlab;
 use App\Planlab_detail;
 use App\Satuan;
 use PDF;
+use LogActivity;
 
 class PlanLabController extends Controller
 {
@@ -44,7 +45,7 @@ class PlanLabController extends Controller
    
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         $this->validate($request,[
             'names'=> 'required',
             'katalog'=> 'required',
@@ -77,6 +78,9 @@ class PlanLabController extends Controller
                 }
             }
         DB::commit(); 
+
+        LogActivity::addToLog('Simpan->Perencanaan Pengadaan Laboratorium nomor:'.$plan->no_ajuan);
+
         return redirect('/invent/planlab')->with('sukses','Data Tersimpan');
         // return redirect('/invent/planlab/print/'.$pengajuan_id);
 
@@ -91,19 +95,46 @@ class PlanLabController extends Controller
         return $pdf->stream();
     }
 
+    public function edit($id)
+    {
+        $data = Planlab::where('id',$id)->first();
+        $detail = Planlab_detail::where('planlab_id',$id)->get();
+        $satuan = Satuan::all();
+        $lab = Labory::all();
+
+        LogActivity::addToLog('Ubah->Perencanaan Pengadaan Laboratorium nomor:'.$data->no_ajuan);
+
+        return view('invent/planlab.edit',compact('data','detail','satuan','lab'));
+    }
    
-    // public function update(Request $request, $id)
-    // {
-    //     $pengajuan = Planlab::find($id);
-    //     for ($i = 0; $i < count($request->input('detail_id')); $i++){
-    //         $detail_id = $request->detail_id[$i];
-    //         Planlab_detail::where('id',$detail_id)->update([
-    //             'status' => $request->status[$i]
-    //         ]);
-    //     }
-    //     $pengajuan->update(['status' => $request->aduan_status]);
-    //     return redirect('/invent/planlab/detail/'.$id)->with('sukses','Barang sudah diperbaharui');
-    // }
+    public function update(Request $request, $id)
+    {
+        $data = Planlab::find($id);
+        $data->touch();
+
+        DB::beginTransaction(); 
+          //---------------planlab----------------------
+            $data = Planlab::find($id);
+            $data->update($request->all());
+
+          //---------------planlab_detail----------------------
+           for ($i = 0; $i < count($request->input('names')); $i++){
+                $data = [
+                    'planlab_id'    => $id,
+                    'names'         => $request->names[$i],
+                    'satuan_id'     => $request->satuan_id[$i],
+                    'jumlah'        => $request->jumlah[$i],
+                    'katalog'       => $request->katalog[$i],
+                    'kemasan'       => $request->kemasan[$i]
+                ];
+                Planlab_detail::updateOrCreate([
+                  'id'   => $request->plandet_id[$i],
+                ],$data);
+          }
+
+        DB::commit();
+        return redirect('/invent/planlab/')->with('sukses','Barang sudah diperbaharui');
+    }
 
 
     function getNoAjuan(){

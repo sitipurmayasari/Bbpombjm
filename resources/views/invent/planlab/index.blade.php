@@ -39,7 +39,7 @@
                 <th>Asal LAB</th>
                 <th>Pengaju</th>
                 <th>Cetak</th>
-                <th>Aksi</th>
+                <th>Ubah</th>
             <thead>
             <tbody>   	
                 @foreach($data as $key=>$row)
@@ -52,7 +52,11 @@
                     <td>
                         <a class="btn btn-primary" href="/invent/planlab/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
                     </td>
-                    <td></td>
+                    <td>
+                        <a href="/invent/planlab/edit/{{$row->id}}" class="btn btn-warning">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </a>
+                    </td>
                 </tr>
               
                 @endforeach

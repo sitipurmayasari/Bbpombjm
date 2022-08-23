@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Agenda;
 use App\Agenda_kategori;
+use LogActivity;
 
 class AgendaController extends Controller
 {
@@ -39,7 +40,10 @@ class AgendaController extends Controller
             'date_from' => 'required',
             'date_to' => 'required'
         ]);
-        Agenda::create($request->all());
+        $data = Agenda::create($request->all());
+
+        LogActivity::addToLog('Simpan->Buat Agenda Baru id='.$data->id);
+
         return redirect('/amdk/agenda')->with('sukses','Data Tersimpan');
     }
    
@@ -55,6 +59,9 @@ class AgendaController extends Controller
     {
         $data = Agenda::find($id);
         $data->update($request->all());
+
+        LogActivity::addToLog('Ubah->Update Agenda'.$id);
+
         return redirect('/amdk/agenda')->with('sukses','Data Diperbaharui');
     }
 
@@ -62,6 +69,9 @@ class AgendaController extends Controller
     {
         $data = Agenda::find($id);
         $data->delete();
+
+        LogActivity::addToLog('Hapus->Hapus Agenda id='.$id);
+
         return redirect('/amdk/agenda')->with('sukses','Data Terhapus');
 
     }

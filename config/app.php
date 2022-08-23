@@ -233,7 +233,7 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
-
+        'LogActivity' => App\Helpers\LogActivity::class,
     ],
 
 ];
