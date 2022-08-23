@@ -73,7 +73,7 @@
                     </thead>
                     <tbody>
                         <tr id="cell-1">
-                            <td class=>
+                            <td>
                                 1
                             </td>       
                             <td>

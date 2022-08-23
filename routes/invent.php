@@ -135,6 +135,8 @@
   Route::post('invent/vehicle/update/{id}','Invent\VehicleController@update')->name('vehicle.update');
   Route::get('/invent/vehicle/jadwal/{id}','Invent\VehicleController@jadwal')->name('vehicle.jadwal');
   Route::post('/invent/vehicle/storejadwal','Invent\VehicleController@storejadwal')->name('vehicle.storejadwal');
+  Route::get('invent/vehicle/editjadwal/{id}','Invent\VehicleController@editjadwal')->name('vehicle.editjadwal');
+  Route::post('invent/vehicle/updatejadwal/{id}','Invent\VehicleController@updatejadwal')->name('vehicle.updatejadwal');
   Route::get('invent/vehicle/deletejadwal/{id}','Invent\VehicleController@deletejadwal')->name('vehicle.deletejadwal');
   Route::get('/invent/vehicle/matriks','Invent\VehicleController@matriks')->name('vehicle.matriks');
 
@@ -188,10 +190,18 @@
    Route::post('/invent/rekapsbb/update/{id}','Invent\RekapSbbController@update')->name('rekapsbb.update');
 
    //Route untuk BMN Rusak
-   Route::get('/invent/brokenBMN/create','Invent\BrokenBMNController@create')->name('brokenBMN.create');
+  Route::get('/invent/brokenBMN/create','Invent\BrokenBMNController@create')->name('brokenBMN.create');
   Route::post('/invent/brokenBMN/store','Invent\BrokenBMNController@store')->name('brokenBMN.store');
   Route::get('/invent/brokenBMN/print/{id}','Invent\BrokenBMNController@print')->name('brokenBMN.print');
   Route::get('/invent/brokenBMN/edit/{id}','Invent\BrokenBMNController@edit')->name('brokenBMN.edit');
   Route::post('/invent/brokenBMN/update/{id}','Invent\BrokenBMNController@update')->name('brokenBMN.update');
   Route::get('/invent/brokenBMN/delete/{id}','Invent\BrokenBMNController@delete')->name('brokenBMN.delete');
   Route::get('/invent/brokenBMN/deletelist/{id}','Invent\BrokenBMNController@deletelist')->name('brokenBMN.deletelist');
+
+    //Route untuk Perencanaan Pengadaan Lab
+  Route::get('/invent/planlab/create','Invent\PlanLabController@create')->name('planlab.create');
+  Route::post('/invent/planlab/store','Invent\PlanLabController@store')->name('planlab.store');
+  Route::get('/invent/planlab/print/{id}','Invent\PlanLabController@print')->name('planlab.print');
+  Route::get('/invent/planlab/edit/{id}','Invent\PlanLabController@edit')->name('planlab.edit');
+  Route::post('/invent/planlab/update/{id}','Invent\PlanLabController@update')->name('planlab.update');
+  Route::get('/invent/planlab/delete/{id}','Invent\PlanLabController@delete')->name('planlab.delete');

@@ -143,6 +143,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/invent/sbbfiles','Invent\SbbController@index')->name('sbbfiles');
     //Route untuk rekapsbb
     Route::get('/invent/rekapsbb','Invent\RekapSbbController@index')->name('rekapsbb');
+    //Route untuk Perencanaan Pengadaan Lab
+    Route::get('/invent/planlab','Invent\PlanLabController@index')->name('planlab');
 
     //--------------------------AMDK------------------------------------------
     //Route untuk pegawai
@@ -195,6 +197,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/amdk/record','Amdk\RecordController@index')->name('record');
     //Route untuk Surat Izin Pramubakti
     Route::get('/amdk/permit','Amdk\PermitController@index')->name('permit');
+    //Route untuk Surat Izin Pramubakti
+    Route::get('/amdk/rekpermit','Amdk\RekermitController@index')->name('rekpermit');
     //Route untuk Setup Angka Kredit
     Route::get('/amdk/ak','Amdk\CreditsController@index')->name('ak');
     //Route untuk SKP
@@ -208,6 +212,10 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     //disposisi
     Route::get('/amdk/disposisi','Amdk\DisposisiController@index')->name('disposisi');
     Route::get('/amdk/rekdisposisi','Amdk\DisposisiController@index')->name('disposisi.rekdisposisi');
+    //Route untuk hari libur
+    Route::get('/amdk/libur','Amdk\LiburController@index')->name('libur');
+    //Route untuk absen
+    Route::get('/amdk/setabsen','Amdk\SetabsenController@index')->name('setabsen');
     
 
 
