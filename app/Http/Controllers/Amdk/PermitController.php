@@ -5,24 +5,21 @@ namespace App\Http\Controllers\Amdk;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
-use App\Agenda;
+use App\Absensi;
 
 class PermitController extends Controller
 {
     public function index(Request $request)
     {
-        $data = Agenda::orderBy('id','desc')
-                ->select('agenda.*','agenda_kategori.nama')
-                ->leftJoin('agenda_kategori','agenda_kategori.id','=','agenda.agenda_kategori_id')
+        $peg = auth()->user()->id;
+        $data = Absensi::orderBy('id','desc')
+                ->where('users_id',$peg )
                 ->when($request->keyword, function ($query) use ($request) {
-                    $query->where('titles','LIKE','%'.$request->keyword.'%')
-                            ->orWhere('detail', 'LIKE','%'.$request->keyword.'%')
-                            ->orWhere('date_from', 'LIKE','%'.$request->keyword.'%')
-                            ->orWhere('date_to', 'LIKE','%'.$request->keyword.'%');
+                    $query->where('tanggal','LIKE','%'.$request->keyword.'%')
+                            ->orWhere('keterangan', 'LIKE','%'.$request->keyword.'%');
                     })
-                ->paginate('10');
-        // return view('amdk/permit.index',compact('data'));
-        return view('calibration/dashboard.index');
+                ->paginate('30');
+        return view('amdk/permit.index',compact('data'));
     }
 
     public function create()

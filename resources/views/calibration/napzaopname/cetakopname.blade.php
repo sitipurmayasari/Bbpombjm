@@ -47,7 +47,7 @@
         </div>
      <br><br>
      <div>
-        Tanggal Stok Opname : {{$data->tanggal}}
+        Tanggal Stok Opname : {{$data->dates}}
      </div>
      <div class="table-responsive isi">
         <table  style="font-size: 11px;" >

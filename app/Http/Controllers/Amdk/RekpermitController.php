@@ -21,8 +21,7 @@ class RekpermitController extends Controller
                             ->orWhere('date_to', 'LIKE','%'.$request->keyword.'%');
                     })
                 ->paginate('10');
-        // return view('amdk/rekpermit.index',compact('data'));
-        return view('calibration/dashboard.index');
+        return view('amdk/rekpermit.index',compact('data'));
     }
 
     public function create()

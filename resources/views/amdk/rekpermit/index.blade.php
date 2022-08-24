@@ -10,7 +10,7 @@
                 <div class="form-group col-sm-12">
                     <div class="row">
                         <div class="form-group col-xs-12 col-sm-3" style="float: left">
-                           <a href="{{Route('permit.create')}}"  class="btn btn-primary">Buat Surat Izin</a>   
+                           <a href="{{Route('rekpermit.create')}}"  class="btn btn-primary">Buat Surat Izin</a>   
                         </div>
                         <div class="form-group col-xs-12 col-sm-3" style="float: right">
                             <div class="input-group">
@@ -48,7 +48,7 @@
                     <td>{{$row->date_from}}</td>
                     <td>{{$row->date_to}}</td>
                     <td>
-                        <a href="/amdk/permit/edit/{{$row->id}}" class="btn btn-warning">
+                        <a href="/amdk/rekpermit/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>
                         <a href="#" class="btn btn-danger delete"
                             r-name="{{$row->titles}}" 
@@ -81,7 +81,7 @@
             }).then((result) => {
                 console.log(result);
                 if (result.value) {
-                    window.location = "/amdk/permit/delete/"+id;
+                    window.location = "/amdk/rekpermit/delete/"+id;
                 }
             });
         });

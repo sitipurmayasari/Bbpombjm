@@ -42,7 +42,7 @@ class AgendaController extends Controller
         ]);
         $data = Agenda::create($request->all());
 
-        LogActivity::addToLog('Simpan->Buat Agenda Baru id='.$data->id);
+        LogActivity::addToLog('Simpan->Buat Agenda Baru | id='.$data->id);
 
         return redirect('/amdk/agenda')->with('sukses','Data Tersimpan');
     }
@@ -60,7 +60,7 @@ class AgendaController extends Controller
         $data = Agenda::find($id);
         $data->update($request->all());
 
-        LogActivity::addToLog('Ubah->Update Agenda'.$id);
+        LogActivity::addToLog('Ubah->Update Agenda | id'.$id);
 
         return redirect('/amdk/agenda')->with('sukses','Data Diperbaharui');
     }
@@ -70,7 +70,7 @@ class AgendaController extends Controller
         $data = Agenda::find($id);
         $data->delete();
 
-        LogActivity::addToLog('Hapus->Hapus Agenda id='.$id);
+        LogActivity::addToLog('Hapus->Hapus Agenda | id='.$id);
 
         return redirect('/amdk/agenda')->with('sukses','Data Terhapus');
 

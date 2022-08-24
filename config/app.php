@@ -180,6 +180,8 @@ return [
 
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
 
+        hisorange\BrowserDetect\ServiceProvider::class,
+
     ],
 
     /*
@@ -234,6 +236,7 @@ return [
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
         'LogActivity' => App\Helpers\LogActivity::class,
+        'Browser' => \hisorange\BrowserDetect\Facade::class,
     ],
 
 ];

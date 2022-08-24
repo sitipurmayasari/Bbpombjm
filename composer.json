@@ -11,6 +11,7 @@
         "php": "^7.2.5|^8.0",
         "barryvdh/laravel-dompdf": "^0.9.0",
         "fideloper/proxy": "^4.4",
+        "hisorange/browser-detect": "^4.5",
         "laravel/framework": "^6.20",
         "laravel/tinker": "^2.5",
         "maatwebsite/excel": "^3.1",
