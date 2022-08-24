@@ -68,8 +68,8 @@ header("Content-Disposition: attachment; filename=Format-Laporan-Stok-Opname-Per
                         <td>{{$item->kode_barang}}</td>
                         <td>{{$item->nama_barang}}</td>
                         <td>{{$item->sinonim}}</td>
-                        <td style="text-align: left">{{$item->no_seri}}</td>
-                        <td style="text-align: center">
+                        <td>{{$item->no_seri}}</td>
+                        <td>
                             @php
                                 $total = $injectQuery->laststock($item->id)
                             @endphp

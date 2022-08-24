@@ -31,7 +31,7 @@
                         for="form-field-1"> Tanggal 
                         </label>
                         <div class="col-sm-8">
-                            <input type="hidden" value="{{auth()->user()->id}}" name="upload_by"  />
+                            <input type="hidden" value="L" name="kind"  />
                             <input type="date" value="{{date('Y-m-d')}}"
                                     class="col-xs-3 col-sm-3 required " 
                                     name="dates" required />
@@ -40,7 +40,7 @@
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1"> Periode Stok Opname
+                        for="form-field-1"> Periode Stok Opnamae
                         </label>
                         <div class="col-sm-8">
                             <input type="text"  placeholder="periode" 
@@ -81,17 +81,14 @@
             <thead>
                 <th width="40px">No</th>
                 <th>Tanggal</th>
-                <th class="col-md-5">Periode</th>
-                <th  class="col-md-1">Laporan</th>
-                <th  class="col-md-2">Aksi</th>
+                <th>Periode</th>
+                <th>Laporan</th>
+                <th>Aksi</th>
             <thead>
             <tbody>   	
                 @foreach($data as $key=>$row)
-                @php
-                    $no = 1;
-                @endphp
                 <tr>
-                    <td>{{$no}}</td>
+                    <td>{{$data->firstItem() + $key}}</td>
                     <td>{{tgl_indo($row->dates)}}</td>
                     <td>{{$row->periode}}</td>
                     <td>
@@ -107,9 +104,7 @@
                             <i class="glyphicon glyphicon-trash"></i></a>
                     </td>
                 </tr>
-              @php
-                  $no++;
-              @endphp
+              
                 @endforeach
             <tbody>
         </table>

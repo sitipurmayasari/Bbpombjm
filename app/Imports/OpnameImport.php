@@ -6,8 +6,7 @@ use App\Opnamedetail;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 use App\Inventaris;
-
-class OpnameImport implements ToModel,WithStartRow
+class TukinImport implements ToModel,WithStartRow
 {
     private $opname_id;
 

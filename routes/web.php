@@ -203,7 +203,7 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     //Route untuk Surat Izin Pramubakti
     Route::get('/amdk/permit','Amdk\PermitController@index')->name('permit');
     //Route untuk Surat Izin Pramubakti
-    Route::get('/amdk/rekpermit','Amdk\RekpermitController@index')->name('rekpermit');
+    Route::get('/amdk/rekpermit','Amdk\RekermitController@index')->name('rekpermit');
     //Route untuk Setup Angka Kredit
     Route::get('/amdk/ak','Amdk\CreditsController@index')->name('ak');
     //Route untuk SKP
