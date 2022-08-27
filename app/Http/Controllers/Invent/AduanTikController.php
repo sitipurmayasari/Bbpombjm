@@ -64,6 +64,16 @@ class AduanTikController extends Controller
         return view('invent/aduantik.create',compact('data','user','no_aduan','div'));
     }
 
+    public function create2()
+    {
+        $user = User::where('id','!=','1')->where('aktif','=','Y')->get();
+        $data = Inventaris::all()
+                ->where('kind','=','R')
+                ->where('jenis_barang','=','4');
+        $no_aduan = $this->getNoAduan();
+        return view('invent/aduantik.create2',compact('data','user','no_aduan'));
+    }
+
     public function edit($id)
     {
         $inventaris = Inventaris::all()
@@ -243,6 +253,15 @@ class AduanTikController extends Controller
         $data = Aduan::find($id);
         $data->delete();
         return redirect('/invent/aduantik/bidang')->with('sukses','Data Terhapus');
+    }
+
+    public function getbidang(Request $request)
+    {
+        $id = $request->users_id;
+
+        $data =User::where('id',$id)
+                ->first();
+        return response()->json([ 'success' => true,'data' => $data],200);
     }
 
 

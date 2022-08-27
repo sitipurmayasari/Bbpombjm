@@ -10,6 +10,9 @@
             <div class="row">
                 <div class="form-group col-sm-12">
                     <div class="row">
+                        <div class="form-group col-xs-12 col-sm-3" style="float: left">
+                            <a href="{{Route('aduantik.create2')}}"  class="btn btn-primary">Tambah Data</a>   
+                         </div>
                         <div class="form-group col-xs-12 col-sm-3" style="float: right">
                             <div class="input-group">
                                 <input type="text" class="form-control gp-search" name="keyword" placeholder="Cari " value="" autocomplete="off">

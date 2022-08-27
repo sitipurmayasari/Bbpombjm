@@ -15,8 +15,8 @@
             font-family: 'Times New Roman';
             font-size: 7;
             font-style: italic;
-            margin-top: 30px;
-            margin-bottom: 15px;
+            margin-top: 20px;
+            margin-bottom: 10px;
             line-height: 1;
         }
 
@@ -90,8 +90,8 @@
         </tr>
         <tr>
             <td colspan="2" style="text-align: center;  font-size: 10; font-style: normal;">BALAI BESAR PENGAWAS OBAT DAN MAKANAN</td>
-            <td style="width: 18%">Akun</td>
-            <td style="width: 25%">: {{$item->out->pok->sub->komponen->code}} / {{$item->out->pok->akun->code}} )</td>
+            <td>Akun</td>
+            <td>: {{$item->out->pok->sub->komponen->code}} / {{$item->out->pok->akun->code}} )</td>
         </tr>
         <tr>
             <td colspan="2" style="text-align: center;  font-size: 10;" > Di Banjarmasin</td>
@@ -108,20 +108,22 @@
             <td>: {{$item->out->pok->pok->year}}</td>
         </tr>
         <tr>
-            <td style="width: 20%" >Sudah Terima dari</td>
+            <td>Sudah Terima dari</td>
             <td colspan="3">: Pejabat Pembuat komitmen Balai Besar Pengawas Obat dan Makanan di Banjarmasin</td>
         </tr>
         <tr>
-            <td>Uang Sebesar</td>
-            <td colspan="3">: <b>Rp.  &nbsp;&nbsp;&nbsp; 
+            <td tyle="width: 20%">Uang Sebesar</td>
+            <td style="width: 40%">: <b>Rp.  &nbsp;&nbsp;&nbsp; 
                 @php
                     $total = $injectQuery->totalHarga($item->id)
                 @endphp
                 {{number_format($total)}} 
             </b></td>
+            <td style="width: 20%"></td>
+            <td style="width: 20%"></td>
         </tr>
         <tr>
-            <td>Untuk Pembayaran</td>
+            <td style="vertical-align: top">Untuk Pembayaran</td>
             <td colspan="3">: <b>{{$data->st->purpose}}</b></td>
         </tr>
    </table>
@@ -134,7 +136,7 @@
         </tr>
         <tr>
             <td></td>
-            <td style="width: 20%">: di Kota
+            <td style="width: 42%">: di
                 @if (count($item->out->outst_destiny) == 1)
                      @foreach ($tujuan as $key=>$kota)
                          @if ($loop->first)
@@ -180,7 +182,7 @@
                 KRO/RO/Komponen <br>
                 Sub Komponen/Akun 
             </td>
-            <td style="width: 25%">
+            <td style="width: 20%">
                 : {{$item->out->pok->pok->act->prog->unit->klcode->code}}.{{$item->out->pok->pok->act->prog->unit->code}}.
                     {{$item->out->pok->pok->act->prog->code}} / {{$item->out->pok->pok->act->code}}<br>
                 : {{$item->out->pok->sub->komponen->det->unit->code}} / {{$item->out->pok->sub->komponen->det->code}} / 
@@ -433,7 +435,7 @@
                         @php
                            
                         @endphp
-                        <td><i> - Tujuan</i></td>
+                        <td style="vertical-align:top"><i> - Tujuan</i></td>
                         <td> 
                             <i>
                                 @if (count($item->out->outst_destiny) == 1)
@@ -465,8 +467,8 @@
                                 @endif
                             </i>
                         </td>
-                        <td style="text-align: center;"><i>:</i> </td>
-                        <td> 
+                        <td style="text-align: center; vertical-align:top;"><i>:</i> </td>
+                        <td style="vertical-align:top"> 
                             <i>
                                 @if ($nilai->bbm != '0' && $nilai->taxy_fee_to == '0')
                                     @php
@@ -490,7 +492,7 @@
                                 kali &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp. 
                             </i>
                         </td>
-                        <td style="text-align: right;"> 
+                        <td style="text-align: right;vertical-align:top"> 
                             <i>
                                 @if ($nilai->bbm != '0' && $nilai->taxy_fee_to == 0)
                                     @php
@@ -516,8 +518,8 @@
                             </i>
                             &nbsp; 
                         </td>
-                        <td style="text-align: center;"><i>. Rp.</i></td>
-                        <td style="text-align: right"> 
+                        <td style="text-align: center;vertical-align:top;"><i>. Rp.</i></td>
+                        <td style="text-align: right;vertical-align:top;"> 
                             <i>
                                 @php
                                     $subtrans = $jum*$bbm; 

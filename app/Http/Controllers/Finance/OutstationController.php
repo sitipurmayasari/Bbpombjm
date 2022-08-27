@@ -24,6 +24,8 @@ use PDF;
 use DateTime;
 use Carbon\Carbon;
 use App\Pok_detail;
+use Exception;
+
 
 class OutstationController extends Controller
 {
@@ -112,13 +114,25 @@ class OutstationController extends Controller
         $data = Outstation::where('id',$id)->first();
         $isian = Outst_employee::orderBy('id','asc')
                             ->where('outstation_id','=',$id)
-                            ->get();
-        $menyetujui = Pejabat::where('jabatan_id', '=', 6)
-                            ->whereRaw("(SELECT st_date FROM outstation WHERE id=$id) BETWEEN dari AND sampai")
-                            ->first();
+                            ->get();        
         $jmlpeg  = Outst_employee::SelectRaw('count(*) as hitung')   
                                   ->where('outstation_id',$id)
                                   ->first(); 
+        $cekkepala = Outst_employee::where('outstation_id',$id)
+                                  ->whereraw("users_id = (SELECT users_id FROM pejabat WHERE jabatan_id = 6 and pjs IS NULL || pjs != 'Plh.' ORDER BY id DESC LIMIT 1)")
+                                  ->orderby('id','desc')
+                                  ->first();
+        if ($cekkepala != null) {
+          $menyetujui = Pejabat::where('jabatan_id', '=', 6)
+                                ->whereRaw("pjs IS NULL || pjs != 'Plh.'")
+                                ->orderby('id','desc')
+                                ->first();
+        } else {
+          $menyetujui = Pejabat::where('jabatan_id', '=', 6)
+                              ->whereRaw("(SELECT st_date FROM outstation WHERE id=$id) BETWEEN dari AND sampai")
+                              ->first();
+        }
+        
         if ($jmlpeg->hitung > 8) {
           $pdf = PDF::loadview('finance/outstation.printSTbanyak',compact('data','isian','menyetujui'));
         }elseif ($jmlpeg->hitung >= 3 && $jmlpeg->hitung <= 5 ){
@@ -139,11 +153,14 @@ class OutstationController extends Controller
                             ->where('outstation_id','=',$id)
                             ->get();
         $menyetujui = Pejabat::where('jabatan_id', '=', 6)
-                            ->whereRaw("(SELECT st_date FROM outstation WHERE id=$id) BETWEEN dari AND sampai")
+                            ->whereRaw("pjs IS NULL || pjs != 'Plh.'")
+                            ->orderby('id','desc')
                             ->first();
         $jmlpeg  = Outst_employee::SelectRaw('count(*) as hitung')   
                             ->where('outstation_id',$id)
                             ->first(); 
+
+        // $phpWord = new \PhpOffice\PhpWord\PhpWord();
         if ($jmlpeg->hitung > 8) {
           $pdf = PDF::loadview('finance/outstation.printSTKopbanyak',compact('data','isian','menyetujui'));
         }elseif ($jmlpeg->hitung > 3 && $jmlpeg->hitung <= 5 ){
@@ -154,6 +171,10 @@ class OutstationController extends Controller
           $pdf = PDF::loadview('finance/outstation.printSTKop',compact('data','isian','menyetujui'));
         }
         return $pdf->stream();
+
+        // return view('finance/outstation.printSTKop',compact('data','isian','menyetujui'));
+
+        
       }
 
 
