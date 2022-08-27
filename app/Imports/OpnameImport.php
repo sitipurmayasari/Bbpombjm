@@ -22,7 +22,7 @@ class TukinImport implements ToModel,WithStartRow
     public function model(array $row)
     {
         $barang = Inventaris::where('id',$row[0])->first();
-        // dd($row[0]);
+        // dd($row[0]); 
         if ($barang) {
             return new Opnamedetail([
                 'opname_id' => $this->opname_id,

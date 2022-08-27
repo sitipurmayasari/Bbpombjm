@@ -347,6 +347,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     //Route untuk Laporan Stok Opname
     Route::get('/calibration/napzaopname','Calibration\NapzaopnameController@index')->name('napzaopname');
 
+    
+
 });
 
 

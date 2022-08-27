@@ -93,4 +93,5 @@ class NapzaopnameController extends Controller
             return view('/calibration/napzaopname.cetak',compact('stock','data','request','petugas','mengetahui','gudang'));            
     } 
 
+    
 }

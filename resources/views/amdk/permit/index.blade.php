@@ -33,11 +33,22 @@
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
                 <th width="40px" style="text-align: center">No</th>
+<<<<<<< HEAD
                 <th  class="col-sm-5" style="text-align: center">Judul</th>
                 <th style="text-align: center">Kategori</th>
                 <th style="text-align: center">Dari</th>
                 <th style="text-align: center">Sampai</th>
                 <th style="text-align: center">Edit</th>
+=======
+                <th style="text-align: center">Tanggal</th>
+                <th style="text-align: center">Scan Masuk</th>
+                <th style="text-align: center">Scan Pulang</th>
+                <th style="text-align: center">Terlambat</th>
+                <th style="text-align: center">Pulang Cepat</th>
+                <th style="text-align: center">Keterangan</th>
+                <th style="text-align: center">Poin</th>
+                <th style="text-align: center">Data dukung</th> 
+>>>>>>> ee4ea469b37aaecb372dbb64bfd922284df3bfbd
             <thead>
             <tbody>   	
                 @foreach($data as $key=>$row)

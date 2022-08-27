@@ -53,7 +53,6 @@ class AgendaController extends Controller
         $data = Agenda::where('id',$id)->first();
         return view('amdk/agenda.edit',compact('data','kategori'));
     }
-
    
     public function update(Request $request, $id)
     {

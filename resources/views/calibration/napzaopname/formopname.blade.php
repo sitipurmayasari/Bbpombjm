@@ -34,8 +34,6 @@ header("Content-Disposition: attachment; filename=Format-Laporan-Stok-Opname-Per
         td{
             vertical-align: top;
         }
-    
-       
         
     </style>
 </head>

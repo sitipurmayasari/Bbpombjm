@@ -45,7 +45,4 @@
   Route::post('/calibration/napzaopname/cetakopname','Calibration\NapzaopnameController@cetakopname')->name('napzaopname.cetakopname');
 
 
-
-
-
 //   --------------------------------------NEW MENU--------------------------------------------------

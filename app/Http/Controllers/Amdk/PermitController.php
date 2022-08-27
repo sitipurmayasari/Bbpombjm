@@ -30,7 +30,7 @@ class PermitController extends Controller
         // $kategori = Agenda_kategori::All();
         return view('amdk/permit.create');
     }
-
+ 
     // public function store(Request $request)
     // {
     //     $this->validate($request,[

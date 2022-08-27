@@ -23,12 +23,34 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title">Laporan Stok Opname</h3></div>
             <div class="panel-body">
                 <div class="col-md-6">
                     <fieldset>
+=======
+</div>
+<div class="row">
+    <form method="post" action="{{Route('napzaopname.cetak')}}">
+
+    {{ csrf_field() }}
+    <div class="col-sm-12">
+        <div class="widget-box">
+            <div class="widget-header">
+                <h4 class="widget-title"> Laporan Stok Opname</h4>
+                <div class="widget-toolbar">
+                    <a href="#" data-action="collapse">
+                        <i class="ace-icon fa fa-chevron-down"></i>
+                    </a>
+                </div> 
+            </div>
+            <div class="widget-body">
+                <div class="col-sm-6">
+                    <div class="widget-main no-padding">
+                        <fieldset>
+>>>>>>> ee4ea469b37aaecb372dbb64bfd922284df3bfbd
                         <br>
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
