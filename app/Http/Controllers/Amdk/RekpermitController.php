@@ -26,7 +26,7 @@ class RekpermitController extends Controller
 
     public function create()
     {
-        // $kategori = Agenda_kategori::All();
+        // $kategori = Agenda_kategori::All(); 
         return view('amdk/rekpermit.create');
     }
 

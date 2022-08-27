@@ -40,7 +40,7 @@
                 <th style="text-align: center">Pulang Cepat</th>
                 <th style="text-align: center">Keterangan</th>
                 <th style="text-align: center">Poin</th>
-                <th style="text-align: center">Data dukung</th>
+                <th style="text-align: center">Data dukung</th> 
             <thead>
             <tbody>   	
                 @foreach($data as $key=>$row)

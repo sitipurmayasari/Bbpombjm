@@ -237,6 +237,7 @@ return [
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
         'LogActivity' => App\Helpers\LogActivity::class,
         'Browser' => \hisorange\BrowserDetect\Facade::class,
+        
     ],
 
 ];

@@ -28,7 +28,6 @@
         </div>
     </div>
 </form>
-
     <div class="table-responsive">
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>

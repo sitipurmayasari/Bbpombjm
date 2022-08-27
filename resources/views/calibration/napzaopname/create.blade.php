@@ -6,7 +6,6 @@
 @endsection
 @section('content')
 
-
 <div class="row">
     <form class="form-horizontal validate-form" role="form" 
          method="post" action="{{route('napzaopname.store')}}"  enctype="multipart/form-data">

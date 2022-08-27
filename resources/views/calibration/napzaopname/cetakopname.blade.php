@@ -35,8 +35,6 @@
             vertical-align: top;
         }
     
-       
-        
     </style>
 </head>
 <body>

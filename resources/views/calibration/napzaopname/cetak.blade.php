@@ -17,7 +17,7 @@ header("Content-Disposition: attachment; filename=Laporan-StokOpname-PersediaanN
                 font-family: 'Times New Roman';
                 font-size: 11px;      
         }
-        
+         
         .atas{
             border: none;
         }
