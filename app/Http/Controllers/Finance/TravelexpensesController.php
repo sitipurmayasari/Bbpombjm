@@ -608,14 +608,9 @@ class TravelexpensesController extends Controller
             return $pdf->stream();
 
         } else {
-            // return view('finance/travelexpenses.receipt',compact('petugas','data','pegawai','tujuan'));
            if ($jmltujuan->hitung == 1) {
-                // $pdf        = PDF::loadview('finance/travelexpenses.receipt',compact('petugas','data','pegawai','tujuan'));
-                // return $pdf->stream();
                 return view('finance/travelexpenses.receipt',compact('petugas','data','pegawai','tujuan'));
            } else {
-                // $pdf        = PDF::loadview('finance/travelexpenses.receiptpdf',compact('petugas','data','pegawai','tujuan'));
-                // return $pdf->stream();
                 return view('finance/travelexpenses.receiptpdf',compact('petugas','data','pegawai','tujuan'));
            }
            

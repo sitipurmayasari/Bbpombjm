@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class JadwalCar extends Model
 {
     protected $table = "jadwalcar";
-    protected $fillable = ["car_id","tanggal",];
+    protected $fillable = ["car_id","tanggal","laksana"];
 
     public function mobil() //Relasi dari aduan k user / pegawai
     {

@@ -77,6 +77,7 @@
 
   //Route untuk aduan TIK
   Route::get('/invent/aduantik/create','Invent\AduanTikController@create')->name('aduantik.create');
+  Route::get('/invent/aduantik/create2','Invent\AduanTikController@create2')->name('aduantik.create2');
   Route::post('/invent/aduantik/store','Invent\AduanTikController@store')->name('aduantik.store');
   Route::get('/invent/aduantik/edit/{id}','Invent\AduanTikController@edit')->name('aduantik.edit');
   Route::post('/invent/aduantik/update/{id}','Invent\AduanTikController@update')->name('aduantik.update');
@@ -84,6 +85,7 @@
   Route::get('/invent/aduantik/print/{id}','Invent\AduanTikController@print')->name('aduantik.print');
   Route::get('/invent/aduantik/detail/{id}','Invent\AduanTikController@detail')->name('aduantik.detail');
   Route::get('/invent/aduantik/delete/{id}','Invent\AduanTikController@delete')->name('aduantik.delete');
+  Route::get('/invent/aduantik/getbidang','Invent\AduanTikController@getbidang')->name('aduantik.getbidang');
 
   //Route untuk pengajuan barang baru
   Route::get('/invent/pengajuan/create','Invent\PengajuanController@create')->name('pengajuan.create');
