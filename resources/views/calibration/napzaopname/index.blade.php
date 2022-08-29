@@ -1,12 +1,9 @@
-@inject('injectQuery', 'App\InjectQuery')
 @extends('layouts.lab')
 @section('breadcrumb')
 <li>Laporan</li>
 <li>Laporan Stok Opname</i></li>
 @endsection
 @section('content')
- <form class="form-horizontal validate-form" role="form" id="form_id"
-         method="post" action="{{route('napzaopname.cetak')}}">
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-info">
@@ -23,14 +20,6 @@
             </div>
         </div>
     </div>
-<<<<<<< HEAD
-    <div class="col-md-12">
-        <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title">Laporan Stok Opname</h3></div>
-            <div class="panel-body">
-                <div class="col-md-6">
-                    <fieldset>
-=======
 </div>
 <div class="row">
     <form method="post" action="{{Route('napzaopname.cetak')}}">
@@ -44,20 +33,24 @@
                     <a href="#" data-action="collapse">
                         <i class="ace-icon fa fa-chevron-down"></i>
                     </a>
-                </div> 
+                </div>
             </div>
             <div class="widget-body">
                 <div class="col-sm-6">
                     <div class="widget-main no-padding">
                         <fieldset>
->>>>>>> ee4ea469b37aaecb372dbb64bfd922284df3bfbd
                         <br>
-                        <div class="form-group">
+                        <div class="form-group" >
                             <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Tanggal
+                            for="form-field-1"> Tanggal Opname
                             </label>
                             <div class="col-sm-8">
-                                <input type="text" value="{{tgl_indo(date('Y-m-d'))}}" readonly  class="col-xs-10 col-sm-10">
+                                <select name="opname_id" class="col-xs-10 col-sm-10">
+                                    <option value="">Pilih stok Opname</option>
+                                    @foreach ($opname as $item)
+                                        <option value="{{$item->id}}">{{tgl_indo($item->dates)}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="form-group" id="gudang">
@@ -81,19 +74,21 @@
                                 </select>
                             </div>
                         </div>
-                    </fieldset>  
-                </div>
+                        </fieldset>        
+                    </div>
+               </div>
             </div>
         </div>
     </div>
-</div>
-<div class="panel-footer">
-    <div class="form-actions right">
-        <button class="btn btn-success btn-sm " type="submit">
-            <i class="ace-icon fa fa-check bigger-110"></i>Cetak
-        </button>
+    <div class="col-sm-12">
+        <div class="form-actions right">
+            <div class="form-group col-xs-12 col-sm-3" style="float: left">
+                <input type="submit" value="CETAK" class="btn btn-primary">
+            </div>
+        </div>
+
     </div>
+    </form>
 </div>
-</form>
 
 @endsection

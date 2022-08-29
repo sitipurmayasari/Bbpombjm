@@ -436,7 +436,8 @@
         Keterangan : <br>
         Merah = Tanggal Plat <br>
         Biru = Tanggal Pajak <br>
-        Hijau = Tanggal Maintenance 
+        Hijau = Pelaksanaan Maintenance 
+        kuning = jadwal Maintenance 
     </div>
 </div>
 

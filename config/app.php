@@ -234,11 +234,7 @@ return [
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
         'LogActivity' => App\Helpers\LogActivity::class,
-<<<<<<< HEAD
-=======
         'Browser' => \hisorange\BrowserDetect\Facade::class,
-        
->>>>>>> ee4ea469b37aaecb372dbb64bfd922284df3bfbd
     ],
 
 ];

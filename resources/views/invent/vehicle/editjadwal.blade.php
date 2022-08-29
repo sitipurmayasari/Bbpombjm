@@ -2,13 +2,13 @@
 @section('breadcrumb')
     <li>Inventaris</li>
     <li><a href="/invent/vehicle"> Jadwal Maintenance</a></li>
-    <li>Jadwal Maintenance</li>
+    <li>Ubah Jadwal Maintenance</li>
 @endsection
 @section('content')
 @include('layouts.validasi')
 <div class="row">
     <form class="form-horizontal validate-form" role="form" 
-        method="post" action="{{route('vehicle.storejadwal')}}" enctype="multipart/form-data">
+        method="post" action="/invent/vehicle/updatejadwal/{{$data->id}}" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div class="col-sm-12">
         <div class="widget-box">
@@ -32,7 +32,7 @@
                                 <div class="col-sm-8">
                                     <input type="text" 
                                             class="col-xs-10 col-sm-10 required " 
-                                            name="code" readonly value="{{$data->code}}"  />
+                                            readonly value="{{$data->mobil->code}}"  />
                                     <input type="hidden" name="car_id" value="{{$data->id}}" >
                                 </div>
                             </div>
@@ -41,9 +41,9 @@
                                 for="form-field-1"> Merk / Jenis Kendaraan
                                 </label>
                                 <div class="col-sm-8">
-                                    <input type="text"  value="{{$data->merk}}"
+                                    <input type="text"  value="{{$data->mobil->merk}}"
                                             class="col-xs-10 col-sm-10 required " 
-                                            name="merk" required />
+                                            required />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -51,9 +51,9 @@
                                 for="form-field-1"> No. Polisi
                                 </label>
                                 <div class="col-sm-8">
-                                    <input type="text"  value="{{$data->police_number}}" 
+                                    <input type="text"  value="{{$data->mobil->police_number}}" 
                                             class="col-xs-10 col-sm-10 required " 
-                                            name="police_number" required />
+                                            required />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -61,7 +61,7 @@
                                 for="form-field-1"> Jadwal Maintenance
                                 </label>
                                 <div class="col-sm-8 date">
-                                    <input type="text" name="tanggal" readonly class="col-xs-10 col-sm-10" 
+                                    <input type="text" name="tanggal" readonly class="col-xs-10 col-sm-10" value="{{$data->tanggal}}"
                                     data-date-format="yyyy-mm-dd" data-provide="datepicker" placeholder="klik disini">
                                 </div>
                             </div>
@@ -70,7 +70,7 @@
                                 for="form-field-1"> Pelaksanaan Maintenance
                                 </label>
                                 <div class="col-sm-8 date">
-                                    <input type="text" name="laksana" readonly class="col-xs-10 col-sm-10" 
+                                    <input type="text" name="laksana" readonly class="col-xs-10 col-sm-10" value="{{$data->laksana}}"
                                     data-date-format="yyyy-mm-dd" data-provide="datepicker" placeholder="klik disini">
                                 </div>
                             </div>
@@ -85,7 +85,6 @@
                                 <th width="40px">No</th>
                                 <th>Jadwal</th>
                                 <th>Pelaksanaan</th>
-                                <th>Aksi</th>
                             <thead>
                             <tbody>   	
                                 @php $no=1; @endphp
@@ -94,15 +93,6 @@
                                     <td style="text-align: center">{{$no++}}</td>
                                     <td>{{$row->tanggal}}</td>
                                     <td>{{$row->laksana}}</td>
-                                    <td style="text-align: center">
-                                        <a href="/invent/vehicle/editjadwal/{{$row->id}}" class="btn btn-warning">
-                                            <i class="glyphicon glyphicon-edit"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-danger delete"
-                                            r-name="{{$row->tanggal}}" 
-                                            r-id="{{$row->id}}">
-                                            <i class="glyphicon glyphicon-trash"></i></a>
-                                    </td>
                                 </tr>
                             
                                 @endforeach
@@ -116,7 +106,7 @@
     <div class="col-sm-12">
         <div class="form-actions right">
             <button class="btn btn-success btn-sm " type="submit">
-                <i class="ace-icon fa fa-check bigger-110"></i>Simpan
+                <i class="ace-icon fa fa-check bigger-110"></i>Update
             </button>
         </div>
     </div>
