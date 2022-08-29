@@ -99,7 +99,7 @@
                                         <input type="number" name="jumlah[]" class="form-control" value="0" required>
                                     </td>
                                     <td>
-                                        <input type="file" name="file_foto[]" class="btn btn-success form-control">   
+                                        <input type="file" name="file_foto[]" class="btn btn-success form-control" required>   
                                         <label><i>jenis:.jpg/.jpeg/.png & max:2MB</i></label>
                                     </td>
                                     <td>
@@ -160,7 +160,7 @@
                     '<input type="number" name="jumlah[]" class="form-control" value="0 required">'+
                 '</td>'+
                 '<td>'+
-                    '<input type="file" name="file_foto[]" class="btn btn-success form-control">'+  
+                    '<input type="file" name="file_foto[]" class="btn btn-success form-control" required>'+  
                     '<label><i>jenis:.jpg/.jpeg/.png & max:2MB</i></label>'+  
                 '</td>'+
                 '<td><button type="button"  class="btn btn-danger" onclick="deleteRow('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button></td>'+

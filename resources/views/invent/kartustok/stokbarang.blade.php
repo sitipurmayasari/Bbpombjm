@@ -11,6 +11,12 @@
     <link href="{{asset('assets/css/print.css')}}" rel="stylesheet">
 </head>
     <title>Laporan Stok Barang {{$data->nama_barang}}</title>
+    <style>
+         @page {
+            size: A4;
+            font-family: 'Times New Roman';
+        }
+    </style>
 </head>
 <body>
     <header>
