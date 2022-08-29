@@ -96,6 +96,24 @@ class VehicleController extends Controller
         return redirect('/invent/vehicle/jadwal/'.$data->car_id)->with('sukses','Data Terhapus');
     }
 
+    public function editjadwal($id)
+    {
+        $data = JadwalCar::where('id',$id)->first();
+        $jadwal = JadwalCar::orderBy('id','asc')
+                        ->where('car_id',$data->car_id)
+                        ->get();
+        return view('invent/vehicle.editjadwal',compact('data','jadwal'));
+    }
+
+    public function updatejadwal(Request $request, $id)
+    {
+        $data = JadwalCar::find($id);
+        $data->update($request->all());
+
+        return redirect('/invent/vehicle/jadwal/'.$data->car_id)->with('sukses','Data Terhapus');
+    }
+
+
     public function matriks()
     {   
         $now = Carbon::now()->year;
