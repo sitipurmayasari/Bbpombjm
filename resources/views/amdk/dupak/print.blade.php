@@ -6,14 +6,28 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="{{asset('assets/css/no_header.css')}}" rel="stylesheet">
+    {{-- <link href="{{asset('assets/css/no_header.css')}}" rel="stylesheet"> --}}
     <title>Document</title>
     <style>
         @page {
-            size: "A4";
-            margin: 0;
+            size: A4;
+            margin: 145px 0px 100px 0px;
         }
-        
+
+        .isi{
+            margin-left: 8%;
+            margin-right: 8%;
+        }
+
+        .ttd{
+            border:none;
+            border-collapse: collapse;
+            text-align: center;
+            width: 100%;
+            margin-left: 10%;
+            position: absolute;
+        }
+
         html{
             font-family: 'Times New Roman';
             font-size: 9;
