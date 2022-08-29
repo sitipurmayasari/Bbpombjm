@@ -56,6 +56,8 @@ class PlanLabController extends Controller
         DB::beginTransaction(); // kegunaan untuk multiple insert (banyak aksi k database)
             $plan =Planlab::create($request->all());
             $planlab_id = $plan->id;
+
+          
             for ($i = 0; $i < count($request->input('names')); $i++){
                 $data = [
                     'planlab_id' => $planlab_id,
@@ -68,14 +70,19 @@ class PlanLabController extends Controller
                 ];
                 $detail = Planlab_detail::create($data);
 
-                if($request->hasFile('file_foto[$i]')){ // Kalau file ada
-                    $request->file('file_foto')
-                                ->move('images/planlab/'.$detail->id,$request
-                                ->file('file_foto')
-                                ->getClientOriginalName()); // pindah file user manual k inventaris folder id file
-                    $detail->file_foto = $request->file('file_foto')->getClientOriginalName(); // update isi kolum file user dengan origin gambar
+                // dd($request->file_foto[$i]);
+                // return;
+                
+                // if($request->file_foto[$i]){ // Kalau file ada
+                   $request->file_foto[$i]->move(
+                       'images/planlab/'.$detail->id,
+                       $request->file_foto[$i]->getClientOriginalName()
+                    ); // pindah file user manual k inventaris folder id file
+
+                    $detail->file_foto = $request->file_foto[$i]->getClientOriginalName(); // update isi kolum file user dengan origin gambar
                     $detail->save(); // save ke database
-                }
+                // }
+                
             }
         DB::commit(); 
 
