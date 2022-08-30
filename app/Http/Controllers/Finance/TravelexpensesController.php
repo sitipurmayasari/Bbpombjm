@@ -727,13 +727,12 @@ class TravelexpensesController extends Controller
     public function super30($id)
     {
         $data       = Expenses::where('id',$id)->first();
-        $pegawai    = Outst_employee::SelectRaw('outst_employee.*, inap1, inap2')
-                        ->leftJoin('outstation','outstation.id','=','outst_employee.outstation_id')
-                        ->leftJoin('expenses','expenses.outstation_id','=','outstation.id')
-                        ->leftJoin('travelexpenses2','travelexpenses2.outst_employee_id','=','outst_employee.id')
-                        ->where('expenses.id',$id)
-                        ->whereraw('inap1 = "Y" or inap2 = "Y"')
-                        ->get();
+        $pegawai    = Outst_employee::SelectRaw("outst_employee.*, inap1, inap2")
+                                    ->LeftJoin("outstation","outstation.id","outst_employee.outstation_id")
+                                    ->leftJoin("expenses","expenses.outstation_id","outstation.id")
+                                    ->leftJoin("travelexpenses2","travelexpenses2.outst_employee_id","outst_employee.id")
+                                    ->WhereRaw("expenses_id = $id AND inap1 = 'Y' OR  expenses_id = $id and inap2 = 'Y'")
+                                    ->get();
         $tujuan    = Outst_destiny::SelectRaw('outst_destiny.* ')
                         ->leftJoin('outstation','outstation.id','=','outst_destiny.outstation_id')
                         ->leftJoin('expenses','expenses.outstation_id','=','outstation.id')
