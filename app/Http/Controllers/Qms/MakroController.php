@@ -21,7 +21,7 @@ class MakroController extends Controller
     public function folder(Request $request ,$id)
     {
         $folder = Folder::where('id',$id)->first();
-        $data = Qms::orderBy('id','desc')
+        $data = Qms::orderBy('names','asc')
                     ->Selectraw('qms.*')
                     ->Leftjoin('folder','folder.id','qms.folder_id')
                     ->where('folder_id',$id)

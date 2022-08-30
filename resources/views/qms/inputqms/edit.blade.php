@@ -30,14 +30,14 @@
                         </label>
                         <div class="col-sm-8">
                             @if ($data->type == 'Mikro')
-                                <input type="radio" required value="Mikro" checked 
+                                <input type="radio" required value="Mikro" onclick="handleChange1();" id ="mikro" checked
                                 name="type" > &nbsp; Mikro  &nbsp;
-                                <input type="radio" required value="Makro"
+                                <input type="radio" required value="Makro" onclick="handleChange2();" id ="mikro"
                                 name="type" > &nbsp; Makro
                             @else
-                                <input type="radio" required value="Mikro"  
+                                <input type="radio" required value="Mikro"  onclick="handleChange1();" id ="mikro"
                                 name="type" > &nbsp; Mikro  &nbsp;
-                                <input type="radio" required value="Makro" checked
+                                <input type="radio" required value="Makro"  onclick="handleChange2();" id ="mikro" checked
                                 name="type" > &nbsp; Makro
                             @endif
                         </div>
@@ -47,7 +47,7 @@
                         for="form-field1"> Nama folder
                         </label>
                         <div class="col-sm-8">
-                            <select id="peg" name="folder_id" class="col-xs-10 col-sm-10 select2" required>
+                            <select id="folderes" name="folder_id" class="col-xs-10 col-sm-10 select2" required>
                                 <option value="">pilih Folder</option>
                             @foreach ($folder as $peg)
                                 @if ($peg->id == $data->folder_id)
@@ -98,32 +98,41 @@
 
 @section('footer')
 <script>
-$().ready( function () {
-    if ($data->type="D") {
-        $("#country").hide();
-    } else {
-        $("#country").show();
-        $("#province").hide();
-        $("#district").hide();
+    function handleChange1(){
+         var type = 1;
+        $.get(
+            "{{route('inputqms.getfolder') }}",
+            {
+                type: type
+            },
+            function(response) {
+               var data = response.data;
+               var string ="<option value=''>Pilih Folder</option>";
+                $.each(data, function(index, value) {
+                    string = string + `<option value="` + value.id + `">` + value.name + ` (Mikro) </option>`;
+                })
+               $("#folderes").html(string);
+            }
+        );
     }
 
-} );
-function getAsal(){
-    var a = "";
-    var b = "Indonesia"
-    if(document.getElementById('D').checked) {
-        $("#country-name").val(b);
-        $("#country").hide();
-        $("#province").show();
-        $("#district").show();
-    }else if(document.getElementById('L').checked) {    
-        $("#country-name").val(a);
-        $("#country").show();
-        $("#province").hide();
-        $("#district").hide();
+    function handleChange2(){
+         var type = 2;
+        $.get(
+            "{{route('inputqms.getfolder') }}",
+            {
+                type: type
+            },
+            function(response) {
+               var data = response.data;
+               var string ="<option value=''>Pilih Folder</option>";
+                $.each(data, function(index, value) {
+                    string = string + `<option value="` + value.id + `">` + value.name + ` (Makro) </option>`;
+                })
+               $("#folderes").html(string);
+            }
+        );
     }
-
-}
 
 </script>
 @endsection

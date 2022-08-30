@@ -5,6 +5,7 @@ Route::post('/qms/inputqms/store','Qms\InputQMSController@store')->name('inputqm
 Route::get('/qms/inputqms/edit/{id}','Qms\InputQMSController@edit')->name('inputqms.edit');
 Route::post('/qms/inputqms/update/{id}','Qms\InputQMSController@update')->name('inputqms.update');
 Route::get('qms/inputqms/delete/{id}','Qms\InputQMSController@delete')->name('inputqms.delete');
+Route::get('/qms/inputqms/getfolder','Qms\InputQMSController@getfolder')->name('inputqms.getfolder');
 
 //Route untuk Folder QMS
 Route::get('/qms/folderqms/create','Qms\FolderQMSController@create')->name('folderqms.create');

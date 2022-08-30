@@ -14,7 +14,7 @@ class InputQMSController extends Controller
 
     public function index(Request $request)
     {
-        $data = Qms::orderBy('id','desc')
+        $data = Qms::orderBy('names','asc')
                         ->Selectraw('qms.*')
                         ->Leftjoin('folder','folder.id','qms.folder_id')
                         ->when($request->keyword, function ($query) use ($request) {
@@ -85,7 +85,11 @@ class InputQMSController extends Controller
         return redirect('/qms/inputqms')->with('sukses','Data Terhapus');
     }
 
-
+    public function getfolder(Request $request)
+    {
+        $data = Folder::orderBy('id','asc')->where('type',$request->type)->get();
+        return response()->json([ 'success' => true,'data' => $data],200);
+    }
 
 
 }

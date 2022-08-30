@@ -20,10 +20,10 @@ method="post" action="{{route('inputqms.store')}}" enctype="multipart/form-data"
                         <label class="col-sm-2 control-label no-padding-right" 
                         for="form-field1"> Jenis SOP
                         </label>
-                        <div class="col-sm-8">
-                            <input type="radio" required value="Mikro" checked 
-                            name="type" > &nbsp; Mikro  &nbsp;
-                            <input type="radio" required value="Makro"
+                        <div class="col-sm-8"> 
+                            <input type="radio" required value="Mikro"  onclick="handleChange1();" id ="mikro"
+                            name="type" > &nbsp; Mikro  &nbsp; 
+                            <input type="radio" required value="Makro"  onclick="handleChange2();" id ="mikro"
                             name="type" > &nbsp; Makro
                         </div>
                     </div>
@@ -32,11 +32,8 @@ method="post" action="{{route('inputqms.store')}}" enctype="multipart/form-data"
                         for="form-field1"> Nama folder
                         </label>
                         <div class="col-sm-8">
-                            <select id="peg" name="folder_id" class="col-xs-10 col-sm-10 select2" required>
+                            <select id="folderes" name="folder_id" class="col-xs-10 col-sm-10 select2" required>
                                 <option value="">pilih Folder</option>
-                            @foreach ($folder as $peg)
-                                <option value="{{$peg->id}}">{{$peg->name}} ({{$peg->type == '1' ? 'Mikro' : 'Makro'}}) </option>
-                            @endforeach
                         </select>
                         </div>
                     </div>
@@ -72,4 +69,45 @@ method="post" action="{{route('inputqms.store')}}" enctype="multipart/form-data"
 </div>
 </form>
 
+@endsection
+
+@section('footer')
+<script>
+    function handleChange1(){
+         var type = 1;
+        $.get(
+            "{{route('inputqms.getfolder') }}",
+            {
+                type: type
+            },
+            function(response) {
+               var data = response.data;
+               var string ="<option value=''>Pilih Folder</option>";
+                $.each(data, function(index, value) {
+                    string = string + `<option value="` + value.id + `">` + value.name + ` (Mikro) </option>`;
+                })
+               $("#folderes").html(string);
+            }
+        );
+    }
+
+    function handleChange2(){
+         var type = 2;
+        $.get(
+            "{{route('inputqms.getfolder') }}",
+            {
+                type: type
+            },
+            function(response) {
+               var data = response.data;
+               var string ="<option value=''>Pilih Folder</option>";
+                $.each(data, function(index, value) {
+                    string = string + `<option value="` + value.id + `">` + value.name + ` (Makro) </option>`;
+                })
+               $("#folderes").html(string);
+            }
+        );
+    }
+
+</script>
 @endsection
