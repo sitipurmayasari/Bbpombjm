@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <?php
 header("Content-type: application/vnd-ms-excel");
 header("Content-Disposition: attachment; filename=Laporan-StokOpname-PersediaanNapza-$jenis->nama.xls");
@@ -92,4 +90,3 @@ header("Content-Disposition: attachment; filename=Laporan-StokOpname-PersediaanN
         
 </body>
 </html>
->>>>>>> ee4ea469b37aaecb372dbb64bfd922284df3bfbd

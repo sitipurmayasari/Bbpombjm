@@ -17,14 +17,16 @@ use App\Opname;
 use App\Opnamedetail;
 use PDF;
 use Excel;
+use App\Imports\OpnameImport;
 
 class NapzaopnameController extends Controller
 {
 
     public function index(Request $request)
     {
+        $opname = Opname::all();
         $jenis = Jenisbrg::whereraw('id in (3,21)')->get();
-        return view('calibration/napzaopname.index',compact('jenis'));
+        return view('calibration/napzaopname.index',compact('jenis','opname'));
     }
 
     public function formopname()
@@ -38,12 +40,14 @@ class NapzaopnameController extends Controller
 
     public function create()
     {
-        $data = Opname::all();
+        $data = Opname::orderBy('id','desc')
+                    ->get();
         return view('calibration/napzaopname.create',compact('data'));
     }
 
     public function store(Request $request)
     {
+       
         $this->validate($request, [
             'imporfile' => 'required|mimes:csv,xls,xlsx',
             'dates' => 'required|date',
@@ -54,13 +58,12 @@ class NapzaopnameController extends Controller
         $nama_file = $file->getClientOriginalName();
 
         $file->move('excel',$nama_file);
- 
-      //   // import data
+
       DB::beginTransaction();
-          $opname =Opname::create($request->all());
-          $opname_id = $opname->id;
-        //   Excel::import(new OpnameImport($opname_id), public_path('/excel/'.$nama_file));
-        Excel::import(new OpnameImport($opname_id), urlStorage().'/excel/'.$nama_file);
+            $opname =Opname::create($request->all());
+            $opname_id = $opname->id;
+
+          Excel::import(new OpnameImport($opname_id), public_path('/excel/'.$nama_file));
       
       DB::commit();
 
@@ -68,30 +71,37 @@ class NapzaopnameController extends Controller
  
     }
 
+    public function cetakopname($id)
+    {
+      $data = Opname::where('id',$id)->first();
+      $detail = Opnamedetail::where('opname_id',$id)->get();
+    
+      return view('/calibration/napzaopname.cetakopname',compact('data','detail'));
+
+      
+    }
 
     public function cetak(Request $request)
     {
-        // dd($request->all());
-        $stock = Inventaris::OrderBy('stock','desc')
-                        ->SelectRaw('inventaris.*,  entrystock.stock')
-                        ->LeftJoin(DB::raw("(SELECT MAX(id) as max_id, inventaris_id FROM entrystock GROUP BY inventaris_id) stok"),
-                                            'stok.inventaris_id','=','inventaris.id')
-                        ->LeftJoin('entrystock','stok.max_id','=','entrystock.id')
-                        ->Where('kind','!=','R')   
-                        ->Where('inventaris.lokasi','10')                 
-                        ->Where('jenis_barang',$request->kelompok)
-                        ->get();
-
-            $petugas = Petugas::where('id', '=', 4)->first();
-
-            $mengetahui = Pejabat::where('jabatan_id', '=', 11)
-                        ->where('divisi_id', '=', 2)
-                        ->whereRaw("pjs IS null")
-                        ->first();
-            $gudang = Lokasi::where('id','10')->first();
-            $data = Jenisbrg::where('id',$request->kelompok)->first();
-            return view('/calibration/napzaopname.cetak',compact('stock','data','request','petugas','mengetahui','gudang'));            
+      $data = Opname::where('id',$request->opname_id)->first();
+      
+      $detail = Opnamedetail::where('opname_id',$data->id)
+                            ->leftjoin('inventaris','inventaris.id','opnamedetail.inventaris_id')
+                            ->where('inventaris.lokasi','=','10')
+                            ->where('inventaris.jenis_barang','=',$request->kelompok)
+                            ->get();
+      $jenis = Jenisbrg::where('id',$request->kelompok)->first();
+      return view('/calibration/napzaopname.cetak',compact('request','data','detail','jenis'));            
     } 
+
+
+    public function delete($id)
+    {
+        $data = Opname::find($id);
+        $detail = Opnamedetail::where('opname_id',$id)->delete();
+        $data->delete();
+        return redirect('/calibration/napzaopname/create')->with('sukses','Data Terhapus');
+    }
 
     
 }

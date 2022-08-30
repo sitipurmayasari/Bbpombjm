@@ -11,13 +11,15 @@
         @page {
             size: A4;
             font-family: 'Times New Roman';
-            margin: 145px 0px 100px 0px;
+            /* margin: 145px 0px 100px 0px; */
+            margin-top: 145px;
+            margin-bottom: 100px;
         }
                
-        .isi{
+        /* .isi{
             margin-left: 8%;
             margin-right: 8%;
-        }
+        } */
 
         .ttd{
             border:none;

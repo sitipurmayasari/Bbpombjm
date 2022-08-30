@@ -1,6 +1,6 @@
 <?php
-// header("Content-type: application/vnd-ms-excel");
-// header("Content-Disposition: attachment; filename=Format-Laporan-Stok-Opname-Persediaan-Lab-Obat-dan-Nappza.xls");
+header("Content-type: application/vnd-ms-excel");
+header("Content-Disposition: attachment; filename=Laporan-SO-Persediaan-Lab-Obat-dan-Nappza.xls");
 ?>
 @inject('injectQuery', 'App\InjectQuery')
 <!DOCTYPE html>
@@ -45,7 +45,8 @@
         </div>
      <br><br>
      <div>
-        Tanggal Stok Opname : {{$data->tanggal}}
+        Tanggal Stok Opname : {{$data->dates}} <br>
+        Periode : {{$data->periode}}
      </div>
      <div class="table-responsive isi">
         <table  style="font-size: 11px;" >

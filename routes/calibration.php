@@ -34,6 +34,7 @@
 
   //Route untuk Laporan Stok Barang
   Route::post('/calibration/napzastock/cetak','Calibration\NapzastockController@cetak')->name('napzastock.cetak');
+  
   //Route untuk Laporan Stok Opname
   Route::get('/calibration/napzaopname/create','Calibration\NapzaopnameController@create')->name('napzaopname.create');
   Route::post('/calibration/napzaopname/store','Calibration\NapzaopnameController@store')->name('napzaopname.store');
@@ -41,8 +42,8 @@
   Route::post('/calibration/napzaopname/update/{id}','Calibration\NapzaopnameController@update')->name('napzaopname.update');
   Route::get('/calibration/napzaopname/delete/{id}','Calibration\NapzaopnameController@delete')->name('napzaopname.delete');
   Route::get('/calibration/napzaopname/formopname','Calibration\NapzaopnameController@formopname')->name('napzaopname.formopname');
+  Route::get('/calibration/napzaopname/cetakopname/{id}','Calibration\NapzaopnameController@cetakopname')->name('napzaopname.cetakopname');
   Route::post('/calibration/napzaopname/cetak','Calibration\NapzaopnameController@cetak')->name('napzaopname.cetak');
-  Route::post('/calibration/napzaopname/cetakopname','Calibration\NapzaopnameController@cetakopname')->name('napzaopname.cetakopname');
 
 
 //   --------------------------------------NEW MENU--------------------------------------------------

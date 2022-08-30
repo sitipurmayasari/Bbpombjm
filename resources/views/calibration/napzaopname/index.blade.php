@@ -33,7 +33,7 @@
                     <a href="#" data-action="collapse">
                         <i class="ace-icon fa fa-chevron-down"></i>
                     </a>
-                </div>
+                </div> 
             </div>
             <div class="widget-body">
                 <div class="col-sm-6">

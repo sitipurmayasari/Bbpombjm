@@ -30,7 +30,7 @@
                         for="form-field-1"> Tanggal 
                         </label>
                         <div class="col-sm-8">
-                            <input type="hidden" value="L" name="kind"  />
+                            <input type="hidden" value="{{auth()->user()->id}}" name="upload_by"  />
                             <input type="date" value="{{date('Y-m-d')}}"
                                     class="col-xs-3 col-sm-3 required " 
                                     name="dates" required />
@@ -39,7 +39,7 @@
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1"> Periode Stok Opnamae
+                        for="form-field-1"> Periode Stok Opname
                         </label>
                         <div class="col-sm-8">
                             <input type="text"  placeholder="periode" 
@@ -80,30 +80,35 @@
             <thead>
                 <th width="40px">No</th>
                 <th>Tanggal</th>
-                <th>Periode</th>
-                <th>Laporan</th>
-                <th>Aksi</th>
+                <th class="col-md-5">Periode</th>
+                <th  class="col-md-1">Laporan</th>
+                <th  class="col-md-2">Aksi</th>
             <thead>
             <tbody>   	
                 @foreach($data as $key=>$row)
+                @php
+                    $no = 1;
+                @endphp
                 <tr>
-                    <td>{{$data->firstItem() + $key}}</td>
+                    <td>{{$no}}</td>
                     <td>{{tgl_indo($row->dates)}}</td>
                     <td>{{$row->periode}}</td>
                     <td>
                         <a class="btn btn-primary" href="/calibration/napzaopname/cetakopname/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
                     </td>
                     <td>
-                        <a href="/calibration/napzaopname/edit/{{$row->id}}" class="btn btn-warning">
+                        {{-- <a href="/calibration/napzaopname/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>
-                        </a>
+                        </a> --}}
                         <a href="#" class="btn btn-danger delete"
                             r-name="{{$row->periode}}" 
                             r-id="{{$row->id}}">
                             <i class="glyphicon glyphicon-trash"></i></a>
                     </td>
                 </tr>
-              
+              @php
+                  $no++;
+              @endphp
                 @endforeach
             <tbody>
         </table>
