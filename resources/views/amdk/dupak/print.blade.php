@@ -111,7 +111,7 @@
             <tr>
                 <td class="tbl" style="width: 5%; text-align: center;">6</td>
                 <td class="tnt" colspan="4">Pangkat / Gol. Ruang / TMT</td>
-                <td class="tnt" style="width: 10%;" colspan="5">: {{$data->pegawai->gol->jenis}} / Gol.{{$data->pegawai->gol->golongan}}/{{$data->pegawai->gol->ruang}} ({{$data->tmt}})</td>
+                <td class="tnt" style="width: 10%;" colspan="5">: {{$data->pegawai->gol->jenis}} / Gol.{{$data->pegawai->gol->golongan}}/{{$data->pegawai->gol->ruang}} ({{date("d-m-Y", strtotime($data->tmt))}})</td>
             </tr>
             <tr>
                 <td class="tbl" style="width: 5%; text-align: center;">7</td>
@@ -298,31 +298,30 @@
                         @if ($data->promoted=='P')
                              {{-- golongan baru, tmt baru, jabatan lama, tmt jabatan lama --}}
                             Pegawai tersebut bisa diusulkan kenaikan pangkat ke {{$data->gol->golongan}}/{{$data->gol->ruang}}
-                            (TMT. {{$data->tmtusul}}) <br>
+                            (TMT. {{date("d-m-Y", strtotime($data->tmtusul))}}) <br>     
                             &nbsp; Jabatan : {{$data->pegawai->jabasn->nama}} 
-                            (TMT. {{$data->tmtlama}})
+                            (TMT. {{date("d-m-Y", strtotime($data->tmtlama))}})
 
                         @elseif ($data->promoted=='J')
                             {{-- golongan lama, tmt lama, jabatan baru, tmt jabatan baru --}}
                             Pegawai tersebut menduduki {{$data->pegawai->gol->golongan}}/{{$data->pegawai->gol->ruang}}
-                            (TMT. {{$data->tmt}}) <br>
+                            (TMT. {{date("d-m-Y", strtotime($data->tmt))}}) <br>
                             &nbsp; Pegawai tersebut diusulkan Jabatan : {{$data->jabasn->nama}} 
-                            (TMT. {{$data->tmtjabbaru}})
+                            (TMT. {{date("d-m-Y", strtotime($data->tmtjabbaru))}})
 
                         @elseif ($data->promoted=='A')
                             {{-- golongan baru, tmt baru, jabatan baru, tmt jabatan baru --}}
                             Pegawai tersebut bisa diusulkan kenaikan pangkat ke {{$data->gol->golongan}}/{{$data->gol->ruang}}
-                            (TMT. {{$data->tmtusul}}) <br>
+                            (TMT. {{date("d-m-Y", strtotime($data->tmtusul))}}) <br>
                             &nbsp; Pegawai tersebut diusulkan Jabatan : {{$data->jabasn->nama}} 
-                            (TMT. {{$data->tmtjabbaru}})
+                            (TMT. {{date("d-m-Y", strtotime($data->tmtjabbaru))}})
 
                         @else
                            {{-- golongan lama, tmt lama, jabatan lama, tmt jabatan lama --}}
                             Pegawai tersebut menduduki {{$data->pegawai->gol->golongan}}/{{$data->pegawai->gol->ruang}}
-                            (TMT. {{$data->tmt}}) <br>
+                            (TMT. {{date("d-m-Y", strtotime($data->tmt))}})<br>
                             &nbsp; Jabatan : {{$data->pegawai->jabasn->nama}} 
-                            (TMT. {{$data->tmtlama}})
-
+                            (TMT.  {{date("d-m-Y", strtotime($data->tmtlama))}})
                         @endif
                         
                     </td>
