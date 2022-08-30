@@ -6,23 +6,15 @@
 @section('content')
 @include('layouts.validasi')
 
-<div class="row">
-    <form class="form-horizontal validate-form" role="form" 
-         method="post" action="{{route('inputqms.store')}}" enctype="multipart/form-data">
+<form class="form-horizontal validate-form" role="form" 
+method="post" action="{{route('inputqms.store')}}" enctype="multipart/form-data">
     {{ csrf_field() }}
-    <div class="col-sm12">
-        <div class="widget-box">
-            <div class="widget-header">
-                <h4 class="widget-title"> Input QMS</h4>
-                <div class="widget-toolbar">
-                    <a href="#" data-action="collapse">
-                        <i class="ace-icon fa fa-chevron-down"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="widget-body">
-                <div class="widget-main no-padding">
-                    <fieldset>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-info">
+            <div class="panel-heading"><h3 class="panel-title">Input QMS</h3></div>
+            <div class="panel-body">
+                <fieldset>
                     <br>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
@@ -66,24 +58,18 @@
                             <label><i>*pdf max 10 Mb</i></label>
                         </div>
                     </div>
-                    </fieldset>                   
-               </div>
-           </div>
+                </fieldset>   
+            </div>
         </div>
     </div>
-    <div class="col-sm12">
-        <div class="form-actions right">
-            <button class="btn btn-success btn-sm " type="submit">
-                <i class="ace-icon fa fa-check bigger1-10"></i>Simpan
-            </button>
-        </div>
-    </div>
-    </form>
 </div>
+<div class="col-sm12">
+    <div class="form-actions right">
+        <button class="btn btn-success btn-sm " type="submit">
+            <i class="ace-icon fa fa-check bigger1-10"></i>Simpan
+        </button>
+    </div>
+</div>
+</form>
 
-@endsection
-
-@section('footer')
-<script>
-</script>
 @endsection

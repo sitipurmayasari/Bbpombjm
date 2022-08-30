@@ -35,7 +35,7 @@ class InputQMSController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'file' => 'mimes:pdf|max:10048'
+            'file' => 'mimes:pdf|max:10240'
         ]);
 
         $dokument = Qms::create($request->all());
