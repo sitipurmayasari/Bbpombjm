@@ -9,11 +9,9 @@
     <title>Dupak</title>
     <style>
         @page {
-            size: A4;
+            size: 21cm 29.7cm ;
             font-family: 'Times New Roman';
-            /* margin: 145px 0px 100px 0px; */
             margin-top: 145px;
-            margin-bottom: 100px;
         }
                
         /* .isi{
