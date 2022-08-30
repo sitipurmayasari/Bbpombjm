@@ -23,8 +23,6 @@
             border:none;
             border-collapse: collapse;
             text-align: center;
-            width: 100%;
-            margin-left: 10%;
             position: absolute;
         }
 
@@ -332,11 +330,11 @@
         </table>
     </div>
     <br><br>
-    <div id="ttd" class="isi">
-        <table class="ttd">
+    <div id="ttd">
+        <table class="ttd" style="width: 100%">
             <tr>
-                <td class="ttd" style="text-align: left;width:300px; ">Asli disampaikan dengan hormat kepada :</td>
-                <td class="ttd" style="text-align: left; width:200px;">Ditetapkan di Banjarmasin</td>
+                <td class="ttd" style="text-align: left; width:60%; ">Asli disampaikan dengan hormat kepada :</td>
+                <td class="ttd" style="text-align: left; width:40%;">Ditetapkan di Banjarmasin</td>
             </tr>
             <tr>
                 <td class="ttd" style="text-align: left">Kepala BKN di Jakarta</td>
@@ -365,8 +363,8 @@
                 </td>
             </tr>
             <tr >
-                <td style="height: 25%" class="ttd"></td>
-                <td style="height: 25%" class="ttd"></td>
+                <td class="ttd"><br><br><br><br></td>
+                <td class="ttd"></td>
             </tr>
             <tr>
                 <td></td>
