@@ -70,7 +70,7 @@
                 @endif
             </td>
         </tr>
-        <tr>
+        <tr class="atas">
             <td  class="atas">Tanggal</td>
             <td  class="atas">:
                 {{$data->st->st_date}}

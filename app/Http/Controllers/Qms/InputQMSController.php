@@ -19,7 +19,6 @@ class InputQMSController extends Controller
                         ->Leftjoin('folder','folder.id','qms.folder_id')
                         ->when($request->keyword, function ($query) use ($request) {
                             $query->where('names','LIKE','%'.$request->keyword.'%')
-                                    ->orWhere('type', 'LIKE','%'.$request->keyword.'%')
                                     ->orWhere('folder.name', 'LIKE','%'.$request->keyword.'%');
                         })
                         ->paginate('10');
