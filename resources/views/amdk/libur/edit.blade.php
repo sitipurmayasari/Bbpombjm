@@ -1,7 +1,7 @@
 @extends('amdk/layouts_amdk.app')
 @section('breadcrumb')
     <li>Setup</li>
-    <li><a href="/amdk/libur"> Hari Libur</a></li>
+    <li><a href="/amdk/libur"> Hari Kerja</a></li>
     <li>Edit</li>
 @endsection
 @section('content')
@@ -15,7 +15,7 @@
     <div class="col-sm-12">
         <div class="widget-box">
             <div class="widget-header">
-                <h4 class="widget-title">Edit Hari Libur</h4>
+                <h4 class="widget-title">Edit Hari Kerja</h4>
                 <div class="widget-toolbar">
                     <a href="#" data-action="collapse">
                         <i class="ace-icon fa fa-chevron-down"></i>
@@ -42,9 +42,59 @@
                         </label>
 
                         <div class="col-sm-8">
-                            <input type="text"  placeholder=" Masukkan Keterangan Hari Libur" 
-                                    class="col-xs-10 col-sm-10 required " value="{{$data->keterangan}}"
-                                    name="keterangan" required />
+                            <select name="keterangan" class="col-xs-3 col-sm-3 select2" required>
+                                @if ($data->keterangan =="Senin")
+                                    <option value="Senin" selected>senin</option>
+                                    <option value="Selasa">selasa</option>
+                                    <option value="Rabu">rabu</option>
+                                    <option value="Kamis">kamis</option>
+                                    <option value="Jumat">jumat</option>
+                                    <option value="Besar">besar</option>
+                                @elseif($data->keterangan =="Selasa")
+                                    <option value="Senin">senin</option>
+                                    <option value="Selasa" selected>selasa</option>
+                                    <option value="Rabu">rabu</option>
+                                    <option value="Kamis">kamis</option>
+                                    <option value="Jumat">jumat</option>
+                                    <option value="Besar">besar</option>
+                                @elseif($data->keterangan =="Selasa")
+                                    <option value="Senin">senin</option>
+                                    <option value="Selasa" selected>selasa</option>
+                                    <option value="Rabu">rabu</option>
+                                    <option value="Kamis">kamis</option>
+                                    <option value="Jumat">jumat</option>
+                                    <option value="Besar">besar</option>
+                                @elseif($data->keterangan =="Selasa")
+                                    <option value="Senin">senin</option>
+                                    <option value="Selasa" selected>selasa</option>
+                                    <option value="Rabu">rabu</option>
+                                    <option value="Kamis">kamis</option>
+                                    <option value="Jumat">jumat</option>
+                                    <option value="Besar">besar</option>
+                                @elseif($data->keterangan =="Selasa")
+                                    <option value="Senin">senin</option>
+                                    <option value="Selasa" selected>selasa</option>
+                                    <option value="Rabu">rabu</option>
+                                    <option value="Kamis">kamis</option>
+                                    <option value="Jumat">jumat</option>
+                                    <option value="Besar">besar</option>
+                                @elseif($data->keterangan =="Selasa")
+                                    <option value="Senin">senin</option>
+                                    <option value="Selasa" selected>selasa</option>
+                                    <option value="Rabu">rabu</option>
+                                    <option value="Kamis">kamis</option>
+                                    <option value="Jumat">jumat</option>
+                                    <option value="Besar">besar</option>
+                                @else
+                                    <option value="Senin">senin</option>
+                                    <option value="Selasa">selasa</option>
+                                    <option value="Rabu">rabu</option>
+                                    <option value="Kamis">kamis</option>
+                                    <option value="Jumat">jumat</option>
+                                    <option value="Besar" selected>besar</option>
+                                @endif
+                            </select>
+                            *hari besar = hari libur tapi wajib hadir dan absen
                         </div>
                     </div>
 

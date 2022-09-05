@@ -105,6 +105,11 @@
             line-height: 1;
         }
 
+        .gbr{
+            padding-left: 5px;
+            padding-top: 5px;
+        }
+
 </style>
 <body>
      {{-- <header>
@@ -170,7 +175,9 @@
                         <td class="detail"> {{$item->kemasan}} / {{$item->satuan->satuan}}</td>
                         <td class="detail" style="text-align: center">{{$item->jumlah}} {{$item->satuan->satuan}}</td>
                         <td class="detail">
-
+                            <div class="gbr">
+                                <img src="{{$item->getFoto()}}"  style="width:100px">
+                            </div>
                         </td>
                     </tr>
                     @php

@@ -1,74 +1,99 @@
 @extends('amdk/layouts_amdk.app')
 @section('breadcrumb')
     <li>Setup</li>
-    <li> Hari Libur</li>
+    <li> Hari Kerja</li>
 @endsection
 @section('content')
 
-
-<div class="row">
-    <form class="form-horizontal validate-form" role="form" 
-         method="post" action="{{route('libur.store')}}">
-         {{ csrf_field() }}
-    <div class="col-sm-12">
-        <div class="widget-box">
-            <div class="widget-header">
-                <h4 class="widget-title"> Tambah Hari Libur</h4>
-                <div class="widget-toolbar">
-                    <a href="#" data-action="collapse">
-                        <i class="ace-icon fa fa-chevron-down"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="widget-body">
-                <div class="widget-main no-padding" col-sm-8>
-                    <fieldset>
-                    <br>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1"> Tanggal 
-                        </label>
-                        <div class="col-sm-8">
-                            <input type="date" class="col-xs-3 col-sm-3"  value="{{date('Y-m-d')}}"
-                            name="tanggal" required />
-                        </div>
+<div class="col-sm-5">
+    <div class="row">
+        <form class="form-horizontal validate-form" role="form" 
+             method="post" action="{{route('libur.store')}}">
+             {{ csrf_field() }}
+        <div class="col-sm-12">
+            <div class="widget-box">
+                <div class="widget-header">
+                    <h4 class="widget-title"> Tambah Hari Kerja</h4>
+                    <div class="widget-toolbar">
+                        <a href="#" data-action="collapse">
+                            <i class="ace-icon fa fa-chevron-down"></i>
+                        </a>
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1"> Keterangan
-                        </label>
-
-                        <div class="col-sm-8">
-                            <input type="text"  placeholder=" Masukkan Keterangan Hari Libur" 
-                                    class="col-xs-10 col-sm-10 required " 
-                                    name="keterangan" required />
-                        </div>
-                    </div>
-                    
-                    </fieldset>        
                 </div>
-            </div>
-        </div>
-    </div><!-- /.col -->
     
-    <div class="col-sm-12">
-        <div class="form-actions right">
-            <button class="btn btn-success btn-sm " type="submit">
-                <i class="ace-icon fa fa-check bigger-110"></i>Simpan
-            </button>
+                <div class="widget-body">
+                    <div class="widget-main no-padding" col-sm-8>
+                        <fieldset>
+                        <br>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Tanggal 
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="date" class="col-xs-10 col-sm-10"  value="{{date('Y-m-d')}}"
+                                name="tanggal" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Jam Masuk 
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="time" class="col-xs-10 col-sm-10" 
+                                name="chekin" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Jam Pulang 
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="time" class="col-xs-10 col-sm-10" 
+                                name="chekot" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Hari
+                            </label>
+                            <div class="col-sm-8">
+                                <select name="keterangan" class="col-xs-10 col-sm-10 select2" required>
+                                    <option value="Senin">senin</option>
+                                    <option value="Selasa">selasa</option>
+                                    <option value="Rabu">rabu</option>
+                                    <option value="Kamis">kamis</option>
+                                    <option value="Jumat">jumat</option>
+                                    <option value="Besar">besar</option>
+                                </select>
+                            </div>
+                           
+                        </div>
+                        *hari besar = hari libur yang diwajibkan melakukan e-presensi
+                        </fieldset>        
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.col -->
+        
+        <div class="col-sm-12">
+            <div class="form-actions right">
+                <button class="btn btn-success btn-sm " type="submit">
+                    <i class="ace-icon fa fa-check bigger-110"></i>Simpan
+                </button>
+            </div>
         </div>
+        </form>
     </div>
-    </form>
 </div>
-
-    <hr><br><br>
+<div class="col-sm-7">
     <div class="table-responsive">
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
                 <th class="col-md-1" style="text-align: center">No</th>
-                <th class="col-md-2" style="text-align: center">Tanggal</th>
-                <th class="col-md-7" style="text-align: center">Keterangan</th>
+                <th class="col-md-3" style="text-align: center">Tanggal</th>
+                <th class="col-md-2" style="text-align: center">Jam Masuk</th>
+                <th class="col-md-2" style="text-align: center">Jam Pulang</th>
+                <th class="col-md-2" style="text-align: center">Keterangan</th>
                 <th style="text-align: center">Aksi</th>
             <thead>
             <tbody>   	
@@ -76,6 +101,8 @@
                 <tr>
                     <td style="text-align: center">{{$data->firstItem() + $key}}</td>
                     <td>{{tgl_indo($row->tanggal)}}</td>
+                    <td>{{$row->chekin}}</td>
+                    <td>{{$row->chekot}}</td>
                     <td>{{$row->keterangan}}</td>
                     <td style="text-align: center">
                        @if ($row->tanggal > $now)
@@ -94,7 +121,9 @@
             <tbody>
         </table>
     </div>
-{{$data->appends(Request::all())->links()}}
+    {{$data->appends(Request::all())->links()}}
+</div>
+
 @endsection
 
 @section('footer')

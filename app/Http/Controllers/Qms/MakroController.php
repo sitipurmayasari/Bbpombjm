@@ -26,9 +26,7 @@ class MakroController extends Controller
                     ->Leftjoin('folder','folder.id','qms.folder_id')
                     ->where('folder_id',$id)
                     ->when($request->keyword, function ($query) use ($request) {
-                        $query->where('names','LIKE','%'.$request->keyword.'%')
-                                ->orWhere('type', 'LIKE','%'.$request->keyword.'%')
-                                ->orWhere('folder.name', 'LIKE','%'.$request->keyword.'%');
+                        $query->where('names','LIKE','%'.$request->keyword.'%');
                     })
                     ->paginate('10');
         return view('qms/makro.folder',compact('data','folder'));

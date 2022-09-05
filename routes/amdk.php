@@ -185,7 +185,7 @@
   Route::post('/amdk/permit/store','Amdk\PermitController@store')->name('permit.store');
   Route::get('/amdk/permit/delete/{id}','Amdk\PermitController@delete')->name('permit.delete');
   Route::get('/amdk/permit/edit/{id}','Amdk\PermitController@edit')->name('permit.edit');
-  Route::post('/amdk/permit/update/{id}','Amdk\PermitController@update')->name('permit.update');
+  Route::post('/amdk/permit/update/{id}','Amdk\PermitController@update')->name('permit.update'); 
 
   //Route untuk Setup Angka Kredit
   Route::get('/amdk/ak/create','Amdk\CreditsController@create')->name('ak.create');
@@ -241,19 +241,18 @@
   Route::get('/amdk/disposisi/edit/{id}','Amdk\DisposisiController@edit')->name('disposisi.edit');
   Route::post('/amdk/disposisi/update/{id}','Amdk\DisposisiController@update')->name('disposisi.update');
 
-   //Route untuk Hari libur
-  Route::get('/amdk/libur/create','Amdk\LiburController@create')->name('libur.create');
-  Route::post('/amdk/libur/store','Amdk\LiburController@store')->name('libur.store');
-  Route::get('/amdk/libur/delete/{id}','Amdk\LiburController@delete')->name('libur.delete');
-  Route::get('/amdk/libur/edit/{id}','Amdk\LiburController@edit')->name('libur.edit');
-  Route::post('/amdk/libur/update/{id}','Amdk\LiburController@update')->name('libur.update');
+ //Route untuk Hari libur
+ Route::get('/amdk/libur/create','Amdk\LiburController@create')->name('libur.create');
+ Route::post('/amdk/libur/store','Amdk\LiburController@store')->name('libur.store');
+ Route::get('/amdk/libur/delete/{id}','Amdk\LiburController@delete')->name('libur.delete');
+ Route::get('/amdk/libur/edit/{id}','Amdk\LiburController@edit')->name('libur.edit');
+ Route::post('/amdk/libur/update/{id}','Amdk\LiburController@update')->name('libur.update');
 
-  //Route untuk absen
-  Route::post('/amdk/setabsen/update/{id}','Amdk\SetabsenController@update')->name('setabsen.update');
+ //Route untuk absen
+ Route::post('/amdk/setabsen/update/{id}','Amdk\SetabsenController@update')->name('setabsen.update');
 
-  //Route untuk Rekap Surat Izin Pramubakti
-  Route::get('/amdk/rekpermit/create','Amdk\RekpermitController@create')->name('rekpermit.create');
-  Route::post('/amdk/rekpermit/store','Amdk\RekpermitController@store')->name('rekpermit.store');
-  Route::get('/amdk/rekpermit/delete/{id}','Amdk\RekpermitController@delete')->name('rekpermit.delete');
-  Route::get('/amdk/rekpermit/edit/{id}','Amdk\RekpermitController@edit')->name('rekpermit.edit');
-  Route::post('/amdk/rekpermit/update/{id}','Amdk\RekpermitController@update')->name('rekpermit.update');
+ //Route untuk Rekap Surat Izin Pramubakti
+ Route::get('/amdk/rekpermit/create','Amdk\RekpermitController@create')->name('rekpermit.create');
+ Route::post('/amdk/rekpermit/store','Amdk\RekpermitController@store')->name('rekpermit.store');
+ Route::get('/amdk/rekpermit/edit/{id}','Amdk\RekpermitController@edit')->name('rekpermit.edit');
+ Route::post('/amdk/rekpermit/update/{id}','Amdk\RekpermitController@update')->name('rekpermit.update');
