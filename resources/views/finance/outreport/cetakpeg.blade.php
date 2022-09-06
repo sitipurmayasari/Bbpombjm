@@ -6,9 +6,52 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="{{asset('assets/css/print.css')}}" rel="stylesheet">
     <title>Laporan Daftar Pegawai Dinas</title>
 </head>
+<style>
+    @page {
+    size: A4;
+    margin: 170px 0px 100px 0px;
+    font-family: 'Times New Roman';
+    font-size: 11px;
+    page-break-after: always;
+ }
+
+ .isi{
+     margin-left: 8%;
+     margin-right: 8%;
+ }
+
+ header {
+         position:fixed;
+         padding-top: 0%;
+         /* height: 15%; */
+         top: 0%;
+         margin-left: 5%;
+         margin-right: 5%;
+         margin-top: -170px;
+ }
+
+ footer {
+        position:fixed;
+        height: 70px;
+        bottom: 0;
+        width: 100%;
+        margin-bottom: 20px;
+        z-index: -100;
+    
+ }
+
+ table,tr,td, th{
+     border: solid black 1px;
+     vertical-align: top;
+ }
+
+ th{
+    text-align: center;
+    vertical-align: middle;
+ }
+</style>
 <body>
     <header>
         <img src="{{asset('images/kopsurat1.jpg')}}" style="width: 100%">
