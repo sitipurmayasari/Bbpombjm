@@ -119,12 +119,12 @@ class OutstationController extends Controller
                                   ->where('outstation_id',$id)
                                   ->first(); 
         $cekkepala = Outst_employee::where('outstation_id',$id)
-                                  ->whereraw("users_id = (SELECT users_id FROM pejabat WHERE jabatan_id = 6 and pjs IS NULL or pjs != 'Plh.' ORDER BY id DESC LIMIT 1)")
+                                  ->whereraw("users_id = (SELECT users_id FROM pejabat WHERE jabatan_id = 6 and pjs IS NULL ORDER BY id DESC LIMIT 1)")
                                   ->orderby('id','desc')
                                   ->first();
         if ($cekkepala != null) {
           $menyetujui = Pejabat::where('jabatan_id', '=', 6)
-                                ->whereRaw("pjs IS NULL || pjs != 'Plh.'")
+                                ->whereRaw("pjs IS NULL")
                                 ->orderby('id','desc')
                                 ->first();
         } else {
