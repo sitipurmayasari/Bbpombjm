@@ -336,7 +336,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
      Route::get('/qms/folderqms','Qms\FolderQMSController@index')->name('folderqms');
 
 
-     //-------------------Pengujian-------------------------------------------------
+    //-------------------------------------------Pengujian-------------------------------------------------
+    //----NAPPZA----
     //Route untuk Alat Gelas Kualitatif
     Route::get('/calibration/glasskual','Calibration\GlassKualController@index')->name('glasskual');
     Route::get('/calibration/glasskual/read','Calibration\GlassKualController@read')->name('glasskual.read');
@@ -348,6 +349,14 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     //Route untuk Laporan Stok Opname
     Route::get('/calibration/napzaopname','Calibration\NapzaopnameController@index')->name('napzaopname');
     
+
+    //----MIKRO----
+    //Route untuk Media Mikrobiologi
+    Route::get('/calibration/mediamikro','Calibration\MediaController@index')->name('media');
+    //Route untuk kontrol Media Mikro
+    Route::get('/calibration/kontrolmikro','Calibration\KontrolController@index')->name('kontrol');
+    //Route untuk Daftar Bakteri
+    Route::get('/calibration/bakterimikro','Calibration\BakteriController@index')->name('bakteri');
 
 });
 

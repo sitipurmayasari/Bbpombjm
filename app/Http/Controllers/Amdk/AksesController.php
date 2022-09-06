@@ -119,6 +119,16 @@ class AksesController extends Controller
                     UserPermission::create($data);
                 }
             }
+
+            if ($request->input('akses_mikro')) {
+                for ($i = 0; $i < count($request->input('akses_mikro')); $i++){
+                    $data = [
+                        'user_id' => $request->user_id,
+                        'menu_id' => $request->akses_mikro[$i] ,
+                    ];
+                    UserPermission::create($data);
+                }
+            }
            
         DB::commit(); 
         return redirect()->route('akses')->with('sukses','Data Tersimpan');
@@ -181,6 +191,12 @@ class AksesController extends Controller
             ->select('submenu.*','menu.modul','menu.nama as group_nama')
             ->leftJoin('menu','submenu.menu_id','=','menu.id')
             ->where('menu.modul','napza')
+            ->get();
+        
+        $mikro = Submenu::orderBy('menu.id','asc')
+            ->select('submenu.*','menu.modul','menu.nama as group_nama')
+            ->leftJoin('menu','submenu.menu_id','=','menu.id')
+            ->where('menu.modul','mikro')
             ->get();
 
         $outputAmdk = array();
@@ -262,6 +278,15 @@ class AksesController extends Controller
             );
         }
 
+        $outputmikro = array();
+        foreach ($mikro as $in) {
+            $outputmikro[] = array(
+                'id' => $in->id,
+                'nama' => $in->nama,
+                'checked' => $this->checkPermissonMenu($user_id,$in->id)
+            );
+        }
+
 
         return response()->json([ 
             'success' => true,
@@ -273,7 +298,8 @@ class AksesController extends Controller
             'dinas' => $outputDinas,
             'plan' => $outputPlan,
             'qms' => $outputqms,
-            'nappza' => $outputnappza
+            'nappza' => $outputnappza,
+            'mikro' => $outputmikro
         ],200);
     }
 
