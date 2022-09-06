@@ -122,16 +122,17 @@ class OutstationController extends Controller
                                   ->whereraw("users_id = (SELECT users_id FROM pejabat WHERE jabatan_id = 6 and pjs IS NULL ORDER BY id DESC LIMIT 1)")
                                   ->orderby('id','desc')
                                   ->first();
-        // if ($cekkepala != null) {
-        //   $menyetujui = Pejabat::where('jabatan_id', '=', 6)
-        //                         ->whereRaw("pjs IS NULL")
-        //                         ->orderby('id','desc')
-        //                         ->first();
-        // } else {
+        if ($cekkepala != null) {
+          $menyetujui = Pejabat::where('jabatan_id', '=', 6)
+                                ->whereRaw("pjs IS NULL")
+                                ->orderby('id','desc')
+                                ->first();
+        } else {
           $menyetujui = Pejabat::where('jabatan_id', '=', 6)
                               ->whereRaw("(SELECT st_date FROM outstation WHERE id=$id) BETWEEN dari AND sampai")
+                              ->orderby('id','desc')
                               ->first();
-        // }
+        }
         
         if ($jmlpeg->hitung > 8) {
           $pdf = PDF::loadview('finance/outstation.printSTbanyak',compact('data','isian','menyetujui'));
