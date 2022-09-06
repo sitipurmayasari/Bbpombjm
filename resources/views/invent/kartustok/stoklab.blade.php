@@ -22,11 +22,11 @@
                 <b>Laporan Jumlah DPB Keluar </b><br>
                 <b><i>{{$data->name}}</i></b>
             </div><br>
-            <div class="col-sm-12 table-responsive row" style="width: 100%;text-align: left">
-                <table style="font-size: 11px;" >
+            <div style="text-align: left">
+                <table style="width: 100%;font-size: 11px;" >
                     <thead>
                         <tr>
-                            <th style="text-align: center; vertical-align:middle;" width="20px">No</th>
+                            <th style="text-align: center; vertical-align:middle;" width="5%">No</th>
                             <th style="text-align: center; vertical-align:middle;">Nama Barang</th>
                             <th style="text-align: center; vertical-align:middle;">kelompok Barang</th>
                             <th style="text-align: center; vertical-align:middle;">Jumlah Barang</th>

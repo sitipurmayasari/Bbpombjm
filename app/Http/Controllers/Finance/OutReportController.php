@@ -51,6 +51,7 @@ class OutReportController extends Controller
             $pdf = PDF::loadview('finance/outreport.cetakdaftarst',compact('data','request'));
             return $pdf->stream();
 
+
         }elseif($request->jenis_Laporan=="Peg"){
             // dd($request->all());
             $data = Outst_employee::orderBy('outst_employee.id','asc')
@@ -68,8 +69,9 @@ class OutReportController extends Controller
                                     }
                                 })
                                 ->get();
-            $pdf = PDF::loadview('finance/outreport.cetakpeg',compact('data','request'));
-            return $pdf->stream();                  
+            // $pdf = PDF::loadview('finance/outreport.cetakpeg',compact('data','request'));
+            // return $pdf->stream(); 
+            return view('finance/outreport.cetakpeg',compact('data','request'));
         }elseif($request->jenis_Laporan=="Per"){
             $pegawai = User::where('id',$request->users)->first();
             $data = Outst_employee::orderBy('outst_employee.id','asc')
@@ -88,8 +90,9 @@ class OutReportController extends Controller
                                     }
                                 })
                                 ->get();
-            $pdf = PDF::loadview('finance/outreport.cetakper',compact('data','request','pegawai'));
-            return $pdf->stream();                  
+            // $pdf = PDF::loadview('finance/outreport.cetakper',compact('data','request','pegawai'));
+            // return $pdf->stream();     
+            return view('finance/outreport.cetakper',compact('data','request','pegawai'));            
         }elseif($request->jenis_Laporan=="Kui"){
             $data = Travelexpenses::orderBy('outstation_id','asc')
                             ->SelectRaw('travelexpenses.*')
