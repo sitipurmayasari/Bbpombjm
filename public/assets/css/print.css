@@ -31,6 +31,12 @@
     
  }
 
- table,tr,td{
-     border: solid black;
+ table,tr,td, th{
+     border: solid black 1px;
+     vertical-align: top;
+ }
+
+ th{
+    text-align: center;
+    vertical-align: middle;
  }

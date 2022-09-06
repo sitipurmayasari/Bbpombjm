@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="{{asset('assets/css/print.css')}}" rel="stylesheet">
     <title>Laporan Daftar Pegawai Dinas</title>
@@ -60,11 +60,11 @@
             <br>
             <br>
         </div>
-             <div class="table-responsive isi">
-                 <table id="simple-table" class="table  table-bordered table-hover " style="font-size: 11px;" >
-                     <thead style="text-align: center">
+             <div class="isi">
+                 <table  style="font-size: 11px;" >
+                     <thead style="text-align: center; width:100%">
                          <tr>
-                            <th width="20px" style="vertical-align: middle;">No</th>
+                            <th width="5%" style="vertical-align: middle;">No</th>
                             <th style="vertical-align: middle;">Nama</th>
                             <th style="vertical-align: middle;">Bagian</th>
                             <th style="vertical-align: middle;">Nomor Surat Tugas</th>

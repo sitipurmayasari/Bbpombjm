@@ -84,11 +84,11 @@
             </table>
             <br>
         </div>
-             <div class="table-responsive isi">
-                 <table id="simple-table" class="table  table-bordered table-hover " style="font-size: 11px;" >
+             <div class=" isi">
+                 <table style="font-size: 11px; width:100%" >
                      <thead style="text-align: center">
                          <tr>
-                            <th width="20px" style="vertical-align: middle;">No</th>
+                            <th width="5%" style="vertical-align: middle;">No</th>
                             <th style="vertical-align: middle;">Nomor Surat Tugas</th>
                             <th style="vertical-align: middle;">Nama Kegiatan</th>
                             <th style="vertical-align: middle;">Destinasi</th>
