@@ -4,25 +4,42 @@ namespace App\Http\Controllers\Amdk;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use App\Absensi;
 use App\User;
-use App\Agenda;
+use App\KetAbsen;
+use App\Libur;
+use Excel;
+use App\Imports\AbsenImport;
 
 class RekpermitController extends Controller
 {
     public function index(Request $request)
     {
-        $data = Agenda::orderBy('id','desc')
-                ->select('agenda.*','agenda_kategori.nama')
-                ->leftJoin('agenda_kategori','agenda_kategori.id','=','agenda.agenda_kategori_id')
-                ->when($request->keyword, function ($query) use ($request) {
-                    $query->where('titles','LIKE','%'.$request->keyword.'%')
-                            ->orWhere('detail', 'LIKE','%'.$request->keyword.'%')
-                            ->orWhere('date_from', 'LIKE','%'.$request->keyword.'%')
-                            ->orWhere('date_to', 'LIKE','%'.$request->keyword.'%');
-                    })
-                ->paginate('10');
-        // return view('amdk/rekpermit.index',compact('data'));
-        return view('calibration/dashboard.index');
+        $data = Absensi::orderBy('id','desc')
+                        ->SelectRaw('absensi.*, users.name,
+                                    CASE
+                                        WHEN periode_month = 1 THEN "Januari"
+                                        WHEN periode_month = 2 THEN "februari"
+                                        WHEN periode_month = 3 THEN "Maret"
+                                        WHEN periode_month = 4 THEN "April"
+                                        WHEN periode_month = 5 THEN "Mei"
+                                        WHEN periode_month = 6 THEN "Juni"
+                                        WHEN periode_month = 7 THEN "Juli"
+                                        WHEN periode_month = 8 THEN "Agustus"
+                                        WHEN periode_month = 9 THEN "September"
+                                        WHEN periode_month = 10 THEN "Oktober"
+                                        WHEN periode_month = 11 THEN "November"
+                                        ELSE "Desember"
+                                    END AS bulan ')
+                        ->LeftJoin('users','users.id','absensi.users_id')
+                        ->when($request->keyword, function ($query) use ($request) {
+                            $query->where('name','LIKE','%'.$request->keyword.'%');
+                            })
+                        ->paginate('25');
+        return view('amdk/rekpermit.index',compact('data'));
     }
 
     public function create()
@@ -31,39 +48,55 @@ class RekpermitController extends Controller
         return view('amdk/rekpermit.create');
     }
 
-    // public function store(Request $request)
-    // {
-    //     $this->validate($request,[
-    //         'agenda_kategori_id' => 'required',
-    //         'titles' => 'required',
-    //         'detail' => 'required',
-    //         'date_from' => 'required',
-    //         'date_to' => 'required'
-    //     ]);
-    //     Agenda::create($request->all());
-    //     return redirect('/amdk/rekpermit')->with('sukses','Data Tersimpan');
-    // }
+    public function store(Request $request)
+    {
+        $bulan = $request->periode_month;
+        $tahun = $request->periode_year;
+       
+        $this->validate($request, [
+            'imporfile' => 'required|mimes:csv,xls,xlsx',
+            'periode_month'   => 'required',
+            'periode_year'   => 'required'
+        ]);
+
+        //proses import
+
+        $file = $request->imporfile;
+        $nama_file = $file->getClientOriginalName();
+
+        $file->move('excel',$nama_file);
+
+        DB::beginTransaction();
+
+            Excel::import(new AbsenImport, public_path('/excel/'.$nama_file));
+        
+        DB::commit();
+
+
+        //proses hari kerja
+        $peg = User::where('status','PPNPN')->where('aktif','Y')->get();
+        $kerja = Libur::WhereMonth('tanggal',$bulan)->WhereYear('tanggal',$tahun)->get();
+
+
+        
+        //----------------
+
+        return redirect('/amdk/rekpermit')->with('sukses','Data Berhasil Diimport');
+ 
+    }
    
-    // public function edit($id)
-    // {
-    //     $kategori = Agenda_kategori::All();
-    //     $data = Agenda::where('id',$id)->first();
-    //     return view('amdk/rekpermit.edit',compact('data','kategori'));
-    // }
+    public function edit($id)
+    {
+        $kets = KetAbsen::all();
+        $data = Absensi::where('id',$id)->first();
+        return view('amdk/rekpermit.edit',compact('data','kets'));
+    }
 
    
-    // public function update(Request $request, $id)
-    // {
-    //     $data = Agenda::find($id);
-    //     $data->update($request->all());
-    //     return redirect('/amdk/rekpermit')->with('sukses','Data Diperbaharui');
-    // }
-
-    // public function delete($id)
-    // {
-    //     $data = Agenda::find($id);
-    //     $data->delete();
-    //     return redirect('/amdk/rekpermit')->with('sukses','Data Terhapus');
-
-    // }
+    public function update(Request $request, $id)
+    {
+        $data = Absensi::find($id);
+        $data->update($request->all());
+        return redirect('/amdk/rekpermit')->with('sukses','Data Diperbaharui');
+    }
 }

@@ -8,8 +8,8 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use DateTime;
 use Carbon\Carbon;
-
 use App\Libur;
+use LogActivity;
 
 class LiburController extends Controller
 {
@@ -24,7 +24,10 @@ class LiburController extends Controller
     public function store(Request $request)
     {
         
-        Libur::create($request->all());
+        $data = Libur::create($request->all());
+
+        LogActivity::addToLog('Simpan->Setup Hari Kerja, id = '.$data->id);
+        
         return redirect('/amdk/libur')->with('sukses','Data Tersimpan');
     }
    
@@ -39,6 +42,9 @@ class LiburController extends Controller
     {
         $data = Libur::find($id);
         $data->update($request->all());
+
+        LogActivity::addToLog('Ubah->Setup Hari Kerja, id = '.$id);
+
         return redirect('/amdk/libur')->with('sukses','Data Diperbaharui');
     }
 
@@ -47,6 +53,9 @@ class LiburController extends Controller
     {
         $data = Libur::find($id);
         $data->delete();
+
+        LogActivity::addToLog('Hapus->Setup Hari Kerja, id = '.$id);
+
         return redirect('/amdk/libur')->with('sukses','Data Terhapus');
     }
 }

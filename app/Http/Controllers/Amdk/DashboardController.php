@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Pelatihan;
+use App\Absensi;
 
 
 class DashboardController extends Controller
@@ -26,10 +27,15 @@ class DashboardController extends Controller
 
         $latih = Pelatihan::selectRaw("sum(lama) AS waktu")
                             ->where('users_id',$peg)
-                             ->WhereRaw("YEAR(dari) = YEAR(CURDATE())")
+                            ->WhereRaw("YEAR(dari) = YEAR(CURDATE())")
                             ->first();
         
-        return view('amdk/dashboard.index',compact('jumpeg', 'datapeg','latih'));
+        $poinabsen = Absensi::selectRaw("SUM(poin) AS jumpoin, periode_month, periode_year")
+                            ->where('users_id',$peg)
+                            ->groupByRaw('periode_month,periode_year')
+                            ->paginate('5');
+        
+        return view('amdk/dashboard.index',compact('jumpeg', 'datapeg','latih','poinabsen'));
     }
 
    

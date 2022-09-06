@@ -427,15 +427,9 @@ h2, a {
             <a class="social-icon" data-tooltip="Lab Obat dan Nappza" href="/calibration/dashboardnapza">
               <img src="{{asset('images/napza.png')}}" style="height:100%; width:100%">
             </a>   
-            {{-- <a class="social-icon" data-tooltip="e-Performance" href="/finance/dashboardforma">
-              <img src="{{asset('images/perform.png')}}" style="height:100%; width:100%">
-            </a>
-            <a class="social-icon" data-tooltip="Anggaran" href="/finance/dashboard">
-              <img src="{{asset('images/pajak.png')}}" style="height:100%; width:100%">
-            </a>
-            <a class="social-icon" data-tooltip="Surat Tugas" href="/finance/dashboarddin">
-              <img src="{{asset('images/pergi.png')}}" style="height:100%; width:100%">
-            </a> --}}
+            <a class="social-icon" data-tooltip="TOMIKU " href="/calibration/dashboardtomiku">
+              <img src="{{asset('images/napza.png')}}" style="height:100%; width:100%">
+            </a> 
             <a class="social-icon" data-tooltip="Portal Utama SIBOB" href="/portal">
               <img src="{{asset('images/exit.png')}}" style="height:100%; width:100%">
             </a> 

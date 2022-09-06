@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Labory;
 use App\User;
+use App\Pejabat;
 use App\Planlab;
 use App\Planlab_detail;
 use App\Satuan;
@@ -40,7 +41,8 @@ class PlanLabController extends Controller
         $satuan = Satuan::all();
         $lab = Labory::all();
         $no_ajuan = $this->getNoAjuan();
-        return view('invent/planlab.create',compact('user','no_ajuan','satuan','lab'));
+        $tahu = Pejabat::whereraw('pjs is NULL AND jabatan_id != 6')->Orderby('id','desc')->get();
+        return view('invent/planlab.create',compact('user','no_ajuan','satuan','lab','tahu'));
     }
    
     public function store(Request $request)
@@ -97,8 +99,9 @@ class PlanLabController extends Controller
     {
         $data = Planlab::where('id',$id)->first();
         $detail = Planlab_detail::where('planlab_id',$id)->get();
-        
-        $pdf = PDF::loadview('invent/planlab.print',compact('data','detail'));
+        $mengetahui = pejabat::where('id',$data->pejabat_id)->first();
+
+        $pdf = PDF::loadview('invent/planlab.print',compact('data','detail','mengetahui'));
         return $pdf->stream();
     }
 
@@ -108,10 +111,10 @@ class PlanLabController extends Controller
         $detail = Planlab_detail::where('planlab_id',$id)->get();
         $satuan = Satuan::all();
         $lab = Labory::all();
+        $tahu = Pejabat::whereraw('pjs is NULL AND jabatan_id != 6')->Orderby('id','desc')->get();
 
-        LogActivity::addToLog('Ubah->Perencanaan Pengadaan Laboratorium nomor:'.$data->no_ajuan);
 
-        return view('invent/planlab.edit',compact('data','detail','satuan','lab'));
+        return view('invent/planlab.edit',compact('data','detail','satuan','lab','tahu'));
     }
    
     public function update(Request $request, $id)
@@ -132,14 +135,26 @@ class PlanLabController extends Controller
                     'satuan_id'     => $request->satuan_id[$i],
                     'jumlah'        => $request->jumlah[$i],
                     'katalog'       => $request->katalog[$i],
-                    'kemasan'       => $request->kemasan[$i]
+                    'kemasan'       => $request->kemasan[$i],
+                    'file_foto' => $request->file_foto[$i]
                 ];
                 Planlab_detail::updateOrCreate([
                   'id'   => $request->plandet_id[$i],
                 ],$data);
+
+                $request->file_foto[$i]->move(
+                    'images/planlab/'.$detail->id,
+                    $request->file_foto[$i]->getClientOriginalName()
+                 ); // pindah file user manual k inventaris folder id file
+
+                 $detail->file_foto = $request->file_foto[$i]->getClientOriginalName(); // update isi kolum file user dengan origin gambar
+                 $detail->save(); // save ke database
           }
 
         DB::commit();
+
+        LogActivity::addToLog('Ubah->Perencanaan Pengadaan Laboratorium nomor:'.$data->no_ajuan);
+
         return redirect('/invent/planlab/')->with('sukses','Barang sudah diperbaharui');
     }
 

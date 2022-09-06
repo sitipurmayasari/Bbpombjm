@@ -58,6 +58,7 @@ Route::get('/qR/{id}/calibration','Calibration\GlassKualController@detail')->nam
   //--------------------------calibration------------------------------------------
   Route::get('/calibration/dashboard','Calibration\DashboardController@index')->name('dashboard');
   Route::get('/calibration/dashboardnapza','Calibration\DashboardNapzaController@index')->name('dashboard');
+  Route::get('/calibration/dashboardtomiku','Calibration\DashboardTomikuController@index')->name('dashboard');
 
    //--------------------------QMS------------------------------------------
    Route::get('/qms/dashboard','Qms\DashboardController@index')->name('dashboard');
@@ -346,7 +347,6 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/calibration/napzastock','Calibration\NapzastockController@index')->name('napzastock');
     //Route untuk Laporan Stok Opname
     Route::get('/calibration/napzaopname','Calibration\NapzaopnameController@index')->name('napzaopname');
-
     
 
 });

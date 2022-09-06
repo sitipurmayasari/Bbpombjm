@@ -5,24 +5,36 @@ namespace App\Http\Controllers\Amdk;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
-use App\Agenda;
+use App\Absensi;
 
 class PermitController extends Controller
 {
     public function index(Request $request)
     {
-        $data = Agenda::orderBy('id','desc')
-                ->select('agenda.*','agenda_kategori.nama')
-                ->leftJoin('agenda_kategori','agenda_kategori.id','=','agenda.agenda_kategori_id')
-                ->when($request->keyword, function ($query) use ($request) {
-                    $query->where('titles','LIKE','%'.$request->keyword.'%')
-                            ->orWhere('detail', 'LIKE','%'.$request->keyword.'%')
-                            ->orWhere('date_from', 'LIKE','%'.$request->keyword.'%')
-                            ->orWhere('date_to', 'LIKE','%'.$request->keyword.'%');
-                    })
-                ->paginate('10');
-        // return view('amdk/permit.index',compact('data'));
-        return view('calibration/dashboard.index');
+        $peg =auth()->user()->id;
+        $data = Absensi::orderBy('id','desc')
+                        ->SelectRaw('absensi.*, users.name,
+                                    CASE
+                                        WHEN periode_month = 1 THEN "Januari"
+                                        WHEN periode_month = 2 THEN "februari"
+                                        WHEN periode_month = 3 THEN "Maret"
+                                        WHEN periode_month = 4 THEN "April"
+                                        WHEN periode_month = 5 THEN "Mei"
+                                        WHEN periode_month = 6 THEN "Juni"
+                                        WHEN periode_month = 7 THEN "Juli"
+                                        WHEN periode_month = 8 THEN "Agustus"
+                                        WHEN periode_month = 9 THEN "September"
+                                        WHEN periode_month = 10 THEN "Oktober"
+                                        WHEN periode_month = 11 THEN "November"
+                                        ELSE "Desember"
+                                    END AS bulan ')
+                        ->LeftJoin('users','users.id','absensi.users_id')
+                        ->where('users.id',$peg)
+                        ->when($request->keyword, function ($query) use ($request) {
+                            $query->where('name','LIKE','%'.$request->keyword.'%');
+                            })
+                        ->paginate('25');
+                return view('amdk/permit.index',compact('data'));
     }
 
     public function create()

@@ -47,16 +47,8 @@
                 z-index: -100;
         }
 
-    
-        html, table{
-            font-family: "Bookman Old Style";
-            font-size: 12;
-
-            
-        }
 
         #kop{
-            font-family: "Bookman Old Style";
             margin-left: 10%;
             margin-right: 10%;
             line-height: 1.5;
@@ -66,8 +58,6 @@
         
 
         #isi{
-            font-family: "Bookman Old Style";
-            font-size: 12;
             margin-left: 10%;
             margin-right: 10%;
             line-height: 1;
@@ -78,20 +68,16 @@
             text-align: justify;
             vertical-align: top;
             line-height: 1;
-            font-size: 12;
             border-collapse: collapse;
         }
 
         .ttdini{
             text-align: center;
-            margin-right: 10%;
-            font-size: 12;
         }
 
         .detail{
-            font-family: "Bookman Old Style";
             border: 1px solid black;
-            font-size: 10;
+            font-size: 11px;
             text-align: left;
             line-height: 2;
             vertical-align: top
@@ -99,22 +85,17 @@
         th{
             border: 1px solid black;
             font-weight: bold;
-            font-size: 10; 
             vertical-align: middle;
             text-align: center;
             line-height: 1;
         }
 
         .gbr{
-            padding-left: 5px;
-            padding-top: 5px;
+            padding-top: 8px;
         }
 
 </style>
 <body>
-     {{-- <header>
-        <img src="{{asset('images/kop.png')}}" style="width: 100%"> <br>
-    </header> --}}
     <div class="col-sm-12" style="text-align: center">
         <div style="align=center;" id="kop">
             <u><b style="font-size: 14">PERENCANAAN PENGADAAN LAB TAHUN {{$data->years}}</b></u><br>
@@ -174,9 +155,9 @@
                         <td class="detail"> {{$item->katalog}}</td>
                         <td class="detail"> {{$item->kemasan}} / {{$item->satuan->satuan}}</td>
                         <td class="detail" style="text-align: center">{{$item->jumlah}} {{$item->satuan->satuan}}</td>
-                        <td class="detail">
+                        <td class="detail" style="text-align: center">
                             <div class="gbr">
-                                <img src="{{$item->getFoto()}}"  style="width:100px">
+                                <img src="{{$item->getFoto()}}" style="width:100px;">
                             </div>
                         </td>
                     </tr>
@@ -196,12 +177,32 @@
                 </td>
             </tr>
             <tr>
-               <td style="text-align:center;">
-               </td>
-               <td  style="text-align:center; vertical-align:top; height: 10%">Yang Meminta, </td>
+                <td style="text-align:center;">Mengetahui <br>
+                    @if ($mengetahui != null)
+                            @if ($mengetahui->pjs != null)
+                            {{$mengetahui->pjs}}
+                            {{$mengetahui->jabatan->jabatan}} 
+                        @else
+                            {{$mengetahui->jabatan->jabatan}} 
+                        @endif
+                        
+                        @if ($mengetahui->jabatan_id == 5 )
+                            {{$mengetahui->subdivisi->nama_subdiv}}
+                        @elseif ($mengetahui->jabatan_id == 7 or $mengetahui->jabatan_id==11)
+                            {{$mengetahui->divisi->nama}}
+                        @else
+                            Kepala Balai Besar POM di Banjarmasin
+                        @endif
+                    @else
+                        SILAHKAN CEK SETUP PEJABAT
+                    @endif
+                </td>
+                <td  style="text-align:center; vertical-align:top; height: 10%">Yang Meminta, </td>
             </tr>
             <tr>
                 <td style="text-align:center;">
+                    <u>{{$mengetahui->user->name}}</u> <br>
+                    (NIP. {{$mengetahui->user->no_pegawai}})
                 </td>
                 <td style="text-align:center;">
                     <u>{{$data->user->name}}</u> <br>

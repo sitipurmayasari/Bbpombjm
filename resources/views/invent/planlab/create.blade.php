@@ -15,18 +15,18 @@
                 <div class="panel-heading"><h3 class="panel-title">Perencanaan Pengadaan Laboratorium</h3></div>
                 <div class="panel-body">
                     <div class="col-md-12">
-                        <div class="col-md-8">
+                        <div class="col-md-4">
                             <div class="col-md-12">
                                 <label>NO. PENGAJUAN*</label><br>
                                 <input type="text" id="no_adu" readonly required
-                                class="col-xs-9 col-sm-9 required " 
+                                class="col-xs-11 col-sm-11 required " 
                                 name="no_ajuan"
                                 value="{{$no_ajuan}}"
                                 />
                             </div>
                             <div class="col-md-12">
                                 <label>Asal Lab *</label><br>
-                                <select name="labory_id" id="labory_id" class="col-xs-9 col-sm-9 required" required>
+                                <select name="labory_id" id="labory_id" class="col-xs-11 col-sm-11 required" required>
                                     @foreach ($lab as $lok)
                                         <option value="{{$lok->id}}">{{$lok->name}}</option>
                                     @endforeach
@@ -37,11 +37,11 @@
                             <div class="col-md-12">
                                 <label>TANGGAL AJUAN *</label><br>
                                 <input type="text" name="tgl_ajuan" readonly 
-                                            class="col-xs-9 col-sm-9 " value="{{date('Y-m-d')}}">
+                                            class="col-xs-11 col-sm-11 " value="{{date('Y-m-d')}}">
                             </div>
                             <div class="col-md-12">
                                 <label> Tahun Ajuan *</label><br>
-                                <select id="tahun" name="years" class="col-xs-9 col-sm-9" required>
+                                <select id="tahun" name="years" class="col-xs-11 col-sm-11" required>
                                     @php
                                         $now=date('Y');
                                         $c = $now+1;
@@ -51,7 +51,23 @@
                                                 }
                                     @endphp
                                 </select>
+                                
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="col-md-12">
+                                <label>PENGAJU *</label><br>
+                                <input type="text" class="col-xs-11 col-sm-11" readonly value="{{auth()->user()->name}}">
                                 <input type="hidden" name="users_id" value="{{auth()->user()->id}}">
+                            </div>
+                            <div class="col-md-12">
+                                <label>MENGETAHUI *</label><br>
+                                <select name="pejabat_id" class="col-xs-11 col-sm-11 select2">
+                                    <option value="">Pilih Pejabat</option>
+                                    @foreach ($tahu as $lok)
+                                        <option value="{{$lok->id}}">{{$lok->user->name}} ({{$lok->jabatan->jabatan}})</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>
