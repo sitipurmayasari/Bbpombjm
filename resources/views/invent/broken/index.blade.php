@@ -62,13 +62,8 @@
                        @endif
                     </td>
                     <td>{{$row->barang->nama_barang}} - {{$row->barang->merk}}</td>
-                    {{-- <td>
+                    <td>
                         <a class="btn btn-primary" href="/invent/broken/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
-                    </td> --}}
-                    {{-- <td style="text-align: center">
-                        <a href="/invent/broken/edit/{{$row->id}}" class="btn btn-warning">
-                            <i class="glyphicon glyphicon-edit"></i>
-                        </a> --}}
                     </td>
                 </tr>
               

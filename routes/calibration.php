@@ -46,4 +46,9 @@
   Route::post('/calibration/napzaopname/cetak','Calibration\NapzaopnameController@cetak')->name('napzaopname.cetak');
 
 
-//   --------------------------------------NEW MENU--------------------------------------------------
+//   --------------------------------------MIKRO--------------------------------------------------
+//Route untuk Media Mikrobiologi
+  Route::post('/calibration/mediamikro/store','Calibration\MediaController@store')->name('media.store');
+  Route::get('/calibration/mediamikro/delete/{id}','Calibration\MediaController@delete')->name('media.delete');
+  Route::get('/calibration/mediamikro/edit/{id}','Calibration\MediaController@edit')->name('media.edit');
+  Route::post('/calibration/mediamikro/update/{id}','Calibration\MediaController@update')->name('media.update');
