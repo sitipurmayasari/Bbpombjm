@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Planlab_detail extends Model
 {
     protected $table = "planlab_detail";
-    protected $fillable = ["planlab_id","names","katalog","kemasan", "jumlah","satuan_id","file_foto"];
+    protected $fillable = ["planlab_id","names","katalog","kemasan", "jumlah","satuan_id","file_foto","setuju"];
     
     public function satuan() 
     {

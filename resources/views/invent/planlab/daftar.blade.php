@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('breadcrumb')
-    <li>Pengajuan</li>
-    <li> Perencanaan Pengadaan Laboratorium</li>
+    <li>Persetujuan</li>
+    <li>Daftar Perencanaan Pengadaan Laboratorium</li>
 @endsection
 @section('content')
 <form method="get" action="{{ url()->current() }}">
@@ -10,9 +10,6 @@
             <div class="row">
                 <div class="form-group col-sm-12">
                     <div class="row">
-                        <div class="form-group col-xs-12 col-sm-3" style="float: left">
-                            <a href="{{Route('planlab.create')}}"  class="btn btn-primary">Tambah Data</a>   
-                         </div>
                         <div class="form-group col-xs-12 col-sm-3" style="float: right">
                             <div class="input-group">
                                 <input type="text" class="form-control gp-search" name="keyword" placeholder="Cari " value="" autocomplete="off">
@@ -50,13 +47,15 @@
                     <td>{{$row->lab->name}}</td>
                     <td>{{$row->user->name}}</td>
                     <td>
-                        <a class="btn btn-primary" href="/invent/planlab/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
+                        <a class="btn btn-primary" href="/invent/planlab/print2/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
                     </td>
                     <td>
                         @if ($row->status=="Y")
                             <a href="#" class="btn btn-success">Telah Diproses</a>
                         @else
-                            <a href="#" class="btn btn-warning">Belum Diproses</a>
+                            <a href="/invent/planlab/edit/{{$row->id}}" class="btn btn-warning">
+                               Proses Pengajuan
+                            </a>
                         @endif
                         
                     </td>

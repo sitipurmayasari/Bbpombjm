@@ -34,6 +34,23 @@ class PlanLabController extends Controller
         return view('invent/planlab.index',compact('data'));
     }
 
+    public function daftar(Request $request)
+    {   
+        $peg =auth()->user()->id;
+        $data = Planlab::selectraw('planlab.*')
+                    ->orderBy('planlab.id','desc')
+                    ->Leftjoin('labory','labory.id','planlab.labory_id')
+                    ->Leftjoin('users','users.id','planlab.users_id')
+                    ->when($request->keyword, function ($query) use ($request) {
+                        $query->where('no_ajuan','LIKE','%'.$request->keyword.'%')
+                                ->orWhere('tgl_ajuan', 'LIKE','%'.$request->keyword.'%')
+                                >orWhere('users.name', 'LIKE','%'.$request->keyword.'%')
+                                ->orWhere('labory.name', 'LIKE','%'.$request->keyword.'%');
+                    })
+                    ->paginate('10');
+        return view('invent/planlab.daftar',compact('data'));
+    }
+
     public function create()
     {
         $user = User::all()
@@ -105,22 +122,31 @@ class PlanLabController extends Controller
         return $pdf->stream();
     }
 
+    public function print2($id)
+    {
+        $data = Planlab::where('id',$id)->first();
+        $detail = Planlab_detail::where('planlab_id',$id)->where('setuju','Y')->get();
+        $mengetahui = pejabat::where('id',$data->pejabat_id)->first();
+
+        $pdf = PDF::loadview('invent/planlab.print2',compact('data','detail','mengetahui'));
+        return $pdf->stream();
+    }
+
+
     public function edit($id)
     {
         $data = Planlab::where('id',$id)->first();
         $detail = Planlab_detail::where('planlab_id',$id)->get();
         $satuan = Satuan::all();
         $lab = Labory::all();
-        $tahu = Pejabat::whereraw('pjs is NULL AND jabatan_id != 6')->Orderby('id','desc')->get();
 
-
-        return view('invent/planlab.edit',compact('data','detail','satuan','lab','tahu'));
+        return view('invent/planlab.edit',compact('data','detail','satuan','lab'));
     }
    
     public function update(Request $request, $id)
     {
-        $data = Planlab::find($id);
-        $data->touch();
+        $datal = Planlab::find($id);
+        $datal->touch();
 
         DB::beginTransaction(); 
           //---------------planlab----------------------
@@ -136,24 +162,16 @@ class PlanLabController extends Controller
                     'jumlah'        => $request->jumlah[$i],
                     'katalog'       => $request->katalog[$i],
                     'kemasan'       => $request->kemasan[$i],
-                    'file_foto' => $request->file_foto[$i]
+                    'setuju'       => $request->setuju[$i]
                 ];
                 Planlab_detail::updateOrCreate([
                   'id'   => $request->plandet_id[$i],
                 ],$data);
-
-                $request->file_foto[$i]->move(
-                    'images/planlab/'.$detail->id,
-                    $request->file_foto[$i]->getClientOriginalName()
-                 ); // pindah file user manual k inventaris folder id file
-
-                 $detail->file_foto = $request->file_foto[$i]->getClientOriginalName(); // update isi kolum file user dengan origin gambar
-                 $detail->save(); // save ke database
           }
 
         DB::commit();
 
-        LogActivity::addToLog('Ubah->Perencanaan Pengadaan Laboratorium nomor:'.$data->no_ajuan);
+        LogActivity::addToLog('Proses->Perencanaan Pengadaan Laboratorium nomor:'.$datal->no_ajuan);
 
         return redirect('/invent/planlab/')->with('sukses','Barang sudah diperbaharui');
     }

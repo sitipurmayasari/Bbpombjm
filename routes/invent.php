@@ -204,6 +204,7 @@
   Route::get('/invent/planlab/create','Invent\PlanLabController@create')->name('planlab.create');
   Route::post('/invent/planlab/store','Invent\PlanLabController@store')->name('planlab.store');
   Route::get('/invent/planlab/print/{id}','Invent\PlanLabController@print')->name('planlab.print');
+  Route::get('/invent/planlab/print2/{id}','Invent\PlanLabController@print2')->name('planlab.print2');
   Route::get('/invent/planlab/edit/{id}','Invent\PlanLabController@edit')->name('planlab.edit');
   Route::post('/invent/planlab/update/{id}','Invent\PlanLabController@update')->name('planlab.update');
   Route::get('/invent/planlab/delete/{id}','Invent\PlanLabController@delete')->name('planlab.delete');

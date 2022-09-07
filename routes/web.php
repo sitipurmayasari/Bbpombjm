@@ -151,6 +151,7 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/invent/rekapsbb','Invent\RekapSbbController@index')->name('rekapsbb');
     //Route untuk Perencanaan Pengadaan Lab
     Route::get('/invent/planlab','Invent\PlanLabController@index')->name('planlab');
+    Route::get('/invent/planlab/daftar','Invent\PlanLabController@daftar')->name('planlab.daftar');
 
     //--------------------------AMDK------------------------------------------
     //Route untuk pegawai
