@@ -136,7 +136,7 @@ class OutstationController extends Controller
         
         if ($jmlpeg->hitung > 8) {
           $pdf = PDF::loadview('finance/outstation.printSTbanyak',compact('data','isian','menyetujui'));
-        }elseif ($jmlpeg->hitung >= 3 && $jmlpeg->hitung <= 5 ){
+        }elseif ($jmlpeg->hitung >= 4 && $jmlpeg->hitung <= 5 ){
           $pdf = PDF::loadview('finance/outstation.printstgantung',compact('data','isian','menyetujui','now'));
         }elseif ($jmlpeg->hitung > 5 && $jmlpeg->hitung <= 8){
           $pdf = PDF::loadview('finance/outstation.printstgantung2',compact('data','isian','menyetujui','now'));
