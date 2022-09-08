@@ -218,8 +218,8 @@
     <div>
         <table style="width: 100%" class="ttd">
             <tr class="ttd">
-                <td class="ttd">PIHAK PERTAMA</td>
-                <td class="ttd">PIHAK KEDUA</td>
+                <td class="ttd" style="width: 50%">PIHAK PERTAMA</td>
+                <td class="ttd" tyle="width: 50%">PIHAK KEDUA</td>
             </tr>
             <tr class="ttd">
                 <td class="ttd">Yang Menyerahkan,</td>

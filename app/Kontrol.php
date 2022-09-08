@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class BakteriDetail extends Model
+class Kontrol extends Model
 {
     protected $table = "kontrol";
     protected $fillable = ['media_id','status','default'

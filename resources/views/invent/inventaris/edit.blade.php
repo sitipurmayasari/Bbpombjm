@@ -141,7 +141,7 @@
                             <div class="col-sm-8">
                                 <select id="status" name="penanggung_jawab" class="col-xs-10 col-sm-10 select2">
                                     @foreach ($user as $peg)
-                                        @if ($data->pegawai_id==$peg->id)
+                                        @if ($data->penanggung_jawab==$peg->id)
                                             <option value="{{$peg->id}}" selected>{{$peg->no_pegawai}} || {{$peg->name}}</option> 
                                         @else
                                         <option value="{{$peg->id}}">{{$peg->no_pegawai}} || {{$peg->name}}</option>

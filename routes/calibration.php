@@ -52,3 +52,9 @@
   Route::get('/calibration/mediamikro/delete/{id}','Calibration\MediaController@delete')->name('media.delete');
   Route::get('/calibration/mediamikro/edit/{id}','Calibration\MediaController@edit')->name('media.edit');
   Route::post('/calibration/mediamikro/update/{id}','Calibration\MediaController@update')->name('media.update');
+
+  //Route untuk Kontrol Media Mikrobiologi
+  Route::post('/calibration/kontrolmikro/store','Calibration\KontrolController@store')->name('kontrol.store');
+  Route::get('/calibration/kontrolmikro/delete/{id}','Calibration\KontrolController@delete')->name('kontrol.delete');
+  Route::get('/calibration/kontrolmikro/edit/{id}','Calibration\KontrolController@edit')->name('kontrol.edit');
+  Route::post('/calibration/kontrolmikro/update/{id}','Calibration\KontrolController@update')->name('kontrol.update');
