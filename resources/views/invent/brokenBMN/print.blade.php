@@ -12,7 +12,7 @@
         @page {
             size: A4;
             font-family: Arial;
-            margin: 100px 0px 100px 0px;
+            margin: 150px 0px 100px 0px;
         }
 
         html,table{

@@ -16,6 +16,7 @@ use App\Divisi;
 use PDF;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use LogActivity;
 
 class BrokenBMNController extends Controller
 {
@@ -64,6 +65,9 @@ class BrokenBMNController extends Controller
                 BrokenBMN_det::create($data);
             }
             DB::commit(); 
+
+            LogActivity::addToLog('Simpan->BMN Rusak, nomor = '.$request->nomor);
+
             return redirect('/invent/brokenBMN/')->with('sukses','Tersimpan');
     }
 
@@ -97,6 +101,7 @@ class BrokenBMNController extends Controller
     {
 
         $sbb = BrokenBMN::find($id);
+        LogActivity::addToLog('Simpan->BMN Rusak, nomor = '.$sbb->nomor);
         $sbb->update($request->all());
         
         DB::beginTransaction();
@@ -148,6 +153,7 @@ class BrokenBMNController extends Controller
         $detail->delete();
 
         $data = BrokenBMN::find($id);
+        LogActivity::addToLog('Simpan->BMN Rusak, nomor = '.$data->nomor);
         $data->delete();
 
         return redirect('/invent/brokenBMN')->with('sukses','Data Terhapus');

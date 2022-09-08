@@ -25,6 +25,7 @@ use DateTime;
 use Carbon\Carbon;
 use App\Pok_detail;
 use Exception;
+use LogActivity;
 
 
 class OutstationController extends Controller
@@ -104,6 +105,8 @@ class OutstationController extends Controller
             }
 
             DB::commit();
+
+            LogActivity::addToLog('Simpan->Surat Tugas, nomor = '.$request->number);
   
           return redirect('/finance/outstation');  
       }
@@ -136,7 +139,9 @@ class OutstationController extends Controller
         
         if ($jmlpeg->hitung > 8) {
           $pdf = PDF::loadview('finance/outstation.printSTbanyak',compact('data','isian','menyetujui'));
-        }elseif ($jmlpeg->hitung >= 4 && $jmlpeg->hitung <= 5 ){
+        }elseif ($jmlpeg->hitung >= 3 && $jmlpeg->hitung <= 5  && $data->dasar != null){
+          $pdf = PDF::loadview('finance/outstation.printstgantung',compact('data','isian','menyetujui','now'));
+        }elseif ($jmlpeg->hitung >= 4 && $jmlpeg->hitung <= 5 && $data->dasar == null){
           $pdf = PDF::loadview('finance/outstation.printstgantung',compact('data','isian','menyetujui','now'));
         }elseif ($jmlpeg->hitung > 5 && $jmlpeg->hitung <= 8){
           $pdf = PDF::loadview('finance/outstation.printstgantung2',compact('data','isian','menyetujui','now'));
@@ -276,6 +281,7 @@ class OutstationController extends Controller
       {
         $data = Outstation::find($id);
         $data->touch();
+        LogActivity::addToLog('Ubah->Surat Tugas, nomor = '.$data->number);
 
         $outstation_id = $id;
         DB::beginTransaction(); 
@@ -332,6 +338,7 @@ class OutstationController extends Controller
       public function delete($id)
     {
         $data = Outstation::find($id);
+        LogActivity::addToLog('Hapus->Surat Tugas, nomor = '.$data->number);
         $data->delete();
         return redirect('/finance/outstation')->with('sukses','Data Terhapus');
     }
