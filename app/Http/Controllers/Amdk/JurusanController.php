@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Pendidikan;
 use App\Jurusan;
+use LogActivity;
 
 class JurusanController extends Controller
 {
@@ -20,7 +21,9 @@ class JurusanController extends Controller
     public function store(Request $request)
     {
         
-        Jurusan::create($request->all());
+        $data= Jurusan::create($request->all());
+        LogActivity::addToLog('Simpan->Jurusan, id = '.$data->id);
+
         return redirect('/amdk/jurusan')->with('sukses','Data Tersimpan');
     }
    
@@ -36,6 +39,8 @@ class JurusanController extends Controller
     {
         $data = Jurusan::find($id);
         $data->update($request->all());
+        LogActivity::addToLog('Update->Jurusan, id = '.$id);
+
         return redirect('/amdk/jurusan')->with('sukses','Data Diperbaharui');
     }
 
@@ -43,6 +48,7 @@ class JurusanController extends Controller
     public function delete($id)
     {
         $data = Jurusan::find($id);
+        LogActivity::addToLog('Hapus->Jurusan, '.$data->jurusan);
         $data->delete();
         return redirect('/amdk/jurusan')->with('sukses','Data Terhapus');
     }

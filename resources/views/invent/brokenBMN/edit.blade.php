@@ -70,7 +70,7 @@
                             <th class="text-center col-md-1">No</th>
                             <th class="text-center col-md-3">Nama Barang</th>
                             <th class="text-center col-md-2">Merk</th>
-                            <th class="text-center col-md-1">No_Seri</th>
+                            <th class="text-center col-md-1">NUP</th>
                             <th class="text-center col-md-4">Keterangan</th>
                             <th class="text-center col-md-1">Aksi</th>
                         </thead>

@@ -35,7 +35,7 @@
                                 <input type="hidden" value="R" name="kind"  />
                                 <input type="text" 
                                         class="col-xs-10 col-sm-10 required " 
-                                        name="kode_barang" readonly 
+                                        name="kode_barang" 
                                         value="{{$data->kode_barang}}"/>
                             </div>
                         </div>
@@ -74,7 +74,7 @@
 
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> No. Seri
+                            for="form-field-1"> NUP
                             </label>
                             <div class="col-sm-8">
                                 <input type="text" value="{{$data->no_seri}}"

@@ -64,8 +64,7 @@ class BrokenBMNController extends Controller
                 BrokenBMN_det::create($data);
             }
             DB::commit(); 
-            // return redirect('/invent/brokenBMN/')->with('sukses','Tersimpan');
-        return redirect('/invent/brokenBMN/print/'.$sbb_id);
+            return redirect('/invent/brokenBMN/')->with('sukses','Tersimpan');
     }
 
     public function print($id)
