@@ -195,6 +195,7 @@
                     <th class="atas"> KODE BARANG</th>
                     <th class="atas"> NUP</th>
                     <th class="atas"> LOKASI</th>
+                    <th class="atas"> STATUS</th>
                 </tr>
             </thead>
             <tbody class="atas">
@@ -208,6 +209,7 @@
                         <td class="atas">&nbsp; {{$item->barang->kode_barang}}</td>
                         <td class="atas" style="text-align: center;"> {{$item->barang->no_seri}}</td>
                         <td class="atas">&nbsp; {{$item->barang->location->nama}}</td>
+                        <td class="atas">&nbsp; {{$item->ket}}</td>
                     </tr>
                 @endforeach
                 
