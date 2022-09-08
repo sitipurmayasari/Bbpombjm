@@ -16,10 +16,10 @@ class KontrolController extends Controller
 {
     public function index(Request $request)
     {
-        $jenjang = Media::all();
+        $media = Media::all();
         $data = Kontrol::orderBy('id','desc')
                 ->paginate('10');
-        return view('calibration/kontrolmikro.index',compact('data','jenjang'));
+        return view('calibration/kontrolmikro.index',compact('data','media'));
     }
 
     public function store(Request $request)
@@ -32,9 +32,9 @@ class KontrolController extends Controller
    
     public function edit($id)
     {
-        $jenjang = Media::all();
+        $media = Media::all();
         $data = Kontrol::where('id',$id)->first();
-        return view('calibration/kontrolmikro.edit',compact('data','jenjang'));
+        return view('calibration/kontrolmikro.edit',compact('data','media'));
     }
 
    

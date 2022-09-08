@@ -39,9 +39,8 @@ class BrokenBMNController extends Controller
                             ->where('kind','R')
                             ->get();
         $user = User::where('id','!=','1')->where('aktif','Y')->get();
-        $norusak = $this->getNoRusak();
         $div = Divisi::where('id','!=','1')->get();
-        return view('invent/brokenBMN.create',compact('data','user','norusak','div'));
+        return view('invent/brokenBMN.create',compact('data','user','div'));
     }
 
    
@@ -121,21 +120,6 @@ class BrokenBMNController extends Controller
       DB::commit();
 
       return redirect('/invent/brokenBMN')->with('sukses','Data Diperbaharui');
-    }
-
-    function getNoRusak(){
-      $nomor = BrokenBMN::orderBy('id','desc')->whereYear('tanggal',date('Y'))->get();
-      $first = "001";
-      if($nomor->count()>0){
-        $first = $nomor->first()->id+1;
-        if($first < 10){
-            $first = "00".$first;
-        }else if($first < 100){
-            $first = "0".$first;
-        }
-      }
-      $norusak = $first."/BA-BMNRUSAK/BBPOM/".date('m')."/".date('Y');
-      return $norusak;
     }
 
     public function deletelist($id)

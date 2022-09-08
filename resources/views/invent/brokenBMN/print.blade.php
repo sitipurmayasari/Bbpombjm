@@ -12,6 +12,7 @@
         @page {
             size: A4;
             font-family: Arial;
+            font-size: 12;
             margin: 150px 0px 100px 0px;
         }
 
@@ -63,7 +64,8 @@
 </head>
 <body>
     <div id="kop">
-        <b>Berita Acara Penyerahan BMN Rusak Berat</b>
+        <b>BERITA ACARA SERAH TERIMA</b> <br>
+        NOMOR : {{$data->nomor}}
     </div>
     <br><br>
     <div id="isi">
@@ -119,7 +121,7 @@
     @endphp
 
         Pada hari {{$days}} tanggal {{$b}} bulan {{$mon}} tahun {{$e}},
-        telah dilakukan serah terima BMN rusak berat antara :
+        telah dilakukan serah terima BMN antara :
         <table style="width: 100%">
             <tr>
                 <td style="text-align: center; width:5%"> 1. </td>
@@ -183,15 +185,15 @@
             </tr>
         </table>
         <br>
-        Dengan ini menyatakan bahwa PIHAK PERTAMA telah menyerahkan barang tersebut kepada PIHAK KEDUA, yaitu :
+        Dengan ini menyatakan bahwa PIHAK PERTAMA telah menyerahkan barang kepada PIHAK KEDUA, yaitu :
         <br><br>
         <table style="width: 100%" class="atas">
             <thead class="atas">
                 <tr class="atas">
                     <th class="atas" style="width: 5%;"> NO</th>
                     <th class="atas"> NAMA BARANG</th>
-                    <th class="atas"> NUP</th>
                     <th class="atas"> KODE BARANG</th>
+                    <th class="atas"> NUP</th>
                     <th class="atas"> LOKASI</th>
                 </tr>
             </thead>
@@ -202,9 +204,9 @@
                 @foreach ($detail as $item)
                     <tr class="atas">
                         <td class="atas" style="text-align: center; height: 40px;"> {{$no++}}</td>
-                        <td id="isiatas"> {{$item->barang->nama_barang}} {{$item->barang->merk}}</td>
-                        <td class="atas" style="text-align: center;"> {{$item->barang->no_seri}}</td>
+                        <td id="isiatas"> {{$item->barang->nama_barang}} {{$item->barang->merk}}</td>                       
                         <td class="atas">&nbsp; {{$item->barang->kode_barang}}</td>
+                        <td class="atas" style="text-align: center;"> {{$item->barang->no_seri}}</td>
                         <td class="atas">&nbsp; {{$item->barang->location->nama}}</td>
                     </tr>
                 @endforeach

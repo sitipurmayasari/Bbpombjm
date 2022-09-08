@@ -17,11 +17,10 @@
                <div class="col-md-12">
                 <fieldset>
                 <div class="col-md-4">
-                    <label for="">NO. ADUAN*</label>
-                    <input type="text" id="no_adu" readonly required
+                    <label for="">NOMOR (SIPANDA)*</label>
+                    <input type="text" id="no_adu" required
                     class="col-xs-10 col-sm-10 required " 
-                    name="nomor"
-                    value="{{$norusak}}"/>
+                    name="nomor"/>
                 </div>
                 <div class="col-md-2">
                     <label for="">Tanggal *</label>
@@ -61,10 +60,10 @@
                     <table id="myTable" class="table table-bordered table-hover text-center">
                         <thead>
                             <th class="text-center col-md-1">No</th>
-                            <th class="text-center col-md-3">Nama Barang</th>
+                            <th class="text-center col-md-4">Nama Barang</th>
                             <th class="text-center col-md-2">Merk</th>
                             <th class="text-center col-md-1">NUP</th>
-                            <th class="text-center col-md-4">Keterangan</th>
+                            <th class="text-center col-md-2">Kondisi</th>
                             <th class="text-center col-md-1">Aksi</th>
                         </thead>
                         <tbody>
@@ -77,7 +76,7 @@
                                     onchange="getData1()">
                                         <option value="">Pilih Barang</option>
                                         @foreach ($data as $item)
-                                            <option value="{{$item->id}}">{{$item->nama_barang}} ({{$item->kode_barang}})</option>
+                                            <option value="{{$item->id}}">{{$item->nama_barang}} ({{$item->kode_barang}}) || NUP : {{$item->no_seri}}</option>
                                         @endforeach
                                     </select>
                                 </td>
@@ -88,7 +87,7 @@
                                     <input type="text" class="form-control" readonly id="no_seri-1">
                                 </td>
                                 <td>
-                                    <input type="text" name="ket[]" class="form-control" required>
+                                    <input type="text" name="ket[]" class="form-control" placeholder="rusak/rusak berat" required>
                                 </td>
                                 <td>
                                 </td>
@@ -149,14 +148,14 @@
                         '<select name="inventaris_id[]" class="col-xs-11 col-sm-11 select2" required id="barang_id-'+new_baris+'" onchange="getData('+new_baris+')">'+
                             '<option value="">Pilih Barang</option>'+   
                             '@foreach ($data as $item)'+
-                                '<option value="{{$item->id}}">{{$item->nama_barang}} {{$item->merk}} ({{$item->kode_barang}})</option>'+              
+                                '<option value="{{$item->id}}">{{$item->nama_barang}} {{$item->merk}} ({{$item->kode_barang}}) || NUP : {{$item->no_seri}}</option>'+              
                             '@endforeach'+                   
                         '</select>'+            
                     '</td>'+
                     '<td><input type="text" class="form-control" readonly id="merk-'+new_baris+'"></td>'+
                     '<td><input type="text" class="form-control" readonly id="no_seri-'+new_baris+'"></td>'+
                     '<td>'+
-                        '<input type="text" name="ket[]" class="form-control" required>'+
+                        '<input type="text" name="ket[]" placeholder="rusak/rusak berat"  class="form-control" required>'+
                     '</td>'+
                         '<td><button type="button" class="btn btn-danger" onclick="deleteRow('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button></td>'+
                     '</tr>';

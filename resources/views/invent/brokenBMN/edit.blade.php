@@ -17,7 +17,7 @@
                <div class="col-md-12">
                 <fieldset>
                 <div class="col-md-4">
-                    <label for="">NO. ADUAN*</label>
+                    <label for="">NOMOR (SIPANDA)*</label>
                     <input type="text" id="no_adu" readonly required
                     class="col-xs-10 col-sm-10 required " 
                     name="nomor" value="{{$data->nomor}}"/>
@@ -71,7 +71,7 @@
                             <th class="text-center col-md-3">Nama Barang</th>
                             <th class="text-center col-md-2">Merk</th>
                             <th class="text-center col-md-1">NUP</th>
-                            <th class="text-center col-md-4">Keterangan</th>
+                            <th class="text-center col-md-4">Kondisi</th>
                             <th class="text-center col-md-1">Aksi</th>
                         </thead>
                         <tbody>
@@ -90,9 +90,9 @@
                                             <option value="">Pilih Barang</option>
                                             @foreach ($barang as $isi)
                                                 @if ($isi->id == $item->inventaris_id)
-                                                    <option value="{{$isi->id}}" selected>{{$isi->nama_barang}} ({{$isi->kode_barang}})</option>
+                                                    <option value="{{$isi->id}}" selected>{{$isi->nama_barang}} ({{$isi->kode_barang}}) || NUP : {{$item->no_seri}}</option>
                                                 @else
-                                                    <option value="{{$isi->id}}">{{$isi->nama_barang}} ({{$isi->kode_barang}})</option>
+                                                    <option value="{{$isi->id}}">{{$isi->nama_barang}} ({{$isi->kode_barang}}) || NUP : {{$item->no_seri}}</option>
                                                 @endif
                                             @endforeach
                                         </select>
@@ -159,7 +159,7 @@
                     '<select name="inventaris_id[]" class="col-xs-11 col-sm-11 select2" required id="barang_id-'+new_baris+'" onchange="getData('+new_baris+')">'+
                             '<option value="">Pilih Barang</option>'+   
                             '@foreach ($barang as $isi)'+
-                                '<option value="{{$isi->id}}">{{$isi->nama_barang}} {{$isi->merk}} ({{$isi->kode_barang}})</option>'+              
+                                '<option value="{{$isi->id}}">{{$isi->nama_barang}} {{$isi->merk}} ({{$isi->kode_barang}}) || NUP : {{$item->no_seri}}</option>'+              
                             '@endforeach'+                   
                         '</select>'+ 
                     '<input type="hidden" name="outemp_id[]">'+              
