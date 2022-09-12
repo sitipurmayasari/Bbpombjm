@@ -52,9 +52,18 @@
   Route::get('/calibration/mediamikro/delete/{id}','Calibration\MediaController@delete')->name('media.delete');
   Route::get('/calibration/mediamikro/edit/{id}','Calibration\MediaController@edit')->name('media.edit');
   Route::post('/calibration/mediamikro/update/{id}','Calibration\MediaController@update')->name('media.update');
+  Route::get('/calibration/mediamikro/getMedia','Calibration\MediaController@getMedia')->name('media.getMedia');
 
   //Route untuk Kontrol Media Mikrobiologi
   Route::post('/calibration/kontrolmikro/store','Calibration\KontrolController@store')->name('kontrol.store');
   Route::get('/calibration/kontrolmikro/delete/{id}','Calibration\KontrolController@delete')->name('kontrol.delete');
   Route::get('/calibration/kontrolmikro/edit/{id}','Calibration\KontrolController@edit')->name('kontrol.edit');
   Route::post('/calibration/kontrolmikro/update/{id}','Calibration\KontrolController@update')->name('kontrol.update');
+
+  //Route untuk Daftar Bakteri
+  Route::get('/calibration/bakterimikro/create','Calibration\BakteriController@create')->name('bakteri.create');
+  Route::post('/calibration/bakterimikro/store','Calibration\BakteriController@store')->name('bakteri.store');
+  Route::get('/calibration/bakterimikro/delete/{id}','Calibration\BakteriController@delete')->name('bakteri.delete');
+  Route::get('/calibration/bakterimikro/edit/{id}','Calibration\BakteriController@edit')->name('bakteri.edit');
+  Route::post('/calibration/bakterimikro/update/{id}','Calibration\BakteriController@update')->name('bakteri.update');
+  Route::get('/calibration/bakterimikro/deletemed/{id}','Calibration\BakteriController@deletemed')->name('bakteri.deletemed');

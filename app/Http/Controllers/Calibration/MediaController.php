@@ -54,4 +54,12 @@ class MediaController extends Controller
 
         return redirect('/calibration/mediamikro')->with('sukses','Data Terhapus');
     }
+
+    public function getMedia(Request $request)
+    {
+        $id = $request->media_id;
+
+        $data = Media::where('id',$id)->first();
+        return response()->json([ 'success' => true,'data' => $data],200);
+    }
 }
