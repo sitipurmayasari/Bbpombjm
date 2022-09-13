@@ -359,6 +359,9 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     //Route untuk Daftar Bakteri
     Route::get('/calibration/bakterimikro','Calibration\BakteriController@index')->name('bakteri');
 
+    //Route untuk Daftar Bakteri
+    Route::get('/calibration/mikroba','Calibration\MikrobaController@index')->name('mikroba');
+
 });
 
 

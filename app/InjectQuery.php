@@ -205,8 +205,15 @@ class InjectQuery
     public function hitsisaexp($id, $exp_date)
     {
         $data = Entrystock::SelectRaw('SUM(keluar) AS keluar')
-                            ->WhereRaw('entry_date BETWEEN '.$exp_date.' and CURDATE()')
+                            // ->WhereRaw('entry_date BETWEEN '.$exp_date.' and CURDATE()')
                             ->Where('inventaris_id',$id)
+                            ->first();
+            return $data;
+    }
+
+    public function hitdatalast($id)
+    {
+        $data = Entrystock::Where('inventaris_id',$id)->orderby('id','desc')
                             ->first();
             return $data;
     }

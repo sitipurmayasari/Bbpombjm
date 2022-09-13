@@ -38,11 +38,19 @@ class DashboardController extends Controller
                         ->where('users_id',$peg)
                         ->first();
         // media mikro --
-        $mikro = Entrystock::LeftJoin('inventaris','inventaris.id','entrystock.inventaris_id')  
+        // $mikro = Entrystock::LeftJoin('inventaris','inventaris.id','entrystock.inventaris_id')  
+        //                     ->Where('jenis_barang',15)
+        //                     ->where('stockawal','!=',0)
+        //                     ->WhereRaw('exp_date between CURDATE() AND CURDATE()+ INTERVAL 4 MONTH')
+        //                     ->get();  
+        $mikro = Entrystock::SelectRaw('inventaris_id,SUM(stockawal) as stockawal')
+                            ->LeftJoin('inventaris','inventaris.id','entrystock.inventaris_id')  
                             ->Where('jenis_barang',15)
                             ->where('stockawal','!=',0)
                             ->WhereRaw('exp_date between CURDATE() AND CURDATE()+ INTERVAL 4 MONTH')
+                            ->GroupBy('inventaris_id')
                             ->get();  
+     
         //-----
 
         $tglaju = Pengajuan::orderBy('id','desc')

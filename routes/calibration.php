@@ -67,3 +67,11 @@
   Route::get('/calibration/bakterimikro/edit/{id}','Calibration\BakteriController@edit')->name('bakteri.edit');
   Route::post('/calibration/bakterimikro/update/{id}','Calibration\BakteriController@update')->name('bakteri.update');
   Route::get('/calibration/bakterimikro/deletemed/{id}','Calibration\BakteriController@deletemed')->name('bakteri.deletemed');
+  
+
+  //Route untuk Monitoring Mikroba
+  Route::get('/calibration/mikroba/create','Calibration\MikrobaController@create')->name('mikroba.create');
+  Route::post('/calibration/mikroba/store','Calibration\MikrobaController@store')->name('mikroba.store');
+  Route::get('/calibration/mikroba/delete/{id}','Calibration\MikrobaController@delete')->name('mikroba.delete');
+  Route::get('/calibration/mikroba/edit/{id}','Calibration\MikrobaController@edit')->name('mikroba.edit');
+  Route::post('/calibration/mikroba/update/{id}','Calibration\MikrobaController@update')->name('mikroba.update');

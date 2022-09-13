@@ -163,19 +163,20 @@
                 @endphp
                 @foreach($mikro as $row)
                    @php
+                            $last = $injectQuery->hitdatalast($row->inventaris_id);
                             $total = $injectQuery->hitsisaexp($row->inventaris_id, $row->exp_date);
                             $ins = $row->stockawal;
                             $outs = $total->keluar;
                             $sisanya = $ins - $outs;
                     @endphp
 
-                    @if ($sisanya >= 1)
+                    @if ($sisanya > 0)
                     <tr>
                       <td>
                           {{$sisanya}}
                       </td>
                       <td>
-                        {{$row->exp_date}}
+                        {{$last->exp_date}}
                       </td>
                       <td>
                         {{$row->barang->no_seri}}
