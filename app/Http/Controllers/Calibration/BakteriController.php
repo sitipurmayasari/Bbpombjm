@@ -109,5 +109,22 @@ class BakteriController extends Controller
         $data->delete();
         return redirect('/calibration/bakterimikro')->with('sukses','Data Terhapus');
     }
+
+    public function getDaftarMedia(Request $request)
+    {
+        $id = $request->bakteri_id;
+
+        $data = BakteriDetail::SelectRaw('media.*, kontrol.status') 
+                            ->LeftJoin('media','media.id','bakteri_detail.media_id')
+                            ->LeftJoin('kontrol','kontrol.media_id','media.id')
+                            ->where('bakteri_id',$id)
+                            ->where('kontrol.default','Y')
+                            ->get();
+
+        return response()->json([ 
+            'success'   => true,
+            'data'      =>$data
+        ],200);
+    }
     
 }

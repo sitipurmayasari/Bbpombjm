@@ -35,17 +35,24 @@
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
                 <th class="col-md-1">No</th>
-                <th class="col-md-4">Nama Bakteri</th>
-                <th class="col-md-5">Keterangan</th>
+                <th>Nomor Uji</th>
+                <th>Tanggal Uji</th>
+                <th>Nama Bakteri</th>
+                <th>Nama Penguji</th>
+                <th>Cetak</th>
                 <th class="col-md-2">Aksi</th>
             <thead>
             <tbody>   	
-                
-                {{-- @foreach($data as $key=>$row)
+                @foreach($data as $key=>$row)
                 <tr>
-                    <td>{{$data->firstItem() + $key}}</td>
-                    <td>{{$row->name}}</td>
-                    <td>{{$row->ket}}</td>
+                    <td style="text-align: center">{{$data->firstItem() + $key}}</td>
+                    <td>{{$row->number}}</td>
+                    <td>{{tgl_indo($row->dates)}}</td>
+                    <td>{{$row->bakteri->name}}</td>
+                    <td>{{$row->pegawai->name}}</td>
+                    <td>
+                        <a class="btn btn-primary" href="/calibration/mikroba/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
+                    </td>
                     <td>
                         <a href="/calibration/mikroba/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>
@@ -57,7 +64,7 @@
                     </td>
                 </tr>
               
-                @endforeach --}}
+                @endforeach
             <tbody>
         </table>
     </div>

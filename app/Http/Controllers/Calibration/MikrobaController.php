@@ -12,15 +12,22 @@ use App\Media;
 use App\Kontrol;
 use App\Bakteri; 
 use App\BakteriDetail;
+use App\User;
+use App\Monitor;
+use App\MonitorDetail;
+use PDF;
 
 class MikrobaController extends Controller
 {
     public function index(Request $request)
     {
-        $data = Bakteri::selectRaw('bakteri.*')
+        $data = Monitor::selectRaw('monitor.*')
+                    ->leftjoin('bakteri','bakteri.id','monitor.bakteri_id')
+                    ->leftjoin('users','users.id','monitor.users_id')
                     ->when($request->keyword, function ($query) use ($request) {
-                        $query->where('name','LIKE','%'.$request->keyword.'%')
-                                ->orWhere('ket', 'LIKE','%'.$request->keyword.'%');
+                        $query->where('monitor.number','LIKE','%'.$request->keyword.'%')
+                                ->orWhere('bakteri.name', 'LIKE','%'.$request->keyword.'%')
+                                ->orWhere('users.name', 'LIKE','%'.$request->keyword.'%');
                     })
                     ->paginate('10');
         return view('calibration/mikroba.index',compact('data'));
@@ -29,30 +36,49 @@ class MikrobaController extends Controller
     public function create()
     {
         $bakteri = Bakteri::all();
-        return view('calibration/mikroba.create',compact('bakteri'));
+        $nomor = $this->getNomor();
+        $peg = User::where('subdivisi_id','4')->where('aktif','Y')->get();
+        return view('calibration/mikroba.create',compact('bakteri','nomor','peg'));
     }
+
+    function getNomor(){
+
+
+        $nomor = Monitor::orderBy('id','desc')->whereYear('created_at',date('Y'))->get();
+        $first = "001";
+        $bulan = monthToRomawi(date('m'));
+        if($nomor->count()>0){
+          $first = $nomor->first()->id+1;
+          if($first < 10){
+              $first = "00".$first;
+          }else if($first < 100){
+              $first = "0".$first;
+          }
+        }
+        $nosbb = $first."/MIK/".$bulan."/".date('Y');
+        return $nosbb;
+      }
 
    
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'name'  => 'required',
-            'ket'   => 'required',
-        ]); 
+
         DB::beginTransaction(); 
-            $bakteri = Bakteri::create($request->all());
-            $bakteri_id = $bakteri->id;
-            for ($i = 0; $i < count($request->input('media_id')); $i++){
+            $monitor = Monitor::create($request->all());
+            $monitor_id = $monitor->id;
+            for ($i = 0; $i < count($request->input('amati_date')); $i++){
                 $data = [
-                    'bakteri_id' => $bakteri_id,
+                    'monitor_id' => $monitor_id,
+                    'amati_date' => $request->amati_date[$i],
                     'media_id'   => $request->media_id[$i],
+                    'kontrol_id' => $request->kontrol_id[$i],
                 ];
-                BakteriDetail::create($data);
+                MonitorDetail::create($data);
             }
 
         DB::commit();
 
-        LogActivity::addToLog('Simpan->Daftar Bakteri, nama bakteri = '.$request->name);
+        LogActivity::addToLog('Simpan->Monitoring Mikroba, nomor = '.$request->number);
         return redirect('/calibration/mikroba')->with('sukses','Data Tersimpan');
     }
 
@@ -90,24 +116,24 @@ class MikrobaController extends Controller
         return redirect('/calibration/mikroba')->with('sukses','Data Diperbaharui');
     }
 
-    public function deletemed($id)
-    {
-        $data = BakteriDetail::find($id);
-        $out = $data->bakteri_id;
-
-        $data->delete();
-
-        return redirect('calibration/mikroba/edit/'.$out)->with('sukses','Media Terhapus');
-    }
-
-   
     public function delete($id)
     {
-        $data = Bakteri::find($id);
-        $detail = BakteriDetail::where ('bakteri_id',$id)->delete();
-        LogActivity::addToLog('Ubah->Hapus Kontrol Mikrobiologi, kontrol : '.$data->status);
+        $data = Monitor::find($id);
+        $detail = MonitorDetail::where ('bakteri_id',$id)->delete();
+        LogActivity::addToLog('Ubah->Hapus monitoring Mikrobiologi, nomor : '.$data->number);
         $data->delete();
         return redirect('/calibration/mikroba')->with('sukses','Data Terhapus');
+    }
+
+    public function print($id)
+    {
+        $data = Monitor::find($id);
+        $detail = MonitorDetail::where('monitor_id',$id)->get();
+
+        // return view('calibration/mikroba.cetak',compact('data','detail'));
+        $pdf = PDF::loadview('calibration/mikroba.cetak',compact('data','detail'));
+        return $pdf->stream();
+
     }
     
 }

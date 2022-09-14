@@ -27,6 +27,7 @@ use App\Archives;
 use App\Mailclasification;
 use App\Mailsubgroup;
 use App\Mailgroup;
+use App\Kontrol;
 use Illuminate\Support\Facades\DB;
 
 class InjectQuery
@@ -482,6 +483,14 @@ class InjectQuery
     public function berkasdel($id){
         $data = Archives::where('mailclasification_id',$id)->onlyTrashed()
                     ->get();
+        return $data;
+    }
+
+    //----------------------Calibration----------------------
+
+    public function carikontrol($id){
+        $data = Kontrol::where('media_id',$id)->where('default','Y')
+                        ->first();
         return $data;
     }
    

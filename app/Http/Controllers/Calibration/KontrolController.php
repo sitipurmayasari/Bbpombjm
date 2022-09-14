@@ -54,4 +54,13 @@ class KontrolController extends Controller
         $data->delete();
         return redirect('/calibration/kontrolmikro')->with('sukses','Data Terhapus');
     }
+
+    public function getKontrol(Request $request)
+    {
+        $id = $request->media_id;
+
+        $data = Kontrol::where('media_id',$id)->get();
+        return response()->json([ 'success' => true,'data' => $data],200);
+    }
+
 }
