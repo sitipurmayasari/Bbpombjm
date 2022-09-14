@@ -35,6 +35,7 @@
                                                             @foreach ($sub as $detail)
                                                                 <li><a href="#indet-{{$detail->id}}" data-toggle="tab">{{$detail->alias}}</a></li>
                                                             @endforeach
+                                                        </ul>
                                                             <div class="tab-content">
                                                                 @foreach ($sub as $detail)
                                                                 <div class="tab-pane" id="indet-{{$detail->id}}">
