@@ -11,6 +11,7 @@ Route::post('/arsip/mailclasification/store','Arsip\MailClasificationController@
 Route::get('/arsip/mailclasification/edit/{id}','Arsip\MailClasificationController@edit')->name('mailclasification.edit');
 Route::post('/arsip/mailclasification/update/{id}','Arsip\MailClasificationController@update')->name('mailclasification.update');
 Route::post('/arsip/mailclasification/delete/{id}','Arsip\MailClasificationController@delete')->name('mailclasification.delete');
+Route::get('/arsip/mailclasification/getData','Arsip\MailClasificationController@getData')->name('mailclasification.getData');
 
 //Route untuk Arsip
 Route::get('/arsip/archives/bidang/{id}','Arsip\ArchivesController@bidang')->name('archives.bidang');

@@ -23,12 +23,17 @@
  <ul class="nav nav-tabs">
      <li class="active"><a href="#tab-aktif" data-toggle="tab">Aktif</a></li>
      <li><a href="#tab-inaktif" data-toggle="tab">Inaktif</a></li>
-     <li><a href="#tab-deleted" data-toggle="tab">Perlu Dimusnahkan</a></li>
+     <li><a href="#tab-perlu" data-toggle="tab">Perlu Dimusnahkan</a></li>
+     <li><a href="#tab-permanen" data-toggle="tab">Permanen</a></li>
+     <li><a href="#tab-musnah" data-toggle="tab">Musnah</a></li>
+     
 
  </ul>
  <div class="tab-content">
     @include('arsip.archivesrek.partials.aktif')
     @include('arsip.archivesrek.partials.inaktif')
+    @include('arsip.archivesrek.partials.perlu')
+    @include('arsip.archivesrek.partials.permanen')
     @include('arsip.archivesrek.partials.deleted')
 
  </div>
@@ -51,7 +56,26 @@
             }).then((result) => {
                 console.log(result);
                 if (result.value) {
-                    window.location = "/arsip/archives/deleteper/"+id;
+                    window.location = "/arsip/archivesrek/delete/"+id;
+                }
+            });
+        });
+
+        $(".deleteper").click(function() {
+                var id = $(this).attr('r-id');
+                var name = $(this).attr('r-name');
+                Swal.fire({
+                title: 'Ingin Menghapus?',
+                text: "Yakin ingin menghapus data  : "+name+" ini ?" ,
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, hapus !'
+            }).then((result) => {
+                console.log(result);
+                if (result.value) {
+                    window.location = "/arsip/deleteper/delete/"+id;
                 }
             });
         });

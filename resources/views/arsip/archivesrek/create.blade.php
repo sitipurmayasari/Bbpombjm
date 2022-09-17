@@ -38,6 +38,21 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Status
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="radio" required value="aktif" checked 
+                                name="status" > &nbsp; Aktif  &nbsp;
+                            <input type="radio" required value="inaktif"
+                                name="status" /> &nbsp; Inaktif &nbsp;
+                            <input type="radio" required value="permanen"
+                                name="status" /> &nbsp; Permanen &nbsp;
+                            <input type="radio" required value="akanmusnah"
+                                name="status" /> &nbsp; Perlu Dimusnahkan
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
                         for="form-field-1">Bagian
                         </label>
                         <div class="col-sm-8">

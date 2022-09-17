@@ -248,6 +248,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
       Route::get('/finance/stbook','Finance\STBookController@index')->name('stbook');
       //Route untuk laporan nominatif Surat
       Route::get('/finance/nominatif','Finance\NominatifController@index')->name('nominatif');
+      //Route untuk Kuitansi baru
+      Route::get('/finance/receipt','Finance\ReceiptController@index')->name('receipt');
 
     //-----Anggaran--------
    

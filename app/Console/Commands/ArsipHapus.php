@@ -20,7 +20,7 @@ class ArsipHapus extends Command
      *
      * @var string
      */
-    protected $description = 'Menghapus arsip setelah x tahun';
+    protected $description = 'Update status arsip setelah x tahun';
 
     /**
      * Create a new command instance.
@@ -39,9 +39,12 @@ class ArsipHapus extends Command
      */
     public function handle()
     {
-        $datainac = Archives::orderBy('archives.id','desc')
-        ->leftjoin('mailclasification','mailclasification.id','archives.mailclasification_id')
-        ->whereRaw('curdate() > DATE_ADD(archives.date,INTERVAL mailclasification.akhir YEAR)');
-        $datainac->delete();
+        $data = Archives::leftjoin('mailclasification','mailclasification.id','archives.mailclasification_id')
+                        ->whereRaw('curdate() > DATE_ADD(archives.date,INTERVAL mailclasification.actived YEAR)')
+                        ->update(['status' => 'inaktif']);
+
+        $datain = Archives::leftjoin('mailclasification','mailclasification.id','archives.mailclasification_id')
+                        ->whereRaw('curdate() > DATE_ADD(archives.date,INTERVAL mailclasification.akhir YEAR)')
+                        ->update(['status' => 'akanmusnah']);
     }
 }

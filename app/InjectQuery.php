@@ -464,8 +464,7 @@ class InjectQuery
                         ->where('mailclasification_id',$id)
                         ->SelectRaw('archives.*')
                         ->leftjoin('mailclasification','mailclasification.id','archives.mailclasification_id')
-                        ->whereRaw('CURDATE() BETWEEN DATE(archives.date) 
-                            and DATE_ADD(DATE(archives.date),INTERVAL mailclasification.actived YEAR)')
+                        ->where('status','aktif')
                         ->get();
         return $data;
     }
@@ -475,7 +474,27 @@ class InjectQuery
                         ->where('mailclasification_id',$id)
                         ->SelectRaw('archives.*')
                         ->leftjoin('mailclasification','mailclasification.id','archives.mailclasification_id')
-                        ->whereRaw('curdate() > DATE_ADD(archives.date,INTERVAL mailclasification.actived YEAR)')
+                        ->where('status','inaktif')
+                        ->get();
+        return $data;
+    }
+
+    public function berkasakan($id){
+        $data = Archives::orderBy('archives.id','desc')
+                        ->where('mailclasification_id',$id)
+                        ->SelectRaw('archives.*')
+                        ->leftjoin('mailclasification','mailclasification.id','archives.mailclasification_id')
+                        ->where('status','akanmusnah')
+                        ->get();
+        return $data;
+    }
+
+    public function berkasper($id){
+        $data = Archives::orderBy('archives.id','desc')
+                        ->where('mailclasification_id',$id)
+                        ->SelectRaw('archives.*')
+                        ->leftjoin('mailclasification','mailclasification.id','archives.mailclasification_id')
+                        ->where('status','permanen')
                         ->get();
         return $data;
     }
@@ -491,6 +510,12 @@ class InjectQuery
     public function carikontrol($id){
         $data = Kontrol::where('media_id',$id)->where('default','Y')
                         ->first();
+        return $data;
+    }
+
+    public function dafkontrol($id){
+        $data = Kontrol::where('media_id',$id)
+                        ->get();
         return $data;
     }
    

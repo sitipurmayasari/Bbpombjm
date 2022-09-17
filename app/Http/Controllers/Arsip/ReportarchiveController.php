@@ -27,6 +27,7 @@ class ReportarchiveController extends Controller
         if ($request->jenis=="1") {
             $data = Archives::orderBy('mailclasification.alias','asc')
                             ->leftjoin('mailclasification','mailclasification.id','archives.mailclasification_id')
+                            ->where('archives.status',$request->status)
                             ->when($request->divisi, function ($query) use ($request) {
                                 $query->where('divisi_id',$request->divisi);
                              })
@@ -40,6 +41,7 @@ class ReportarchiveController extends Controller
         }elseif($request->jenis=="2"){
             $data = Archives::orderBy('mailclasification.alias','asc')
                             ->leftjoin('mailclasification','mailclasification.id','archives.mailclasification_id')
+                            ->where('archives.status',$request->status)
                             ->when($request->divisi, function ($query) use ($request) {
                                 $query->where('divisi_id',$request->divisi);
                             })

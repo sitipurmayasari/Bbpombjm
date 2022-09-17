@@ -22,8 +22,7 @@ class ArchiveslistController extends Controller
         $data = Archives::orderBy('archives.id','desc')
                 ->Selectraw('archives.*')
                 ->leftjoin('mailclasification','mailclasification.id','archives.mailclasification_id')
-                ->whereRaw('CURDATE() BETWEEN DATE(archives.date) 
-                and DATE_ADD(DATE(archives.date),INTERVAL mailclasification.actived YEAR)')
+                ->where('status','aktif')
                 ->when($request->keyword, function ($query) use ($request) {
                     $query->where('uraian','LIKE','%'.$request->keyword.'%')
                         ->orWhere('mailclasification.alias', 'LIKE','%'.$request->keyword.'%')
@@ -33,7 +32,28 @@ class ArchiveslistController extends Controller
         $datainac = Archives::orderBy('archives.id','desc')
                     ->Selectraw('archives.*')
                     ->leftjoin('mailclasification','mailclasification.id','archives.mailclasification_id')
-                    ->whereRaw('curdate() > DATE_ADD(archives.date,INTERVAL mailclasification.actived YEAR)')
+                    ->where('status','inaktif')
+                    ->when($request->keyword, function ($query) use ($request) {
+                        $query->where('uraian','LIKE','%'.$request->keyword.'%')
+                            ->orWhere('mailclasification.alias', 'LIKE','%'.$request->keyword.'%')
+                            ->orWhere('mailclasification.names', 'LIKE','%'.$request->keyword.'%');
+                    })
+                    ->paginate('10');
+        $dataper = Archives::orderBy('archives.id','desc')
+                    ->Selectraw('archives.*')
+                    ->leftjoin('mailclasification','mailclasification.id','archives.mailclasification_id')
+                    ->where('status','permanen')
+                    ->when($request->keyword, function ($query) use ($request) {
+                        $query->where('uraian','LIKE','%'.$request->keyword.'%')
+                            ->orWhere('mailclasification.alias', 'LIKE','%'.$request->keyword.'%')
+                            ->orWhere('mailclasification.names', 'LIKE','%'.$request->keyword.'%');
+                    })
+                    ->paginate('10');
+
+        $datakan = Archives::orderBy('archives.id','desc')
+                    ->Selectraw('archives.*')
+                    ->leftjoin('mailclasification','mailclasification.id','archives.mailclasification_id')
+                    ->where('status','akanmusnah')
                     ->when($request->keyword, function ($query) use ($request) {
                         $query->where('uraian','LIKE','%'.$request->keyword.'%')
                             ->orWhere('mailclasification.alias', 'LIKE','%'.$request->keyword.'%')
@@ -41,7 +61,7 @@ class ArchiveslistController extends Controller
                     })
                     ->paginate('10');
         $datadel = Archives::onlyTrashed()->paginate('10');
-        return view('arsip/archiveslist.index',compact('data','datainac','datadel','klas'));
+        return view('arsip/archiveslist.index',compact('data','datainac','datadel','klas','dataper','datakan'));
     }
 
 }

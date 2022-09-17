@@ -80,4 +80,13 @@ class MailclasificationController extends Controller
         $petugas->delete();
         return redirect('/arsip/mailclasification')->with('sukses','Data Terhapus');
     }
+
+    public function getData(Request $request)
+    {
+        $id = $request->kelas;
+
+        $data = Mailclasification::where('id',$id)->first();
+        return response()->json([ 'success' => true,'data' => $data],200);
+    }
+
 }

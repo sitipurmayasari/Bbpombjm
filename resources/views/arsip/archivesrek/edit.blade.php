@@ -38,6 +38,50 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Status
+                        </label>
+                        <div class="col-sm-10">
+                            @if ($data->status == "aktif")
+                                <input type="radio" required value="aktif"  checked
+                                    name="status" > &nbsp; Aktif  &nbsp;
+                                <input type="radio" required value="inaktif"
+                                    name="status" /> &nbsp; Inaktif &nbsp;
+                                <input type="radio" required value="permanen"
+                                    name="status" /> &nbsp; Permanen &nbsp;
+                                <input type="radio" required value="akanmusnah" 
+                                    name="status" /> &nbsp; Perlu Dimusnahkan
+                            @elseif ($data->status == "inaktif")
+                                <input type="radio" required value="aktif"  
+                                    name="status" > &nbsp; Aktif  &nbsp;
+                                <input type="radio" required value="inaktif" checked
+                                    name="status" /> &nbsp; Inaktif &nbsp;
+                                <input type="radio" required value="permanen"
+                                    name="status" /> &nbsp; Permanen &nbsp;
+                                <input type="radio" required value="akanmusnah" 
+                                    name="status" /> &nbsp; Perlu Dimusnahkan
+                            @elseif ($data->status == "permanen")
+                                <input type="radio" required value="aktif"  
+                                    name="status" > &nbsp; Aktif  &nbsp;
+                                <input type="radio" required value="inaktif" 
+                                    name="status" /> &nbsp; Inaktif &nbsp;
+                                <input type="radio" required value="permanen" checked
+                                    name="status" /> &nbsp; Permanen &nbsp;
+                                <input type="radio" required value="akanmusnah" 
+                                    name="status" /> &nbsp; Perlu Dimusnahkan    
+                            @else
+                                <input type="radio" required value="aktif"  
+                                    name="status" > &nbsp; Aktif  &nbsp;
+                                <input type="radio" required value="inaktif"
+                                    name="status" /> &nbsp; Inaktif &nbsp;
+                                <input type="radio" required value="permanen"
+                                    name="status" /> &nbsp; Permanen &nbsp;
+                                <input type="radio" required value="akanmusnah" checked
+                                    name="status" /> &nbsp; Perlu Dimusnahkan
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
                         for="form-field-1">Bagian
                         </label>
                         <div class="col-sm-8">

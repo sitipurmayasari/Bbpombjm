@@ -84,30 +84,31 @@ class MikrobaController extends Controller
 
     public function edit($id)
     {
-        $data = Bakteri::where('id',$id)->first();
-        $detail = BakteriDetail::where('bakteri_id',$id)->get();
-        $media = Media::all();
-        return view('calibration/mikroba.edit',compact('data','detail','media'));
+        $data = Monitor::where('id',$id)->first();
+        $detail = MonitorDetail::where('monitor_id',$id)->get();
+        $bakteri = Bakteri::all();
+        $peg = User::where('subdivisi_id','4')->where('aktif','Y')->get();
+        return view('calibration/mikroba.edit',compact('data','detail','bakteri','peg'));
     }
 
 
     public function update(Request $request, $id)
     {
-        $data = Bakteri::find($id);
-        $data->touch();
-        LogActivity::addToLog('Ubah->Daftar Bakteri, nama bakteri = '.$data->name);
+        $mon = Monitor::find($id);
+        $mon->touch();
+        LogActivity::addToLog('Ubah->Monitoring Mikroba, nomor = '.$mon->number);
 
         DB::beginTransaction(); 
-          $data = Bakteri::find($id);
-          $data->update($request->all());
+          $mon = Monitor::find($id);
+          $mon->update($request->all());
 
-        for ($i = 0; $i < count($request->input('media_id')); $i++){
-        
+        for ($i = 0; $i < count($request->input('amati_date')); $i++){
           $data = [
-            'bakteri_id' => $id,
-            'media_id'   => $request->media_id[$i]
+            'monitor_id' => $id,
+            'amati_date' => $request->amati_date[$i],
+            'kontrol_id' => $request->kontrol_id[$i],
           ];
-          BakteriDetail::updateOrCreate([
+          MonitorDetail::updateOrCreate([
             'id'   => $request->detail_id[$i],
           ],$data);
         }  
@@ -119,7 +120,7 @@ class MikrobaController extends Controller
     public function delete($id)
     {
         $data = Monitor::find($id);
-        $detail = MonitorDetail::where ('bakteri_id',$id)->delete();
+        $detail = MonitorDetail::where ('monitor_id',$id)->delete();
         LogActivity::addToLog('Ubah->Hapus monitoring Mikrobiologi, nomor : '.$data->number);
         $data->delete();
         return redirect('/calibration/mikroba')->with('sukses','Data Terhapus');
@@ -129,8 +130,6 @@ class MikrobaController extends Controller
     {
         $data = Monitor::find($id);
         $detail = MonitorDetail::where('monitor_id',$id)->get();
-
-        // return view('calibration/mikroba.cetak',compact('data','detail'));
         $pdf = PDF::loadview('calibration/mikroba.cetak',compact('data','detail'));
         return $pdf->stream();
 

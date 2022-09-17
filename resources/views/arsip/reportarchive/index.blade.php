@@ -30,9 +30,22 @@
                             </label>
                             <div class="col-sm-8">
                                 <select name="jenis" id="jenis" class="col-xs-10 col-sm-10 select2">
-                                    <option value="1">Daftar Arsip Aktif</option>
-                                    <option value="2">Daftar Infomasi Arsip Aktif</option>
+                                    <option value="1">Daftar Arsip</option>
+                                    <option value="2">Daftar Infomasi Arsip</option>
                                 </select>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group" id="tampilbulan">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Status
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="radio" name="status" value="aktif" checked id="aktif">
+                                <label class="control-label no-padding-right" for="form-field-1"> Aktif</label> 
+                                &nbsp;&nbsp;
+                                <input type="radio" name="status" value="inaktif" id="inaktif">
+                                <label class="control-label no-padding-right" for="form-field-1"> Inaktif</label>
                             </div>
                         </div>
                         <br>

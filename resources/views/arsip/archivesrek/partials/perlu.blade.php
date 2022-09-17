@@ -1,17 +1,17 @@
 @inject('injectQuery', 'App\InjectQuery')
-<div class="tab-pane active" id="tab-aktif">
+<div class="tab-pane" id="tab-perlu">
     <div class="row">
         <div class="col-sm-12">
                 <div class="widget-body">
                     <div class="col-sm-12">
                         <ul class="nav nav-tabs">
                             @foreach ($klas as $item)
-                                <li><a href="#isi-{{$item->id}}" data-toggle="tab">{{$item->alias}}</a></li>
+                                <li><a href="#isiper-{{$item->id}}" data-toggle="tab">{{$item->alias}}</a></li>
                             @endforeach     
                         </ul>    
                         <div class="tab-content">
                             @foreach ($klas as $item)
-                            <div class="tab-pane" id="isi-{{$item->id}}">
+                            <div class="tab-pane" id="isiper-{{$item->id}}">
                                 <div class="row">
                                     <div class="col-sm-12">
                                         @php
@@ -19,12 +19,12 @@
                                         @endphp
                                          <ul class="nav nav-tabs">      
                                             @foreach ($isi as $subgroup)
-                                                <li><a href="#sub-{{$subgroup->id}}" data-toggle="tab">{{$subgroup->alias}}</a></li>
+                                                <li><a href="#subper-{{$subgroup->id}}" data-toggle="tab">{{$subgroup->alias}}</a></li>
                                             @endforeach
                                         </ul>
                                         <div  class="tab-content">
                                             @foreach ($isi as $subgroup)
-                                            <div class="tab-pane" id="sub-{{$subgroup->id}}">
+                                            <div class="tab-pane" id="subper-{{$subgroup->id}}">
                                                 <div class="row">
                                                     <div class="col-sm-12">
                                                         <ul class="nav nav-tabs">
@@ -32,12 +32,12 @@
                                                                 $sub = $injectQuery->subberkas($subgroup->id);
                                                             @endphp
                                                             @foreach ($sub as $detail)
-                                                                <li><a href="#det-{{$detail->id}}" data-toggle="tab">{{$detail->alias}}</a></li>
+                                                                <li><a href="#detper-{{$detail->id}}" data-toggle="tab">{{$detail->alias}}</a></li>
                                                             @endforeach
                                                         </ul>
                                                         <div class="tab-content">
                                                             @foreach ($sub as $detail)
-                                                            <div class="tab-pane" id="det-{{$detail->id}}">
+                                                            <div class="tab-pane" id="detper-{{$detail->id}}">
                                                                 <div class="row">
                                                                     <div class="col-sm-12">
                                                                         <div class="table-responsive">
@@ -57,7 +57,7 @@
                                                                                 <thead>
                                                                                 <tbody>
                                                                                     @php
-                                                                                        $daftar = $injectQuery->berkas($detail->id);
+                                                                                        $daftar = $injectQuery->berkasakan($detail->id);
                                                                                         $no = 1;
                                                                                     @endphp  
                                                                                     @foreach ($daftar as $row)
@@ -84,7 +84,7 @@
                                                                                             <a href="/arsip/archivesrek/edit/{{$row->id}}" class="btn btn-warning">
                                                                                                 <i class="glyphicon glyphicon-edit"></i>
                                                                                             </a>
-                                                                                            <a href="#" class="btn btn-danger deleteper"
+                                                                                            <a href="#" class="btn btn-danger delete"
                                                                                                 r-name="{{$row->nama}}" 
                                                                                                 r-id="{{$row->id}}">
                                                                                                 <i class="glyphicon glyphicon-trash"></i></a>

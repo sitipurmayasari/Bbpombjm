@@ -7,22 +7,22 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="{{asset('assets/css/print.css')}}" rel="stylesheet">
-    <title>Daftar Informasi Arsip Aktif</title>
+
+    @php
+        if ($request->status=="aktif") {
+            $status ="aktif";
+        } else {
+            $status ="Inaktif";
+        }
+    @endphp
+
+    <title>Daftar Informasi Arsip {{$status}}</title>
 </head>
 
 <?php
 header("Content-type: application/vnd-ms-excel");
-header("Content-Disposition: attachment; filename=Daftar-Informasi-Arsip-Aktif-tahunan.xls");
+header("Content-Disposition: attachment; filename=Daftar-Informasi-Arsip-$status-tahunan.xls");
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Daftar Informasi Arsip Aktif Tahun {{$request->tahun}}</title>
- 
     <style>
         @page {
                 size: landscape;
@@ -50,11 +50,10 @@ header("Content-Disposition: attachment; filename=Daftar-Informasi-Arsip-Aktif-t
        
         
     </style>
-</head>
 <body>
     <div class="col-sm-12 isi" style="text-align: center">
         <div style="align=center font-size: 18px">
-            <b>DAFTAR INFORMASI ARSIP AKTIF TAHUN {{$request->tahun}}</b>
+            <b>DAFTAR INFORMASI ARSIP @if ($request->status=="aktif") AKTIF @else INAKTIF  @endif TAHUN {{$request->tahun}}</b>
         </div>
         <br>
         <div style="text-align: left">

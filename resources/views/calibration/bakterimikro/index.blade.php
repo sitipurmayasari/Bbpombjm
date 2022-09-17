@@ -36,7 +36,7 @@
             <thead>
                 <th class="col-md-1">No</th>
                 <th class="col-md-4">Nama Bakteri</th>
-                <th class="col-md-5">Keterangan</th>
+                <th class="col-md-5">Pustaka</th>
                 <th class="col-md-2">Aksi</th>
             <thead>
             <tbody>   	

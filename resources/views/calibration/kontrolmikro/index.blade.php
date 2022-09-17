@@ -30,7 +30,7 @@
                         for="form-field-1"> Media
                         </label>
                         <div class="col-sm-8">
-                            <select name="media_id"  class="col-xs-10 col-sm-10 required " required>
+                            <select name="media_id"  class="col-xs-10 col-sm-10 required select2" required>
                                 <option value="">Pilih Media</option>
                                 @foreach ($media as $item)
                                     <option value="{{$item->id}}">{{$item->name}}</option>

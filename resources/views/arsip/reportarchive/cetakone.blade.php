@@ -1,7 +1,13 @@
 
 <?php
+ if ($request->status=="aktif") {
+            $status ="aktif";
+        } else {
+            $status ="inaktif";
+        }
+
 header("Content-type: application/vnd-ms-excel");
-header("Content-Disposition: attachment; filename=Daftar-Arsip-Aktif-Tahunan.xls");
+header("Content-Disposition: attachment; filename=Daftar-Arsip-$status-Tahunan.xls");
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +16,7 @@ header("Content-Disposition: attachment; filename=Daftar-Arsip-Aktif-Tahunan.xls
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Daftar Arsip Aktif Tahun {{$request->tahun}}</title>
+    <title>Daftar Arsip {{$status}} Tahun {{$request->tahun}}</title>
  
     <style>
         @page {
@@ -43,7 +49,12 @@ header("Content-Disposition: attachment; filename=Daftar-Arsip-Aktif-Tahunan.xls
 <body>
     <div class="col-sm-12 isi" style="text-align: center">
         <div style="align=center font-size: 18px">
-            <b>DAFTAR ARSIP AKTIF TAHUN {{$request->tahun}}</b>
+            @if ($request->status=="aktif")
+                <b>DAFTAR ARSIP AKTIF TAHUN {{$request->tahun}}</b>
+            @else
+                <b>DAFTAR ARSIP INAKTIF TAHUN {{$request->tahun}}</b>
+            @endif
+            
         </div>
         <br>
         <div style="text-align: left">

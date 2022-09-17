@@ -32,6 +32,7 @@
                         <div class="col-sm-8">
                             <input type="hidden" name="users_id" value="{{auth()->user()->id}}">
                             <input type="hidden" name="divisi_id" value="{{$div->id}}">
+                            <input type="hidden" name="status" value="aktif">
                             <input type="date" required value="{{date('Y-m-d')}}"
                                     class="col-xs-3 col-sm-3 required " 
                                     name="date"/>

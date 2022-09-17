@@ -26,7 +26,7 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1"> Keterangan
+                        for="form-field-1"> Pustaka
                         </label>
                         <div class="col-sm-8">
                             <input type="text"  placeholder="Keterangan" 
