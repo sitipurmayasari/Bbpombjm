@@ -146,7 +146,7 @@
         <tr class="noborder">
             <td class="noborder">Pustaka</td>
             <td class="noborder">:</td>
-            <td class="noborder">MA PPOMN 99 / MIK /06</td>
+            <td class="noborder">{{$data->bakteri->ket}}</td>
             <td class="noborder" style="width: 30%">Syarat : Positif</td>
         </tr>
     </table>
