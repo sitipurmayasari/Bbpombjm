@@ -248,9 +248,6 @@
     <tbody>
         <tr>
             @php
-                $fee1=0;
-                $fee2=0;
-                $fee3=0;
                 $nilai = $injectQuery->getDetail($item->id);
                 $kkp = $injectQuery->getkkp($item->id);
             @endphp
@@ -300,8 +297,7 @@
                                     $subtrans = $fee1+$fee2+$fee3;
                                     $subTotal1 += $subtrans;
                                 @endphp
-
-                                @if ($fee1 != '0')
+                                @if ($subtrans != '0')
                                     {{number_format($subtrans)}}
                                 @else
                                    {{ '-' }}
