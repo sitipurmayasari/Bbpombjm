@@ -275,6 +275,10 @@
                         <td style="text-align: right; width:13%;"> 
                             <i>
                                 @php
+                                $fee1 = 0;
+                                $fee2 = 0;
+                                $fee3 = 0;
+
                                     if ($nilai->planefee1 != '0' && $kkp->planekkp1 == 'N') {
                                         $fee1 = $nilai->planefee1;
                                     } else {
@@ -314,11 +318,20 @@
                         <td style="text-align: center;"><i>. Rp.</i></td>
                         <td style="text-align: right">
                             <i>
-                                @if ($nilai->planereturnfee != '0' && $kkp->planekkpreturn == 'N')
-                                    @php
-                                        $subtrans =$nilai->planereturnfee;
-                                        $subTotal1 += $subtrans;
-                                    @endphp
+                                @php
+                                    $feepulang = 0;
+                                    if ($nilai->planereturnfee != '0' && $kkp->planekkpreturn == 'N') {
+                                        $feepulang = $nilai->planereturnfee;
+                                    } else {
+                                        $feepulang = 0;
+                                    }
+
+                                    $subtrans = $nilai->planereturnfee;
+                                    $subTotal1 += $subtrans;
+
+                                @endphp
+
+                                @if ($feepulang != 0)
                                     {{number_format($subtrans)}} 
                                 @else
                                     {{ '-' }}
@@ -513,7 +526,7 @@
                                         $b = $nilai->bbm;
                                         $bbm = $a+$b;
                                     @endphp
-                                    {{number_format($bbm)}}
+                                    {{($bbm)}}
                                 @else
                                     {{ '-' }}
                                 @endif
@@ -528,7 +541,7 @@
                                     $subTotal1 += $subtrans;   
                                 @endphp
                                 @if ($subtrans !='0')
-                                    {{$subtrans}}
+                                    {{number_format($subtrans)}}
                                 @else
                                     {{'-'}}
                                 @endif
