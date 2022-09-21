@@ -29,6 +29,10 @@
     
 <body>
     <br>
+    <div style="text-align: center">
+        <h5><b>SURAT PERNYATAAN</b></h5>
+    </div>
+    <br>
     <table style="width: 100%">
         <tr>
             <td colspan="3">Yang Bertanda tangan di bawah ini</td>

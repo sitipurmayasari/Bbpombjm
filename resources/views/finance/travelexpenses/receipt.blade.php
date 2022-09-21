@@ -957,8 +957,6 @@
                     </tr>
                     <tr>
                         @php
-                            $jum1 =0;
-                            $jum2 = 0;
                             $subTotal4 = 0;
 
                             if ($nilai->inn_fee_1 != '0' && $kkp->hotelkkp1 == 'N') {
@@ -977,11 +975,13 @@
                             $long2 = $nilai->long_stay_2;
                         @endphp
                         <td><i>
-                            @if ($inap2 != '0')
+                            @if ($inap2 != '0' && $inap1 != 0)
                                 - {{$nilai->innname_1}} &nbsp; <br>
                                 - {{$nilai->innname_2}}
                             @elseif($inap1 != '0' && $inap2 == '0')
                                 - {{$nilai->innname_1}} &nbsp; 
+                            @elseif($inap1 == '0' && $inap2 != '0')
+                                - {{$nilai->innname_2}} &nbsp; 
                             @else
                                 - &nbsp; <br>
                             @endif
@@ -989,11 +989,13 @@
                         <td style="text-align: center; width:5%"><i>:</i> </td>
                         <td style="width: 18%;"> 
                             <i>
-                                @if ($inap2 != '0')
+                                @if ($inap2 != '0' && $inap1 != 0 )
                                     {{$long1}} hari &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp.  <br>
                                     {{$long2}} hari &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp. 
                                 @elseif($inap1 != '0' && $inap2 == '0')
                                     {{$long1}} hari &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp.
+                                @elseif($inap1 == '0' && $inap2 != '0')
+                                    {{$long2}} hari &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp.
                                 @else
                                 - &nbsp; <br>
                                 @endif
@@ -1001,7 +1003,7 @@
                         </td>
                         <td style="text-align: right; width:13%"> 
                             <i> 
-                                @if ($inap2 != '0')
+                                @if ($inap2 != '0' && $inap1 !='0')
                                     @php
                                         $feehotel1 = $nilai->inn_fee_1 / $nilai->isi_1;
                                         $feehotel2 = $nilai->inn_fee_2 / $nilai->isi_2;
@@ -1013,42 +1015,56 @@
                                         $feehotel1 = $nilai->inn_fee_1 / $nilai->isi_1;
                                     @endphp
                                     {{number_format($feehotel1)}} &nbsp;
+                                @elseif($inap1 == '0' && $inap2 != '0')
+                                    @php
+                                        $feehotel2 = $nilai->inn_fee_2 / $nilai->isi_2;
+                                    @endphp
+                                    {{number_format($feehotel2)}} &nbsp;
                                 @else
                                     - &nbsp;
                                 @endif
                             </i> &nbsp;</td>
                         <td style="text-align: center; width:10%;">
                             <i>
-                                . Rp. <br>
-                                @if ($inap2 != '0')
-                                . Rp.   
+                                @if ($inap2 != '0' && $inap1 != 0)
+                                . Rp. <br> 
+                                . Rp.
+                                @elseif($inap1 != '0' && $inap2 == '0')
+                                . Rp.
+                                @elseif($inap1 == '0' && $inap2 != '0')
+                                . Rp.
+                                @else
+                                . Rp.
                                 @endif
                             </i>
                         </td>
                         <td style="text-align: right; width:13%"> 
                             <i>
                                 @php
-                                    if ($kkp->hotelkkp1 == 'N') {
+                                    if ($inap1 != '0') {
                                         $jum1 = $nilai->klaim_1; 
                                     } else {
                                         $jum1 = 0;
                                     }
 
-                                    if ($kkp->hotelkkp1 == 'N') {
+                                    if ($inap2 != '0') {
                                         $jum2= $nilai->klaim_2; 
                                     } else {
                                         $jum2 = 0;
                                     }
                                     $subTotal4 = $jum1 + $jum2;
                                 @endphp
-                                @if ($inap2 != '0')
+                                @if ($inap2 != '0' && $inap1 != '0')
                                     {{number_format($jum1)}} &nbsp; <br>
                                     {{number_format($jum2)}} &nbsp;
                                 @elseif($inap1 != '0' && $inap2 == '0')
                                     {{number_format($jum1)}} &nbsp; <br>
+                                @elseif($inap1 == '0' && $inap2 != '0')
+                                    {{number_format($jum2)}} &nbsp; <br>
                                 @else
                                     - &nbsp; <br>
                                 @endif
+                               
                             </i>  
                         </td>
                     </tr>
@@ -1067,10 +1083,12 @@
                 &nbsp;
             </td>
             <td class="isi">
-                @if ($nilai->isi_1 != 0)
+                @if ($inap1  != 0 && $inap2 == 0)
                         1 kamar untuk {{$nilai->isi_1}} orang
-                @elseif($nilai->isi_2 != 0)
+                @elseif($inap1 != 0 && $inap2 != 0)
                         1 kamar untuk {{$nilai->isi_1}} orang <br>
+                        1 kamar untuk {{$nilai->isi_2}} orang
+                @elseif($inap2 != 0 && $inap1 == 0)
                         1 kamar untuk {{$nilai->isi_2}} orang
                 @endif
             </td>
