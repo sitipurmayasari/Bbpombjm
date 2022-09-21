@@ -481,21 +481,8 @@
                         <td style="text-align: center;"><i>:</i> </td>
                         <td> 
                             <i>
-                                @if ($nilai->bbm != '0' && $nilai->taxy_fee_to == '0')
-                                    @php
-                                        $jum = 1;
-                                    @endphp
-                                    {{$jum}}
-                                @elseif($nilai->taxy_fee_to != '0' && $nilai->bbm == '0')
-                                    @php
-                                        $jum = $nilai->taxy_count_to;
-                                    @endphp
-                                    {{$jum}}
-                                @elseif($nilai->taxy_fee_to != '0' && $nilai->bbm != '0')
-                                    @php
-                                        $jum = $nilai->taxy_count_to;
-                                    @endphp
-                                    {{$jum}}
+                                @if($nilai->taxy_fee_to != '0')
+                                    {{$nilai->taxy_count_to}}
                                 @else
                                     {{ '-' }}
                                 @endif
@@ -505,24 +492,8 @@
                         </td>
                         <td style="text-align: right;"> 
                             <i>
-                                @if ($nilai->bbm != '0' && $nilai->taxy_fee_to == 0)
-                                    @php
-                                        $bbm = $nilai->bbm;
-                                    @endphp
-                                    {{number_format($bbm)}}
-        
-                                @elseif($nilai->taxy_fee_to != 0 && $nilai->bbm == '0')
-                                    @php
-                                        $bbm = $nilai->taxy_fee_to;
-                                    @endphp
-                                    {{number_format($bbm)}}
-                                @elseif($nilai->taxy_fee_to != 0 && $nilai->bbm != '0')
-                                    @php
-                                        $a = $nilai->taxy_fee_to;
-                                        $b = $nilai->bbm;
-                                        $bbm = $a+$b;
-                                    @endphp
-                                    {{($bbm)}}
+                                @if($nilai->taxy_fee_to != 0)
+                                    {{number_format($nilai->taxy_fee_to)}}
                                 @else
                                     {{ '-' }}
                                 @endif
@@ -533,7 +504,13 @@
                         <td style="text-align: right"> 
                             <i>
                                 @php
-                                    $subtrans = $jum*$bbm; 
+                                    if ($nilai->taxy_fee_to != 0) {
+                                       $jum = $nilai->taxy_count_to * $nilai->taxy_fee_to;
+                                    } else {
+                                        $jum = 0;
+                                    }
+                                    
+                                    $subtrans = $jum; 
                                     $subTotal1 += $subtrans;   
                                 @endphp
                                 @if ($subtrans !='0')
@@ -545,18 +522,35 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><i> - Kembali</i></td>
+                        @php
+                           
+                        @endphp
+                        <td><i> - BBM</i></td>
                         <td></td>
                         <td style="text-align: center;"><i>:</i> </td>
-                        <td> 
-                            <i>
-                                - &nbsp; kali &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp.
-                            </i>
+                        <td>
                         </td>
-                        <td style="text-align: right;"> <i>- &nbsp;</i> &nbsp;</td>
+                        <td style="text-align: right;"> 
+                        </td>
                         <td style="text-align: center;"><i>. Rp.</i></td>
                         <td style="text-align: right"> 
-                            <i>-</i> &nbsp; &nbsp; 
+                            <i>
+                                @php
+                                    if ($nilai->bbm != 0) {
+                                       $bbm = $nilai->bbm;
+                                    } else {
+                                        $bbm = 0;
+                                    }
+                                    
+                                    $subtrans = $bbm; 
+                                    $subTotal1 += $subtrans;   
+                                @endphp
+                                @if ($subtrans !='0')
+                                    {{number_format($subtrans)}}
+                                @else
+                                    {{'-'}}
+                                @endif
+                            </i> &nbsp; 
                         </td>
                     </tr>
                </table>
