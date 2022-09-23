@@ -85,7 +85,7 @@ class MikrobaController extends Controller
     public function edit($id)
     {
         $data = Monitor::where('id',$id)->first();
-        $detail = MonitorDetail::where('monitor_id',$id)->get();
+        $detail = MonitorDetail::where('monitor_id',$id)->orderby('id','asc')->get();
         $bakteri = Bakteri::all();
         $peg = User::where('subdivisi_id','4')->where('aktif','Y')->get();
         return view('calibration/mikroba.edit',compact('data','detail','bakteri','peg'));
