@@ -59,7 +59,7 @@ class KontrolController extends Controller
     {
         $id = $request->media_id;
 
-        $data = Kontrol::where('media_id',$id)->get();
+        $data = Kontrol::where('media_id',$id)->orderby('id','asc')->get();
         return response()->json([ 'success' => true,'data' => $data],200);
     }
 

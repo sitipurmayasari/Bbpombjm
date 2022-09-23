@@ -129,7 +129,7 @@ class MikrobaController extends Controller
     public function print($id)
     {
         $data = Monitor::find($id);
-        $detail = MonitorDetail::where('monitor_id',$id)->get();
+        $detail = MonitorDetail::where('monitor_id',$id)->orderby('id','asc')->get();
         $pdf = PDF::loadview('calibration/mikroba.cetak',compact('data','detail'));
         return $pdf->stream();
 
