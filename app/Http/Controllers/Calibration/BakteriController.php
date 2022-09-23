@@ -119,7 +119,7 @@ class BakteriController extends Controller
                             ->LeftJoin('kontrol','kontrol.media_id','media.id')
                             ->where('bakteri_id',$id)
                             ->where('kontrol.default','Y')
-                            ->orderby('id','asc')
+                            ->orderby('bakteri_detail.id','asc')
                             ->get();
 
         return response()->json([ 
