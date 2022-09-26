@@ -78,3 +78,10 @@
   Route::get('/calibration/mikroba/edit/{id}','Calibration\MikrobaController@edit')->name('mikroba.edit');
   Route::post('/calibration/mikroba/update/{id}','Calibration\MikrobaController@update')->name('mikroba.update');
   Route::get('/calibration/mikroba/print/{id}','Calibration\MikrobaController@print')->name('mikroba.print');
+
+  //Route untuk Pengambilan MIkroba
+  Route::get('/calibration/getmikro/create','Calibration\GetmikroController@create')->name('getmikro.create');
+  Route::post('/calibration/getmikro/store','Calibration\GetmikroController@store')->name('getmikro.store');
+  Route::get('/calibration/getmikro/delete/{id}','Calibration\GetmikroController@delete')->name('getmikro.delete');
+  Route::get('/calibration/getmikro/edit/{id}','Calibration\GetmikroController@edit')->name('getmikro.edit');
+  Route::post('/calibration/getmikro/update/{id}','Calibration\GetmikroController@update')->name('getmikro.update');

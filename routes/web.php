@@ -223,6 +223,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/amdk/libur','Amdk\LiburController@index')->name('libur');
     //Route untuk absen
     Route::get('/amdk/setabsen','Amdk\SetabsenController@index')->name('setabsen');
+     //Route untuk LOG USER
+     Route::get('/amdk/logact','Amdk\LogActController@index')->name('logact');
     
 
 
@@ -360,9 +362,10 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/calibration/kontrolmikro','Calibration\KontrolController@index')->name('kontrol');
     //Route untuk Daftar Bakteri
     Route::get('/calibration/bakterimikro','Calibration\BakteriController@index')->name('bakteri');
-
     //Route untuk Daftar Bakteri
     Route::get('/calibration/mikroba','Calibration\MikrobaController@index')->name('mikroba');
+    //Route untuk Pengambilan MIkroba
+    Route::get('/calibration/getmikro','Calibration\GetmikroController@index')->name('getmikro');
 
 });
 
