@@ -29,6 +29,7 @@ use App\Tukin;
 use App\Dupak;
 use App\Credit_poin;
 use App\Pengalaman;
+use LogActivity;
 
 
 class ProfileController extends Controller
@@ -123,6 +124,9 @@ class ProfileController extends Controller
                 return redirect('/profile')->with('gagal','Password Lama Salah');
             }
         }
+
+        LogActivity::addToLog('Update->Profile');
+
         return redirect('/profile')->with('sukses','Profil berhasil diperbaharui');
 
     
@@ -131,6 +135,7 @@ class ProfileController extends Controller
 
     public function deleteanak($id)
     {
+        LogActivity::addToLog('Hapus data anak(Profile)');
         $data = Anak::find($id);
         $data->delete();
         return redirect('/profile')->with('sukses','Data Diperbaharui');
@@ -139,6 +144,7 @@ class ProfileController extends Controller
 
     public function deletesaudara($id)
     {
+        LogActivity::addToLog('Hapus data Saudara(Profile)');
         $data = Saudara::find($id);
         $data->delete();
         return redirect('/profile')->with('sukses','Data Diperbaharui');
@@ -147,6 +153,7 @@ class ProfileController extends Controller
 
     public function deletepen($id)
     {
+        LogActivity::addToLog('Hapus Riwayat Pendidikan(Profile)');
         $data = RiwayatPend::find($id);
         $data->delete();
         return redirect('/profile')->with('sukses','Data Diperbaharui');
@@ -154,6 +161,7 @@ class ProfileController extends Controller
 
     public function deletedok($id)
     {
+        LogActivity::addToLog('Hapus Dokumen(Profile)');
         $data = Dokumen::find($id);
         $data->delete();
         return redirect('/profile')->with('sukses','Data Diperbaharui');
@@ -161,6 +169,7 @@ class ProfileController extends Controller
 
     public function deletepengalaman($id)
     {
+        LogActivity::addToLog('Hapus Pengalaman Kerja(Profile)');
         $data = Pengalaman::find($id);
         $data->delete();
         return redirect('/profile')->with('sukses','Data Diperbaharui');
@@ -168,6 +177,7 @@ class ProfileController extends Controller
 
     public function deletedokpeg($id)
     {
+        LogActivity::addToLog('Hapus Dokumen Pegawai(Profile)');
         $data = Dokpeg::find($id);
         $data->delete();
         return redirect('/profile')->with('sukses','Data Diperbaharui');
@@ -175,6 +185,7 @@ class ProfileController extends Controller
 
     public function updateFoto(Request $request)
     {
+
         $this->validate($request,[
             'foto_new' => 'required|mimes:jpg,png,jpeg|max:2048'
         ]);
@@ -189,6 +200,9 @@ class ProfileController extends Controller
                 'foto' => $filename
             ]);
         }
+
+        LogActivity::addToLog('Update Foto Profile)');
+
         return redirect('/profile')->with('sukses','Data Diperbaharui');
     }
 

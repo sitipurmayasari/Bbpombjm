@@ -11,6 +11,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use PDF;
 use Excel;
+use LogActivity;
 
 class PelatihanController extends Controller
 {
@@ -79,6 +80,7 @@ class PelatihanController extends Controller
     public function store(Request $request)
     {
         $user_id = $request->users_id;
+        $peg = User::where('id',$user_id)->first();
 
         $this->validate($request,[
             'users_id' => 'required',
@@ -101,10 +103,14 @@ class PelatihanController extends Controller
         }
 
         if ($request->admin=='true') {
+            LogActivity::addToLog('Simpan->Kompetensi Pegawai->Data Pegawai->'.$peg->name); 
             return redirect('/amdk/rekappelatihan')->with('sukses','Data Tersimpan');
-        }
+           
+        }else{
+            LogActivity::addToLog('Simpan->Kompetensi Pegawai'); 
             return redirect('/amdk/pelatihan')->with('sukses','Data Tersimpan');
-        
+        }
+            
     }
 
     public function edit($id)
@@ -138,16 +144,20 @@ class PelatihanController extends Controller
         }
 
         if ($request->admin=='true') {
+            LogActivity::addToLog('Ubah->Kompetensi Pegawai->Data Pegawai->'.$peg->name); 
             return redirect('/amdk/rekappelatihan')->with('sukses','Data Diperbaharui');
-        }
+        }else{
+            LogActivity::addToLog('Ubah->Kompetensi Pegawai'); 
             return redirect('/amdk/pelatihan')->with('sukses','Data Diperbaharui');
-
+        }
     }
 
     
     public function delete($id)
     {
         $data = Pelatihan::find($id);
+        LogActivity::addToLog('Hapus->Kompetensi Pegawai->id = '.$id); 
+
         $data->delete();
         return redirect('/amdk/pelatihan')->with('sukses','Data Terhapus');
     }
