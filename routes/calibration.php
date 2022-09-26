@@ -85,3 +85,6 @@
   Route::get('/calibration/getmikro/delete/{id}','Calibration\GetmikroController@delete')->name('getmikro.delete');
   Route::get('/calibration/getmikro/edit/{id}','Calibration\GetmikroController@edit')->name('getmikro.edit');
   Route::post('/calibration/getmikro/update/{id}','Calibration\GetmikroController@update')->name('getmikro.update');
+
+   //Route untuk Laporan MIkrobiologi
+   Route::post('/calibration/laptomiku/cetak','Calibration\LapTomikuController@cetak')->name('laptomiku.cetak');

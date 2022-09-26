@@ -15,7 +15,7 @@
         <div class="ct-chart" id="dailySalesChart"></div>
       </div>
       <div class="card-body">
-        <h4 class="card-title">MOnitoring Mikroba</h4>
+        <h4 class="card-title">Monitoring Mikroba</h4>
       </div>
       <div class="card-footer">
         <div class="stats">

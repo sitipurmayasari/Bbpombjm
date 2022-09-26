@@ -366,6 +366,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/calibration/mikroba','Calibration\MikrobaController@index')->name('mikroba');
     //Route untuk Pengambilan MIkroba
     Route::get('/calibration/getmikro','Calibration\GetmikroController@index')->name('getmikro');
+     //Route untuk Laporan MIkrobiologi
+     Route::get('/calibration/laptomiku','Calibration\LapTomikuController@index')->name('laptomiku');
 
 });
 
