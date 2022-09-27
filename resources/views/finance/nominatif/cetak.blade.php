@@ -432,7 +432,7 @@
             @endforeach
         </tbody>
     </table>
-    <br><br><br>
+    <br>
     <div class="ttd">
         <table class="table2">
             <tr class="table2">
