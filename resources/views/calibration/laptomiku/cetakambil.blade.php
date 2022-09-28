@@ -4,49 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Rekapitulasi Pengambilan Mikroba Baku</title>
     <style>
         @page {
-            size: A4;
-            margin: 150px 0px 100px 0px;
-        }
-        html, table{
+            size:A4;
             font-family: Arial;
+            font-size: 12;
         }
-        #isi{
-            font-family: Arial;
-            font-size: 11;
-            margin-left: 10%;
-            margin-right: 10%;
-            line-height: 2;
+
+        table,tr,td, th{
+            padding-left: 5px; 
+            border: 1px solid black;
+            vertical-align : top;
+            border-collapse: collapse;
+        }
+
+        th{
+            text-align: center;
         }
         
-        table, td, tr {
-            text-align: justify;
-            vertical-align: top;
-            line-height: 2;
-            
-            /* border: solid; */
-        }
-
-        .ttdini{
-            float: right;
-            margin-right: 15%;
-            font-size: 11;
-        }
-
     </style>
 </head>
 <body>
     <div class="col-sm-12 isi" style="text-align: center">
-        <div style="align=center font-size: 20px">
+        <div style="align=center font-size: 16">
             <b>Rekapitulasi Pengambilan Mikroba Baku</b>
         </div>
         <br>
      </div>
-     <div class="isi" style="font-size: 12px">
+     <div class="isi">
         Periode :
         @if ($request->bulan!="1")
            @php
@@ -85,7 +71,7 @@
         <br>
     </div>
          <div class="table-responsive isi">
-             <table id="simple-table" class="table  table-bordered table-hover " style="font-size: 11px;" >
+             <table style="width:100%; font-size: 11;" >
                  <thead style="text-align: center">
                      <tr>
                         <th width="20px" style="vertical-align: middle;">No</th>
