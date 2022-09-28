@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Calibration;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
-use App\GetBakteri;
+use Illuminate\Support\Facades\View;
 use Carbon\Carbon;
+use App\GetBakteri;
 use PDF;
 
 class LapTomikuController extends Controller
