@@ -31,8 +31,7 @@ class LapTomikuController extends Controller
         if ($data==null) {
             return redirect('/calibration/laptomiku')->with('gagal','Data Kosong');
         }
-        $pdf = PDF::loadview('/calibration/laptomiku.cetakambil',compact('request','data'));  
-        return $pdf->stream();           
+        return view('/calibration/laptomiku.cetakambil',compact('request','data'));        
     } 
 
 }
