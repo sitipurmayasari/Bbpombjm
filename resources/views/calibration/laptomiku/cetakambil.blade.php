@@ -16,7 +16,7 @@
     <main>
         <div class="col-sm-12 isi" style="text-align: center">
             <div style="align=center font-size: 20px">
-                <b>Rekapitulasi SPengambilan Mikroba Baku</b>
+                <b>Rekapitulasi Pengambilan Mikroba Baku</b>
             </div>
             <br>
          </div>
