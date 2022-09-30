@@ -96,7 +96,12 @@
                                         1
                                     </td>       
                                     <td> 
-                                        <input type="text" name="names[]" class="form-control required" required>
+                                        <select name="names" class="form-control required select2">
+                                            <option value="">Pilih Barang</option>
+                                            @foreach ($inv as $item)
+                                                <option value="{{$item->nama_barang}} ({{$item->merk}})">{{$item->nama_barang}} ({{$item->merk}})</option>
+                                            @endforeach
+                                        </select>
                                     </td>
                                     <td>
                                         <input type="text" name="katalog[]" class="form-control required" required>
@@ -157,7 +162,12 @@
         $isi =  '<tr id="cell-'+new_baris+'">'+
                 '<td>'+new_baris+'</td>'+
                 '<td>'+
-                    '<input type="text" name="names[]" class="form-control required" required>'+
+                    '<select name="names" class="form-control required select2">'+
+                        '<option value="">Pilih Barang</option>'+
+                        '@foreach ($inv as $item)'+
+                            '<option value="{{$item->nama_barang}} ({{$item->merk}})">{{$item->nama_barang}} ({{$item->merk}})</option>'+                        
+                        '@endforeach'+
+                    '</select>'+
                 '</td>'+
                 '<td>'+
                     '<input type="text" name="katalog[]" class="form-control required" required>'+

@@ -11,6 +11,7 @@ use App\User;
 use App\Pejabat;
 use App\Planlab;
 use App\Planlab_detail;
+use App\Inventaris;
 use App\Satuan;
 use PDF;
 use LogActivity;
@@ -58,8 +59,9 @@ class PlanLabController extends Controller
         $satuan = Satuan::all();
         $lab = Labory::all();
         $no_ajuan = $this->getNoAjuan();
+        $inv = Inventaris::where('kind','L')->get();
         $tahu = Pejabat::whereraw('pjs is NULL AND jabatan_id != 6')->Orderby('id','desc')->get();
-        return view('invent/planlab.create',compact('user','no_ajuan','satuan','lab','tahu'));
+        return view('invent/planlab.create',compact('user','no_ajuan','satuan','lab','tahu','inv'));
     }
    
     public function store(Request $request)
