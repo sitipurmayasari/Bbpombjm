@@ -158,4 +158,12 @@ class LabSuplyController extends Controller
         $data->update($request->all());
         return redirect('/invent/labsuply/stock/'.$data->inventaris_id)->with('sukses','Data Tersimpan');
     }
+
+    public function deletestock($id)
+    {
+        $data = Entrystock::find($id); 
+        $data->delete();
+        return redirect('/invent/labsuply/stock/'.$data->inventaris_id)->with('sukses','Data Terhapus');
+    }
+
 }

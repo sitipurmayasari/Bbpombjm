@@ -153,7 +153,12 @@
                         <td>{{$row->exp_date}}</td>
                         <td>{{$row->harga}}</td>
                         <td><a href="/invent/disposable/ubahstok/{{$row->id}}" class="btn btn-warning">
-                            <i class="glyphicon glyphicon-edit"></i></td>
+                            <i class="glyphicon glyphicon-edit"></i>
+                            <a href="#" class="btn btn-danger deletestock"
+                            r-name="{{$row->entry_date}}" 
+                            r-id="{{$row->id}}">
+                            <i class="glyphicon glyphicon-trash"></i></a>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -171,5 +176,26 @@
             var c = parseFloat(a) +  parseFloat(b);
             $("#awal").val(c);
         }
+
+        $().ready( function () {
+            $(".deletestock").click(function() {
+                    var id = $(this).attr('r-id');
+                    var name = $(this).attr('r-name');
+                    Swal.fire({
+                    title: 'Ingin Menghapus?',
+                    text: "Yakin ingin menghapus data  : "+name+" ini ?" ,
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, hapus !'
+                }).then((result) => {
+                    console.log(result);
+                    if (result.value) {
+                        window.location = "/invent/labsuply/deletestock/"+id;
+                    }
+                });
+            });
+        } );
     </script>
 @endsection

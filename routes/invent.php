@@ -55,6 +55,7 @@
   Route::post('/invent/labsuply/storestock','Invent\LabSuplyController@storestock')->name('labsuply.storestock');
   Route::get('/invent/labsuply/ubahstok/{id}','Invent\LabSuplyController@ubahstok')->name('labsuply.ubahstok');
   Route::post('/invent/labsuply/updatestok/{id}','Invent\LabSuplyController@updatestok')->name('labsuply.updatestok');
+  Route::get('/invent/labsuply/deletestock/{id}','Invent\LabSuplyController@deletestock')->name('labsuply.deletestock');
   
 
   //Route untuk maintenance
