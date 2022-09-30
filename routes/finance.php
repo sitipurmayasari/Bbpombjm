@@ -262,3 +262,24 @@
 
     //Route untuk laporan nominatif Surat
     Route::get('finance/nominatif/cetak/{id}','Finance\NominatifController@cetak')->name('nominatif.cetak');
+
+
+    //Route untuk Kuitansi baru
+    Route::get('/finance/receipt/create','Finance\ReceiptController@create')->name('receipt.create');
+    Route::get('finance/receipt/getMaksud','Finance\ReceiptController@getMaksud')->name('receipt.getMaksud');
+    Route::post('finance/receipt/generate','Finance\ReceiptController@generate')->name('receipt.generate');
+    Route::get('/finance/receipt/entrydata/{id}','Finance\ReceiptController@entrydata')->name('receipt.entrydata');
+
+
+
+    Route::post('finance/receipt/store','Finance\ReceiptController@store')->name('receipt.store');
+    Route::get('finance/receipt/edit/{id}','Finance\ReceiptController@edit')->name('receipt.edit');
+    Route::post('finance/receipt/update/{id}','Finance\ReceiptController@update')->name('receipt.update');
+    Route::get('finance/receipt/cost/{id}','Finance\ReceiptController@cost')->name('receipt.cost');
+    // Route::get('finance/receipt/riil/{id}','Finance\ReceiptController@riil')->name('receipt.riil');
+    // Route::get('finance/receipt/super/{id}','Finance\ReceiptController@super')->name('receipt.super');
+    // Route::get('finance/receipt/super30/{id}','Finance\ReceiptController@super30')->name('receipt.super30');
+    // Route::get('finance/receipt/super8J/{id}','Finance\ReceiptController@super8J')->name('receipt.super8J');
+    // Route::get('finance/receipt/getIsian','Finance\ReceiptController@getIsian')->name('receipt.getIsian');
+    // Route::get('finance/receipt/delete/{id}','Finance\ReceiptController@delete')->name('receipt.delete');
+    // Route::get('finance/receipt/riilkkp/{id}','Finance\ReceiptController@riilkkp')->name('receipt.riilkkp');

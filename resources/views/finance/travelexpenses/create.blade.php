@@ -22,6 +22,7 @@
                                 <input type="date" required id="date" value="{{date('Y-m-d')}}"
                                         class="col-xs-3 col-sm-3 required " 
                                         name="date"/>
+                                <input type="hidden" name="jenis" value="L">
                             </div>
                         </div>
                         <div class="form-group">
@@ -56,7 +57,7 @@
                             <div class="col-sm-8">
                                 <input type="text"  placeholder="Nama kegiatan" readonly id="jenis"
                                         class="col-xs-10 col-sm-10 " 
-                                        name="jenis"/>
+                                       />
                             </div> 
                         </div>
                         <div class="form-group">

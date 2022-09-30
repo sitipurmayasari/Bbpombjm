@@ -35,6 +35,7 @@ class TravelexpensesController extends Controller
         $data = Expenses::orderBy('expenses.updated_at','desc')
                         ->SelectRaw('expenses.*, outstation.number, outstation.purpose')
                         ->leftjoin('outstation','outstation.id','expenses.outstation_id')
+                        ->where('jenis','L')
                         ->when($request->keyword, function ($query) use ($request) {
                             $query->where('outstation.number','LIKE','%'.$request->keyword.'%')
                                     ->orWhere('outstation.purpose', 'LIKE','%'.$request->keyword.'%');

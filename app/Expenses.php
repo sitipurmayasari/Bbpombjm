@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Expenses extends Model
 {
     protected $table = "expenses";
-    protected $fillable = ['date','outstation_id'
+    protected $fillable = ['date','outstation_id','jenis'
 ];
 
     public function st()
