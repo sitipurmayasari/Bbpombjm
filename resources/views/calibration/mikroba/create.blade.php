@@ -28,7 +28,7 @@
                             <input type="text" readonly value="{{$nomor}}"
                                     class="col-xs-3 col-sm-3 required " 
                                     name="number" required/> &nbsp; &nbsp;
-                            <input type="text" name="kode"  class="col-xs-5 col-sm-5 required" placeholder="kode">
+                            <input type="text" name="kode"  class="col-xs-5 col-sm-5 required" placeholder="kode" required>
                         </div>
                     </div>
                     <div class="form-group">
