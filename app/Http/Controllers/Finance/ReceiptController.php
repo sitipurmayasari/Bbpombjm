@@ -121,6 +121,8 @@ class ReceiptController extends Controller
         $data = Expenses::create($request->all());
         $rens = $data->id;
 
+        LogActivity::addToLog('Simpan->Kuitansi 2023, nomor = '.$data->st->number);
+
         return redirect('/finance/receipt/entrydata/'.$rens);
     }
 
@@ -297,6 +299,7 @@ class ReceiptController extends Controller
     {
         $data = ExpensesTrans::find($id);
         $x  = Expenses::where('id',$data->expenses_id)->first();
+
         $data->delete();
         return redirect('finance/receipt/edit/'.$x)->with('sukses','Transport Terhapus');
     }
@@ -448,7 +451,7 @@ class ReceiptController extends Controller
             }
         }
         DB::commit();
-
+        LogActivity::addToLog('Ubah->Kuitansi 2023, nomor = '.$data->st->number);
         return redirect('/finance/receipt');
     }
 
@@ -608,7 +611,9 @@ class ReceiptController extends Controller
 
     public function delete($id)
     {
+
         $lokasi = Expenses::find($id);
+        LogActivity::addToLog('Simpan->Kuitansi 2023, nomor = '.$lokasi->st->number);
         $lokasi->delete();
 
         $daily = ExpensesUh::where('expenses_id',$id);

@@ -10,7 +10,7 @@ use App\Jenistik;
 use Illuminate\Support\Facades\DB;
 use QrCode;
 use Illuminate\Support\Facades\Crypt;
-
+use LogActivity;
 
 class ITAssetController extends Controller
 {
@@ -56,6 +56,8 @@ class ITAssetController extends Controller
             $asset->file_foto = $request->file('file_foto')->getClientOriginalName(); 
             $asset->save(); 
         }
+        LogActivity::addToLog('Simpan->Peralatan TIK, kode barang = '.$request->kode_barang);
+
         return redirect('/invent/itasset')->with('sukses','Data Tersimpan');
     }
 
@@ -86,14 +88,14 @@ class ITAssetController extends Controller
             $asset->save(); 
         }
 
-
-
+        LogActivity::addToLog('Ubah->Peralatan TIK, kode barang = '.$asset->kode_barang);
         return redirect('/invent/itasset')->with('sukses','Data Diperbaharui');
     }
 
     public function delete($id)
     {
         $asset = ItAsset::find($id);
+        LogActivity::addToLog('Hapus->Peralatan TIK, kode barang = '.$asset->kode_barang);
         $asset->delete();
         return redirect('/invent/itasset')->with('sukses','Data Terhapus');
     }
