@@ -29,7 +29,7 @@ class InventarisController extends Controller
                         $query->where('nama_barang','LIKE','%'.$request->keyword.'%')
                                 ->orWhere('kode_barang', 'LIKE','%'.$request->keyword.'%')
                                 ->orWhere('merk', 'LIKE','%'.$request->keyword.'%')
-                                ->orWhere('name', 'LIKE','%'.$request->keyword.'%');
+                                ->orWhere('users.name', 'LIKE','%'.$request->keyword.'%');
                     })
                     ->paginate('10');
         return view('invent/inventaris.index',compact('data'));

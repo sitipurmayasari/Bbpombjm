@@ -10,7 +10,7 @@
                                         <tr>
                                             <th style="text-align: center;">NO</th>
                                             <th style="text-align: center;">Nama</th>
-                                            <th style="text-align: center;" >T. Lokal (Dalam Kota) </th>
+                                            <th style="text-align: center;" >Dalam Kota > 8 Jam</th>
                                             <th style="text-align: center;" >Uang Harian 
                                                 @foreach ($tujuan as $key=>$kota)
                                                     @if ($loop->first)
@@ -60,14 +60,33 @@
                                                 <td>
                                                     <div style="width: 165px;">
                                                         @php
-                                                            if ($DataPeg->type =="DL") {
-                                                                $lokal = 150000;
+                                                            foreach ($tujuan as $key=>$kota) {
+                                                                if ($loop->first) {
+                                                                    $kota1 = $kota->destiny->id;
+                                                                }
+                                                            }
+
+                                                            $uhar1 = $InjectNew->GetUH($kota1);
+
+                                                            if ($DataPeg->deskjob !='Sopir') {
+                                                                if ($DataPeg->jabatan_id == 6) { //kabalai
+                                                                    $DK = $uhar1->dailywageDK1;
+                                                                } else if ($DataPeg->jabatan_id == 11) { //kabag
+                                                                    $DK = $uhar1->dailywageDK2;
+                                                                } else if ($DataPeg->jabatan_id == 7) { //koor
+                                                                    $DK = $uhar1->dailywageDK3;
+                                                                } else if ($DataPeg->jabatan_id == 5) { //subkoor
+                                                                    $DK = $uhar1->dailywageDK4;
+                                                                } else {
+                                                                    $DK = $uhar1->dailywageDK5;
+                                                                }    
+                                                                
                                                             } else {
-                                                                $lokal = 0;
+                                                                    $DK = $uhar1->DKDriver;
                                                             }
                                                             
                                                         @endphp
-                                                        <input type="number" style="width: 100px;" value="{{$lokal}}" min="0" name="tlokalcost[]" id="tlokalcost-{{$item->id}}" onclick="Hittlokal({{$item->id}})" onkeyup="Hittlokal({{$item->id}})"> X 
+                                                        <input type="number" style="width: 100px;" value="{{$DK}}" min="0" name="tlokalcost[]" id="tlokalcost-{{$item->id}}" onclick="Hittlokal({{$item->id}})" onkeyup="Hittlokal({{$item->id}})"> X 
                                                         <input type="number" style="width: 50px;" value="0" min="0" name="tlokalkali[]" id="tlokalkali-{{$item->id}}" onclick="Hittlokal({{$item->id}})" onkeyup="Hittlokal({{$item->id}})">
                                                         <input type="number" class="form-control" value="0" min="0" name="tlokalsum[]" id="tlokalsum-{{$item->id}}" readonly>
                                                     </div>
@@ -85,20 +104,7 @@
                                                             $uhar1 = $InjectNew->GetUH($kota1);
 
                                                             if ($DataPeg->deskjob !='Sopir') {
-                                                                if ($DataPeg->type =="DL") {
-                                                                    if ($DataPeg->jabatan_id == 6) { //kabalai
-                                                                        $UH1 = $uhar1->dailywageDK1;
-                                                                    } else if ($DataPeg->jabatan_id == 11) { //kabag
-                                                                        $UH1 = $uhar1->dailywageDK2;
-                                                                    } else if ($DataPeg->jabatan_id == 7) { //koor
-                                                                        $UH1 = $uhar1->dailywageDK3;
-                                                                    } else if ($DataPeg->jabatan_id == 5) { //subkoor
-                                                                        $UH1 = $uhar1->dailywageDK4;
-                                                                    } else {
-                                                                        $UH1 = $uhar1->dailywageDK5;
-                                                                    }
-                                                                } else {
-                                                                    if ($DataPeg->jabatan_id == 6) {
+                                                                if ($DataPeg->jabatan_id == 6) {
                                                                         $UH1 = $uhar1->dailywageLK1;
                                                                     } else if ($DataPeg->jabatan_id == 11) {
                                                                         $UH1 = $uhar1->dailywageLK2;
@@ -108,8 +114,9 @@
                                                                         $UH1 = $uhar1->dailywageLK4;
                                                                     } else {
                                                                         $UH1 = $uhar1->dailywageLK5;
-                                                                    }
                                                                 }
+                                                                    
+                                                             
                                                             } else {
                                                                     $UH1 = $uhar1->LKDriver;
                                                             }
@@ -132,20 +139,7 @@
                                                                 $uhar2 = $InjectNew->GetUH($kota2);
 
                                                                 if ($DataPeg->deskjob !='Sopir') {
-                                                                    if ($DataPeg->type =="DL") {
-                                                                        if ($DataPeg->jabatan_id == 6) { //kabalai
-                                                                        $UH2 = $uhar2->dailywageDK1;
-                                                                        } else if ($DataPeg->jabatan_id == 11) { //kabag
-                                                                            $UH2 = $uhar2->dailywageDK2;
-                                                                        } else if ($DataPeg->jabatan_id == 7) { //koor
-                                                                            $UH2 = $uhar2->dailywageDK3;
-                                                                        } else if ($DataPeg->jabatan_id == 5) { //subkoor
-                                                                            $UH2 = $uhar2->dailywageDK4;
-                                                                        } else {
-                                                                            $UH2 = $uhar2->dailywageDK5;
-                                                                        }
-                                                                    } else {
-                                                                        if ($DataPeg->jabatan_id == 6) {
+                                                                    if ($DataPeg->jabatan_id == 6) {
                                                                             $UH2 = $uhar2->dailywageLK1;
                                                                         } else if ($DataPeg->jabatan_id == 11) {
                                                                             $UH2 = $uhar2->dailywageLK2;
@@ -156,7 +150,6 @@
                                                                         } else {
                                                                             $UH2 = $uhar2->dailywageLK5;
                                                                         }
-                                                                    }
                                                                 } else {
                                                                         $UH2 = $uhar2->LKDriver;
                                                                 }
@@ -182,20 +175,7 @@
                                                                 $uhar3 = $InjectNew->GetUH($kota3);
 
                                                                 if ($DataPeg->deskjob !='Sopir') {
-                                                                    if ($DataPeg->type =="DL") {
-                                                                        if ($DataPeg->jabatan_id == 6) { //kabalai
-                                                                        $UH3 = $uhar3->dailywageDK1;
-                                                                        } else if ($DataPeg->jabatan_id == 11) { //kabag
-                                                                            $UH3 = $uhar3->dailywageDK2;
-                                                                        } else if ($DataPeg->jabatan_id == 7) { //koor
-                                                                            $UH3 = $uhar3->dailywageDK3;
-                                                                        } else if ($DataPeg->jabatan_id == 5) { //subkoor
-                                                                            $UH3 = $uhar3->dailywageDK4;
-                                                                        } else {
-                                                                            $UH3 = $uhar3->dailywageDK5;
-                                                                        }
-                                                                    } else {
-                                                                        if ($DataPeg->jabatan_id == 6) {
+                                                                    if ($DataPeg->jabatan_id == 6) {
                                                                             $UH3 = $uhar3->dailywageLK1;
                                                                         } else if ($DataPeg->jabatan_id == 11) {
                                                                             $UH3 = $uhar3->dailywageLK2;
@@ -206,7 +186,6 @@
                                                                         } else {
                                                                             $UH3 = $uhar3->dailywageLK5;
                                                                         }
-                                                                    }
                                                                 } else {
                                                                         $UH3 = $uhar3->LKDriver;
                                                                 }

@@ -17,7 +17,7 @@ class ExpensesTrans extends Model
 
     public function peg()
     {
-        return $this->belongsTo(Outst_employee::class,'expenses_id','id');
+        return $this->belongsTo(Outst_employee::class,'outst_employee_id','id');
     }
 
 

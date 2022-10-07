@@ -3,19 +3,19 @@
 @section('breadcrumb')
     <li>Kuitansi</li>
     <li><a href="/finance/receipt">Biaya Perjalanan Dinas</a></li>
-    <li>Detail Biaya</li>
+    <li>Ubah Detail Biaya</li>
 @endsection
 @section('content')
 @include('layouts.validasi')
 
 <div class="row">
     <form class="form-horizontal validate-form" role="form" 
-    method="post" action="{{route('receipt.store')}}" enctype="multipart/form-data"   >
+    method="post" action="/finance/receipt/update/{{$data->id}}" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div class="col-sm-12">
         <div class="widget-box">
             <div class="widget-header">
-                <h4 class="widget-title"> Tambahkan Detail Biaya Perjalanan Dinas</h4>
+                <h4 class="widget-title"> Ubah Detail Biaya Perjalanan Dinas</h4>
                 <div class="widget-toolbar">
                 </div>
             </div>
@@ -61,11 +61,11 @@
                             <li><a href="#tab-meeting" data-toggle="tab">Pertemuan</a></li>
                     </ul>
                     <div  class="tab-content" style="overflow: scroll">
-                            @include('finance.receipt.partials.employee')
-                            @include('finance.receipt.partials.transport')
-                            @include('finance.receipt.partials.ticket')
-                            @include('finance.receipt.partials.inn')
-                            @include('finance.receipt.partials.meeting')
+                            @include('finance.receipt.partials2.employee')
+                            @include('finance.receipt.partials2.transport')
+                            @include('finance.receipt.partials2.ticket')
+                            @include('finance.receipt.partials2.inn')
+                            @include('finance.receipt.partials2.meeting')
                     </div>
                 </fieldset>    
                </div>
@@ -85,6 +85,66 @@
 @endsection
 @section('footer')
    <script>
+    $().ready( function () {
+    // ----------------------------------------------HAPUS TRANSPORT---------------------------------------------------------------
+        $(".deletetr").click(function() {
+                var id = $(this).attr('r-id');
+                var name = $(this).attr('r-name');
+                Swal.fire({
+                title: 'Ingin Menghapus?',
+                text: "Yakin ingin menghapus data  : "+name+" ini ?" ,
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, hapus !'
+            }).then((result) => {
+                console.log(result);
+                if (result.value) {
+                    window.location = "/finance/receipt/deletetr/"+id;
+                }
+            });
+        });
+
+        $(".deleteplane").click(function() {
+                var id = $(this).attr('r-id');
+                var name = $(this).attr('r-name');
+                Swal.fire({
+                title: 'Ingin Menghapus?',
+                text: "Yakin ingin menghapus data  : "+name+" ini ?" ,
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, hapus !'
+            }).then((result) => {
+                console.log(result);
+                if (result.value) {
+                    window.location = "/finance/receipt/deleteplane/"+id;
+                }
+            });
+        });
+
+        $(".deleteinn").click(function() {
+                var id = $(this).attr('r-id');
+                var name = $(this).attr('r-name');
+                Swal.fire({
+                title: 'Ingin Menghapus?',
+                text: "Yakin ingin menghapus data  : "+name+" ini ?" ,
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, hapus !'
+            }).then((result) => {
+                console.log(result);
+                if (result.value) {
+                    window.location = "/finance/receipt/deleteinn/"+id;
+                }
+            });
+        });
+
+    } );
     // ----------------------------------------------UANG HARIAN---------------------------------------------------------------
         function Hittlokal(i){
             var cost = $("#tlokalcost-"+i).val();
@@ -153,7 +213,7 @@
     // ----------------------------------------------PESAWAT-------------------------------------------------------------
         function addBarisPlane(){
         var last_baris = $("#countRow").val();
-        var new_baris = parseInt(last_baris)+1;
+        var new_baris = parseInt(last_baris);
             $isi ='<tr id="cell-'+new_baris+'">'+
                     '<td>'+new_baris+'</td>'+
                     '<td>'+
@@ -266,7 +326,7 @@
         // ----------------------------------------------TAXI---------------------------------------------------------------
         function addBarisTaxi(){
         var last_baris = $("#countRow3").val();
-        var new_baris = parseInt(last_baris)+1;
+        var new_baris = parseInt(last_baris);
             $isitaxi ='<tr id="cell-'+new_baris+'">'+
                     '<td>'+new_baris+'</td>'+
                     '<td>'+

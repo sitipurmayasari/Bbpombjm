@@ -201,7 +201,7 @@
   Route::get('/invent/brokenBMN/delete/{id}','Invent\BrokenBMNController@delete')->name('brokenBMN.delete');
   Route::get('/invent/brokenBMN/deletelist/{id}','Invent\BrokenBMNController@deletelist')->name('brokenBMN.deletelist');
 
-    //Route untuk Perencanaan Pengadaan Lab
+  //Route untuk Perencanaan Pengadaan Lab
   Route::get('/invent/planlab/create','Invent\PlanLabController@create')->name('planlab.create');
   Route::post('/invent/planlab/store','Invent\PlanLabController@store')->name('planlab.store');
   Route::get('/invent/planlab/print/{id}','Invent\PlanLabController@print')->name('planlab.print');
@@ -209,3 +209,11 @@
   Route::get('/invent/planlab/edit/{id}','Invent\PlanLabController@edit')->name('planlab.edit');
   Route::post('/invent/planlab/update/{id}','Invent\PlanLabController@update')->name('planlab.update');
   Route::get('/invent/planlab/delete/{id}','Invent\PlanLabController@delete')->name('planlab.delete');
+
+  //Route untuk  pERALATAN TIK
+  Route::get('/invent/itasset/create','Invent\ITAssetController@create')->name('itasset.create');
+  Route::post('/invent/itasset/store','Invent\ITAssetController@store')->name('itasset.store');
+  Route::get('/invent/itasset/edit/{id}','Invent\ITAssetController@edit')->name('itasset.edit');
+  Route::post('/invent/itasset/update/{id}','Invent\ITAssetController@update')->name('itasset.update');
+  Route::get('/invent/itasset/delete/{id}','Invent\ITAssetController@delete')->name('itasset.delete');
+  Route::get('/invent/itasset/getBarangTIK','Invent\ITAssetController@getBarangTIK')->name('itasset.getBarangTIK');

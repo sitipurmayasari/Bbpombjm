@@ -8,7 +8,7 @@ class ExpensesInap extends Model
 {
     protected $table = "expensesinap";
     protected $fillable = ['expenses_id','outst_employee_id','hotelkkp','rillhotel','hotelname','hoteladdr','hoteltelp','hotelroom',
-                            'hotelin','hotelout','hotelfee','hotellong','person','hotelsum','hotelinfo'
+                            'hotelin','hotelout','hotelfee','hotellong','person','hotelsum','hotelinfo','hotelpersen','hotelmax'
                         ];
 
     public function expenses()
@@ -18,7 +18,7 @@ class ExpensesInap extends Model
 
     public function peg()
     {
-        return $this->belongsTo(Outst_employee::class,'expenses_id','id');
+        return $this->belongsTo(Outst_employee::class,'outst_employee_id','id');
     }
 
 

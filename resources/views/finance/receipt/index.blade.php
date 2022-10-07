@@ -34,26 +34,27 @@
     <div class="table-responsive">
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
-                <th width="40px">No</th>
-                <th>Tanggal Pengeluaran</th>
-                <th class="col-md-2">Nomor Surat Tugas</th>
-                <th>Nama Kegiatan</th>
-                <th>Kuitansi</th>
-                <th>Riil</th>
-                <th>Surat Pernyataan</th>
-                <th>File</th>
-                <th  class="col-md-2">Aksi</th>
+                <th width="40px" style="text-align: center">No</th>
+                <th style="text-align: center">Tanggal Kuitansi</th>
+                <th style="text-align: center" class="col-md-2">Nomor Surat Tugas</th>
+                <th style="text-align: center">Nama Kegiatan</th>
+                <th style="text-align: center">Kuitansi</th>
+                <th style="text-align: center">Riil & KKP</th>
+                <th style="text-align: center">Surat Pernyataan</th>
+                <th>Aksi</th>
             </thead>
             <tbody>   	
                 @foreach($data as $key=>$row)
                 <tr>
-                    <td>{{$data->firstItem() + $key}}</td>
+                    <td style="text-align: center">{{$data->firstItem() + $key}}</td>
                     <td>{{$row->date}}</td>
                     <td>{{$row->st->number}}</td>
                     <td>{{$row->st->purpose}}</td>
-                    <td>
+                    <td style="text-align: center">
                         <a class="btn btn-primary" href="/finance/receipt/cost/{{$row->id}}" target="_blank" 
                             rel="noopener noreferrer">Kuitansi</a>
+                        <a class="btn btn-warning" href="/finance/receipt/nominatif/{{$row->id}}" target="_blank" 
+                                rel="noopener noreferrer">Nominatif</a>
                     </td>
                     <td style="text-align: center">
                         <a class="btn btn-primary" href="/finance/receipt/riil/{{$row->id}}" target="_blank" 
@@ -67,14 +68,9 @@
                         <a class="btn btn-warning" href="/finance/receipt/super30/{{$row->id}}" target="_blank" 
                             rel="noopener noreferrer">SuPer30%</a>
                         @if ($row->st->type == 'DL8')
-                            <a class="btn btn-success" href="/finance/receipt/super8J/{{$row->id}}" target="_blank" 
+                            <a class="btn btn-success" href="/finance/travelexpenses/super8J/{{$row->id}}" target="_blank" 
                                 rel="noopener noreferrer">SuPer>8Jam</a>
                         @endif
-                    </td>
-                    <td>
-                        @foreach ($row->filess as $item)
-                            <li><a href="{{$item->getFIleReceipt()}}" target="_blank" >{{$item->file}}</a></li>
-                        @endforeach
                     </td>
                     <td>
                         <a href="/finance/receipt/edit/{{$row->id}}" class="btn btn-warning">

@@ -7,10 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class ExpensesUh extends Model
 {
     protected $table = "expensesuh";
-    protected $fillable = ['expenses_id','outst_employee_id','tlokalcost','tlokalkali','tlokalsum','uhar1cost','uhar1kali','uhar1sum',
-                            'uhar2cost','uhar2kali','uhar2sum','uhar3cost','uhar3kali','uhar3sum','diklatcost','diklatkali','diklatsum',
-                            'fullboardcost','fullboardkali','fullboardsum','fulldaycost','fulldaykali','fulldaysum',
-                            'repscost','repskali','repssum','halflong','halfcost','halfsum','fulllong','fullcost','fullsum'
+    protected $fillable = ['expenses_id','outst_employee_id',
+                            'tlokalcost','tlokalkali','tlokalsum',
+                            'uhar1cost','uhar1kali','uhar1sum',
+                            'uhar2cost','uhar2kali','uhar2sum',
+                            'uhar3cost','uhar3kali','uhar3sum',
+                            'diklatcost','diklatkali','diklatsum',
+                            'fullboardcost','fullboardkali','fullboardsum',
+                            'fulldaycost','fulldaykali','fulldaysum',
+                            'repscost','repskali','repssum',
+                            'halflong','halfcost','halfsum','fulllong','fullcost','fullsum','fblong','fbcost','fbsum'
                         ];
 
     public function expenses()
@@ -20,7 +26,7 @@ class ExpensesUh extends Model
 
     public function peg()
     {
-        return $this->belongsTo(Outst_employee::class,'expenses_id','id');
+        return $this->belongsTo(Outst_employee::class,'outst_employee_id','id');
     }
 
 

@@ -274,12 +274,15 @@
 
     Route::post('finance/receipt/store','Finance\ReceiptController@store')->name('receipt.store');
     Route::get('finance/receipt/edit/{id}','Finance\ReceiptController@edit')->name('receipt.edit');
+    Route::get('finance/receipt/deletetr/{id}','Finance\ReceiptController@deletetr')->name('receipt.deletetr');
+    Route::get('finance/receipt/deleteplane/{id}','Finance\ReceiptController@deleteplane')->name('receipt.deleteplane');
+    Route::get('finance/receipt/deleteinn/{id}','Finance\ReceiptController@deleteinn')->name('receipt.deleteinn');
     Route::post('finance/receipt/update/{id}','Finance\ReceiptController@update')->name('receipt.update');
     Route::get('finance/receipt/cost/{id}','Finance\ReceiptController@cost')->name('receipt.cost');
-    // Route::get('finance/receipt/riil/{id}','Finance\ReceiptController@riil')->name('receipt.riil');
-    // Route::get('finance/receipt/super/{id}','Finance\ReceiptController@super')->name('receipt.super');
-    // Route::get('finance/receipt/super30/{id}','Finance\ReceiptController@super30')->name('receipt.super30');
-    // Route::get('finance/receipt/super8J/{id}','Finance\ReceiptController@super8J')->name('receipt.super8J');
-    // Route::get('finance/receipt/getIsian','Finance\ReceiptController@getIsian')->name('receipt.getIsian');
-    // Route::get('finance/receipt/delete/{id}','Finance\ReceiptController@delete')->name('receipt.delete');
-    // Route::get('finance/receipt/riilkkp/{id}','Finance\ReceiptController@riilkkp')->name('receipt.riilkkp');
+    Route::get('finance/receipt/super30/{id}','Finance\ReceiptController@super30')->name('receipt.super30');
+    Route::get('finance/receipt/super/{id}','Finance\ReceiptController@super')->name('receipt.super');
+    Route::get('finance/receipt/riilkkp/{id}','Finance\ReceiptController@riilkkp')->name('receipt.riilkkp');
+    Route::get('finance/receipt/riil/{id}','Finance\ReceiptController@riil')->name('receipt.riil');
+    Route::get('finance/receipt/nominatif/{id}','Finance\ReceiptController@nominatif')->name('receipt.nominatif');
+    Route::get('finance/receipt/delete/{id}','Finance\ReceiptController@delete')->name('receipt.delete');
+    

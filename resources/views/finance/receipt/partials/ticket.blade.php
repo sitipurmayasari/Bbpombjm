@@ -8,6 +8,7 @@
                                 <tr>
                                     <th style="text-align: center;">NO</th>
                                     <th class="text-center">Nama</th>
+                                    <th class="text-center">Jenis</th>
                                     <th class="text-center">Nama Maskapai</th>
                                     <th class="text-center">KKP</th>   
                                     <th class="text-center">Nomor Tiket</th>
@@ -17,13 +18,13 @@
                                     <th class="text-center">No. Perjalanan</th>
                                     <th class="text-center">Aksi</th>
                                 </tr>
-                            </thead>
+                            </thead> 
                             <tbody>
                                 <span id="row-new"></span>
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td colspan="10">
+                                    <td colspan="11">
                                         <button type="button" class="form-control btn-default" onclick="addBarisPlane()">
                                             <i class="glyphicon glyphicon-plus"></i>TAMBAH BARIS BARU</button>
                                         <input type="hidden" id="countRow" value="0">

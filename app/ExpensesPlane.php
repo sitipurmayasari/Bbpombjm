@@ -8,7 +8,7 @@ class ExpensesPlane extends Model
 {
     protected $table = "expensesplane";
     protected $fillable = ['expenses_id','outst_employee_id', 'planekkp','ticketnumber','ticketfee','ticketdate',
-                            'bookingcode','flightnumber','plane_id'
+                            'bookingcode','flightnumber','plane_id','planetype'
                         ];
 
     public function expenses()
@@ -18,7 +18,7 @@ class ExpensesPlane extends Model
 
     public function peg()
     {
-        return $this->belongsTo(Outst_employee::class,'expenses_id','id');
+        return $this->belongsTo(Outst_employee::class,'outst_employee_id','id');
     }
 
     public function plane()

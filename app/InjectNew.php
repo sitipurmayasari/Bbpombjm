@@ -57,10 +57,11 @@ class InjectNew
         $harian = $lokal+$uhar1+$uhar2+$uhar3+$diklat+$fullboard+$fullday+$repre;
 
         //-----------MEETING-----------
-        $meethalf  = $nilaiUH->halfsum !='0' ? $nilaiUH->halfsum : '0';
-        $meetfull  = $nilaiUH->fullsum !='0' ? $nilaiUH->fullsum : '0';
+        $meethalf   = $nilaiUH->halfsum !='0' ? $nilaiUH->halfsum : '0';
+        $meetfull   = $nilaiUH->fullsum !='0' ? $nilaiUH->fullsum : '0';
+        $meetfb     = $nilaiUH->fbsum !='0' ? $nilaiUH->fbsum : '0';
 
-        $meeting = $meethalf+$meetfull;
+        $meeting = $meethalf+$meetfull+$meetfb;
 
         //-----------TRANSPORT-----------
         if ($nilaiTR->jumtax != 0 ) {
@@ -70,10 +71,10 @@ class InjectNew
         }
 
         //-----------PENGINAPAN-----------
-        $penginapan  = $nilaiIN->jumhotel !='0' ? $nilaiUH->fullsum : '0';
+        $penginapan  = $nilaiIN->jumhotel !='0' ? $nilaiIN->jumhotel : '0';
 
         //-----------PESAWAT-----------
-        $pesawat  = $nilaiPL->jumtiket !='0' ? $nilaiUH->jumtiket : '0';
+        $pesawat  = $nilaiPL->jumtiket !='0' ? $nilaiPL->jumtiket : '0';
 
         // ----------TOTAL-----------------
 
@@ -95,26 +96,136 @@ class InjectNew
         return $data;
     }
 
-    public function BiayaTrAsal($id){
+    public function BiayaTr($id){
         $data = ExpensesTrans::Where('outst_employee_id',$id)
-                            ->Where('taxitype','Tasal')
                             ->get();
         return $data;
     }
 
-    public function BiayaTrTujuan($id){
-        $data = ExpensesTrans::Where('outst_employee_id',$id)
-                            ->Where('taxitype','Ttujuan')
+    public function BiayaInn($id){
+        $data = ExpensesInap::Where('outst_employee_id',$id)
+                            ->where('hotelkkp','!=','Y')
                             ->get();
         return $data;
     }
 
-    public function BiayaTrBBM($id){
+    public function SumTR($id){
+        $nilaiPL = ExpensesPlane::SelectRaw('SUM(ticketfee) jumtiket')
+                                ->Where('outst_employee_id',$id)
+                                ->where('planekkp','!=','Y')
+                                ->first();
+        $nilaiTR = ExpensesTrans::SelectRaw('sum(taxisum) AS jumtax')
+                                ->Where('outst_employee_id',$id)
+                                ->first();
+
+        //-----------TRANSPORT-----------
+        if ($nilaiTR->jumtax != 0 ) {
+            $transport = $nilaiTR->jumtax;
+        } else {
+            $transport = 0;
+        }
+
+         //-----------PESAWAT-----------
+         $pesawat  = $nilaiPL->jumtiket !='0' ? $nilaiPL->jumtiket : '0';
+
+          // ----------TOTAL-----------------
+
+        $jumlah =$transport+$pesawat;
+
+        return $jumlah;
+
+    }
+
+    public function SumUH($id){
+       
+        $nilaiUH = ExpensesUh::Where('outst_employee_id',$id)->first();
+        //-----------UANG HARIAN-----------
+        $lokal      = $nilaiUH->tlokalsum !='0' ? $nilaiUH->tlokalsum : '0';
+        $uhar1      = $nilaiUH->uhar1sum !='0' ? $nilaiUH->uhar1sum : '0';
+        $uhar2      = $nilaiUH->uhar2sum !='0' ? $nilaiUH->uhar2sum : '0';
+        $uhar3      = $nilaiUH->uhar3sum !='0' ? $nilaiUH->uhar3sum : '0';
+        $diklat     = $nilaiUH->diklatsum !='0' ? $nilaiUH->diklatsum : '0';
+        $fullboard  = $nilaiUH->fullboardsum !='0' ? $nilaiUH->fullboardsum : '0';
+        $fullday    = $nilaiUH->fulldaysum !='0' ? $nilaiUH->fulldaysum : '0';
+
+        $jumlah = $lokal+$uhar1+$uhar2+$uhar3+$diklat+$fullboard+$fullday;
+
+        return $jumlah;
+
+    }
+
+    public function SumMeet($id){
+       
+        $nilaiUH = ExpensesUh::Where('outst_employee_id',$id)->first();
+        //-----------UANG HARIAN-----------
+        $meethalf   = $nilaiUH->halfsum !='0' ? $nilaiUH->halfsum : '0';
+        $meetfull   = $nilaiUH->fullsum !='0' ? $nilaiUH->fullsum : '0';
+        $meetfb     = $nilaiUH->fbsum !='0' ? $nilaiUH->fbsum : '0';
+
+        $jumlah = $meethalf+$meetfull+$meetfb;
+
+        return $jumlah;
+
+    }
+
+    public function SumInn($id){
+        $nilaiIN = ExpensesInap::SelectRaw('SUM(hotelsum) jumhotel')
+                                ->Where('outst_employee_id',$id)
+                                ->where('hotelkkp','!=','Y')
+                                ->first();
+
+        //-----------PENGINAPAN-----------
+        $penginapan  = $nilaiIN->jumhotel !='0' ? $nilaiIN->jumhotel : '0';
+
+          // ----------TOTAL-----------------
+
+        $jumlah =$penginapan;
+
+        return $jumlah;
+
+    }
+
+    //SEMUA (KUITANSI + KKP)
+    public function AllPesawat($id){
+        $data = ExpensesPlane::Where('outst_employee_id',$id)
+                            ->get();
+        return $data;
+    }
+
+    public function AllHotel($id){
+        $data = ExpensesInap::Where('outst_employee_id',$id)
+                            ->get();
+        return $data;
+    }
+
+    // KKP
+    public function KKPPesawat($id){
+        $data = ExpensesPlane::Where('outst_employee_id',$id)
+                            ->where('planekkp','!=','N')
+                            ->get();
+        return $data;
+    }
+
+    public function KKPHotel($id){
+        $data = ExpensesInap::Where('outst_employee_id',$id)
+                            ->where('hotelkkp','!=','N')
+                            ->get();
+        return $data;
+    }
+
+//RIIL
+    public function RiilHotel($id){
+        $data = ExpensesInap::Where('outst_employee_id',$id)
+                            ->where('rillhotel','!=','N')
+                            ->get();
+        return $data;
+    }
+
+    public function RiilTransport($id){
         $data = ExpensesTrans::Where('outst_employee_id',$id)
-                            ->Where('taxitype','BBM')
+                            ->where('rilltaxi','!=','N')
                             ->get();
         return $data;
     }
     
-
 }
