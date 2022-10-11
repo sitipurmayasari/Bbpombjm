@@ -100,15 +100,12 @@ class ITAssetController extends Controller
         return redirect('/invent/itasset')->with('sukses','Data Terhapus');
     }
 
-
-    //JSON get data barang 200 is success api
-    public function getBarangTIK(Request $request)
+    public function getbarangtik(Request $request)
     {
-        $id = $request->barang_id;
-        $data = ItAsset::orderBy('itasset.id','desc')
-                        ->select('itasset.*, users.name as pj')
-                        ->leftJoin('users','users.id','=','itasset.users_id')
-                        ->leftJoin('jenistik','jenistik.id','=','itasset.jenistik_id')
+        $id = $request->id;
+        $data =ItAsset::select('itasset.*, users.name AS pj, jenistik.kelompok')
+                        ->leftJoin('users','users.id','itasset.users_id')
+                        ->leftJoin('jenistik','jenistik.id','itasset.jenistik_id')
                         ->where('itasset.id',$id)
                         ->first();
         return response()->json([ 'success' => true,'data' => $data],200);

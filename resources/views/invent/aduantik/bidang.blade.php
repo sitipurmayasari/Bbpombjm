@@ -46,17 +46,16 @@
             @foreach($data as $key=>$row)
             <tr>
                 <td>{{$data->firstItem() + $key}}</td>
-                <td><a href="/invent/aduantik/detail/{{$row->id}}">{{$row->no_aduan}}</a></td>
+                <td>{{$row->no_aduan}}</td>
                 <td>{{$row->tanggal}}</td>
                 <td>{{$row->lapor->no_pegawai}}<br>{{$row->lapor->name}}</td>
-                <td>@if ($row->aduan_status==0)
+                <td>@if ($row->status==0)
                         Belum Diperiksa
-                    @elseif ($row->aduan_status==1)
+                    @elseif ($row->status==1)
                         Sedang Diproses
                     @else
                         Selesai Diproses 
                     @endif
-
                 </td>
                 <td>
                     <a class="btn btn-primary" href="/invent/aduantik/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">PENGAJUAN</a>

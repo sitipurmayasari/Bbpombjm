@@ -16,30 +16,39 @@
             <div class="panel-body">
                <div class="col-md-12">
                 <fieldset>
-                <div class="col-md-4">
-                    <label for="">NO. ADUAN*</label>
-                    <input type="text" id="no_adu" readonly required
-                    class="col-xs-10 col-sm-10 required " 
-                    name="no_aduan"
-                    value="{{$no_aduan}}"/>
-                    <input type="hidden" name="jenis" value="T"/>
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label for="">NO. ADUAN*</label>
+                        <input type="text" id="no_adu" readonly required
+                        class="col-xs-10 col-sm-10 required " 
+                        name="no_aduan"
+                        value="{{$no_aduan}}"/>
+                        <input type="hidden" name="jenis" value="T"/>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="">TANGGAL ADUAN *</label>
+                        <input type="text" name="tanggal" readonly 
+                                    class="col-xs-10 col-sm-10 required" value="{{date('Y-m-d')}}" required
+                                    data-date-format="yyyy-mm-dd" data-provide="datepicker">
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <label for="">TANGGAL ADUAN *</label>
-                    <input type="text" name="tanggal" readonly 
-                                class="col-xs-10 col-sm-10 required" value="{{date('Y-m-d')}}" required
-                                data-date-format="yyyy-mm-dd" data-provide="datepicker">
+                <div class="col-md-6">
+                   <div class="col-md-12">
+                        <label > PELAPOR *</label><br>
+                        <select id="peg" name="users_id" class="col-xs-10 col-sm-10 select2" required onchange="getbidang()">
+                                <option value="">pilih nama pegawai</option>
+                            @foreach ($user as $peg)
+                                <option value="{{$peg->id}}">{{$peg->no_pegawai}} || {{$peg->name}}</option>
+                            @endforeach
+                        </select>
+                   </div>
+                   <div class="col-md-12">
+                        <label > BIDANG</label><br>
+                        <input type="text" class="col-xs-10 col-sm-10" id="divisi_name" readonly>
+                        <input type="hidden" name="divisi_id" id="divisi_id">
+               </div>
                 </div>
-                <div class="col-md-4">
-                    <label > Pelapor *</label>
-                    <select id="peg" name="pegawai_id" class="col-xs-10 col-sm-10 select2" required onchange="getbidang()">
-                            <option value="">pilih nama pegawai</option>
-                        @foreach ($user as $peg)
-                            <option value="{{$peg->id}}">{{$peg->no_pegawai}} || {{$peg->name}}</option>
-                        @endforeach
-                    </select>
-                    <input type="hidden" name="divisi_id" id="div"/>
-                </div>
+                
                 </fieldset>
                </div>
             </div>
@@ -57,29 +66,29 @@
                         for="form-field-1"> Nama Barang*
                         </label>
                         <div class="col-sm-8">
-                            <select name="inventaris_id" class="col-xs-10 col-sm-10 select2" id="inventaris_id" onchange="getData()">
+                            <select id="barang" name="itasset_id" class="col-xs-10 col-sm-10 select2" required onchange="getBarang()">
                                 <option value="">-Pilih-</option>
                                 @foreach ($data as $item)
-                                    <option value="{{$item->id}}">{{$item->nama_barang}}|{{$item->merk}} (Kode : {{$item->kode_barang}}) </option>
+                                    <option value="{{$item->id}}">{{$item->nama_barang}}(Kode : {{$item->kode_barang}}) </option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1"> Merk*
+                        for="form-field-1"> Lokasi*
                         </label>
                         <div class="col-sm-8">
-                            <input type="text" id="merk" readonly
+                            <input type="text" id="lokasi" readonly name="lokasi"
                             class="col-xs-10 col-sm-10 ">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1"> No. Seri*
+                        for="form-field-1"> Penanggung Jawab*
                         </label>
                         <div class="col-sm-8">
-                            <input type="text" id="no_seri" readonly
+                            <input type="text" id="tanggung" readonly
                             class="col-xs-10 col-sm-10"  >
                         </div>
                     </div>
@@ -110,34 +119,35 @@
 @endsection
 @section('footer')
     <script>
-        function getData(){
-            var barang_id = $("#inventaris_id").val();
-
-            $.get(
-                "{{route('inventaris.getbarang') }}",
-                {
-                    barang_id: barang_id
-                },
-                function(response) {
-                    $("#merk").val(response.data.merk);
-                    $("#no_seri").val(response.data.no_seri);
-                }
-            );
-        }
-
-
         function getbidang(){
-            var users_id = $("#peg").val();
-
+            var users_id =  $("#peg").val();
+            
             $.get(
-                "{{route('aduantik.getbidang') }}",
+                "{{route('aduantik.getbidangadu') }}",
                 {
                     users_id: users_id
                 },
                 function(response) {
-                    $("#div").val(response.data.divisi_id);
+                    $("#divisi_name").val(response.data.nama);
+                    $("#divisi_id").val(response.data.id);
                 }
             );
         }
+
+        function getBarang(){
+            var id = $("#barang").val();
+            
+            $.get(
+                "{{route('aduantik.getbarang') }}",
+                {
+                    id: id
+                },
+                function(response) {
+                    $("#tanggung").val(response.data.pj);
+                    $("#lokasi").val(response.data.lokasi);
+                }
+            );
+        }
+
     </script>
 @endsection
