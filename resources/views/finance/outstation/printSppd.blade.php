@@ -557,7 +557,7 @@
                         @else
                             @foreach ($data->outst_destiny as $key=>$item)
                                 @if ($loop->last)
-                                    {{$item->return_date}}
+                                    {{$item->go_date}}
                                 @endif
                             @endforeach
                         @endif 
