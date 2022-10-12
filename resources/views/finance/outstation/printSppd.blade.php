@@ -551,13 +551,13 @@
                         @elseif (count($data->outst_destiny) == 2)
                             @foreach ($data->outst_destiny as $key=>$item)
                                 @if ($loop->last)
-                                    {{$item->go_date}} 
+                                    {{$item->return_date}} 
                                 @endif
                             @endforeach
                         @else
                             @foreach ($data->outst_destiny as $key=>$item)
                                 @if ($loop->last)
-                                    {{$item->go_date}}
+                                    {{$item->return_date}}
                                 @endif
                             @endforeach
                         @endif 
