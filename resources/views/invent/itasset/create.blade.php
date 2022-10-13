@@ -63,7 +63,7 @@
                             for="form-field-1"> Penanggung Jawab
                             </label>
                             <div class="col-sm-8">
-                                <select id="status" name="users_id" class="col-xs-11 col-sm-11 select2" required>
+                                <select id="status" name="users_id" class="col-xs-11 col-sm-11 select2">
                                     <option value="">Pilih Nama Pegawai</option>
                                     @foreach ($user as $peg)
                                         <option value="{{$peg->id}}">{{$peg->no_pegawai}} || {{$peg->name}}</option>
