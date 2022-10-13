@@ -50,7 +50,13 @@
                     <td>{{$row->nama_barang}}</td>
                     <td>{{$row->jenisnya->kelompok}}</td>
                     <td>{{$row->lokasi}}</td>
-                    <td></td>
+                    <td>
+                        @if ($row->users_id != null)
+                            {{$row->penanggung->name}}
+                        @else
+                            -
+                        @endif
+                    </td>
                     <td>
                         <a href="/invent/itasset/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>
