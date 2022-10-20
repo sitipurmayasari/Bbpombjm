@@ -322,7 +322,7 @@
                                         $feepulang = 0;
                                     }
 
-                                    $subtrans = $nilai->planereturnfee;
+                                    $subtrans = $feepulang;
                                     $subTotal1 += $subtrans;
 
                                 @endphp
