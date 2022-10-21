@@ -351,7 +351,7 @@ class AduanTikController extends Controller
                     $mengetahui = Pejabat::orderBy('id','desc')
                                     ->whereRaw("subdivisi_id =
                                                     ( SELECT u.subdivisi_id FROM users u 
-                                                        LEFT JOIN aduan a ON a.pegawai_id=u.id 
+                                                        LEFT JOIN aduantik a ON a.users_id=u.id 
                                                         WHERE a.id=$id
                                                 )" )
                                     ->whereRaw("curdate() BETWEEN dari AND sampai")
@@ -360,7 +360,7 @@ class AduanTikController extends Controller
                     $mengetahui = Pejabat::orderBy('id','desc')
                     ->whereRaw("divisi_id =
                                 (SELECT u.divisi_id FROM users u
-                                    LEFT JOIN aduan a ON a.pegawai_id=u.id
+                                    LEFT JOIN aduantik a ON a.users_id=u.id
                                     WHERE a.id=$id
                                 )" )
                     ->whereRaw('subdivisi_id is null')
@@ -372,7 +372,7 @@ class AduanTikController extends Controller
                 $mengetahui = Pejabat::orderBy('id','desc')
                                     ->whereRaw("divisi_id =
                                                 (SELECT u.divisi_id FROM users u
-                                                    LEFT JOIN aduan a ON a.pegawai_id=u.id
+                                                    LEFT JOIN aduantik a ON a.users_id=u.id
                                                     WHERE a.id=$id
                                                 )" )
                                     ->whereRaw('subdivisi_id is null')
