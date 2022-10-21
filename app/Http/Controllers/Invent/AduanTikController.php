@@ -399,7 +399,7 @@ class AduanTikController extends Controller
         $menyetujui = Pejabat::
                         where('jabatan_id', '=', 11)
                         ->where('divisi_id', '=', 2)
-                        ->whereRaw("(SELECT tanggal FROM aduan WHERE id=$id) BETWEEN dari AND sampai")
+                        ->whereRaw("(SELECT tanggal FROM aduantik WHERE id=$id) BETWEEN dari AND sampai")
                         ->first();
 
         $mengetahui = Pejabat::orderBy('subdivisi_id','desc')
@@ -407,7 +407,7 @@ class AduanTikController extends Controller
                                     (
                                         SELECT u.divisi_id
                                         FROM users u
-                                        LEFT JOIN aduan a ON a.pegawai_id=u.id
+                                        LEFT JOIN aduantik a ON a.users_id=u.id
                                         WHERE a.id=$id
                                     )" )
                         ->whereRaw(" 
@@ -415,11 +415,11 @@ class AduanTikController extends Controller
                                     (
                                         SELECT u.subdivisi_id
                                         FROM users u
-                                        LEFT JOIN aduan a ON a.pegawai_id=u.id
+                                        LEFT JOIN aduantik a ON a.users_id=u.id
                                         WHERE a.id=$id
                                     ) OR subdivisi_id IS NULL)
                                 ")
-                        ->whereRaw("(SELECT tanggal FROM aduan WHERE id=$id) BETWEEN dari AND sampai")
+                        ->whereRaw("(SELECT tanggal FROM aduantik WHERE id=$id) BETWEEN dari AND sampai")
                         ->first();
         
         $pdf = PDF::loadview('invent/aduantik.printhasilbaru',compact('data','menyetujui','petugas','pejabat','mengetahui','petugastik'));
