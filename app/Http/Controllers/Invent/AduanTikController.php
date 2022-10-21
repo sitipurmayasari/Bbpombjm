@@ -101,7 +101,7 @@ class AduanTikController extends Controller
     {
         $inventaris = ItAsset::all();
         $data = AduanTIK::where('id',$id)->first();
-       return view('invent/aduantik.edit2',compact('data','inventaris',));
+       return view('invent/aduantik.editbaru',compact('data','inventaris',));
     }
 
 

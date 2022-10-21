@@ -97,7 +97,7 @@
                         for="form-field-1"> Masalah / Kerusakan*
                         </label>
                         <div class="col-sm-8">
-                            <textarea name="problem"  required class="col-xs-10 col-sm-10" rows="10"></textarea>
+                            <textarea name="trouble"  required class="col-xs-10 col-sm-10" rows="10"></textarea>
                         </div>
                     </div>
                     </fieldset>        
