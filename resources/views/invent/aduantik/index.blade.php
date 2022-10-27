@@ -110,11 +110,11 @@
         
                             </td>
                             <td>
-                                @if ($row2->status==2)
+                                {{-- @if ($row2->status==2)
                                 <a class="btn btn-primary" href="/invent/aduantik/printhasil2/{{$row2->id}}" target="_blank" rel="noopener noreferrer">HASIL</a>
-                                @else
+                                @else --}}
                                     <a class="btn btn-primary" href="/invent/aduantik/print2/{{$row2->id}}" target="_blank" rel="noopener noreferrer">PENGAJUAN</a>
-                                @endif
+                                {{-- @endif --}}
                             </td>
                             <td>
                                 @if ($row2->status==0)
