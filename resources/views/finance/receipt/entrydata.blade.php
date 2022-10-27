@@ -25,7 +25,7 @@
                         <br>
                         <div class="form-group">
                             <label class="col-sm-2 control-label no-padding-right" 
-                            for="form-field-1"> Nomor  Realisasi
+                            for="form-field-1"> Nomor  Surat Tugas
                             </label>
                             <div class="col-sm-8">
                                 <input type="text" class="col-xs-10 col-sm-10 required " readonly value="{{$data->st->number}}"/>
