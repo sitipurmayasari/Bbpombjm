@@ -178,7 +178,7 @@
 
                         </div>
                     </div>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
                         for="form-field-1"> Uraian Isi Informasi
                         </label>
@@ -186,7 +186,7 @@
                             <textarea name="uraian" id="" cols="95%" rows="5" required
                             placeholder="ex : Surat Kepala Badan nomor xxx tentang xxx">{{$data->uraian}}</textarea>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
                         for="form-field-1"> Jumlah (lembar)
@@ -218,6 +218,54 @@
                 </div>
             </div>
         </div>
+        <div class="panel panel-default">
+            <div class="panel-heading"><h3 class="panel-title">Uraian Isi Informasi</h3></div>
+            <div class="panel-body">
+               <div class="col-md-12">
+                <table id="myTable" class="table table-bordered table-hover text-center">
+                    <thead>
+                        <th class="text-center col-md-1">No</th>
+                        <th class="text-center col-md-10">Uraian & Lampiran</th>
+                        <th class="text-center col-md-1">Aksi</th>
+                    </thead>
+                    <tbody>
+                        @php
+                            $no = 1;
+                        @endphp
+                        @foreach ($detail as $item)
+                        <tr id="cell-{{$no}}">
+                            <td>{{$no}}</td>       
+                            <td>
+                                <input type="hidden" name="outemp_id[]" value="{{$item->id}}">
+                                <input type="text" name="attachfile[]" class="form-control" required value="{{$item->attachfile}}">
+                            </td>
+                            <td>
+                                <a href="#" class="btn btn-danger delete"
+                                r-name="{{$item->attachfile}}" 
+                                r-id="{{$item->id}}">
+                                <i class="glyphicon glyphicon-trash"></i></a>
+                            </td>
+                        </tr>
+                        @php
+                            $no++;
+                        @endphp
+                        @endforeach
+                        <span id="row-new"></span>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3">
+                                <button type="button" class="form-control btn-default" onclick="addBarisNew()">
+                                    <i class="glyphicon glyphicon-plus"></i>TAMBAH BARIS BARU</button>
+                                <input type="hidden" id="countRow" value="{{$no}}">
+                            </td>
+                        </tr>
+                        
+                    </tfoot>
+                </table>
+               </div>
+            </div>
+        </div>
     </div><!-- /.col -->
     
     <div class="col-sm-12">
@@ -230,4 +278,53 @@
     </form>
 </div>
     
+@endsection
+@section('footer')
+   <script>
+    $().ready( function () {
+        $(".delete").click(function() {
+                var id = $(this).attr('r-id');
+                var name = $(this).attr('r-name');
+                Swal.fire({
+                title: 'Ingin Menghapus?',
+                text: "Yakin ingin menghapus data  : "+name+" ini ?" ,
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, hapus !'
+            }).then((result) => {
+                console.log(result);
+                if (result.value) {
+                    window.location = "/arsip/archivesrek/deletelist/"+id;
+                }
+            });
+        });
+    } );
+
+        function addBarisNew(){
+        var last_baris = $("#countRow").val();
+        var new_baris = parseInt(last_baris)+1;
+        $isi ='<tr id="cell-'+new_baris+'">'+
+                '<td>'+new_baris+'</td>'+
+                '<td>'+
+                    '<input type="hidden" name="outemp_id[]">'+           
+                    '<input type="text" name="attachfile[]" class="form-control" required>'+            
+                '</td>'+
+                '<td><button type="button" class="btn btn-danger" onclick="deleteRow('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button></td>'+
+            '</tr>';
+        $("#myTable").find('tbody').append($isi);
+        $("#countRow").val(new_baris);
+        $('.select2').select2();
+
+       }
+
+    
+       function deleteRow(cell) {
+            $("#cell-"+cell).remove();
+            this.hitungTotal();
+
+        }
+    
+   </script>
 @endsection

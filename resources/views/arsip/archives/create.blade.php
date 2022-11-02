@@ -96,7 +96,7 @@
 
                         </div>
                     </div>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
                         for="form-field-1"> Uraian Isi Informasi
                         </label>
@@ -105,7 +105,7 @@
                             placeholder="ex : Surat Kepala Badan nomor xxx tentang xxx"
                             ></textarea>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
                         for="form-field-1"> Jumlah (lembar)
@@ -137,6 +137,43 @@
                 </div>
             </div>
         </div>
+        <div class="panel panel-default">
+            <div class="panel-heading"><h3 class="panel-title">Uraian Isi Informasi</h3></div>
+            <div class="panel-body">
+               <div class="col-md-12">
+                <table id="myTable" class="table table-bordered table-hover text-center">
+                    <thead>
+                        <th class="text-center col-md-1">No</th>
+                        <th class="text-center col-md-10">Uraian & Lampiran</th>
+                        <th class="text-center col-md-1">Aksi</th>
+                    </thead>
+                    <tbody>
+                        <tr id="cell-1">
+                            <td>
+                                1
+                            </td>       
+                            <td>
+                                <input type="text" name="attachfile[]" class="form-control" required>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <span id="row-new"></span>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3">
+                                <button type="button" class="form-control btn-default" onclick="addBarisNew()">
+                                    <i class="glyphicon glyphicon-plus"></i>TAMBAH BARIS BARU</button>
+                                <input type="hidden" id="countRow" value="1">
+                            </td>
+                        </tr>
+                        
+                    </tfoot>
+                </table>
+               </div>
+            </div>
+        </div>
     </div><!-- /.col -->
     
     <div class="col-sm-12">
@@ -149,4 +186,31 @@
     </form>
 </div>
     
+@endsection
+@section('footer')
+   <script>
+        function addBarisNew(){
+        var last_baris = $("#countRow").val();
+        var new_baris = parseInt(last_baris)+1;
+        $isi ='<tr id="cell-'+new_baris+'">'+
+                '<td>'+new_baris+'</td>'+
+                    '<td>'+
+                        '<input type="text" name="attachfile[]" class="form-control" required>'+
+                    '</td>'+
+                        '<td><button type="button" class="btn btn-danger" onclick="deleteRow('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button></td>'+
+                    '</tr>';
+        $("#myTable").find('tbody').append($isi);
+        $("#countRow").val(new_baris);
+        $('.select2').select2();
+
+       }
+
+    
+       function deleteRow(cell) {
+            $("#cell-"+cell).remove();
+            this.hitungTotal();
+
+        }
+    
+   </script>
 @endsection

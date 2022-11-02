@@ -20,6 +20,7 @@ Route::post('/arsip/archives/store/{id}','Arsip\ArchivesController@store')->name
 Route::get('/arsip/archives/delete/{id}','Arsip\ArchivesController@delete')->name('archives.delete');
 Route::get('/arsip/archives/edit/{div}/{id}','Arsip\ArchivesController@edit')->name('archives.edit');
 Route::post('/arsip/archives/update/{div}/{id}','Arsip\ArchivesController@update')->name('archives.update');
+Route::get('/arsip/archives/deletelist/{id}','Arsip\ArchivesController@deletelist')->name('archives.deletelist');
 
 //Route untuk Bentuk NAskah
 Route::get('/arsip/archivesbid/create','Arsip\ArchivesbidController@create')->name('archivesbid.create');
@@ -34,6 +35,7 @@ Route::get('/arsip/archivesrek/delete/{id}','Arsip\ArchivesrekController@delete'
 Route::get('/arsip/archivesrek/edit/{id}','Arsip\ArchivesrekController@edit')->name('archivesrek.edit');
 Route::post('/arsip/archivesrek/update/{id}','Arsip\ArchivesrekController@update')->name('archivesrek.update');
 Route::get('/arsip/archivesrek/deleteper/{id}','Arsip\ArchivesrekController@deleteper')->name('archivesrek.deleteper');
+Route::get('/arsip/archivesrek/deletelist/{id}','Arsip\ArchivesrekController@deletelist')->name('archivesrek.deletelist');
 
 //Route untuk Laporan Arsip
 Route::post('/arsip/reportarchive/cetak','Arsip\ReportarchiveController@cetak')->name('reportarchive.cetak');
