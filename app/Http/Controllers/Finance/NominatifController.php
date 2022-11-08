@@ -61,13 +61,25 @@ class NominatifController extends Controller
                         ->leftJoin('expenses','expenses.outstation_id','=','outstation.id')
                         ->where('expenses.id',$id)
                         ->get();
-        $menyetujui    = Pejabat::SelectRaw('pejabat.* ')
-                        ->leftJoin('outstation','outstation.divisi_id','=','pejabat.divisi_id')
-                        ->leftJoin('divisi','divisi.id','=','outstation.divisi_id')
-                        ->whereraw('subdivisi_id IS NULL')
-                        ->where('outstation.id',$data->outstation_id)
-                        ->whereRaw("st_date BETWEEN pejabat.dari AND pejabat.sampai")
+        if ($data->st->divisi_id == 1) {
+           $div = 2;
+        } else {
+            $div = $data->st->divisi_id;
+        }
+        
+        // $menyetujui    = Pejabat::SelectRaw('pejabat.* ')
+        //                 ->leftJoin('outstation','outstation.divisi_id','=','pejabat.divisi_id')
+        //                 ->leftJoin('divisi','divisi.id','=','outstation.divisi_id')
+        //                 ->whereraw('subdivisi_id IS NULL')
+        //                 ->where('outstation.id',$data->outstation_id)
+        //                 ->whereRaw("st_date BETWEEN pejabat.dari AND pejabat.sampai")
+        //                 ->first();
+
+        $menyetujui     = Pejabat::OrderBy('id','desc')
+                        ->where('divisi_id',$div)
                         ->first();
+
+                        
         $pdf = PDF::loadview('finance/nominatif.cetak',compact('data','pegawai','tujuan','menyetujui'));
         return $pdf->stream();
         // return view('finance/nominatif.cetak',compact('data','pegawai','tujuan','menyetujui'));

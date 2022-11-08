@@ -134,29 +134,33 @@ header("Content-Disposition: attachment; filename=Daftar-Arsip-$status-Tahunan.x
                         <td>{{$row->uraian_berkas}}</td>
                         <td>{{$request->tahun}}</td>
                         <td style="text-align: center">{{$no}}</td>
-                        <td>{{$row->uraian}}</td>
+                        <td>
+                            @foreach ($row->isi as $daftar)
+                                <li>{{$daftar->attachfile}}</li>
+                            @endforeach
+                        </td>
                         <td style="text-align: center">{{$row->jumlah}}</td>
                         <td>{{tgl_indo($row->date)}}</td>
                         <td>{{$row->tingkat}}</td>
                         <td>{{$row->lokasi}}</td>
                         <td style="text-align: center">
                             @if ($row->klas->securitiesklas == 'B')
-                                v
+                                &#10003;
                             @endif
                         </td>
                         <td style="text-align: center">
                             @if ($row->klas->securitiesklas == 'T')
-                                v
+                                &#10003;
                             @endif
                         </td>
                         <td style="text-align: center">
                             @if ($row->klas->securitiesklas == 'R')
-                                v
+                                &#10003;
                             @endif
                         </td>
                         <td style="text-align: center">
                             @if ($row->klas->securitiesklas == 'S')
-                                v
+                                &#10003;
                             @endif
                         </td>
                         <td></td>

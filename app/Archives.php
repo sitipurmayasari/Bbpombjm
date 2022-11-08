@@ -34,6 +34,11 @@ class Archives extends Model
         return $this->belongsTo(Naskah::class,'naskah_id','id');
     }
 
+    public function isi()
+    {
+        return $this->hasMany(Archives_att::class,'archives_id','id');
+    }
+
     public function getFIlearsip() 
     {
         return $this->file==null ? 'Tidak Ada File' : asset('images/arsiparis').'/'.$this->id.'/'.$this->file;

@@ -124,7 +124,11 @@ header("Content-Disposition: attachment; filename=Daftar-Informasi-Arsip-$status
                         <td style="text-align: center">{{$no}}</td>
                         <td>{{$row->klas->alias}}</td>
                         <td>{{$row->naskah->bentuk}}</td>
-                        <td>{{$row->uraian}}</td>
+                        <td>
+                            @foreach ($row->isi as $daftar)
+                                <li>{{$daftar->attachfile}}</li>
+                            @endforeach
+                        </td>
                         <td>{{$row->tingkat}}</td>
                         <td>{{tgl_indo($row->date)}}</td>
                         <td>
