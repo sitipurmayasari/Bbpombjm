@@ -13,6 +13,7 @@ use App\KetAbsen;
 use App\Libur;
 use Excel;
 use App\Imports\AbsenImport;
+use LogActivity;
 
 class RekpermitController extends Controller
 {
@@ -72,14 +73,8 @@ class RekpermitController extends Controller
         
         DB::commit();
 
-
-        //proses hari kerja
-        $peg = User::where('status','PPNPN')->where('aktif','Y')->get();
-        $kerja = Libur::WhereMonth('tanggal',$bulan)->WhereYear('tanggal',$tahun)->get();
-
-
-        
         //----------------
+        LogActivity::addToLog('export data absensi periode '.$bulan.$tahun);
 
         return redirect('/amdk/rekpermit')->with('sukses','Data Berhasil Diimport');
  
@@ -97,6 +92,8 @@ class RekpermitController extends Controller
     {
         $data = Absensi::find($id);
         $data->update($request->all());
+        LogActivity::addToLog('Update->Absensi, id = '.$id);
+
         return redirect('/amdk/rekpermit')->with('sukses','Data Diperbaharui');
     }
 }

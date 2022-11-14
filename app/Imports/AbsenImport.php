@@ -84,8 +84,10 @@ class AbsenImport implements ToModel,WithStartRow
         $poin = $lambat + $cepat;
        }
        
-
         $user = User::where('no_pegawai',$row[0])->first();
+        $hadir = Absensi::where('users_id',$user->id)->where('tanggal',$tanggal);
+        $hadir->delete();
+
         if ($user) {
             return new Absensi([
                 'periode_year'  => $tahun,
@@ -99,7 +101,7 @@ class AbsenImport implements ToModel,WithStartRow
                 'terlambat'     => $late,
                 'pulang_cepat'  => $early,
                 'tipe'          => $row[8],
-                'ket_absen_id'    => $ket,
+                'ket_absen_id'  => $ket,
                 'poin'          => $poin
             ]);
         }

@@ -39,21 +39,38 @@
                 <th style="text-align: center">keterangan</th>
                 <th style="text-align: center">poin</th>
             <thead>
-            <tbody>   	
-                @foreach($data as $key=>$row)
+            <tbody> 
+                @foreach ($data as $key=>$row)
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
                     <td>{{$row->peg->name}}</td>
                     <td>{{tgl_indo($row->tanggal)}}</td>
                     <td>{{$row->tipe}}</td>
-                    <td>{{$row->scan_masuk}}</td>
-                    <td>{{$row->scan_pulang}}</td>
-                    <td>{{$row->terlambat}}</td>
-                    <td>{{$row->pulang_cepat}}</td>
-                    <td>{{$row->status->ket}}</td>
+                    <td>
+                        @if ($row->scan_masuk != null)
+                            {{$row->scan_masuk}}
+                        @endif
+                    </td>
+                    <td>
+                        @if ($row->scan_pulang != null)
+                            {{$row->scan_pulang}}
+                        @endif
+                    </td>
+                    <td>
+                        @if ($row->terlambat != null)
+                            {{$row->terlambat}}
+                        @endif
+                    </td>
+                    <td>
+                        @if ($row->pulang_cepat != null)
+                            {{$row->pulang_cepat}}
+                        @endif
+                    </td>
+                    <td>
+                        {{$row->status->ket}}
+                    </td>
                     <td>{{$row->poin}}</td>
                 </tr>
-              
                 @endforeach
             <tbody>
         </table>

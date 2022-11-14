@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        'App\Console\Commands\ArsipHapus'
+        'App\Console\Commands\ArsipHapus',
+        'App\Console\Commands\JamKerja'
     ];
 
     /**
@@ -25,6 +26,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('arsip:delete-arsip')->daily();
+        $schedule->command('absen:input-jam')->dailyAt('03:00');
     }
 
     /**

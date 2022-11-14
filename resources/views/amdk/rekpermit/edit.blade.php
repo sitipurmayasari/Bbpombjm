@@ -37,7 +37,6 @@
                         <div class="col-sm-9" >
                             <input type="text" name="name" class="col-xs-10 col-sm-10" value="{{$data->peg->name}}"
                              readonly>
-                             <input type="text" name="users_id" value="{{auth()->user()->id}}" hidden>
                         </div>
                     </div>
                     <div class="form-group">
@@ -63,7 +62,7 @@
                         <div class="col-sm-9">
                             <input type="number" required  value="{{$data->poin}}"
                             class="col-xs-2 col-sm-2 required "
-                            name="date_from"/>
+                            name="poin"/>
                         </div>
                     </div>
                     </fieldset>        
