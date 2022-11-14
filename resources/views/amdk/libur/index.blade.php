@@ -91,8 +91,8 @@
             <thead>
                 <th class="col-md-1" style="text-align: center">No</th>
                 <th class="col-md-3" style="text-align: center">Tanggal</th>
-                <th class="col-md-2" style="text-align: center">Jam Masuk</th>
-                <th class="col-md-2" style="text-align: center">Jam Pulang</th>
+                <th class="col-md-1" style="text-align: center">Jam Masuk</th>
+                <th class="col-md-1" style="text-align: center">Jam Pulang</th>
                 <th class="col-md-2" style="text-align: center">Keterangan</th>
                 <th style="text-align: center">Aksi</th>
             <thead>
