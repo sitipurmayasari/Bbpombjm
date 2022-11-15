@@ -58,7 +58,7 @@
                     @endif
                 </td>
                 <td>
-                    <a class="btn btn-primary" href="/invent/aduantik/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">PENGAJUAN</a>
+                    <a class="btn btn-primary" href="/invent/aduantik/print2/{{$row->id}}" target="_blank" rel="noopener noreferrer">PENGAJUAN</a>
                 </td>
                 <td>
                     @if ($row->aduan_status==0)
