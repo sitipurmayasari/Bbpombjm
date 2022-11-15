@@ -192,13 +192,7 @@
                 </b> 
                 selama
                 {{$lama->hitung}}
-                hari, dengan ini menyatakan dengan sesungguhnya bahwa : 
-            </td>
-        </tr>
-        <tr>
-            <td colspan="3" style="line-height:1;">
-                1. Biaya transport pegawai dan atau biaya penginapan di bawah ini yang tidak dapat diperoleh 
-                bukti - bukti pengeluarannya, meliputi :
+                hari.
             </td>
         </tr>
     </table>
@@ -553,13 +547,7 @@
                 </b> 
                 selama
                 {{$lama->hitung}}
-                hari, dengan ini menyatakan dengan sesungguhnya bahwa : 
-            </td>
-        </tr>
-        <tr>
-            <td colspan="3" style="line-height:1;">
-                1. Biaya transport pegawai dan atau biaya penginapan di bawah ini yang tidak dapat diperoleh 
-                bukti - bukti pengeluarannya, meliputi :
+                hari
             </td>
         </tr>
     </table>
