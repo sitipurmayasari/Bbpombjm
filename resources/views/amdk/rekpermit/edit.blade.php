@@ -65,6 +65,24 @@
                             name="poin"/>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Terlambat
+                        </label>
+                        <div class="col-sm-9" >
+                            <input type="text" name="terlambat" class="col-xs-10 col-sm-10" value="{{$data->terlambat}}"
+                             >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Pulang Cepat
+                        </label>
+                        <div class="col-sm-9" >
+                            <input type="text" name="pulang_cepat" class="col-xs-10 col-sm-10" value="{{$data->pulang_cepat}}"
+                             >
+                        </div>
+                    </div>
                     </fieldset>        
                 </div>
             </div>

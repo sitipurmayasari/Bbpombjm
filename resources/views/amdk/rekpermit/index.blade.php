@@ -13,6 +13,9 @@
                          <div class="form-group col-xs-12 col-sm-2" style="float: left">
                             <a href="{{Route('rekpermit.create')}}"  class="btn btn-primary">Upload Absensi</a>   
                          </div>
+                         <div class="form-group col-xs-12 col-sm-2" style="float: left">
+                            <a href="{{Route('rekpermit.rekap')}}"  class="btn btn-primary">Rekap Absensi</a>   
+                         </div>
                         <div class="form-group col-xs-12 col-sm-4" style="float: right">
                             <div class="input-group">
                                 <input type="text" class="form-control gp-search" name="keyword" placeholder="Cari " value="{{request('keyword')}}" autocomplete="off">

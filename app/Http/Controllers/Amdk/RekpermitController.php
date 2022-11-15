@@ -96,4 +96,10 @@ class RekpermitController extends Controller
 
         return redirect('/amdk/rekpermit')->with('sukses','Data Diperbaharui');
     }
+
+    public function rekap()
+    {
+        // $kategori = Agenda_kategori::All(); 
+        return view('amdk/rekpermit.rekap');
+    }
 }
