@@ -25,7 +25,8 @@ class ReportarchiveController extends Controller
     public function cetak(Request $request)
     {
         if ($request->jenis=="1") {
-            $data = Archives::orderBy('mailclasification.alias','asc')
+            $data = Archives::SelectRaw('archives.*')
+                            ->orderBy('mailclasification.alias','asc')
                             ->leftjoin('mailclasification','mailclasification.id','archives.mailclasification_id')
                             ->where('archives.status',$request->status)
                             ->when($request->divisi, function ($query) use ($request) {
@@ -39,7 +40,8 @@ class ReportarchiveController extends Controller
             return view('arsip/reportarchive.cetakone',compact('data','request','div'));
 
         }elseif($request->jenis=="2"){
-            $data = Archives::orderBy('mailclasification.alias','asc')
+            $data = Archives::SelectRaw('archives.*')
+                            ->orderBy('mailclasification.alias','asc')
                             ->leftjoin('mailclasification','mailclasification.id','archives.mailclasification_id')
                             ->where('archives.status',$request->status)
                             ->when($request->divisi, function ($query) use ($request) {

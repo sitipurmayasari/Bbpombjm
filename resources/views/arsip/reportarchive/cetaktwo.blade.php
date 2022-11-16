@@ -99,9 +99,7 @@ header("Content-Disposition: attachment; filename=Daftar-Informasi-Arsip-$status
         <table  style="font-size: 11px;" >
             <thead style="font-size: 12px;">
                 <tr>
-                    <th rowspan="2" width="10px" >No</th>
-                    <th rowspan="2">No Berkas</th>
-                    <th rowspan="2">No item</th>
+                    <th rowspan="2" width="10px" >No Berkas</th>
                     <th rowspan="2">Kode Klasifikasi</th>
                     <th rowspan="2">Bentuk Naskah</th>
                     <th rowspan="2">Uraian Isi Informasi</th>
@@ -119,8 +117,6 @@ header("Content-Disposition: attachment; filename=Daftar-Informasi-Arsip-$status
                 @php $no=1;  @endphp
                 @foreach($data as $key=>$row)
                     <tr>
-                        <td></td>
-                        <td></td>
                         <td style="text-align: center">{{$no}}</td>
                         <td>{{$row->klas->alias}}</td>
                         <td>{{$row->naskah->bentuk}}</td>

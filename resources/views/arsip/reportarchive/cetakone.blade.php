@@ -108,7 +108,6 @@ header("Content-Disposition: attachment; filename=Daftar-Arsip-$status-Tahunan.x
                     <th rowspan="2">Kode Klasifikasi</th>
                     <th rowspan="2">Uraian Berkas</th>
                     <th rowspan="2">Tahun</th>
-                    <th rowspan="2">Nomor Item</th>
                     <th rowspan="2">Uraian Isi Informasi</th>
                     <th rowspan="2">Jumlah</th>
                     <th rowspan="2">Tanggal</th>
@@ -129,11 +128,10 @@ header("Content-Disposition: attachment; filename=Daftar-Arsip-$status-Tahunan.x
                 @php $no=1;  @endphp
                 @foreach($data as $key=>$row)
                     <tr>
-                        <td></td>
+                        <td style="text-align: center">{{$no}}</td>
                         <td>{{$row->klas->alias}}</td>
                         <td>{{$row->uraian_berkas}}</td>
                         <td>{{$request->tahun}}</td>
-                        <td style="text-align: center">{{$no}}</td>
                         <td>
                             @foreach ($row->isi as $daftar)
                                 <li>{{$daftar->attachfile}}</li>

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Archives_att extends Model
 
 {
-    protected $table = "archives";
+    protected $table = "archives_att";
     protected $fillable = ['archives_id','attachfile'
                         ];
 
