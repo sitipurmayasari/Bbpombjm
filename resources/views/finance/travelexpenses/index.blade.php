@@ -49,12 +49,8 @@
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
                     <td>{{$row->date}}</td>
-                    <td>
-                        {{$row->outstation_id}}
-                    </td>
-                    <td>
-                        {{-- {{$row->st->purpose}} --}}
-                    </td>
+                    <td>{{$row->st->number}}</td>
+                    <td>{{$row->st->purpose}}</td>
                     <td>
                         <a class="btn btn-primary" href="/finance/travelexpenses/receipt/{{$row->id}}" target="_blank" 
                             rel="noopener noreferrer">Kuitansi</a>
@@ -70,10 +66,10 @@
                             rel="noopener noreferrer">SuPer</a> <br>
                         <a class="btn btn-warning" href="/finance/travelexpenses/super30/{{$row->id}}" target="_blank" 
                             rel="noopener noreferrer">SuPer30%</a>
-                        {{-- @if ($row->st->type == 'DL8')
+                        @if ($row->st->type == 'DL8')
                             <a class="btn btn-success" href="/finance/travelexpenses/super8J/{{$row->id}}" target="_blank" 
                                 rel="noopener noreferrer">SuPer>8Jam</a>
-                        @endif --}}
+                        @endif
                     </td>
                     <td>
                         @foreach ($row->filess as $item)
@@ -84,10 +80,10 @@
                         <a href="/finance/travelexpenses/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
-                        {{-- <a href="#" class="btn btn-danger delete"
+                        <a href="#" class="btn btn-danger delete"
                                 r-name="{{$row->st->number}}" 
                                 r-id="{{$row->id}}">
-                                <i class="glyphicon glyphicon-trash"></i></a> --}}
+                                <i class="glyphicon glyphicon-trash"></i></a>
                     </td>
                 </tr>
               
