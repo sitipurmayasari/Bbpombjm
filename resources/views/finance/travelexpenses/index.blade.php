@@ -49,7 +49,9 @@
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
                     <td>{{$row->date}}</td>
-                    <td>{{$row->st->number}}</td>
+                    <td>
+                        {{-- {{$row->st->number}} --}}
+                    </td>
                     <td>{{$row->st->purpose}}</td>
                     <td>
                         <a class="btn btn-primary" href="/finance/travelexpenses/receipt/{{$row->id}}" target="_blank" 
