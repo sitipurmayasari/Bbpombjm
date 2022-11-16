@@ -26,20 +26,32 @@
         {{ csrf_field() }}
     	<img src="{{asset('images/bbpom.jpg')}}" style="height:100px">
         <br><br>        
-        <div class="form-group has-error">
-        <input type="email" class="form-control" 
-                name="email" placeholder="Email" 
-                required="required" value="{{old("email")}}">
-        </div>
-		<div class="form-group">
-            <input type="password" class="form-control" 
-                name="password" placeholder="Password" 
-                required="required" value="{{old("password")}}">
-        </div>        
-        <p style="text-align: right;font-size: 11px"><a href="/forgot">Lupa Password Anda?</a></p>
+        <table style="width: 100%">
+            <tr>
+                <td>
+                    <div class="form-group has-error">
+                        <input type="email" class="form-control" 
+                            name="email" placeholder="Email" 
+                            required="required" value="{{old("email")}}">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" 
+                            name="password" placeholder="Password" id="myInpute"
+                            required="required" value="{{old("password")}}">
+                    </div>        
+                </td>
+                <td>
+                    <br><br>
+                    <i class="fa fa-eye" onclick="eye()" id="eye" style="margin-left: -30px; cursor: pointer;"></i>
+                </td>
+            </tr>
+        </table>
+        {{-- <p style="text-align: right;font-size: 11px"><a href="/forgot">Lupa Password Anda?</a></p> --}}
+        
         <div class="form-group">
             <button type="submit" class="btn btn-primary btn-lg btn-block btn_sign">Login</button>
         </div>
+        <p style="text-align: center;font-size: 11px"><a href="/forgot">Jika Lupa Password, Silahkan Hubungi TIM IT</a></p>
     </form>
 </div>
     <script src="{{asset('assets/js/jquery-2.1.4.min.js')}}"></script>
@@ -53,6 +65,20 @@
         @if(Session::has('gagal'))
             toastr.error("{{Session::get('gagal')}}", "Gagal",{timeOut: 5000})
         @endif
+
+        function eye() {
+            var x = document.getElementById("myInpute");
+            if (x.type === "password") {
+                x.type = "text";
+                document.getElementById("eye").classList.add('fa fa-eye');
+                document.getElementById("eye").classList.remove('fa fa-eye-slash');
+            } else {
+                x.type = "password";
+                document.getElementById("eye").classList.add('fa fa-eye-slash');
+                document.getElementById("eye").classList.remove('fa fa-eye');
+            }
+        }
+
     </script>
 </body>
 </html>                            
