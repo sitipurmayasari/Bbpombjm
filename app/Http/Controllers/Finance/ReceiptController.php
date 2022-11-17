@@ -32,9 +32,10 @@ class ReceiptController extends Controller
     public function index(Request $request)
     {
         $data = Expenses::orderBy('expenses.updated_at','desc')
-                        ->SelectRaw('expenses.*, outstation.number, outstation.purpose')
+                        ->SelectRaw('expenses.*')
                         ->leftjoin('outstation','outstation.id','expenses.outstation_id')
                         ->where('jenis','B')
+                        ->whereraw('outstation.deleted_at IS null')
                         ->when($request->keyword, function ($query) use ($request) {
                             $query->where('outstation.number','LIKE','%'.$request->keyword.'%')
                                     ->orWhere('outstation.purpose', 'LIKE','%'.$request->keyword.'%');
@@ -286,13 +287,15 @@ class ReceiptController extends Controller
                                 ->leftJoin('destination','destination.id','=','outst_destiny.destination_id')
                                 ->where('outst_destiny.outstation_id',$data->outstation_id)
                                 ->get();
+        $lama   = Outst_destiny::SelectRaw('SUM(longday) as lamahari')
+                                ->where('outstation_id',$data->outstation_id)->first();
         $plane = Plane::all();
         $uangharian = ExpensesUh::where('expenses_id',$id)->orderby('id','asc')->get();
         $uangtransport = ExpensesTrans::where('expenses_id',$id)->orderby('id','asc')->get();
         $uangplane = ExpensesPlane::where('expenses_id',$id)->orderby('id','asc')->get();
         $uanginn = ExpensesInap::where('expenses_id',$id)->orderby('id','asc')->get();
 
-        return view('finance/receipt.edit',compact('data','peg','tujuan','plane','uangplane','uangharian','uangtransport','uanginn'));
+        return view('finance/receipt.edit',compact('data','peg','tujuan','plane','uangplane','uangharian','uangtransport','uanginn','lama'));
     }
 
     public function deletetr($id)
@@ -327,6 +330,9 @@ class ReceiptController extends Controller
         $data->touch();
 
         DB::beginTransaction(); 
+            $data = Outstation::find($id);
+            $data->update($request->all());
+
             ExpensesUh::where('expenses_id', $id)->delete();
             ExpensesTrans::where('expenses_id', $id)->delete();
             ExpensesInap::where('expenses_id', $id)->delete();
