@@ -32,7 +32,7 @@ class ReceiptController extends Controller
     public function index(Request $request)
     {
         $data = Expenses::orderBy('expenses.updated_at','desc')
-                        ->SelectRaw('expenses.*')
+                        ->SelectRaw('expenses.*, outstation.number, outstation.purpose')
                         ->leftjoin('outstation','outstation.id','expenses.outstation_id')
                         ->where('jenis','B')
                         ->whereraw('outstation.deleted_at IS null')
@@ -148,7 +148,7 @@ class ReceiptController extends Controller
     public function store(Request $request)
     { 
     
-        // dd($request->all());
+       $id = $request->expenses_id;
 
       DB::beginTransaction(); 
         
@@ -326,12 +326,12 @@ class ReceiptController extends Controller
     public function update(Request $request,$id)
     { 
         // dd($request->all());
-        $data = Expenses::find($id);
-        $data->touch();
+        $expenses = Expenses::find($id);
+        $expenses->touch();
 
         DB::beginTransaction(); 
-            $data = Outstation::find($id);
-            $data->update($request->all());
+            $expenses = Outstation::find($id);
+            $expenses->update($request->all());
 
             ExpensesUh::where('expenses_id', $id)->delete();
             ExpensesTrans::where('expenses_id', $id)->delete();
@@ -457,7 +457,8 @@ class ReceiptController extends Controller
             }
         }
         DB::commit();
-        LogActivity::addToLog('Ubah->Kuitansi 2023, nomor = '.$data->st->number);
+        $log = Expenses::where('id',$id)->first();
+        LogActivity::addToLog('Ubah->Kuitansi 2023, nomor = '.$log->st->number);
         return redirect('/finance/receipt');
     }
 
@@ -618,9 +619,8 @@ class ReceiptController extends Controller
     public function delete($id)
     {
 
-        $lokasi = Expenses::find($id);
-        LogActivity::addToLog('Simpan->Kuitansi 2023, nomor = '.$lokasi->st->number);
-        $lokasi->delete();
+        $data = Expenses::find($id);
+        LogActivity::addToLog('Simpan->Kuitansi 2023, nomor = '.$data->st->number);
 
         $daily = ExpensesUh::where('expenses_id',$id);
         $daily->delete();
@@ -633,6 +633,8 @@ class ReceiptController extends Controller
 
         $tr2 = ExpensesPlane::where('expenses_id',$id);
         $tr2->delete();
+
+        $data->delete();
 
         return redirect('/finance/receipt')->with('sukses','Data Terhapus');
     }
