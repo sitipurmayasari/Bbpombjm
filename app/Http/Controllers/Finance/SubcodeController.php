@@ -11,7 +11,7 @@ class SubcodeController extends Controller
 {
     public function index(Request $request)
     {
-        $data = Subcode::orderBy('id','desc')
+        $data = Subcode::orderBy('subcode.id','desc')
                         ->select('subcode.*')
                         ->leftJoin('komponencode','komponencode.id','=','subcode.komponencode_id')
                         ->when($request->keyword, function ($query) use ($request) {
