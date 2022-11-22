@@ -77,6 +77,7 @@ class NominatifController extends Controller
 
         $menyetujui     = Pejabat::OrderBy('id','desc')
                         ->where('divisi_id',$div)
+                        ->whereraw('subdivisi_id is null')
                         ->first();
 
                         
