@@ -62,7 +62,7 @@
                 </td>
                 <td>
                     @if ($row->aduan_status==0)
-                        <a href="/invent/aduantik/edit/{{$row->id}}" class="btn btn-warning">
+                        <a href="/invent/aduantik/edit2/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
                         <a href="#" class="btn btn-danger delete"

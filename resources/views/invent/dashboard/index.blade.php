@@ -65,6 +65,55 @@
       </div>
   </div>
 </div>
+<div class="col-sm-12" style="text-align: center">
+  <div class="card-header card-header-warning">
+    <h4 class="card-title">Barang Kimia Yang Akan Kadaluarsa</h4>
+  </div>
+  <div class="card-body">
+    <table class="table table-hover" style="font-size: 12px;">
+      <thead>
+          <th>Sisa</th>
+          <th>Tgl. Kadaluarsa</th>
+          <th>No. Katalog</th>
+          <th>Nama Barang</th>
+          <th>No</th>
+      </thead>
+      <tbody>
+          @php
+              $no = 1;
+          @endphp
+          @foreach($mikro as $row)
+             @php
+                      $last = $injectQuery->hitdatalast($row->inventaris_id);
+                      $total = $injectQuery->hitsisaexp($row->inventaris_id, $row->exp_date);
+                      $ins = $row->stockawal;
+                      $outs = $total->keluar;
+                      $sisanya = $ins - $outs;
+              @endphp
+
+              @if ($sisanya > 0)
+              <tr>
+                <td>
+                    {{$sisanya}}
+                </td>
+                <td>
+                  {{$last->exp_date}}
+                </td>
+                <td>
+                  {{$row->barang->no_seri}}
+                </td>
+                <td style="text-align: left">
+                  {{$row->barang->nama_barang}}
+                </td>
+                <td>{{$no}}</td>
+              </tr>
+              @endif
+          @php $no++; @endphp
+          @endforeach
+      </tbody> 
+    </table>
+  </div>
+</div>
 </div>
 
 <div class="col-sm-6" style="text-align: center">
@@ -148,7 +197,6 @@
           <h4 class="card-title">Media Mikrobiologi Yang Akan Kadaluarsa</h4>
         </div>
         <div class="card-body">
-        
           <table class="table table-hover" style="font-size: 12px;">
             <thead>
                 <th>Sisa</th>

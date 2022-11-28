@@ -243,6 +243,7 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
       //Route untuk kode anggaran
       Route::get('/finance/budget','Finance\BudgetController@index')->name('budget');
       //Route untuk surat tugas
+      Route::get('/finance/outstation/bidang','Finance\OutstationController@bidang')->name('outstation.bidang');
       Route::get('/finance/outstation','Finance\OutstationController@index')->name('outstation');
       //Route untuk Kuitansi
       Route::get('/finance/travelexpenses','Finance\TravelexpensesController@index')->name('travelexpenses');

@@ -99,7 +99,36 @@ class RekpermitController extends Controller
 
     public function rekap()
     {
-        // $kategori = Agenda_kategori::All(); 
-        return view('amdk/rekpermit.rekap');
+        $user = User::where('status','PPNPN')->where('id','!=','1')->get(); 
+        return view('amdk/rekpermit.rekap',compact('user'));
     }
+
+    public function cetak(Request $request)
+    {
+       if ($request->peg == 1) {
+        $data = Absensi::SelectRaw('users_id, SUM(poin) poin')
+                        ->where('periode_year',$request->tahun)
+                        ->where('periode_month',$request->bulan)
+                        ->groupby('users_id')
+                        ->orderby('users_id','asc')
+                        ->get();
+        return view('amdk/rekpermit.cetak1',compact('data','request'));
+
+       } elseif ($request->peg == 2) {
+        $data = Absensi::where('users_id',$request->user)
+                        ->where('periode_year',$request->tahun)
+                        ->where('periode_month',$request->bulan)
+                        ->get();
+        $total = Absensi::SelectRaw('SUM(poin) poin')
+                        ->where('users_id',$request->user)
+                        ->where('periode_year',$request->tahun)
+                        ->where('periode_month',$request->bulan)
+                        ->first();
+        return view('amdk/rekpermit.cetak2',compact('data','request','total'));
+       }else{
+        dd($request->all());
+       }
+       
+    }
+
 }
