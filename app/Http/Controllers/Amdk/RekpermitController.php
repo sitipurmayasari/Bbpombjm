@@ -14,6 +14,7 @@ use App\Libur;
 use Excel;
 use App\Imports\AbsenImport;
 use LogActivity;
+use PDF;
 
 class RekpermitController extends Controller
 {
@@ -106,13 +107,14 @@ class RekpermitController extends Controller
     public function cetak(Request $request)
     {
        if ($request->peg == 1) {
-        $data = Absensi::SelectRaw('users_id, SUM(poin) poin')
+        $data = Absensi::SelectRaw('users_id, sum(poin) poin, SUM((HOUR(pulang_cepat)*60)+MINUTE(pulang_cepat)) total')
                         ->where('periode_year',$request->tahun)
                         ->where('periode_month',$request->bulan)
                         ->groupby('users_id')
-                        ->orderby('users_id','asc')
+                        ->orderby('poin','desc')
                         ->get();
-        return view('amdk/rekpermit.cetak1',compact('data','request'));
+        $pdf = PDF::loadview('amdk/rekpermit.cetak1',compact('data','request',));
+        return $pdf->stream();
 
        } elseif ($request->peg == 2) {
         $data = Absensi::where('users_id',$request->user)

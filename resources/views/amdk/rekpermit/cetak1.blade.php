@@ -12,11 +12,12 @@
         @page {
             size: A4;
             font-family: 'Arial';
-            font-size: 11;
+            font-size: 10;
         }
 
-        th{
+        th,td{
             vertical-align: middle;
+            text-align: center;
         }
 
         </style>
@@ -25,25 +26,69 @@
 <body>
     <br>
     <div style="text-align: center">
-        <h5><b>LAPORAN POIN SI AMAT PERIODE ''</b></h5>
+        <h5><b>LAPORAN POIN SI AMAT</b></h5>
     </div>
     <br>
-    <table>
-        <thead>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </thead>
-        <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        </tbody>
-    </table>
+    <p>
+        Periode :
+                    @php
+                        if ($request->bulan=='1') {
+                            $request->bulan = "Januari";
+                        } else if($request->bulan=='2') {
+                            $bulan = "Februari";
+                        } else if($request->bulan=='3') {
+                            $bulan = "Maret";
+                        } else if($request->bulan=='4') {
+                            $bulan = "April";
+                        } else if($request->bulan=='5') {
+                            $bulan = "Mei";
+                        } else if($request->bulan=='6') {
+                            $bulan = "Juni";
+                        } else if($request->bulan=='7') {
+                            $bulan = "Juli";
+                        } else if($request->bulan=='8') {
+                            $bulan = "Agustus";
+                        } else if($request->bulan=='9') {
+                            $bulan = "September";
+                        } else if($request->bulan=='10') {
+                            $bulan = "Oktober";
+                        } else if($request->bulan=='11') {
+                            $bulan = "November";
+                        } else {
+                            $bulan = "Desember";
+                        }
+                    @endphp
+                   {{$bulan}}
+                {{$request->tahun}}
+    </p>
+    <div class="table-responsive">
+        <table id="simple-table" class="table  table-bordered table-hover">
+            <thead>
+               <tr>
+                <th>No</th>
+                <th>Nama</th>
+                <th>Poin</th>
+                <th>Pelanggaran (menit)</th>
+               </tr>
+            </thead>
+            <tbody>
+                @php
+                    $no = 1;
+                @endphp
+                @foreach ($data as $item)
+                <tr>
+                    <td>{{$no}}</td>
+                    <td style="text-align: left">{{$item->peg->name}}</td>
+                    <td>{{$item->poin}}</td>
+                    <td>{{$item->total}}</td>
+                </tr>
+                @php
+                     $no++;
+                @endphp
+                @endforeach
+            </tbody>
+        </table>
+    </div>
     
 </body>
 

@@ -8,7 +8,7 @@
 
 <div class="row">
     <form class="form-horizontal validate-form" role="form" 
-         method="post" action="{{route('rekpermit.store')}}"  enctype="multipart/form-data">
+         method="post" action="{{route('rekpermit.cetak')}}"  enctype="multipart/form-data">
          {{ csrf_field() }}
     <div class="col-sm-12">
         <div class="widget-box">
