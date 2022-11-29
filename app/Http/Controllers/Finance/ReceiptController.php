@@ -140,7 +140,6 @@ class ReceiptController extends Controller
                                 ->where('outst_destiny.outstation_id',$data->outstation_id)
                                 ->get();
         $plane = Plane::all();
-        
 
         return view('finance/receipt.entrydata',compact('data','peg','tujuan','plane'));
     }
