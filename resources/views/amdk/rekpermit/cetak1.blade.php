@@ -80,7 +80,14 @@
                     <td>{{$no}}</td>
                     <td style="text-align: left">{{$item->peg->name}}</td>
                     <td>{{$item->poin}}</td>
-                    <td>{{$item->total}}</td>
+                    <td>
+                        @php
+                            $a = $item->lambat;
+                            $b = $item->cepat;
+                            $c = $a+$b;
+                        @endphp
+                        {{$c}} menit
+                    </td>
                 </tr>
                 @php
                      $no++;

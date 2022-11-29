@@ -107,13 +107,13 @@ class RekpermitController extends Controller
     public function cetak(Request $request)
     {
        if ($request->peg == 1) {
-        $data = Absensi::SelectRaw('users_id, sum(poin) poin, SUM((HOUR(pulang_cepat)*60)+MINUTE(pulang_cepat)) total')
+        $data = Absensi::SelectRaw('users_id, sum(poin) poin, SUM((HOUR(terlambat)*60)+MINUTE(terlambat)) lambat, SUM((HOUR(pulang_cepat)*60)+MINUTE(pulang_cepat)) cepat')
                         ->where('periode_year',$request->tahun)
                         ->where('periode_month',$request->bulan)
                         ->groupby('users_id')
                         ->orderby('poin','desc')
                         ->get();
-        $pdf = PDF::loadview('amdk/rekpermit.cetak1',compact('data','request',));
+        $pdf = PDF::loadview('amdk/rekpermit.cetak1',compact('data','request'));
         return $pdf->stream();
 
        } elseif ($request->peg == 2) {
@@ -126,7 +126,18 @@ class RekpermitController extends Controller
                         ->where('periode_year',$request->tahun)
                         ->where('periode_month',$request->bulan)
                         ->first();
-        return view('amdk/rekpermit.cetak2',compact('data','request','total'));
+        $pulang = Absensi::SelectRaw('SUM((HOUR(pulang_cepat)*60)+MINUTE(pulang_cepat)) total')
+                        ->where('users_id',$request->user)
+                        ->where('periode_year',$request->tahun)
+                        ->where('periode_month',$request->bulan)
+                        ->first();
+        $lambat = Absensi::SelectRaw('SUM((HOUR(terlambat)*60)+MINUTE(terlambat)) total')
+                        ->where('users_id',$request->user)
+                        ->where('periode_year',$request->tahun)
+                        ->where('periode_month',$request->bulan)
+                        ->first();
+        $pdf = PDF::loadview('amdk/rekpermit.cetak2',compact('data','request','total','pulang','lambat'));
+        return $pdf->stream();
        }else{
         dd($request->all());
        }
