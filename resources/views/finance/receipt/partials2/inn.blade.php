@@ -66,7 +66,7 @@
                                     <td><input type="text" class="form-control" name="hotelroom[]" style="width: 100px;" value="{{$item4->hotelroom}}"></td>
                                     <td><input type="date"  class="form-control" name="hotelin[]" value="{{$item4->hotelin}}"/></td>
                                     <td><input type="date"  class="form-control" name="hotelout[]"  value="{{$item4->hotelout}}"/></td>   
-                                    <td><input type="number" class="form-control" name="hotelmax[]" value="{{$item4->hotelmax}}" style="width: 130px;" min="0" id="hotelmax-{{$no}}"></td>
+                                    <td><input type="number" class="form-control" name="hotelmax[]" value="{{$item4->hotelmax}}" style="width: 130px;" min="0" id="hotelmax-{{$no}}" onkeyup="HitNilaihotel({{$no}})"></td>
                                     <td>  
                                        @if ($item4->hotelpersen == 'Y')
                                        <input type="checkbox" name="hotelpersen_{{$no}}" value="Y" onclick="Hithotel2({{$no}})" id="full-{{$no}}" checked> &nbsp; 30%  

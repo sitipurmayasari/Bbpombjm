@@ -222,7 +222,7 @@
                     '<td><input type="text" class="form-control" name="hotelroom[]" style="width: 100px;"></td>'+
                     '<td><input type="date"  class="form-control" name="hotelin[]"  value="{{date('Y-m-d')}}"/></td>'+
                     '<td><input type="date"  class="form-control" name="hotelout[]"  value="{{date('Y-m-d')}}"/></td>'+   
-                    '<td><input type="number" class="form-control" name="hotelmax[]" style="width: 130px;" value="0" min="0" id="hotelmax-'+new_baris+'"></td>'+
+                    '<td><input type="number" class="form-control" name="hotelmax[]" style="width: 130px;" value="0" min="0" id="hotelmax-'+new_baris+'" onclick="HitNilaihotel('+new_baris+')" onkeyup="HitNilaihotel('+new_baris+')"></td>'+
                     '<td>'+  
                         '<input type="checkbox" name="hotelpersen_'+new_baris+'" value="Y" onclick="Hithotel2('+new_baris+')" id="full-'+new_baris+'" "/> &nbsp; 30%'+             
                     '</td>'+
@@ -242,6 +242,11 @@
             $("#cell-"+cell).remove();
         }
 
+        function HitNilaihotel(i){
+            var max = $("#hotelmax-"+i).val();
+            $("#hotelfee-"+i).val(max);
+        }
+
         function Hithotel2(i){
             var max = $("#hotelmax-"+i).val();
 
@@ -252,6 +257,8 @@
                 var sum = max;
                 $("#hotelfee-"+i).val(sum);
             }
+
+            HitSumHotel2(i);
         }
         
         function HitSumHotel2(i) {
