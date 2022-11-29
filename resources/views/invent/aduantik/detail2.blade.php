@@ -46,11 +46,11 @@ method="post" action="/invent/aduantik/update2/{{$aduan->id}}">
                 <br>
                 <div class="form-group">
                     <label class="col-sm-2 control-label no-padding-right" 
-                    for="form-field-1"> Tanggal Analisa 
+                    for="form-field-1"> Tanggal Aduan 
                     </label>
                     <div class="col-sm-8">
                         <input type="date" name="analyze_date" 
-                        class="col-xs-3 col-sm-3 required" value="{{date('Y-m-d')}}" required>
+                        class="col-xs-3 col-sm-3 required" value="{{$aduan->tanggal}}" readonly required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -100,10 +100,45 @@ method="post" action="/invent/aduantik/update2/{{$aduan->id}}">
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label no-padding-right" 
+                    for="form-field-1"> Tanggal Analisa 
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="date" name="analyze_date" 
+                        class="col-xs-3 col-sm-3 required" value="{{$aduan->analyze_date}}" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" 
+                    for="form-field-1">Analisa Pemeriksa
+                    </label>
+                    <div class="col-sm-8">
+                        <textarea name="analisa" required class="col-xs-10 col-sm-10">{{$aduan->analisa}}</textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" 
+                    for="form-field-1"> Tanggal Tindak Lanjut 
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="date" name="followup_date" 
+                        class="col-xs-3 col-sm-3 required" value="{{$aduan->followup_date}}" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" 
                     for="form-field-1">Tindak Lanjut
                     </label>
                     <div class="col-sm-8">
                         <textarea name="follow_up" required class="col-xs-10 col-sm-10">{{$aduan->follow_up}}</textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" 
+                    for="form-field-1"> Tanggal Hasil 
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="date" name="result_date" 
+                        class="col-xs-3 col-sm-3 required" value="{{$aduan->result_date}}" required>
                     </div>
                 </div>
                 <div class="form-group">

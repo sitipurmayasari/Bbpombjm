@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class AduanTIK extends Model
 {
     protected $table = "aduantik";
-    protected $fillable = ['no_aduan','tanggal','users_id','itasset_id','trouble','follow_up','result',
-                            'analyze_date','status','divisi_id'];
+    protected $fillable = ['no_aduan','tanggal','users_id','itasset_id','trouble','analisa','follow_up','result',
+                            'analyze_date','status','divisi_id','followup_date','result_date'];
 
     public function barang()
     {

@@ -11,7 +11,8 @@ use App\Pengajuan;
 use App\PengajuanDetail;
 use App\Satuan;
 use App\AduanDetail;
-
+use App\AduanTIK;
+use Excel;
 use PDF;
 class LapAjuController extends Controller
 {
@@ -57,6 +58,22 @@ class LapAjuController extends Controller
             
             $pdf = PDF::loadview('invent/lapajuan.aduan',compact('user','data','request'));
             return $pdf->stream();
+        }else if($request->jenis_Laporan=="rusaktik2"){
+            $data   = AduanTIK::orderBy('id','asc')
+                            ->whereYear('tanggal',$request->daftartahun)
+                            ->when($request->piltgl, function ($query) use ($request) {
+                                if($request->piltgl==1){
+                                    $query->whereYear('tanggal',$request->daftartahun);
+                                    $query->whereMonth('tanggal',$request->daftarbulan); 
+                                }
+                            })
+                            ->when($request->piltgl, function ($query) use ($request) {
+                                if($request->piltgl==2){
+                                    $query->WhereRaw('tanggal between "'.$request->awal.'" AND "'.$request->akhir.'"');
+                                }
+                            })
+                            ->get();
+            return view('invent/lapajuan.aduantik2',compact('data','request'));
         }else if($request->jenis_Laporan=="rusak"){
             $user   = User::all();
             $data   = AduanDetail::orderBy('aduan_detail.id','asc')

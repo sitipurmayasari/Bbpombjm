@@ -247,13 +247,7 @@ class AduanTikController extends Controller
     public function update(Request $request, $id)
     {
         $aduan = Aduan::find($id);
-        $aduan->update(
-            [
-                'result'        => $request->result,
-                'aduan_status'  => $request->aduan_status,
-                'follow_up'     => $request->follow_up,
-                'analyze_date'  => $request->analyze_date
-        ]);
+        $aduan->update($request->all());
         LogActivity::addToLog('Update Status->Aduan Kerusakan TIK, No. Aduan = '.$aduan->no_aduan);
         return redirect('/invent/aduantik')->with('sukses','Status Aduan Telah Diperbaharui');
     }
@@ -261,13 +255,7 @@ class AduanTikController extends Controller
     public function update2(Request $request, $id)
     {
         $aduan = AduanTIK::find($id);
-        $aduan->update(
-            [
-                'result'        => $request->result,
-                'follow_up'     => $request->follow_up,
-                'analyze_date'  => $request->analyze_date,
-                'status'        => $request->status,
-        ]);
+        $aduan->update($request->all());
         LogActivity::addToLog('Update Status->Aduan Kerusakan TIK, No. Aduan = '.$aduan->no_aduan);
         return redirect('/invent/aduantik')->with('sukses','Status Aduan Telah Diperbaharui');
     }

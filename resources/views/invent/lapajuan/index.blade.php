@@ -32,7 +32,8 @@
                             <div class="col-sm-8">
                                 <select name="jenis_Laporan" id="jenis" class="col-xs-10 col-sm-10">
                                     <option value="baru">Laporan Pengajuan barang Baru</option>
-                                    <option value="rusaktik">Laporan Kerusakan TIK</option>
+                                    <option value="rusaktik2">Laporan Kerusakan TIK (Baru)</option>
+                                    <option value="rusaktik">Laporan Kerusakan TIK (Lama)</option>
                                     <option value="rusak">Laporan Kerusakan Inventaris</option>
                                 </select>
                             </div>
