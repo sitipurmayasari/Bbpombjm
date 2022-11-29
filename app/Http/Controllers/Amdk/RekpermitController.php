@@ -20,7 +20,7 @@ class RekpermitController extends Controller
 {
     public function index(Request $request)
     {
-        $data = Absensi::orderBy('users_id','asc')
+        $data = Absensi::orderBy('id','desc')->orderBy('users_id','asc')
                         ->SelectRaw('absensi.*, users.name,
                                     CASE
                                         WHEN periode_month = 1 THEN "Januari"
