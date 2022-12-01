@@ -57,8 +57,8 @@ class OutstationController extends Controller
         $pok            = Pok_detail::SelectRaw('pok_detail.*')
                                     ->leftjoin('pok','pok.id','=','pok_detail.pok_id')
                                     ->where('pok.year','=',$thn)
-                                    ->WhereRaw('pok_id IN ((select id from pok where activitycode_id = 3  ORDER BY id DESC LIMIT 1),
-                                    (select id from pok where activitycode_id = 2  ORDER BY id DESC LIMIT 1))')
+                                    ->WhereRaw("pok_id IN ((select id from pok where year = $thn and activitycode_id = 3  ORDER BY id DESC LIMIT 1),
+                                    (select id from pok where year = $thn and activitycode_id = 2  ORDER BY id DESC LIMIT 1))")
                                     ->get();
         
         return view('finance/outstation.create',compact('user','destination','div','ppk', 'sub', 'akun','act','budget'
