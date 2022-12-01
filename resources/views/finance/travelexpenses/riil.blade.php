@@ -262,7 +262,7 @@
                 <td class="isi">
         
                     {{-- lokal --}}
-                    @elseif($nilai2->tlokal == 'Y'  && $nilai->taxyriil == 'N' && $nilai->taxyriil2 == 'N')
+                    @if($nilai2->tlokal == 'Y'  && $nilai->taxyriil == 'N' && $nilai->taxyriil2 == 'N')
                         @php
                             $bbm = $nilai2->tottlokal;
                         @endphp
