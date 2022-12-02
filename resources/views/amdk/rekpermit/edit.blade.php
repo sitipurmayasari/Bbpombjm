@@ -65,13 +65,28 @@
                             name="poin"/>
                         </div>
                     </div>
+                    @php
+                        if ($data->terlambat != null) {
+                            $ter = $data->terlambat;
+                        } else {
+                            $ter = "00:00:00";
+                        }
+
+                        if ($data->pulang_cepat != null) {
+                            $pul = $data->pulang_cepat;
+                        } else {
+                            $pul = "00:00:00";
+                        }
+                        
+                        
+                    @endphp
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
                         for="form-field-1"> Terlambat
                         </label>
                         <div class="col-sm-9" >
-                            <input type="text" name="terlambat" class="col-xs-10 col-sm-10" value="{{$data->terlambat}}"
-                             >
+                            
+                            <input type="text" name="terlambat" class="col-xs-10 col-sm-10" value="{{$ter}}" >
                         </div>
                     </div>
                     <div class="form-group">
@@ -79,8 +94,7 @@
                         for="form-field-1"> Pulang Cepat
                         </label>
                         <div class="col-sm-9" >
-                            <input type="text" name="pulang_cepat" class="col-xs-10 col-sm-10" value="{{$data->pulang_cepat}}"
-                             >
+                            <input type="text" name="pulang_cepat"  class="col-xs-10 col-sm-10" value="{{$pul}}" >
                         </div>
                     </div>
                     </fieldset>        

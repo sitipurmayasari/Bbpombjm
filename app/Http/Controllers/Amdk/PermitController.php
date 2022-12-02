@@ -12,7 +12,7 @@ class PermitController extends Controller
     public function index(Request $request)
     {
         $peg =auth()->user()->id;
-        $data = Absensi::orderBy('id','desc')
+        $data = Absensi::orderBy('tanggal','desc')
                         ->SelectRaw('absensi.*, users.name,
                                     CASE
                                         WHEN periode_month = 1 THEN "Januari"
