@@ -19,6 +19,11 @@ class AbsenImport implements ToModel,WithStartRow
     }
     public function model(array $row)
     {
+        $date = str_replace('/', '-', $row[2]);
+        $tanggal = date('Y-m-d', strtotime($date));
+        $tahun = date("Y",strtotime($tanggal));
+        $bulan = date("m",strtotime($tanggal));
+
         $masuk      = $row[4];
         $pulang     = $row[5];
         $checkin    = $row[6];
@@ -35,9 +40,18 @@ class AbsenImport implements ToModel,WithStartRow
             $late = $interval1->days * 24 * 60;
             $late += $interval1->h * 60;
             $late += $interval1->i;
+            
+            $x = $interval1->h;
+            $y = $interval1->i;
+            $z = date_create($tanggal);
+            $time = date_time_set($z,$x,$y);
+            $terlambat = date_format($time,"H:i:s");
+
         } else {
             $late = 0;
+            $terlambat = "00:00:00";
         }
+        
         
         // pulang cepat
         if ($pulang > $checkout ) {
@@ -47,8 +61,16 @@ class AbsenImport implements ToModel,WithStartRow
             $early = $interval2->days * 24 * 60;
             $early += $interval2->h * 60;
             $early += $interval2->i;
+
+            $x = $interval2->h;
+            $y = $interval2->i;
+            $z = date_create($tanggal);
+            $time = date_time_set($z,$x,$y);
+            $pulang_cepat = date_format($time,"H:i:s");
+
         } else {
            $early = 0;
+           $pulang_cepat = "00:00:00";
         }
         
 
@@ -108,12 +130,6 @@ class AbsenImport implements ToModel,WithStartRow
         } else {
             $ket = 1;
         }
-
-
-        $date = str_replace('/', '-', $row[2]);
-        $tanggal = date('Y-m-d', strtotime($date));
-        $tahun = date("Y",strtotime($tanggal));
-        $bulan = date("m",strtotime($tanggal));
         
        
         $user = User::where('no_pegawai',$row[0])->first();
@@ -130,8 +146,8 @@ class AbsenImport implements ToModel,WithStartRow
                 'jam_pulang'    => $row[5],
                 'scan_masuk'    => $checkin,
                 'scan_pulang'   => $checkout,
-                'terlambat'     => $late,
-                'pulang_cepat'  => $early,
+                'terlambat'     => $terlambat,
+                'pulang_cepat'  => $pulang_cepat,
                 'tipe'          => $row[8],
                 'ket_absen_id'  => $ket,
                 'poin'          => $poin

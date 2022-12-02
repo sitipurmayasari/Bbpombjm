@@ -30,9 +30,10 @@ class RekpermitController extends Controller
         }
 
         $data = Absensi::SelectRaw('users_id, sum(poin) poin, SUM((HOUR(terlambat)*60)+MINUTE(terlambat)) lambat, SUM((HOUR(pulang_cepat)*60)+MINUTE(pulang_cepat)) cepat')
+                        ->LeftJoin('users','users.id','absensi.users_id')
                         ->where('periode_year',$thn)
                         ->where('periode_month',$bulan)
-                        ->LeftJoin('users','users.id','absensi.users_id')
+                        ->where('users.aktif','Y')
                         ->groupby('users_id')
                         ->orderby('poin','desc')
                         ->when($request->keyword, function ($query) use ($request) {

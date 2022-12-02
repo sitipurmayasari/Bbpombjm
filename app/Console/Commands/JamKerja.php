@@ -50,7 +50,7 @@ class JamKerja extends Command
                             FROM users  
                             JOIN libur
                             WHERE libur.tanggal = CURDATE()
-                            AND users.aktif = 'Y' AND STATUS = 'PPNPN' AND users.id != 1
+                            AND users.aktif = 'Y' AND STATUS = 'PPNPN' AND users.id != 1 AND deskjob != 'Satpam'
                         ");
        
     }
