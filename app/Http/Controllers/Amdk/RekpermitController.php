@@ -44,7 +44,7 @@ class RekpermitController extends Controller
 
     public function daftar($users_id, $bln, $thn)
     {
-        $data = Absensi::orderBy('tanggal','desc')
+        $data = Absensi::orderBy('tanggal','asc')
                         ->SelectRaw('absensi.*, users.name,
                                     CASE
                                         WHEN periode_month = 1 THEN "Januari"

@@ -1,7 +1,7 @@
 @extends('amdk/layouts_amdk.app')
 @section('breadcrumb')
     <li>Rekapitulasi</li>
-    <li>Rekap Absensi Pramubakti</li>
+    <li><a href="/amdk/rekpermit">Rekap Absensi Pramubakti</a></li>
     <li>Daftar Absensi (Nama) Periode (Periode)</li>
 @endsection
 @section('content')
