@@ -35,10 +35,15 @@ class DashboardController extends Controller
         $lastm = Carbon::now()->subMonth()->month;
         $lastY = Carbon::now()->subYear()->year;
 
+        $nowbln = (Carbon::now()->month);
+        $nowthn = (Carbon::now()->year);
+
         $poinabsen = Absensi::selectRaw("SUM(poin) AS jumpoin, periode_month, periode_year")
                             ->where('users_id',$peg)
+                            ->where('periode_month','!=',$nowbln)
                             ->groupByRaw('periode_month,periode_year')
-                            ->paginate('5');
+                            ->limit('5')
+                            ->get();
         
         return view('amdk/dashboard.index',compact('jumpeg', 'datapeg','latih','poinabsen'));
     }
