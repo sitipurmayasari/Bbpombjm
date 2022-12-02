@@ -117,9 +117,10 @@ class RekpermitController extends Controller
     {
         $data = Absensi::find($id);
         $data->update($request->all());
+
         LogActivity::addToLog('Update->Absensi, id = '.$id);
 
-        return redirect('/amdk/rekpermit')->with('sukses','Data Diperbaharui');
+        return redirect('/amdk/rekpermit/daftar/'.$data->users_id.'/'.$data->periode_month.'/'.$data->periode_year)->with('sukses','Data Diperbaharui');
     }
 
     public function rekap()
