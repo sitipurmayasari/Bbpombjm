@@ -32,60 +32,45 @@
         </div>
     </div>
 </form>
+<h3>Rekap Absensi Periode : {{$bulan}}{{$thn}}</h3>
     <div class="table-responsive">
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
-                <th width="40px" style="text-align: center">No</th>
-                <th style="text-align: center">Nama</th>
-                <th style="text-align: center">Periode</th>
-                <th style="text-align: center">tipe</th>
-                <th style="text-align: center">Jam Masuk</th>
-                <th style="text-align: center">Jam Pulang</th>
-                <th style="text-align: center">terlambat</th>
-                <th style="text-align: center">Pulang Cepat</th>
-                <th style="text-align: center">keterangan</th>
-                <th style="text-align: center">poin</th>
-                <th style="text-align: center">Edit</th>
-            <thead>
-            <tbody>   	
-                @foreach($data as $key=>$row)
                 <tr>
-                    <td>{{$data->firstItem() + $key}}</td>
-                    <td>{{$row->peg->name}}</td>
-                    <td>{{tgl_indo($row->tanggal)}}</td>
-                    <td>{{$row->tipe}}</td>
-                    <td>
-                        @if ($row->scan_masuk != null)
-                            {{$row->scan_masuk}}
-                        @endif
-                    </td>
-                    <td>
-                        @if ($row->scan_pulang != null)
-                            {{$row->scan_pulang}}
-                        @endif
-                    </td>
-                    <td>
-                        @if ($row->terlambat != null)
-                            {{$row->terlambat}}
-                        @endif
-                    </td>
-                    <td>
-                        @if ($row->pulang_cepat != null)
-                            {{$row->pulang_cepat}}
-                        @endif
-                    </td>
-                    <td>
-                        {{$row->status->ket}}
-                    </td>
-                    <td>{{$row->poin}}</td>
-                    <td>
-                        <a href="/amdk/rekpermit/edit/{{$row->id}}" class="btn btn-warning">
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Poin</th>
+                    <th>Pelanggaran (menit)</th>
+                    <th>Aksi</th>
+                </tr>
+             </thead>
+             <tbody>
+                 @php
+                     $no = 1;
+                 @endphp
+                 @foreach ($data as $item)
+                 <tr>
+                     <td>{{$no}}</td>
+                     <td style="text-align: left">{{$item->peg->name}}</td>
+                     <td>{{$item->poin}}</td>
+                     <td>
+                         @php
+                             $a = $item->lambat;
+                             $b = $item->cepat;
+                             $c = $a+$b;
+                         @endphp
+                         {{$c}} menit
+                     </td>
+                     <td>
+                        <a href="/amdk/rekpermit/daftar/{{$item->users_id}}/{{$bulan}}/{{$thn}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>
                     </td>
-                </tr>
-              
-                @endforeach
-            <tbody>
+                 </tr>
+                 @php
+                      $no++;
+                 @endphp
+                 @endforeach
+             </tbody>
         </table>
     </div>
 {{$data->appends(Request::all())->links()}}

@@ -20,6 +20,30 @@ class RekpermitController extends Controller
 {
     public function index(Request $request)
     {
+        $bln = (Carbon::now()->month)-1;
+        if ($bln == 0) {
+           $thn = (Carbon::now()->year)-1;
+           $bulan = 12;
+        } else {
+           $bulan = $bln;
+           $thn = (Carbon::now()->year);
+        }
+
+        $data = Absensi::SelectRaw('users_id, sum(poin) poin, SUM((HOUR(terlambat)*60)+MINUTE(terlambat)) lambat, SUM((HOUR(pulang_cepat)*60)+MINUTE(pulang_cepat)) cepat')
+                        ->where('periode_year',$thn)
+                        ->where('periode_month',$bulan)
+                        ->LeftJoin('users','users.id','absensi.users_id')
+                        ->groupby('users_id')
+                        ->orderby('poin','desc')
+                        ->when($request->keyword, function ($query) use ($request) {
+                            $query->where('name','LIKE','%'.$request->keyword.'%');
+                            })
+                        ->paginate('10');
+        return view('amdk/rekpermit.index',compact('data', 'bulan','thn'));
+    }
+
+    public function daftar($users_id, $bln, $thn)
+    {
         $data = Absensi::orderBy('tanggal','desc')
                         ->SelectRaw('absensi.*, users.name,
                                     CASE
@@ -37,11 +61,11 @@ class RekpermitController extends Controller
                                         ELSE "Desember"
                                     END AS bulan ')
                         ->LeftJoin('users','users.id','absensi.users_id')
-                        ->when($request->keyword, function ($query) use ($request) {
-                            $query->where('name','LIKE','%'.$request->keyword.'%');
-                            })
-                        ->paginate('25');
-        return view('amdk/rekpermit.index',compact('data'));
+                        ->where('periode_year',$thn)
+                        ->where('periode_month',$bln)
+                        ->where('users_id',$users_id)
+                        ->get();
+        return view('amdk/rekpermit.daftar',compact('data'));
     }
 
     public function create()
