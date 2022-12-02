@@ -19,70 +19,102 @@ class AbsenImport implements ToModel,WithStartRow
     }
     public function model(array $row)
     {
+        $masuk      = $row[4];
+        $pulang     = $row[5];
         $checkin    = $row[6];
         $checkout   = $row[7];
-        $late       = $row[9];
-        $early      = $row[10]; 
-
-        $date = str_replace('/', '-', $row[2]);
-        $tanggal = date('Y-m-d', strtotime($date));
-        $tahun = date("Y",strtotime($tanggal));
-        $bulan = date("m",strtotime($tanggal));
-
-        if ($late != "00:00" && $late <= "06:00" && $early == "00:00") {
-            $ket = 6 ; //Terlambat
-        }elseif ($late == "00:00" && $early != "00:00" && $early <= "06:00") {
-            $ket = 7; //Pulang Cepat
-        }elseif ($late != "00:00" && $late <= "06:00" && $early != "00:00" && $early <= "06:00") {
-            $ket = 8; //Terlambat & Pulang Cepat
-        }elseif ($late != "00:00" && $late >= "06:00" && $early == "00:00") {
-            $ket = 9; //Tidak Absen Masuk
-        }elseif ($late == "00:00" && $early != "00:00" && $early >= "06:00") {
-            $ket = 10; //Tidak Absen Pulang
-        }elseif ($late != "00:00" && $late <= "06:00" && $early != "00:00" && $early >= "06:00") {
-            $ket = 10; //Terlambat & Tidak Absen Pulang
-        }elseif ($late != "00:00" && $late <= "06:00" && $early != "00:00" && $early <= "06:00") {
-            $ket = 10; //Pulang Cepat & Tidak Absen Masuk
+        // $late       = $row[9];
+        // $early      = $row[10]; 
+        
+        
+        // terlambat
+        if ($checkin > $masuk) {
+            $a = date_create($checkin);
+            $b = date_create($masuk);
+            $interval1 = date_diff($a, $b); 
+            $late = $interval1->days * 24 * 60;
+            $late += $interval1->h * 60;
+            $late += $interval1->i;
         } else {
-            $ket = 1;
+            $late = 0;
+        }
+        
+        // pulang cepat
+        if ($pulang > $checkout ) {
+            $c = date_create($pulang);
+            $d = date_create($checkout);
+            $interval2 = date_diff($c, $d); 
+            $early = $interval2->days * 24 * 60;
+            $early += $interval2->h * 60;
+            $early += $interval2->i;
+        } else {
+           $early = 0;
         }
         
 
+        //poin
         $set = Setabsen::first();
 
-        if ($late > "00:00" && $late <= "00:15") {
+        if ($late > 0 && $late <= 15) {
             $lambat = $set->poin1;
-        }elseif ($late > "00:15" && $late <= "00:30")  {
+        }elseif ($late > 15 && $late <= 30)  {
             $lambat = $set->poin16;
-        }elseif ($late > "00:30" && $late <= "00:60")  {
+        }elseif ($late > 30 && $late <= 60)  {
             $lambat = $set->poin31;
-        }elseif ($late > "00:60" && $late <= "00:90")  {
+        }elseif ($late > 60 && $late <= 90)  {
             $lambat = $set->poin61;
-        }elseif ($late > "00:90" )  {
+        }elseif ($late > 90 )  {
             $lambat = $set->poin91;
         } else {
             $lambat = 0;
         }
 
-        if ($early > "00:00" && $early <= "00:15") {
+        if ($early > 0 && $early <= 15) {
             $cepat = $set->poin1;
-        }elseif ($early > "00:15" && $early <= "00:30")  {
+        }elseif ($early > 15 && $early <= 30)  {
             $cepat = $set->poin16;
-        }elseif ($early > "00:30" && $early <= "00:90")  {
+        }elseif ($early > 30 && $early <= 60)  {
             $cepat = $set->poin31;
-        }elseif ($early > "00:60" && $early <= "00:90")  {
+        }elseif ($early > 60 && $early <= 90)  {
             $cepat = $set->poin61;
-        }elseif ($early > "00:90" )  {
+        }elseif ($early > 90 )  {
             $cepat = $set->poin91;
         } else {
             $cepat = 0;
         }
+
+        if ($row[8] == 'DNS') {
+            $poin = 0;
+        } else {
+            $poin = $lambat + $cepat;
+        }
+
+
+        //keterangan
+        if ($late != 0 && $late < 180 && $early == 0) {
+            $ket = 6 ; //Terlambat
+        }elseif ($late == 0 && $early != 0 && $early < 180) {
+            $ket = 7; //Pulang Cepat
+        }elseif ($late != 0 && $late < 180 && $early != 0 && $early < 180) {
+            $ket = 8; //Terlambat & Pulang Cepat
+        }elseif ($late != "00:00" && $late >= 180 && $early == 0) {
+            $ket = 9; //Tidak Absen Masuk
+        }elseif ($late == 0 && $early != 0 && $early >= 180) {
+            $ket = 10; //Tidak Absen Pulang
+        }elseif ($late != 0 && $late < 180 && $early != 0 && $early >= 180) {
+            $ket = 10; //Terlambat & Tidak Absen Pulang
+        }elseif ($late != 0 && $late  >= 180 && $early != 0 && $early < 180) {
+            $ket = 10; //Pulang Cepat & Tidak Absen Masuk
+        } else {
+            $ket = 1;
+        }
+
+
+        $date = str_replace('/', '-', $row[2]);
+        $tanggal = date('Y-m-d', strtotime($date));
+        $tahun = date("Y",strtotime($tanggal));
+        $bulan = date("m",strtotime($tanggal));
         
-       if ($row[8] == 'DNS') {
-        $poin = 0;
-       } else {
-        $poin = $lambat + $cepat;
-       }
        
         $user = User::where('no_pegawai',$row[0])->first();
         $hadir = Absensi::where('users_id',$user->id)->where('tanggal',$tanggal);
