@@ -271,6 +271,7 @@ h2, a {
 
 .tgl{
   width: 15%;
+  height : auto;
   float: right;
   background: #00a1b2;
   color: white;
@@ -283,8 +284,9 @@ h2, a {
 .hari{
   background:#ecf0f1;
   color: #00a1b2;
-  font-size:12px;
-  line-height: 1;
+  font-size:1vw;
+  line-height: 0.3;
+  padding-bottom: 5px;
   
 }
 
@@ -319,6 +321,11 @@ h2, a {
 
 .lain {
   margin: 5px auto;
+}
+
+.tgl_det{
+  font-size:1.3vw;
+
 }
 
 </style>
@@ -416,7 +423,7 @@ h2, a {
           <div class="tgl">
             <div class="tgl_det">{{$hari}}</div>
             <div class="hari">
-              <h1><b>{{$tgl}}</b></h1>
+              <p style="font-size:6vw; padding-top:20px;"><b>{{$tgl}}</b></p>
               <i class="material-icons">campaign</i> 
               Klik Untuk melihat Kalender
             </div>

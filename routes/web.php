@@ -225,8 +225,10 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/amdk/libur','Amdk\LiburController@index')->name('libur');
     //Route untuk absen
     Route::get('/amdk/setabsen','Amdk\SetabsenController@index')->name('setabsen');
-     //Route untuk LOG USER
-     Route::get('/amdk/logact','Amdk\LogActController@index')->name('logact');
+    //Route untuk LOG USER
+    Route::get('/amdk/logact','Amdk\LogActController@index')->name('logact');
+    //Route untuk Setup TTD
+    Route::get('/amdk/setupttd','Amdk\SetTTDController@index')->name('setupttd');
     
 
 

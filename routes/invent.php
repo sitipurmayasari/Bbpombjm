@@ -124,6 +124,7 @@
   Route::get('/invent/atkrequest/print/{id}','Invent\AtkRequestController@print')->name('atkrequest.print');
   Route::get('/invent/atkrequest/ubah/{id}','Invent\AtkRequestController@ubah')->name('atkrequest.ubah');
   Route::post('/invent/atkrequest/update/{id}','Invent\AtkRequestController@update')->name('atkrequest.update');
+  Route::post('/invent/atkrequest/updatestat/{id}','Invent\AtkRequestController@updatestat')->name('atkrequest.updatestat');
   Route::get('/invent/atkrequest/getBarang','Invent\AtkRequestController@getBarang')->name('atkrequest.getbarang');
   Route::get('/invent/atkrequest/getKelompok','Invent\AtkRequestController@getKelompok')->name('atkrequest.getKelompok');
   

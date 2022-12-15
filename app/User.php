@@ -72,4 +72,9 @@ class User extends Authenticatable
     {
         return $this->foto==null ? asset('images/user/userempty.png') : asset('images/pegawai').'/'.$this->id.'/'.$this->foto;
     }
+
+    public function ttd() 
+    {
+        return $this->belongsTo(Setupttd::class,'id','users_id');
+    }
 }

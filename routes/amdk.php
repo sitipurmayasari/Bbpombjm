@@ -260,3 +260,10 @@
  Route::get('/amdk/rekpermit/laporan','Amdk\RekpermitController@laporan')->name('rekpermit.laporan');
  Route::post('/amdk/rekpermit/cetak','Amdk\RekpermitController@cetak')->name('rekpermit.cetak');
  Route::get('/amdk/rekpermit/daftar/{users_id}/{bln}/{thn}','Amdk\RekpermitController@daftar')->name('rekpermit.daftar');
+
+ //Route untuk Setup TTD
+ Route::get('/amdk/setupttd/create','Amdk\SetTTDController@create')->name('setupttd.create');
+ Route::post('/amdk/setupttd/store','Amdk\SetTTDController@store')->name('setupttd.store');
+ Route::get('/amdk/setupttd/delete/{id}','Amdk\SetTTDController@delete')->name('setupttd.delete');
+ Route::get('/amdk/setupttd/edit/{id}','Amdk\SetTTDController@edit')->name('setupttd.edit');
+ Route::post('/amdk/setupttd/update/{id}','Amdk\SetTTDController@update')->name('setupttd.update');
