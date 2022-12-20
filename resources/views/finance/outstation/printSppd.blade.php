@@ -135,7 +135,7 @@
             &nbsp; &nbsp; c. Tingkat menurut peraturan perjalanan dinas
         </td>
         <td class="isi">
-             @if ($item->pegawai->jabasn_id != null)
+             @if ($item->pegawai->golongan_id != null)
                  {{$item->pegawai->gol->jenis}} / {{$item->pegawai->gol->golongan}} {{$item->pegawai->gol->ruang}}
              @else
                  {{' - '}}
