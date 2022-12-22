@@ -96,7 +96,7 @@
             </td>
         </tr>
         <tr>
-            <td colspan="2" style="text-align: center; line-height: 1;">Yang bert&&a Tangan di Bawah ini :</td>
+            <td colspan="2" style="text-align: center; line-height: 1;">Yang bertanda Tangan di Bawah ini :</td>
             <td style="font-size: 7;" rowspan="4">
                 Program / Kegiatan <br>
                 KRO/RO/Komponen <br>
@@ -570,7 +570,7 @@
             </td>
         </tr>
         <tr>
-            <td colspan="2" style="text-align: center; line-height: 1;">Yang bert&&a Tangan di Bawah ini :</td>
+            <td colspan="2" style="text-align: center; line-height: 1;">Yang bertanda Tangan di Bawah ini :</td>
             <td style="font-size: 7;" rowspan="4">
                 Program / Kegiatan <br>
                 KRO/RO/Komponen <br>
