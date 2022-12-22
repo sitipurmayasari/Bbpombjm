@@ -180,13 +180,6 @@
   //Route untuk rekaman personel
   Route::post('/amdk/record/cetak','Amdk\RecordController@cetak')->name('record.cetak');
 
-  //Route untuk Surat Izin Pramubakti
-  Route::get('/amdk/permit/create','Amdk\PermitController@create')->name('permit.create');
-  Route::post('/amdk/permit/store','Amdk\PermitController@store')->name('permit.store');
-  Route::get('/amdk/permit/delete/{id}','Amdk\PermitController@delete')->name('permit.delete');
-  Route::get('/amdk/permit/edit/{id}','Amdk\PermitController@edit')->name('permit.edit');
-  Route::post('/amdk/permit/update/{id}','Amdk\PermitController@update')->name('permit.update'); 
-
   //Route untuk Setup Angka Kredit
   Route::get('/amdk/ak/create','Amdk\CreditsController@create')->name('ak.create');
   Route::post('/amdk/ak/store','Amdk\CreditsController@store')->name('ak.store');
@@ -250,16 +243,6 @@
 
  //Route untuk absen
  Route::post('/amdk/setabsen/update/{id}','Amdk\SetabsenController@update')->name('setabsen.update');
-
- //Route untuk Rekap Surat Izin Pramubakti
- Route::get('/amdk/rekpermit/create','Amdk\RekpermitController@create')->name('rekpermit.create');
- Route::get('/amdk/rekpermit/rekap','Amdk\RekpermitController@rekap')->name('rekpermit.rekap');
- Route::post('/amdk/rekpermit/store','Amdk\RekpermitController@store')->name('rekpermit.store');
- Route::get('/amdk/rekpermit/edit/{id}','Amdk\RekpermitController@edit')->name('rekpermit.edit');
- Route::post('/amdk/rekpermit/update/{id}','Amdk\RekpermitController@update')->name('rekpermit.update');
- Route::get('/amdk/rekpermit/laporan','Amdk\RekpermitController@laporan')->name('rekpermit.laporan');
- Route::post('/amdk/rekpermit/cetak','Amdk\RekpermitController@cetak')->name('rekpermit.cetak');
- Route::get('/amdk/rekpermit/daftar/{users_id}/{bln}/{thn}','Amdk\RekpermitController@daftar')->name('rekpermit.daftar');
 
  //Route untuk Setup TTD
  Route::get('/amdk/setupttd/create','Amdk\SetTTDController@create')->name('setupttd.create');

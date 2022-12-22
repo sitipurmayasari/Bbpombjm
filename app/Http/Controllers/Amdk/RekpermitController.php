@@ -116,8 +116,20 @@ class RekpermitController extends Controller
    
     public function update(Request $request, $id)
     {
+        $this->validate($request,[
+            'file' => 'max:2048',
+        ]);
+        
         $data = Absensi::find($id);
         $data->update($request->all());
+        if($request->hasFile('file')){ 
+            $request->file('file')
+                        ->move('images/daduk/'.$id,$request
+                        ->file('file')
+                        ->getClientOriginalName()); 
+            $data->file = $request->file('file')->getClientOriginalName();
+            $data->save();
+          }
 
         LogActivity::addToLog('Update->Absensi, id = '.$id);
 

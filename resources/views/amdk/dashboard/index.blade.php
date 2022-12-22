@@ -74,69 +74,6 @@
       </div>
     </div>
 </div>
-@if ($poinabsen != null)
-<div class="col-sm-4" style="text-align: center">
-  <div class="card">
-      <div class="card-header card-header-warning">
-        <h4 class="card-title">Poin Si Amat Anda</h4>
-      </div>
-      <div class="card-body">
-        <table class="table table-hover" style="font-size: 12px;">
-          <thead>
-            <th>No</th>
-            <th>Periode</th>
-            <th>Poin</th>
-          </thead>
-          <tbody>
-              @php
-                  $no = 1;
-              @endphp
-              @foreach($poinabsen as $row)
-              <tr>
-                  <td>{{$no}}</td>
-                  <td>
-                    @if ($row->periode_month == 1)
-                       Januari
-                    @elseif ($row->periode_month == 2)
-                      Februari
-                    @elseif ($row->periode_month == 3)
-                      Maret
-                    @elseif ($row->periode_month == 4)
-                      April
-                    @elseif ($row->periode_month == 5)
-                      Mei
-                    @elseif ($row->periode_month == 6)
-                      Juni
-                    @elseif ($row->periode_month == 7)
-                      Juli
-                    @elseif ($row->periode_month == 8)
-                      Agustus
-                    @elseif ($row->periode_month == 9)
-                      September
-                    @elseif ($row->periode_month == 10)
-                      Oktober
-                    @elseif ($row->periode_month == 11)
-                      November
-                    @else
-                      Desember
-                    @endif
-                    &nbsp; {{$row->periode_year}}
-                  </td>
-                  <td>{{$row->jumpoin}}</td>
-              </tr>
-              @php
-                  $no++;
-              @endphp
-              @endforeach
-          </tbody> 
-        </table>
-      
-      </div>
-    </div>
-</div>
-@endif
-
-
 @endsection
 
 

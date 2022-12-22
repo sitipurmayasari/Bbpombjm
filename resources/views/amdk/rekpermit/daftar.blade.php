@@ -1,8 +1,8 @@
-@extends('amdk/layouts_amdk.app')
+@extends('ppnpn/layouts.app')
 @section('breadcrumb')
     <li>Rekapitulasi</li>
     <li><a href="/amdk/rekpermit">Rekap Absensi Pramubakti</a></li>
-    <li>Daftar Absensi (Nama) Periode (Periode)</li>
+    <li>Daftar Absensi </li>
 @endsection
 @section('content')
     <div class="table-responsive">

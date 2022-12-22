@@ -1,4 +1,4 @@
-@extends('amdk/layouts_amdk.app')
+@extends('ppnpn/layouts.app')
 @section('breadcrumb')
     <li>Rekapitulasi</li>
     <li>Rekap Absensi Pramubakti</li>
@@ -32,7 +32,34 @@
         </div>
     </div>
 </form>
-<h3>Rekap Absensi Periode : {{$bulan}}{{$thn}}</h3>
+<h3>Rekap Absensi Periode : @php
+    if ($bulan=='1') {
+        $bln = "Januari";
+    } else if($bulan=='2') {
+        $bln = "Februari";
+    } else if($bulan=='3') {
+        $bln = "Maret";
+    } else if($bulan=='4') {
+        $bln = "April";
+    } else if($bulan=='5') {
+        $bln = "Mei";
+    } else if($bulan=='6') {
+        $bln = "Juni";
+    } else if($bulan=='7') {
+        $bln = "Juli";
+    } else if($bulan=='8') {
+        $bln = "Agustus";
+    } else if($bulan=='9') {
+        $bln = "September";
+    } else if($bulan=='10') {
+        $bln = "Oktober";
+    } else if($bulan=='11') {
+        $bln = "November";
+    } else {
+        $bln = "Desember";
+    }
+@endphp
+{{$bln}} {{$thn}}</h3>
     <div class="table-responsive">
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>

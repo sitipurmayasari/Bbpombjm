@@ -1,24 +1,17 @@
-@extends('amdk/layouts_amdk.app')
+@extends('ppnpn/layouts.app')
 @section('breadcrumb')
-    <li><a href="/amdk/pengumumann"> Pengumuman</a></li>
-    <li>Buat Pengumuman</li>
+    <li>Absensi Pramubakti</li>
 @endsection
 @section('content')
-@include('layouts.validasi')
-
-<style>
-
-</style>
-
 
 <div class="row">
     <form class="form-horizontal validate-form" role="form" 
-    method="post" action="/amdk/agenda/update/{{$data->id}}" enctype="multipart/form-data">
+    method="post" action="/amdk/permit/update/{{$data->id}}" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div class="col-sm-12">
         <div class="widget-box">
             <div class="widget-header">
-                <h4 class="widget-title"> Buat Agenda</h4>
+                <h4 class="widget-title"> Ubah Keterangan Absensi</h4>
                 <div class="widget-toolbar">
                     <a href="#" data-action="collapse">
                         <i class="ace-icon fa fa-chevron-down"></i>
@@ -31,48 +24,27 @@
                     <br>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1"> Judul
+                        for="form-field-1"> Nama
                         </label>
                         <div class="col-sm-9" >
-                            <input type="text" name="titles" class="col-xs-10 col-sm-10" value="{{$data->titles}}"
-                             placeholder="masukkan judul">
-                             <input type="text" name="users_id" value="{{auth()->user()->id}}" hidden>
+                            <input type="text" name="name" class="col-xs-10 col-sm-10" value="{{$data->peg->name}}"
+                             readonly>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1"> Kategori
+                        for="form-field-1"> Status
                         </label>
                         <div class="col-sm-9" >
-                            <select name="agenda_kategori_id" class="col-xs-10 col-sm-10"  >
-                                @foreach ($kategori as $item)
-                                   @if ($item->id == $data->agenda_kategori_id)
-                                        <option value="{{$item->id}}" selected>{{$item->nama}}</option>
-                                   @else
-                                        <option value="{{$item->id}}">{{$item->nama}}</option>
-                                   @endif
+                            <select name="ket_absen_id" class="col-xs-10 col-sm-10 select2">
+                                @foreach ($kets as $sub)
+                                        @if ($data->ket_absen_id==$sub->id)
+                                            <option value="{{$sub->id}}" selected>{{$sub->ket}}</option>
+                                        @else
+                                            <option value="{{$sub->id}}">{{$sub->ket}}</option>
+                                        @endif
                                 @endforeach
                             </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1"> Dari
-                        </label>
-                        <div class="col-sm-9">
-                            <input type="date" required  value="{{$data->date_from}}"
-                            class="col-xs-3 col-sm-3 required "
-                            name="date_from"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1"> Sampai
-                        </label>
-                        <div class="col-sm-9">
-                            <input type="date" required  value="{{$data->date_to}}"
-                            class="col-xs-3 col-sm-3 required "
-                            name="date_to"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -80,8 +52,20 @@
                         for="form-field-1"> Keterangan
                         </label>
                         <div class="col-sm-9" >
-                            <textarea  placeholder="" class="col-xs-10 col-sm-10"  
-                            name="detail">{{$data->detail}}</textarea>
+                            <textarea name="keterangan" id="keterangan" cols="30" rows="10"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Upload file
+                        </label>
+                        <div class="col-sm-9">
+                            <input type="file" name="file" class="btn btn-default btn-sm" id="" value="max 2KB">   
+                            @if ($data->file != null)
+                                <a href="{{$data->getFile()}}" target="_blank" >{{$data->file}}</a>
+                            @else
+                                *Max 2KB
+                            @endif
                         </div>
                     </div>
                     </fieldset>        

@@ -1,4 +1,4 @@
-@extends('amdk/layouts_amdk.app')
+@extends('ppnpn/layouts.app')
 @section('breadcrumb')
     <li><a href="/amdk/permit"> Surat Izin</a></li>
     <li>Buat Surat Izin</li>

@@ -61,6 +61,7 @@
                         <li><a href="#qms" data-toggle="tab">QMS</a></li>
                         <li><a href="#nappza" data-toggle="tab">NAPPZA</a></li>
                         <li><a href="#mikro" data-toggle="tab">TOMIKU</a></li>
+                        <li><a href="#ppnpn" data-toggle="tab">PPNPN</a></li>
                     </ul>
 
                     <div class="tab-content">
@@ -333,6 +334,32 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="tab-pane" id="ppnpn">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-success">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">PPNPN</h3>
+                                        </div>
+                        
+                                        <div class="panel-body">
+                                            <table id="simple-table" class="table  table-bordered table-hover" >
+                                                <thead >
+                                                    <th width="5%" style="text-align: center;">No</th>
+                                                    <th style="text-align: center;">Menu</th>
+                                                    <th width="20%" style="text-align: center;">
+                                                        <input type="checkbox" name="ppnpnCheckAll" id="ppnpnCheckAll" >
+                                                    </th>
+                                                </thead>
+                                                <tbody id="isi_ppnpn">
+                                                   
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                </div>
 
@@ -432,6 +459,13 @@
                 $('.cekmikro').prop('checked', true);
             } else {
                 $('.cekmikro').prop('checked', false);
+            }
+        });
+        $('#ppnpnCheckAll').click(function() {
+            if ($(this).prop('checked')) {
+                $('.cekppnpn').prop('checked', true);
+            } else {
+                $('.cekppnpn').prop('checked', false);
             }
         });
     });
@@ -610,6 +644,22 @@
                     '</tr>';
               }
 
+              for (let i = 0; i < response.ppnpn.length; i++) {
+                  var is_check = '';
+                  var no = i+1;
+                  if (response.ppnpn[i].checked){
+                      is_check = 'checked';
+                  }
+                  isi_ppnpn+='<tr>'+
+                        '<td style="text-align: center;">'+no+'</td>'+
+                        '<td>'+response.ppnpn[i].nama+'</td>'+
+                        '<td style="text-align: center;">'+
+                            '<input type="checkbox" class="menu cekppnpn" name="akses_ppnpn[]" '+is_check
+                            +' value="'+response.ppnpn[i].id+'">'+
+                        '</td>'+
+                    '</tr>';
+              }
+
               $("#isi_amdk").html(isi_amdk);
               $("#isi_inv").html(isi_inv);
               $("#isi_fin").html(isi_fin);
@@ -620,7 +670,7 @@
               $("#isi_qms").html(isi_qms);
               $("#isi_nappza").html(isi_nappza);
               $("#isi_mikro").html(isi_mikro);
-
+              $("#isi_ppnpn").html(isi_ppnpn);
 
             }
         );

@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use App\User;
 use App\Absensi;
+use App\KetAbsen;
+use LogActivity;
 
 class PermitController extends Controller
 {
@@ -76,45 +78,33 @@ class PermitController extends Controller
                 return view('amdk/permit.index',compact('data','datalalu'));
     }
 
-    public function create()
+   
+    public function edit($id)
     {
-        // $kategori = Agenda_kategori::All();
-        return view('amdk/permit.create');
+        $kets = KetAbsen::where('id','!=','1')->get();
+        $data = Absensi::where('id',$id)->first();
+        return view('amdk/permit.edit',compact('data','kets'));
     }
- 
-    // public function store(Request $request)
-    // {
-    //     $this->validate($request,[
-    //         'agenda_kategori_id' => 'required',
-    //         'titles' => 'required',
-    //         'detail' => 'required',
-    //         'date_from' => 'required',
-    //         'date_to' => 'required'
-    //     ]);
-    //     Agenda::create($request->all());
-    //     return redirect('/amdk/permit')->with('sukses','Data Tersimpan');
-    // }
-   
-    // public function edit($id)
-    // {
-    //     $kategori = Agenda_kategori::All();
-    //     $data = Agenda::where('id',$id)->first();
-    //     return view('amdk/permit.edit',compact('data','kategori'));
-    // }
 
-   
-    // public function update(Request $request, $id)
-    // {
-    //     $data = Agenda::find($id);
-    //     $data->update($request->all());
-    //     return redirect('/amdk/permit')->with('sukses','Data Diperbaharui');
-    // }
+    public function update(Request $request, $id)
+    {
+        $this->validate($request,[
+            'file' => 'required|max:2048',
+        ]);
+        
+        $data = Absensi::find($id);
+        $data->update($request->all());
+        if($request->hasFile('file')){ 
+            $request->file('file')
+                        ->move('images/daduk/'.$id,$request
+                        ->file('file')
+                        ->getClientOriginalName()); 
+            $data->file = $request->file('file')->getClientOriginalName();
+            $data->save();
+          }
 
-    // public function delete($id)
-    // {
-    //     $data = Agenda::find($id);
-    //     $data->delete();
-    //     return redirect('/amdk/permit')->with('sukses','Data Terhapus');
-
-    // }
+          LogActivity::addToLog('Update->Absensi Pramubakti, id = '.$id);
+        
+        return redirect('/amdk/permit')->with('sukses','Data Diperbaharui');
+    }
 }

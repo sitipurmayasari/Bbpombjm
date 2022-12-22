@@ -1,4 +1,4 @@
-@extends('amdk/layouts_amdk.app')
+@extends('ppnpn/layouts.app')
 @section('breadcrumb')
     <li>Rekapitulasi</li>
     <li><a href="/amdk/rekpermit">Rekap Absensi Pramubakti</a></li>

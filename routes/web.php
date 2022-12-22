@@ -63,6 +63,9 @@ Route::get('/qR/{id}/calibration','Calibration\GlassKualController@detail')->nam
    //--------------------------QMS------------------------------------------
    Route::get('/qms/dashboard','Qms\DashboardController@index')->name('dashboard');
 
+   //--------------------------PPNPN------------------------------------------
+   Route::get('/ppnpn/dashboard','Ppnpn\DashboardController@index')->name('dashboard');
+
 
   //Route untuk Profile
   Route::post('/profile/update/{id}','ProfileController@update')->name('profile.update');
@@ -86,6 +89,8 @@ Route::get('/qR/{id}/calibration','Calibration\GlassKualController@detail')->nam
   require __DIR__.'/qms.php';
   // //--------------------------calibration------------------------------------------
   require __DIR__.'/calibration.php';
+  // //--------------------------PPNPN------------------------------------------
+  require __DIR__.'/ppnpn.php';
 
 });
 
@@ -204,10 +209,7 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/amdk/kategori','Amdk\KategoriController@index')->name('kategori');
     //Route untuk rekaman personel
     Route::get('/amdk/record','Amdk\RecordController@index')->name('record');
-    //Route untuk Surat Izin Pramubakti
-    Route::get('/amdk/permit','Amdk\PermitController@index')->name('permit');
-    //Route untuk Surat Izin Pramubakti
-    Route::get('/amdk/rekpermit','Amdk\RekpermitController@index')->name('rekpermit');
+   
     //Route untuk Setup Angka Kredit
     Route::get('/amdk/ak','Amdk\CreditsController@index')->name('ak');
     //Route untuk SKP
@@ -231,6 +233,11 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/amdk/setupttd','Amdk\SetTTDController@index')->name('setupttd');
     
 
+    //--------------------------PPNPN------------------------------------------
+    //Route untuk Surat Izin Pramubakti
+    Route::get('/amdk/permit','Amdk\PermitController@index')->name('permit');
+    //Route untuk Surat Izin Pramubakti
+    Route::get('/amdk/rekpermit','Amdk\RekpermitController@index')->name('rekpermit');
 
     //--------------------------Finance------------------------------------------
     //-----Surat Tugas--------

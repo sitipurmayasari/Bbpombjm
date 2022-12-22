@@ -1,4 +1,4 @@
-@extends('amdk/layouts_amdk.app')
+@extends('ppnpn/layouts.app')
 @section('breadcrumb')
     <li>Rekapitulasi</li>
     <li><a href="/amdk/rekpermit">Rekap Absensi Pramubakti</a></li>
@@ -41,7 +41,7 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1"> keterangan
+                        for="form-field-1"> Status
                         </label>
                         <div class="col-sm-9" >
                             <select name="ket_absen_id" class="col-xs-10 col-sm-10 select2">
@@ -95,6 +95,27 @@
                         </label>
                         <div class="col-sm-9" >
                             <input type="text" name="pulang_cepat"  class="col-xs-10 col-sm-10" value="{{$pul}}" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Keterangan
+                        </label>
+                        <div class="col-sm-9" >
+                            <textarea name="keterangan" id="keterangan" cols="30" rows="10">{{$data->keterangan}}</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Upload file
+                        </label>
+                        <div class="col-sm-9">
+                            <input type="file" name="file" class="btn btn-default btn-sm" id="" value="max 2KB">   
+                            @if ($data->file != null)
+                                <a href="{{$data->getFile()}}" target="_blank" >{{$data->file}}</a>
+                            @else
+                                *Max 2KB
+                            @endif
                         </div>
                     </div>
                     </fieldset>        

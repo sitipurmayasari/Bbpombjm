@@ -129,6 +129,16 @@ class AksesController extends Controller
                     UserPermission::create($data);
                 }
             }
+
+            if ($request->input('akses_ppnpn')) {
+                for ($i = 0; $i < count($request->input('akses_ppnpn')); $i++){
+                    $data = [
+                        'user_id' => $request->user_id,
+                        'menu_id' => $request->akses_ppnpn[$i] ,
+                    ];
+                    UserPermission::create($data);
+                }
+            }
            
         DB::commit(); 
         return redirect()->route('akses')->with('sukses','Data Tersimpan');
@@ -197,6 +207,12 @@ class AksesController extends Controller
             ->select('submenu.*','menu.modul','menu.nama as group_nama')
             ->leftJoin('menu','submenu.menu_id','=','menu.id')
             ->where('menu.modul','mikro')
+            ->get();
+
+        $ppnpn = Submenu::orderBy('menu.id','asc')
+            ->select('submenu.*','menu.modul','menu.nama as group_nama')
+            ->leftJoin('menu','submenu.menu_id','=','menu.id')
+            ->where('menu.modul','ppnpn')
             ->get();
 
         $outputAmdk = array();
@@ -287,6 +303,15 @@ class AksesController extends Controller
             );
         }
 
+        $outputppnpn = array();
+        foreach ($ppnpn as $in) {
+            $outputppnpn[] = array(
+                'id' => $in->id,
+                'nama' => $in->nama,
+                'checked' => $this->checkPermissonMenu($user_id,$in->id)
+            );
+        }
+
 
         return response()->json([ 
             'success' => true,
@@ -299,7 +324,8 @@ class AksesController extends Controller
             'plan' => $outputPlan,
             'qms' => $outputqms,
             'nappza' => $outputnappza,
-            'mikro' => $outputmikro
+            'mikro' => $outputmikro,
+            'ppnpn' => $outputppnpn
         ],200);
     }
 

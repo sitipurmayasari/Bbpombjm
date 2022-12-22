@@ -1,4 +1,4 @@
-@extends('amdk/layouts_amdk.app')
+@extends('ppnpn/layouts.app')
 @section('breadcrumb')
     <li>Setup</li>
     <li><a href="/amdk/libur"> Hari Kerja</a></li>

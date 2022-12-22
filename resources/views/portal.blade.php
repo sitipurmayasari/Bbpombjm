@@ -94,9 +94,9 @@ h2, a {
   background-color: #c4c4c4;
   text-align: center;
   display: inline-block;
-  width: 130px;
-  height: 130px;
-  padding: 9px 0px;
+  width: 105px;
+  height: 105px;
+  padding: 5px 0px;
   color: white;
   margin: 2px;
   /* Color each button differently */
@@ -236,9 +236,9 @@ h2, a {
   -moz-border-radius: 3px;
   border-radius: 3px;
   width: auto;
-  height: 22px;
-  padding: 11px 11px 0 11px;
-  font-size: 13px;
+  height: 15px;
+  padding: 5px 5px 0 5px;
+  font-size: 11px;
   line-height: 11px;
   white-space: nowrap;
   background-color: #323232;
@@ -326,6 +326,38 @@ h2, a {
 .tgl_det{
   font-size:1.3vw;
 
+}
+
+.strike {
+    display: block;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap; 
+}
+
+.strike > span {
+    position: relative;
+    display: inline-block;
+}
+
+.strike > span:before,
+.strike > span:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 9999px;
+    height: 1px;
+    background: red;
+}
+
+.strike > span:before {
+    right: 100%;
+    margin-right: 15px;
+}
+
+.strike > span:after {
+    left: 100%;
+    margin-left: 15px;
 }
 
 </style>
@@ -433,54 +465,59 @@ h2, a {
         {{-- nama --}}
         <div style="text-align: center;">
           <div style="padding-left: 18%;  line-height: 1; margin-top:-25px">
-            <h4>SELAMAT DATANG DI</h4>
+            {{-- <h4>SELAMAT DATANG DI</h4> --}} <br>
             <h1><b>SI-BOB</b></h1>
             <h5>( SISTEM INFORMASI BBPOM BANJARMASIN )</h5>
           </div>
         </div>
          {{-- icon --}}
          <div class="social">   
-            <a class="social-icon" data-tooltip="AMDK" href="/amdk/dashboard">
-              <img src="{{asset('images/amdk.png')}}" style="height:100%; width:100%">
+            <a class="social-icon" href="/amdk/dashboard">
+              <img src="{{asset('images/amdk2.png')}}" style="height:100%; width:100%">
             </a>   
-            <a class="social-icon" data-tooltip="BMN & Persediaan" href="/invent/dashboard">
-              <img src="{{asset('images/invent.png')}}" style="height:100%; width:100%">
+            <a class="social-icon" href="/invent/dashboard">
+              <img src="{{asset('images/bmn2.png')}}" style="height:100%; width:100%">
             </a>
-            <a class="social-icon" data-tooltip="Anang & Galuh" href="/finance/portalAG">
-              <img src="{{asset('images/naga.png')}}" style="height:100%; width:100%">
-            </a><br><br>
+            <a class="social-icon" href="/finance/portalAG">
+              <img src="{{asset('images/anang2.png')}}" style="height:100%; width:100%">
+            </a>
+            <a class="social-icon" href="/arsip/dashboard">
+              <img src="{{asset('images/arsip2.png')}}" style="height:100%; width:100%">
+            </a>
         </div>
         <div class="social">
-            <a class="social-icon" data-tooltip="Kearsipan" href="/arsip/dashboard">
-              <img src="{{asset('images/arsiparis.png')}}" style="height:100%; width:100%">
+            <a class="social-icon" href="/calibration/dashboard">
+              <img src="{{asset('images/lab2.png')}}" style="height:100%; width:100%">
             </a>
-            <a class="social-icon" data-tooltip="Pengujian" href="/calibration/dashboard">
-              <img src="{{asset('images/lab.png')}}" style="height:100%; width:100%">
+            <a class="social-icon"  href="/qms/dashboard">
+              <img src="{{asset('images/qms3.png')}}" style="height:100%; width:100%">
             </a>
-            <a class="social-icon" data-tooltip="QMS" href="/qms/dashboard">
-              <img src="{{asset('images/qms2.png')}}" style="height:100%; width:100%">
+            <a class="social-icon"  href="/ppnpn/dashboard">
+              <img src="{{asset('images/ppnpn.png')}}" style="height:100%; width:100%">
             </a>
         </div>
-        {{-- <div class="lain"> 
-          ----------------------------Link Terkait----------------------------
-           <br>  
-          <a class="bawah" href="/amdk/dashboard">
-            <img src="{{asset('images/amdk.png')}}" style="height:100%; width:100%">
-          </a>   
-          <a class="bawah" href="/invent/dashboard">
-            <img src="{{asset('images/invent.png')}}" style="height:100%; width:100%">
+        <div class="strike">
+          <span>Link Terkait</span>
+       </div>
+
+        <div class="lain"> 
+           <a class="bawah" data-tooltip="SIASN" href="https://siasn.pom.go.id/login">
+            <img src="{{asset('images/terkait/siasn.png')}}" style="height:100%; width:100%">
           </a>
-          <a class="bawah"  href="/finance/dashboard">
-            <img src="{{asset('images/naga.png')}}" style="height:100%; width:100%">
+          <a class="bawah" data-tooltip="SIPANDA" href="https://sipanda.pom.go.id/sipanda/formlogin.php">
+            <img src="{{asset('images/terkait/sipanda.png')}}" style="height:100%; width:100%">
           </a>
-          <a class="bawah"  href="/calibration/dashboard">
-            <img src="{{asset('images/lab.png')}}" style="height:100%; width:100%">
+          <a class="bawah" data-tooltip="SRIKANDI" href="https://srikandi.arsip.go.id/login">
+            <img src="{{asset('images/terkait/srikandi.png')}}" style="height:100%; width:100%">
           </a>
-      </div> --}}
-        <div class="container-fluid">
+          <a class="bawah" data-tooltip="IDEAS" href="https://ppsdm.pom.go.id/ideas">
+            <img src="{{asset('images/terkait/ideas.png')}}" style="height:100%; width:100%">
+          </a>
+      </div>
+        {{-- <div class="container-fluid">
           <span class="green bolder">BBPOM Banjarmasin</span> &copy; 2021 
         </div>
-      </div>
+      </div> --}}
       {{-- <footer class="footer" style="margin: 0; padding:0;">
         <div class="container-fluid">
           <span class="green bolder">BBPOM Banjarmasin</span> &copy; 2021 
