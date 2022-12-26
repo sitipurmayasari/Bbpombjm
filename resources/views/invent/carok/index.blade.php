@@ -85,7 +85,7 @@
                                 Lakukan Persetujuan
                             </a>
                         @elseif($row->status == 'N')
-                            <a href="#" class="btn btn-danger">Ditolak</a>
+                            <a href="/invent/carok/edit/{{$row->id}}" class="btn btn-danger">Ditolak</a>
                         @else 
                             <a href="/invent/carok/edit/{{$row->id}}" class="btn btn-success">Diterima</a>
                         @endif
