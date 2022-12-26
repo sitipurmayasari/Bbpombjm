@@ -504,16 +504,16 @@ h2, a {
        </div>
 
         <div class="lain"> 
-           <a class="bawah" data-tooltip="SIASN" href="https://siasn.pom.go.id/login">
+           <a class="bawah" data-tooltip="SIASN" href="https://siasn.pom.go.id/login" target="_blank">
             <img src="{{asset('images/terkait/siasn.png')}}" style="height:100%; width:100%">
           </a>
-          <a class="bawah" data-tooltip="SIPANDA" href="https://sipanda.pom.go.id/sipanda/formlogin.php">
+          <a class="bawah" data-tooltip="SIPANDA" href="https://sipanda.pom.go.id/sipanda/formlogin.php" target="_blank">
             <img src="{{asset('images/terkait/sipanda.png')}}" style="height:100%; width:100%">
           </a>
-          <a class="bawah" data-tooltip="SRIKANDI" href="https://srikandi.arsip.go.id/login">
+          <a class="bawah" data-tooltip="SRIKANDI" href="https://srikandi.arsip.go.id/login" target="_blank">
             <img src="{{asset('images/terkait/srikandi.png')}}" style="height:100%; width:100%">
           </a>
-          <a class="bawah" data-tooltip="IDEAS" href="https://ppsdm.pom.go.id/ideas">
+          <a class="bawah" data-tooltip="IDEAS" href="https://ppsdm.pom.go.id/ideas" target="_blank">
             <img src="{{asset('images/terkait/ideas.png')}}" style="height:100%; width:100%">
           </a>
       </div>
