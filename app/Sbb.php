@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Sbb extends Model
 {
     protected $table = "sbb";
-    protected $fillable = ['users_id','nomor','tanggal','jenis','stat_aduan','labory_id','pejabat_id','file'
+    protected $fillable = ['users_id','nomor','tanggal','jenis','stat_aduan','labory_id','pejabat_id','file', 'tgl_terima'
 ];
 
     public function pegawai()
@@ -17,7 +17,7 @@ class Sbb extends Model
 
     public function mengetahui()
     {
-        return $this->belongsTo(User::class,'pejabat_id','id');
+        return $this->belongsTo(Pejabat::class,'pejabat_id','id');
     }
 
     public function labory()

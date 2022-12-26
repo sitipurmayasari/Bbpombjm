@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Sbbdetail extends Model
 {
     protected $table = "sbb_detail";
-    protected $fillable = ['sbb_id','inventaris_id','satuan_id','jumlah','ket','status'
+    protected $fillable = ['sbb_id','inventaris_id','satuan_id','jumlah','ket','status','jumlah_aju'
 ];
 
     public function sbb()
