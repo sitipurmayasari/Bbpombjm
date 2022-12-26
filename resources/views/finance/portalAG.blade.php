@@ -425,20 +425,20 @@ h2, a {
          </div>
          {{-- icon --}}
          <div class="social">   
-            <a class="social-icon" data-tooltip="e-Planning" href="/finance/dashboardren">
-              <img src="{{asset('images/plan.png')}}" style="height:100%; width:100%">
-            </a>   
-            <a class="social-icon" data-tooltip="e-Performance" href="/finance/dashboardforma">
-              <img src="{{asset('images/perform.png')}}" style="height:100%; width:100%">
+            <a class="social-icon"  href="/finance/dashboardren">
+              <img src="{{asset('images/eplan2.png')}}" style="height:100%; width:100%">
             </a>
-            <a class="social-icon" data-tooltip="Anggaran" href="/finance/dashboard">
-              <img src="{{asset('images/pajak.png')}}" style="height:100%; width:100%">
+            <a class="social-icon"  href="/finance/dashboardforma">
+              <img src="{{asset('images/eperfo2.png')}}" style="height:100%; width:100%">
             </a>
-            <a class="social-icon" data-tooltip="Surat Tugas" href="/finance/dashboarddin">
-              <img src="{{asset('images/pergi.png')}}" style="height:100%; width:100%">
+            <a class="social-icon"  href="/finance/dashboard">
+              <img src="{{asset('images/anggaran.png')}}" style="height:100%; width:100%">
             </a>
-            <a class="social-icon" data-tooltip="Portal Utama SIBOB" href="/portal">
-              <img src="{{asset('images/exit.png')}}" style="height:100%; width:100%">
+            <a class="social-icon"  href="/finance/dashboarddin">
+              <img src="{{asset('images/perjadin2.png')}}" style="height:100%; width:100%">
+            </a>
+            <a class="social-icon" href="/portal">
+              <img src="{{asset('images/exit2.png')}}" style="height:100%; width:100%">
             </a>
         </div>
         <br>

@@ -481,23 +481,20 @@ h2, a {
             <a class="social-icon" href="/finance/portalAG">
               <img src="{{asset('images/anang2.png')}}" style="height:100%; width:100%">
             </a>
-            {{-- <a class="social-icon" href="/arsip/dashboard">
+            <a class="social-icon" href="/arsip/dashboard">
               <img src="{{asset('images/arsip2.png')}}" style="height:100%; width:100%">
-            </a> --}}
+            </a>
         </div>
         <div class="social">
-          <a class="social-icon" href="/arsip/dashboard">
-            <img src="{{asset('images/arsip2.png')}}" style="height:100%; width:100%">
-          </a>
             <a class="social-icon" href="/calibration/dashboard">
               <img src="{{asset('images/lab2.png')}}" style="height:100%; width:100%">
             </a>
             <a class="social-icon"  href="/qms/dashboard">
               <img src="{{asset('images/qms3.png')}}" style="height:100%; width:100%">
             </a>
-            {{-- <a class="social-icon"  href="/ppnpn/dashboard">
+            <a class="social-icon"  href="/ppnpn/dashboard">
               <img src="{{asset('images/ppnpn.png')}}" style="height:100%; width:100%">
-            </a> --}}
+            </a>
         </div>
         <div class="strike">
           <span>Link Terkait</span>

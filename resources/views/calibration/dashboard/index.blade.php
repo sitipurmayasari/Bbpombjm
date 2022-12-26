@@ -424,14 +424,14 @@ h2, a {
          </div>
          {{-- icon --}}
          <div class="social">   
-            <a class="social-icon" data-tooltip="Lab Obat dan Nappza" href="/calibration/dashboardnapza">
-              <img src="{{asset('images/napza.png')}}" style="height:100%; width:100%">
+            <a class="social-icon" href="/calibration/dashboardnapza">
+              <img src="{{asset('images/nappza2.png')}}" style="height:100%; width:100%">
             </a>   
-            <a class="social-icon" data-tooltip="TOMIKU " href="/calibration/dashboardtomiku">
+            <a class="social-icon"  href="/calibration/dashboardtomiku">
               <img src="{{asset('images/tomiku.png')}}" style="height:100%; width:100%">
             </a> 
-            <a class="social-icon" data-tooltip="Portal Utama SIBOB" href="/portal">
-              <img src="{{asset('images/exit.png')}}" style="height:100%; width:100%">
+            <a class="social-icon" href="/portal">
+              <img src="{{asset('images/exit2.png')}}" style="height:100%; width:100%">
             </a> 
         </div>
         <br>
