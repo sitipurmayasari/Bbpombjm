@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('breadcrumb')
-    <li>Inventaris</li>
+    <li>Persediaan</li>
     <li><a href="/invent/labrequest"> Permintaan Persediaan LAB</a></li>
     <li>Pengajuan Persediaan LAB</li>
 @endsection
@@ -115,8 +115,9 @@
                                 <input type="number" name="stok[]" class="form-control" readonly id="stok-1">
                             </td>
                             <td>
-                                <input type="number"  min="1" name="jumlah[]" class="form-control" value="0" id="jum-1" onchange="hitung()">
-                                <input type="hidden" name="sisa[]" class="form-control" value="0" id="sisa-1">
+                                <input type="number"  min="1" name="jumlah[]" class="form-control" value="0" id="jum-1" onclick="hitung()"  onkeyup="hitung()">
+                                <input type="hidden" name="jumlah_aju[]" id="jum_aju-1">
+                                <input type="hidden" name="sisa[]" id="sisa-1">
                                
                             </td>
                             <td>
@@ -176,8 +177,9 @@
                         '<input type="number" name="stok[]" class="form-control" readonly id="stok-'+new_baris+'">'+
                     '</td>'+
                     '<td>'+
-                        '<input type="number" min="1" name="jumlah[]" class="form-control" value="0" id="jum-'+new_baris+'" onchange="hitung2('+new_baris+')">'+
-                        '<input type="hidden" name="sisa[]" class="form-control" value="0" id="sisa-'+new_baris+'">'+
+                        '<input type="number" min="1" name="jumlah[]" class="form-control" value="0" id="jum-'+new_baris+'" onclick="hitung2('+new_baris+')" onkeyup="hitung2('+new_baris+')">'+
+                        '<input type="hidden" name="jumlah_aju[]" id="jum_aju-'+new_baris+'">'+
+                        '<input type="hidden" name="sisa[]" id="sisa-'+new_baris+'">'+
                     '</td>'+
                     '<td>'+
                         '<input type="text" name="ket[]" class="form-control">'+
@@ -269,10 +271,19 @@
         }
 
         function hitung() {
-        var a = $("#stok-1").val();
-        var b =  $("#jum-1").val();
-        var c = a - b;
-        $("#sisa-1").val(c);
+            var a = $("#stok-1").val();
+            var b =  $("#jum-1").val();
+            var c = a - b;
+            $("#jum_aju-1").val(b);
+            $("#sisa-1").val(c);
+        }
+
+        function hitung2(i) {
+            var a = $("#stok-"+i).val();
+            var b =  $("#jum-"+i).val();
+            var c = a - b;
+            $("#jum_aju-"+i).val(b);
+            $("#sisa-"+i).val(c);
         }
 
         function getDataBarang(i){
@@ -306,13 +317,6 @@
                 }
             );
         }
-
-    function hitung2(i) {
-        var a = $("#stok-"+i).val();
-        var b =  $("#jum-"+i).val();
-        var c = a - b;
-        $("#sisa-"+i).val(c);
-    }
     
    </script>
 @endsection

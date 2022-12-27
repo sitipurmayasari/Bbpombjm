@@ -21,6 +21,7 @@ use App\Labory;
 use App\users;
 use PDF;
 use Carbon\Carbon;
+use LogActivity;
 
 class LabRequestController extends Controller
 {
@@ -75,12 +76,16 @@ class LabRequestController extends Controller
                     'inventaris_id' => $request->inventaris_id[$i],
                     'satuan_id' => $request->satuan_id[$i] ,
                     'jumlah' => $request->jumlah[$i] ,
+                    'jumlah_aju' => $request->jumlah_aju[$i] ,
                     'ket' => $request->ket[$i]
                 ];
                 Sbbdetail::create($data);
             }
+
+            LogActivity::addToLog('Simpan->Pengajuan Barang Lab, nomor = '.$sbb->nomor.',id='.$sbb_id);
+
             DB::commit(); 
-        return redirect('/invent/labrequest/print/'.$sbb_id);
+        return redirect('/invent/labrequest')->with('sukses','Data Berhasil Diperbaharui');
     }
 
     public function print($id)
@@ -172,13 +177,16 @@ class LabRequestController extends Controller
                     'inventaris_id' => $request->inventaris_id[$i],
                     'satuan_id' => $request->satuan_id[$i] ,
                     'jumlah' => $request->jumlah[$i] ,
+                    'jumlah_aju' => $request->jumlah_aju[$i] ,
                     'ket' => $request->ket[$i]
 
                 ];
                 Sbbdetail::create($data);
             }
         DB::commit(); 
-        return redirect('/invent/labrequest/print/'.$id);
+
+        LogActivity::addToLog('Ubah->Pengajuan Barang Lab, nomor = '.$sbb->nomor.',id='.$id);
+        return redirect('/invent/labrequest')->with('sukses','Data Berhasil Diperbaharui');
     }
 
     public function getExp(Request $request)
@@ -190,6 +198,13 @@ class LabRequestController extends Controller
                             ->orderby('id','desc')
                             ->first();
         return response()->json([ 'success' => true,'data' => $data],200);
+    }
+
+    public function updatestat(Request $request, $id)
+    {
+        $data = Sbb::find($id);
+        $data->update($request->all());
+        return redirect('/invent/atkrequest')->with('sukses','Data Berhasil Diperbaharui');
     }
 
 

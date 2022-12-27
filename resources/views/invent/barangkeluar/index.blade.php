@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('breadcrumb')
-    <li>Inventaris</li>
+    <li>Persediaan</li>
     <li> Barang keluar</li>
 @endsection
 @section('content')
@@ -37,32 +37,46 @@
                 <th class="col-md-1">No</th>
                 <th class="col-md-2">No. SBBK</th>
                 <th class="col-md-2">Tanggal</th>
-                <th class="col-md-4">Penerima</th>
-                <th class="col-md-1">Cetak SBBK</th>
-                <th class="col-md-1">Cetak SBB</th>
+                <th class="col-md-4">Pengaju</th>
+                <th>Status</th>
+                <th class="col-md-1">Aksi</th>
                 {{-- <th>Upload SBBK</th> --}}
             <thead>
             <tbody>   	
                 @foreach($data as $key=>$row)
                 <tr>
                     <td style="text-align: center">{{$data->firstItem() + $key}}</td>
-                    {{-- <td><a href="/invent/barangkeluar/edit/{{$row->id}}" >{{$row->nomor}}</a></td> --}}
-                    <td>{{$row->nomor}}</td>
+                    <td>{{$row->nomor}} </td>
                     <td>{{$row->tanggal}}</td>
-                    <td>{{$row->pegawai->no_pegawai}} || {{$row->pegawai->name}}</td>
+                    <td>{{$row->pegawai->name}} ( {{$row->pegawai->divisi->nama}} )</td>
                     <td>
-                        <a class="btn btn-primary" href="/invent/barangkeluar/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
-                    </td>
-                    <td>
-                        @if ($row->jenis != 'L')
-                            <a class="btn btn-primary" href="/invent/atkrequest/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
-                        @else
-                        <a class="btn btn-primary" href="/invent/labrequest/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
+                        @if ($row->stat_aduan=='S')
+                            DITERIMA GUDANG
+                        @elseif ($row->stat_aduan=='A')
+                            DITERIMA ATASAN LANGSUNG
+                        @elseif ($row->stat_aduan=='T')
+                            DITOLAK
+                        @elseif ($row->stat_aduan=='D')
+                            DITERIMA PENGAJU
                         @endif
                     </td>
-                    {{-- <td>
-                        <a href="{{$row->getFIleSbb()}}" target="_blank" >{{$row->file}}</a>
-                    </td> --}}
+                    <td>
+                        @if ($row->stat_aduan=='D')
+                            @if ($row->jenis != 'L')
+                                <a class="btn btn-primary" href="/invent/atkrequest/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">
+                                    CETAK <i class="glyphicon glyphicon-print"></i>
+                                </a>
+                            @else
+                                <a class="btn btn-primary" href="/invent/labrequest/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">
+                                    CETAK <i class="glyphicon glyphicon-print"></i>
+                                </a>
+                            @endif
+                        @elseif ($row->stat_aduan=='A' || $row->stat_aduan=='S')
+                            <a href="/invent/barangkeluar/edit/{{$row->id}}" class="btn btn-warning"> 
+                                PROSES <i class="glyphicon glyphicon-edit"></i>
+                            </a>
+                        @endif
+                    </td>
                 </tr>
               
                 @endforeach

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('breadcrumb')
-    <li>Pengajuan</li>
+    <li>Persediaan</li>
     <li>Permintaan Persediaan Kantor</li>
 @endsection
 @section('content')
@@ -38,8 +38,8 @@
                 <th class="col-md-2">No. Ajuan</th>
                 <th class="col-md-2">Tanggal</th>
                 <th class="col-md-4">Pengaju</th>
-                <th class="col-md-1">Cetak</th>
                 <th class="col-md-1">Status</th>
+                <th class="col-md-1">Diterima</th>
             <thead>
             <tbody>   	
                 
@@ -50,17 +50,35 @@
                     <td>{{$row->tanggal}}</td>
                     <td>{{$row->pegawai->no_pegawai}} || {{$row->pegawai->name}}</td>
                     <td>
-                        <a class="btn btn-primary" href="/invent/atkrequest/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
-                    </td>
-                    <td>
                         @if ($row->stat_aduan=="B")
-                            <p style="color: blue">Menunggu</p>
-                            <a href="/invent/atkrequest/ubah/{{$row->id}}" class="btn btn-warning">
+                            <a href="/invent/atkrequest/ubah/{{$row->id}}" class="btn btn-warning"> Ubah
                                 <i class="glyphicon glyphicon-edit"></i>
                             </a>
+                        @elseif($row->stat_aduan=="D")
+                            <span id="selesai" class="badge badge-pill badge-secondary">Selesai</span>
+                        @elseif($row->stat_aduan=="T")
+                            <span id="selesai" class="badge badge-pill badge-danger">Ditolak</span>
+                        @elseif($row->stat_aduan=="S")
+                            <span id="selesai" class="badge badge-pill badge-success">Disetujui</span>
                         @else
-                            <p style="color: green">Selesai</p>
+                            <span id="selesai" class="badge badge-pill badge-secondary">Disetujui Atasan</span>
                         @endif
+                    </td>
+                    <td>
+                        @if ($row->stat_aduan=="S")
+                            <form class="form-horizontal validate-form" role="form" 
+                                method="post" action="/invent/atkrequest/updatestat/{{$row->id}}" >
+                                {{ csrf_field() }}
+                                <input type="text" hidden value="D" name="stat_aduan">
+                                <input type="hidden" name="tgl_terima" id="" value="{{date('Y-m-d')}}">
+                                <button class="btn btn-success btn-sm " type="submit">
+                                    <i class="ace-icon fa fa-check bigger-110"></i>Diterima
+                                </button>
+                            </form>
+                        @elseif ($row->stat_aduan=="D")
+                            <span id="selesai" class="badge badge-pill badge-success">Diterima</span>
+                        @endif
+                        
                     </td>
                 </tr>
               

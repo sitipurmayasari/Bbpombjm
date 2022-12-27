@@ -18,15 +18,19 @@ use App\Jenisbrg;
 use PDF;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use LogActivity;
 
 class AtkRequestOkController extends Controller
 {
 
     public function index(Request $request)
     {   
+        $peg =auth()->user()->id;
+        $tahu = Pejabat::where('users_id',$peg)->Orderby('id','desc')->first();
         $data = Sbb::orderBy('id','desc')
                 ->select('sbb.*','users.name')
                 ->leftJoin('users','users.id','=','sbb.users_id')
+                ->where('pejabat_id',$tahu->id)
                 ->where('sbb.jenis','A')
                 ->when($request->keyword, function ($query) use ($request) {
                     $query->where('tanggal','LIKE','%'.$request->keyword.'%')
@@ -54,43 +58,23 @@ class AtkRequestOkController extends Controller
         Sbbdetail::where('sbb_id', $sbb->id)->delete();
 
         for ($i = 0; $i < count($request->input('inventaris_id')); $i++){
-
-                if ( $request->status[$i]=='N') {
-                    $jumlah = 0;
-                } else {
-                    $jumlah = $request->jumlah[$i];
-                }
-
-                $data = [
+            $data = [
                     'sbb_id' => $id,
                     'inventaris_id' => $request->inventaris_id[$i],
                     'satuan_id' => $request->satuan_id[$i] ,
-                    'jumlah' => $jumlah,
-                    'ket' => $request->ket[$i],
-                    'status' => $request->status[$i]
-
-                ];
-                Sbbdetail::create($data);
-
-                if ($request->status[$i] == 'Y') {
-                    $now = Carbon::now();
-                    $stok = [
-                        'entry_date' => $now,
-                        'inventaris_id' => $request->inventaris_id[$i],
-                        'stock' => $request->stock[$i],
-                        'keluar' => $request->jumlah[$i],
-                        'exp_date' => $now];
-                    Entrystock::create($stok);
-               }
-               
-            }
+                    'jumlah_aju'  => $request->jumlah_aju[$i] ,
+                    'jumlah' => $request->jumlah[$i] ,
+                    'ket' => $request->ket[$i]
+            ];
+            Sbbdetail::updateOrCreate([
+                'id'   => $request->stuff_id[$i],
+            ],$data);
+        }
         DB::commit(); 
 
-        if ($request->status == 'S') {
-            return redirect('/invent/atkrequestok/print/'.$id)->with('sukses','Data Diperbaharui');
-        } else {
-            return redirect('/invent/atkrequestok/')->with('sukses','Data Diperbaharui');
-        }
+        LogActivity::addToLog('Menyetujui->SBB ATK, nomor = '.$sbb->nomor.',id='.$id);
+
+        return redirect('/invent/atkrequestok/')->with('sukses','Data Diperbaharui');
     }
 
     public function print($id)

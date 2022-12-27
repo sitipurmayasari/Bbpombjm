@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @inject('injectQuery', 'App\InjectQuery')
 @section('breadcrumb')
-    <li>Inventaris</li>
+    <li>Persediaan</li>
     <li><a href="/invent/labrequest"> Permintaan Persediaan Kantor</a></li>
     <li>Pengajuan Persediaan Kantor</li>
 @endsection
@@ -139,13 +139,14 @@
                                     <input type="number" name="stok[]" class="form-control" readonly id="stok-{{$no}}" value="{{$stok->stock}}">
                                 </td>
                                 <td>
-                                    <input type="number"  min="1" name="jumlah[]" class="form-control" value="{{$item->jumlah}}" id="jum-{{$no}}" onchange="hitung2({{$no}})">
+                                    <input type="number"  min="1" name="jumlah[]" class="form-control" value="{{$item->jumlah}}" id="jum-{{$no}}" onclick="hitung2({{$no}})" onkeyup="hitung2({{$no}})">
                                     @php
                                         $a = $stok->stok;
                                         $b = $item->jumlah;
                                         $c = $a-$b;
                                     @endphp
-                                    <input type="hidden" name="sisa[]" class="form-control" value="0" id="sisa-{{$no}}" value="$c">
+                                    <input type="hidden" name="jumlah_aju[]" id="jum_aju-1" value="{{$item->jumlah_aju}}">
+                                    <input type="hidden" name="sisa[]" id="sisa-{{$no}}" value="{{$c}}">
                                 
                                 </td>
                                 <td>
@@ -211,7 +212,8 @@
                     '</td>'+
                     '<td>'+
                         '<input type="number" min="1" name="jumlah[]" class="form-control" value="0" id="jum-'+new_baris+'" onchange="hitung2('+new_baris+')">'+
-                        '<input type="hidden" name="sisa[]" class="form-control" value="0" id="sisa-'+new_baris+'">'+
+                        '<input type="hidden" name="jumlah_aju[]" id="jum_aju-'+new_baris+'">'+
+                        '<input type="hidden" name="sisa[]" id="sisa-'+new_baris+'">'+
                     '</td>'+
                     '<td>'+
                         '<input type="text" name="ket[]" class="form-control" required>'+
@@ -300,12 +302,13 @@
             );
         }
 
-    function hitung2(i) {
-        var a = $("#stok-"+i).val();
-        var b =  $("#jum-"+i).val();
-        var c = a - b;
-        $("#sisa-"+i).val(c);
-    }
+        function hitung2(i) {
+            var a = $("#stok-"+i).val();
+            var b =  $("#jum-"+i).val();
+            var c = a - b;
+            $("#jum_aju-"+i).val(b);
+            $("#sisa-"+i).val(c);
+        }
 
     function getExpl(i) {
             var barang_id = $("#barang_id-"+i).val();

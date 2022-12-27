@@ -35,8 +35,8 @@
                 <th class="col-md-2">No. Ajuan</th>
                 <th class="col-md-2">Tanggal</th>
                 <th class="col-md-4">Pengaju</th>
-                <th class="col-md-4">daftar</th>
-                <th>Aksi</th>
+                {{-- <th class="col-md-4">daftar</th> --}}
+                <th>Status</th>
             </head>
             <tbody>   	
                 @foreach($data as $key=>$row)
@@ -45,7 +45,7 @@
                     <td>{{$row->nomor}}</td>
                     <td>{{tgl_indo($row->tanggal)}}</td>
                     <td>{{$row->pegawai->name}} ({{$row->pegawai->divisi->nama}})</td>
-                    <td>
+                    {{-- <td>
                         @if ($row->stat_aduan == 'S')
                             @foreach ($row->isi as $item)
                                 <li>{{$item->barang->nama_barang}} 
@@ -59,7 +59,7 @@
                                 </li>
                             @endforeach
                         @endif
-                    </td>
+                    </td> --}}
                     <td>
                         @if ($row->stat_aduan == 'B')
                             <a href="/invent/labrequestok/yes/{{$row->id}}" class="btn btn-warning">

@@ -18,6 +18,7 @@ use App\Jenisbrg;
 use PDF;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use LogActivity;
 
 class AtkRequestController extends Controller
 {
@@ -71,17 +72,17 @@ class AtkRequestController extends Controller
                     'inventaris_id' => $request->inventaris_id[$i],
                     'satuan_id' => $request->satuan_id[$i] ,
                     'jumlah' => $request->jumlah[$i] ,
+                    'jumlah_aju' => $request->jumlah_aju[$i] ,
                     'ket' => $request->ket[$i]
                 ];
                 Sbbdetail::create($data);
 
-                // Entrystock::where('id',$request->st_id[$i])->update([
-                // 'stock' => $request->sisa[$i]
-                // ]);
-
             }
-            DB::commit(); 
-        return redirect('/invent/atkrequest/print/'.$sbb_id);
+
+            LogActivity::addToLog('Simpan->permintaan ATK, nomor = '.$request->nomor.',id='.$sbb_id);
+        DB::commit(); 
+
+        return redirect('/invent/atkrequest')->with('sukses','Data Berhasil Diperbaharui');
     }
 
     public function print($id)
@@ -173,13 +174,24 @@ class AtkRequestController extends Controller
                     'inventaris_id' => $request->inventaris_id[$i],
                     'satuan_id' => $request->satuan_id[$i] ,
                     'jumlah' => $request->jumlah[$i] ,
+                    'jumlah_aju' => $request->jumlah_aju[$i] ,
                     'ket' => $request->ket[$i]
 
                 ];
                 Sbbdetail::create($data);
             }
         DB::commit(); 
-        return redirect('/invent/atkrequest/print/'.$id);
+
+        LogActivity::addToLog('Ubah->permintaan ATK, nomor = '.$sbb->nomor.',id='.$id);
+
+        return redirect('/invent/atkrequest')->with('sukses','Data Berhasil Diperbaharui');
+    }
+
+    public function updatestat(Request $request, $id)
+    {
+        $data = Sbb::find($id);
+        $data->update($request->all());
+        return redirect('/invent/atkrequest')->with('sukses','Data Berhasil Diperbaharui');
     }
     
 
