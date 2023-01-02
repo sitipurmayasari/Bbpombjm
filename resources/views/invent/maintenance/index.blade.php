@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('breadcrumb')
-    <li>Inventaris</li>
-    <li>Maintenance</li>
+<li>Inventaris</li>
+<li>BA PERPINDAHAN BMN</a></li>
 @endsection
 @section('content')
 @include('layouts.validasi')
