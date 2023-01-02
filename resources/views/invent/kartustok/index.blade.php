@@ -103,7 +103,7 @@
                                     <?php
                                         $a=2022;
                                         $pus = $a+3;
-                                        for ($a=date('Y');$a<=$pus;$a++)
+                                        for ($a=2022;$a<=$pus;$a++)
                                         {
                                             echo "<option value='$a'>$a</option>";
                                         }
