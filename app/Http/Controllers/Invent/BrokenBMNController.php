@@ -49,7 +49,9 @@ class BrokenBMNController extends Controller
         $this->validate($request,[
             'nomor' => 'required|unique:brokenbmn',
             'tanggal' => 'required|date',
-            'users_id'=> 'required'
+            'divisi_id' => 'required',
+            'users_id'=> 'required',
+            'jenis_ba' => 'required'
         ]);
 
         DB::beginTransaction();

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class BrokenBMN extends Model
 {
     protected $table = "brokenbmn";
-    protected $fillable = ['users_id','nomor','tanggal','divisi_id'];
+    protected $fillable = ['users_id','nomor','tanggal','divisi_id','jenis_ba'];
 
     public function pegawai()
     {

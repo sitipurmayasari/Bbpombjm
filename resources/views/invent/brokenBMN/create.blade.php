@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('breadcrumb')
     <li>Inventaris</li>
-    <li><a href="/invent/brokenBMN">BA penyerahan BMN Rusak Berat</a></li>
+    <li><a href="/invent/brokenBMN">BA penyerahan BMN</a></li>
     <li>Input BA</li>
 @endsection
 @section('content')
@@ -16,35 +16,47 @@
             <div class="panel-body">
                <div class="col-md-12">
                 <fieldset>
-                <div class="col-md-4">
-                    <label for="">NOMOR (SIPANDA)*</label>
-                    <input type="text" id="no_adu" required
-                    class="col-xs-10 col-sm-10 required " 
-                    name="nomor"/>
-                </div>
-                <div class="col-md-2">
-                    <label for="">Tanggal *</label>
-                    <input type="date" name="tanggal" value="{{date('Y-m-d')}}"  class="col-xs-10 col-sm-10 required"/>
-                </div>
-                <div class="col-md-3">
-                    <label >Bagian *</label>
-                    <select id="peg" name="divisi_id" class="col-xs-10 col-sm-10 select2" required>
-                            <option value="">pilih Bagian</option>
-                        @foreach ($div as $peg)
-                            <option value="{{$peg->id}}">{{$peg->nama}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col-md-3">
-                    <label >Pegawai *</label>
-                    <select id="peg" name="users_id" class="col-xs-10 col-sm-10 select2" required>
-                            <option value="">pilih nama pegawai</option>
-                        @foreach ($user as $peg)
-                            <option value="{{$peg->id}}">{{$peg->no_pegawai}} || {{$peg->name}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                
+                    <div class="col-md-4">
+                        <div class="col-md-12">
+                            <label>Nomor (SIPANDA)*</label><br>
+                            <input type="text" readonly name="nomor"
+                                class="col-xs-10 col-sm-10 required " />
+                        </div>
+                        <div class="col-md-12">
+                            <label>Tanggal</label><br>
+                            <input type="date" name="tanggal" value="{{date('Y-m-d')}}" 
+                            class="col-xs-10 col-sm-10 required"/>
+                        </div>
+                   </div>
+                   <div class="col-md-5">
+                        <div class="col-md-12">
+                            <label>Bidang</label><br>
+                            <select id="peg" name="divisi_id" class="col-xs-10 col-sm-10 select2" required>
+                                <option value="">pilih Bagian</option>
+                                @foreach ($div as $peg)
+                                    <option value="{{$peg->id}}">{{$peg->nama}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-12">
+                            <label>pegawai</label><br>
+                            <select id="peg" name="users_id" class="col-xs-10 col-sm-10 select2" required>
+                                <option value="">pilih nama pegawai</option>
+                                @foreach ($user as $peg)
+                                    <option value="{{$peg->id}}">{{$peg->no_pegawai}} || {{$peg->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="col-md-12">
+                            <label>Kondisi Pengembalian</label><br>
+                            <select name="jenis_ba" class="col-xs-10 col-sm-10 select2" required>
+                               <option value="B">Baik</option>
+                               <option value="R">Rusak</option>
+                            </select>
+                        </div>
+                    </div>
                 </fieldset>
                </div>
             </div>

@@ -16,43 +16,60 @@
             <div class="panel-body">
                <div class="col-md-12">
                 <fieldset>
-                <div class="col-md-4">
-                    <label for="">NOMOR (SIPANDA)*</label>
-                    <input type="text" id="no_adu" readonly required
-                    class="col-xs-10 col-sm-10 required " 
-                    name="nomor" value="{{$data->nomor}}"/>
-                </div>
-                <div class="col-md-2">
-                    <label for="">Tanggal *</label>
-                    <input type="date" name="tanggal" value="{{date('Y-m-d')}}" class="col-xs-10 col-sm-10" value="{{$data->tanggal}}"/>
-                </div>
-                <div class="col-md-3">
-                    <label >Bagian *</label>
-                    <select id="peg" name="divisi_id" class="col-xs-10 col-sm-10 select2" required>
-                            <option value="">pilih Bagian</option>
-                        @foreach ($div as $peg)
-                            @if ($peg->id == $data->divisi_id)
-                                <option value="{{$peg->id}}" selected>{{$peg->nama}}</option>
-                            @else
-                                <option value="{{$peg->id}}">{{$peg->nama}}</option>
-                            @endif
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col-md-3">
-                    <label >Pegawai *</label>
-                    <select id="peg" name="users_id" class="col-xs-10 col-sm-10 select2" required>
-                            <option value="">pilih nama pegawai</option>
-                        @foreach ($user as $peg)
-                            @if ($peg->id = $data->users_id)
-                                <option value="{{$peg->id}}" selected>{{$peg->no_pegawai}} || {{$peg->name}}</option>
-                            @else
-                                <option value="{{$peg->id}}">{{$peg->no_pegawai}} || {{$peg->name}}</option>
-                            @endif
-                        @endforeach
-                    </select>
-                </div>
-                
+                    <div class="col-md-4">
+                        <div class="col-md-12">
+                            <label>Nomor (SIPANDA)*</label><br>
+                            <input type="text" readonly name="nomor" value="{{$data->nomor}}"
+                                class="col-xs-10 col-sm-10 required " />
+                        </div>
+                        <div class="col-md-12">
+                            <label>Tanggal</label><br>
+                            <input type="date" name="tanggal" value="{{$data->tanggal}}"
+                            class="col-xs-10 col-sm-10 required"/>
+                        </div>
+                   </div>
+                   <div class="col-md-5">
+                        <div class="col-md-12">
+                            <label>Bidang</label><br>
+                            <select id="peg" name="divisi_id" class="col-xs-10 col-sm-10 select2" required>
+                                <option value="">pilih Bagian</option>
+                                @foreach ($div as $peg)
+                                    @if ($peg->id == $data->divisi_id)
+                                        <option value="{{$peg->id}}" selected>{{$peg->nama}}</option>
+                                    @else
+                                        <option value="{{$peg->id}}">{{$peg->nama}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-12">
+                            <label>pegawai</label><br>
+                            <select id="peg" name="users_id" class="col-xs-10 col-sm-10 select2" required>
+                                <option value="">pilih nama pegawai</option>
+                                @foreach ($user as $peg)
+                                    @if ($peg->id = $data->users_id)
+                                        <option value="{{$peg->id}}" selected>{{$peg->no_pegawai}} || {{$peg->name}}</option>
+                                    @else
+                                        <option value="{{$peg->id}}">{{$peg->no_pegawai}} || {{$peg->name}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="col-md-12">
+                            <label>Kondisi Pengembalian</label><br>
+                            <select name="jenis_ba" class="col-xs-10 col-sm-10 select2" required>
+                                @if ($data->jenis_ba == 'R')
+                                    <option value="B">Baik</option>
+                                    <option value="R" selected>Rusak</option>
+                                @else
+                                    <option value="B" selected>Baik</option>
+                                    <option value="R">Rusak</option>
+                                @endif
+                            </select>
+                        </div>
+                    </div>
                 </fieldset>
                </div>
             </div>

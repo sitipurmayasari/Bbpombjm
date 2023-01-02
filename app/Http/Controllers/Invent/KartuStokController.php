@@ -80,13 +80,12 @@ class KartuStokController extends Controller
             $pdf = PDF::loadview('invent/kartustok.stoklab',compact('stock','data','request'));
             return $pdf->stream();
         } else if($request->jenis_Laporan=="4"){
-            $data = Sbb::Where('stat_aduan','=','S')
+            $data = Sbb::Where('stat_aduan','=','D')
                         ->orderby('id','asc')
                         ->whereYear('tanggal',$request->years)
                         ->whereMonth('tanggal',$request->bulan)
                         ->get();
             $petugas = Petugas::where('id', '=', 4)->first();
-
             $mengetahui = Pejabat::where('jabatan_id', '=', 11)
                                       ->where('divisi_id', '=', 2)
                                       ->whereRaw("pjs IS null")

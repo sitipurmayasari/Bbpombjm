@@ -64,7 +64,14 @@
 </head>
 <body>
     <div id="kop">
-        <b>BERITA ACARA SERAH TERIMA</b> <br>
+        <b>BERITA ACARA SERAH TERIMA 
+            @if ($data->jenis_ba == 'R')
+                BARANG RUSAK
+            @else
+                <br>
+                PENGEMBALIAN BARANG KE TU
+            @endif    
+        </b> <br>
         NOMOR : {{$data->nomor}}
     </div>
     <br><br>
