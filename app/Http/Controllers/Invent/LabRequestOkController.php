@@ -30,16 +30,18 @@ class LabRequestOkController extends Controller
         $data = Sbb::orderBy('id','desc')
                 ->select('sbb.*','users.name')
                 ->leftJoin('users','users.id','=','sbb.users_id')
-                ->where('pejabat_id',$tahu->id)
+                // ->where('pejabat_id',$tahu->id)
                 ->where('sbb.jenis','L')
-                ->where('sbb.pejabat_id',$peg)
+                ->when($tahu, function ($query, $tahu) {
+                    $query->where('pejabat_id', $tahu->id);
+                })
                 ->when($request->keyword, function ($query) use ($request) {
                     $query->where('tanggal','LIKE','%'.$request->keyword.'%')
                             ->orWhere('nomor', 'LIKE','%'.$request->keyword.'%')
                             ->orWhere('name', 'LIKE','%'.$request->keyword.'%');
                 })
                 ->paginate('10');
-        return view('invent/labrequestok.index',compact('data'));
+        return view('invent/labrequestok.index',compact('tahu','data'));
     }
 
     public function yes($id)

@@ -39,8 +39,8 @@
                 <th>Status</th>
             </head>
             <tbody>   	
+                @if ($tahu != null)	
                 @foreach($data as $key=>$row)
-                @if ($data != null)
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
                     <td>{{$row->nomor}}</td>
@@ -71,13 +71,14 @@
                         @endif
                 </td>
                 </tr>
+                @endforeach
                 @else
                 <tr>
-                    <td colspan="5"> Tidak ada permintaan persetujuan</td>
+                    <td colspan="5" style="text-align: center"> Tidak ada permintaan persetujuan</td>
                 </tr>
                 @endif
               
-                @endforeach
+               
             </tbody>
         </table>
     </div>
