@@ -40,6 +40,7 @@
             </head>
             <tbody>   	
                 @foreach($data as $key=>$row)
+                @if ($data != null)
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
                     <td>{{$row->nomor}}</td>
@@ -70,6 +71,11 @@
                         @endif
                 </td>
                 </tr>
+                @else
+                    <tr>
+                        <td colspan="5"> Tidak ada permintaan persetujuan</td>
+                    </tr>
+                @endif
               
                 @endforeach
             </tbody>
