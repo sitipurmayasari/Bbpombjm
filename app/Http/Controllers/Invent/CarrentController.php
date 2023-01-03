@@ -35,9 +35,10 @@ class CarrentController extends Controller
 
     function getKode(){
         $pinjem = Vehiclerent::orderBy('id','desc')->whereYear('created_at',date('Y'))->get();
+        $counting = Vehiclerent::SelectRaw("COUNT(*)AS jum ")->whereYear('created_at',date('Y'))->first();
         $first = "001";
         if($pinjem->count()>0){
-          $first = $pinjem->first()->id+1;
+            $first = $counting->jum+1;
           if($first < 10){
               $first = "00".$first;
           }else if($first < 100){

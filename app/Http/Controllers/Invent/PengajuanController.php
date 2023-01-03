@@ -139,9 +139,10 @@ class PengajuanController extends Controller
 
     function getNoAjuan(){
       $ajuan = Pengajuan::orderBy('id','desc')->whereYear('tgl_ajuan',date('Y'))->get(); 
+      $counting = Pengajuan::SelectRaw("COUNT(*)AS jum ")->whereYear('tgl_ajuan',date('Y'))->first();
       $first = "001";
       if($ajuan->count()>0){
-        $first = $ajuan->first()->id+1;
+        $first = $counting->jum+1;
         if($first < 10){
             $first = "00".$first;
         }else if($first < 100){
