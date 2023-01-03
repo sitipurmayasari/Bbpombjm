@@ -391,7 +391,7 @@
         }
 
         function HitSumTaxi2(i) {
-            var fee     = $("#taxifee-"+i).val();
+            var fee    = $("#taxifee-"+i).val();
             var jum    = $("#taxicount-"+i).val(); 
 
             var sum = (fee*jum);

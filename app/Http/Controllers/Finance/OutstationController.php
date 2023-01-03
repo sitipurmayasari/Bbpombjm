@@ -33,13 +33,27 @@ class OutstationController extends Controller
 
     public function index(Request $request)
     {
+      $div =auth()->user()->divisi_id;
+      if ($div == '1' || $div == '2') {
         $data = Outstation::orderBy('updated_at','desc')
-                ->when($request->keyword, function ($query) use ($request) {
-                    $query->where('number','LIKE','%'.$request->keyword.'%')
-                            ->orWhere('purpose', 'LIKE','%'.$request->keyword.'%')
-                            ->orWhere('st_date', 'LIKE','%'.$request->keyword.'%');
-                    })
-                ->paginate(10);
+                        ->when($request->keyword, function ($query) use ($request) {
+                            $query->where('number','LIKE','%'.$request->keyword.'%')
+                                    ->orWhere('purpose', 'LIKE','%'.$request->keyword.'%')
+                                    ->orWhere('st_date', 'LIKE','%'.$request->keyword.'%');
+                            })
+                        ->paginate(10);
+      } else {
+        $data = Outstation::orderBy('updated_at','desc')
+                        ->where('divisi_id',$div)
+                        ->when($request->keyword, function ($query) use ($request) {
+                            $query->where('number','LIKE','%'.$request->keyword.'%')
+                                    ->orWhere('purpose', 'LIKE','%'.$request->keyword.'%')
+                                    ->orWhere('st_date', 'LIKE','%'.$request->keyword.'%');
+                            })
+                        ->paginate(10);
+      }
+      
+     
         return view('finance/outstation.index',compact('data'));
     }
 

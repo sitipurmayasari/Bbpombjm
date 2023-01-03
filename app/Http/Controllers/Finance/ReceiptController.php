@@ -31,16 +31,36 @@ class ReceiptController extends Controller
 {
     public function index(Request $request)
     {
-        $data = Expenses::orderBy('expenses.updated_at','desc')
-                        ->SelectRaw('expenses.*, outstation.number, outstation.purpose')
-                        ->leftjoin('outstation','outstation.id','expenses.outstation_id')
-                        ->where('jenis','B')
-                        ->whereraw('outstation.deleted_at IS null')
-                        ->when($request->keyword, function ($query) use ($request) {
-                            $query->where('outstation.number','LIKE','%'.$request->keyword.'%')
-                                    ->orWhere('outstation.purpose', 'LIKE','%'.$request->keyword.'%');
-                        })
-                ->paginate('10');
+        $div =auth()->user()->divisi_id;
+
+        if ($div == '1' || $div == '2') {
+            $data = Expenses::orderBy('expenses.updated_at','desc')
+                            ->SelectRaw('expenses.*, outstation.number, outstation.purpose')
+                            ->leftjoin('outstation','outstation.id','expenses.outstation_id')
+                            ->where('jenis','B')
+                            ->whereraw('outstation.deleted_at IS null')
+                            ->when($request->keyword, function ($query) use ($request) {
+                                $query->where('outstation.number','LIKE','%'.$request->keyword.'%')
+                                        ->orWhere('outstation.purpose', 'LIKE','%'.$request->keyword.'%');
+                            })
+                            ->paginate('10');
+        } else {
+            $data = Expenses::orderBy('expenses.updated_at','desc')
+                            ->SelectRaw('expenses.*, outstation.number, outstation.purpose')
+                            ->leftjoin('outstation','outstation.id','expenses.outstation_id')
+                            ->where('jenis','B')
+                            ->where('outstation.divisi_id',$div)
+                            ->whereraw('outstation.deleted_at IS null')
+                            ->when($request->keyword, function ($query) use ($request) {
+                                $query->where('outstation.number','LIKE','%'.$request->keyword.'%')
+                                        ->orWhere('outstation.purpose', 'LIKE','%'.$request->keyword.'%');
+                            })
+                            ->paginate('10');
+        }
+        
+
+
+        
         return view('finance/receipt.index',compact('data'));
     }
 
