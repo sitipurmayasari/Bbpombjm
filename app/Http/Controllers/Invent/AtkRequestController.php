@@ -49,8 +49,9 @@ class AtkRequestController extends Controller
         $jenis = Jenisbrg::where('kelompok','K')->get();
         $satuan = Satuan::all();
         $nosbb = $this->getNoSBB();
-        $tahu = Pejabat::selectraw('DISTINCT(jabatan_id), id, divisi_id, subdivisi_id, users_id, pjs')
-                                -> whereraw('pjs is null and jabatan_id != 6')->Orderby('id','desc')->get();
+        // $tahu = Pejabat::selectraw('DISTINCT(jabatan_id), id, divisi_id, subdivisi_id, users_id, pjs')
+                        // -> whereraw('pjs is null and jabatan_id != 6')->Orderby('id','desc')->get();
+        $tahu = User::where('aktif','Y')->where('status','PNS')->get();
         return view('invent/atkrequest.create',compact('data','user','nosbb','satuan','jenis','tahu'));
     }
 
@@ -100,10 +101,19 @@ class AtkRequestController extends Controller
                     ->whereRaw("(SELECT tanggal FROM sbb WHERE id=$id) BETWEEN dari AND sampai")
                     ->first();
         
-        $mengetahui = pejabat::where('id',$data->pejabat_id)->first();
-        
-        $pdf = PDF::loadview('invent/atkrequest.print',compact('data','isi','petugas','mengetahui','menyetujui','kel'));
+        $mengetahui = Pejabat::where('id',$data->pejabat_id)->first();
+        $tahubaru = User::where('id',$data->mengetahui_id)->first();
+
+        if ($data->mengetahui_id != null) {
+            $pdf = PDF::loadview('invent/atkrequest.print2',compact('data','isi','petugas','tahubaru','menyetujui','kel'));
         return $pdf->stream();
+        } else {
+            $pdf = PDF::loadview('invent/atkrequest.print',compact('data','isi','petugas','mengetahui','menyetujui','kel'));
+            return $pdf->stream();
+        }
+        
+        
+        
     }
 
     public function getBarang(Request $request)
@@ -152,8 +162,9 @@ class AtkRequestController extends Controller
     {
         $data = Sbb::where('id',$id)->first();
         $ajuan = Sbbdetail::where('sbb_id',$id)->get();
-        $tahu = Pejabat::selectraw('DISTINCT(jabatan_id), id, divisi_id, subdivisi_id, users_id, pjs')
-        -> whereraw('pjs is null and jabatan_id != 6')->Orderby('id','desc')->get();
+        // $tahu = Pejabat::selectraw('DISTINCT(jabatan_id), id, divisi_id, subdivisi_id, users_id, pjs')
+        // -> whereraw('pjs is null and jabatan_id != 6')->Orderby('id','desc')->get();
+        $tahu = User::where('aktif','Y')->where('status','PNS')->get();
         $jenis = Jenisbrg::where('kelompok','K')->get();
         $kel = Sbbdetail::where('sbb_id',$id)->first();
         $inv = Inventaris::where('jenis_barang',$kel->barang->jenis->id)->get();

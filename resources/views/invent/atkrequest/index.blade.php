@@ -62,7 +62,7 @@
                         @elseif($row->stat_aduan=="S")
                             <span id="selesai" class="badge badge-pill badge-success">Disetujui</span>
                         @else
-                            <span id="selesai" class="badge badge-pill badge-secondary">Disetujui Atasan</span>
+                            <span id="selesai" class="badge badge-pill badge-secondary">Mengetahui</span>
                         @endif
                     </td>
                     <td>
@@ -83,12 +83,12 @@
                     </td>
                     <td>
                         @if ($row->stat_aduan=='D')
-                            @if ($row->jenis != 'L')
-                                <a class="btn btn-primary" href="/invent/atkrequest/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">
+                            @if ($row->mengetahui_id != null)
+                                <a class="btn btn-primary" href="/invent/atkrequest/print2/{{$row->id}}" target="_blank" rel="noopener noreferrer">
                                     CETAK <i class="glyphicon glyphicon-print"></i>
                                 </a>
-                            @else
-                                <a class="btn btn-primary" href="/invent/labrequest/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">
+                                @else
+                                <a class="btn btn-primary" href="/invent/atkrequest/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">
                                     CETAK <i class="glyphicon glyphicon-print"></i>
                                 </a>
                             @endif

@@ -26,11 +26,10 @@ class LabRequestOkController extends Controller
     public function index(Request $request)
     {   
         $peg =auth()->user()->id;
-        $tahu = Pejabat::where('users_id',$peg)->Orderby('id','desc')->first();
         $data = Sbb::orderBy('id','desc')
                 ->select('sbb.*','users.name')
                 ->leftJoin('users','users.id','=','sbb.users_id')
-                // ->where('pejabat_id',$tahu->id)
+                ->where('mengetahui_id',$peg)
                 ->where('sbb.jenis','L')
                 ->when($tahu, function ($query, $tahu) {
                     $query->where('pejabat_id', $tahu->id);
@@ -41,7 +40,7 @@ class LabRequestOkController extends Controller
                             ->orWhere('name', 'LIKE','%'.$request->keyword.'%');
                 })
                 ->paginate('10');
-        return view('invent/labrequestok.index',compact('tahu','data'));
+        return view('invent/labrequestok.index',compact('data'));
     }
 
     public function yes($id)

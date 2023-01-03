@@ -7,13 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 class Sbb extends Model
 {
     protected $table = "sbb";
-    protected $fillable = ['users_id','nomor','tanggal','jenis','stat_aduan','labory_id','pejabat_id','file', 'tgl_terima'
+    protected $fillable = ['users_id','nomor','tanggal','jenis','stat_aduan','labory_id','pejabat_id','file'
+                            ,'tgl_terima','mengetahui_id'
 ];
 
     public function pegawai()
     {
         return $this->belongsTo(User::class,'users_id','id');
     }
+
+    public function tahu()
+    {
+        return $this->belongsTo(User::class,'mengetahui_id','id');
+    }
+
 
     public function mengetahui()
     {

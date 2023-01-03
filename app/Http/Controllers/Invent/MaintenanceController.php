@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Inventaris;
 use App\Maintenance;
 use App\User;
+use App\Divisi;
 
 class MaintenanceController extends Controller
 {
@@ -30,11 +31,10 @@ class MaintenanceController extends Controller
 
     public function create()
     {
-        $data = Inventaris::all()
-                ->where('kind','=','R');
-        $user = User::all()
-                ->where('id','!=','1');
-        return view('invent/maintenance.create',compact('data','user'));
+        $data = Inventaris::where('kind','=','R')->get();
+        $user = User::where('id','!=','1')->where('aktif','Y')->get();
+        $div  = Divisi::all();
+        return view('invent/maintenance.create',compact('data','user','div'));
     }
    
     public function store(Request $request)

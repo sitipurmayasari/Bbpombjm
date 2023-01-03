@@ -32,7 +32,7 @@
                     <div class="col-md-6">
                         <div class="col-md-12">
                             <label>Mengetahui</label><br>
-                            <input type="text" value="{{$data->mengetahui->user->name}}" readonly class="col-xs-9 col-sm-9">
+                            <input type="text" value="{{$data->tahu->name}}" readonly class="col-xs-9 col-sm-9">
                             <input type="hidden" name="stat_aduan" value="S">
                         </div>
                         <div class="col-md-12">

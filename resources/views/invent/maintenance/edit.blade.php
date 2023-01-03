@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('breadcrumb')
-<li>Inventaris</li>
-<li><a href="/invent/maintenance">Maintenance</a></li>
-<li>Update Maintenance</li>
+    <li>Inventaris</li>
+    <li><a href="/invent/maintenance">BA PERPINDAHAN BMN</a></li>
+    <li>Update Berita Acara</li>
 @endsection
 @section('content')
 @include('layouts.validasi')

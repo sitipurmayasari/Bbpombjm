@@ -39,7 +39,7 @@
                 <th>Status</th>
             </head>
             <tbody>   	
-                @if ($tahu != null)	
+                @if ($data != null)	
                 @foreach($data as $key=>$row)
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>

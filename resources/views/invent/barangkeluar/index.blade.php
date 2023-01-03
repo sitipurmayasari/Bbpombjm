@@ -53,7 +53,7 @@
                         @if ($row->stat_aduan=='S')
                             DITERIMA GUDANG
                         @elseif ($row->stat_aduan=='A')
-                            DITERIMA ATASAN LANGSUNG
+                            MENGETAHUI
                         @elseif ($row->stat_aduan=='T')
                             DITOLAK
                         @elseif ($row->stat_aduan=='D')
@@ -63,13 +63,25 @@
                     <td>
                         @if ($row->stat_aduan=='D')
                             @if ($row->jenis != 'L')
-                                <a class="btn btn-primary" href="/invent/atkrequest/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">
-                                    CETAK <i class="glyphicon glyphicon-print"></i>
-                                </a>
+                                @if ($row->mengetahui_id != null)
+                                    <a class="btn btn-primary" href="/invent/atkrequest/print2/{{$row->id}}" target="_blank" rel="noopener noreferrer">
+                                        CETAK <i class="glyphicon glyphicon-print"></i>
+                                    </a>
+                                    @else
+                                    <a class="btn btn-primary" href="/invent/atkrequest/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">
+                                        CETAK <i class="glyphicon glyphicon-print"></i>
+                                    </a>
+                                @endif
                             @else
-                                <a class="btn btn-primary" href="/invent/labrequest/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">
-                                    CETAK <i class="glyphicon glyphicon-print"></i>
-                                </a>
+                                @if ($row->mengetahui_id != null)
+                                    <a class="btn btn-primary" href="/invent/labrequest/print2/{{$row->id}}" target="_blank" rel="noopener noreferrer">
+                                        CETAK <i class="glyphicon glyphicon-print"></i>
+                                    </a>
+                                    @else
+                                    <a class="btn btn-primary" href="/invent/labrequest/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">
+                                        CETAK <i class="glyphicon glyphicon-print"></i>
+                                    </a>
+                                @endif
                             @endif
                         @elseif ($row->stat_aduan=='A' || $row->stat_aduan=='S')
                             <a href="/invent/barangkeluar/edit/{{$row->id}}" class="btn btn-warning"> 

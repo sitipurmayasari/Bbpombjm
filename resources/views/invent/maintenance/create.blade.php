@@ -1,191 +1,164 @@
 @extends('layouts.app')
 @section('breadcrumb')
     <li>Inventaris</li>
-    <li><a href="/invent/maintenance">Maintenance</a></li>
-    <li>Input Maintenance</li>
+    <li><a href="/invent/maintenance">BA PERPINDAHAN BMN</a></li>
+    <li>Input BA</li>
 @endsection
 @section('content')
-
-<div class="row">
-    <form class="form-horizontal validate-form" role="form" 
-         method="post" action="{{route('maintenance.store')}}">
+@include('layouts.validasi')
+ <form class="form-horizontal validate-form" role="form" 
+         method="post" action="{{route('maintenance.store')}}" enctype="multipart/form-data"   >
     {{ csrf_field() }}
-    <div class="col-sm-12">
-        <div class="widget-box">
-            <div class="widget-header">
-                <h4 class="widget-title"> Form Maintenance</h4>
-                <div class="widget-toolbar">
-                    <a href="#" data-action="collapse">
-                        <i class="ace-icon fa fa-chevron-down"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="widget-body">
-                <div class="col-sm-8">
-                    <div class="widget-main no-padding">
-                        <fieldset>
-                        <br>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> No Pemeliharaan
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="text"  placeholder="nomor Pemeliharaan" 
-                                        class="col-xs-10 col-sm-10 required " 
-                                        name="no_pemeliharaan" required />
-                            </div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-info">
+            <div class="panel-heading"><h3 class="panel-title"></h3></div>
+            <div class="panel-body">
+               <div class="col-md-12">
+                <fieldset>
+                    <div class="col-md-4">
+                        <div class="col-md-12">
+                            <label>Nomor (SIPANDA)*</label><br>
+                            <input type="text" name="nomor"
+                                class="col-xs-10 col-sm-10 required " />
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Tanggal Pemeliharaan
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="text" name="tgl_pelihara" readonly class="col-xs-10 col-sm-10 required" 
-                                    data-date-format="yyyy-mm-dd" data-provide="datepicker" required>
-                            </div>
+                   </div>
+                   <div class="col-md-4">
+                        <div class="col-md-12">
+                            <label>Tanggal</label><br>
+                            <input type="date" name="tanggal" value="{{date('Y-m-d')}}"  required>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Kode Barang
-                            </label>
-                            <div class="col-sm-8">
-                                <select id="barang_id" name="inventaris_id" class="col-xs-10 col-sm-10 select2" 
-                                onchange="getDataBarang()">
-                                        <option value="null">pilih nama barang</option>
-                                    @foreach ($data as $isi)
-                                        <option value="{{$isi->id}}">{{$isi->kode_barang}} || {{$isi->nama_barang}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Merk/Type
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="text" 
-                                        class="col-xs-10 col-sm-10 required " 
-                                        name="merk" id="merk" readonly/>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> No.Seri
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="text"   id="seri" 
-                                        class="col-xs-10 col-sm-10 required " 
-                                        name="no_seri" readonly/>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Lokasi
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="text"  class="col-xs-10 col-sm-10 required " id="lok"
-                                name="lokasi" readonly/>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Penanggung Jawab
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="text"  class="col-xs-10 col-sm-10 required " id="pj"
-                                 name="penanggung_jawab" readonly/>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Nama Petugas
-                            </label>
-                            <div class="col-sm-8">
-                                <select id="status" name="pegawai_id" class="col-xs-10 col-sm-10 select2">
-                                    <option value="null">Pilih Nama Petugas</option>
-                                    @foreach ($user as $peg)
-                                        <option value="{{$peg->id}}">{{$peg->no_pegawai}} || {{$peg->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Kegiatan
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="text"  class="col-xs-10 col-sm-10 required " 
-                                 name="kegiatan"/>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Hasil Pemeriksaan
-                            </label>
-                            <div class="col-sm-8">
-                                <select name="hasil" class="col-xs-10 col-sm-10 required " >
-                                    <option value="">Pilih Hasil</option>
-                                    <option value="baik">Baik</option>
-                                    <option value="rusak">Rusak-Tidak Bisa Digunakan Lagi</option>
-                                    <option value="perbaiki">Rusak-Diperbaiki</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Keterangan
-                            </label>
-                            <div class="col-sm-8">
-                                <textarea  placeholder="" class="col-xs-10 col-sm-10"  
-                                name="keterangan"></textarea>
-                            </div>
-                        </div>
-                        
-                        </fieldset>        
                     </div>
+                    <div class="col-md-4">
+                        <div class="col-md-12">
+                            <label>Kelompok</label><br>
+                            <select name="kelompok" id="kelompok">
+                                <option value="tik">Perangkat TIK</option>
+                                <option value="lab">BMN LAB</option>
+                                <option value="umum">BMN NON LAB</option>
+                                <option value="motor">Kendaraan Dinas</option>
+                            </select>
+                        </div>
+                    </div>
+                </fieldset>
                </div>
             </div>
         </div>
     </div>
-    
-    <div class="col-sm-12">
-        <div class="form-actions right">
-            <button class="btn btn-success btn-sm " type="submit">
-                <i class="ace-icon fa fa-check bigger-110"></i>Simpan
-            </button>
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading"><h3 class="panel-title">Daftar barang</h3></div>
+            <div class="panel-body">
+                <div class="widget-main no-padding">
+                    <fieldset>
+                    <br>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Pemilik Asal
+                        </label>
+                        <div class="col-sm-9">
+                            <select id="peg" name="asal_id" class="col-xs-10 col-sm-10 select2" required>
+                                <option value="">pilih nama pegawai</option>
+                                @foreach ($user as $peg)
+                                    <option value="{{$peg->id}}">{{$peg->no_pegawai}} || {{$peg->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1">Alamat Pemilik Asal
+                        </label>
+                        <div class="col-sm-9">
+                            <input type="text" name="alamat_lama" class="col-xs-10 col-sm-10" required
+                            value="Jl. Brigjend H. Hasan Basri No. 40, Banjarmasin">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Pemilik Baru
+                        </label>
+                        <div class="col-sm-9">
+                            <select id="peg" name="baru_id" class="col-xs-10 col-sm-10 select2" required>
+                                <option value="">pilih nama pegawai</option>
+                                @foreach ($user as $peg)
+                                    <option value="{{$peg->id}}">{{$peg->no_pegawai}} || {{$peg->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1">Alamat Pemilik Baru
+                        </label>
+                        <div class="col-sm-9">
+                            <input type="text" name="alamat_baru" class="col-xs-10 col-sm-10" required
+                            value="Jl. Brigjend H. Hasan Basri No. 40, Banjarmasin">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1">Nama Barang
+                        </label>
+                        <div class="col-sm-9">
+                            <select name="inventaris_id[]" class="col-xs-10 col-sm-1o select2 kelompok" required id="barang_id-1"
+                                    onchange="getData1()">
+                                        <option value="">Pilih Barang</option>
+                                        @foreach ($data as $item)
+                                            <option value="{{$item->id}}">{{$item->nama_barang}} ({{$item->kode_barang}}) || NUP : {{$item->no_seri}}</option>
+                                        @endforeach
+                                    </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1">Merk
+                        </label>
+                        <div class="col-sm-9">
+                            <input type="text" id="merk-1" class="col-xs-10 col-sm-10" readonly> 
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> No. Seri
+                        </label>
+                        <div class="col-sm-9">
+                            <input type="text"id="no_seri-1" class="col-xs-10 col-sm-10" readonly>
+                        </div>
+                    </div>
+
+                    </fieldset>        
+               
+                </div>
+            </div>
         </div>
     </div>
-    </form>
 </div>
-
+<div class="panel-footer">
+    <div class="form-actions right">
+        <button class="btn btn-success btn-sm " type="submit">
+            <i class="ace-icon fa fa-check bigger-110"></i>Simpan
+        </button>
+    </div>
+</div>
+</form>
 @endsection
-
 @section('footer')
-<script>
-    function getDataBarang(){
-        var barang_id = $("#barang_id").val();
-        if (barang_id == '') return false;
-        $.get(
-            "{{route('inventaris.getbarang') }}",
-            {
-                barang_id: barang_id
-            },
-            function(response) {
-                $("#merk").val(response.data.merk);
-                $("#seri").val(response.data.no_seri);
-                $("#lok").val(response.data.bola);
-                $("#pj").val(response.data.name);
-            }
-        );
-    }
+    <script>
+        function getData1(){
+            var barang_id = $("#barang_id-1").val();
 
-</script>
+            $.get(
+                "{{route('inventaris.getbarang') }}",
+                {
+                    barang_id: barang_id
+                },
+                function(response) {
+                    $("#merk-1").val(response.data.merk);
+                    $("#no_seri-1").val(response.data.no_seri);
+                }
+            );
+        }
+
+    </script>
 @endsection

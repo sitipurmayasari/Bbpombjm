@@ -38,13 +38,18 @@
                    <div class="col-md-6">
                         <div class="col-md-12">
                             <label>MENGETAHUI *</label><br>
-                            <select name="pejabat_id" class="col-xs-9 col-sm-9 select2">
+                            <select name="mengetahui_id" class="col-xs-9 col-sm-9 select2">
                                 <option value="">Pilih Pejabat</option>
                                 @foreach ($tahu as $lok)
-                                    @if ($lok->id == $data->pejabat_id)
+                                    {{-- @if ($lok->id == $data->pejabat_id)
                                         <option value="{{$lok->id}}" selected>{{$lok->user->name}} ({{$lok->jabatan->jabatan}})</option>
                                     @else
                                         <option value="{{$lok->id}}">{{$lok->user->name}} ({{$lok->jabatan->jabatan}})</option>
+                                    @endif --}}
+                                    @if ($lok->id == $data->mengetahui_id)
+                                        <option value="{{$lok->id}}" selected>{{$lok->name}} ({{$lok->divisi->nama}})</option>
+                                    @else
+                                        <option value="{{$lok->id}}">{{$lok->name}} ({{$lok->divisi->nama}})</option>
                                     @endif
                                 @endforeach
                             </select>
