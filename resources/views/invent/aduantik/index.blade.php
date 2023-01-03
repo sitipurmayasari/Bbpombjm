@@ -117,11 +117,11 @@
                                 {{-- @endif --}}
                             </td>
                             <td>
-                               
+                                @if ($row2->status==0)
                                 <a href="/invent/aduantik/edit2/{{$row2->id}}" class="btn btn-warning">
                                     <i class="glyphicon glyphicon-edit"></i>
                                 </a>
-                                @if ($row2->status==0)
+                               
                                     <a href="#" class="btn btn-danger delete2"
                                         r-name="{{$row2->no_aduan}}" 
                                         r-id="{{$row2->id}}">

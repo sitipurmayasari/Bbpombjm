@@ -156,11 +156,11 @@ method="post" action="/invent/aduantik/update2/{{$aduan->id}}">
     </div>
 </div>
     <div class="form-actions right">
-        @if ($aduan->status != 2)
+        {{-- @if ($aduan->status != 2) --}}
         <button class="btn btn-success btn-sm " type="submit">
             <i class="ace-icon fa fa-check bigger-110"></i>UPDATE
         </button>
-        @endif
+        {{-- @endif --}}
        
     </div>
 </form>
