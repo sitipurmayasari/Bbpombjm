@@ -60,7 +60,7 @@
                                         <a href="{{$row->getFile()}}" target="_blank" >{{$row->file}}</a>
                                     </td>
                                     <td>
-                                        @if ($row->poin != 0)
+                                        @if ($row->poin != 0 || $row->file != null)
                                             <a href="/amdk/permit/edit/{{$row->id}}" class="btn btn-warning">
                                                 <i class="glyphicon glyphicon-edit"></i>
                                             </a>

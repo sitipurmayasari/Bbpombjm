@@ -138,7 +138,7 @@ class STBookController extends Controller
       $baris = $request->plusplus;
       $sppd = Stbook_sppd::orderBy('id','desc')->whereYear('created_at',date('Y'))->get(); 
       $bidang = Divisi::select('kode_sppd')->where('id',$request->divisi_id)->first();
-      $counting = Stbook_sppd::SelectRaw("COUNT(*)AS jum")->first();
+      $counting = Stbook_sppd::SelectRaw("COUNT(*)AS jum")->whereYear('created_at',date('Y'))->first();;
       $first = "0001";
       if($sppd->count()>0){
         // $first = $sppd->first()->id+$baris;

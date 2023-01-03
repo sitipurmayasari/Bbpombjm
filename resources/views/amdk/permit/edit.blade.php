@@ -36,7 +36,7 @@
                         for="form-field-1"> Status
                         </label>
                         <div class="col-sm-9" >
-                            <select name="ket_absen_id" class="col-xs-10 col-sm-10 select2">
+                            <select name="ket_absen_id" class="col-xs-10 col-sm-10 select2" id="ket" onchange="getnilai()">
                                 @foreach ($kets as $sub)
                                         @if ($data->ket_absen_id==$sub->id)
                                             <option value="{{$sub->id}}" selected>{{$sub->ket}}</option>
@@ -45,6 +45,8 @@
                                         @endif
                                 @endforeach
                             </select>
+                            <input type="hidden" id="poin" value="{{$data->poin}}">
+                            <input type="hidden" name="poin" id="poinbaru">
                         </div>
                     </div>
                     <div class="form-group">
@@ -60,7 +62,7 @@
                         for="form-field-1"> Upload file
                         </label>
                         <div class="col-sm-9">
-                            <input type="file" name="file" class="btn btn-default btn-sm" id="" value="max 2KB">   
+                            <input type="file" name="file" class="btn btn-default btn-sm" id="" value="max 2KB" required>   
                             @if ($data->file != null)
                                 <a href="{{$data->getFile()}}" target="_blank" >{{$data->file}}</a>
                             @else
@@ -91,5 +93,18 @@
     tinymce.init({
         selector: "textarea"
     });
+
+    function getnilai(){
+        var jenis = $("#ket").val();
+        var poinlama = $("#poin").val();
+
+        if (jenis == 2 || jenis == 3 || jenis == 3 || jenis == 13 || jenis == 14) {
+            $("#poinbaru").val(0);  
+        }else{
+            $("#poinbaru").val(poinlama); 
+        }
+
+    }
+
 </script>
 @endsection

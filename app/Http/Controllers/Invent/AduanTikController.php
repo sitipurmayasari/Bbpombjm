@@ -278,9 +278,10 @@ class AduanTikController extends Controller
 
     function getNoAduan(){
         $aduan = AduanTIK::orderBy('id','desc')->whereYear('tanggal',date('Y'))->get(); // get last no aduan berdasarkan reset per tahun
+        $counting = AduanTIK::SelectRaw("COUNT(*)AS jum ")->whereYear('tanggal',date('Y'))->first();
         $first = "001";
         if($aduan->count()>0){
-          $first = $aduan->first()->id+1;
+          $first = $counting->jum+1;
           if($first < 10){
               $first = "00".$first;
           }else if($first < 100){
