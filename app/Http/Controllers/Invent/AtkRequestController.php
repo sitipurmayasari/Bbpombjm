@@ -133,9 +133,10 @@ class AtkRequestController extends Controller
     
     function getNoSBB(){
       $nomor = Sbb::orderBy('id','desc')->whereYear('tanggal',date('Y'))->get();
+      $counting = Sbb::SelectRaw("COUNT(*)AS jum ")->whereYear('tanggal',date('Y'))->first();
       $first = "001";
       if($nomor->count()>0){
-        $first = $nomor->first()->id+1;
+        $first = $counting->jum+1;
         if($first < 10){
             $first = "00".$first;
         }else if($first < 100){
