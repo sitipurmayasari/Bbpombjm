@@ -152,7 +152,7 @@ class BarangkeluarController extends Controller
                     'inventaris_id' => $request->inventaris_id[$i],
                     'satuan_id' => $request->satuan_id[$i] ,
                     'jumlah' => $request->jumlah[$i] ,
-                    'jumlah_aju' => $request->jumlah_aju ,
+                    'jumlah_aju' => $request->jumlah_aju[$i],
                     'ket' => $request->ket[$i],
                     'status' => $request->status[$i]
                 ];
