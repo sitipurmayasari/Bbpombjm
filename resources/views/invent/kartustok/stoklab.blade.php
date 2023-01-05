@@ -12,7 +12,9 @@
     <style>
         @page {
             size: A4;
-            margin: 170px 0px 100px 0px;
+            margin-top: 170px;
+            margin-bottom: 100px;
+            /* margin: 170px 0px 100px 0px; */
             font-family: 'Times New Roman';
             font-size: 11px;
             page-break-after: always;
