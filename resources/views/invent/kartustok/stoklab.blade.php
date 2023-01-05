@@ -25,7 +25,7 @@
             margin-right: 8%;
         }
 
-        #header {
+        header {
                 position:fixed;
                 padding-top: 0%;
                 /* height: 15%; */
@@ -33,6 +33,9 @@
                 margin-left: 5%;
                 margin-right: 5%;
                 margin-top: -150px;
+        }
+        main{
+            margin-right: 5%;
         }
 
         table,tr,td, th{
@@ -44,16 +47,17 @@
             text-align: center;
             vertical-align: middle;
         }
+
     </style>
 
 </head>
     <title>Laporan Permintaan Barang Keluar  {{$data->name}}</title>
 </head>
 <body>
-   <div id="header">
-    <img src="{{asset('images/kopsurat1.jpg')}}" style="width: 100%"> <br>
-   </div>
-    {{-- <main> --}}
+    <header>
+        <img src="{{asset('images/kopsurat1.jpg')}}" style="width: 100%"> <br>
+    </header>
+    <main>
         <div class="col-sm-12 isi">
             <div class="col-sm-12" style="text-align: center;font-size: 18px;">
                 <b>Laporan Jumlah DPB Keluar </b><br>
