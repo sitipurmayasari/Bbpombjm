@@ -73,10 +73,10 @@
                 <table style="width: 100%; font-size: 11px;" >
                     <thead>
                         <tr>
-                            <th style="text-align: center; vertical-align:middle;" width="5%">No</th>
-                            <th style="text-align: center; vertical-align:middle;">Nama Barang</th>
-                            <th style="text-align: center; vertical-align:middle;">kelompok Barang</th>
-                            <th style="text-align: center; vertical-align:middle;">Jumlah Barang</th>
+                            <th style="width: 5%">No</th>
+                            <th>Nama Barang</th>
+                            <th>kelompok Barang</th>
+                            <th style="width: 10%">Jumlah Barang</th>
                         </tr>
                     </thead>
                     <tbody>
