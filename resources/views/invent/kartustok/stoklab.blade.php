@@ -93,6 +93,6 @@
                 </table>
             </div><br><br>
         </div>
-    {{-- </main> --}}
+    </main>
 </body>
 </html>
