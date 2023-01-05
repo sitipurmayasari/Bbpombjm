@@ -233,6 +233,7 @@
         function addBarisPlane(){
         var last_baris = $("#countRow").val();
         var new_baris = parseInt(last_baris);
+        var next        = new_baris+1;
             $isi ='<tr id="cell-'+new_baris+'">'+
                     '<td>'+new_baris+'</td>'+
                     '<td>'+
@@ -269,7 +270,7 @@
                     '<td><button type="button" class="btn btn-danger" onclick="deleteRowP('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button></td>'+
                 '</tr>';
             $("#myTable").find('tbody').append($isi);
-            $("#countRow").val(new_baris);
+            $("#countRow").val(next);
             $('.select2').select2();
         }
 
@@ -281,7 +282,8 @@
 
         function addBarisInn(){
         var last_baris = $("#countRow2").val();
-        var new_baris = parseInt(last_baris)+1;
+        var new_baris = parseInt(last_baris);
+        var next      = new_baris+1;
             $isihotel ='<tr id="cell-'+new_baris+'">'+
                     '<td>'+new_baris+'</td>'+
                     '<td>'+
@@ -313,7 +315,7 @@
                     '<td><button type="button" class="btn btn-danger" onclick="deleteRowH('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button></td>'+
                 '</tr>';
             $("#TableHotel").find('tbody').append($isihotel);
-            $("#countRow2").val(new_baris);
+            $("#countRow2").val(next);
             $('.select2').select2();
         }
 
@@ -351,8 +353,9 @@
     
         // ----------------------------------------------TAXI---------------------------------------------------------------
         function addBarisTaxi(){
-        var last_baris = $("#countRow3").val();
-        var new_baris = parseInt(last_baris);
+        var last_baris  = $("#countRow3").val();
+        var new_baris   = parseInt(last_baris);
+        var next        = new_baris+1;
             $isitaxi ='<tr id="cell-'+new_baris+'">'+
                     '<td>'+new_baris+'</td>'+
                     '<td>'+
@@ -382,7 +385,7 @@
                     '<td><button type="button" class="btn btn-danger" onclick="deleteRowT('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button></td>'+
                 '</tr>';
             $("#TableTaxi").find('tbody').append($isitaxi);
-            $("#countRow3").val(new_baris);
+            $("#countRow3").val(next);
             $('.select2').select2();
         }
 
