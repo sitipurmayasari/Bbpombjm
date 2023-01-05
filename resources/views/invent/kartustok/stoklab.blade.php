@@ -23,6 +23,7 @@
         .isi{
             margin-left: 8%;
             margin-right: 8%;
+            /* width: 100%; */
         }
 
         header {
@@ -33,9 +34,6 @@
                 margin-left: 5%;
                 margin-right: 5%;
                 margin-top: -150px;
-        }
-        main{
-            margin-right: 5%;
         }
 
         table,tr,td, th{
@@ -58,7 +56,7 @@
         <img src="{{asset('images/kopsurat1.jpg')}}" style="width: 100%"> <br>
     </header>
     <main>
-        <div class="col-sm-12 isi">
+        <div class="isi">
             <div class="col-sm-12" style="text-align: center;font-size: 18px;">
                 <b>Laporan Jumlah DPB Keluar </b><br>
                 <b><i>{{$data->name}}</i></b>
