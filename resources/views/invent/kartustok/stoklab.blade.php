@@ -64,13 +64,13 @@
         <img src="{{asset('images/kopsurat1.jpg')}}" style="width: 100%"> <br>
     </header>
     <main>
-        <div class="col-sm-12 isi" style="text-align: center">
+        <div class="col-sm-12 isi">
             <div class="col-sm-12" style="text-align: center;font-size: 18px;">
                 <b>Laporan Jumlah DPB Keluar </b><br>
                 <b><i>{{$data->name}}</i></b>
             </div><br>
-            <div style="text-align: left">
-                <table style="width: 100%;font-size: 11px;" >
+            <div>
+                <table style="width: 100%; font-size: 11px;" >
                     <thead>
                         <tr>
                             <th style="text-align: center; vertical-align:middle;" width="5%">No</th>
