@@ -23,7 +23,7 @@
                 <b><i>{{$data->name}}</i></b>
             </div><br>
             <div style="text-align: left">
-                <table style="width: 100%;font-size: 11px;" >
+                <table style="width: 100%;font-size: 11px; margin-right:10px;" >
                     <thead>
                         <tr>
                             <th style="text-align: center; vertical-align:middle;" width="5%">No</th>
