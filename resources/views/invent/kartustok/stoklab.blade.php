@@ -35,16 +35,6 @@
                 margin-top: -170px;
         }
 
-        footer {
-                position:fixed;
-                height: 70px;
-                bottom: 0;
-                width: 100%;
-                margin-bottom: 20px;
-                z-index: -100;
-            
-        }
-
         table,tr,td, th{
             border: solid black 1px;
             vertical-align: top;
@@ -53,6 +43,11 @@
         th{
             text-align: center;
             vertical-align: middle;
+        }
+
+        main{
+            margin-left: 5%;
+            margin-right: 5%;
         }
     </style>
 
