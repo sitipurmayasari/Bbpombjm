@@ -107,6 +107,7 @@ class AbsenImport implements ToModel,WithStartRow
 
         if ($row[8] == 'DNS') {
             $poin = 0;
+            $ket = 2;
         } else {
             $poin = $lambat + $cepat;
         }

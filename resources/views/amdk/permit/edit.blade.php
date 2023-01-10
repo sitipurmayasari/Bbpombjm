@@ -33,6 +33,15 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Tanggal
+                        </label>
+                        <div class="col-sm-9" >
+                            <input type="text" class="col-xs-10 col-sm-10" value="{{tgl_indo($data->tanggal)}}"
+                             readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
                         for="form-field-1"> Status
                         </label>
                         <div class="col-sm-9" >
