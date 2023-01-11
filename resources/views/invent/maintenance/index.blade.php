@@ -36,20 +36,30 @@
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
                 <th width="40px">No</th>
-                <th>No Pemeliharaan</th>
-                <th>Tanggal Pemeliharaan</th>
+                <th>Nomor BA</th>
+                <th>Tanggal</th>
                 <th>Nama Barang</th>
-                <th>Merk</th>
+                <th>Dari-Ke</th>
+                <th>Cetak</th>
                 <th>Aksi</th>
             <thead>
             <tbody>   	
                 @foreach($data as $key=>$row)
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
-                    <td>{{$row->no_pemeliharaan}}</td>
-                    <td>{{$row->tgl_pelihara}}</td>
-                    <td>{{$row->barang->nama_barang}}</td>
-                    <td>{{$row->barang->merk}}</td>
+                    <td>{{$row->nomor}}</td>
+                    <td>{{tgl_indo($row->tanggal)}}</td>
+                    <td>{{$row->barang->nama_barang}} <br>
+                        ({{$row->barang->merk}})
+                    </td>
+                    <td>
+                        {{$row->lama->name}} 
+                        <i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i><br>
+                        {{$row->baru->name}}
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" href="/invent/maintenance/cetak/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
+                    </td>
                     <td>
                         <a href="/invent/maintenance/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>

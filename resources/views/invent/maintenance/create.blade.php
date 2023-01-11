@@ -32,7 +32,8 @@
                     <div class="col-md-4">
                         <div class="col-md-12">
                             <label>Kelompok</label><br>
-                            <select name="kelompok" id="kelompok">
+                            <select name="kelompok" id="kelompok"  class="col-xs-10 col-sm-10 required " onchange="getkelompok()">
+                                <option value="">Pilih Kelompok</option>
                                 <option value="tik">Perangkat TIK</option>
                                 <option value="lab">BMN LAB</option>
                                 <option value="umum">BMN NON LAB</option>
@@ -54,10 +55,37 @@
                     <br>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1">Nama Barang
+                        </label>
+                        <div class="col-sm-9">
+                            <select name="inventaris_id" class="col-xs-10 col-sm-10 select2 kelompok" required id="barang_id-1"
+                            onchange="getData1()">
+                                <option value="">Pilih Barang</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1">Merk
+                        </label>
+                        <div class="col-sm-9">
+                            <input type="text" id="merk-1" class="col-xs-10 col-sm-10" readonly> 
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> No. Seri
+                        </label>
+                        <div class="col-sm-9">
+                            <input type="text"id="no_seri-1" class="col-xs-10 col-sm-10" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
                         for="form-field-1"> Pemilik Asal
                         </label>
                         <div class="col-sm-9">
-                            <select id="peg" name="asal_id" class="col-xs-10 col-sm-10 select2" required>
+                            <select name="asal_id" class="col-xs-10 col-sm-10 select2" required>
                                 <option value="">pilih nama pegawai</option>
                                 @foreach ($user as $peg)
                                     <option value="{{$peg->id}}">{{$peg->no_pegawai}} || {{$peg->name}}</option>
@@ -79,7 +107,7 @@
                         for="form-field-1"> Pemilik Baru
                         </label>
                         <div class="col-sm-9">
-                            <select id="peg" name="baru_id" class="col-xs-10 col-sm-10 select2" required>
+                            <select name="baru_id" class="col-xs-10 col-sm-10 select2" required>
                                 <option value="">pilih nama pegawai</option>
                                 @foreach ($user as $peg)
                                     <option value="{{$peg->id}}">{{$peg->no_pegawai}} || {{$peg->name}}</option>
@@ -98,35 +126,25 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1">Nama Barang
+                        for="form-field-1"> Lokasi
                         </label>
                         <div class="col-sm-9">
-                            <select name="inventaris_id[]" class="col-xs-10 col-sm-1o select2 kelompok" required id="barang_id-1"
-                                    onchange="getData1()">
-                                        <option value="">Pilih Barang</option>
-                                        @foreach ($data as $item)
-                                            <option value="{{$item->id}}">{{$item->nama_barang}} ({{$item->kode_barang}}) || NUP : {{$item->no_seri}}</option>
-                                        @endforeach
-                                    </select>
+                            <select id="status" name="lokasi" class="col-xs-10 col-sm-10 select2">
+                                <option value="">Pilih Lokasi Barang</option>
+                                @foreach ($lokasi as $lok)
+                                    <option value="{{$lok->id}}">{{$lok->nama}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1">Merk
+                        for="form-field-1"> Keterangan
                         </label>
                         <div class="col-sm-9">
-                            <input type="text" id="merk-1" class="col-xs-10 col-sm-10" readonly> 
+                            <input type="text" name="ket" class="col-xs-10 col-sm-10">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1"> No. Seri
-                        </label>
-                        <div class="col-sm-9">
-                            <input type="text"id="no_seri-1" class="col-xs-10 col-sm-10" readonly>
-                        </div>
-                    </div>
-
                     </fieldset>        
                
                 </div>
@@ -145,6 +163,25 @@
 @endsection
 @section('footer')
     <script>
+         function getkelompok(){
+            var kelompok = $("#kelompok").val();
+
+            $.get(
+            "{{route('maintenance.getKelompok') }}",
+            {
+                kelompok: kelompok
+            },
+            function(response) {
+                var data2 = response.data;
+                var string ="<option value=''>Pilih Barang</option>";
+                    $.each(data2, function(index, value) {
+                        string = string + '<option value="'+ value.id +'">'+ value.nama_barang +'('+value.kode_barang +'|| NUP :'+value.no_seri+'</option>';
+                    })
+                $(".kelompok").html(string);
+            }
+        );
+        }
+
         function getData1(){
             var barang_id = $("#barang_id-1").val();
 

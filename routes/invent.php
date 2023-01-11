@@ -64,7 +64,10 @@
   Route::get('/invent/maintenance/edit/{id}','Invent\MaintenanceController@edit')->name('maintenance.edit');
   Route::post('/invent/maintenance/update/{id}','Invent\MaintenanceController@update')->name('maintenance.update');
   Route::get('/invent/maintenance/delete/{id}','Invent\MaintenanceController@delete')->name('maintenance.delete');
-
+  Route::get('/invent/maintenance/getKelompok','Invent\MaintenanceController@getKelompok')->name('maintenance.getKelompok');
+  Route::get('/invent/maintenance/getBarang','Invent\MaintenanceController@getBarang')->name('maintenance.getbarang');
+  Route::get('/invent/maintenance/cetak/{id}','Invent\MaintenanceController@cetak')->name('maintenance.cetak');
+  
   //Route untuk aduan
   Route::get('/invent/aduan/create','Invent\AduanController@create')->name('aduan.create');
   Route::post('/invent/aduan/store','Invent\AduanController@store')->name('aduan.store');
