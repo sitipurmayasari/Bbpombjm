@@ -289,18 +289,32 @@
                     </td>
                  </tr>
                  <tr>
-                     <td colspan="2"> {{$data->ppk->jabatan}}</td>
+                     <td colspan="2"> 
+                    @if ($data->ppk != 0)
+                        {{$data->ppk->jabatan}}
+                    @else
+                        pejabat Pembuat Komitmen
+                    @endif
+                    </td>
                  </tr>
                  <tr>
                      <td  style="height: 5%"></td>
                  </tr>
                  <tr>
                      <td  colspan="2">
-                         <u><b> {{$data->ppk->user->name}} </b></u>
+                        <u><b>
+                            @if ($data->ppk != 0)
+                                {{$data->ppk->user->name}}
+                            @endif 
+                         </b></u>
                      </td>
                  </tr>
                  <tr>
-                     <td colspan="2">{{$data->ppk->user->no_pegawai}}</td>
+                     <td colspan="2">
+                    @if($data->ppk != 0)
+                    {{$data->ppk->user->no_pegawai}}
+                    @endif
+                    </td>
                  </tr>
                 </table>
             </td>
@@ -666,18 +680,32 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2"> {{$data->ppk->jabatan}}</td>
+                    <td colspan="2">
+                        @if ($data->ppk != 0)
+                            {{$data->ppk->jabatan}}
+                        @else
+                            Pejabat Pembuat Komitmen
+                        @endif
+                    </td>
                 </tr>
                 <tr>
                     <td  style="height: 5%"></td>
                 </tr>
                 <tr>
                     <td  colspan="2">
-                        <u><b> {{$data->ppk->user->name}} </b></u>
+                    <u><b>
+                            @if ($data->ppk != 0)
+                                {{$data->ppk->user->name}}
+                            @endif 
+                         </b></u>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2">{{$data->ppk->user->no_pegawai}}</td>
+                    <td colspan="2">
+                        @if($data->ppk != 0)
+                            {{$data->ppk->user->no_pegawai}}
+                        @endif
+                    </td>
                 </tr>
             </table>
         </td>
@@ -687,18 +715,32 @@
             <br>
             <table>
                 <tr>
-                    <td> {{$data->ppk->jabatan}}</td>
+                    <td> 
+                        @if ($data->ppk != 0)
+                            {{$data->ppk->jabatan}}
+                        @else
+                            Pejabat pembuat komitmen
+                        @endif
+                    </td>
                 </tr>
                 <tr>
                     <td  style="height: 5%"></td>
                 </tr>
                 <tr>
                     <td>
-                        <u><b> {{$data->ppk->user->name}} </b></u>
+                        <u><b>
+                            @if ($data->ppk != 0)
+                                {{$data->ppk->user->name}}
+                            @endif 
+                        </b></u>
                     </td>
                 </tr>
                 <tr>
-                    <td>{{$data->ppk->user->no_pegawai}}</td>
+                    <td>
+                        @if($data->ppk != 0)
+                            {{$data->ppk->user->no_pegawai}}
+                        @endif
+                    </td>
                 </tr>
             </table>
         </td>

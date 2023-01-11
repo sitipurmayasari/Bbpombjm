@@ -282,7 +282,13 @@
             <td style="text-align:center;">Pejabat Negara / Pegawai Negeri</td>
         </tr>
         <tr>
-            <td style="text-align:center;">{{$item->out->ppk->jabatan}}</td>
+            <td style="text-align:center;">
+                @if ($item->out->ppk != 0)
+                    {{$item->out->ppk->jabatan}}
+                @else
+                    Pejabat pembuat Komitmen
+                @endif
+            </td>
             <td></td>
             <td style="text-align:center;">yang melakukan perjalanan dinas :</td>
         </tr>
@@ -293,8 +299,10 @@
         </tr>
         <tr>
             <td style="line-height: 1; text-align:center;">
-                <u>{{$item->out->ppk->user->name}}</u> <br>
-                NIP. {{$item->out->ppk->user->no_pegawai}}
+                @if ($item->out->ppk != 0)
+                    <u>{{$item->out->ppk->user->name}}</u> <br>
+                    NIP. {{$item->out->ppk->user->no_pegawai}}
+                @endif
             </td>
             <td></td>
             <td style="text-align:center;">
@@ -571,7 +579,13 @@
             <td style="text-align:center;">Pejabat Negara / Pegawai Negeri</td>
         </tr>
         <tr>
-            <td style="text-align:center;">{{$item->out->ppk->jabatan}}</td>
+            <td style="text-align:center;">
+                @if ($item->out->ppk != 0)
+                    {{$item->out->ppk->jabatan}}
+                @else
+                    Pejabat Pembuat Komitmen
+                @endif
+            </td>
             <td></td>
             <td style="text-align:center;">yang melakukan perjalanan dinas :</td>
         </tr>
@@ -582,8 +596,10 @@
         </tr>
         <tr>
             <td style="line-height: 1; text-align:center;">
-                <u>{{$item->out->ppk->user->name}}</u> <br>
-                NIP. {{$item->out->ppk->user->no_pegawai}}
+                @if ($item->out->ppk != 0)
+                    <u>{{$item->out->ppk->user->name}}</u> <br>
+                    NIP. {{$item->out->ppk->user->no_pegawai}}
+                @endif
             </td>
             <td></td>
             <td style="text-align:center;">

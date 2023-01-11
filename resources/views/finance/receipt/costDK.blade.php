@@ -217,7 +217,13 @@
         <tr>
             <td></td>
             <td>Bendahara Pengeluaran, <br><br><br><br><br></td>
-            <td>{{$item->out->ppk->jabatan}} <br><br><br><br><br></td>
+            <td>
+                @if ($item->out->ppk != 0)
+                    {{$item->out->ppk->jabatan}}
+                @else
+                    Pejabat Pembuat Komitmen
+                @endif
+                <br><br><br><br><br></td>
         </tr>
         <tr>
             <td></td>
@@ -226,8 +232,10 @@
                 NIP. {{$petugas->user->no_pegawai}}
             </td>
             <td style="line-height: 1.3;">
-                <u>{{$item->out->ppk->user->name}}</u> <br>
-                NIP. {{$item->out->ppk->user->no_pegawai}}
+                @if ($item->out->ppk != 0)
+                    <u>{{$item->out->ppk->user->name}}</u> <br>
+                    NIP. {{$item->out->ppk->user->no_pegawai}}
+                @endif
             </td>
         </tr>
    </table> <br><br><br>
@@ -376,7 +384,13 @@
     <tr>
         <td></td>
         <td>Bendahara Pengeluaran, <br><br><br><br><br></td>
-        <td>{{$item->out->ppk->jabatan}} <br><br><br><br><br></td>
+        <td>
+            @if ($item->out->ppk != 0)
+                {{$item->out->ppk->jabatan}}
+            @else
+                Pejabat Pembuat komitmen
+            @endif
+            <br><br><br><br><br></td>
     </tr>
     <tr>
         <td></td>
@@ -385,8 +399,11 @@
             NIP. {{$petugas->user->no_pegawai}}
         </td>
         <td style="line-height: 1.3;">
-            <u>{{$item->out->ppk->user->name}}</u> <br>
-            NIP. {{$item->out->ppk->user->no_pegawai}}
+            @if ($item->out->ppk != 0)
+                <u>{{$item->out->ppk->user->name}}</u> <br>
+                NIP. {{$item->out->ppk->user->no_pegawai}}
+            @endif
+            
         </td>
     </tr>
 </table>

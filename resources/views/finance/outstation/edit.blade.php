@@ -110,7 +110,7 @@
                         </label>
                         <div class="col-sm-8"> 
                             <select name="ppk_id" class="col-xs-10 col-sm-10 required select2" required>
-                                <option value="">Pilih Pejabat</option>
+                                <option value="0">Tanpa PPK</option>
                                 @foreach ($ppk as $item)
                                     @if ($data->ppk_id == $item->id)
                                         <option value="{{$item->id}}" selected>{{$item->user->name}}</option>

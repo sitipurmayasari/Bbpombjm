@@ -427,7 +427,13 @@
                 <td class="table2">Banjarmasin, {{tgl_indo($data->st->st_date)}}</td>
             </tr>
             <tr class="table2">
-                <td class="table2">{{$data->st->ppk->jabatan}} <br><br><br><br><br></td>
+                <td class="table2">
+                    @if ($data->st->ppk != 0)
+                        {{$data->st->ppk->jabatan}}
+                    @else
+                        Pejabat Pembuat Komitmen
+                    @endif
+                     <br><br><br><br><br></td>
                 <td class="table2">
                     @if ($menyetujui->pjs !=null)
                         {{$menyetujui->pjs}}
@@ -440,8 +446,11 @@
             </tr>
             <tr class="table2">
                 <td class="table2">
-                    <u>{{$data->st->ppk->user->name}}</u> <br>
-                    NIP. {{$data->st->ppk->user->no_pegawai}}
+                    @if ($data->st->ppk != 0)
+                        <u>{{$data->st->ppk->user->name}}</u> <br>
+                        NIP. {{$data->st->ppk->user->no_pegawai}}
+                    @endif
+                   
                 </td>
                 <td class="table2">
                     <u>{{$menyetujui->user->name}}</u> <br>

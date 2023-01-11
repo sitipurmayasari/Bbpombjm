@@ -220,7 +220,13 @@
         <tr>
             <td></td>
             <td>Bendahara Pengeluaran, <br><br><br><br><br></td>
-            <td>{{$item->out->ppk->jabatan}} <br><br><br><br><br></td>
+            <td>
+                @if ($item->out->ppk != 0)
+                    {{$item->out->ppk->jabatan}} 
+                @else
+                    pejabat Pembuat Komitmen
+                @endif
+                <br><br><br><br><br></td>
         </tr>
         <tr>
             <td></td>
@@ -229,8 +235,11 @@
                 NIP. {{$petugas->user->no_pegawai}}
             </td>
             <td style="line-height: 1.3;">
-                <u>{{$item->out->ppk->user->name}}</u> <br>
-                NIP. {{$item->out->ppk->user->no_pegawai}}
+                @if ($item->out->ppk != 0)
+                    <u>{{$item->out->ppk->user->name}}</u> <br>
+                    NIP. {{$item->out->ppk->user->no_pegawai}}
+                @endif
+               
             </td>
         </tr>
    </table>
@@ -1006,7 +1015,13 @@
             <td style="width: 23%">Ditetapkan sejumlah</td>
             <td  style="width: 3%"><b>Rp. </b></td>
             <td class="isi" style="text-align: right">{{number_format($total)}}</td>
-            <td style="text-align: center; width:40%">{{$item->out->ppk->jabatan}}</td>
+            <td style="text-align: center; width:40%">
+                @if ($item->out->ppk != 0)
+                    {{$item->out->ppk->jabatan}}
+                @else
+                    Pejabat Pembuat Komitmen
+                @endif
+            </td>
         </tr>
         <tr>
             <td></td>
@@ -1028,8 +1043,10 @@
             <td></td>
             <td></td>
             <td style="text-align: center; line-height: 1.3;">
-                <u>{{$item->out->ppk->user->name}}</u> <br>
-                NIP. {{$item->out->ppk->user->no_pegawai}}
+                @if ($item->out->ppk != 0)
+                    <u>{{$item->out->ppk->user->name}}</u> <br>
+                    NIP. {{$item->out->ppk->user->no_pegawai}}
+                @endif
             </td>
         </tr>
         <tr>

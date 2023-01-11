@@ -107,6 +107,7 @@
                         <div class="col-sm-8"> 
                             <select name="ppk_id" class="col-xs-10 col-sm-10 required select2" required>
                                 <option value="">Pilih Pejabat</option>
+                                <option value="0">Tanpa PPK</option>
                                 @foreach ($ppk as $item)
                                     <option value="{{$item->id}}">{{$item->user->name}}</option>
                                 @endforeach
