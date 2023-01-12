@@ -221,7 +221,7 @@
             <td></td>
             <td>Bendahara Pengeluaran, <br><br><br><br><br></td>
             <td>
-                @if ($item->out->ppk != 0)
+                @if ($item->out->ppk_id != 0)
                     {{$item->out->ppk->jabatan}} 
                 @else
                     pejabat Pembuat Komitmen
@@ -235,7 +235,7 @@
                 NIP. {{$petugas->user->no_pegawai}}
             </td>
             <td style="line-height: 1.3;">
-                @if ($item->out->ppk != 0)
+                @if ($item->out->ppk_id != 0)
                     <u>{{$item->out->ppk->user->name}}</u> <br>
                     NIP. {{$item->out->ppk->user->no_pegawai}}
                 @endif
@@ -1016,7 +1016,7 @@
             <td  style="width: 3%"><b>Rp. </b></td>
             <td class="isi" style="text-align: right">{{number_format($total)}}</td>
             <td style="text-align: center; width:40%">
-                @if ($item->out->ppk != 0)
+                @if ($item->out->ppk_id != 0)
                     {{$item->out->ppk->jabatan}}
                 @else
                     Pejabat Pembuat Komitmen
@@ -1043,7 +1043,7 @@
             <td></td>
             <td></td>
             <td style="text-align: center; line-height: 1.3;">
-                @if ($item->out->ppk != 0)
+                @if ($item->out->ppk_id != 0)
                     <u>{{$item->out->ppk->user->name}}</u> <br>
                     NIP. {{$item->out->ppk->user->no_pegawai}}
                 @endif

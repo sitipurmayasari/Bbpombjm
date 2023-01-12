@@ -428,7 +428,7 @@
             </tr>
             <tr class="table2">
                 <td class="table2">
-                    @if ($data->st->ppk != 0)
+                    @if ($data->st->ppk_id != 0)
                         {{$data->st->ppk->jabatan}}
                     @else
                         Pejabat Pembuat Komitmen
@@ -446,7 +446,7 @@
             </tr>
             <tr class="table2">
                 <td class="table2">
-                    @if ($data->st->ppk != 0)
+                    @if ($data->st->ppk_id != 0)
                         <u>{{$data->st->ppk->user->name}}</u> <br>
                         NIP. {{$data->st->ppk->user->no_pegawai}}
                     @endif

@@ -218,7 +218,7 @@
             <td></td>
             <td>Bendahara Pengeluaran, <br><br><br><br><br></td>
             <td>
-                @if ($item->out->ppk != 0)
+                @if ($item->out->ppk_id != 0)
                     {{$item->out->ppk->jabatan}}
                 @else
                     Pejabat Pembuat Komitmen
@@ -232,7 +232,7 @@
                 NIP. {{$petugas->user->no_pegawai}}
             </td>
             <td style="line-height: 1.3;">
-                @if ($item->out->ppk != 0)
+                @if ($item->out->ppk_id != 0)
                     <u>{{$item->out->ppk->user->name}}</u> <br>
                     NIP. {{$item->out->ppk->user->no_pegawai}}
                 @endif
@@ -385,7 +385,7 @@
         <td></td>
         <td>Bendahara Pengeluaran, <br><br><br><br><br></td>
         <td>
-            @if ($item->out->ppk != 0)
+            @if ($item->out->ppk_id != 0)
                 {{$item->out->ppk->jabatan}}
             @else
                 Pejabat Pembuat komitmen
@@ -399,7 +399,7 @@
             NIP. {{$petugas->user->no_pegawai}}
         </td>
         <td style="line-height: 1.3;">
-            @if ($item->out->ppk != 0)
+            @if ($item->out->ppk_id != 0)
                 <u>{{$item->out->ppk->user->name}}</u> <br>
                 NIP. {{$item->out->ppk->user->no_pegawai}}
             @endif

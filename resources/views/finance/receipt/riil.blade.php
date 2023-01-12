@@ -345,7 +345,7 @@
         </tr>
         <tr>
             <td style="text-align:center;">
-                @if ($item->out->ppk != 0)
+                @if ($item->out->ppk_id != 0)
                     {{$item->out->ppk->jabatan}}
                 @else
                     Pejabat pembuat Komitmen
@@ -361,7 +361,7 @@
         </tr>
         <tr>
             <td style="line-height: 1; text-align:center;">
-                @if ($item->out->ppk != 0)
+                @if ($item->out->ppk_id != 0)
                     <u>{{$item->out->ppk->user->name}}</u> <br>
                     NIP. {{$item->out->ppk->user->no_pegawai}}
                 @endif
@@ -704,7 +704,7 @@
         </tr>
         <tr>
             <td style="text-align:center;">
-                @if ({{$item->out->ppk != 0}})
+                @if ({{$item->out->ppk_id != 0}})
                     {{$item->out->ppk->jabatan}}
                 @else
                     Pejabat Pembuat Komitmen
@@ -720,7 +720,7 @@
         </tr>
         <tr>
             <td style="line-height: 1; text-align:center;">
-                @if ({{$item->out->ppk != 0}})
+                @if ({{$item->out->ppk_id != 0}})
                     <u>{{$item->out->ppk->user->name}}</u> <br>
                     NIP. {{$item->out->ppk->user->no_pegawai}}
                 @endif
