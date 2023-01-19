@@ -311,6 +311,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
       Route::get('/finance/renstranas','Finance\RenstranasController@index')->name('renstranas');
       //Route untuk Renstra Lokal
       Route::get('/finance/renstrakal','Finance\RenstrakalController@index')->name('renstrakal');
+      //Route untuk Rencana Bulanan
+      Route::get('/finance/renta','Finance\RentaController@index')->name('renta');
       //Route untuk laporan Renstra
       Route::get('/finance/renstrapot','Finance\RenstraPotController@index')->name('renstrapot');
       //Route untuk Eselon II

@@ -195,6 +195,9 @@
   Route::get('finance/ikutagging/excel/{id}','Finance\IkuTaggingController@excel')->name('ikutagging.excel');
   Route::get('finance/ikutagging/getdatalama','Finance\IkuTaggingController@getdatalama')->name('ikutagging.getdatalama');
 
+
+  //PLANNING
+
    //Route untuk renstranas
   Route::get('/finance/renstranas/create','Finance\RenstranasController@create')->name('renstranas.create');
   Route::post('finance/renstranas/generate','Finance\RenstranasController@generate')->name('renstranas.generate');
@@ -218,6 +221,14 @@
   Route::post('finance/renstrakal/updatemeta/{id}','Finance\RenstrakalController@updatemeta')->name('renstrakal.updatemeta');
   Route::get('finance/renstrakal/delete/{id}','Finance\RenstrakalController@delete')->name('renstrakal.delete');
 
+   //Route untuk Rencana Bulanan
+  Route::get('/finance/renta/create','Finance\RentaController@create')->name('renta.create');
+  Route::post('finance/renta/generate','Finance\RentaController@generate')->name('renta.generate');
+  Route::get('/finance/renta/entrydata/{id}','Finance\RentaController@entrydata')->name('renta.entrydata');
+  Route::post('finance/renta/store','Finance\RentaController@store')->name('renta.store');
+  Route::get('finance/renta/edit/{id}','Finance\RentaController@edit')->name('renta.edit');
+  Route::post('finance/renta/update/{id}','Finance\RentaController@update')->name('renta.update');
+  Route::get('finance/renta/delete/{id}','Finance\RentaController@delete')->name('renta.delete');
 
    //Route untuk laporan Renstra
    Route::post('/finance/renstrapot/cetak','Finance\RenstraPotController@cetak')->name('renstrapot.cetak');
@@ -250,6 +261,10 @@
     //Route untuk laporan RAPK
     Route::post('/finance/lapRAPK/cetak','Finance\LapRAPKController@cetak')->name('lapRAPK.cetak');
 
+
+
+    //surat dinas
+
     //Route untuk buku ST
     Route::get('/finance/stbook/create','Finance\STBookController@create')->name('stbook.create');
     Route::post('finance/stbook/store','Finance\STBookController@store')->name('stbook.store');
@@ -269,8 +284,6 @@
     Route::get('finance/receipt/getMaksud','Finance\ReceiptController@getMaksud')->name('receipt.getMaksud');
     Route::post('finance/receipt/generate','Finance\ReceiptController@generate')->name('receipt.generate');
     Route::get('/finance/receipt/entrydata/{id}','Finance\ReceiptController@entrydata')->name('receipt.entrydata');
-
-
 
     Route::post('finance/receipt/store','Finance\ReceiptController@store')->name('receipt.store');
     Route::get('finance/receipt/edit/{id}','Finance\ReceiptController@edit')->name('receipt.edit');
