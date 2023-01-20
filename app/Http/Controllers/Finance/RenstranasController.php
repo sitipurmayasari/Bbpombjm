@@ -14,6 +14,7 @@ use App\Renstranas_detail;
 use Excel;
 use PDF;
 use DateTime;
+use LogActivity;
 
 
 class RenstranasController extends Controller
@@ -43,7 +44,7 @@ class RenstranasController extends Controller
         // ]);
        $data = Renstranas::create($request->all());
         $rens = $data->id;
-
+        LogActivity::addToLog('Simpan->Renstra Nasional, id = '.$rens);
         return redirect('/finance/renstranas/entrynas/'.$rens);
     }
 
@@ -98,6 +99,8 @@ class RenstranasController extends Controller
         }
     DB::commit();
 
+    LogActivity::addToLog('Ubah->Renstra Nasional, id = '.$data->id);
+
     return redirect('/finance/renstranas')->with('sukses','Data Berhasil Diperbaharui');
     }
 
@@ -117,6 +120,7 @@ class RenstranasController extends Controller
     public function delete($id)
     {
         $data = Renstranas::find($id);
+        LogActivity::addToLog('Hapus->Renstra Nasional, id = '.$data->id);
         $data->delete();
         DB::table('renstranas_detail')->where('renstranas_id', $id)->delete();
         return redirect('/finance/renstranas')->with('sukses','Data Terhapus');

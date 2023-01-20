@@ -16,6 +16,7 @@ use App\Renstrakal_detail;
 use Excel;
 use PDF;
 use DateTime;
+use LogActivity;
 
 
 class RenstrakalController extends Controller
@@ -45,7 +46,7 @@ class RenstrakalController extends Controller
         ]);
         $data = Renstrakal::create($request->all());
         $rens = $data->id;
-
+        LogActivity::addToLog('Ubah->Renstra Nasional, id = '.$data->id);
         return redirect('/finance/renstrakal/entrynas/'.$rens);
     }
 
@@ -99,7 +100,7 @@ class RenstrakalController extends Controller
             
         }
     DB::commit();
-
+    LogActivity::addToLog('Ubah->Renstra Nasional, id = '.$data->id);
     return redirect('/finance/renstrakal')->with('sukses','Data Berhasil Diperbaharui');
     }
 
@@ -119,6 +120,7 @@ class RenstrakalController extends Controller
     public function delete($id)
     {
         $data = Renstrakal::find($id);
+        LogActivity::addToLog('hapus->Renstra Nasional, id = '.$data->id);
         $data->delete();
         DB::table('renstrakal_detail')->where('renstrakal_id', $id)->delete();
         return redirect('/finance/renstrakal')->with('sukses','Data Terhapus');
