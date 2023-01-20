@@ -52,7 +52,7 @@
                     <td>{{$row->pegawai->no_pegawai}} || {{$row->pegawai->name}}</td>
                     <td>
                         @if ($row->stat_aduan=="B")
-                            <a href="/invent/atkrequest/ubah/{{$row->id}}" class="btn btn-warning"> Ubah
+                            <a href="/invent/labrequest/ubah/{{$row->id}}" class="btn btn-warning"> Ubah
                                 <i class="glyphicon glyphicon-edit"></i>
                             </a>
                         @elseif($row->stat_aduan=="D")
@@ -68,7 +68,7 @@
                     <td>
                         @if ($row->stat_aduan=="S")
                             <form class="form-horizontal validate-form" role="form" 
-                                method="post" action="/invent/atkrequest/updatestat/{{$row->id}}" >
+                                method="post" action="/invent/labrequest/updatestat/{{$row->id}}" >
                                 {{ csrf_field() }}
                                 <input type="text" hidden value="D" name="stat_aduan">
                                 <input type="hidden" name="tgl_terima" id="" value="{{date('Y-m-d')}}">
@@ -82,7 +82,7 @@
                     </td>
                     <td>
                         @if ($row->stat_aduan=='D')
-                            <a class="btn btn-primary" href="/invent/atkrequest/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">
+                            <a class="btn btn-primary" href="/invent/labrequest/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">
                                 CETAK <i class="glyphicon glyphicon-print"></i>
                             </a>
                         @endif
