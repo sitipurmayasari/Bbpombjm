@@ -238,6 +238,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/amdk/permit','Amdk\PermitController@index')->name('permit');
     //Route untuk Surat Izin Pramubakti
     Route::get('/amdk/rekpermit','Amdk\RekpermitController@index')->name('rekpermit');
+    //Route untuk Laporan Surat Izin Pramubakti
+    Route::get('/amdk/rekpermit/rekap','Amdk\RekpermitController@rekap')->name('rekpermit.rekap');
 
     //--------------------------Finance------------------------------------------
     //-----Surat Tugas--------
@@ -313,6 +315,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
       Route::get('/finance/renstrakal','Finance\RenstrakalController@index')->name('renstrakal');
       //Route untuk Rencana Bulanan
       Route::get('/finance/renta','Finance\RentaController@index')->name('renta');
+      //Route untuk Assigmnent Target
+      Route::get('/finance/asta','Finance\AstaController@index')->name('asta');
       //Route untuk laporan Renstra
       Route::get('/finance/renstrapot','Finance\RenstraPotController@index')->name('renstrapot');
       //Route untuk Eselon II
