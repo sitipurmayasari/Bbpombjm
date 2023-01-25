@@ -31,9 +31,6 @@ class LabRequestOkController extends Controller
                 ->leftJoin('users','users.id','=','sbb.users_id')
                 ->where('mengetahui_id',$peg)
                 ->where('sbb.jenis','L')
-                ->when($tahu, function ($query, $tahu) {
-                    $query->where('pejabat_id', $tahu->id);
-                })
                 ->when($request->keyword, function ($query) use ($request) {
                     $query->where('tanggal','LIKE','%'.$request->keyword.'%')
                             ->orWhere('nomor', 'LIKE','%'.$request->keyword.'%')
