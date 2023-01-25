@@ -1,3 +1,4 @@
+@inject('injectQuery', 'App\InjectQuery')
 @extends('layouts.ren')
 @section('breadcrumb')
     <li>Indikator Kinerja</li>  
@@ -38,7 +39,6 @@
                                     @else
                                         <option value="{{$item->id}}">{{$item->name}}</option>
                                     @endif
-                                        
                                     @endforeach
                                 </select>
                             </div>
@@ -48,9 +48,25 @@
                             for="form-field-1"> Indikator Kinerja
                             </label>
                             <div class="col-sm-10">
-                                <input type="text"  placeholder="Indikator" value="{{$data->indicator}}"
-                                        class="col-xs-10 col-sm-10 required " 
-                                        name="indicator" required />
+                                <textarea name="indicator" placeholder="Indikator" id="" rows="3"  class="col-xs-10 col-sm-10 required " >{{$data->indicator}}
+                                </textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right" 
+                            for="form-field-1"> Substansi
+                            </label>
+                            <div class="col-sm-10">
+                                <select name="divisi_id" class="col-xs-10 col-sm-10 required select2" required>
+                                    <option value="">Pilih</option>
+                                    @foreach ($div as $item)
+                                    @if ($data->divisi_id==$item->id)
+                                        <option value="{{$item->id}}" selected>{{$item->nama}}</option>
+                                    @else
+                                        <option value="{{$item->id}}">{{$item->nama}}</option>
+                                    @endif
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         </fieldset>        

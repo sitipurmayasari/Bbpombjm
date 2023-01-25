@@ -36,7 +36,8 @@ class IkuIndicatorController extends Controller
     public function store(Request $request)
     {
         
-        Indicator::create($request->all());
+        $data = Indicator::create($request->all());
+        LogActivity::addToLog('Simpan->Indikator Kinerja Utama, id = '.$data->id);
         return redirect('/finance/ikuIndicator')->with('sukses','Data Tersimpan');
     }
    
@@ -53,6 +54,7 @@ class IkuIndicatorController extends Controller
     {
         $data = Indicator::find($id);
         $data->update($request->all());
+        LogActivity::addToLog('Ubah->Indikator Kinerja Utama, id = '.$id);
         return redirect('/finance/ikuIndicator')->with('sukses','Data Diperbaharui');
     }
 

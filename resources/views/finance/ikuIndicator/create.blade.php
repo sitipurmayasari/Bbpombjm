@@ -43,9 +43,20 @@
                             for="form-field-1"> Indikator Kinerja
                             </label>
                             <div class="col-sm-10">
-                                <input type="text"  placeholder="Indikator" 
-                                        class="col-xs-10 col-sm-10 required " 
-                                        name="indicator" required />
+                                <textarea name="indicator" placeholder="Indikator" id="" rows="3"  class="col-xs-10 col-sm-10 required " ></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right" 
+                            for="form-field-1"> Substansi
+                            </label>
+                            <div class="col-sm-10">
+                                <select name="divisi_id" class="col-xs-10 col-sm-10 required select2" required>
+                                    <option value="">Pilih</option>
+                                    @foreach ($div as $item)
+                                        <option value="{{$item->id}}">{{$item->nama}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         </fieldset>        
