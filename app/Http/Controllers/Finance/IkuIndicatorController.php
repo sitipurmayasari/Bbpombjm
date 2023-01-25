@@ -4,8 +4,12 @@ namespace App\Http\Controllers\Finance;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use App\Target;
 use App\Indicator;
+use App\Divisi;
+use LogActivity;
 
 class IkuIndicatorController extends Controller
 {
@@ -24,8 +28,9 @@ class IkuIndicatorController extends Controller
 
     public function create()
     {
+        $div    = Divisi::where('id','!=','1')->get();
         $target = Target::all();
-        return view('finance/ikuIndicator.create',compact('target'));
+        return view('finance/ikuIndicator.create',compact('target','div'));
     }
 
     public function store(Request $request)
@@ -37,9 +42,10 @@ class IkuIndicatorController extends Controller
    
     public function edit($id)
     {
+        $div    = Divisi::where('id','!=','1')->get();
         $target = Target::all();
         $data = Indicator::where('id',$id)->first();
-        return view('finance/ikuIndicator.edit',compact('data','target'));
+        return view('finance/ikuIndicator.edit',compact('data','target','div'));
     }
 
    
