@@ -162,7 +162,7 @@
                                
                 </td>
                 <td class="ttd">
-                    Mengetahui    
+                    Mengetahui
                 </td>
                 <td class="ttd">Yang Meminta</td>
                 <td class="ttd">Pengelola Persediaan</td>
@@ -170,9 +170,9 @@
             <tr >
                 <td class="ttd"></td>
                 <td class="ttd">
-                    @if ($tahubaru->ttd != null)
-                    <img src="{{$tahubaru->ttd->getFoto()}}"  style="height:50px;width:50px;">
-               @endif
+                   @if ($tahubaru->ttd != null)
+                        <img src="{{$tahubaru->ttd->getFoto()}}"  style="height:50px;width:50px;">
+                   @endif
                 </td>
                 <td class="ttd"></td>
                 <td class="ttd">
@@ -208,7 +208,7 @@
                     
                 </td>
                 <td class="ttd">NIP. 
-                        {{$tahubaru->no_pegawai}}
+                    {{$tahubaru->no_pegawai}}
                     
                 </td>
                 <td class="ttd">
@@ -255,7 +255,7 @@
                 <td class="rapi" style="width: 20%; ">Nomor</td>
                 <td  class="rapi"style="width: 2%;">:</td>
                 <td class="rapi">
-                   <b> {{$data->nomor}}</b>
+                    <b>{{$data->nomor}}</b>
                 </td>
             </tr>
         </table>
