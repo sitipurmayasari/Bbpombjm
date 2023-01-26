@@ -105,9 +105,10 @@ class LabRequestController extends Controller
                     ->first();
 
         $mengetahui = pejabat::where('id',$data->pejabat_id)->first();
+        $tahubaru = User::where('id',$data->mengetahui_id)->first();
         
         if ($data->mengetahui_id != null) {
-            $pdf = PDF::loadview('invent/labrequest.print2',compact('data','isi','petugas','mengetahui','menyetujui','kel'));
+            $pdf = PDF::loadview('invent/labrequest.print2',compact('data','isi','petugas','tahubaru','menyetujui','kel'));
             return $pdf->stream();
         } else {
             $pdf = PDF::loadview('invent/labrequest.print',compact('data','isi','petugas','mengetahui','menyetujui','kel'));
