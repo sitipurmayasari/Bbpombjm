@@ -139,7 +139,6 @@ class DisposableController extends Controller
         $this->validate($request,[
             'entry_date' => 'required',
             'stock'      => 'required',
-            'exp_date'   => 'required',
         ]);
         $stok = Entrystock::create($request->all());
         return redirect('/invent/disposable/stock/'.$stok->inventaris_id)->with('sukses','Data Tersimpan');

@@ -139,8 +139,7 @@ class LabSuplyController extends Controller
     {
         $this->validate($request,[
             'entry_date' => 'required',
-            'stock'      => 'required',
-            'exp_date'   => 'required',
+            'stock'      => 'required'
         ]);
         $stok = Entrystock::create($request->all());
         return redirect('/invent/labsuply/stock/'.$stok->inventaris_id)->with('sukses','Data Tersimpan');

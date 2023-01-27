@@ -185,7 +185,7 @@
             <tr>
                <td style="text-align:center;">
                    Mengetahui, <br>
-                    @if ($mengetahui != null)
+                    {{-- @if ($mengetahui != null)
                         @if ($mengetahui->pjs != null)
                             {{$mengetahui->pjs}}
                             {{$mengetahui->jabatan->jabatan}} 
@@ -203,7 +203,7 @@
                        
                     @else
                         SILAHKAN CEK SETUP PEJABAT
-                    @endif   
+                    @endif    --}}
                     <br><br><br><br><br>
                </td>
                <td  style="text-align:center;">Yang Meminta, </td>

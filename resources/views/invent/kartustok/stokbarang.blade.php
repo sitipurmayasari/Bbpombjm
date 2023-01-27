@@ -118,7 +118,7 @@
                                <td style="text-align: center">{{$item->keluar}}  {{$item->barang->satuan->satuan}}</td>
                                <td style="text-align: center">{{$item->stock}}  {{$item->barang->satuan->satuan}}</td>
                                <td>
-                                    @if ($item->barang->kind == 'L')
+                                    @if ($item->barang->kind == 'L' && $item->exp_date != null)
                                         Exp. Date : {{$item->exp_date}}
                                     @else
                                         -

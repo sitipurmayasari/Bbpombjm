@@ -165,8 +165,7 @@ class BarangkeluarController extends Controller
                         'entry_date' => $request->today,
                         'inventaris_id' => $request->inventaris_id[$i],
                         'stock' => $request->sisa[$i],
-                        'keluar' => $request->jumlah[$i],
-                        'exp_date' => $request->today
+                        'keluar' => $request->jumlah[$i]
                         ];
                      Entrystock::create($stok);
                 }
