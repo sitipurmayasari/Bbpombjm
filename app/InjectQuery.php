@@ -28,6 +28,8 @@ use App\Mailclasification;
 use App\Mailsubgroup;
 use App\Mailgroup;
 use App\Kontrol;
+use App\Indicator_det;
+use App\Divisi;
 use Illuminate\Support\Facades\DB;
 
 class InjectQuery
@@ -212,12 +214,20 @@ class InjectQuery
             return $data;
     }
 
+    public function hitdataed($id)
+    {
+        $data = Entrystock::Where('inventaris_id',$id)->where('exp_date','!=',NULL)->orderby('id','desc')
+                            ->first();
+            return $data;
+    }
+
     public function hitdatalast($id)
     {
         $data = Entrystock::Where('inventaris_id',$id)->orderby('id','desc')
                             ->first();
             return $data;
     }
+
 
     public function hitsisaexp2($id, $exp_date)
     {
@@ -297,6 +307,13 @@ class InjectQuery
     // }
 
 //--------------------------------------------Renstra------------------------------------------------------------------
+    public function finddivisi($id, $indi){
+        $isi = Indicator_det::where('indicator_id',$indi)
+                            ->where('divisi_id',$id)
+                            ->first();
+        return $isi;
+    }
+
     public function getRenstra($id, $year,$indi){
         $isi = Renstranas_detail::where('years',$year)
                                 ->where('renstranas_id',$id)

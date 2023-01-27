@@ -47,7 +47,6 @@ class DashboardController extends Controller
                             ->LeftJoin('inventaris','inventaris.id','entrystock.inventaris_id')  
                             ->Where('jenis_barang',15)
                             ->where('stockawal','!=',0)
-                            ->where('exp_date','!=',NULL)
                             ->WhereRaw('exp_date between CURDATE() AND CURDATE()+ INTERVAL 4 MONTH')
                             ->GroupBy('inventaris_id')
                             ->get();  
@@ -56,7 +55,6 @@ class DashboardController extends Controller
                             ->LeftJoin('inventaris','inventaris.id','entrystock.inventaris_id')  
                             ->Where('jenis_barang',2)
                             ->where('stockawal','!=',0)
-                            ->where('exp_date','!=',NULL)
                             ->WhereRaw('exp_date between CURDATE() AND CURDATE()+ INTERVAL 4 MONTH')
                             ->GroupBy('inventaris_id')
                             ->get();  

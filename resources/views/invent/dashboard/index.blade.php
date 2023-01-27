@@ -84,6 +84,7 @@
               @endphp
               @foreach($kimia as $row)
                  @php
+                          $ed =  $injectQuery->hitdataed($row->inventaris_id);
                           $last = $injectQuery->hitdatalast2($row->inventaris_id);
                           $total = $injectQuery->hitsisaexp2($row->inventaris_id, $row->exp_date);
                           $ins = $row->stockawal;
@@ -97,7 +98,7 @@
                         {{$sisanya}}
                     </td>
                     <td>
-                      {{$last->exp_date}}
+                      {{$ed->exp_date}}
                     </td>
                     <td>
                       {{$row->barang->no_seri}}
@@ -214,6 +215,7 @@
                 @endphp
                 @foreach($mikro as $row)
                    @php
+                            $ed =  $injectQuery->hitdataed($row->inventaris_id);
                             $last = $injectQuery->hitdatalast($row->inventaris_id);
                             $total = $injectQuery->hitsisaexp($row->inventaris_id, $row->exp_date);
                             $ins = $row->stockawal;
@@ -227,7 +229,7 @@
                           {{$sisanya}}
                       </td>
                       <td>
-                        {{$last->exp_date}}
+                        {{$ed->exp_date}}
                       </td>
                       <td>
                         {{$row->barang->no_seri}}
