@@ -261,15 +261,6 @@
     //Route untuk laporan RAPK
     Route::post('/finance/lapRAPK/cetak','Finance\LapRAPKController@cetak')->name('lapRAPK.cetak');
 
-    //Route untuk Assigmnent Target
-    Route::get('/finance/asta/create','Finance\AstaController@create')->name('asta.create');
-    Route::post('finance/asta/store','Finance\AstaController@store')->name('asta.store');
-    Route::get('finance/asta/edit/{id}','Finance\AstaController@edit')->name('asta.edit');
-    Route::post('finance/asta/update/{id}','Finance\AstaController@update')->name('asta.update');
-    Route::get('finance/asta/delete/{id}','Finance\AstaController@delete')->name('asta.delete');
-
-    //surat dinas
-
     //Route untuk buku ST
     Route::get('/finance/stbook/create','Finance\STBookController@create')->name('stbook.create');
     Route::post('finance/stbook/store','Finance\STBookController@store')->name('stbook.store');

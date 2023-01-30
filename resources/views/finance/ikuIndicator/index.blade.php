@@ -38,6 +38,7 @@
                 <th width="40px">No</th>
                 <th>Sasaran Kegiatan</th>
                 <th>Indikator</th>
+                <th>Substansi</th>
                 <th  class="col-md-2">Aksi</th>
             </thead>
             <tbody>   	
@@ -46,6 +47,10 @@
                     <td>{{$data->firstItem() + $key}}</td>
                     <td>{{$row->target->name}}</td>
                     <td>{{$row->indicator}}</td>
+                    <td>@if ($row->divisi_id != null)
+                        {{$row->div->nama}}
+                        @endif
+                    </td>
                     <td>
                         <a href="/finance/ikuIndicator/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>
