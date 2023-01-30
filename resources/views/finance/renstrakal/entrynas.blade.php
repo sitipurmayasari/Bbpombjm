@@ -14,11 +14,10 @@ method="post" action="{{route('renstrakal.store')}}" enctype="multipart/form-dat
 <div class="col-sm-12">
     @php
         $tahun = $data->yearfrom;
-        $i = [
-                [1], [2],[3],[4],[5]
-            ];
+       
     @endphp
-    @foreach ($i as $item)
+    
+    @for ($i=0; $i <= $data->yearto - $data->yearfrom;$i++)
     <div class="widget-box">
         <div class="widget-header">
             <h4 class="widget-title"> Tambah Renstra Balai Tahun {{$tahun}}</h4>
@@ -55,8 +54,9 @@ method="post" action="{{route('renstrakal.store')}}" enctype="multipart/form-dat
                             @php
                                 $isi = $injectQuery->getNasional($tahun,$row->id);
                             @endphp
-                            <td><input type="text" name="targetnas[]" readonly value="{{$isi->persentages}}"></td>
-                            <td><input type="number" name="persentages[]" value="0" step="0.01"></td>
+                        <td><input type="text" name="targetnas[]" readonly value="{{$isi->persentages}}"></td>
+                        {{-- <td><input type="text" name="targetnas[]" readonly value=""></td> --}}
+                        <td><input type="number" name="persentages[]" value="0" step="0.01"></td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -67,7 +67,7 @@ method="post" action="{{route('renstrakal.store')}}" enctype="multipart/form-dat
     @php
         $tahun++;
     @endphp
-    @endforeach
+    @endfor
     
 </div>
 <div class="panel-footer">

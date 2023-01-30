@@ -42,16 +42,6 @@ method="post" action="{{route('renstrakal.generate')}}" enctype="multipart/form-
                 </div>
                <div class="form-group">
                    <label class="col-sm-2 control-label no-padding-right" 
-                   for="form-field-1"> Jenis Renstra
-                   </label>
-                   <div class="col-sm-8">
-                       <input type="radio" value="AWAL" checked name="types" id="A"/> &nbsp; Awal &nbsp;
-                       <input type="radio" value="REVIU" name="types" id="V"/> &nbsp; Reviu  &nbsp;
-                       <input type="radio" value="REVISI" name="types" id="R"/> &nbsp; Revisi
-                   </div>
-               </div>
-               <div class="form-group">
-                   <label class="col-sm-2 control-label no-padding-right" 
                    for="form-field-1"> Nama File
                    </label>
                    <div class="col-sm-8">

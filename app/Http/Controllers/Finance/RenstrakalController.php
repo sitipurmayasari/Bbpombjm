@@ -41,12 +41,12 @@ class RenstrakalController extends Controller
     {
         $this->validate($request,[
             'yearfrom' => 'required',
-            'tanggal' => 'required',
+            'dates' => 'required',
             'filename' => 'required'
         ]);
         $data = Renstrakal::create($request->all());
         $rens = $data->id;
-        LogActivity::addToLog('Ubah->Renstra Nasional, id = '.$data->id);
+        LogActivity::addToLog('Ubah->Renstra Balai, id = '.$data->id);
         return redirect('/finance/renstrakal/entrynas/'.$rens);
     }
 
@@ -100,7 +100,7 @@ class RenstrakalController extends Controller
             
         }
     DB::commit();
-    LogActivity::addToLog('Ubah->Renstra Nasional, id = '.$data->id);
+    LogActivity::addToLog('Ubah->Renstra Balai, id = '.$data->id);
     return redirect('/finance/renstrakal')->with('sukses','Data Berhasil Diperbaharui');
     }
 

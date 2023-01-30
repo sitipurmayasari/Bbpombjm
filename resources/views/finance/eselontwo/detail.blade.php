@@ -17,7 +17,8 @@
     <style>
         @page {
             size: A4 landscape;
-            margin: 150px 0px 100px 0px;
+            margin: 100px 50px 50px 50px;
+            line-height: 1.5;
         }
         html, table{
             font-family: "Bookman Old Style";
@@ -25,16 +26,13 @@
         #isi{
             font-family: "Bookman Old Style";
             font-size: 12;
-            margin-left: 10%;
-            margin-right: 10%;
-            line-height: 2;
+            /* margin-left: 10%;
+            margin-right: 10%; */ 
         }
         
         table, td, tr {
             /* text-align: justify; */
             vertical-align: top;
-            line-height: 2;
-            
             /* border: solid; */
         }
 
@@ -83,15 +81,23 @@
             <thead style="background: greenyellow">
                 <tr>
                     <th class="tabelisi" style="width: 25%" rowspan="2">Sasaran Kinerja</th>
-                    <th class="tabelisi" style="width: 45%" rowspan="2">Indikator Kinerja</th>
-                    <th class="tabelisi" style="width: 7%" rowspan="2">Target Tahunan</th>
-                    <th class="tabelisi"  colspan="4">Target Tahunan</th>
+                    <th class="tabelisi" style="width: 25%" rowspan="2">Indikator Kinerja</th>
+                    <th class="tabelisi" rowspan="2">Target <br> Tahunan</th>
+                    <th class="tabelisi"  colspan="12">Target Tahunan</th>
                 </tr>
                 <tr>
-                    <th class="tabelisi">TWI</th>
-                    <th class="tabelisi" >TWII</th>
-                    <th class="tabelisi" >TWIII</th>
-                    <th class="tabelisi" style="width: 10%">TWIV</th>
+                    <th class="tabelisi">Jan</th>
+                    <th class="tabelisi">Feb</th>
+                    <th class="tabelisi">Mar</th>
+                    <th class="tabelisi">Apr</th>
+                    <th class="tabelisi">Mei</th>
+                    <th class="tabelisi">Jun</th>
+                    <th class="tabelisi">Jul</th>
+                    <th class="tabelisi">Agt</th>
+                    <th class="tabelisi">Sep</th>
+                    <th class="tabelisi">Okt</th>
+                    <th class="tabelisi">Nov</th>
+                    <th class="tabelisi">Des</th>
                 </tr>
             </thead>
             <tbody>
@@ -100,20 +106,21 @@
                 @endphp
                 @foreach ($ese as $item)
                     <tr>
-                        {{-- @if ($target!=$item->indi->target_id)
-                            @php
-                                $hitung =$injectQuery->getTarget($item->indi->target_id);
-                                $cell = $hitung->rows;
-                            @endphp
-                            <td class="tabelisi" rowspan="{{$cell}}">{{$item->indi->target->name}}</td>
-                        @endif --}}
                         <td class="tabelisi" >{{$item->indi->target->name}}</td>
                         <td class="tabelisi">{{$item->indi->indicator}}</td>
-                        <td class="tabelisi" style="text-align: center;">{{$item->persentages}}</td>
-                        <td class="tabelisi" style="text-align: center;">{{$item->twI}}</td>
-                        <td class="tabelisi" style="text-align: center;">{{$item->twII}}</td>
-                        <td class="tabelisi" style="text-align: center;">{{$item->twIII}}</td>
-                        <td class="tabelisi" style="text-align: center;">{{$item->twIV}}</td>
+                        <td class="tabelisi" style="text-align: center;">{{$item->setahun}}</td>
+                        <td class="tabelisi" style="text-align: center;">{{$item->jan}}</td>
+                        <td class="tabelisi" style="text-align: center;">{{$item->feb}}</td>
+                        <td class="tabelisi" style="text-align: center;">{{$item->mar}}</td>
+                        <td class="tabelisi" style="text-align: center;">{{$item->apr}}</td>
+                        <td class="tabelisi" style="text-align: center;">{{$item->mei}}</td>
+                        <td class="tabelisi" style="text-align: center;">{{$item->jun}}</td>
+                        <td class="tabelisi" style="text-align: center;">{{$item->jul}}</td>
+                        <td class="tabelisi" style="text-align: center;">{{$item->aug}}</td>
+                        <td class="tabelisi" style="text-align: center;">{{$item->sep}}</td>
+                        <td class="tabelisi" style="text-align: center;">{{$item->oct}}</td>
+                        <td class="tabelisi" style="text-align: center;">{{$item->nov}}</td>
+                        <td class="tabelisi" style="text-align: center;">{{$item->dec}}</td>
                     </tr>
                 @php
                     $target=$item->indi->target_id;
@@ -124,7 +131,7 @@
      </div>
      <br>
      <div class="ttdini">
-         <table style="width: 100%">
+         <table style="width: 100%">y8/n
              <tr>
                  <td ></td>
                  <td></td>
@@ -137,7 +144,7 @@
                  <td style="text-align: center;"><b>Pihak Pertama</b></td>
              </tr>
              <tr>
-                 <td><br><br></td>
+                <td style="height: 90px;"></td>
                  <td></td>
                  <td></td>
              </tr>

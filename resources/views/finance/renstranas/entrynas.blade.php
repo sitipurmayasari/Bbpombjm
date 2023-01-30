@@ -13,11 +13,10 @@ method="post" action="{{route('renstranas.store')}}" enctype="multipart/form-dat
 <div class="col-sm-12">
     @php
         $tahun = $data->yearfrom;
-        $i = [
-                [1], [2],[3],[4],[5]
-            ];
+    
     @endphp
-    @foreach ($i as $item)
+
+    @for ($i=0; $i <= $data->yearto - $data->yearfrom;$i++)
     <div class="widget-box">
         <div class="widget-header">
             <h4 class="widget-title"> Tambah Renstra Nasional Tahun {{$tahun}}</h4>
@@ -61,7 +60,7 @@ method="post" action="{{route('renstranas.store')}}" enctype="multipart/form-dat
     @php
         $tahun++;
     @endphp
-    @endforeach
+     @endfor
     
 </div>
 <div class="panel-footer">

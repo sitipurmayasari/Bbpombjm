@@ -8,6 +8,28 @@
 @section('content')
 @include('layouts.validasi')
 
+<style>
+    th{
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .scrollit{
+        overflow: auto;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+    -moz-appearance: textfield;
+    }
+</style>
+
 <form class="form-horizontal validate-form" role="form" 
 method="post" action="{{route('eselontwo.store')}}" enctype="multipart/form-data"   >
 {{ csrf_field() }}
@@ -18,18 +40,30 @@ method="post" action="{{route('eselontwo.store')}}" enctype="multipart/form-data
        <div class="panel-body">
            <table  id="simple-table" class="table  table-bordered table-hover">
                <thead>
-                    <tr>
-                        <th style="text-align: center" rowspan="2">No</th>
-                        <th style="text-align: center" rowspan="2" >Indikator</th>
-                        <th style="text-align: center" rowspan="2" >Target</th>
-                        <th style="text-align: center" colspan="4" >Target</th>
-                    </tr>
-                    <tr>
-                        <th style="text-align: center" >TWI</th>
-                        <th style="text-align: center">TWII</th>
-                        <th style="text-align: center">TWIII</th>
-                        <th style="text-align: center">TWIV</th>
-                    </tr>
+                <tr>
+                    <th rowspan="2" style="width: 40px;">No</th>
+                    <th rowspan="2" style="width: 300px;">Indikator</th>
+                    <th rowspan="2" style="width: 80px;">Target Renstra {{$data->years}} </th>
+                    <th rowspan="2" style="width: 80px;">Target {{$data->years}} </th>
+                    <th colspan="3">TRIWULAN I</th>
+                    <th colspan="3">TRIWULAN II</th>
+                    <th colspan="3">TRIWULAN III</th>
+                    <th colspan="3">TRIWULAN IV</th>
+                </tr>
+                <tr>
+                    <th style="width: 80px;" >Jan</th>
+                    <th style="width: 80px;" >Feb</th>
+                    <th style="width: 80px;" >Mar </th>
+                    <th style="width: 80px;" >Apr</th>
+                    <th style="width: 80px;" >Mei</th>
+                    <th style="width: 80px;" >Jun</th>
+                    <th style="width: 80px;" >Jul</th>
+                    <th style="width: 80px;" >Aug</th>
+                    <th style="width: 80px;" >Sep</th>
+                    <th style="width: 80px;" >Oct</th>
+                    <th style="width: 80px;" >Nov</th>
+                    <th style="width: 80px;" >Dec</th>
+                </tr>
                </thead>
                <tbody>
                    @php
@@ -46,11 +80,44 @@ method="post" action="{{route('eselontwo.store')}}" enctype="multipart/form-data
                             @php
                                 $isi = $injectQuery->getRenstrakal($data->renstrakal_id, $data->years,$row->id);
                             @endphp
-                            <td><input type="text" name="target[]" readonly value="{{$isi->persentages}}" class="col-sm-6"></td>
-                            <td><input type="number" name="twI[]" value="0" step="0.01" class="col-sm-10"></td>
-                            <td><input type="number" name="twII[]" value="0" step="0.01" class="col-sm-10"></td>
-                            <td><input type="number" name="twIII[]" value="0" step="0.01" class="col-sm-10"></td>
-                            <td><input type="number" name="twIV[]" value="0" step="0.01" class="col-sm-10"></td>
+                            <td><input type="text" name="targetrens[]" readonly value="{{$isi->persentages}}"  class="form-control"></td>
+                            <td><input type="text" name="setahun[]" value="0" step="0.1" class="col-sm-10"></td>
+                            <td style="vertical-align:top;">
+                                <input type="number" class="form-control" value="0" step="0.1" name="jan[]" >
+                            </td>
+                            <td style="vertical-align:top;">
+                                <input type="number" class="form-control" value="0" step="0.1" name="feb[]">
+                            </td>
+                            <td style="vertical-align:top;">
+                                <input type="number" class="form-control" value="0" step="0.1" name="mar[]">
+                            </td>
+                            <td style="vertical-align:top;">
+                                <input type="number" class="form-control" value="0" step="0.1" name="apr[]">
+                            </td>
+                            <td style="vertical-align:top;">
+                                <input type="number" class="form-control" value="0" step="0.1" name="mei[]">
+                            </td>
+                            <td style="vertical-align:top;">
+                                <input type="number" class="form-control" value="0" step="0.1" name="jun[]">
+                            </td>
+                            <td style="vertical-align:top;">
+                                <input type="number" class="form-control" value="0" step="0.1" name="jul[]">
+                            </td>
+                            <td style="vertical-align:top;">
+                                <input type="number" class="form-control" value="0" step="0.1" name="aug[]">
+                            </td>
+                            <td style="vertical-align:top;">
+                                <input type="number" class="form-control" value="0" step="0.1" name="sep[]">
+                            </td>
+                            <td style="vertical-align:top;">
+                                <input type="number" class="form-control" value="0" step="0.1" name="oct[]">
+                            </td>
+                            <td style="vertical-align:top;">
+                                <input type="number" class="form-control" value="0" step="0.1" name="nov[]">
+                            </td>
+                            <td style="vertical-align:top;">
+                                <input type="number" class="form-control" value="0" step="0.1" name="dec[]">
+                            </td>
                         </tr>
                     @endforeach
                </tbody>

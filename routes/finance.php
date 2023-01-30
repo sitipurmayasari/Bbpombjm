@@ -261,7 +261,12 @@
     //Route untuk laporan RAPK
     Route::post('/finance/lapRAPK/cetak','Finance\LapRAPKController@cetak')->name('lapRAPK.cetak');
 
-
+    //Route untuk Assigmnent Target
+    Route::get('/finance/asta/create','Finance\AstaController@create')->name('asta.create');
+    Route::post('finance/asta/store','Finance\AstaController@store')->name('asta.store');
+    Route::get('finance/asta/edit/{id}','Finance\AstaController@edit')->name('asta.edit');
+    Route::post('finance/asta/update/{id}','Finance\AstaController@update')->name('asta.update');
+    Route::get('finance/asta/delete/{id}','Finance\AstaController@delete')->name('asta.delete');
 
     //surat dinas
 
@@ -298,4 +303,6 @@
     Route::get('finance/receipt/riil/{id}','Finance\ReceiptController@riil')->name('receipt.riil');
     Route::get('finance/receipt/nominatif/{id}','Finance\ReceiptController@nominatif')->name('receipt.nominatif');
     Route::get('finance/receipt/delete/{id}','Finance\ReceiptController@delete')->name('receipt.delete');
+
+
     

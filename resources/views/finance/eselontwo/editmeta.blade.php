@@ -33,16 +33,8 @@ method="post" action="/finance/eselontwo/updatemeta/{{$data->id}}">
                    for="form-field-1"> Dasar Renstra
                    </label>
                    <div class="col-sm-8">
-                       <select name="renstrakal_id" class="col-xs-10 col-sm-10 required select2" required >
-                            <option value="">Pilih Renstra</option>
-                            @foreach ($renstra as $item)
-                               @if ($item->id == $data->renstrakal_id)
-                               <option value="{{$item->id}}" selected>{{$item->filename}} ({{$item->yearfrom}}-{{$item->yearto}})</option>
-                               @else
-                               <option value="{{$item->id}}">{{$item->filename}} ({{$item->yearfrom}}-{{$item->yearto}})</option>
-                               @endif
-                            @endforeach
-                       </select>
+                    <input type="hidden" name="renstrakal_id" value="{{$data->renstrakal_id}}">
+                    <input type="text" class="col-xs-10 col-sm-10" value="{{$data->renstrakal->filename}} ({{$data->renstrakal->yearfrom}}-{{$data->renstrakal->yearto}})" readonly>
                    </div>
                </div>
                <div class="form-group">
@@ -114,7 +106,7 @@ method="post" action="/finance/eselontwo/updatemeta/{{$data->id}}">
         </button>
     </form>
         <a href="/finance/eselontwo/edit/{{$data->id}}" class="btn btn-sm">
-            <i class="glyphicon glyphicon-arrow-right"> UPDATE PER TW</i>
+            <i class="glyphicon glyphicon-arrow-right"> UPDATE DATA PER TAHUN</i>
         </a>
     </div>
 </div>

@@ -17,7 +17,7 @@ use App\User;
 use Excel;
 use PDF;
 use DateTime;
-
+use LogActivity;
 
 class EselonTwoController extends Controller
 {
@@ -36,7 +36,7 @@ class EselonTwoController extends Controller
     {
         $renstra = Renstrakal::all();
         $user = User::where('aktif','=','Y')->whereRaw('jabatan_id IN ("6","7","11")')->get();
-        $kapom = User::where('aktif','=','Y')->where('jabatan_id','=','1')->get();
+        $kapom = User::where('jabatan_id','=','1')->get();
         return view('finance/eselontwo.create',compact('renstra','user','kapom'));
     }
 
@@ -44,7 +44,7 @@ class EselonTwoController extends Controller
     {
         $data = Eselontwo::create($request->all());
         $rens = $data->id;
-
+        LogActivity::addToLog('Simpan->PK Eselon II, id = '.$rens);
         return redirect('/finance/eselontwo/entrydata/'.$rens);
     }
 
@@ -62,10 +62,19 @@ class EselonTwoController extends Controller
                 $data = [
                     'indicator_id'  => $request->indicator_id[$i],
                     'eselontwo_id'  => $request->eselontwo_id[$i],
-                    'twI'           => $request->twI[$i],
-                    'twII'          => $request->twII[$i],
-                    'twIII'         => $request->twIII[$i],
-                    'twIV'          => $request->twIV[$i]
+                    'setahun'  => $request->setahun[$i],
+                    'jan'      => $request->jan[$i],
+                    'feb'      => $request->feb[$i],
+                    'mar'      => $request->mar[$i],
+                    'apr'      => $request->apr[$i],
+                    'mei'      => $request->mei[$i],
+                    'jun'      => $request->jun[$i],
+                    'jul'      => $request->jul[$i],
+                    'aug'      => $request->aug[$i],
+                    'sep'      => $request->sep[$i],
+                    'oct'      => $request->oct[$i],
+                    'nov'      => $request->nov[$i],
+                    'dec'      => $request->dec[$i]
                 ];
                 Eselontwo_detail::create($data);
             }
@@ -85,18 +94,28 @@ class EselonTwoController extends Controller
    
     public function update(Request $request, $id)
     {
+        LogActivity::addToLog('Update->PK Eselon II, id = '.$id);
+
         DB::beginTransaction();
         for ($i = 0; $i < count($request->input('indicator_id')); $i++){
             $data = [
                 'indicator_id' => $request->indicator_id[$i],
-                'twI'          => $request->twI[$i],
-                'twII'         => $request->twII[$i],
-                'twIII'        => $request->twIII[$i],
-                'twIV'         => $request->twIV[$i]
+                'setahun'      => $request->setahun[$i],
+                    'jan'      => $request->jan[$i],
+                    'feb'      => $request->feb[$i],
+                    'mar'      => $request->mar[$i],
+                    'apr'      => $request->apr[$i],
+                    'mei'      => $request->mei[$i],
+                    'jun'      => $request->jun[$i],
+                    'jul'      => $request->jul[$i],
+                    'aug'      => $request->aug[$i],
+                    'sep'      => $request->sep[$i],
+                    'oct'      => $request->oct[$i],
+                    'nov'      => $request->nov[$i],
+                    'dec'      => $request->dec[$i]
             ];
             Eselontwo_detail::where('id', $request->id[$i])
-                                ->update($data);
-            
+                            ->update($data);
         }
     DB::commit();
 
@@ -108,13 +127,15 @@ class EselonTwoController extends Controller
         $data = Eselontwo::where('id',$id)->first();
         $renstra = Renstrakal::all();
         $user = User::where('aktif','=','Y')->whereRaw('jabatan_id IN ("6","7","11")')->get();
-        $kapom = User::where('aktif','=','Y')->where('jabatan_id','=','1')->get();
+        $kapom = User::where('jabatan_id','=','1')->get();
         return view('finance/eselontwo/editmeta',compact('data','renstra','user','kapom'));
     }
 
 
     public function updatemeta(Request $request, $id)
     {
+        LogActivity::addToLog('Update->PK Eselon II, id = '.$id);
+        
         $data = Eselontwo::find($id);
         $data->update($request->all());
         return redirect('/finance/eselontwo')->with('sukses','Data Diperbaharui');

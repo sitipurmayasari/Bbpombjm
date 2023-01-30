@@ -12,7 +12,8 @@
     <style>
         @page {
             size: A4;
-            margin: 150px 0px 100px 0px;
+            margin: 150px 0px 80px 0px;
+            line-height: 1.5;
         }
         html, table{
             font-family: "Bookman Old Style";
@@ -22,13 +23,13 @@
             font-size: 12;
             margin-left: 10%;
             margin-right: 10%;
-            line-height: 2;
+            /* line-height: ; */
         }
         
         table, td, tr {
             /* text-align: justify; */
             vertical-align: top;
-            line-height: 2;
+           
             
             /* border: solid; */
         }
@@ -119,7 +120,7 @@
     <div class="ttdini">
         <table style="width: 100%">
             <tr>
-                <td ></td>
+                <td></td>
                 <td></td>
                 <td style="text-align: center;">Banjarmasin, {{tgl_indo($data->dates)}}
                 </td>
@@ -130,7 +131,7 @@
                 <td style="text-align: center;"><b>Pihak Pertama</b></td>
             </tr>
             <tr>
-                <td><br><br></td>
+                <td style="height: 90px;"></td>
                 <td></td>
                 <td></td>
             </tr>
@@ -145,22 +146,22 @@
             </tr>
         </table>
     </div>
+    <div class="col-md-12" style="text-align: center;">
+        <b  style="font-size: 12;">
+            PERJANJIAN KINERJA TAHUN {{$data->years}} <br>
+            BALAI BESAR PENGAWAS OBAT DAN MAKANAN DI BANJARMASIN <br>
+        </b>
+    </div>
     <div class="col-sm-12" style="text-align: center">
-        <div style="align=center font-size: 12">
-             <b>
-                 PERJANJIAN KINERJA TAHUN {{$data->years}} <br>
-                 BALAI BESAR PENGAWAS OBAT DAN MAKANAN DI BANJARMASIN <br>
-             </b>
-             <i style="font-size: 11;">
-                 @if ($renstra->types=="AWAL")
-                     ( Renstra {{$renstra->yearfrom}}-{{$renstra->yearto}} BBPOM di Banjarmasin Tahun {{$data->years}})
-                 @else
-                     ( {{$renstra->types}} Renstra {{$renstra->yearfrom}}-{{$renstra->yearto}} BBPOM di Banjarmasin Tahun
-                         {{$data->years}}
-                 )
-                 @endif
-             </i>
-        </div>
+        <i style="font-size: 11;">
+            @if ($renstra->types=="AWAL")
+                ( Renstra {{$renstra->yearfrom}}-{{$renstra->yearto}} BBPOM di Banjarmasin Tahun {{$data->years}})
+            @else
+                ( {{$renstra->types}} Renstra {{$renstra->yearfrom}}-{{$renstra->yearto}} BBPOM di Banjarmasin Tahun
+                    {{$data->years}}
+            )
+            @endif
+        </i>
         <br>
      </div>
      <div id="isi">
@@ -211,7 +212,7 @@
                  <td style="text-align: center;"><b>Pihak Pertama</b></td>
              </tr>
              <tr>
-                 <td><br><br></td>
+                 <td style="height: 90px;"></td>
                  <td></td>
                  <td></td>
              </tr>
