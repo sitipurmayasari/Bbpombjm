@@ -456,7 +456,7 @@
                                     @endif 
                                 </i>
                             </td>
-                            <td style="text-align: center; width: 15;"><i> &nbsp; hari &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp. </i></td>
+                            <td style="text-align: center; width: 15;"><i> &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. </i></td>
                             <td style="text-align: right; width: 15%;"> 
                                 <i>
                                     @if (count($item->out->outst_destiny) == 1)
@@ -519,7 +519,7 @@
                                     {{$dataUH->tlokalkali}}
                                 </i>
                             </td>
-                            <td style="text-align: center; width: 15;"><i> &nbsp; hari &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp. </i></td>
+                            <td style="text-align: center; width: 15;"><i> &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. </i></td>
                             <td style="text-align: right; width: 15%;"> 
                                 <i>
                                     {{number_format($dataUH->tlokalcost)}}
@@ -545,7 +545,7 @@
                                 {{$dataUH->diklatkali}}
                             </i>
                         </td>
-                        <td style="text-align: center; width: 15;"><i> &nbsp; hari &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp. </i></td>
+                        <td style="text-align: center; width: 15;"><i> &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. </i></td>
                         <td style="text-align: right; width: 15%;"> 
                             <i>
                                 {{number_format($dataUH->diklatcost)}}
@@ -571,7 +571,7 @@
                                 {{$dataUH->fulldaykali}}
                             </i>
                         </td>
-                        <td style="text-align: center; width: 15;"><i> &nbsp; hari &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp. </i></td>
+                        <td style="text-align: center; width: 15;"><i> &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. </i></td>
                         <td style="text-align: right; width: 15%;"> 
                             <i>
                                 {{number_format($dataUH->fulldaycost)}}
@@ -597,7 +597,7 @@
                                 {{$dataUH->fullboardkali}}
                             </i>
                         </td>
-                        <td style="text-align: center; width: 15;"><i> &nbsp; hari &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp. </i></td>
+                        <td style="text-align: center; width: 15;"><i> &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. </i></td>
                         <td style="text-align: right; width: 15%;"> 
                             <i>
                                 {{number_format($dataUH->fullboardcost)}}
@@ -687,7 +687,7 @@
                                 {{$dataUH->halflong}}
                             </i>
                         </td>
-                        <td style="text-align: center; width: 15;"><i> &nbsp; hari &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp. </i></td>
+                        <td style="text-align: center; width: 15;"><i> &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. </i></td>
                         <td style="text-align: right; width: 15%;"> 
                             <i>
                                 {{number_format($dataUH->halfcost)}}
@@ -714,7 +714,7 @@
                                 {{$dataUH->fulllong}}
                             </i>
                         </td>
-                        <td style="text-align: center; width: 15;"><i> &nbsp; hari &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp. </i></td>
+                        <td style="text-align: center; width: 15;"><i> &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. </i></td>
                         <td style="text-align: right; width: 15%;"> 
                             <i>
                                 {{number_format($dataUH->fullcost)}}
@@ -741,7 +741,7 @@
                                 {{$dataUH->fblong}}
                             </i>
                         </td>
-                        <td style="text-align: center; width: 15;"><i> &nbsp; hari &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp. </i></td>
+                        <td style="text-align: center; width: 15;"><i> &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. </i></td>
                         <td style="text-align: right; width: 15%;"> 
                             <i>
                                 {{number_format($dataUH->fbcost)}}
@@ -831,7 +831,7 @@
                             <td style="text-align: center; width: 5%;">
                                 <i>{{$hotel->hotellong}}</i>
                             </td>
-                            <td style="text-align: center; width: 15;"><i> &nbsp; hari &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp. </i></td>
+                            <td style="text-align: center; width: 15;"><i> &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. </i></td>
                             <td style="text-align: right; width: 15%;"> 
                                 <i>{{number_format($hotel->hotelfee)}}</i>
                                 &nbsp;
@@ -900,7 +900,7 @@
                                 @endif
                             </i>
                         </td>
-                        <td style="text-align: center; width: 15;"><i> &nbsp; hari &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp. </i></td>
+                        <td style="text-align: center; width: 15;"><i> &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. </i></td>
                         <td style="text-align: right; width: 15%;"> 
                             <i>
                                 @if ($dataUH->repssum != 0)
