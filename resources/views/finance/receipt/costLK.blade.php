@@ -377,7 +377,7 @@
                     @endforeach
                 </i>
                 <table style="width: 100%">
-                    @if ($data->st->type="LK")
+                    @if ($data->st->type=="LK")
                         <tr>
                             <td style="width: 20%">
                             <i>
@@ -508,10 +508,10 @@
                                 </i> &nbsp; 
                             </td>
                         </tr>
-                    @elseif ($data->st->type="DL8")
+                    @elseif ($data->st->type=="DL8")
                         <tr>
                             <td style="width: 40%">
-                                <i>- UH DK > 8 Jam</i>
+                                <i>- Uang Harian DK > 8 Jam</i>
                             </td>
                             <td style="text-align: center; width:5%;"><i>:</i> </td>
                             <td style="text-align: center; width: 5%;">
