@@ -49,22 +49,22 @@
                                                 <option value="Taksi,Toll" selected>Taxi+Toll</option>
                                                 <option value="Uang Transport">Uang Transport</option>
                                                 <option value="Transport Lokal">Transport Lokal</option>
-                                                <option value="Pembelian BBM" >Pembelian BBM</option>
+                                                {{-- <option value="Pembelian BBM" >Pembelian BBM</option> --}}
                                             @elseif ($item2->taxitype == "Uang Transport")
                                                 <option value="Taksi,Toll" >Taxi+Toll</option>
                                                 <option value="Uang Transport" selected>Uang Transport</option>
                                                 <option value="Transport Lokal">Transport Lokal</option>
-                                                <option value="Pembelian BBM" >Pembelian BBM</option>
+                                                {{-- <option value="Pembelian BBM" >Pembelian BBM</option> --}}
                                             @elseif ($item2->taxitype == "Transport Lokal")
                                                 <option value="Taksi,Toll" >Taxi+Toll</option>
                                                 <option value="Uang Transport">Uang Transport</option>
                                                 <option value="Transport Lokal" selected>Transport Lokal</option>
-                                                <option value="Pembelian BBM" >Pembelian BBM</option>
-                                            @else
+                                                {{-- <option value="Pembelian BBM" >Pembelian BBM</option> --}}
+                                            {{-- @else
                                                 <option value="Taksi,Toll">Taxi+Toll</option>
                                                 <option value="Uang Transport">Uang Transport</option>
                                                 <option value="Transport Lokal">Transport Lokal</option>
-                                                <option value="Pembelian BBM" selected>Pembelian BBM</option>
+                                                <option value="Pembelian BBM" selected>Pembelian BBM</option> --}}
                                             @endif
                                         </select>
                                     </td>

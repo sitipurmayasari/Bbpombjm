@@ -293,7 +293,7 @@
                             '<option value="Taksi,Toll">Taxi+Toll</option>'+
                             '<option value="Uang Transport">Uang Transport</option>'+
                             '<option value="Transport Lokal">Transport Lokal</option>'+
-                            '<option value="Pembelian BBM">Pembelian BBM</option>'+
+                            // '<option value="Pembelian BBM">Pembelian BBM</option>'+
                         '</select>'+
                     '</td>'+
                     '<td><input type="text" class="form-control" name="taxiname[]" style="width: 150px;"></td>'+
