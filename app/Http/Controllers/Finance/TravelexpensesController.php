@@ -754,15 +754,9 @@ class TravelexpensesController extends Controller
     public function super8J($id)
     {
         $data       = Expenses::where('id',$id)->first();
-        $pegawai    = Outst_employee::SelectRaw('outst_employee.* ')
-                        ->leftJoin('outstation','outstation.id','=','outst_employee.outstation_id')
-                        ->leftJoin('expenses','expenses.outstation_id','=','outstation.id')
-                        ->where('expenses.id',$id)
+        $pegawai    = Outst_employee::where('outstation_id',$data->outstation_id)
                         ->get();
-        $tujuan    = Outst_destiny::SelectRaw('outst_destiny.* ')
-                        ->leftJoin('outstation','outstation.id','=','outst_destiny.outstation_id')
-                        ->leftJoin('expenses','expenses.outstation_id','=','outstation.id')
-                        ->where('expenses.id',$id)
+        $tujuan    = Outst_destiny::where('outstation_id',$data->outstation_id)
                         ->get();
         $pdf = PDF::loadview('finance/travelexpenses.super8J',compact('data','pegawai','tujuan'));
         return $pdf->stream();
