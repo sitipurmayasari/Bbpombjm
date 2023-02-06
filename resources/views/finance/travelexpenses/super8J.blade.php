@@ -67,13 +67,18 @@
     </table>
     <br>
     <p>Menyatakan dengan sesungguhnya bahwa telah melaksanakan perjalanan dinas dalam kota lebih dari 8 (delapan) jam 
-        pada tanggal {{tgl_indo($item->out->st_date)}} di Kota
+        pada tanggal 
+        {{-- {{tgl_indo($item->out->st_date)}}  --}}
         @foreach ($tujuan as $key=>$kota)
             @if ($loop->first)
-                {{$kota->destiny->capital}} 
+                @if ($kota->go_date ==  $kota->return_date)
+                    {{tgl_indo($kota->go_date)}} 
+                @else
+                    {{tgl_indo($kota->go_date)}} s/d {{tgl_indo($kota->return_date)}}
+                @endif
+                di Kota {{$kota->destiny->capital}} .
             @endif
         @endforeach
-        .
     </p>
     <p>
         Demikian surat pernyataan ini dibuat dengan sebenarnya dan apabila dikemudian hari ternyata surat pernyataan 
