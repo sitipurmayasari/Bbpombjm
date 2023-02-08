@@ -1,5 +1,4 @@
 <?php
-
   //Route untuk Kode Kementrian Lembaga
   Route::get('/finance/klcode/create','Finance\KlcodeController@create')->name('klcode.create');
   Route::post('finance/klcode/store','Finance\KlcodeController@store')->name('klcode.store');
