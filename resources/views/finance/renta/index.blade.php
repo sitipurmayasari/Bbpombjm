@@ -1,7 +1,7 @@
-@extends('layouts.ren')
+@extends('layouts.forma')
 @section('breadcrumb')
-    <li>Rencana Strategi</li>
-    <li>Rencana Target Tahunan</li>
+<li>RAPK</li>
+<li><a href="/finance/renta">Realisasi Capaian Target Substansi {{$div->nama}}</a></li>
 @endsection
 @section('content')
 
@@ -35,18 +35,52 @@
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
                 <th width="40px">No</th>
-                <th>Target Renstra</th>
-                <th>Tahun</th>
-                <th>Ket</th>
+                <th>Tanggal</th>
+                <th>Dasar Renstra</th>
+                <th>Periode</th>
+                <th>Pejabat</th>
+                {{-- <th>Cetak</th> --}}
                 <th  class="col-md-2">Aksi</th>
             </thead>
             <tbody>   	
                 @foreach($data as $key=>$row)
                 <tr>
-                    <td>{{$data->firstItem() + $key}}</td>
-                    <td>{{$row->renstrakal->filename}}</td>
-                    <td>{{$row->years}}</td>
-                    <td>{{$row->ket}}</td>
+                    <td style="text-align: center">{{$data->firstItem() + $key}}</td>
+                    <td>{{$row->dates}}</td>
+                    <td>Tahun {{$row->eselon->years}} 
+                        (dasar renstra : {{$row->eselon->renstrakal->filename}} -
+                        {{$row->eselon->renstrakal->yearfrom}} s/d {{$row->eselon->renstrakal->yearto}})</td>
+                    <td>
+                        @php
+                            if ($row->periodebln==2) {
+                            $bulannya = "Februari";
+                            } elseif ($row->periodebln==3) {
+                                $bulannya = "Maret";
+                            } elseif ($row->periodebln==4) {
+                                $bulannya = "April";
+                            } elseif ($row->periodebln==5) {
+                                $bulannya = "Mei";
+                            } elseif ($row->periodebln==6) {
+                                $bulannya = "Juni";
+                            } elseif ($row->periodebln==7) {
+                                $bulannya = "Juli";
+                            } elseif ($row->periodebln==8) {
+                                $bulannya = "Agustus";
+                            } elseif ($row->periodebln==9) {
+                                $bulannya = "September";
+                            } elseif ($row->periodebln==10) {
+                                $bulannya = "Oktober";
+                            } elseif ($row->periodebln==11) {
+                                $bulannya = "November";
+                            } elseif ($row->periodebln==12) {
+                                $bulannya = "Desember";
+                            } else {
+                                $bulannya = "Januari";
+                            }
+                        @endphp
+                        {{$bulannya}}
+                    </td>
+                    <td>{{$row->peg->name}}</td>
                     <td>
                         <a href="/finance/renta/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>

@@ -1,7 +1,7 @@
-@extends('layouts.ren')
+@extends('layouts.forma')
 @section('breadcrumb')
     <li>Rencana Strategi</li>
-    <li><a href="/finance/renta">Rencana Target Tahunan</a></li>
+    <li><a href="/finance/renta">Realisasi Capaian Target</a></li>
     <li>Ubah Data</li>
 @endsection
 @section('content')
@@ -35,32 +35,62 @@ method="post" action="/finance/renta/update/{{$data->id}}" enctype="multipart/fo
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-info">
-            <div class="panel-heading"><h3 class="panel-title">Ubah Renstra Balai</h3></div>
+            <div class="panel-heading"><h3 class="panel-title">Ubah Realisasi capaian {{$data->div->nama }}</h3></div>
             <div class="panel-body">
                 <div class="col-md-12">
                     <br>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1">Jenis Renstra
+                        <label class="col-sm-3 control-label no-padding-right" 
+                        for="form-field-1">Tanggal
                         </label>
                         <div class="col-sm-8">
-                            <input type="text" value="{{$data->renstrakal->filename}}"   class="col-xs-10 col-sm-10" readonly>
+                            <input type="date" value="{{$data->dates}}"
+                                    class="col-xs-3 col-sm-3 " />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1">pilih Tahun
+                        <label class="col-sm-3 control-label no-padding-right" 
+                        for="form-field-1">Nama
                         </label>
                         <div class="col-sm-8">
-                            <input type="text" value="{{$data->years}}"   class="col-xs-10 col-sm-10" readonly>
+                           <input type="text" class="col-xs-10 col-sm-10" value="{{$data->peg->name}}" readonly>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1">Keterangan
+                        <label class="col-sm-3 control-label no-padding-right" 
+                        for="form-field-1">Periode Perjanjian Kinerja 
                         </label>
                         <div class="col-sm-8">
-                            <input type="text" name="ket" class="col-xs-10 col-sm-10" value="{{$data->ket}}">
+                            @php
+                                if($data->periodebln == 2){
+                                    $bln = "Februari";
+                                }elseif($data->periodebln == 3){
+                                    $bln = "Maret";
+                                }elseif($data->periodebln == 4){
+                                    $bln = "April";
+                                }elseif($data->periodebln == 5){
+                                    $bln = "Mei";
+                                }elseif($data->periodebln == 6){
+                                    $bln = "Juni";
+                                }elseif($data->periodebln == 7){
+                                    $bln = "Juli";
+                                }elseif($data->periodebln == 8){
+                                    $bln = "Agustus";
+                                }elseif($data->periodebln == 9){
+                                    $bln = "September";
+                                }elseif($data->periodebln == 10){
+                                    $bln = "Oktober";
+                                }elseif($data->periodebln == 11){
+                                    $bln = "November";
+                                }elseif($data->periodebln == 12){
+                                    $bln = "Januari";
+                                }else{
+                                    $bln = "Januari";
+                                };
+                            @endphp
+                            <input type="text" class="col-xs-10 col-sm-10" readonly 
+                            value="{{$bln}} {{$data->eselon->years}}"  
+                            >
                         </div>
                     </div>
                 </div>
@@ -83,86 +113,86 @@ method="post" action="/finance/renta/update/{{$data->id}}" enctype="multipart/fo
                 <table  class="table table-bordered table-hover scrollit">
                     <thead>
                         <tr>
-                            <th rowspan="2" style="width: 40px;">No</th>
-                            <th rowspan="2" style="width: 300px;">Indikator</th>
-                            <th rowspan="2" style="width: 80px;">Target {{$data->years}} </th>
-                            <th colspan="3">TRIWULAN I</th>
-                            <th colspan="3">TRIWULAN II</th>
-                            <th colspan="3">TRIWULAN III</th>
-                            <th colspan="3">TRIWULAN IV</th>
-                        </tr>
-                        <tr>
-                            <th style="width: 80px;" >Jan</th>
-                            <th style="width: 80px;" >Feb</th>
-                            <th style="width: 80px;" >Mar </th>
-                            <th style="width: 80px;" >Apr</th>
-                            <th style="width: 80px;" >Mei</th>
-                            <th style="width: 80px;" >Jun</th>
-                            <th style="width: 80px;" >Jul</th>
-                            <th style="width: 80px;" >Aug</th>
-                            <th style="width: 80px;" >Sep</th>
-                            <th style="width: 80px;" >Oct</th>
-                            <th style="width: 80px;" >Nov</th>
-                            <th style="width: 80px;" >Dec</th>
+                            <th>No</th>
+                            <th>Indikator</th>
+                            <th class="col-md-1">Target {{$data->eselon->years}} </th>
+                            <th class="col-md-1">Target {{$bln}}</th>
+                            <th class="col-md-1">Capaian {{$bln}} </th>
+                            <th class="col-md-3">Keterangan</th>
                         </tr>
                     </thead> 
                     <tbody>
                         @php
                             $no = 1;
                         @endphp
-                        @foreach ($target as $item)
+                        @foreach($detail as $item)
                         <tr>
-                            <td>{{$no}}
-                                <input type="hidden" name="outemp_id[]" value="{{$item->id}}">
+                            <td style="text_align:center">{{$no}}
+                                <input type="hidden" name="id" value="{{$item->id}}">
                             </td>
-                            <td>{{$item->indi->indicator}}
-                                <input type="hidden"  name="indicator_id[]" value="{{$item->indicator_id}}">
+                            <td>{{$item->ed_det}}
+                                <input type="hidden" name="eselontwo_detail_id[]" value="{{$item->eselontwo_detail_id}}">
                             </td>
-                            <td>
-                                <input type="hidden" name="renstrakal_detail_id[]" value="{{$item->renstrakal_detail_id}}">
-                                <input type="text"  class="form-control" style="text-align:center;"  name="setahun[]" value="{{$item->setahun}}" readonly>
-                            </td>
-                            <td style="vertical-align:top;">
-                                <input type="number" class="form-control" step="0.1" name="jan[]" value="{{$item->jan}}">
-                            </td>
-                            <td style="vertical-align:top;">
-                                <input type="number" class="form-control" step="0.1" name="feb[]" value="{{$item->feb}}">
-                            </td>
-                            <td style="vertical-align:top;">
-                                <input type="number" class="form-control" step="0.1" name="mar[]" value="{{$item->mar}}">
-                            </td>
-                            <td style="vertical-align:top;">
-                                <input type="number" class="form-control" step="0.1" name="apr[]" value="{{$item->apr}}">
-                            </td>
-                            <td style="vertical-align:top;">
-                                <input type="number" class="form-control" step="0.1" name="mei[]" value="{{$item->mei}}">
-                            </td>
-                            <td style="vertical-align:top;">
-                                <input type="number" class="form-control" step="0.1" name="jun[]" value="{{$item->jun}}">
-                            </td>
-                            <td style="vertical-align:top;">
-                                <input type="number" class="form-control" step="0.1" name="jul[]" value="{{$item->jul}}">
-                            </td>
-                            <td style="vertical-align:top;">
-                                <input type="number" class="form-control" step="0.1" name="aug[]" value="{{$item->aug}}">
-                            </td>
-                            <td style="vertical-align:top;">
-                                <input type="number" class="form-control" step="0.1" name="sep[]" value="{{$item->sep}}">
-                            </td>
-                            <td style="vertical-align:top;">
-                                <input type="number" class="form-control" step="0.1" name="oct[]" value="{{$item->oct}}">
-                            </td>
-                            <td style="vertical-align:top;">
-                                <input type="number" class="form-control" step="0.1" name="nov[]" value="{{$item->nov}}">
-                            </td>
-                            <td style="vertical-align:top;">
-                                <input type="number" class="form-control" step="0.1" name="dec[]" value="{{$item->dec}}">
-                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                         @php
                             $no++;
                         @endphp
                         @endforeach
+                        <tr>
+                            <td>{{$no}}
+                                <input type="hidden" name="id" value="{{$item->id}}">
+                            </td>
+                            <td>{{$item->ed_det->indi->indicator}}
+                                <input type="hidden" name="eselontwo_detail_id[]" value="{{$item->eselontwo_detail_id}}">
+                            </td>
+                            {{-- <td>
+                                <input type="text"  class="form-control" style="text-align:center;"  name="setahun[]" value="{{$item->ed_det->setahun}}" readonly>
+                            </td>
+                            <td>
+                                @php
+                                        if ($data->periodebln==2) {
+                                           $targetnya = $item->ed_det->feb;
+                                        } elseif ($data->periodebln==3) {
+                                           $targetnya = $item->ed_det->mar;
+                                        } elseif ($data->periodebln==4) {
+                                           $targetnya = $item->ed_det->apr;
+                                        } elseif ($data->periodebln==5) {
+                                           $targetnya = $item->ed_det->mei;
+                                        } elseif ($data->periodebln==6) {
+                                           $targetnya = $item->ed_det->jun;
+                                        } elseif ($data->periodebln==7) {
+                                           $targetnya = $item->ed_det->jul;
+                                        } elseif ($data->periodebln==8) {
+                                           $targetnya = $item->ed_det->aug;
+                                        } elseif ($data->periodebln==9) {
+                                           $targetnya = $item->ed_det->sep;
+                                        } elseif ($data->periodebln==10) {
+                                           $targetnya = $item->ed_det->oct;
+                                        } elseif ($data->periodebln==11) {
+                                           $targetnya = $item->ed_det->nov;
+                                        } elseif ($data->periodebln==12) {
+                                           $targetnya = $item->ed_det->dec;
+                                        } else {
+                                            $targetnya = $item->ed_det->jan;
+                                        }
+                                    @endphp
+                                <input type="text"  class="form-control" style="text-align:center;"  name="sebulan[]" value="{{$targetnya}}" readonly>
+                            </td>
+                            <td style="vertical-align:top;">
+                                <input type="number" class="form-control" value="{{$item->capaian}}" step="0.1" name="capaian[]"   required>
+                            </td>
+                            <td>
+                                <textarea name="keterangan[]" class="form-control" required>{{$item->keterangan}}</textarea>
+                            </td> --}}
+                        {{-- </tr>
+                        @php
+                            $no++;
+                        @endphp
+                        @endforeach --}}
                     </tbody>
                 </table>
            {{-- </div> --}}

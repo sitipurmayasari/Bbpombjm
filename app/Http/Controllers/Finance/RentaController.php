@@ -9,8 +9,9 @@ use Illuminate\Support\Facades\View;
 use Carbon\Carbon;
 use App\Target;
 use App\Indicator;
-use App\Renstrakal;
-use App\Renstrakal_detail;
+use App\Eselontwo;
+use App\Eselontwo_detail;
+use App\Divisi;
 use App\Renta;
 use App\Renta_det;
 use Excel;
@@ -23,21 +24,24 @@ class RentaController extends Controller
 {
     public function index(Request $request)
     {
+        $bidang = auth()->user()->divisi_id;
+        $div = Divisi::where('id',$bidang)->first();
         $data = Renta::SelectRaw('renta.*')
                         ->orderBy('id','desc')
-                        ->leftjoin('renstrakal','renstrakal.id','renta.renstrakal_id')
                         ->when($request->keyword, function ($query) use ($request) {
                             $query->where('filename','LIKE','%'.$request->keyword.'%')
                                     ->orWhere('years', 'LIKE','%'.$request->keyword.'%');
                             })
         ->paginate('10');
-        return view('finance/renta.index',compact('data'));
+        return view('finance/renta.index',compact('data','div'));
     }
 
     public function create()
     {
-        $rens = Renstrakal::all();
-        return view('finance/renta.create',compact('rens'));
+        $bidang = auth()->user()->divisi_id;
+        $div = Divisi::where('id',$bidang)->first();
+        $rens = Eselontwo::all();
+        return view('finance/renta.create',compact('rens','div'));
     }
 
     public function generate(Request $request)
@@ -51,35 +55,25 @@ class RentaController extends Controller
     public function entrydata($id)
     {
         $data = Renta::where('id',$id)->first();
-
-        $detail = Renstrakal_detail::where('renstrakal_id', $data->renstrakal_id)->where('years',$data->years)->get();
+        $detail = Eselontwo_detail::SelectRaw('eselontwo_detail.*')
+                                    ->where('eselontwo_id', $data->eselontwo_id)
+                                    ->leftjoin('indicator','indicator.id','eselontwo_detail.indicator_id')
+                                    ->where('indicator.divisi_id',$data->divisi_id)
+                                    ->get();
         return view('finance/renta/entrydata',compact('data','detail'));
     }
 
     public function store(Request $request)
     {
-        // $this->validate($request,[
-        //     'persentages[]' => 'required'
-        // ]);
+        
         DB::beginTransaction();
-            for ($i = 0; $i < count($request->input('renstrakal_detail_id')); $i++){
+            for ($i = 0; $i < count($request->input('eselontwo_detail_id')); $i++){
                 $data = [
-                    'renta_id'              => $request->renta_id[$i],
-                    'renstrakal_detail_id'  => $request->renstrakal_detail_id[$i],
-                    'setahun'               => $request->setahun[$i],
-                    'indicator_id'          => $request->indicator_id[$i],
-                    'jan'                   => $request->jan[$i],
-                    'feb'                   => $request->feb[$i],
-                    'mar'                   => $request->mar[$i],
-                    'apr'                   => $request->apr[$i],
-                    'mei'                   => $request->mei[$i],
-                    'jun'                   => $request->jun[$i],
-                    'jul'                   => $request->jul[$i],
-                    'aug'                   => $request->aug[$i],
-                    'sep'                   => $request->sep[$i],
-                    'oct'                   => $request->oct[$i],
-                    'nov'                   => $request->nov[$i],
-                    'dec'                   => $request->dec[$i]
+                    'renta_id'             => $request->renta_id[$i],
+                    'eselontwo_detail_id'  => $request->eselontwo_detail_id[$i],
+                    'sebulan'              => $request->sebulan[$i],
+                    'capaian'              => $request->capaian[$i],
+                    'keterangan'            => $request->keterangan[$i]
                 ];
                 Renta_det::create($data);
             }
@@ -91,10 +85,9 @@ class RentaController extends Controller
    
     public function edit($id)
     {
-        $rens = Renstrakal::all();
         $data = Renta::where('id',$id)->first();
-        $target = Renta_det::where('renta_id',$id)->get();
-        return view('finance/renta/edit',compact('data','target','rens'));
+        $detail = Renta_det::where('renta_id',$id)->get();
+        return view('finance/renta/edit',compact('data','detail'));
     }
 
    

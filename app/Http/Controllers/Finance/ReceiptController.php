@@ -286,7 +286,7 @@ class ReceiptController extends Controller
                         'planetype'         => $request->planetype[$i]
                 
                 ];
-                ExpensesTrans::create($data4);
+                ExpensesPlane::create($data4);
             }
         }
 
