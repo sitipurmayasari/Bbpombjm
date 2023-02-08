@@ -395,21 +395,36 @@
                         @foreach ($trans as $itemtrans)
                             {{$itemtrans->taxitype}}<br>
                         @endforeach
+
+                        @foreach ($plane as $itemplane)
+                            {{$itemplane->planetype}}<br>
+                        @endforeach
                     </td>
                     <td style="vertical-align: top; text_align:center">
                         @foreach ($trans as $itemtrans)
-                            {{$itemtrans->taxicount}} OH<br>
+                            {{$itemtrans->taxicount}} OK<br>
+                        @endforeach
+
+                        @foreach ($plane as $itemplane)
+                           1 OK<br>
                         @endforeach
                     </td>
                     <td style="vertical-align: top; text_align:center">
                         @foreach ($trans as $itemtrans)
                             {{number_format($itemtrans->taxifee)}}<br>
                         @endforeach
+
+                        @foreach ($plane as $itemplane)
+                            {{number_format($itemplane->ticketfee)}}<br>
+                        @endforeach
                     </td>
                     <td style="vertical-align: top; text_align:center">
                         @foreach ($trans as $itemtrans)
-                        {{number_format($itemtrans->taxisum)}}<br>
-                    @endforeach
+                            {{number_format($itemtrans->taxisum)}}<br>
+                        @endforeach
+                        @foreach ($plane as $itemplane)
+                            {{number_format($itemplane->ticketfee)}}<br>
+                        @endforeach
                     </td>
                     <td style="vertical-align: top; text_align:center">
                         {{number_format($total)}}
