@@ -103,24 +103,12 @@ class RentaController extends Controller
             $data = Renta::find($id);
             $data->update($request->all());
             //---------------detail----------------------
-            for ($i = 0; $i < count($request->input('renstrakal_detail_id')); $i++){
+            for ($i = 0; $i < count($request->input('eselontwo_detail_id')); $i++){
                 $detail = [
-                    'renta_id'              => $id,
-                    'renstrakal_detail_id'  => $request->renstrakal_detail_id[$i],
-                    'setahun'               => $request->setahun[$i],
-                    'indicator_id'          => $request->indicator_id[$i],
-                    'jan'                   => $request->jan[$i],
-                    'feb'                   => $request->feb[$i],
-                    'mar'                   => $request->mar[$i],
-                    'apr'                   => $request->apr[$i],
-                    'mei'                   => $request->mei[$i],
-                    'jun'                   => $request->jun[$i],
-                    'jul'                   => $request->jul[$i],
-                    'aug'                   => $request->aug[$i],
-                    'sep'                   => $request->sep[$i],
-                    'oct'                   => $request->oct[$i],
-                    'nov'                   => $request->nov[$i],
-                    'dec'                   => $request->dec[$i]
+                    'eselontwo_detail_id'  => $request->eselontwo_detail_id[$i],
+                    'sebulan'              => $request->sebulan[$i],
+                    'capaian'              => $request->capaian[$i],
+                    'keterangan'            => $request->keterangan[$i]
                 ];
                 Renta_det::updateOrCreate([
                 'id'   => $request->outemp_id[$i],

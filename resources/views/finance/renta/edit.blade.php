@@ -128,71 +128,27 @@ method="post" action="/finance/renta/update/{{$data->id}}" enctype="multipart/fo
                         @foreach($detail as $item)
                         <tr>
                             <td style="text_align:center">{{$no}}
-                                <input type="hidden" name="id" value="{{$item->id}}">
+                                <input type="hidden" name="outemp_id[]" value="{{$item->id}}">
                             </td>
-                            <td>{{$item->ed_det}}
+                            <td>{{$item->ed_det->indi->indicator}}
                                 <input type="hidden" name="eselontwo_detail_id[]" value="{{$item->eselontwo_detail_id}}">
                             </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>
+                                <input type="text" class="form-control" name="setahun[]" value="{{$item->ed_det->setahun}}" readonly>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" name="sebulan[]" value="{{$item->sebulan}}" readonly>
+                            <td style="vertical-align:top;">
+                                <input type="number" class="form-control" value="{{$item->capaian}}" step="0.1" name="capaian[]" required>
+                            </td>
+                            <td>
+                                <textarea name="keterangan[]" class="form-control" required>{{$item->keterangan}}</textarea>
+                            </td>
                         </tr>
                         @php
                             $no++;
                         @endphp
                         @endforeach
-                        <tr>
-                            <td>{{$no}}
-                                <input type="hidden" name="id" value="{{$item->id}}">
-                            </td>
-                            <td>{{$item->ed_det->indi->indicator}}
-                                <input type="hidden" name="eselontwo_detail_id[]" value="{{$item->eselontwo_detail_id}}">
-                            </td>
-                            {{-- <td>
-                                <input type="text"  class="form-control" style="text-align:center;"  name="setahun[]" value="{{$item->ed_det->setahun}}" readonly>
-                            </td>
-                            <td>
-                                @php
-                                        if ($data->periodebln==2) {
-                                           $targetnya = $item->ed_det->feb;
-                                        } elseif ($data->periodebln==3) {
-                                           $targetnya = $item->ed_det->mar;
-                                        } elseif ($data->periodebln==4) {
-                                           $targetnya = $item->ed_det->apr;
-                                        } elseif ($data->periodebln==5) {
-                                           $targetnya = $item->ed_det->mei;
-                                        } elseif ($data->periodebln==6) {
-                                           $targetnya = $item->ed_det->jun;
-                                        } elseif ($data->periodebln==7) {
-                                           $targetnya = $item->ed_det->jul;
-                                        } elseif ($data->periodebln==8) {
-                                           $targetnya = $item->ed_det->aug;
-                                        } elseif ($data->periodebln==9) {
-                                           $targetnya = $item->ed_det->sep;
-                                        } elseif ($data->periodebln==10) {
-                                           $targetnya = $item->ed_det->oct;
-                                        } elseif ($data->periodebln==11) {
-                                           $targetnya = $item->ed_det->nov;
-                                        } elseif ($data->periodebln==12) {
-                                           $targetnya = $item->ed_det->dec;
-                                        } else {
-                                            $targetnya = $item->ed_det->jan;
-                                        }
-                                    @endphp
-                                <input type="text"  class="form-control" style="text-align:center;"  name="sebulan[]" value="{{$targetnya}}" readonly>
-                            </td>
-                            <td style="vertical-align:top;">
-                                <input type="number" class="form-control" value="{{$item->capaian}}" step="0.1" name="capaian[]"   required>
-                            </td>
-                            <td>
-                                <textarea name="keterangan[]" class="form-control" required>{{$item->keterangan}}</textarea>
-                            </td> --}}
-                        {{-- </tr>
-                        @php
-                            $no++;
-                        @endphp
-                        @endforeach --}}
                     </tbody>
                 </table>
            {{-- </div> --}}
