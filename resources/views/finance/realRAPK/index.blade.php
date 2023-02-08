@@ -35,20 +35,63 @@
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
                 <th width="40px">No</th>
-                <th class="col-md-2">Judul</th>
-                <th>Tahun</th>
-                <th>Nama Pejabat</th>
-                <th  class="col-md-2">Aksi</th>
+                <th>Tanggal</th>
+                <th>Periode</th>
+                <th>Bidang</th>
+                <th>Nama Petugas</th>
+                <th>Status</th>
+                <th  class="col-md-1">Aksi</th>
             </thead>
             <tbody>   	
                 @foreach($data as $key=>$row)
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
-                    <td>{{$row->filename}}</td>
-                    <td>{{$row->years}}</td>
-                    <td>{{$row->pejabat->name}}</td>
+                    <td>{{tgl_indo($row->dates)}}</td>
                     <td>
-                        <a href="/finance/realRAPK/editmeta/{{$row->id}}" class="btn btn-warning">
+                        @php
+                            if($row->periodebln == 2){
+                                $bln = "Februari";
+                            }elseif($row->periodebln == 3){
+                                $bln = "Maret";
+                            }elseif($row->periodebln == 4){
+                                $bln = "April";
+                            }elseif($row->periodebln == 5){
+                                $bln = "Mei";
+                            }elseif($row->periodebln == 6){
+                                $bln = "Juni";
+                            }elseif($row->periodebln == 7){
+                                $bln = "Juli";
+                            }elseif($row->periodebln == 8){
+                                $bln = "Agustus";
+                            }elseif($row->periodebln == 9){
+                                $bln = "September";
+                            }elseif($row->periodebln == 10){
+                                $bln = "Oktober";
+                            }elseif($row->periodebln == 11){
+                                $bln = "November";
+                            }elseif($row->periodebln == 12){
+                                $bln = "Januari";
+                            }else{
+                                $bln = "Januari";
+                            };
+                        @endphp
+                        {{$bln}} {{$row->eselon->years}}
+                    </td>
+                    <td>
+                        {{$row->div->nama}}
+                    </td>
+                    <td>
+                        {{$row->peg->name}}
+                    </td>
+                    <td>
+                        @if ($row->verif == 'Y')
+                            <span id="selesai" class="badge badge-pill badge-success">Terverifikasi</span>
+                        @else
+                            <span id="selesai" class="badge badge-pill badge-danger">Berlum Diverifikasi</span>
+                        @endif
+                    </td>
+                    <td>
+                        <a href="/finance/realRAPK/editnew/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
                     </td>

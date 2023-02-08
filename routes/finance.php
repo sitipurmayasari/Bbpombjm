@@ -253,6 +253,7 @@
     Route::post('finance/realRAPK/update/{id}','Finance\RealRAPKController@update')->name('realRAPK.update');
     Route::get('finance/realRAPK/editmeta/{id}','Finance\RealRAPKController@editmeta')->name('realRAPK.editmeta');
     Route::post('finance/realRAPK/updatemeta/{id}','Finance\RealRAPKController@updatemeta')->name('realRAPK.updatemeta');
+    Route::get('finance/realRAPK/editnew/{id}','Finance\RealRAPKController@editnew')->name('realRAPK.editnew');
 
     //Route untuk Setup RAPK
     Route::post('/finance/setupRAPK/update','Finance\SetupRAPKController@update')->name('renstrapot.update');

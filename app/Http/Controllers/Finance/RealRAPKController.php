@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\View;
 use Carbon\Carbon;
 use App\Eselontwo;
 use App\Eselontwo_detail;
+use App\Renta;
+use App\Renta_det;
 use App\Target;
 use App\Indicator;
 use App\User;
@@ -18,19 +20,28 @@ use App\Pagu;
 use Excel;
 use PDF;
 use DateTime;
+use LogActivity;
 
 
 class RealRAPKController extends Controller
 {
     public function index(Request $request)
     {
-        $data = RealRAPK::orderBy('id','desc')
+         $data = Renta::orderBy('id','desc')
                         ->when($request->keyword, function ($query) use ($request) {
                             $query->where('dates','LIKE','%'.$request->keyword.'%')
                                     ->orWhere('filename', 'LIKE','%'.$request->keyword.'%')
                                     ->orWhere('year', 'LIKE','%'.$request->keyword.'%');
-                            })
-        ->paginate('10');
+                        })
+                ->paginate('10');
+        //-------------------lama------------------------------------------
+        // $data = RealRAPK::orderBy('id','desc')
+        //                 ->when($request->keyword, function ($query) use ($request) {
+        //                     $query->where('dates','LIKE','%'.$request->keyword.'%')
+        //                             ->orWhere('filename', 'LIKE','%'.$request->keyword.'%')
+        //                             ->orWhere('year', 'LIKE','%'.$request->keyword.'%');
+        //                     })
+        // ->paginate('10');
         return view('finance/realRAPK.index',compact('data'));
     }
 
@@ -109,21 +120,52 @@ class RealRAPKController extends Controller
    
     public function update(Request $request, $id)
     {
-        DB::beginTransaction();
-        for ($i = 0; $i < count($request->input('indicator_id')); $i++){
-            $data = [
-                'indicator_id'  => $request->indicator_id[$i],
-                'realisasi'     => $request->realisasi[$i],
-                'hasil'         => $request->hasil[$i],
-                'hasiltahun'    => $request->hasiltahun[$i],
-                'nps'           => $request->nps[$i]
-            ];
-            Realrapk_detail::where('id', $request->id[$i])
-                                ->update($data);
+        //-----lama--------
+        // DB::beginTransaction();
+        // for ($i = 0; $i < count($request->input('indicator_id')); $i++){
+        //     $data = [
+        //         'indicator_id'  => $request->indicator_id[$i],
+        //         'realisasi'     => $request->realisasi[$i],
+        //         'hasil'         => $request->hasil[$i],
+        //         'hasiltahun'    => $request->hasiltahun[$i],
+        //         'nps'           => $request->nps[$i]
+        //     ];
+        //     Realrapk_detail::where('id', $request->id[$i])
+        //                         ->update($data);
             
-        }
-    DB::commit();
-    return redirect('/finance/realRAPK')->with('sukses','Data Berhasil Diperbaharui');
+        // }
+        // DB::commit();
+        $data = Renta::find($id);
+        $data->touch();
+
+        DB::beginTransaction(); 
+          //---------------data----------------------
+            $data = Renta::find($id);
+            $data->update($request->all());
+
+            //---------------detail----------------------
+            for ($i = 0; $i < count($request->input('eselontwo_detail_id')); $i++){
+                $detail = [
+                    'eselontwo_detail_id'  => $request->eselontwo_detail_id[$i],
+                    'sebulan'              => $request->sebulan[$i],
+                    'capaian'              => $request->capaian[$i],
+                    'keterangan'            => $request->keterangan[$i]
+                ];
+                Renta_det::updateOrCreate([
+                'id'   => $request->outemp_id[$i],
+                ],$detail);
+            }
+        DB::commit();
+        LogActivity::addToLog('Ubah->Target Bulanan, id = '.$data->id);
+
+    return redirect('/finance/realRAPK')->with('sukses','Data Telah Diverifikasi');
+    }
+
+    public function editnew($id)
+    {
+        $data = Renta::where('id',$id)->first();
+        $detail = Renta_det::where('renta_id',$id)->get();
+        return view('finance/realRAPK/editnew',compact('data','detail'));
     }
 
 }

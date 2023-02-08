@@ -95,7 +95,6 @@ class RentaController extends Controller
     {
         $data = Renta::find($id);
         $data->touch();
-        LogActivity::addToLog('Ubah->Surat Tugas, nomor = '.$data->number);
 
         $outstation_id = $id;
         DB::beginTransaction(); 

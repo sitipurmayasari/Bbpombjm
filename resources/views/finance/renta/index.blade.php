@@ -39,8 +39,7 @@
                 <th>Dasar Renstra</th>
                 <th>Periode</th>
                 <th>Pejabat</th>
-                {{-- <th>Cetak</th> --}}
-                <th  class="col-md-2">Aksi</th>
+                <th>Status</th>
             </thead>
             <tbody>   	
                 @foreach($data as $key=>$row)
@@ -82,13 +81,17 @@
                     </td>
                     <td>{{$row->peg->name}}</td>
                     <td>
-                        <a href="/finance/renta/edit/{{$row->id}}" class="btn btn-warning">
-                            <i class="glyphicon glyphicon-edit"></i>
-                        </a>
-                        <a href="#" class="btn btn-danger delete"
-                            r-name="{{$row->filename}}" 
-                            r-id="{{$row->id}}">
-                            <i class="glyphicon glyphicon-trash"></i></a>
+                        @if ($row->verif == 'Y')
+                            <span id="selesai" class="badge badge-pill badge-success">Terverifikasi</span>
+                        @else
+                            <a href="/finance/renta/edit/{{$row->id}}" class="btn btn-warning">
+                                <i class="glyphicon glyphicon-edit"></i>
+                            </a>
+                            <a href="#" class="btn btn-danger delete"
+                                r-name="{{$row->filename}}" 
+                                r-id="{{$row->id}}">
+                                <i class="glyphicon glyphicon-trash"></i></a>
+                        @endif
                     </td>
                 </tr>
               

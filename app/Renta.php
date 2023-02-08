@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Renta extends Model
 {
     protected $table = "renta";
-    protected $fillable = ['eselontwo_id','users_id','divisi_id','periodebln','dates'
+    protected $fillable = ['eselontwo_id','users_id','divisi_id','periodebln','dates','verif'
 ];
 
     public function eselon()
