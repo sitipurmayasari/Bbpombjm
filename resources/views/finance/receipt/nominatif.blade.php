@@ -322,7 +322,7 @@
                     </td>
                     <td style="vertical-align: top; text_align:center">
                         @if ($item->repssum != 0)
-                            {{$item->fullboardsum}} <br>
+                            {{$item->repskali}} OH<br>
                         @endif
                     </td>
                     <td style="vertical-align: top; text_align:center">
