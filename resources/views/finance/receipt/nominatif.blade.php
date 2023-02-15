@@ -438,7 +438,7 @@
     <div class="ttd">
         <table class="table2">
             <tr class="table2">
-                <td class="table2" style="width: 80%"></td>
+                <td class="table2" style="width: 70%"></td>
                 <td class="table2">Banjarmasin, {{tgl_indo($data->st->st_date)}}</td>
             </tr>
             <tr class="table2">
@@ -452,9 +452,11 @@
                 <td class="table2">
                     @if ($menyetujui->pjs !=null)
                         {{$menyetujui->pjs}}
-                        {{$menyetujui->jabatan->jabatan}} {{$menyetujui->divisi->nama}},
+                        {{$menyetujui->user->jabasn->nama}}
+                        {{-- {{$menyetujui->jabatan->jabatan}} {{$menyetujui->divisi->nama}}, --}}
                     @else
-                        {{$menyetujui->jabatan->jabatan}} {{$menyetujui->divisi->nama}},
+                        {{$menyetujui->user->jabasn->nama}}
+                        {{-- {{$menyetujui->jabatan->jabatan}} {{$menyetujui->divisi->nama}}, --}}
                     @endif
                     <br><br><br><br><br>
                 </td>
