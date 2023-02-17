@@ -389,17 +389,17 @@
                                     @endforeach
 
                                 @elseif (count($item->out->outst_destiny) == 2)
-                                    @foreach ($tujuan as $key=>$kota)
+                                    {{-- @foreach ($tujuan as $key=>$kota) --}}
                                         - Uang Harian <br>
                                         - Uang Harian
-                                    @endforeach
+                                    {{-- @endforeach --}}
 
                                 @else
-                                    @foreach ($tujuan as $key=>$kota)
+                                    {{-- @foreach ($tujuan as $key=>$kota) --}}
                                         - Uang Harian <br>
                                         - Uang Harian <br>
                                         - Uang Harian
-                                    @endforeach
+                                    {{-- @endforeach --}}
                                 @endif 
                             </i>
                             </td>
@@ -442,21 +442,31 @@
                                         @endforeach
 
                                     @elseif (count($item->out->outst_destiny) == 2)
-                                        @foreach ($tujuan as $key=>$kota)
                                             {{$dataUH->uhar1kali}} <br>
                                             {{$dataUH->uhar2kali}}
-                                        @endforeach
 
                                     @else
-                                        @foreach ($tujuan as $key=>$kota)
                                             {{$dataUH->uhar1kali}} <br>
                                             {{$dataUH->uhar2kali}} <br>
                                             {{$dataUH->uhar3kali}}
-                                        @endforeach
                                     @endif 
                                 </i>
                             </td>
-                            <td style="text-align: center; width: 15;"><i> &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. </i></td>
+                            <td style="text-align: center; width: 15;"><i>
+                                @if (count($item->out->outst_destiny) == 1)
+                                    &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. 
+
+                                    @elseif (count($item->out->outst_destiny) == 2)
+                                        &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. <br>
+                                        &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. 
+
+                                    @else
+                                        &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. <br>
+                                        &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. <br>
+                                        &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp.
+                                    @endif 
+                                
+                                </i></td>
                             <td style="text-align: right; width: 15%;"> 
                                 <i>
                                     @if (count($item->out->outst_destiny) == 1)
@@ -467,22 +477,32 @@
                                         @endforeach
 
                                     @elseif (count($item->out->outst_destiny) == 2)
-                                        @foreach ($tujuan as $key=>$kota)
-                                            {{number_format($dataUH->uhar1cost)}} <br>
-                                            {{number_format($dataUH->uhar2cost)}}
-                                        @endforeach
-
+                                        {{number_format($dataUH->uhar1cost)}} <br>
+                                        &nbsp;{{number_format($dataUH->uhar2cost)}}
                                     @else
-                                        @foreach ($tujuan as $key=>$kota)
                                             {{number_format($dataUH->uhar1cost)}} <br>
-                                            {{number_format($dataUH->uhar2cost)}} <br>
-                                            {{number_format($dataUH->uhar3cost)}}
-                                        @endforeach
+                                            &nbsp;{{number_format($dataUH->uhar2cost)}} <br>
+                                            &nbsp;{{number_format($dataUH->uhar3cost)}}
                                     @endif 
                                 </i>
                                 &nbsp;
                             </td>
-                            <td style="text-align: center; width: 5%;"><i>. Rp.</i></td>
+                            <td style="text-align: center; width: 5%;"><i>
+                                @if (count($item->out->outst_destiny) == 1)
+                                . Rp.
+
+                            @elseif (count($item->out->outst_destiny) == 2)
+                                . Rp. <br>
+                                . Rp.
+
+                            @else
+                                . Rp. <br>
+                                . Rp. <br>
+                                . Rp.
+                            @endif 
+
+                                
+                            </i></td>
                             <td style="text-align: right; width: 15%;"> 
                                 <i>
                                     @if (count($item->out->outst_destiny) == 1)
@@ -493,17 +513,17 @@
                                         @endforeach
 
                                     @elseif (count($item->out->outst_destiny) == 2)
-                                        @foreach ($tujuan as $key=>$kota)
+                                        {{-- @foreach ($tujuan as $key=>$kota) --}}
                                             {{number_format($dataUH->uhar1sum)}} <br>
                                             {{number_format($dataUH->uhar2sum)}}
-                                        @endforeach
+                                        {{-- @endforeach --}}
 
                                     @else
-                                        @foreach ($tujuan as $key=>$kota)
+                                        {{-- @foreach ($tujuan as $key=>$kota) --}}
                                             {{number_format($dataUH->uhar1sum)}} <br>
                                             {{number_format($dataUH->uhar2sum)}} <br>
                                             {{number_format($dataUH->uhar2sum)}}
-                                        @endforeach
+                                        {{-- @endforeach --}}
                                     @endif 
                                 </i> &nbsp; 
                             </td>
