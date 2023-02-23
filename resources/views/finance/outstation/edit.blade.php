@@ -393,9 +393,15 @@
                                         value="{{$item->return_date}}" required>
                                     </td>
                                     <td>
-                                        <button type="button" onclick="deleteRowwil({{$nomor}})"  class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
+                                        <a href="#" class="btn btn-danger deletetujuan"
+                                            r-name="{{$item->destiny->capital}}" 
+                                            r-id="{{$item->id}}">
+                                        <i class="glyphicon glyphicon-trash"></i></a>
                                     </td>
                                 </tr>
+                                @php
+                                    $nomor++;
+                                @endphp
                             @endforeach
                             <span id="row-new"></span>
                         </tbody>
@@ -518,6 +524,27 @@
                 console.log(result);
                 if (result.value) {
                    window.location = "/finance/outstation/deletepeg/"+id;
+                }
+            });
+        });
+    });
+
+    $().ready( function () {
+        $(".deletetujuan").click(function() {
+                var id = $(this).attr('r-id');
+                var name = $(this).attr('r-name');
+                Swal.fire({
+                title: 'Ingin Menghapus?',
+                text: "Yakin ingin menghapus data  : "+name+" ini ?" ,
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, hapus !'
+            }).then((result) => {
+                console.log(result);
+                if (result.value) {
+                   window.location = "/finance/outstation/deletetujuan/"+id;
                 }
             });
         });

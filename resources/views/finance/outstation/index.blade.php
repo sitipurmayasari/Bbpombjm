@@ -62,8 +62,13 @@
                         <a class="btn btn-info" href="/finance/outstation/printST/{{$row->id}}" target="_blank" rel="noopener noreferrer">Tanpa KOP</a> <br>
                         <a class="btn btn-success" href="/finance/outstation/printSTKop/{{$row->id}}" target="_blank" rel="noopener noreferrer">+ KOP (TTE)</a>
                     </td>
-                    <td>
-                        <a class="btn btn-primary" href="/finance/outstation/printSppd/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
+                    <td style="text-align: center">
+                        @if ($row->type=="LK")
+                            <a class="btn btn-primary" href="/finance/outstation/printSppd/{{$row->id}}" target="_blank" rel="noopener noreferrer">DEPAN</a>
+                            <a class="btn btn-success" href="/finance/outstation/printSppdB/{{$row->id}}" target="_blank" rel="noopener noreferrer">BELAKANG</a>
+                        @else
+                            <a class="btn btn-primary" href="/finance/outstation/printSppd/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
+                        @endif
                     </td>
                     <td>
                         <a href="{{$row->getFIleST()}}" target="_blank" >{{$row->file}}</a>

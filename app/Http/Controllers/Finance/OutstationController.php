@@ -239,32 +239,52 @@ class OutstationController extends Controller
         } elseif ($data->type=='DL8') {
             $pdf = PDF::loadview('finance/outstation.inside2',compact('data','isian','destinys','lama'));
         } else {
-          if ($data->external=='N') {
-            if ($hit->jum==3) {
-              $pdf = PDF::loadview('finance/outstation.printSppd3',compact('data','isian','menyetujui','destinys','lama'));
-            }else{
-              $pdf = PDF::loadview('finance/outstation.printSppd',compact('data','isian','menyetujui','destinys','lama'));
-            }
-          } else if ($data->external=='L') {
-            if ($hit->jum==3) {
-              $pdf = PDF::loadview('finance/outstation.printSppd3la',compact('data','isian','menyetujui','destinys','lama'));
-            }else{
-              $pdf = PDF::loadview('finance/outstation.printSppdla',compact('data','isian','menyetujui','destinys','lama'));
-            }
-          } else {
-            if ($hit->jum==3) {
-              $pdf = PDF::loadview('finance/outstation.printSppd3ex',compact('data','isian','menyetujui','destinys','lama'));
-            }else{
-              $pdf = PDF::loadview('finance/outstation.printSppdex',compact('data','isian','menyetujui','destinys','lama'));
-            }
-          }
-          
+          $pdf = PDF::loadview('finance/outstation.sppdnewN',compact('data','isian','menyetujui','destinys','lama'));
         }
         
 
         return $pdf->stream();
       }
 
+      public function printSppdB($id)
+      {
+        $data       = Outstation::where('id',$id)->first();
+        $isian      = Outst_employee::orderBy('id','asc')
+                            ->where('outstation_id','=',$id)
+                            ->get();
+        $menyetujui = Pejabat::where('jabatan_id', '=', 11)
+                            ->whereRaw("(SELECT st_date FROM outstation WHERE id=$id) BETWEEN dari AND sampai")
+                            ->first();
+        $destinys   = Outst_destiny::orderBy('id','asc')
+                            ->where('outstation_id','=',$id)
+                            ->get();      
+        $hit       = Outst_destiny::selectRaw('count(*) as jum')
+                            ->where('outstation_id','=',$id)
+                            ->first();
+        $desti1   = Outst_destiny::orderBy('id','asc')
+                      ->where('outstation_id','=',$id)
+                      ->first();  
+        $desti2   = Outst_destiny::orderBy('id','desc')
+                      ->where('outstation_id','=',$id)
+                      ->first();   
+
+        if ($desti1->go_date==$desti2->go_date) {
+            $lama = Outst_destiny::selectRaw('longday as hitung')
+                  ->where('outstation_id','=',$id)
+                  ->first();
+        } elseif($desti1->return_date==$desti2->go_date){
+          $lama = Outst_destiny::selectRaw('((sum(longday)) - 1) as hitung')
+                  ->where('outstation_id','=',$id)
+                  ->first();
+        } else {
+            $lama = Outst_destiny::selectRaw('sum(longday) as hitung')
+                  ->where('outstation_id','=',$id)
+                  ->first();
+        }
+
+        $pdf = PDF::loadview('finance/outstation.sppdnewB',compact('data','isian','menyetujui','destinys','lama'));
+        return $pdf->stream();
+      }
 
       public function edit($id)
       {
@@ -327,6 +347,7 @@ class OutstationController extends Controller
           }
 
           //---------------outst_destiny----------------------
+
           for ($i = 0; $i < count($request->input('destination_id')); $i++){
             $tgl1 = new DateTime($request->go_date[$i]);
             $tgl2 = new DateTime($request->return_date[$i]);
@@ -362,6 +383,16 @@ class OutstationController extends Controller
     public function deletepeg($id)
     {
         $data = Outst_employee::find($id);
+
+        $out = $data->outstation_id;
+
+        $data->delete();
+        return redirect('finance/outstation/edit/'.$out)->with('sukses','Pegawai Terhapus');
+    }
+
+    public function deletetujuan($id)
+    {
+        $data = Outst_destiny::find($id);
 
         $out = $data->outstation_id;
 
