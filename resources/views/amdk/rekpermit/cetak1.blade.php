@@ -33,7 +33,7 @@
         Periode :
                     @php
                         if ($request->bulan=='1') {
-                            $request->bulan = "Januari";
+                            $bulan = "Januari";
                         } else if($request->bulan=='2') {
                             $bulan = "Februari";
                         } else if($request->bulan=='3') {
