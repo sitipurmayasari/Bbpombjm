@@ -89,7 +89,7 @@ class PermitController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,[
-            'file' => 'required|max:2048',
+            'file' => 'max:2048',
         ]);
         
         $data = Absensi::find($id);

@@ -71,7 +71,7 @@
                         for="form-field-1"> Upload file
                         </label>
                         <div class="col-sm-9">
-                            <input type="file" name="file" class="btn btn-default btn-sm" id="" value="max 2KB" required>   
+                            <input type="file" name="file" class="btn btn-default btn-sm" id="" value="max 2KB">   
                             @if ($data->file != null)
                                 <a href="{{$data->getFile()}}" target="_blank" >{{$data->file}}</a>
                             @else
