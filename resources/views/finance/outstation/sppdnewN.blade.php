@@ -10,7 +10,8 @@
 </head>
 <style>
     @page {
-        size: 21cm 33cm ;
+        /* size: 21cm 33cm ; */
+        size: legal;
         margin-top: 30px;
         font-size: 9;
     }
@@ -52,6 +53,13 @@
         border-collapse: collapse;
         line-height: normal;
     }
+
+    .tabno{
+        padding-top: 10px;
+        border: 0.5px solid black;
+        border-collapse: collapse;
+        line-height: normal;
+    }
         
 
 </style>
@@ -76,8 +84,8 @@
                 <br>
                 <table>
                     <tr>
-                        <td style="width: 35%"><i>Program/kegiatan</i></td>
-                        <td >:
+                        <td style="width: 30%"><i>Program/kegiatan</i></td>
+                        <td style="width: 70%">:
                             <i>
                                 @if ($data->pok_detail_id == 0)
                                     {{' Non Anggaran '}}
@@ -146,18 +154,23 @@
     <br>
     <table class="tabbor">
         <tr class="tabbor">
-            <td class="tabbor" colspan="2">1.  &nbsp;Pejabat Pembuat Komitmen</td>
+            <td style="text-align: center;" class="tabno">1.</td>
+            <td class="tabbor" colspan="2">
+                Pejabat Pembuat Komitmen
+            </td>
             <td colspan="2" class="tabbor">
                 @if ($data->ppk_id != 0)
-                    {{$data->ppk->jabatan}}
+                    {{$data->ppk->user->name}}
                 @else
                     Pejabat Pembuat Komitmen
-                @endif
+                @endif 
             </td>
         </tr>
         <tr class="tabbor">
-            <td class="tabbor" colspan="2">2.  &nbsp;Nama / NIP Pegawai yang melaksanakan <br> 
-                &nbsp; &nbsp;&nbsp; perjalanan dinas</td>
+            <td style="text-align: center;" class="tabno">2.</td>
+            <td class="tabbor" colspan="2">
+                Nama/NIP Pegawai yang melaksanakan
+                perjalanan dinas</td>
             <td colspan="2" class="tabbor">
                 {{$item->pegawai->name}} /
                 @if ($item->pegawai->golongan_id != null)
@@ -168,9 +181,11 @@
             </td>
         </tr>
         <tr class="tabbor">
-            <td class="tabbor" colspan="2">3. &nbsp;a. Pangkat dan Golongan<br>
-                &nbsp; &nbsp;&nbsp;  b. Jabatan <br>
-                &nbsp; &nbsp;&nbsp;  c. Tingkat Biaya Perjalanan Dinas 
+            <td style="text-align: center;" class="tabno">3.</td>
+            <td class="tabbor" colspan="2">
+                a. Pangkat dan Golongan<br>
+                b. Jabatan <br>
+                c. Tingkat Biaya Perjalanan Dinas 
                 
             </td>
             <td colspan="2" class="tabbor">
@@ -190,20 +205,28 @@
             </td>
         </tr>
         <tr>
-            <td class="tabbor" colspan="2">4. &nbsp;Maksud Perjalanan Dinas</td>
+            <td style="text-align: center;" class="tabno">4.</td>
+            <td class="tabbor" colspan="2">
+                Maksud Perjalanan Dinas
+            </td>
             <td colspan="2" class="tabbor">
-                {{$data->purpose}}
+                {{$data->purpose}} 
             </td>
         </tr>
         <tr class="tabbor">
-            <td class="tabbor" colspan="2">5. &nbsp;Alat Angkutan yang Dipergunakan</td>
+            <td style="text-align: center;" class="tabno">5.</td>
+            <td class="tabbor" colspan="2">
+                Alat Angkutan yang Dipergunakan
+            </td>
             <td colspan="2" class="tabbor">
                {{$data->transport}} <br>
             </td>
         </tr>
         <tr class="tabbor">
-            <td class="tabbor" colspan="2">6. &nbsp;a. Tempat Berangkat <br>
-                &nbsp; &nbsp;&nbsp;  b. Tempat Tujuan <br>
+            <td style="text-align: center;" class="tabno">6.</td>
+            <td class="tabbor" colspan="2">
+                a. Tempat Berangkat <br>
+                b. Tempat Tujuan <br>
             </td>
             <td colspan="2" class="tabbor">
                 {{$data->cityfrom->capital}} <br>
@@ -237,9 +260,11 @@
             </td>
         </tr>
         <tr class="tabbor">
-            <td class="tabbor" colspan="2">7. &nbsp;a. Lamanya Perjalanan Dinas <br>
-                &nbsp; &nbsp;&nbsp;  b. Tanggal Berangkat <br>
-                &nbsp; &nbsp;&nbsp;  c. Tanggal harus kembali<br>
+            <td style="text-align: center;" class="tabno">7.</td>
+            <td class="tabbor" colspan="2">
+                a. Lamanya Perjalanan Dinas <br>
+                b. Tanggal Berangkat <br>
+                c. Tanggal harus kembali<br>
                 
             </td>
             <td colspan="2" class="tabbor">
@@ -259,32 +284,41 @@
             </td>
         </tr>
         <tr class="tabbor">
-            <td class="tabbor"style="vertical-align:top; width:15%;border-right: none;">8.  &nbsp;Pengikut :
-                
+            <td style="text-align: center;width: 3%" class="tabno" rowspan="2">8.</td>
+            <td class="tabbor"style="vertical-align:top; width:12%;border-right: none;">
+                Pengikut:
             </td>
-            <td class="tabbor" style="text-align: center;border-left: none;width:25%;">Nama</td>
-            <td class="tabbor" style="text-align: center;">Tanggal Lahir / NIP</td>
-            <td class="tabbor" style="text-align: center;">Keterangan</td>
+            <td class="tabbor" style="text-align: center;border-left: none;width:25%;">
+                Nama
+            </td>
+            <td class="tabbor" style="text-align: center;">
+                Tanggal Lahir / NIP
+            </td>
+            <td class="tabbor" style="text-align: center;">
+                Keterangan
+            </td>
         </tr>
         <tr class="tabbor">
             <td class="tabbor" colspan="2" style="vertical-align:top;">
-                &nbsp; &nbsp;&nbsp;  1. <br>
-                &nbsp; &nbsp;&nbsp;  2. <br>
-                &nbsp; &nbsp;&nbsp;  3. 
+                1. <br>
+                2. <br>
+                3. <br>
+                4. <br>
+                5.
             </td>
             <td class="tabbor" style="text-align: center;"></td>
             <td class="tabbor" style="text-align: center;"></td>
         </tr>
         <tr class="tabbor" style="border-bottom: none; padding-bottom:0;">
-            <td class="tabbor" colspan="2" style="border-bottom: none;  padding-bottom:0;">9.  &nbsp;Pembebanan anggaran <br>
-                &nbsp; &nbsp;&nbsp;  a. Instansi
+            <td style="text-align: center;" rowspan="2" class="tabno">9.</td>
+            <td class="tabbor" colspan="2" style="border-bottom: none;  padding-bottom:0;">
+                Pembebanan anggaran <br>
+                a. Instansi
             </td>
             <td class="tabbor" colspan="2" colspan="2" style="border-bottom: none;  padding-bottom:0;">
                 <br>
                 @if ($data->budget_id == 3)
                     {{$data->budget->name}}
-                    {{-- {{$now->name}} Tahun Anggaran {{$now->tahun}}, <br>
-                    Nomor {{$now->nomor}} tanggal {{tgl_indo($now->tanggal)}} --}}
                 @else
                     {{$data->budget->name}} Tahun Anggaran {{$data->budget->tahun}}
                     @if ($data->budget->nomor != null && $data->budget->tanggal == null)
@@ -295,7 +329,7 @@
                         tanggal {{tgl_indo($data->budget->tanggal)}}
                     @elseif ($data->budget->tanggal != null && $data->budget->nomor != null)
                         ,
-                        Nomor {{$data->budget->nomor}}  tanggal {{tgl_indo($data->budget->tanggal)}}
+                        No. {{$data->budget->nomor}}
                     @else
                         Non Anggaran
                     @endif
@@ -303,10 +337,10 @@
             </td>
         </tr>
         <tr class="tabbor" style="border-top: none; padding-top:0;">
-            <td class="tabbor" colspan="2"  style="border-top: none; padding-top:0;">
-                &nbsp; &nbsp;&nbsp;  b. Akun
+            <td class="tabbor" colspan="2" style="border-top: none; padding-top:0;">
+                b. Akun
             </td>
-            <td class="tabbor" colspan="2" colspan="2" style="border-top: none; padding-top:0;">
+            <td class="tabbor" colspan="2" style="border-top: none; padding-top:0;">
                 @if ($data->pok_detail_id == 0)
                                     {{' Non Anggaran '}}
                                 @elseif ($data->pok_detail_id == 1)
@@ -321,7 +355,8 @@
             </td>
         </tr>
         <tr class="tabbor">
-            <td class="tabbor" colspan="2">10. &nbsp;Keterangan lain - lain</td>
+            <td style="text-align: center;" class="tabno">10.</td>
+            <td class="tabbor" colspan="2">Keterangan lain - lain</td>
             <td class="tabbor" colspan="2" colspan="2">
               SPD Tanggal 
                 @foreach ($data->outst_destiny as $key=>$item)
@@ -337,8 +372,7 @@
             </td>
         </tr>
     </table>
-    <hr>
-    <br><br>
+    <br>
     <table>
         <tr>
             <td style="width: 55%"></td>
@@ -363,7 +397,7 @@
                     <tr>
                         <td colspan="2">
                             <br>
-                                <br><br><br>
+                                <br><br><br><br>
                                 @if ($data->ppk_id != 0)
                                    <u> {{$data->ppk->user->name}}</u>
                                 @else

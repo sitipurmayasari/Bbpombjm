@@ -10,7 +10,8 @@
 </head>
 <style>
     @page {
-        size: 21cm 33cm ;
+        /* size: 21cm 33cm ; */
+        size: legal;
         margin-top: 30px;
         font-size: 9;
     }
@@ -53,7 +54,7 @@
     @php
     $no=1;
 @endphp
-{{-- @foreach ($isian as $item) --}}
+@foreach ($isian as $item)
     <table>
         <tr>
             <td style="border-right: none;border-bottom: none; width:3%"></td>
@@ -123,7 +124,7 @@
                 Berangkat dari<br>
                 Ke<br> 
                 Pada Tanggal <br>
-                <br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br>
             </td>
             <td style="border-left: none;">
                 :  {{--tujuan pertama--}}
@@ -199,7 +200,7 @@
                 Berangkat dari<br>
                 Ke<br>
                 Pada Tanggal <br>
-                <br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br>
             </td>
             <td style="border-left: none;">
                 : 
@@ -276,7 +277,7 @@
                 Berangkat dari<br>
                 Ke<br>
                 Pada Tanggal <br>
-                <br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br>
             </td>
             <td style="border-left: none;">
                 : 
@@ -359,6 +360,6 @@
             </td>
         </tr>
     </table>
-{{-- @endforeach --}}
+@endforeach
 </body>
 </html>
