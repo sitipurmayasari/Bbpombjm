@@ -186,24 +186,18 @@
                     </td>
                     <td style="vertical-align: top;">
                         @if (count($data->st->outst_destiny) == 1)
-                            @foreach ($tujuan as $key=>$kota)
                                 @if ($loop->first)
                                     - Uang Harian <br>
                                 @endif
-                            @endforeach
 
                         @elseif (count($data->st->outst_destiny) == 2)
-                            @foreach ($tujuan as $key=>$kota)
                                 - Uang Harian <br>
                                 - Uang Harian <br>
-                            @endforeach
 
                         @elseif (count($data->st->outst_destiny) == 3)
-                            @foreach ($tujuan as $key=>$kota)
                                 - Uang Harian <br>
                                 - Uang Harian <br>
                                 - Uang Harian <br>
-                            @endforeach
                         @endif 
                         @if ($item->tlokalsum != 0)
                             - UH DK > 8 Jam <br>
@@ -220,24 +214,18 @@
                     </td>
                     <td style="vertical-align: top;text_align:center" >
                         @if (count($data->st->outst_destiny) == 1)
-                            @foreach ($tujuan as $key=>$kota)
                                 @if ($loop->first)
                                     {{$item->uhar1kali}} OH <br>
                                 @endif
-                            @endforeach
 
                         @elseif (count($data->st->outst_destiny) == 2)
-                            @foreach ($tujuan as $key=>$kota)
                                 {{$item->uhar1kali}} OH <br>
                                 {{$item->uhar2kali}} OH <br>
-                            @endforeach
 
                         @elseif (count($data->st->outst_destiny) == 3)
-                            @foreach ($tujuan as $key=>$kota)
                                 {{$item->uhar1kali}} OH <br>
                                 {{$item->uhar2kali}} OH <br>
                                 {{$item->uhar2kali}} OH <br>
-                            @endforeach
                         @endif 
                         @if ($item->tlokalsum != 0)
                             {{$item->tlokalkali}} OH <br>
@@ -254,24 +242,18 @@
                     </td>
                     <td style="vertical-align: top;text_align:center">
                         @if (count($data->st->outst_destiny) == 1)
-                            @foreach ($tujuan as $key=>$kota)
                                 @if ($loop->first)
                                     {{number_format($item->uhar1cost)}}<br>
                                 @endif
-                            @endforeach
 
                         @elseif (count($data->st->outst_destiny) == 2)
-                            @foreach ($tujuan as $key=>$kota)
                                 {{number_format($item->uhar1cost)}} <br>
                                 {{number_format($item->uhar2cost)}} <br>
-                            @endforeach
 
                         @elseif (count($data->st->outst_destiny) == 3)
-                            @foreach ($tujuan as $key=>$kota)
                                 {{number_format($item->uhar1cost)}} <br>
                                 {{number_format($item->uhar2cost)}} <br>
                                 {{number_format($item->uhar3cost)}} <br>
-                            @endforeach
                         @endif 
                         @if ($item->tlokalsum != 0)
                             {{number_format($item->tlokalcost)}} <br>
@@ -288,24 +270,18 @@
                     </td>
                     <td style="vertical-align: top;text_align:center">
                         @if (count($data->st->outst_destiny) == 1)
-                            @foreach ($tujuan as $key=>$kota)
                                 @if ($loop->first)
                                     {{number_format($item->uhar1sum)}}<br>
                                 @endif
-                            @endforeach
 
                         @elseif (count($data->st->outst_destiny) == 2)
-                            @foreach ($tujuan as $key=>$kota)
                                 {{number_format($item->uhar1sum)}} <br>
                                 {{number_format($item->uhar2sum)}} <br>
-                            @endforeach
 
                         @elseif (count($data->st->outst_destiny) == 3)
-                            @foreach ($tujuan as $key=>$kota)
                                 {{number_format($item->uhar1sum)}} <br>
                                 {{number_format($item->uhar2sum)}} <br>
                                 {{number_format($item->uhar3sum)}} <br>
-                            @endforeach
                         @endif 
                         @if ($item->tlokalsum != 0)
                             {{number_format($item->tlokalsum)}} <br>
