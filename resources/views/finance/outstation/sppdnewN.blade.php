@@ -63,11 +63,11 @@
         
 
 </style>
-<body>
-    @php
-    $no=1;
+@php
+$no=1;
 @endphp
 @foreach ($isian as $item)
+<body>
     <table>
         <tr>
             <td style="width: 45%;text-align:center; vertical-align:bottom;" >
@@ -413,9 +413,10 @@
                         </td>
                     </tr>
                 </table>
+                <br>
             </td>
         </tr>
     </table>
-@endforeach
 </body>
+@endforeach
 </html>
