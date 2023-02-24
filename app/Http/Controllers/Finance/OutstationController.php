@@ -233,14 +233,40 @@ class OutstationController extends Controller
                   ->where('outstation_id','=',$id)
                   ->first();
         }
-                            
+            
         if ($data->type=='DL') {
           $pdf = PDF::loadview('finance/outstation.inside',compact('data','isian','destinys','lama'));
         } elseif ($data->type=='DL8') {
             $pdf = PDF::loadview('finance/outstation.inside2',compact('data','isian','destinys','lama'));
         } else {
-          $pdf = PDF::loadview('finance/outstation.sppdnewN',compact('data','isian','menyetujui','destinys','lama'));
+          if ($data->external=='N') {
+            if ($hit->jum==3) {
+              $pdf = PDF::loadview('finance/outstation.printSppd3',compact('data','isian','menyetujui','destinys','lama'));
+            }else{
+              $pdf = PDF::loadview('finance/outstation.printSppd',compact('data','isian','menyetujui','destinys','lama'));
+            }
+          } else if ($data->external=='L') {
+            if ($hit->jum==3) {
+              $pdf = PDF::loadview('finance/outstation.printSppd3la',compact('data','isian','menyetujui','destinys','lama'));
+            }else{
+              $pdf = PDF::loadview('finance/outstation.printSppdla',compact('data','isian','menyetujui','destinys','lama'));
+            }
+          } else {
+            if ($hit->jum==3) {
+              $pdf = PDF::loadview('finance/outstation.printSppd3ex',compact('data','isian','menyetujui','destinys','lama'));
+            }else{
+              $pdf = PDF::loadview('finance/outstation.printSppdex',compact('data','isian','menyetujui','destinys','lama'));
+            }
+          }
+          
         }
+        // if ($data->type=='DL') {
+        //   $pdf = PDF::loadview('finance/outstation.inside',compact('data','isian','destinys','lama'));
+        // } elseif ($data->type=='DL8') {
+        //     $pdf = PDF::loadview('finance/outstation.inside2',compact('data','isian','destinys','lama'));
+        // } else {
+        //   $pdf = PDF::loadview('finance/outstation.sppdnewN',compact('data','isian','menyetujui','destinys','lama'));
+        // }
         
 
         return $pdf->stream();
