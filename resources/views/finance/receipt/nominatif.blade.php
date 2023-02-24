@@ -186,9 +186,7 @@
                     </td>
                     <td style="vertical-align: top;">
                         @if (count($data->st->outst_destiny) == 1)
-                                @if ($loop->first)
-                                    - Uang Harian <br>
-                                @endif
+                                - Uang Harian <br>
 
                         @elseif (count($data->st->outst_destiny) == 2)
                                 - Uang Harian <br>
@@ -214,9 +212,7 @@
                     </td>
                     <td style="vertical-align: top;text_align:center" >
                         @if (count($data->st->outst_destiny) == 1)
-                                @if ($loop->first)
-                                    {{$item->uhar1kali}} OH <br>
-                                @endif
+                                {{$item->uhar1kali}} OH <br>
 
                         @elseif (count($data->st->outst_destiny) == 2)
                                 {{$item->uhar1kali}} OH <br>
@@ -242,9 +238,7 @@
                     </td>
                     <td style="vertical-align: top;text_align:center">
                         @if (count($data->st->outst_destiny) == 1)
-                                @if ($loop->first)
-                                    {{number_format($item->uhar1cost)}}<br>
-                                @endif
+                                {{number_format($item->uhar1cost)}}<br>
 
                         @elseif (count($data->st->outst_destiny) == 2)
                                 {{number_format($item->uhar1cost)}} <br>
@@ -270,9 +264,7 @@
                     </td>
                     <td style="vertical-align: top;text_align:center">
                         @if (count($data->st->outst_destiny) == 1)
-                                @if ($loop->first)
-                                    {{number_format($item->uhar1sum)}}<br>
-                                @endif
+                                {{number_format($item->uhar1sum)}}<br>
 
                         @elseif (count($data->st->outst_destiny) == 2)
                                 {{number_format($item->uhar1sum)}} <br>
