@@ -185,18 +185,20 @@
                         @endif
                     </td>
                     <td style="vertical-align: top;">
-                        @if (count($data->st->outst_destiny) == 1)
-                                - Uang Harian <br>
+                        @if ($data->type=="LK")
+                            @if (count($data->st->outst_destiny) == 1)
+                                    - Uang Harian <br>
 
-                        @elseif (count($data->st->outst_destiny) == 2)
-                                - Uang Harian <br>
-                                - Uang Harian <br>
+                            @elseif (count($data->st->outst_destiny) == 2)
+                                    - Uang Harian <br>
+                                    - Uang Harian <br>
 
-                        @elseif (count($data->st->outst_destiny) == 3)
-                                - Uang Harian <br>
-                                - Uang Harian <br>
-                                - Uang Harian <br>
-                        @endif 
+                            @elseif (count($data->st->outst_destiny) == 3)
+                                    - Uang Harian <br>
+                                    - Uang Harian <br>
+                                    - Uang Harian <br>
+                            @endif 
+                        @endif
                         @if ($item->tlokalsum != 0)
                             - UH DK > 8 Jam <br>
                         @endif
@@ -211,18 +213,20 @@
                         @endif
                     </td>
                     <td style="vertical-align: top;text_align:center" >
-                        @if (count($data->st->outst_destiny) == 1)
-                                {{$item->uhar1kali}} OH <br>
+                        @if ($data->type=="LK")
+                            @if (count($data->st->outst_destiny) == 1)
+                                    {{$item->uhar1kali}} OH <br>
 
-                        @elseif (count($data->st->outst_destiny) == 2)
-                                {{$item->uhar1kali}} OH <br>
-                                {{$item->uhar2kali}} OH <br>
+                            @elseif (count($data->st->outst_destiny) == 2)
+                                    {{$item->uhar1kali}} OH <br>
+                                    {{$item->uhar2kali}} OH <br>
 
-                        @elseif (count($data->st->outst_destiny) == 3)
-                                {{$item->uhar1kali}} OH <br>
-                                {{$item->uhar2kali}} OH <br>
-                                {{$item->uhar2kali}} OH <br>
-                        @endif 
+                            @elseif (count($data->st->outst_destiny) == 3)
+                                    {{$item->uhar1kali}} OH <br>
+                                    {{$item->uhar2kali}} OH <br>
+                                    {{$item->uhar2kali}} OH <br>
+                            @endif 
+                        @endif
                         @if ($item->tlokalsum != 0)
                             {{$item->tlokalkali}} OH <br>
                         @endif
@@ -237,18 +241,20 @@
                         @endif
                     </td>
                     <td style="vertical-align: top;text_align:center">
-                        @if (count($data->st->outst_destiny) == 1)
-                                {{number_format($item->uhar1cost)}}<br>
+                       @if ($data->type=="LK")
+                            @if (count($data->st->outst_destiny) == 1)
+                                    {{number_format($item->uhar1cost)}}<br>
 
-                        @elseif (count($data->st->outst_destiny) == 2)
-                                {{number_format($item->uhar1cost)}} <br>
-                                {{number_format($item->uhar2cost)}} <br>
+                            @elseif (count($data->st->outst_destiny) == 2)
+                                    {{number_format($item->uhar1cost)}} <br>
+                                    {{number_format($item->uhar2cost)}} <br>
 
-                        @elseif (count($data->st->outst_destiny) == 3)
-                                {{number_format($item->uhar1cost)}} <br>
-                                {{number_format($item->uhar2cost)}} <br>
-                                {{number_format($item->uhar3cost)}} <br>
-                        @endif 
+                            @elseif (count($data->st->outst_destiny) == 3)
+                                    {{number_format($item->uhar1cost)}} <br>
+                                    {{number_format($item->uhar2cost)}} <br>
+                                    {{number_format($item->uhar3cost)}} <br>
+                            @endif 
+                       @endif
                         @if ($item->tlokalsum != 0)
                             {{number_format($item->tlokalcost)}} <br>
                         @endif
@@ -263,18 +269,20 @@
                         @endif
                     </td>
                     <td style="vertical-align: top;text_align:center">
-                        @if (count($data->st->outst_destiny) == 1)
-                                {{number_format($item->uhar1sum)}}<br>
+                        @if ($data->type == "LK")
+                            @if (count($data->st->outst_destiny) == 1)
+                                    {{number_format($item->uhar1sum)}}<br>
 
-                        @elseif (count($data->st->outst_destiny) == 2)
-                                {{number_format($item->uhar1sum)}} <br>
-                                {{number_format($item->uhar2sum)}} <br>
+                            @elseif (count($data->st->outst_destiny) == 2)
+                                    {{number_format($item->uhar1sum)}} <br>
+                                    {{number_format($item->uhar2sum)}} <br>
 
-                        @elseif (count($data->st->outst_destiny) == 3)
-                                {{number_format($item->uhar1sum)}} <br>
-                                {{number_format($item->uhar2sum)}} <br>
-                                {{number_format($item->uhar3sum)}} <br>
-                        @endif 
+                            @elseif (count($data->st->outst_destiny) == 3)
+                                    {{number_format($item->uhar1sum)}} <br>
+                                    {{number_format($item->uhar2sum)}} <br>
+                                    {{number_format($item->uhar3sum)}} <br>
+                            @endif 
+                        @endif
                         @if ($item->tlokalsum != 0)
                             {{number_format($item->tlokalsum)}} <br>
                         @endif
