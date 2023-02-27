@@ -19,6 +19,7 @@ use App\Petugas;
 use App\Pejabat;
 use Carbon\Carbon;
 use PDF;
+use Excel;
 class KartuStokController extends Controller
 {
     public function index()
@@ -41,8 +42,9 @@ class KartuStokController extends Controller
                                 ->Where('inventaris_id',$request->inventaris_id)
                                 ->get();
             $data = Inventaris::Where('id',$request->inventaris_id)->first();
-            $pdf = PDF::loadview('invent/kartustok.stokbarang',compact('stock','request','data','now'));
-            return $pdf->stream();
+            // $pdf = PDF::loadview('invent/kartustok.stokbarang',compact('stock','request','data','now'));
+            // return $pdf->stream();
+            return view('invent/kartustok.stokbarang',compact('stock','request','data','now'));
         }else if($request->jenis_Laporan=="2"){
 
             $stock = Inventaris::OrderBy('stock','desc')
@@ -77,8 +79,9 @@ class KartuStokController extends Controller
                                 ->GroupBy('inventaris_id')
                                 ->get();
             $data = Labory::where('id',$request->labory)->first();
-            $pdf = PDF::loadview('invent/kartustok.stoklab',compact('stock','data','request'));
-            return $pdf->stream();
+            return view('invent/kartustok.stoklab',compact('stock','data','request'));
+            // $pdf = PDF::loadview('invent/kartustok.stoklab',compact('stock','data','request'));
+            // return $pdf->stream();
         } else if($request->jenis_Laporan=="4"){
             $data = Sbb::Where('stat_aduan','=','D')
                         ->orderby('id','asc')

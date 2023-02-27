@@ -1,5 +1,8 @@
 @inject('injectQuery', 'App\InjectQuery')
-
+<?php
+header("Content-type: application/vnd-ms-excel");
+header("Content-Disposition: attachment; filename=Format-Laporan-Stok-Lab.xls");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,9 +55,6 @@
     <title>Laporan Permintaan Barang Keluar  {{$data->name}}</title>
 </head>
 <body>
-    <header>
-        <img src="{{asset('images/kopsurat1.jpg')}}" style="width: 100%"> <br>
-    </header>
     <main>
         <div class="isi">
             <div class="col-sm-12" style="text-align: center;font-size: 18px;">

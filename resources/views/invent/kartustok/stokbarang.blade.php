@@ -1,5 +1,8 @@
 @inject('injectQuery', 'App\InjectQuery')
-
+<?php
+header("Content-type: application/vnd-ms-excel");
+header("Content-Disposition: attachment; filename=Format-Laporan-Stok-Barang.xls");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +21,7 @@
             margin-bottom: 100px;
             /* margin: 170px 0px 100px 0px; */
             font-family: 'Times New Roman';
-            font-size: 11px;
+            font-size: 11;
             page-break-after: always;
         }
 
@@ -38,6 +41,11 @@
                 margin-top: -150px;
         }
 
+        table{
+            width: 100%;
+            font-size: 11;
+        }
+
         table,tr,td, th{
             border: solid black 1px;
             vertical-align: top;
@@ -51,16 +59,16 @@
     </style>
 </head>
 <body>
-    <header>
+    {{-- <header>
         <img src="{{asset('images/kopsurat1.jpg')}}" style="width: 100%"> <br>
-    </header>
+    </header> --}}
     <main>
         <div class="isi">
-            <div class="col-sm-12" style="text-align: center;font-size: 18px;">
+            <div class="col-sm-12" style="text-align: center;font-size: 16;;">
                 <b>Laporan Kartu Stok</b><br>
                 <b><i>{{$data->nama_barang}}</i></b>
             </div><br>
-            <div class="col-sm-12" style="text-align: left">
+            <div class="col-sm-12" style="text-align: left;" >
                 Periode :
                 @if ($now!="1")
                     @php
@@ -95,7 +103,7 @@
                 {{$request->years}}
             </div><br>
             <div class="col-sm-12 table-responsive row" style="text-align: left">
-                <table id="simple-table" class="table  table-bordered" style="font-size: 11px;" >
+                <table >
                     <thead>
                         <tr>
                             <th style="text-align: center; vertical-align:middle;" width="20px">No</th>
