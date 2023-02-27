@@ -853,7 +853,14 @@
                             </td>
                             <td style="text-align: center; width: 15;"><i> &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. </i></td>
                             <td style="text-align: right; width: 15%;"> 
-                                <i>{{number_format($hotel->hotelfee)}}</i>
+                                <i>
+                                    @php
+                                        $fee = $hotel->hotelfee;
+                                        $long = $hotel->person;
+                                        $jum = $fee/$long;
+                                    @endphp
+                                    {{number_format($jum)}}
+                                </i>
                                 &nbsp;
                             </td>
                             <td style="text-align: center; width: 5%;"><i>. Rp.</i></td>
