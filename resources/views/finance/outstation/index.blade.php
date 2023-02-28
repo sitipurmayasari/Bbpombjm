@@ -63,12 +63,12 @@
                         <a class="btn btn-success" href="/finance/outstation/printSTKop/{{$row->id}}" target="_blank" rel="noopener noreferrer">+ KOP (TTE)</a>
                     </td>
                     <td style="text-align: center">
-                        {{-- @if ($row->type=="LK")
+                        @if ($row->type=="LK")
                             <a class="btn btn-primary" href="/finance/outstation/printSppd/{{$row->id}}" target="_blank" rel="noopener noreferrer">DEPAN</a>
                             <a class="btn btn-success" href="/finance/outstation/printSppdB/{{$row->id}}" target="_blank" rel="noopener noreferrer">BELAKANG</a>
-                        @else --}}
+                        @else
                             <a class="btn btn-primary" href="/finance/outstation/printSppd/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
-                        {{-- @endif --}}
+                        @endif
                     </td>
                     <td>
                         <a href="{{$row->getFIleST()}}" target="_blank" >{{$row->file}}</a>
