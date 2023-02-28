@@ -12,8 +12,7 @@
     @page {
         size: 8.5in 14in ;
         /* size: legal; */
-        margin-top: 25px;
-        margin-bottom: 5px;
+        margin: 10px 15px 10px 15px;
         font-size: 9;
     }
 
@@ -57,10 +56,9 @@ $no=1;
 @foreach ($isian as $item)
 <body>
     <table>
-        <tr>
+        <tr style="border-bottom: none;">
             <td style="border-bottom: none; border-right: 0;  width:3%;"></td>
-            <td style="border-bottom: none; border-left: 0; border-right:0;  width:20%;">
-            </td>
+            <td style="border-bottom: none; border-left: 0; border-right:0;  width:20%;"></td>
             <td style=" border-bottom: none; border-left: 0;  width:27%;"></td>
             <td style=" border-bottom: none; border-right: 0;  width: 20%;">
                 Berangkat dari<br>
@@ -85,7 +83,7 @@ $no=1;
                 @endforeach
             </td>
         </tr>
-        <tr>
+        <tr style="border-top: none;">
             <td colspan="3" style="border-top: 0;"></td>
             <td colspan="2"  style="border-top: 0; text-align:center;">
                 Pejabat Pembuat Komitmen <br><br><br><br><br><br>
