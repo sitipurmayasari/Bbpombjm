@@ -58,17 +58,17 @@ $no=1;
 <body>
     <table>
         <tr>
-            <td style="border-bottom: none; border-right: none;  width:3%;"></td>
-            <td style="border-bottom: none; border-left: none; border-right:none;  width:20%;">
+            <td style="border-bottom: 0; border-right: 0;  width:3%;"></td>
+            <td style="border-bottom: 0; border-left: 0; border-right:0;  width:20%;">
             </td>
-            <td style=" border-bottom: none; border-left: none;  width:27%;"></td>
-            <td style=" border-bottom: none; border-right: none;  width: 20%;">
+            <td style=" border-bottom: 0; border-left: 0;  width:27%;"></td>
+            <td style=" border-bottom: 0; border-right: 0;  width: 20%;">
                 Berangkat dari<br>
                 (Tempat Kedudukan) <br>
                 Ke<br>
                 Pada Tanggal
             </td>
-            <td style="border-left: none; border-bottom: none;">
+            <td style="border-left: 0; border-bottom: 0;">
                 : {{$data->cityfrom->capital}} <br><br>
                 : 
                 @foreach ($data->outst_destiny as $key=>$item)
@@ -86,8 +86,8 @@ $no=1;
             </td>
         </tr>
         <tr>
-            <td colspan="3" style="border-top: none;"></td>
-            <td colspan="2"  style="border-top: none; text-align:center;">
+            <td colspan="3" style="border-top: 0;"></td>
+            <td colspan="2"  style="border-top: 0; text-align:center;">
                 Pejabat Pembuat Komitmen <br><br><br><br><br><br>
                 <u><b> 
                     @if ($data->ppk_id != 0)
@@ -101,12 +101,12 @@ $no=1;
             </td>
         </tr>
         <tr>
-            <td style="border-right: none;">II.</td> 
-            <td style="border-left: none; border-right:none;">
+            <td style="border-right: 0;">II.</td> 
+            <td style="border-left: 0; border-right:0;">
                 Tiba di<br> 
                 Pada Tanggal
             </td>
-            <td style="border-left: none;">
+            <td style="border-left: 0;">
                 : {{-- tujuan pertama --}}
                 @foreach ($data->outst_destiny as $key=>$item)
                     @if ($loop->first)
@@ -121,13 +121,13 @@ $no=1;
                     @endif
                 @endforeach
             </td>
-            <td style="border-right: none;">
+            <td style="border-right: 0;">
                 Berangkat dari<br>
                 Ke<br> 
                 Pada Tanggal <br>
                 <br><br><br><br><br><br><br>
             </td>
-            <td style="border-left: none;">
+            <td style="border-left: 0;">
                 :  {{--tujuan pertama--}}
                 @foreach ($data->outst_destiny as $key=>$item)
                     @if ($loop->first)
@@ -161,12 +161,12 @@ $no=1;
             </td>
         </tr>
         <tr>
-            <td style="border-right: none;">III.</td>
-            <td style="border-left: none;border-right:none;">
+            <td style="border-right: 0;">III.</td>
+            <td style="border-left: 0;border-right:0;">
                 Tiba di<br>
                 Pada Tanggal
             </td>
-            <td style="border-left: none;">
+            <td style="border-left: 0;">
                 :
                 @if (count($data->outst_destiny) == 2) {{--tujuan kedua--}}
                     @foreach ($data->outst_destiny as $key=>$item)
@@ -197,13 +197,13 @@ $no=1;
                     @endforeach
                 @endif
             </td>
-            <td style="border-right: none;">
+            <td style="border-right: 0;">
                 Berangkat dari<br>
                 Ke<br>
                 Pada Tanggal <br>
                 <br><br><br><br><br><br><br>
             </td>
-            <td style="border-left: none;">
+            <td style="border-left: 0;">
                 : 
                 @if (count($data->outst_destiny) == 2) {{--kota asal--}}
                     @foreach ($data->outst_destiny as $key=>$item)
@@ -249,12 +249,12 @@ $no=1;
             </td>
         </tr>
         <tr>
-            <td style="border-right: none;">IV.</td>
-            <td style="border-left: none;border-right:none;">
+            <td style="border-right: 0;">IV.</td>
+            <td style="border-left: 0;border-right:0;">
                 Tiba di<br>
                 Pada Tanggal
             </td>
-            <td style="border-left: none;">
+            <td style="border-left: 0;">
                 : 
                 @if(count($data->outst_destiny) == 3) {{--tujuan ketiga--}}
                     @foreach ($data->outst_destiny as $key=>$item)
@@ -274,13 +274,13 @@ $no=1;
                 @endif
               
             </td>
-            <td style="border-right: none;">
+            <td style="border-right: 0;">
                 Berangkat dari<br>
                 Ke<br>
                 Pada Tanggal <br>
                 <br><br><br><br><br><br><br>
             </td>
-            <td style="border-left: none;">
+            <td style="border-left: 0;">
                 : 
                 @if(count($data->outst_destiny) == 3) {{--tujuan ketiga--}}
                     @foreach ($data->outst_destiny as $key=>$item)
@@ -306,12 +306,12 @@ $no=1;
             </td>
         </tr>
         <tr>
-            <td style="border-right: none;border-bottom: none;">V.</td>
-            <td style="border-left: none;border-right:none;border-bottom: none;">
+            <td style="border-right: 0;border-bottom: 0;">V.</td>
+            <td style="border-left: 0;border-right:0;border-bottom: 0;">
                 Tiba di<br>
                 Pada Tanggal
             </td>
-            <td style="border-left: none;border-bottom: none;">
+            <td style="border-left: 0;border-bottom: 0;">
                 : {{$data->cityfrom->capital}} <br>
                 : 
                 @foreach ($data->outst_destiny as $key=>$item)
@@ -320,12 +320,12 @@ $no=1;
                     @endif
                 @endforeach
             </td>
-            <td style="border-bottom: none;" colspan="2">
+            <td style="border-bottom: 0;" colspan="2">
                 Telah diperiksa dengan keterangan bahwa perjalanan tersebut diatas benar dilakukan atas perintahnya dan semata - mata untuk kepentingan jabatan dalam waktu
             </td>
         </tr>
         <tr>
-            <td colspan="3" style="border-top: none; text-align:center;">
+            <td colspan="3" style="border-top: 0; text-align:center;">
                 Pejabat Pembuat Komitmen <br><br><br><br><br><br>
                 <u><b> 
                     @if ($data->ppk_id != 0)
@@ -337,7 +337,7 @@ $no=1;
                         {{$data->ppk->user->no_pegawai}}
                     @endif
             </td>
-            <td colspan="2"  style="border-top: none; text-align:center;">
+            <td colspan="2"  style="border-top: 0; text-align:center;">
                 Pejabat Pembuat Komitmen <br><br><br><br><br><br>
                 <u><b> 
                     @if ($data->ppk_id != 0)
@@ -351,8 +351,8 @@ $no=1;
             </td>
         </tr>
         <tr>
-            <td style="border-right: none;">VI.</td>
-            <td colspan="2" style="border-left: none;">Catatan Lain - Lain</td>
+            <td style="border-right: 0;">VI.</td>
+            <td colspan="2" style="border-left: 0;">Catatan Lain - Lain</td>
             <td colspan="2"><br><br></td>
         </tr>
         <tr>
