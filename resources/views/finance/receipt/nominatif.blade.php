@@ -198,6 +198,8 @@
                                     - Uang Harian <br>
                                     - Uang Harian <br>
                             @endif 
+                        @else  
+                            &nbsp;
                         @endif
                         @if ($item->tlokalsum != 0)
                             - UH DK > 8 Jam <br>
