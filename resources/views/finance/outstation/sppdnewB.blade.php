@@ -13,7 +13,7 @@
         size: 8.5in 14in ;
         /* size: legal; */
         margin-top: 25px;
-        margin-bottom: 15px;
+        margin-bottom: 5px;
         font-size: 9;
     }
 
@@ -58,17 +58,17 @@ $no=1;
 <body>
     <table>
         <tr>
-            <td style="border-bottom: 0; border-right: 0;  width:3%;"></td>
-            <td style="border-bottom: 0; border-left: 0; border-right:0;  width:20%;">
+            <td style="border-bottom: none; border-right: 0;  width:3%;"></td>
+            <td style="border-bottom: none; border-left: 0; border-right:0;  width:20%;">
             </td>
-            <td style=" border-bottom: 0; border-left: 0;  width:27%;"></td>
-            <td style=" border-bottom: 0; border-right: 0;  width: 20%;">
+            <td style=" border-bottom: none; border-left: 0;  width:27%;"></td>
+            <td style=" border-bottom: none; border-right: 0;  width: 20%;">
                 Berangkat dari<br>
                 (Tempat Kedudukan) <br>
                 Ke<br>
                 Pada Tanggal
             </td>
-            <td style="border-left: 0; border-bottom: 0;">
+            <td style="border-left: 0; border-bottom: none;">
                 : {{$data->cityfrom->capital}} <br><br>
                 : 
                 @foreach ($data->outst_destiny as $key=>$item)
@@ -101,13 +101,13 @@ $no=1;
             </td>
         </tr>
         <tr>
-            <td style="border-right: 0;">II.</td> 
-            <td style="border-left: 0; border-right:0;">
+            <td style="border-right: 0; width:3%;" >II.</td> 
+            <td style="border-left: 0; border-right:0; width:20%;">
                 Tiba di<br> 
                 Pada Tanggal
             </td>
-            <td style="border-left: 0;">
-                : {{-- tujuan pertama --}}
+            <td style="border-left: 0; width:27%;" >
+                : {{-- tujuan pertama --}} 
                 @foreach ($data->outst_destiny as $key=>$item)
                     @if ($loop->first)
                         {{$item->destiny->capital}} 
@@ -121,7 +121,7 @@ $no=1;
                     @endif
                 @endforeach
             </td>
-            <td style="border-right: 0;">
+            <td style="border-right: 0;  width: 20%;">
                 Berangkat dari<br>
                 Ke<br> 
                 Pada Tanggal <br>
@@ -306,12 +306,12 @@ $no=1;
             </td>
         </tr>
         <tr>
-            <td style="border-right: 0;border-bottom: 0;">V.</td>
-            <td style="border-left: 0;border-right:0;border-bottom: 0;">
+            <td style="border-right: 0;border-bottom: none;">V.</td>
+            <td style="border-left: 0;border-right:0;border-bottom: none;">
                 Tiba di<br>
                 Pada Tanggal
             </td>
-            <td style="border-left: 0;border-bottom: 0;">
+            <td style="border-left: 0;border-bottom: none;">
                 : {{$data->cityfrom->capital}} <br>
                 : 
                 @foreach ($data->outst_destiny as $key=>$item)
@@ -320,7 +320,7 @@ $no=1;
                     @endif
                 @endforeach
             </td>
-            <td style="border-bottom: 0;" colspan="2">
+            <td style="border-bottom: none;" colspan="2">
                 Telah diperiksa dengan keterangan bahwa perjalanan tersebut diatas benar dilakukan atas perintahnya dan semata - mata untuk kepentingan jabatan dalam waktu
             </td>
         </tr>
