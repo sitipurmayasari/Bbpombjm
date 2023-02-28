@@ -151,13 +151,13 @@
     <br>
     <table style="width: 100%">
         <tr>
-            <td style="width: 20%">Berdasarkan SPPD Nomor
+            <td style="width: 20%">Berdasarkan SPD Nomor
             </td>
             <td> : 
                 {{$item->no_sppd}}
             </td>
             <td style="width: 43%">
-                Tanggal SPPD : {{tgl_indo($item->out->st_date)}}
+                Tanggal SPD : {{tgl_indo($item->out->st_date)}}
             </td>
         </tr>
         <tr>
@@ -510,13 +510,13 @@
     <br>
     <table style="width: 100%">
         <tr>
-            <td style="width: 20%">Berdasarkan SPPD Nomor
+            <td style="width: 20%">Berdasarkan SPD Nomor
             </td>
             <td> : 
                 {{$item->no_sppd}}
             </td>
             <td style="width: 43%">
-                Tanggal SPPD : {{tgl_indo($item->out->st_date)}}
+                Tanggal SPD : {{tgl_indo($item->out->st_date)}}
             </td>
         </tr>
         <tr>

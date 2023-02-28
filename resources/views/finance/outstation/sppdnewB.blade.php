@@ -10,8 +10,8 @@
 </head>
 <style>
     @page {
-        /* size: 21cm 33cm ; */
-        size: legal;
+        size: 22cm 36cm ;
+        /* size: legal; */
         margin-top: 30px;
         font-size: 9;
     }

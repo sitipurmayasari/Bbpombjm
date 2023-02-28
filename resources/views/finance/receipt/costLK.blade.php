@@ -1034,7 +1034,7 @@
     </tr>
    </table>
     <hr style="border:0.5px solid black; margin: 7px;">
-   <p style="font-size: 10; text-align:center;"><b>PERHITUNGAN SPPD RAMPUNG</b></p>
+   <p style="font-size: 10; text-align:center;"><b>PERHITUNGAN SPD RAMPUNG</b></p>
    <div style="page-break-after: always;">
     <table style="width: 100%;" class="kepala">
         <tr>
