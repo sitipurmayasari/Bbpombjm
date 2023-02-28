@@ -265,7 +265,7 @@
         <tr>
             <td colspan="2" style="line-height:1;">
                 <br>
-                Demikian pernyataan ini kami buat dengan sebenarnya, untuk dipergunakan sebagaimana mestinya
+                Demikian pernyataan ini dibuat dengan sebenarnya, untuk dipergunakan sebagaimana mestinya
             </td>
         </tr>
     </table>
@@ -562,7 +562,7 @@
         <tr>
             <td colspan="2" style="line-height:1;">
                 <br>
-                Demikian pernyataan ini kami buat dengan sebenarnya, untuk dipergunakan sebagaimana mestinya
+                Demikian pernyataan ini dibuat dengan sebenarnya, untuk dipergunakan sebagaimana mestinya
             </td>
         </tr>
     </table>

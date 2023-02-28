@@ -321,13 +321,13 @@
             <td style="line-height:1;">
                 Jumlah uang tersebut pada angka 1 di atas benar - benar di keluarkan untuk pelaksanaan perjalanan dinas dimaksud
                 dan apabila di kemudian
-                hari terdapat kelebihan atas pembayaran, kami bersedia untuk menyetorkan kelebihan tersebut
+                hari terdapat kelebihan atas pembayaran, saya bersedia untuk menyetorkan kelebihan tersebut
                 ke Kas Negara.
             </td>
         </tr>
         <tr>
             <td colspan="2" style="line-height:1;">
-                Demikian pernyataan ini kami buat dengan sebenarnya, untuk dipergunakan sebagaimana mestinya
+                Demikian pernyataan ini dibuat dengan sebenarnya, untuk dipergunakan sebagaimana mestinya
             </td>
         </tr>
     </table>
@@ -680,13 +680,13 @@
             <td style="line-height:1;">
                 Jumlah uang tersebut pada angka 1 di atas benar - benar di keluarkan untuk pelaksanaan perjalanan dinas dimaksud
                 dan apabila di kemudian
-                hari terdapat kelebihan atas pembayaran, kami bersedia untuk menyetorkan kelebihan tersebut
+                hari terdapat kelebihan atas pembayaran, saya bersedia untuk menyetorkan kelebihan tersebut
                 ke Kas Negara.
             </td>
         </tr>
         <tr>
             <td colspan="2" style="line-height:1;">
-                Demikian pernyataan ini kami buat dengan sebenarnya, untuk dipergunakan sebagaimana mestinya
+                Demikian pernyataan ini dibuat dengan sebenarnya, untuk dipergunakan sebagaimana mestinya
             </td>
         </tr>
     </table>
