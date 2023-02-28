@@ -6,13 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Surat Tugas</title>
+    <title>SPPD Belakang</title>
 </head>
 <style>
     @page {
         size: 8.5in 14in ;
         /* size: legal; */
         margin-top: 30px;
+        margin-bottom: 10px;
         font-size: 9;
     }
 
@@ -50,11 +51,11 @@
         
 
 </style>
-<body>
-    @php
-    $no=1;
+@php
+$no=1;
 @endphp
 @foreach ($isian as $item)
+<body>
     <table>
         <tr>
             <td style="border-right: none;border-bottom: none; width:3%"></td>
@@ -360,6 +361,6 @@
             </td>
         </tr>
     </table>
-@endforeach
 </body>
+@endforeach
 </html>
