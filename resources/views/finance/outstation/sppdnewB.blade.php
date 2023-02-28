@@ -86,7 +86,7 @@ $no=1;
         <tr style="border-top: none;">
             <td colspan="3" style="border-top: 0;"></td>
             <td colspan="2"  style="border-top: 0; text-align:center;">
-                Pejabat Pembuat Komitmen <br><br><br><br><br><br>
+                Pejabat Pembuat Komitmen <br><br><br><br><br>
                 <u><b> 
                     @if ($data->ppk_id != 0)
                         {{$data->ppk->user->name}}
@@ -324,7 +324,7 @@ $no=1;
         </tr>
         <tr style="border-top: none;">
             <td colspan="3" style="border-top: 0; text-align:center;">
-                Pejabat Pembuat Komitmen <br><br><br><br><br><br>
+                Pejabat Pembuat Komitmen <br><br><br><br><br>
                 <u><b> 
                     @if ($data->ppk_id != 0)
                         {{$data->ppk->user->name}}
@@ -336,7 +336,7 @@ $no=1;
                     @endif
             </td>
             <td colspan="2"  style="border-top: 0; text-align:center;">
-                Pejabat Pembuat Komitmen <br><br><br><br><br><br>
+                Pejabat Pembuat Komitmen <br><br><br><br><br>
                 <u><b> 
                     @if ($data->ppk_id != 0)
                         {{$data->ppk->user->name}}
