@@ -268,7 +268,7 @@ $no=1;
                 
             </td>
             <td colspan="2" class="tabbor">
-                {{$lama->hitung}} Hari
+                {{$lama->hitung}} ({{terbilang($lama->hitung)}}) Hari  
                 <br>
                     @foreach ($data->outst_destiny as $key=>$item)
                         @if ($loop->first)
