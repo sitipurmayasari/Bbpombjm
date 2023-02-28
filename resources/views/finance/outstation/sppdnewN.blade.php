@@ -11,7 +11,7 @@
 <style>
     @page {
         /* size: 21cm 33cm ; */
-        size: 22cm 36cm ;
+        size: 8.5in 14in ;
         /* size: legal; */
         margin-top: 30px;
         font-size: 9;
