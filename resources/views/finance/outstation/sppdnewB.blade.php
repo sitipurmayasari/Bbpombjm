@@ -12,8 +12,8 @@
     @page {
         size: 8.5in 14in ;
         /* size: legal; */
-        margin-top: 30px;
-        margin-bottom: 10px;
+        margin-top: 25px;
+        margin-bottom: 15px;
         font-size: 9;
     }
 
@@ -58,17 +58,17 @@ $no=1;
 <body>
     <table>
         <tr>
-            <td style="border-right: none;border-bottom: none; width:3%"></td>
-            <td style="border-left: none;border-right:none;border-bottom: none; width:20%">
+            <td style="border-bottom: none; border-right: none;  width:3%;"></td>
+            <td style="border-bottom: none; border-left: none; border-right:none;  width:20%;">
             </td>
-            <td style="border-left: none;border-bottom: none; width:27%"></td>
-            <td style="border-right: none;border-bottom: none; width: 20%;">
+            <td style=" border-bottom: none; border-left: none;  width:27%;"></td>
+            <td style=" border-bottom: none; border-right: none;  width: 20%;">
                 Berangkat dari<br>
                 (Tempat Kedudukan) <br>
                 Ke<br>
                 Pada Tanggal
             </td>
-            <td style="border-left: none;border-bottom: none;">
+            <td style="border-left: none; border-bottom: none;">
                 : {{$data->cityfrom->capital}} <br><br>
                 : 
                 @foreach ($data->outst_destiny as $key=>$item)
@@ -102,7 +102,7 @@ $no=1;
         </tr>
         <tr>
             <td style="border-right: none;">II.</td> 
-            <td style="border-left: none;border-right:none;">
+            <td style="border-left: none; border-right:none;">
                 Tiba di<br> 
                 Pada Tanggal
             </td>
