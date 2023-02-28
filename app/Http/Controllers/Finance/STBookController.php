@@ -125,7 +125,7 @@ class STBookController extends Controller
           $first = "0".$first;
           }
       }
-          $no_sppd = $first."/".$bidang->kode_sppd."/SPPD/BBPOM"."/".date('Y');
+          $no_sppd = $first."/".$bidang->kode_sppd."/SPD/BBPOM"."/".date('Y');
       
       return response()->json([ 
           'success' => true,
