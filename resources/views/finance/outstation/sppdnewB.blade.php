@@ -10,7 +10,7 @@
 </head>
 <style>
     @page {
-        size: 8.5in 14in ;
+        size:8.5in 13in;
         /* size: legal; */
         margin: 10px 15px 10px 15px;
         font-size: 9;

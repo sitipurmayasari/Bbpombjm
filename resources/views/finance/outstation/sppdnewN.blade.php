@@ -10,8 +10,8 @@
 </head>
 <style>
     @page {
-        /* size: 21cm 33cm ; */
-        size: 8.5in 14in ;
+        size:8.5in 13in;
+        /* size: 8.5in 14in ; */
         /* size: legal; */
         margin-top: 30px;
         margin-bottom: 10px;
@@ -399,7 +399,7 @@ $no=1;
                     <tr>
                         <td colspan="2">
                             <br>
-                                <br><br><br><br>
+                                <br><br><br>
                                 @if ($data->ppk_id != 0)
                                    <u> {{$data->ppk->user->name}}</u>
                                 @else
