@@ -125,7 +125,7 @@ $no=1;
                 Berangkat dari<br>
                 Ke<br> 
                 Pada Tanggal <br>
-                <br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br>
             </td>
             <td style="border-left: none;">
                 :  {{--tujuan pertama--}}
@@ -201,7 +201,7 @@ $no=1;
                 Berangkat dari<br>
                 Ke<br>
                 Pada Tanggal <br>
-                <br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br>
             </td>
             <td style="border-left: none;">
                 : 
@@ -278,7 +278,7 @@ $no=1;
                 Berangkat dari<br>
                 Ke<br>
                 Pada Tanggal <br>
-                <br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br>
             </td>
             <td style="border-left: none;">
                 : 
