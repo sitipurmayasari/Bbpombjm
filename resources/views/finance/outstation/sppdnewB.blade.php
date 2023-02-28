@@ -303,7 +303,7 @@ $no=1;
                 @endif
             </td>
         </tr>
-        <tr>
+        <tr style="border-bottom: none;">
             <td style="border-right: 0;border-bottom: none;">V.</td>
             <td style="border-left: 0;border-right:0;border-bottom: none;">
                 Tiba di<br>
@@ -322,7 +322,7 @@ $no=1;
                 Telah diperiksa dengan keterangan bahwa perjalanan tersebut diatas benar dilakukan atas perintahnya dan semata - mata untuk kepentingan jabatan dalam waktu
             </td>
         </tr>
-        <tr>
+        <tr style="border-top: none;">
             <td colspan="3" style="border-top: 0; text-align:center;">
                 Pejabat Pembuat Komitmen <br><br><br><br><br><br>
                 <u><b> 
