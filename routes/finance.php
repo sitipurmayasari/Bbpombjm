@@ -297,5 +297,11 @@
     Route::get('finance/receipt/nominatif/{id}','Finance\ReceiptController@nominatif')->name('receipt.nominatif');
     Route::get('finance/receipt/delete/{id}','Finance\ReceiptController@delete')->name('receipt.delete');
 
+  //Route untuk ketua tim kerja
+  Route::post('/finance/teamwork/store','Finance\TeamworkController@store')->name('teamwork.store');
+  Route::get('/finance/teamwork/delete/{id}','Finance\TeamworkController@delete')->name('teamwork.delete');
+  Route::get('/finance/teamwork/edit/{id}','Finance\TeamworkController@edit')->name('teamwork.edit');
+  Route::post('/finance/teamwork/update/{id}','Finance\TeamworkController@update')->name('teamwork.update');
+
 
     

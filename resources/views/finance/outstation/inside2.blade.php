@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>DALAM KOTA</title>
+    <title>DALAM KOTA > 8 JAM</title>
     <style>
          @page {
             size: A4 landscape;
