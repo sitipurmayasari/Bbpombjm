@@ -167,7 +167,7 @@
                         @endif
                     </td>
                     <td class="ttd">
-                                @if ($mengetahui!= null)
+                                {{-- @if ($mengetahui!= null)
                                     @if ($mengetahui->pjs != null)
                                         {{$mengetahui->pjs}}
                                         {{$mengetahui->jabatan->jabatan}} 
@@ -183,7 +183,7 @@
                                     @endif
                                 @else
                                     SILAHKAN CEK SETUP PEJABAT
-                                @endif
+                                @endif --}}
                     </td>
                     <td class="ttd"></td>
                 </tr>
