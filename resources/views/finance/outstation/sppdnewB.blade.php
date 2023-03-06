@@ -93,8 +93,7 @@ $no=1;
                     </b></u><br>
                     NIP.{{$menyetujui->user->no_pegawai}}
                 @else
-                    <br><br><br><br><br>
-                    &nbsp;<br>&nbsp;
+                    <br><br><br><br><br>&nbsp;
                 @endif
                 {{-- <u><b> 
                     @if ($data->ppk_id != 0)
@@ -169,17 +168,17 @@ $no=1;
         <tr style="border-top: none;">
             <td colspan="3" style="border-top: 0; text-align:center;" >
                 @if ($data->external =="Y")
-                    Kepala Bagian Tata Usaha <br><br>
+                    Kepala Bagian Tata Usaha <br><br><br><br><br>
                     <u><b>{{$menyetujui->user->name}} 
                     </b></u><br>
                     NIP.{{$menyetujui->user->no_pegawai}}
                 @else
-                    <br><br><br><br>
+                    <br><br><br><br><br>
                 @endif
             </td>
             <td colspan="2"  style="border-top: 0; text-align:center;">
                 @if ($data->external =="Y")
-                    Kepala Bagian Tata Usaha <br><br><br>
+                    Kepala Bagian Tata Usaha <br><br><br><br><br>
                     <u><b>{{$menyetujui->user->name}} 
                     </b></u><br>
                     NIP.{{$menyetujui->user->no_pegawai}}
