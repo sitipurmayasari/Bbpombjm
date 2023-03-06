@@ -83,4 +83,10 @@
   'bookman old style' => array(
     'normal' => $fontDir . '/bookman_old_style_normal_b96b83a5382caf054869f25440ab80be',
   ),
+  'glyphicons halflings' => array(
+    'normal' => $fontDir . '/glyphicons_halflings_normal_350b80441658c312f0c0436b96898a1c',
+  ),
+  'fontawesome' => array(
+    'normal' => $fontDir . '/fontawesome_normal_d726fe9f0eedcde03c194e171054f6d7',
+  ),
 ) ?>
