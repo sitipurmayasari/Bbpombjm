@@ -179,12 +179,12 @@ $no=1;
             </td>
             <td colspan="2"  style="border-top: 0; text-align:center;">
                 @if ($data->external =="Y")
-                    Kepala Bagian Tata Usaha <br><br>
+                    Kepala Bagian Tata Usaha <br><br><br>
                     <u><b>{{$menyetujui->user->name}} 
                     </b></u><br>
                     NIP.{{$menyetujui->user->no_pegawai}}
                 @else
-                    <br><br><br><br>
+                    <br><br><br><br><br>
                 @endif
             </td>
         </tr>
