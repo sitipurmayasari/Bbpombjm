@@ -8,6 +8,7 @@
     <style>
          @page {
             size:8.5in 13in landscape;
+            margin-left: 150px;
             font-family: Arial;
             -moz-transform:rotate(-90deg) scale(.58,.58);
             -moz-transform:rotate(-90deg) scale(.58,.58);

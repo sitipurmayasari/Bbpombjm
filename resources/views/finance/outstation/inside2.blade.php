@@ -7,7 +7,8 @@
     <title>DALAM KOTA > 8 JAM</title>
     <style>
          @page {
-            size: A4 landscape;
+            size:8.5in 13in landscape;
+            margin-left: 150px;
             font-family: Arial;
             -moz-transform:rotate(-90deg) scale(.58,.58);
             -moz-transform:rotate(-90deg) scale(.58,.58);
