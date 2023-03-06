@@ -86,8 +86,17 @@ $no=1;
         <tr style="border-top: none;">
             <td colspan="3" style="border-top: 0;"></td>
             <td colspan="2"  style="border-top: 0; text-align:center;">
-                Pejabat Pembuat Komitmen <br><br><br><br><br>
-                <u><b> 
+                {{-- Pejabat Pembuat Komitmen <br><br><br><br><br> --}}
+                @if ($data->external =="N")
+                    Kepala Bagian Tata Usaha <br><br><br><br><br>
+                    <u><b>{{$menyetujui->user->name}} 
+                    </b></u><br>
+                    NIP.{{$menyetujui->user->no_pegawai}}
+                @else
+                    <br><br><br><br>
+                    &nbsp;<br>&nbsp;
+                @endif
+                {{-- <u><b> 
                     @if ($data->ppk_id != 0)
                         {{$data->ppk->user->name}}
                     @endif
@@ -95,16 +104,16 @@ $no=1;
                 NIP.
                     @if ($data->ppk_id != 0)
                         {{$data->ppk->user->no_pegawai}}
-                    @endif
+                    @endif --}}
             </td>
         </tr>
-        <tr>
-            <td style="border-right: 0; width:3%;" >II.</td> 
-            <td style="border-left: 0; border-right:0; width:20%;">
+        <tr style=" border-bottom: none;"> 
+            <td style="border-right: 0; width:3%;  border-bottom: none;" >II.</td> 
+            <td style="border-left: 0; border-right:0; width:20%;  border-bottom: none;">
                 Tiba di<br> 
-                Pada Tanggal
+                Pada Tanggal <br><br>
             </td>
-            <td style="border-left: 0; width:27%;" >
+            <td style="border-left: 0; width:27%;  border-bottom: none;" >
                 : {{-- tujuan pertama --}} 
                 @foreach ($data->outst_destiny as $key=>$item)
                     @if ($loop->first)
@@ -119,13 +128,12 @@ $no=1;
                     @endif
                 @endforeach
             </td>
-            <td style="border-right: 0;  width: 20%;">
+            <td style="border-right: 0;  width: 20%;  border-bottom: none;">
                 Berangkat dari<br>
                 Ke<br> 
                 Pada Tanggal <br>
-                <br><br><br><br><br><br>
             </td>
-            <td style="border-left: 0;">
+            <td style="border-left: 0;  border-bottom: none;">
                 :  {{--tujuan pertama--}}
                 @foreach ($data->outst_destiny as $key=>$item)
                     @if ($loop->first)
@@ -156,6 +164,28 @@ $no=1;
                         {{tgl_indo($item->return_date)}} 
                     @endif
                 @endforeach
+            </td>
+        </tr>
+        <tr style="border-top: none;">
+            <td colspan="3" style="border-top: 0; text-align:center;" >
+                @if ($data->external =="Y")
+                    Kepala Bagian Tata Usaha <br><br><br><br>
+                    <u><b>{{$menyetujui->user->name}} 
+                    </b></u><br>
+                    NIP.{{$menyetujui->user->no_pegawai}}
+                @else
+                    <br><br><br><br><br><br>
+                @endif
+            </td>
+            <td colspan="2"  style="border-top: 0; text-align:center;">
+                @if ($data->external =="Y")
+                    Kepala Bagian Tata Usaha <br><br><br><br>
+                    <u><b>{{$menyetujui->user->name}} 
+                    </b></u><br>
+                    NIP.{{$menyetujui->user->no_pegawai}}
+                @else
+                    <br><br><br><br><br><br>
+                @endif
             </td>
         </tr>
         <tr>
