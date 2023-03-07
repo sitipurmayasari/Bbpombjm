@@ -185,7 +185,7 @@
                         @endif
                     </td>
                     <td style="vertical-align: top;">
-                        @if ($data->st->type=="LK")
+                        @if ($item->uhar1sum != 0)
                             @if (count($data->st->outst_destiny) == 1)
                                     - Uang Harian <br>
 
@@ -213,7 +213,7 @@
                         @endif
                     </td>
                     <td style="vertical-align: top;text_align:center" >
-                        @if ($data->st->type=="LK")
+                        @if ($item->uhar1sum != 0)
                             @if (count($data->st->outst_destiny) == 1)
                                     {{$item->uhar1kali}} OH <br>
 
@@ -241,7 +241,7 @@
                         @endif
                     </td>
                     <td style="vertical-align: top;text_align:center">
-                       @if ($data->st->type=="LK")
+                       @if ($item->uhar1sum != 0)
                             @if (count($data->st->outst_destiny) == 1)
                                     {{number_format($item->uhar1cost)}}<br>
 
@@ -269,7 +269,7 @@
                         @endif
                     </td>
                     <td style="vertical-align: top;text_align:center">
-                        @if ($data->st->type=="LK")
+                        @if ($item->uhar1sum != 0)
                             @if (count($data->st->outst_destiny) == 1)
                                     {{number_format($item->uhar1sum)}}<br>
 
