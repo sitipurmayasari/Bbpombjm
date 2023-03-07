@@ -378,6 +378,7 @@
                 </i>
                 <table style="width: 100%">
                     @if ($data->st->type=="LK")
+                        @if ($dataUH->uhar1cost != 0)                            
                         <tr>
                             <td style="width: 20%">
                             <i>
@@ -528,6 +529,7 @@
                                 </i> &nbsp; 
                             </td>
                         </tr>
+                        @endif
                     @elseif ($data->st->type=="DL8")
                         <tr>
                             <td style="width: 40%">
