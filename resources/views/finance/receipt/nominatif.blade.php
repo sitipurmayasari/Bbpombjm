@@ -11,7 +11,8 @@
 
     <style>
         @page {
-            size: A4 landscape;
+            size:8.5in 13in landscape;
+            margin-left: 150px;
             font-family: 'Times New Roman';
         }
 

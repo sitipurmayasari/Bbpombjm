@@ -32,6 +32,7 @@
 </form>
 
     <div class="table-responsive">
+        <p style="text-align: right;"><b>*Diprint Dengan kertas F4</b></p>
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
                 <th width="40px" style="text-align: center">No</th>

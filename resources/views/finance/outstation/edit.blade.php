@@ -313,8 +313,17 @@
                                         <input type="hidden" name="outemp_id[]" value="{{$item->id}}">
                                     </td>
                                     <td>
-                                        <input type="text" name="no_sppd[]" readonly class="form-control"
-                                        value="{{$item->no_sppd}}" required>
+                                        {{-- <input type="text" name="no_sppd[]" readonly class="form-control"
+                                        value="{{$item->no_sppd}}" required> --}}
+                                        <select name="no_sppd[]" class="form-control select2">
+                                            @foreach ($sppd as $spd)
+                                                @if ($spd->nomor_sppd == $item->no_sppd)
+                                                    <option value="{{$spd->nomor_sppd}}" selected>{{$spd->nomor_sppd}}</option> 
+                                                @else 
+                                                    <option value="{{$spd->nomor_sppd}}">{{$spd->nomor_sppd}}</option>
+                                                @endif
+                                            @endforeach
+                                        </select>
                                     </td>
                                     <td>
                                         <a href="#" class="btn btn-danger delete"
