@@ -405,11 +405,11 @@ $no=1;
                                 @else
                                     &nbsp;
                                 @endif <br>
-                                NIP.  
                                 @if ($data->ppk_id != 0)
-                                    {{$data->ppk->user->no_pegawai}}
+                                NIP.    {{$data->ppk->user->no_pegawai}}
                                 @else
-                                    &nbsp;
+                                <br>
+                                    ----------------------------------
                                 @endif 
                             
                         </td>
