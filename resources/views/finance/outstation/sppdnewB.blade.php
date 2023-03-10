@@ -353,15 +353,19 @@ $no=1;
         </tr>
         <tr style="border-top: none;">
             <td colspan="3" style="border-top: 0; text-align:center;">
-                Pejabat Pembuat Komitmen <br><br><br><br><br>
-                <u><b> 
-                    @if ($data->ppk_id != 0)
-                        {{$data->ppk->user->name}}
-                    @endif
-                </b></u><br>
-                    @if ($data->ppk_id != 0)
-                    NIP. {{$data->ppk->user->no_pegawai}}
-                    @endif
+                @if ($data->pok_detail_id == 0 || $data->pok_detail_id == 1)
+                    Pejabat Pembuat Komitmen <br><br><br><br><br>
+                    <u><b> 
+                        @if ($data->ppk_id != 0)
+                            {{$data->ppk->user->name}}
+                        @endif
+                    </b></u><br>
+                        @if ($data->ppk_id != 0)
+                        NIP. {{$data->ppk->user->no_pegawai}}
+                        @endif
+                @else
+                    
+                @endif
             </td>
             <td colspan="2"  style="border-top: 0; text-align:center;">
                 Pejabat Pembuat Komitmen <br><br><br><br><br>
