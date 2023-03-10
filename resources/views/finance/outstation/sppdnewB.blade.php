@@ -359,9 +359,8 @@ $no=1;
                         {{$data->ppk->user->name}}
                     @endif
                 </b></u><br>
-                NIP.
                     @if ($data->ppk_id != 0)
-                        {{$data->ppk->user->no_pegawai}}
+                    NIP. {{$data->ppk->user->no_pegawai}}
                     @endif
             </td>
             <td colspan="2"  style="border-top: 0; text-align:center;">
@@ -371,9 +370,8 @@ $no=1;
                         {{$data->ppk->user->name}}
                     @endif
                 </b></u><br>
-                NIP.
                     @if ($data->ppk_id != 0)
-                        {{$data->ppk->user->no_pegawai}}
+                    NIP. {{$data->ppk->user->no_pegawai}}
                     @endif
             </td>
         </tr>

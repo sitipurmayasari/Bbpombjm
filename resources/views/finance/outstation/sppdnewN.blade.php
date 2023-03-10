@@ -90,7 +90,7 @@ $no=1;
                         <td style="width: 70%">:
                             <i>
                                 @if ($data->pok_detail_id == 0)
-                                    {{' Non Anggaran '}}
+                                    &nbsp;
                                 @elseif ($data->pok_detail_id == 1)
                                     {{' - '}}
                                 @else
@@ -106,7 +106,7 @@ $no=1;
                         <td>:
                             <i>
                                 @if ($data->pok_detail_id == 0)
-                                    {{' Non Anggaran '}}
+                                    &nbsp;
                                 @elseif ($data->pok_detail_id == 1)
                                     {{' - '}}
                                 @else
@@ -122,7 +122,7 @@ $no=1;
                         <td>:
                            <i>
                             @if ($data->pok_detail_id == 0)
-                                {{' Non Anggaran '}}
+                                &nbsp;
                             @elseif ($data->pok_detail_id == 1)
                                 {{' - '}}
                             @else
@@ -164,7 +164,7 @@ $no=1;
                 @if ($data->ppk_id != 0)
                     {{$data->ppk->user->name}}
                 @else
-                    Pejabat Pembuat Komitmen
+                    &nbsp;
                 @endif 
             </td>
         </tr>
@@ -344,7 +344,7 @@ $no=1;
             </td>
             <td class="tabbor" colspan="2" style="border-top: none; padding-top:0;">
                 @if ($data->pok_detail_id == 0)
-                                    {{' Non Anggaran '}}
+                                    &nbsp;
                                 @elseif ($data->pok_detail_id == 1)
                                     {{' - '}}
                                 @else
@@ -403,13 +403,13 @@ $no=1;
                                 @if ($data->ppk_id != 0)
                                    <u> {{$data->ppk->user->name}}</u>
                                 @else
-                                   <u> Pejabat Pembuat Komitmen</u>
+                                    &nbsp;
                                 @endif <br>
                                 NIP.  
                                 @if ($data->ppk_id != 0)
                                     {{$data->ppk->user->no_pegawai}}
                                 @else
-                                    Pejabat Pembuat Komitmen
+                                    &nbsp;
                                 @endif 
                             
                         </td>
