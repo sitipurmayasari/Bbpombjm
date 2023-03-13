@@ -512,10 +512,10 @@ class ReceiptController extends Controller
             return $pdf->stream();
 
         } else {
-            return view('finance/receipt.costLK',compact('petugas','data','pegawai','tujuan'));
+            // return view('finance/receipt.costLK',compact('petugas','data','pegawai','tujuan'));
         }
 
-            // return view('finance/receipt.costNew',compact('petugas','data','pegawai','tujuan'));
+            return view('finance/receipt.costNew',compact('petugas','data','pegawai','tujuan'));
     }
 
     public function super30($id)
@@ -630,8 +630,8 @@ class ReceiptController extends Controller
                                   ->where('outstation_id','=',$desti1->outstation_id)
                                   ->first();
         }
-        // $pdf = PDF::loadview('finance/receipt.riilNew',compact('petugas','data','pegawai','tujuan','lama'));
-        $pdf = PDF::loadview('finance/receipt.riil',compact('petugas','data','pegawai','tujuan','lama'));
+        $pdf = PDF::loadview('finance/receipt.riilNew',compact('petugas','data','pegawai','tujuan','lama'));
+        // $pdf = PDF::loadview('finance/receipt.riil',compact('petugas','data','pegawai','tujuan','lama'));
         
         return $pdf->stream();
     }
