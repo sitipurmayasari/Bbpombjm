@@ -18,6 +18,7 @@
                 <th style="text-align: center">Pulang Cepat</th>
                 <th style="text-align: center">keterangan</th>
                 <th style="text-align: center">poin</th>
+                <th style="text-align: center">Upload</th>
                 <th style="text-align: center">Edit</th>
             <thead>
             <tbody>   	
@@ -54,6 +55,9 @@
                         {{$row->status->ket}}
                     </td>
                     <td>{{$row->poin}}</td>
+                    <td>
+                        <a href="{{$row->getFile()}}" target="_blank" >{{$row->file}}</a>
+                    </td>
                     <td>
                         <a href="/amdk/rekpermit/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>

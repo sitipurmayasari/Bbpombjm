@@ -76,7 +76,7 @@
 
         table, td, tr {
             text-align: justify;
-            vertical-align: top;
+            vertical-align: top;                                   
             line-height: 1;
             font-size: 12;
         }
@@ -92,7 +92,6 @@
             border: 1px solid black;
             font-size: 10;
             text-align: left;
-            line-height: 2;
             vertical-align: top
         }
         th{
@@ -148,11 +147,11 @@
         <table style="width:100%" class="detail">
             <thead class="detail">
                 <tr class="detail">
-                    <th style="width: 5%">NO</th>
-                    <th style="width: 25%">NAMA BARANG</th>
-                    <th style="width: 30%">SPESIFIKASI</th>
+                    <th style="width: 5%; line-height:2;">NO</th>
+                    <th style="width: 25%; line-height:1;" >NAMA BARANG</th>
+                    <th style="width: 30%; line-height:1;">SPESIFIKASI</th>
                     <th style="width: 15%">JUMLAH</th>
-                    <th style="width: 25%">STATUS</th>
+                    <th style="width: 25%; line-height:1;">STATUS</th>
                 </tr>
             </thead>
             <tbody class="detail">
