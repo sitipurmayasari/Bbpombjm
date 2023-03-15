@@ -893,6 +893,13 @@
                             <td style="border-right: 1px solid black;"></td>
                         </tr>
                     @endif
+                @else
+                    <tr>
+                        <td style="border-right: 1px solid black;"><br>&nbsp;<br>&nbsp;<br>&nbsp;</td>
+                        <td style="border-right: 1px solid black;"></td>
+                        <td style="border-right: 1px solid black;"></td>
+                        <td style="border-right: 1px solid black;"></td>
+                    </tr>
                 @endif
 
                 {{----------- FOOTER -----------}}
