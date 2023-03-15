@@ -507,13 +507,13 @@ class ReceiptController extends Controller
         $petugas    = Petugas::where('id', '=', 5)->first();
        
 
-        if ($tipe->type=="DL") {
-            $pdf        = PDF::loadview('finance/receipt.costDK',compact('petugas','data','pegawai','tujuan'));
-            return $pdf->stream();
+        // if ($tipe->type=="DL") {
+        //     $pdf        = PDF::loadview('finance/receipt.costDK',compact('petugas','data','pegawai','tujuan'));
+        //     return $pdf->stream();
 
-        } else {
-            // return view('finance/receipt.costLK',compact('petugas','data','pegawai','tujuan'));
-        }
+        // } else {
+        //     // return view('finance/receipt.costLK',compact('petugas','data','pegawai','tujuan'));
+        // }
 
             return view('finance/receipt.costNew',compact('petugas','data','pegawai','tujuan'));
     }
