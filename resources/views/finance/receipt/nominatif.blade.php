@@ -420,11 +420,12 @@
             </tr>
             <tr class="table2">
                 <td class="table2">
-                    @if ($data->st->ppk_id != 0)
+                    {{-- @if ($data->st->ppk_id != 0)
                         {{$data->st->ppk->jabatan}}
                     @else
                         Pejabat Pembuat Komitmen
-                    @endif
+                    @endif --}}
+                    Pejabat Pembuat Komitmen
                      <br><br><br><br><br></td>
                 <td class="table2">
                     @if ($menyetujui->pjs !=null)

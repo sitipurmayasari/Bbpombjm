@@ -668,13 +668,24 @@ class ReceiptController extends Controller
                         ->leftJoin('expenses','expenses.outstation_id','=','outstation.id')
                         ->where('expenses.id',$id)
                         ->get();
-        $menyetujui    = Pejabat::SelectRaw('pejabat.* ')
-                        ->leftJoin('outstation','outstation.divisi_id','=','pejabat.divisi_id')
-                        ->leftJoin('divisi','divisi.id','=','outstation.divisi_id')
-                        ->whereraw('subdivisi_id IS NULL')
-                        ->where('outstation.id',$data->outstation_id)
-                        ->whereRaw("st_date BETWEEN pejabat.dari AND pejabat.sampai")
-                        ->first();
+
+        if ($data->st->divisi_id == 1) {
+            $div = 2;
+        } else {
+            $div = $data->st->divisi_id;
+        }
+        $menyetujui     = Pejabat::OrderBy('id','desc')
+                                ->where('divisi_id',$div)
+                                ->whereraw('subdivisi_id is null')
+                                ->first();
+
+        // $menyetujui    = Pejabat::SelectRaw('pejabat.* ')
+        //                 ->leftJoin('outstation','outstation.divisi_id','=','pejabat.divisi_id')
+        //                 ->leftJoin('divisi','divisi.id','=','outstation.divisi_id')
+        //                 ->whereraw('subdivisi_id IS NULL')
+        //                 ->where('outstation.id',$data->outstation_id)
+        //                 ->whereRaw("st_date BETWEEN pejabat.dari AND pejabat.sampai")
+        //                 ->first();
         $harian     = ExpensesUh::where('expenses_id',$id)->get();
         $pdf = PDF::loadview('finance/receipt.nominatif',compact('data','tujuan','menyetujui','harian'));
         return $pdf->stream();
