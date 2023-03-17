@@ -430,10 +430,12 @@
                 <td class="table2">
                     @if ($menyetujui->pjs !=null)
                         {{$menyetujui->pjs}}
-                        {{$menyetujui->user->jabasn->nama}}
+                        {{$menyetujui->jabatan->jabatan}}
+                        {{-- {{$menyetujui->user->jabasn->nama}} --}}
                         {{-- {{$menyetujui->jabatan->jabatan}} {{$menyetujui->divisi->nama}}, --}}
                     @else
-                        {{$menyetujui->user->jabasn->nama}}
+                        {{$menyetujui->jabatan->jabatan}}
+                        {{-- {{$menyetujui->user->jabasn->nama}} --}}
                         {{-- {{$menyetujui->jabatan->jabatan}} {{$menyetujui->divisi->nama}}, --}}
                     @endif
                     <br><br><br><br><br>
