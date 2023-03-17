@@ -148,13 +148,13 @@
                             @if ($datapesawat != null)
                                 @foreach ($datapesawat as $tiket)
                                 <tr>
-                                    <td  style="width: 20%"><i> Tiket {{$tiket->planetype}}</i></td>
-                                    <td style="width: 20%">
+                                    <td  style="width: 20%;"><i> Tiket {{$tiket->planetype}}</i></td>
+                                    <td style="width: 20%;">
                                        <i> {{$tiket->plane->name}}</i>
                                     </td>
                                     <td style="text-align: center; width:5%;"><i>:</i> </td>
                                     <td style="text-align: center; width: 5%;"></td>
-                                    <td style="text-align: center; width: 15;"></td>
+                                    <td style="text-align: center; width: 15%;"></td>
                                     <td style="text-align: right; width: 15%;"></td>
                                     <td style="text-align: center; width: 5%;"><i>. Rp.</i></td>
                                     <td style="text-align: right; width: 15%;"> 
@@ -171,12 +171,12 @@
                                     <td  style="width: 20%">
                                         <i>{{$trans->taxitype}}</i>
                                     </td>
-                                    <td style="width: 20%"></td>
+                                    <td style="width: 20%">&nbsp;</td>
                                     <td style="text-align: center; width:5%;"><i>:</i> </td>
                                     <td style="text-align: center; width: 5%;">
                                         <i>{{$trans->taxicount}}</i>
                                     </td>
-                                    <td style="text-align: center; width: 15;"><i> &nbsp; kali &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp. </i></td>
+                                    <td style="text-align: center; width: 15%;"><i> &nbsp; kali &nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;Rp. </i></td>
                                     <td style="text-align: right; width: 15%;"> 
                                         <i>{{number_format($trans->taxifee)}}</i>
                                         &nbsp;
@@ -254,9 +254,9 @@
                                 @endforeach
                             </i>
                             <table style="width: 100%">
-                                @if ($data->st->type=="LK" && $dataUH->uhar1kali != 0)
-                                    <tr>
-                                        <td style="width: 20%">
+                            @if ($data->st->type=="LK" && $dataUH->uhar1kali != 0)
+                                <tr>
+                                    <td  style="width: 20%;">
                                         <i>
                                             @if (count($item->out->outst_destiny) == 1)
                                                 @foreach ($tujuan as $key=>$kota)
@@ -264,13 +264,13 @@
                                                         - Uang Harian
                                                     @endif
                                                 @endforeach
-            
+                            
                                             @elseif (count($item->out->outst_destiny) == 2)
                                                 {{-- @foreach ($tujuan as $key=>$kota) --}}
                                                     - Uang Harian <br>
                                                     - Uang Harian
                                                 {{-- @endforeach --}}
-            
+                            
                                             @else
                                                 {{-- @foreach ($tujuan as $key=>$kota) --}}
                                                     - Uang Harian <br>
@@ -279,15 +279,16 @@
                                                 {{-- @endforeach --}}
                                             @endif 
                                         </i>
-                                        </td>
-                                        <td style="width: 20%">
-                                            <i>@if (count($item->out->outst_destiny) == 1)
+                                    </td>
+                                    <td  style="width: 20%;">
+                                        <i>
+                                            @if (count($item->out->outst_destiny) == 1)
                                                 @foreach ($tujuan as $key=>$kota)
                                                     @if ($loop->first)
                                                         {{$kota->destiny->capital}} 
                                                     @endif
                                                 @endforeach
-            
+                            
                                             @elseif (count($item->out->outst_destiny) == 2)
                                                 @foreach ($tujuan as $key=>$kota)
                                                     {{$kota->destiny->capital}}
@@ -295,7 +296,7 @@
                                                         <br>
                                                     @endif
                                                 @endforeach
-            
+                            
                                             @else
                                                 @foreach ($tujuan as $key=>$kota)
                                                     @if ($loop->last-1)
@@ -306,213 +307,226 @@
                                                     @endif
                                                     
                                                 @endforeach
-                                            @endif </i>
-                                        </td>
-                                        <td style="text-align: center; width:5%;"><i>:</i> </td>
-                                        <td style="text-align: center; width: 5%;">
-                                            <i>
-                                                @if (count($item->out->outst_destiny) == 1)
-                                                    @foreach ($tujuan as $key=>$kota)
-                                                        @if ($loop->first)
-                                                            {{$dataUH->uhar1kali}}
-                                                        @endif
-                                                    @endforeach
-            
-                                                @elseif (count($item->out->outst_destiny) == 2)
-                                                        {{$dataUH->uhar1kali}} <br>
-                                                        {{$dataUH->uhar2kali}}
-            
-                                                @else
-                                                        {{$dataUH->uhar1kali}} <br>
-                                                        {{$dataUH->uhar2kali}} <br>
-                                                        {{$dataUH->uhar3kali}}
-                                                @endif 
-                                            </i>
-                                        </td>
-                                        <td style="text-align: center; width: 15;"><i>
+                                            @endif
+                                        </i>
+                                    </td>
+                                    <td  style="width: 3%; text-align:center;"><i>:</i></td>
+                                    <td  style="width: 3%; text-align:center;">
+                                        <i>
                                             @if (count($item->out->outst_destiny) == 1)
+                                                @foreach ($tujuan as $key=>$kota)
+                                                    @if ($loop->first)
+                                                        {{$dataUH->uhar1kali}}
+                                                    @endif
+                                                @endforeach
+                        
+                                            @elseif (count($item->out->outst_destiny) == 2)
+                                                    {{$dataUH->uhar1kali}} <br>
+                                                    {{$dataUH->uhar2kali}}
+                        
+                                            @else
+                                                    {{$dataUH->uhar1kali}} <br>
+                                                    {{$dataUH->uhar2kali}} <br>
+                                                    {{$dataUH->uhar3kali}}
+                                            @endif 
+                                        </i>
+                                    </td>
+                                    <td  style="width: 13%; text-align: center;">
+                                        <i>
+                                            @if (count($item->out->outst_destiny) == 1)
+                                            &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. 
+                        
+                                            @elseif (count($item->out->outst_destiny) == 2)
+                                                &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. <br>
                                                 &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. 
-            
-                                                @elseif (count($item->out->outst_destiny) == 2)
-                                                    &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. <br>
-                                                    &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. 
-            
-                                                @else
-                                                    &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. <br>
-                                                    &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. <br>
-                                                    &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp.
-                                                @endif 
-                                            
-                                            </i></td>
-                                        <td style="text-align: right; width: 15%;"> 
-                                            <i>
-                                                @if (count($item->out->outst_destiny) == 1)
-                                                    @foreach ($tujuan as $key=>$kota)
-                                                        @if ($loop->first)
-                                                            {{number_format($dataUH->uhar1cost)}}
-                                                        @endif
-                                                    @endforeach
-            
-                                                @elseif (count($item->out->outst_destiny) == 2)
-                                                    {{number_format($dataUH->uhar1cost)}} <br>
-                                                    &nbsp;{{number_format($dataUH->uhar2cost)}}
-                                                @else
-                                                        {{number_format($dataUH->uhar1cost)}} <br>
-                                                        &nbsp;{{number_format($dataUH->uhar2cost)}} <br>
-                                                        &nbsp;{{number_format($dataUH->uhar3cost)}}
-                                                @endif 
-                                            </i>
-                                            &nbsp;
-                                        </td>
-                                        <td style="text-align: center; width: 5%;"><i>
+                        
+                                            @else
+                                                &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. <br>
+                                                &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. <br>
+                                                &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp.
+                                            @endif 
+                                        </i>
+                                    </td>
+                                    <td  style="width: 15%; text-align: center;">
+                                        <i>
                                             @if (count($item->out->outst_destiny) == 1)
-                                            . Rp.
-            
-                                        @elseif (count($item->out->outst_destiny) == 2)
-                                            . Rp. <br>
-                                            . Rp.
-            
-                                        @else
-                                            . Rp. <br>
-                                            . Rp. <br>
-                                            . Rp.
-                                        @endif 
-            
-                                            
-                                        </i></td>
-                                        <td style="text-align: right; width: 15%;"> 
-                                            <i>
-                                                @if (count($item->out->outst_destiny) == 1)
-                                                    @foreach ($tujuan as $key=>$kota)
-                                                        @if ($loop->first)
-                                                            {{number_format($dataUH->uhar1sum)}} &nbsp;
-                                                        @endif
-                                                    @endforeach
-            
-                                                @elseif (count($item->out->outst_destiny) == 2)
-                                                    {{-- @foreach ($tujuan as $key=>$kota) --}}
-                                                        {{number_format($dataUH->uhar1sum)}} &nbsp;<br>
-                                                        {{number_format($dataUH->uhar2sum)}} &nbsp;
-                                                    {{-- @endforeach --}}
-            
-                                                @else
-                                                    {{-- @foreach ($tujuan as $key=>$kota) --}}
-                                                        {{number_format($dataUH->uhar1sum)}} &nbsp;<br>
-                                                        {{number_format($dataUH->uhar2sum)}} &nbsp;<br>
-                                                        {{number_format($dataUH->uhar2sum)}} &nbsp;
-                                                    {{-- @endforeach --}}
-                                                @endif 
-                                            </i> &nbsp; 
-                                        </td>
-                                    </tr>
-                                @elseif ($data->st->type=="DL8")
-                                    <tr>
-                                        <td style="width: 40%">
-                                            <i>- Uang Harian DK > 8 Jam</i>
-                                        </td>
-                                        <td style="text-align: center; width:5%;"><i>:</i> </td>
-                                        <td style="text-align: center; width: 5%;">
-                                            <i>
-                                                {{$dataUH->tlokalkali}}
-                                            </i>
-                                        </td>
-                                        <td style="text-align: center; width: 15;"><i> &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. </i></td>
-                                        <td style="text-align: right; width: 15%;"> 
-                                            <i>
-                                                {{number_format($dataUH->tlokalcost)}}
-                                            </i>
-                                            &nbsp;
-                                        </td>
-                                        <td style="text-align: center; width: 5%;"><i>. Rp.</i></td>
-                                        <td style="text-align: right; width: 15%;"> 
-                                            <i>
-                                                {{number_format($dataUH->tlokalsum)}}
-                                            </i> 
-                                            </i> &nbsp; 
-                                        </td>
-                                    </tr>
-                                @endif
-                                @if ($dataUH->diklatsum != 0)
-                                    <tr>
-                                        <td style="width: 40%">
-                                            <i>- Uang Saku Diklat</i>
-                                        </td>
-                                        <td style="text-align: center; width:5%;"><i>:</i> </td>
-                                        <td style="text-align: center; width: 5%;">
-                                            <i>
-                                                {{$dataUH->diklatkali}}
-                                            </i>
-                                        </td>
-                                        <td style="text-align: center; width: 15;"><i> &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. </i></td>
-                                        <td style="text-align: right; width: 15%;"> 
-                                            <i>
-                                                {{number_format($dataUH->diklatcost)}}
-                                            </i>
-                                            &nbsp;
-                                        </td>
-                                        <td style="text-align: center; width: 5%;"><i>. Rp.</i></td>
-                                        <td style="text-align: right; width: 15%;"> 
-                                            <i>
-                                                {{number_format($dataUH->diklatsum)}}
-                                            </i> 
-                                            </i> &nbsp; 
-                                        </td>
-                                    </tr>
-                                @endif
-                                @if ($dataUH->fulldaysum != 0)
-                                    <tr>
-                                        <td style="width: 40%">
-                                            <i>- Uang Saku  Half/Fullday</i>
-                                        </td>
-                                        <td style="text-align: center; width:5%;"><i>:</i> </td>
-                                        <td style="text-align: center; width: 5%;">
-                                            <i>
-                                                {{$dataUH->fulldaykali}}
-                                            </i>
-                                        </td>
-                                        <td style="text-align: center; width: 15;"><i> &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. </i></td>
-                                        <td style="text-align: right; width: 15%;"> 
-                                            <i>
-                                                {{number_format($dataUH->fulldaycost)}}
-                                            </i>
-                                            &nbsp;
-                                        </td>
-                                        <td style="text-align: center; width: 5%;"><i>. Rp.</i></td>
-                                        <td style="text-align: right; width: 15%;"> 
-                                            <i>
-                                                {{number_format($dataUH->fulldaysum)}}
-                                            </i> 
-                                            </i> &nbsp; 
-                                        </td>
-                                    </tr>
-                                @endif
-                                @if ($dataUH->fullboardsum != 0)
-                                    <tr>
-                                        <td style="width: 40%">
-                                            <i>- Uang Saku Fullboard</i>
-                                        </td>
-                                        <td style="text-align: center; width:5%;"><i>:</i> </td>
-                                        <td style="text-align: center; width: 5%;">
-                                            <i>
-                                                {{$dataUH->fullboardkali}}
-                                            </i>
-                                        </td>
-                                        <td style="text-align: center; width: 15;"><i> &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. </i></td>
-                                        <td style="text-align: right; width: 15%;"> 
-                                            <i>
-                                                {{number_format($dataUH->fullboardcost)}}
-                                            </i>
-                                            &nbsp;
-                                        </td>
-                                        <td style="text-align: center; width: 5%;"><i>. Rp.</i></td>
-                                        <td style="text-align: right; width: 15%;"> 
-                                            <i>
-                                                {{number_format($dataUH->fullboardsum)}}
-                                            </i> 
-                                            </i> &nbsp; 
-                                        </td>
-                                    </tr>
-                                @endif
+                                                @foreach ($tujuan as $key=>$kota)
+                                                    @if ($loop->first)
+                                                        {{number_format($dataUH->uhar1cost)}}
+                                                    @endif
+                                                @endforeach
+
+                                            @elseif (count($item->out->outst_destiny) == 2)
+                                                {{number_format($dataUH->uhar1cost)}} <br>
+                                                &nbsp;{{number_format($dataUH->uhar2cost)}}
+                                            @else
+                                                    {{number_format($dataUH->uhar1cost)}} <br>
+                                                    &nbsp;{{number_format($dataUH->uhar2cost)}} <br>
+                                                    &nbsp;{{number_format($dataUH->uhar3cost)}}
+                                            @endif 
+                                        </i>
+                                    </td>
+                                    <td  style="width: 5%; text-align:center;">
+                                        <i>
+                                            @if (count($item->out->outst_destiny) == 1)
+                                                . Rp.
+                                            @elseif (count($item->out->outst_destiny) == 2)
+                                                . Rp.<br>
+                                                . Rp.
+                                            @else
+                                                . Rp.<br>
+                                                . Rp.<br>
+                                                . Rp.
+                                            @endif
+                                        </i>
+                                    </td>
+                                    <td  style="width: 21%; text-align: right;">
+                                        <i>
+                                            @if (count($item->out->outst_destiny) == 1)
+                                                @foreach ($tujuan as $key=>$kota)
+                                                    @if ($loop->first)
+                                                        {{number_format($dataUH->uhar1sum)}}&nbsp;
+                                                    @endif
+                                                @endforeach
+                        
+                                            @elseif (count($item->out->outst_destiny) == 2)
+                                                {{-- @foreach ($tujuan as $key=>$kota) --}}
+                                                    {{number_format($dataUH->uhar1sum)}}&nbsp;<br>
+                                                    {{number_format($dataUH->uhar2sum)}}&nbsp;
+                                                {{-- @endforeach --}}
+                        
+                                            @else
+                                                {{-- @foreach ($tujuan as $key=>$kota) --}}
+                                                    {{number_format($dataUH->uhar1sum)}}<br>
+                                                    {{number_format($dataUH->uhar2sum)}}<br>
+                                                    {{number_format($dataUH->uhar2sum)}}
+                                                {{-- @endforeach --}}
+                                            @endif 
+                                        </i>
+                                    </td>
+                                </tr>
+                            @elseif ($data->st->type=="DL8")
+                                <tr>
+                                    <td  style="width: 30%;"><i>- Uang Harian DK > 8 Jam</i></td>
+                                    <td  style="width: 10%;">&nbsp;</td>
+                                    <td  style="width: 3%; text-align:center;"><i>:</i></td>
+                                    <td  style="width: 3%; text-align:center;">
+                                        <i>
+                                            {{$dataUH->tlokalkali}}
+                                        </i>
+                                    </td>
+                                    <td  style="width: 13%; text-align: center;">
+                                        <i>
+                                            &nbsp;hari&nbsp;&nbsp;x&nbsp;&nbsp;Rp. 
+                                        </i>
+                                    </td>
+                                    <td  style="width: 15%; text-align: center;">
+                                        <i>
+                                            {{number_format($dataUH->tlokalcost)}}
+                                        </i>
+                                    </td>
+                                    <td  style="width: 5%; text-align:center;">
+                                        <i>. Rp.</i>
+                                    </td>
+                                    <td  style="width: 21%; text-align: right;">
+                                        <i>
+                                            {{number_format($dataUH->tlokalsum)}}&nbsp;
+                                        </i>
+                                    </td>
+                                </tr>
+                            @endif
+                            @if ($dataUH->diklatsum != 0)
+                                <tr>
+                                    <td  style="width: 30%;">
+                                        <i>- Uang Saku Diklat</i>
+                                    </td>
+                                    <td  style="width: 10%;">&nbsp;</td>
+                                    <td  style="width: 3%; text-align:center;"><i>:</i></td>
+                                    <td  style="width: 3%; text-align:center;">
+                                        <i>
+                                            {{$dataUH->diklatkali}}
+                                        </i>
+                                    </td>
+                                    <td  style="width: 13%; text-align: center;">
+                                        <i>
+                                            &nbsp;hari&nbsp;&nbsp;x&nbsp;&nbsp;Rp. 
+                                        </i>
+                                    </td>
+                                    <td  style="width: 15%; text-align: center;">
+                                        <i>
+                                            {{number_format($dataUH->diklatcost)}}
+                                        </i>
+                                    </td>
+                                    <td  style="width: 5%; text-align:center;">
+                                        <i>. Rp.</i>
+                                    </td>
+                                    <td  style="width: 21%; text-align: right;">
+                                        <i>
+                                            {{number_format($dataUH->diklatsum)}}&nbsp;
+                                        </i>
+                                    </td>
+                                </tr>
+                            @endif
+                            @if ($dataUH->fulldaysum != 0)
+                                <tr>
+                                    <td  style="width: 30%;"></td>
+                                    <td  style="width: 10%;">&nbsp;</td>
+                                    <td  style="width: 3%; text-align:center;"><i>:</i></td>
+                                    <td  style="width: 3%; text-align:center;">
+                                        <i>
+                                            {{$dataUH->fulldaykali}}
+                                        </i>
+                                    </td>
+                                    <td  style="width: 13%; text-align: center;">
+                                        <i>
+                                            &nbsp;hari&nbsp;&nbsp;x&nbsp;&nbsp;Rp. 
+                                        </i>
+                                    </td>
+                                    <td  style="width: 15%; text-align: center;">
+                                        <i>
+                                            {{number_format($dataUH->fulldaycost)}}
+                                        </i>
+                                    </td>
+                                    <td  style="width: 5%; text-align:center;">
+                                        <i>. Rp.</i>
+                                    </td>
+                                    <td  style="width: 21%; text-align: right;">
+                                        <i>
+                                            {{number_format($dataUH->fulldaysum)}}&nbsp;
+                                        </i>
+                                    </td>
+                                </tr>
+                            @endif
+                            @if ($dataUH->fullboardsum != 0)
+                                <tr>
+                                    <td  style="width: 30%;">- Uang Saku Fullboard</td>
+                                    <td  style="width: 10%;">&nbsp;</td>
+                                    <td  style="width: 3%; text-align:center;"><i>:</i></td>
+                                    <td  style="width: 3%; text-align:center;">
+                                        <i>
+                                            {{$dataUH->fullboardkali}}
+                                        </i>
+                                    </td>
+                                    <td  style="width: 13%; text-align: center;">
+                                        <i>
+                                            &nbsp;hari&nbsp;&nbsp;x&nbsp;&nbsp;Rp. 
+                                        </i>
+                                    </td>
+                                    <td  style="width: 15%; text-align: center;">
+                                        <i>
+                                            {{number_format($dataUH->fullboardcost)}}
+                                        </i>&nbsp;
+                                    </td>
+                                    <td  style="width: 5%; text-align:center;">
+                                        <i>. Rp.</i>
+                                    </td>
+                                    <td  style="width: 21%; text-align: right;">
+                                        <i>
+                                            {{number_format($dataUH->fullboardsum)}}&nbsp;
+                                        </i>
+                                    </td>
+                                </tr>
+                            @endif
                             </table>
                         </td>
                         <td class="isi" style="text-align: center;width: 10%; border-right: 1px solid black;">
@@ -589,7 +603,7 @@
                                                 {{$dataUH->halflong}}
                                             </i>
                                         </td>
-                                        <td style="text-align: center; width: 15;"><i> &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. </i></td>
+                                        <td style="text-align: center; width: 15%;"><i> &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. </i></td>
                                         <td style="text-align: right; width: 15%;"> 
                                             <i>
                                                 {{number_format($dataUH->halfcost)}}
@@ -616,7 +630,7 @@
                                                 {{$dataUH->fulllong}}
                                             </i>
                                         </td>
-                                        <td style="text-align: center; width: 15;"><i> &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. </i></td>
+                                        <td style="text-align: center; width: 15%;"><i> &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. </i></td>
                                         <td style="text-align: right; width: 15%;"> 
                                             <i>
                                                 {{number_format($dataUH->fullcost)}}
@@ -643,7 +657,7 @@
                                                 {{$dataUH->fblong}}
                                             </i>
                                         </td>
-                                        <td style="text-align: center; width: 15;"><i> &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. </i></td>
+                                        <td style="text-align: center; width: 15%;"><i> &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. </i></td>
                                         <td style="text-align: right; width: 15%;"> 
                                             <i>
                                                 {{number_format($dataUH->fbcost)}}
@@ -742,7 +756,7 @@
                                         <td style="text-align: center; width: 5%;">
                                             <i>{{$hotel->hotellong}}</i>
                                         </td>
-                                        <td style="text-align: center; width: 15;"><i> &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. </i></td>
+                                        <td style="text-align: center; width: 15%;"><i> &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. </i></td>
                                         <td style="text-align: right; width: 15%;"> 
                                             <i>
                                                 @php
@@ -836,7 +850,7 @@
                                                 @endif
                                             </i>
                                         </td>
-                                        <td style="text-align: center; width: 15;"><i> &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. </i></td>
+                                        <td style="text-align: center; width: 15%;"><i> &nbsp; hari &nbsp;&nbsp;x&nbsp;&nbsp;Rp. </i></td>
                                         <td style="text-align: right; width: 15%;"> 
                                             <i>
                                                 @if ($dataUH->repssum != 0)
