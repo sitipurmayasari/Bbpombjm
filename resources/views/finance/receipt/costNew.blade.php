@@ -143,6 +143,7 @@
                 @endphp
 
                 {{----------- Transport -----------}}
+                @if (count ($datapesawat) != 0 || count ($dataTR) != 0 )
                 <tr>
                     <td class="isi" style="text-align: center; width: 5%; border-right: 1px solid black;">
                         @php
@@ -221,6 +222,8 @@
                     </td>
                     <td class="isi" style="text-align: center" style="width: 15%; border-right: 1px solid black;"></td>
                 </tr>
+                @endif
+
 
                 @if ($data->st->type!="DL")
 
@@ -715,7 +718,7 @@
                     </tr>
                     @endif
                     {{----------- Penginapan -----------}}
-                    @if ($dataInn != null)
+                    @if (count($dataInn) != 0 )
                     <tr>
                         <td class="isi" style="text-align: center; width: 5%; border-right: 1px solid black;">
                             @php
