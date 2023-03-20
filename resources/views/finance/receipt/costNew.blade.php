@@ -106,7 +106,9 @@
                         <tr>
                             <td style="width: 20%">Lampiran SPD Nomor</td>
                             <td>:
+                               @if ($data->st->type=="LK")
                                 {{$item->no_sppd}}
+                               @endif
                             </td>
                         </tr>
                         <tr>

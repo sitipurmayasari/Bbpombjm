@@ -151,7 +151,10 @@
             <tr>
                 <td colspan="2" style=" text-align: justify;">
                     <br>
-                    berdasarkan Surat Perjalanan Dinas (SPD) Nomor {{$item->no_sppd}}
+                    berdasarkan Surat Perjalanan Dinas (SPD) Nomor 
+                        @if ($data->st->type=="LK")
+                            {{$item->no_sppd}}
+                        @endif
                     tanggal {{tgl_indo($item->out->st_date)}}
                     , dengan ini menyatakan dengan sesungguhnya bahwa : <br> &nbsp;
                 </td>
