@@ -32,7 +32,7 @@
         }
 
         #kop{
-            margin-top: 140px;
+            margin-top: 130px;
             font-family: "Bookman Old Style";
             margin-left: 10%;
             margin-right: 10%;
