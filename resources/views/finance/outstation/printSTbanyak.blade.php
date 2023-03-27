@@ -12,7 +12,7 @@
 <style>
     @page {
         /* size:8.5in 13in ; */
-        margin-bottom: 100px;
+        margin-bottom: 20px;
         size: 21cm 33cm ;
         /* margin: 160px 0px 100px 0px; */
     }
