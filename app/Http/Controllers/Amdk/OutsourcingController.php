@@ -46,8 +46,7 @@ class OutsourcingController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'no_pegawai' => 'required|unique:users',
-            'email' => 'required|unique:users'
+            'no_pegawai' => 'required|unique:users'
         ]);
         
         $request->merge([

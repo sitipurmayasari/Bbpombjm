@@ -34,6 +34,7 @@
                                 <input type="text"  placeholder="nomor pegawai"
                                         class="col-xs-10 col-sm-10 required" 
                                         name="no_pegawai" required  />
+                                        *tidak boleh sama
                             </div>
                         </div>
 
@@ -68,16 +69,6 @@
                                 name="jkel" id="L"/> &nbsp; Laki - Laki  &nbsp;
                                 <input type="radio" required value="P"
                                 name="jkel" id="P"/> &nbsp; Perempuan
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Email
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="email"  placeholder="example@email.com" 
-                                        class="col-xs-10 col-sm-10 required " 
-                                        name="email" required/>
                             </div>
                         </div>
                         <div class="form-group">
