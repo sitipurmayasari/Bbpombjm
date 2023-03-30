@@ -234,32 +234,6 @@ class OutstationController extends Controller
                   ->first();
         }
             
-        // if ($data->type=='DL') {
-        //   $pdf = PDF::loadview('finance/outstation.inside',compact('data','isian','destinys','lama'));
-        // } elseif ($data->type=='DL8') {
-        //     $pdf = PDF::loadview('finance/outstation.inside2',compact('data','isian','destinys','lama'));
-        // } else {
-        //   if ($data->external=='N') {
-        //     if ($hit->jum==3) {
-        //       $pdf = PDF::loadview('finance/outstation.printSppd3',compact('data','isian','menyetujui','destinys','lama'));
-        //     }else{
-        //       $pdf = PDF::loadview('finance/outstation.printSppd',compact('data','isian','menyetujui','destinys','lama'));
-        //     }
-        //   } else if ($data->external=='L') {
-        //     if ($hit->jum==3) {
-        //       $pdf = PDF::loadview('finance/outstation.printSppd3la',compact('data','isian','menyetujui','destinys','lama'));
-        //     }else{
-        //       $pdf = PDF::loadview('finance/outstation.printSppdla',compact('data','isian','menyetujui','destinys','lama'));
-        //     }
-        //   } else {
-        //     if ($hit->jum==3) {
-        //       $pdf = PDF::loadview('finance/outstation.printSppd3ex',compact('data','isian','menyetujui','destinys','lama'));
-        //     }else{
-        //       $pdf = PDF::loadview('finance/outstation.printSppdex',compact('data','isian','menyetujui','destinys','lama'));
-        //     }
-        //   }
-          
-        // }
         if ($data->type=='DL') {
           $pdf = PDF::loadview('finance/outstation.inside',compact('data','isian','destinys','lama'));
         } elseif ($data->type=='DL8') {
@@ -267,8 +241,46 @@ class OutstationController extends Controller
         } else {
           $pdf = PDF::loadview('finance/outstation.sppdnewN',compact('data','isian','menyetujui','destinys','lama'));
         }
-        
+        return $pdf->stream();
+      }
 
+      public function printSppdD($id)
+      {
+        $data       = Outstation::where('id',$id)->first();
+        $isian      = Outst_employee::orderBy('id','asc')
+                            ->where('outstation_id','=',$id)
+                            ->get();
+        $menyetujui = Pejabat::where('jabatan_id', '=', 11)
+                            ->whereRaw("(SELECT st_date FROM outstation WHERE id=$id) BETWEEN dari AND sampai")
+                            ->first();
+        $destinys   = Outst_destiny::orderBy('id','asc')
+                            ->where('outstation_id','=',$id)
+                            ->get();      
+        $hit       = Outst_destiny::selectRaw('count(*) as jum')
+                            ->where('outstation_id','=',$id)
+                            ->first();
+        $desti1   = Outst_destiny::orderBy('id','asc')
+                      ->where('outstation_id','=',$id)
+                      ->first();  
+        $desti2   = Outst_destiny::orderBy('id','desc')
+                      ->where('outstation_id','=',$id)
+                      ->first();   
+
+        if ($desti1->go_date==$desti2->go_date) {
+            $lama = Outst_destiny::selectRaw('longday as hitung')
+                  ->where('outstation_id','=',$id)
+                  ->first();
+        } elseif($desti1->return_date==$desti2->go_date){
+          $lama = Outst_destiny::selectRaw('((sum(longday)) - 1) as hitung')
+                  ->where('outstation_id','=',$id)
+                  ->first();
+        } else {
+            $lama = Outst_destiny::selectRaw('sum(longday) as hitung')
+                  ->where('outstation_id','=',$id)
+                  ->first();
+        }
+            
+          $pdf = PDF::loadview('finance/outstation.sppdnewN',compact('data','isian','menyetujui','destinys','lama'));
         return $pdf->stream();
       }
 

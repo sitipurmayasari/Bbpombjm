@@ -64,12 +64,12 @@
                     </td>
                     <td style="text-align: center">
                         @if ($row->type=="LK")
-                            <a class="btn btn-primary" href="/finance/outstation/printSppd/{{$row->id}}" target="_blank" rel="noopener noreferrer">DEPAN</a>
+                            <a class="btn btn-primary" href="/finance/outstation/printSppdD/{{$row->id}}" target="_blank" rel="noopener noreferrer">DEPAN</a>
                             <a class="btn btn-success" href="/finance/outstation/printSppdB/{{$row->id}}" target="_blank" rel="noopener noreferrer">BELAKANG</a>
-                        {{-- @elseif($row->type=="DL8")
-                            <a class="btn btn-primary" href="/finance/outstation/printSppd/{{$row->id}}" target="_blank" rel="noopener noreferrer">DEPAN</a>
+                        @elseif($row->type=="DL8")
+                            <a class="btn btn-primary" href="/finance/outstation/printSppdD/{{$row->id}}" target="_blank" rel="noopener noreferrer">DEPAN</a>
                             <a class="btn btn-success" href="/finance/outstation/printSppdB/{{$row->id}}" target="_blank" rel="noopener noreferrer">BELAKANG</a>
-                            <a class="btn btn-primary" href="/finance/outstation/printSppd/{{$row->id}}" target="_blank" rel="noopener noreferrer">LANDSCAPE</a> --}}
+                            <a class="btn btn-primary" href="/finance/outstation/printSppd/{{$row->id}}" target="_blank" rel="noopener noreferrer">LANDSCAPE</a>
                         @else
                             <a class="btn btn-primary" href="/finance/outstation/printSppd/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
                         @endif
