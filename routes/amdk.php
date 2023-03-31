@@ -126,6 +126,7 @@
   Route::get('/amdk/pelatihan/editadmin/{id}','Amdk\PelatihanController@editadmin')->name('pelatihan.editadmin');
   Route::post('/amdk/pelatihan/update/{id}','Amdk\PelatihanController@update')->name('pelatihan.update');
   Route::get('/amdk/pelatihan/rekap','Amdk\PelatihanController@rekap')->name('pelatihan.rekap');
+  Route::get('/amdk/pelatihan/rekappeg','Amdk\PelatihanController@rekappeg')->name('pelatihan.rekappeg');
   Route::post('/amdk/pelatihan/cetak','Amdk\PelatihanController@cetak')->name('pelatihan.cetak');
 
 
