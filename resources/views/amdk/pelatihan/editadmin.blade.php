@@ -119,8 +119,7 @@
                         for="form-field-1"> Deskripsi Pelatihan
                         </label>
                         <div class="col-sm-10">
-                            <textarea name="deskripsi" id="" class="col-xs-10 col-sm-10" rows="3">{{$data->deskripsi}}
-                            </textarea>                            
+                            <textarea name="deskripsi" id="" class="col-xs-10 col-sm-10" rows="3">{{$data->deskripsi}}</textarea>                            
                         </div>
                     </div>
                     <div class="form-group">
