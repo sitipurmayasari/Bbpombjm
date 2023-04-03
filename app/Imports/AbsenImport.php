@@ -122,7 +122,7 @@ class AbsenImport implements ToModel,WithStartRow
 
 
         //keterangan
-        if ($hadir->ket_absen_id != 1) {
+        if ($hadir->ket_absen_id != 5) {
            $ket = $hadir->ket_absen_id;
         } else {
             if ($late != 0 && $late < 180 && $early == 0) {
