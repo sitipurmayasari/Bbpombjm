@@ -7,83 +7,102 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="{{asset('assets/css/print.css')}}" rel="stylesheet">
-    <title>Document</title>
+    <title>Rekapitulasi pengambangan kompetensi pegawai</title>
     <style>
-        #simple-table{
-           border: solid black;
+        @page {
+            size:A4;
+            font-family: 'Times New Roman';
+            line-height: 1;
+            margin: 50px 30px 30px 50px;
         }
 
-        .judul{
-            border: none;
-            border-collapse: collapse;
+        #header{
+            text-align: center;
+            font-weight: bold;
         }
+
+        hr.s5 {
+            height:5px;
+            border-top:2px solid black;
+            border-bottom:1px solid black;
+        }
+
+        table{
+            width: 100%;
+        }
+
 
     </style>
 </head>
 <body>
-    {{-- <header>
-        <img src="{{asset('images/kopsurat1.jpg')}}" style="width: 100%"> <br>
-    </header> --}}
-    <main>
-        <div class="col-sm-12 isi" style="text-align: center">
-            <div style="align=center font-size: 18px">
-                <b>Rekapitulasi Akumulasi Waktu Kompetensi Pegawai</b>
-            </div>
-            <br>
-            <div>
-                <table style="font-size: 12px;" class="judul" >
-                    <tr class="judul">
-                        <td class="judul">Nama</td>
-                        <td class="judul"> : {{$atas->user->name}}</td>
-                    </tr>
-                    <tr class="judul">
-                        <td class="judul">NIP</td>
-                        <td class="judul"> : {{$atas->user->no_pegawai}}</td>
-                    </tr>
-                    <tr class="judul">
-                         <td class="judul">Tahun</td>
-                         <td class="judul"> : {{$request->daftartahun}}</td>
-                     </tr>
-                </table>
-            </div>
-         </div>
-         <br>
-             <div class="table-responsive isi">
-                 <table id="simple-table" class="table  table-bordered " style="font-size: 11px;" >
-                     <thead style="text-align: center; font-size: 12px;">
-                         <th width="10px">No</th>
-                         <th>Jenis</th>
-                         <th>Nama Pelatihan</th>
-                         <th>Penyelenggara</th>
-                         <th>Tanggal Pelatihan</th>
-                         <th>Total Jam</th>
-                     </thead>
-                     <tbody>
-                         <tr>
-                             @php $no=1;  @endphp
-                             @foreach($data as $key=>$row)
-                             <tr>
-                             <td style="text-align: center">{{$no++}}</td>
-                             <td>{{$row->jenis->name}}</td>
-                             <td>{{$row->nama}}</td>
-                             <td>{{$row->penyelenggara}}</td>
-                             <td>{{$row->dari}} s/d {{$row->sampai}}</td>
-                             <td style="text-align: center;">{{$row->lama}}</td>
-                         </tr>
-                         @endforeach
-                     </tbody>
-                     <tfoot>
-                         <tr>
-                             <td colspan="5" style="text-align: right;">Total Jam Pembelajaran</td>
-                             <td style="text-align: center;">{{$total->jumlah}}</td>
-                         </tr>
-                     </tfoot>
-                 </table>
-             </div>
-    </main>
-    
-        {{-- <div class="footer">
-            <img src="{{asset('images/kopsurat2.jpg')}}" style="width: 100%" alt="background">
-        </div> --}}
+    <div id="header">
+        LAPORAN PENGEMBANGAN KOMPETENSI <br>
+        PERIODE {{tgl_indo($request->awal)}} S/D {{tgl_indo($request->akhir)}} <br>
+        {{$atas->user->name}} <br>
+        BALAI BESAR POM DI BANJARMASIN
+    </div>
+    <hr class="s5">
+    <br>
+    <div>
+        @php
+            $no = 1;
+        @endphp
+         <table>
+            @foreach ($data as $item)
+            <tr>
+                <td rowspan="7" style="width: 5%">No. {{$no}} 
+                </td>
+                <td style="width: 25%"><b>Jenis Kegiatan</b></td>
+                <td>
+                    {{$item->jenis->name}}
+                </td>
+            </tr>
+            <tr>
+                <td><b>Nama Kegiatan</b></td>
+                <td>
+                    {{$item->nama}}
+                </td>
+            </tr>
+            <tr>
+                <td><b>Penyelenggara</b></td>
+                <td>
+                    {{$item->penyelenggara}}
+                </td>
+            </tr>
+            <tr>
+                <td><b>Waktu Pelaksanaan</b></td>
+                <td>
+                    {{tgl_indo($item->dari)}} s/d {{tgl_indo($item->sampai)}}
+                </td>
+            </tr>
+            <tr>
+                <td><b>Lama Kegaiatan (JP)</b></td>
+                <td>
+                    {{$item->lama}} JP
+                </td>
+            </tr>
+            <tr>
+                <td><b>Deskripsi Singkat Kegaiatan</b></td>
+                <td>
+                   @if ($item->deskripsi != null)
+                    {{$item->deskripsi}}
+                   @else
+                       -
+                   @endif
+                </td>
+            </tr>
+            <tr>
+                <td><b>Data Dukung</b></td>
+                <td>
+                    <a href="{{$item->getFIleSert()}}" target="_blank" >{{$item->file}}</a></label> <br>
+                    {{-- <img src="{{$item->getFIleSert()}}"  style="width:500px">  --}}
+                </td>
+            </tr>
+            @php
+                    $no++;
+                @endphp
+            @endforeach
+        </table>   
+    </div>
 </body>
 </html>

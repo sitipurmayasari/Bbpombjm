@@ -67,6 +67,20 @@
                             </select>
                         </div>
                     </div>
+                    <div  class="form-group" id="a">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Tanggal Mulai
+                        </label>
+                        <div class="col-sm-9" >
+                            <input type="date" name="awal" class="col-xs-5 col-sm-5"/>
+                    </div>
+                    <div  class="form-group" id="b">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Tanggal Akhir
+                        </label>
+                        <div class="col-sm-9" >
+                            <input type="date" name="akhir" class="col-xs-5 col-sm-5"/>
+                    </div>
                     </fieldset>        
                 </div>
             </div>
@@ -88,29 +102,21 @@
 <script>
     $(document).ready(function(){
         $("#pegawai").hide();
+        $("#a").hide();
+        $("#b").hide();
 
         $("#all").click(function(){
             $("#pegawai").hide();
+            $("#a").hide();
+            $("#b").hide();
+            $("#listtahun").show();
         });
         $("#per").click(function(){
             $("#pegawai").show();
+            $("#a").show();
+            $("#b").show();
+            $("#listtahun").hide();
         });
-        // $("#jenis").on("change", function(){
-        //     var v = $(this).val();
-        //     if(v=="Daftar"){
-        //         $("#brg").hide();
-        //         $("#ruang").show();
-        //     }else if(v=="TJawab"){
-        //         $("#brg").hide();
-        //         $("#ruang").show();
-        //     }else if(v=="Main"){
-        //         $("#brg").show();
-        //         $("#ruang").hide();
-        //     }else{
-        //         $("#brg").hide();
-        //         $("#ruang").show();
-        //     } 
-        // });
 
     });
 </script>

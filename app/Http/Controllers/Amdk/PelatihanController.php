@@ -76,6 +76,13 @@ class PelatihanController extends Controller
         return view('amdk/pelatihan.rekap',compact('user','jenis'));
     }
 
+    public function rekappeg()
+    {
+        $user = User::all();
+        $jenis = Jenis_pelatihan::all();
+        return view('amdk/pelatihan.rekappeg',compact('user','jenis'));
+    }
+
 
     public function store(Request $request)
     {
@@ -167,32 +174,22 @@ class PelatihanController extends Controller
     {
         
         if ($request->peg==1) {
-            // $data = Pelatihan::orderBy('users_id','asc')
-            //                     ->selectRaw('sum(lama) AS poin , users_id')
-            //                     ->WhereRaw("YEAR(dari) =".$request->daftartahun)
-            //                     ->groupBy('users_id')
-            //                     ->get();
             $data = Pelatihan::orderBy('users_id','asc')
                                 ->WhereRaw("YEAR(dari) =".$request->daftartahun)
                                 ->get();
-            // $pdf = PDF::loadview('amdk/pelatihan.cetakall',compact('data','request'));
-            // return $pd)f->stream();
             return view('amdk/pelatihan.cetakall',compact('data','request'));
         }else{
-            $atas = Pelatihan::orderBy('id','asc')
+            $atas = Pelatihan::orderBy('id','desc')
                     ->where('users_id', $request->user)
-                    ->WhereRaw("YEAR(dari) =".$request->daftartahun)
                     ->first();
             $data = Pelatihan::orderBy('id','asc')
                     ->where('users_id', $request->user)
-                    ->WhereRaw("YEAR(dari) =".$request->daftartahun)
+                    ->WhereRaw('dari between "'.$request->awal.'" AND "'.$request->akhir.'"')
                     ->get();
-            $total = Pelatihan::selectRaw('SUM(lama) as jumlah')
-                    ->where('users_id', $request->user)
-                    ->WhereRaw("YEAR(dari) =".$request->daftartahun)
-                    ->first();
-            $pdf = PDF::loadview('amdk/pelatihan.cetakpeg',compact('data','request','total','atas'));
+            $pdf = PDF::loadview('amdk/pelatihan.cetakpeg',compact('data','request','atas'));
             return $pdf->stream();
+            // return view('amdk/pelatihan.cetakpeg',compact('data','request','atas'));
+            
         }
     }
 
