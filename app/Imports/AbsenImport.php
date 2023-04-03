@@ -30,7 +30,16 @@ class AbsenImport implements ToModel,WithStartRow
         $checkout   = $row[7];
         // $late       = $row[9];
         // $early      = $row[10]; 
-        
+
+
+        $user = User::where('no_pegawai',$row[0])->first();
+        $hadir = Absensi::where('users_id',$user->id)->where('tanggal',$tanggal)->first();
+
+        if ($hadir->file != null) {
+           $aplot = $hadir->file;
+        } else {
+            $aplot = null;
+        }
         
         // terlambat
         if ($checkin > $masuk) {
@@ -105,38 +114,44 @@ class AbsenImport implements ToModel,WithStartRow
             $cepat = 0;
         }
 
-        if ($row[8] == 'DNS') {
+        if ($hadir->poin == 0) {
             $poin = 0;
-            $ket = 2;
         } else {
             $poin = $lambat + $cepat;
         }
 
 
         //keterangan
-        if ($late != 0 && $late < 180 && $early == 0) {
-            $ket = 6 ; //Terlambat
-        }elseif ($late == 0 && $early != 0 && $early < 180) {
-            $ket = 7; //Pulang Cepat
-        }elseif ($late != 0 && $late < 180 && $early != 0 && $early < 180) {
-            $ket = 8; //Terlambat & Pulang Cepat
-        }elseif ($late != "00:00" && $late >= 180 && $early == 0) {
-            $ket = 9; //Tidak Absen Masuk
-        }elseif ($late == 0 && $early != 0 && $early >= 180) {
-            $ket = 10; //Tidak Absen Pulang
-        }elseif ($late != 0 && $late < 180 && $early != 0 && $early >= 180) {
-            $ket = 10; //Terlambat & Tidak Absen Pulang
-        }elseif ($late != 0 && $late  >= 180 && $early != 0 && $early < 180) {
-            $ket = 10; //Pulang Cepat & Tidak Absen Masuk
+        if ($hadir->ket_absen_id != 1) {
+           $ket = $hadir->ket_absen_id;
         } else {
-            $ket = 1;
+            if ($late != 0 && $late < 180 && $early == 0) {
+                $ket = 6 ; //Terlambat
+            }elseif ($late == 0 && $early != 0 && $early < 180) {
+                $ket = 7; //Pulang Cepat
+            }elseif ($late != 0 && $late < 180 && $early != 0 && $early < 180) {
+                $ket = 8; //Terlambat & Pulang Cepat
+            }elseif ($late != "00:00" && $late >= 180 && $early == 0) {
+                $ket = 9; //Tidak Absen Masuk
+            }elseif ($late == 0 && $early != 0 && $early >= 180) {
+                $ket = 10; //Tidak Absen Pulang
+            }elseif ($late != 0 && $late < 180 && $early != 0 && $early >= 180) {
+                $ket = 10; //Terlambat & Tidak Absen Pulang
+            }elseif ($late != 0 && $late  >= 180 && $early != 0 && $early < 180) {
+                $ket = 10; //Pulang Cepat & Tidak Absen Masuk
+            } else {
+                $ket = 1;
+            }
+        }
+
+        if ($hadir->keterangan != null) {
+           $info = $hadir->keterangan;
+        } else {
+           $info = null;
         }
         
-       
-        $user = User::where('no_pegawai',$row[0])->first();
-        $hadir = Absensi::where('users_id',$user->id)->where('tanggal',$tanggal);
         $hadir->delete();
-
+       
         if ($user) {
             return new Absensi([
                 'periode_year'  => $tahun,
@@ -151,7 +166,9 @@ class AbsenImport implements ToModel,WithStartRow
                 'pulang_cepat'  => $pulang_cepat,
                 'tipe'          => $row[8],
                 'ket_absen_id'  => $ket,
-                'poin'          => $poin
+                'poin'          => $poin,
+                'file'          => $aplot,
+                'keterangan'    => $info
             ]);
         }
        
