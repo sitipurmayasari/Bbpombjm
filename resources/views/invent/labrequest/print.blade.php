@@ -71,7 +71,9 @@
                     <u><h5>SURAT PERMINTAAN BARANG (SPB)</h5></u>
                     <h6>NO. {{$data->nomor}}</h6>
                 </td>
-                <td  class="borderless"  style="width: 15%;">: A 14</td>
+                <td  class="borderless"  style="width: 15%;">
+                    <img src="{{asset('images/form.png')}}" style="height:20px">
+                </td>
             </tr>
         </table>
     </div>  
@@ -139,7 +141,7 @@
         <table class="ttd">
             <tr>
                 <td class="ttd col-md-3" >Menyetujui,</td>
-                <td class="ttd col-md-3">Mengetahui</td>
+                <td class="ttd col-md-3"></td>
                 <td class="ttd col-md-3"></td>
                 <td class="ttd col-md-3">Diserahkan</td>
             </tr>
@@ -160,24 +162,7 @@
                                
                 </td>
                 <td class="ttd">
-                    @if ($mengetahui != null)
-                        @if ($mengetahui->pjs != null)
-                            {{$mengetahui->pjs}}
-                            {{$mengetahui->jabatan->jabatan}} 
-                    
-                        @else
-                            {{$mengetahui->jabatan->jabatan}} 
-                        @endif
-
-                        @if ($mengetahui->jabatan_id == 5 )
-                            {{$mengetahui->subdivisi->nama_subdiv}}
-                        @elseif ($mengetahui->jabatan_id == 7 or $mengetahui->jabatan_id==11)
-                            {{$mengetahui->divisi->nama}}
-                        @endif
-                    @else
-                        SILAHKAN CEK SETUP PEJABAT
-                    @endif
-                           
+                    Mengetahui
                 </td>
                 <td class="ttd">Yang Meminta</td>
                 <td class="ttd">Pengelola Persediaan</td>
@@ -185,8 +170,8 @@
             <tr >
                 <td class="ttd"></td>
                 <td class="ttd">
-                   @if ($mengetahui->user->ttd != null)
-                        <img src="{{$mengetahui->user->ttd->getFoto()}}"  style="height:50px;width:50px;">
+                   @if ($tahubaru->ttd != null)
+                        <img src="{{$tahubaru->ttd->getFoto()}}"  style="height:50px;width:50px;">
                    @endif
                 </td>
                 <td class="ttd"></td>
@@ -206,12 +191,7 @@
                     </u>
                 </td>
                 <td class="ttd"><u>
-                    @if ($mengetahui != null)
-                        {{$mengetahui->user->name}}
-                    @else
-                        SILAHKAN CEK SETUP PEJABAT
-                    @endif
-                    
+                        {{$tahubaru->name}}
                 </u>
                 </td>
                 <td class="ttd"><u>{{$data->pegawai->name}}</u></td>
@@ -228,11 +208,7 @@
                     
                 </td>
                 <td class="ttd">NIP. 
-                    @if ($mengetahui != null)
-                        {{$mengetahui->user->no_pegawai}}
-                    @else
-                        SILAHKAN CEK SETUP PEJABAT
-                    @endif
+                    {{$tahubaru->no_pegawai}}
                     
                 </td>
                 <td class="ttd">
@@ -251,8 +227,12 @@
     <br>
     <hr>
     {{-- SBBK --}}
-    <div>
+    <div  style="page-break-before: always;">
+        <br>
         <table class="borderless" style="width: 100%"> 
+            <tr  class="borderless" >
+                <td  class="borderless" colspan="3" style="text-align: right" style="width: 15%; font-family:'Times New Roman', Times, serif"><i>Form</i> POM-1.10 &nbsp;&nbsp;&nbsp;</td>
+            </tr>
             <tr  class="borderless" >
                 <td  class="borderless"  style="width: 15%;"> <img src="{{asset('images/BBRI.jpg')}}" style="height:60px"></td>
                 <td  class="borderless" style="vertical-align: bottom">
@@ -276,7 +256,7 @@
                 <td class="rapi" style="width: 20%; ">Nomor</td>
                 <td  class="rapi"style="width: 2%;">:</td>
                 <td class="rapi">
-                    {{$data->nomor}}
+                    <b>{{$data->nomor}}</b>
                 </td>
             </tr>
         </table>
