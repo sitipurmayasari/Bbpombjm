@@ -158,7 +158,7 @@
         <tr>
             <td style="vertical-align: top">2.</td>
             <td>Dibayarkan 30% biaya penginapan dari SBM Biaya Penginapan daerah tujuan tersebut, <br>
-                yaitu : 30% x Rp. {{number_format($item->hotelmax)}} = Rp. {{number_format($item->hotelsum)}}
+                yaitu : 30% x Rp. {{number_format($item->hotelmax)}} = Rp. {{number_format($item->hotelfee)}} x {{$item->hotellong}} Hari =  Rp. {{number_format($item->hotelsum)}}
             </td>
         </tr>
     </table>
