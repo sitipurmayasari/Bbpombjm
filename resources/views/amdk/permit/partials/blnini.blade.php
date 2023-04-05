@@ -20,7 +20,7 @@
                             <thead>
                                 <th width="40px" style="text-align: center">No</th>
                                 <th style="text-align: center">Periode</th>
-                                <th style="text-align: center">tipe</th>
+                                <th style="text-align: center">Status</th>
                                 <th style="text-align: center">Jam Masuk</th>
                                 <th style="text-align: center">Jam Pulang</th>
                                 <th style="text-align: center">terlambat</th>
@@ -34,7 +34,7 @@
                                 <tr>
                                     <td>{{$data->firstItem() + $key}}</td>
                                     <td>{{tgl_indo($row->tanggal)}}</td>
-                                    <td>{{$row->tipe}}</td>
+                                    <td>{{$row->status->ket}}</td>
                                     <td>
                                         @if ($row->scan_masuk != null)
                                             {{$row->scan_masuk}}
