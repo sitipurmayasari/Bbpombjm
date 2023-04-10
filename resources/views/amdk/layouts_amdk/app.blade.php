@@ -3,6 +3,7 @@
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
+		<link rel="icon" href="{{asset('images/sibob.png')}}">
 		<title>BBPOM | Control Panel</title>
 		{{-- <link rel="shortcut icon" href="{{asset('favicon.ico')}}"> --}}
 		<meta name="description" content="overview &amp; stats" />
