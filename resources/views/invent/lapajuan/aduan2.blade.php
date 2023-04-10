@@ -29,7 +29,7 @@
         periode :
         @php
             if ($request->daftarbulan=='1') {
-                $request->daftarbulan = "Januari";
+                $bulan = "Januari";
             } else if($request->daftarbulan=='2') {
                 $bulan = "Februari";
             } else if($request->daftarbulan=='3') {
