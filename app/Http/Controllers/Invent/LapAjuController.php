@@ -67,11 +67,6 @@ class LapAjuController extends Controller
                                     $query->whereMonth('tanggal',$request->daftarbulan); 
                                 }
                             })
-                            ->when($request->piltgl, function ($query) use ($request) {
-                                if($request->piltgl==2){
-                                    $query->WhereRaw('tanggal between "'.$request->awal.'" AND "'.$request->akhir.'"');
-                                }
-                            })
                             ->get();
             return view('invent/lapajuan.aduantik2',compact('data','request'));
         }else if($request->jenis_Laporan=="rusak"){
