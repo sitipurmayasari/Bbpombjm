@@ -25,14 +25,16 @@ class LapAjuController extends Controller
         if($request->jenis_Laporan=="baru"){
             $user   = User::all();
             $data   = Pengajuan::orderBy('id','asc')
-                                ->whereYear('tgl_ajuan',$request->daftartahun)
-                                ->when($request->daftarbulan, function ($query) use ($request) {
-                                    $query->whereMonth('tgl_ajuan',$request->daftarbulan);
-                                 })
                                  ->when($request->piltgl, function ($query) use ($request) {
                                     if($request->piltgl==2){
                                         $query->WhereRaw('tgl_ajuan between "'.$request->awal.'" AND "'.$request->akhir.'"');
+                                    }elseif($request->piltgl==1){
+                                        $query->whereMonth('tgl_ajuan',$request->daftarbulan)->whereYear('tgl_ajuan',$request->daftartahun);
+                                    }else{
+                                        $query->whereYear('tgl_ajuan',$request->daftartahun);
                                     }
+                                  
+                                    
                                  })
                                 ->get();
             $pdf = PDF::loadview('invent/lapajuan.ajuan',compact('user','data','request'));
