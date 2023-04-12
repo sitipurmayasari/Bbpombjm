@@ -350,7 +350,6 @@ class ReceiptController extends Controller
 
         DB::beginTransaction(); 
             $expenses = Outstation::find($id);
-            $expenses->update($request->all());
 
             ExpensesUh::where('expenses_id', $id)->delete();
             ExpensesTrans::where('expenses_id', $id)->delete();
