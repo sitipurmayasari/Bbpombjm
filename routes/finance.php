@@ -283,7 +283,7 @@
     Route::get('finance/receipt/getMaksud','Finance\ReceiptController@getMaksud')->name('receipt.getMaksud');
     Route::post('finance/receipt/generate','Finance\ReceiptController@generate')->name('receipt.generate');
     Route::get('/finance/receipt/entrydata/{id}','Finance\ReceiptController@entrydata')->name('receipt.entrydata');
-
+    Route::get('/finance/receipt/getdatatran','Finance\ReceiptController@getdatatran')->name('receipt.getdatatran');
     Route::post('finance/receipt/store','Finance\ReceiptController@store')->name('receipt.store');
     Route::get('finance/receipt/edit/{id}','Finance\ReceiptController@edit')->name('receipt.edit');
     Route::get('finance/receipt/deletetr/{id}','Finance\ReceiptController@deletetr')->name('receipt.deletetr');

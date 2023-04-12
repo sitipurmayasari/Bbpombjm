@@ -29,7 +29,7 @@
                             </label>
                             <div class="col-sm-8">
                                 <input type="text" class="col-xs-10 col-sm-10 required " readonly value="{{$data->st->number}}"/>
-                                <input type="hidden" name="expenses_id" value="{{$data->id}}">
+                                <input type="hidden" name="expenses_id" id="expenses_id" value="{{$data->id}}">
                             </div>
                         </div>
                         
@@ -277,7 +277,7 @@
             $isitaxi ='<tr id="cell-'+new_baris+'">'+
                     '<td>'+new_baris+'</td>'+
                     '<td>'+
-                        '<select name="outst_employee_id_T[]" class="form-control select2"  style="width: 180px;">'+
+                        '<select name="outst_employee_id_T[]" class="form-control select2"  style="width: 180px;" id="peg-'+new_baris+'">'+
                             '<option value="">Pilih nama Pegawai</option>'+
                             '@foreach ($peg as $item)'+
                                 '<option value="{{$item->id}}">{{$item->pegawai->name}}</option>'+
@@ -289,7 +289,7 @@
                         '<input type="hidden" name="barisT[]" value="'+new_baris+'">'+
                     '</td> '+  
                     '<td>'+
-                        '<select name="taxitype[]">'+
+                        '<select name="taxitype[]" id="jenis-'+new_baris+'" onchange="getData('+new_baris+')">'+
                             '<option value="Taksi,Toll">Taxi+Toll</option>'+
                             '<option value="Uang Transport">Uang Transport</option>'+
                             '<option value="Transport Lokal">Transport Lokal</option>'+
@@ -297,7 +297,7 @@
                         '</select>'+
                     '</td>'+
                     '<td><input type="text" class="form-control" name="taxiname[]" style="width: 150px;"></td>'+
-                    '<td><input type="number" class="form-control" name="taxifee[]"  value="0" min="0" id="taxifee-'+new_baris+'" onclick="HitSumTaxi2('+new_baris+')" onkeyup="HitSumTaxi2('+new_baris+')"></td>'+
+                    '<td><input type="number" class="form-control" name="taxifee[]" value="0"  min="0" id="taxifee-'+new_baris+'" onclick="HitSumTaxi2('+new_baris+')" onkeyup="HitSumTaxi2('+new_baris+')"></td>'+
                     '<td><input type="number" class="form-control" name="taxicount[]" value="0" min="0" id="taxicount-'+new_baris+'" onclick="HitSumTaxi2('+new_baris+')" onkeyup="HitSumTaxi2('+new_baris+')"></td>'+
                     '<td><input type="number" class="form-control" name="taxisum[]" value="0" min="0" id="taxisum-'+new_baris+'" readonly></td>'+
                     '<td><button type="button" class="btn btn-danger" onclick="deleteRowT('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button></td>'+
@@ -305,6 +305,28 @@
             $("#TableTaxi").find('tbody').append($isitaxi);
             $("#countRow3").val(new_baris);
             $('.select2').select2();
+        }
+
+        function getData(i){
+            var jenis =  $("#jenis-"+i).val();
+            var id =  $("#expenses_id").val();
+            if (jenis == 'Transport Lokal') {
+                $("#taxifee-"+i).val(150000);  
+
+            }else if (jenis == 'Uang Transport') {
+                $.get(
+                    "{{route('receipt.getdatatran') }}",
+                    {
+                        id: id
+                    },
+                    function(response) {
+                       $("#taxifee-"+i).val(response.data.trans1);;  
+                    }
+                );
+            }else{
+                $("#taxifee-"+i).val(0); 
+            }
+
         }
 
         function deleteRowT(cell) {

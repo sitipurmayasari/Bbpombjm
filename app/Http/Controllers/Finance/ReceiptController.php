@@ -692,6 +692,21 @@ class ReceiptController extends Controller
 
     }
 
+    public function getdatatran(Request $request)
+    {
+        $id = $request->id;
+        $jenis = $request->jenis;
+
+        $tujuan    = Outst_destiny::SelectRaw('outst_destiny.* ')
+                                ->leftJoin('outstation','outstation.id','=','outst_destiny.outstation_id')
+                                ->leftJoin('expenses','expenses.outstation_id','=','outstation.id')
+                                ->where('expenses.id',$id)
+                                ->first();
+
+        $kota = Destination::where('id', $tujuan->destination_id)->first();
+
+        return response()->json([ 'success' => true,'data' => $kota],200);
+    }
 
 
 }
