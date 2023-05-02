@@ -15,6 +15,31 @@
 </style>   
 
 <div class="col-sm-6" style="text-align: center">
+  <div class="col-sm-12" style="text-align: center">
+    <div class="card">
+        <div class="card-header card-header-warning">
+          <h4 class="card-title">TEMPLATE PERMINTAAN BARANG "MANUAL"</h4>
+        </div>
+        <div class="card-body">
+          <table class="table table-hover" style="font-size: 12px;">
+            <tr>
+              <td>
+                <a href="https://docs.google.com/spreadsheets/d/1Wi7OGvVl1Mvvk3n6CdzKsqZftiyw-4Jm/edit?usp=share_link&ouid=116416378023964599190&rtpof=true&sd=true" target="_blank">LINK TEMPLATE</a>
+              </td>
+              <td></td>
+              <td style="text-align: left;">SBBK</td>
+            </tr>
+            <tr>
+              <td>
+                <a href="https://docs.google.com/spreadsheets/d/1-hTJGYCXd-r6tJjm-vVZ3hI5smCsXWDm/edit?usp=share_link&ouid=116416378023964599190&rtpof=true&sd=true" target="_blank">LINK TEMPLATE</a>
+              </td>
+              <td></td>
+              <td style="text-align: left;">Permintaan Sampel</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+  </div>
   <div class="col-md-12">
     <div class="card card-chart">
       <div class="card-header card-header-warning">
