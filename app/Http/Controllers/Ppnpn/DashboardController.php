@@ -24,6 +24,8 @@ class DashboardController extends Controller
                             ->where('users_id',$peg)
                             ->where('periode_month','!=',$nowbln)
                             ->groupByRaw('periode_month,periode_year')
+                            ->orderby('periode_year','desc')
+                            ->orderby('periode_month','desc')
                             ->limit('5')
                             ->get();
 
