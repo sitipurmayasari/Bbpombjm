@@ -11,8 +11,8 @@
 </head>
 <style>
     @page {
-        size: 21cm 33cm ;
-        margin: 0px 0px 5px 0px;
+        size: 21.59cm 33cm ;
+        margin-bottom: 2.5cm;
         /* margin: 160px 0px 100px 0px; */
     }
 
@@ -45,8 +45,8 @@
         .isi{
             font-family: "Bookman Old Style";
             font-size: 12;
-            margin-left: 5%;
-            margin-right: 5%;
+            margin-left: 3cm;
+            margin-right: 2cm;
             line-height: 1;
             text-align: justify;
         }
@@ -158,13 +158,13 @@
                                 @else
                                     {{$data->budget->name}} Tahun Anggaran {{$data->budget->tahun}}
                                     @if ($data->budget->nomor != null && $data->budget->tanggal == null)
-                                       , <br>
+                                       ,
                                         Nomor {{$data->budget->nomor}} 
                                     @elseif ($data->budget->tanggal != null && $data->budget->nomor == null)
-                                        , <br>
+                                        ,
                                         tanggal {{tgl_indo($data->budget->tanggal)}}
                                     @elseif ($data->budget->tanggal != null && $data->budget->nomor != null)
-                                        , <br>
+                                        ,
                                         Nomor {{$data->budget->nomor}}  tanggal {{tgl_indo($data->budget->tanggal)}}
                                     @else
                                         ;

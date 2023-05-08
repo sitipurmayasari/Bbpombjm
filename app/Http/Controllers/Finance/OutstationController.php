@@ -153,11 +153,11 @@ class OutstationController extends Controller
         
         if ($jmlpeg->hitung > 8) {
           $pdf = PDF::loadview('finance/outstation.printSTbanyak',compact('data','isian','menyetujui'));
-        }elseif ($jmlpeg->hitung >= 3 && $jmlpeg->hitung <= 5  && $data->dasar != null){
+        }elseif ($jmlpeg->hitung > 2 && $jmlpeg->hitung <= 4 ){
           $pdf = PDF::loadview('finance/outstation.printstgantung',compact('data','isian','menyetujui','now'));
-        }elseif ($jmlpeg->hitung >= 4 && $jmlpeg->hitung <= 5 && $data->dasar == null){
-          $pdf = PDF::loadview('finance/outstation.printstgantung',compact('data','isian','menyetujui','now'));
-        }elseif ($jmlpeg->hitung > 5 && $jmlpeg->hitung <= 8){
+        // }elseif ($jmlpeg->hitung >= 4 && $jmlpeg->hitung <= 5 && $data->dasar == null){
+        //   $pdf = PDF::loadview('finance/outstation.printstgantung',compact('data','isian','menyetujui','now'));
+        }elseif ($jmlpeg->hitung > 4 && $jmlpeg->hitung <= 7){
           $pdf = PDF::loadview('finance/outstation.printstgantung2',compact('data','isian','menyetujui','now'));
         } else {
           $pdf = PDF::loadview('finance/outstation.printST',compact('data','isian','menyetujui','now'));
@@ -181,11 +181,11 @@ class OutstationController extends Controller
                             ->first(); 
 
         // $phpWord = new \PhpOffice\PhpWord\PhpWord();
-        if ($jmlpeg->hitung > 8) {
+        if ($jmlpeg->hitung > 7) {
           $pdf = PDF::loadview('finance/outstation.printSTKopbanyak',compact('data','isian','menyetujui'));
-        }elseif ($jmlpeg->hitung > 3 && $jmlpeg->hitung <= 5 ){
+        }elseif ($jmlpeg->hitung > 2 && $jmlpeg->hitung <= 4 ){
           $pdf = PDF::loadview('finance/outstation.printstkopgantung',compact('data','isian','menyetujui'));
-        }elseif ($jmlpeg->hitung > 5 && $jmlpeg->hitung <= 8){
+        }elseif ($jmlpeg->hitung > 4 && $jmlpeg->hitung <= 7){
           $pdf = PDF::loadview('finance/outstation.printstkopgantung2',compact('data','isian','menyetujui'));
         } else {
           $pdf = PDF::loadview('finance/outstation.printSTKop',compact('data','isian','menyetujui'));

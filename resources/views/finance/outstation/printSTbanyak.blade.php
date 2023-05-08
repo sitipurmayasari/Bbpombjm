@@ -11,10 +11,10 @@
 </head>
 <style>
     @page {
-        /* size:8.5in 13in ; */
-        margin-bottom: 20px;
-        size: 21cm 33cm ;
-        /* margin: 160px 0px 100px 0px; */
+        size: 21.59cm 33cm ;
+        margin-left: 3cm;
+        margin-right: 2cm;
+        margin-bottom: 2cm;
     }
 
     @font-face {
@@ -42,8 +42,6 @@
         .isi{
             font-family: "Bookman Old Style";
             font-size: 12;
-            margin-left: 5%;
-            margin-right: 5%;
             line-height: 1;
             text-align: justify;
         }
@@ -98,6 +96,7 @@
 <body>
 <div>
    <div class="col-sm-12" style="text-align: center">
+        <br>
         <div style="align=center;" id="kop">
             <u><b style="font-size: 14">SURAT TUGAS</b></u><br>
             <p style="font-size: 12">NOMOR : {{$data->number}}</p>
@@ -146,13 +145,13 @@
                                 @else
                                     {{$data->budget->name}} Tahun Anggaran {{$data->budget->tahun}}
                                     @if ($data->budget->nomor != null && $data->budget->tanggal == null)
-                                       , <br>
+                                       ,
                                         Nomor {{$data->budget->nomor}} 
                                     @elseif ($data->budget->tanggal != null && $data->budget->nomor == null)
-                                        , <br>
+                                        ,
                                         tanggal {{tgl_indo($data->budget->tanggal)}}
                                     @elseif ($data->budget->tanggal != null && $data->budget->nomor != null)
-                                        , <br>
+                                        ,
                                         Nomor {{$data->budget->nomor}}  tanggal {{tgl_indo($data->budget->tanggal)}}
                                     @else
                                         ;
