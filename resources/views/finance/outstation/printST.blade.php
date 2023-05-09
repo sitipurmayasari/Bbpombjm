@@ -339,7 +339,7 @@
        </table>
         <br>
         Agar yang bersangkutan melaksanakan tugas dengan baik dan penuh tanggung jawab.
-        <br><br>
+        <br>
         <table class="ttdini" style="width: 100%" >
             <tr>
                 <td></td>
@@ -368,7 +368,7 @@
             </tr>
             <tr>
                 <td></td>
-                <td style="height: 8%"></td>
+                <td style="height: 7%"></td>
             </tr>
             <tr>
                 <td></td>
