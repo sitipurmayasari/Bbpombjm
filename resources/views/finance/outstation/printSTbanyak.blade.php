@@ -347,19 +347,19 @@
             </tr>
             <tr>
                 <td></td>
-                <td colspan="3" style="font-size: 9">Surat Tugas
+                <td colspan="3" style="font-size: 11">Surat Tugas
             </tr>
             <tr>
                 <td></td>
-                <td style="font-size: 9; width: 10%">Nomor</td>
-                <td style="font-size: 9; width:3%"> : </td>
-                <td style="font-size: 9"> {{$data->number}}</td>
+                <td style="font-size: 11; width: 10%">Nomor</td>
+                <td style="font-size: 11; width:3%"> : </td>
+                <td style="font-size: 11"> {{$data->number}}</td>
             </tr>
             <tr>
                 <td></td>
-                <td style="font-size: 9">Tanggal</td>
-                <td style="font-size: 9"> : </td>
-                <td style="font-size: 9"> {{tgl_indo($data->st_date)}}</td>
+                <td style="font-size: 11">Tanggal</td>
+                <td style="font-size: 11"> : </td>
+                <td style="font-size: 11"> {{tgl_indo($data->st_date)}}</td>
             </tr>
         </table>
     </div>
