@@ -360,7 +360,7 @@
                 </td>
                 <td>
                    @if ($menyetujui != null)
-                        Kepala {{$menyetujui->divisi->nama}}
+                        Kepala {{$menyetujui->divisi->nama}},
                    @else
                         <b>Pejabat Belum Ditentukan</b>
                    @endif

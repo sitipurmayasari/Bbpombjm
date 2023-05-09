@@ -314,7 +314,7 @@
                 </td>
                 <td>
                    @if ($menyetujui != null)
-                        Kepala {{$menyetujui->divisi->nama}}
+                        Kepala {{$menyetujui->divisi->nama}},
                    @else
                         <b>Pejabat Belum Ditentukan</b>
                    @endif
@@ -357,21 +357,21 @@
         <table style="width: 100%">
             <tr>
                 <td style="width: 43%"></td>
-                <td colspan="3" style="font-size: 11">LAMPIRAN</td>
+                <td colspan="3" style="font-size: 11">Lampiran</td>
             </tr>
             <tr>
                 <td></td>
-                <td colspan="3" style="font-size: 9">SURAT TUGAS KEPALA BALAI BESAR POM BANJARMASIN 
+                <td colspan="3" style="font-size: 9">Surat Tugas
             </tr>
             <tr>
                 <td></td>
-                <td style="font-size: 9; width: 10%">NOMOR</td>
+                <td style="font-size: 9; width: 10%">Nomor</td>
                 <td style="font-size: 9; width:3%"> : </td>
                 <td style="font-size: 9"> {{$data->number}}</td>
             </tr>
             <tr>
                 <td></td>
-                <td style="font-size: 9">TANGGAL</td>
+                <td style="font-size: 9">Tanggal</td>
                 <td style="font-size: 9"> : </td>
                 <td style="font-size: 9"> {{tgl_indo($data->st_date)}}</td>
             </tr>
@@ -379,7 +379,7 @@
     </div>
     <br><br>
     <div style="text-align: center">
-        <b style="font-size: 14">DATA PEJABAT / PEGAWAI YANG DITUGASKAN</b><br>
+        <b style="font-size: 14">DAFTAR PEJABAT / PEGAWAI YANG DITUGASKAN</b><br>
     </div>
     <br>
     <div>
@@ -432,7 +432,7 @@
             </tbody>
         </table>
     </div>
-    {{-- <br><br>
+    <br><br>
     <table class="ttdini" style="width: 100%" >
         <tr>
             <td></td>
@@ -453,7 +453,7 @@
             </td>
             <td>
                @if ($menyetujui != null)
-                    Kepala {{$menyetujui->divisi->nama}}
+                    Kepala {{$menyetujui->divisi->nama}},
                @else
                     <b>Pejabat Belum Ditentukan</b>
                @endif
@@ -479,7 +479,7 @@
                 
             </td>
         </tr>
-    </table> --}}
+    </table>
 </div>
 </body>
 </html>
