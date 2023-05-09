@@ -418,6 +418,44 @@
             </tbody>
         </table>
     </div>
+    <table class="ttdini" style="width: 100%" >
+        <tr>
+            <td style="text-align: right">
+                @if ($menyetujui != null)
+                    @if ($menyetujui->pjs !=null)
+                        {{$menyetujui->pjs}}
+                    @endif
+                @endif     
+            </td>
+            <td>
+               @if ($menyetujui != null)
+                    Kepala {{$menyetujui->divisi->nama}}
+               @else
+                    <b>Pejabat Belum Ditentukan</b>
+               @endif
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="height: 8%"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                @if ($menyetujui != null)
+                    @if ($menyetujui->pjs !=null)
+                        {{$menyetujui->user->name}}<br>
+                        NIP: {{$menyetujui->user->no_pegawai}}
+                    @else
+                        {{$menyetujui->user->name}}
+                    @endif
+                @else
+                    <b>Silahkan Cek Setup Pejabat</b>
+                @endif
+                
+            </td>
+        </tr>
+    </table>
     {{-- <table class="ttdini" style="width: 100%" >
         <tr>
             <td></td>
