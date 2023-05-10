@@ -14,7 +14,7 @@
         margin-top:175px;
         margin-left: 3cm;
         margin-right: 2cm;
-        margin-bottom: 2cm;
+        margin-bottom: 1.75cm;
         /* margin: 175px 0px 5px 0px; */
 
     }
@@ -368,7 +368,7 @@
             </tr>
             <tr>
                 <td></td>
-                <td style="height: 7%"></td>
+                <td style="height: 6%"></td>
             </tr>
             <tr>
                 <td></td>
