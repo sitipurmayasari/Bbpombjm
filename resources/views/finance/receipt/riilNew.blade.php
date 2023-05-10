@@ -218,7 +218,16 @@
                                     @endif
                                 </td>
                                 <td class="kanan">
-                                    {{$item->out->transport}}
+                                    @foreach ($trans as $itemT)
+                                        @if ($itemT->taxitype == "Transport Lokal")
+                                            Transportasi Darat <br>
+                                        @else
+                                            {{$itemT->taxiname}} <br>
+                                        @endif
+
+                                    @endforeach
+
+                                    
                                 </td>
                             </tr>
                         @endif
