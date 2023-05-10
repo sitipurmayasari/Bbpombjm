@@ -222,7 +222,7 @@
                                         @if ($itemT->taxitype == "Transport Lokal")
                                             Transportasi Darat <br>
                                         @else
-                                            {{$itemT->taxiname}} <br>
+                                            {{$item->out->transport}} <br>
                                         @endif
 
                                     @endforeach
