@@ -183,7 +183,7 @@ class OutstationController extends Controller
         // $phpWord = new \PhpOffice\PhpWord\PhpWord();
         if ($jmlpeg->hitung > 7) {
           $pdf = PDF::loadview('finance/outstation.printSTKopbanyak',compact('data','isian','menyetujui'));
-        }elseif ($jmlpeg->hitung > 2 && $jmlpeg->hitung <= 4 ){
+        }elseif ($jmlpeg->hitung > 1 && $jmlpeg->hitung <= 4 ){
           $pdf = PDF::loadview('finance/outstation.printstkopgantung',compact('data','isian','menyetujui'));
         }elseif ($jmlpeg->hitung > 4 && $jmlpeg->hitung <= 7){
           $pdf = PDF::loadview('finance/outstation.printstkopgantung2',compact('data','isian','menyetujui'));
