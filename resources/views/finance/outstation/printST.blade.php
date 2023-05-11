@@ -368,7 +368,7 @@
             </tr>
             <tr>
                 <td></td>
-                <td style="height: 6%"></td>
+                <td style="height: 7%"></td>
             </tr>
             <tr>
                 <td></td>
