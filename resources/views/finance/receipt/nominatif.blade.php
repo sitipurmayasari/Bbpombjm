@@ -342,7 +342,13 @@
                     </td>
                     <td style="vertical-align: top; text_align:center">
                         @foreach ($hotel as $itemhotel)
-                            {{number_format($itemhotel->hotelfee)}}<br>
+                            @php
+                                $harga = $itemhotel->hotelfee;
+                                $orang = $itemhotel->person;
+                                $biaya = $harga / $orang;
+                            @endphp
+
+                            {{number_format($biaya)}}<br>
                         @endforeach
                         @if ($item->halfsum != 0)
                             {{number_format($item->halfcost)}}<br>
