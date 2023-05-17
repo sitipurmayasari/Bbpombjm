@@ -61,9 +61,7 @@
                         for="form-field-1"> Maksud Tugas
                         </label>
                         <div class="col-sm-8">
-                            <input type="text"  placeholder="Nama kegiatan" 
-                                    class="col-xs-10 col-sm-10 required " 
-                                    name="purpose" required/>
+                            <textarea name="purpose" id="" class="col-xs-10 col-sm-10" rows="3" required></textarea>
                         </div>
                     </div>
                     <div class="form-group">
@@ -82,9 +80,7 @@
                         for="form-field-1"> Dasar Pelaksanaan (*Tidak Wajib)
                         </label>
                         <div class="col-sm-8">
-                            <input type="text"  placeholder="Dasar Pelaksanaan" 
-                                    class="col-xs-10 col-sm-10 " 
-                                    name="dasar"/>
+                            <textarea name="dasar" id="" class="col-xs-10 col-sm-10" rows="3"></textarea>
                         </div>
                     </div>
                     <div class="form-group">

@@ -64,9 +64,7 @@
                         for="form-field-1"> Maksud Tugas
                         </label>
                         <div class="col-sm-8">
-                            <input type="text"  placeholder="Nama kegiatan" value="{{$data->purpose}}"
-                                    class="col-xs-10 col-sm-10 required " 
-                                    name="purpose" required/>
+                            <textarea name="purpose" id="" class="col-xs-10 col-sm-10" rows="3" required>{{$data->purpose}}</textarea>
                         </div>
                     </div>
                     <div class="form-group">
@@ -74,7 +72,7 @@
                         for="form-field-1"> Menimbang
                         </label>
                         <div class="col-sm-8">
-                            <textarea name="menimbang" id="menimbang" cols="70%" rows="5">{{$data->menimbang}}
+                            <textarea name="menimbang" id="menimbang" class="col-xs-10 col-sm-10" rows="3">{{$data->menimbang}}
                             </textarea>
                         </div>
                     </div>
@@ -83,9 +81,7 @@
                         for="form-field-1"> Dasar Pelaksanaan (*Tidak Wajib)
                         </label>
                         <div class="col-sm-8">
-                            <input type="text"  placeholder="Dasar Pelaksanaan" 
-                                    class="col-xs-10 col-sm-10 " value="{{$data->dasar}}"
-                                    name="dasar"/>
+                            <textarea name="dasar" id="" class="col-xs-10 col-sm-10" rows="3">{{$data->dasar}}</textarea>
                         </div>
                     </div>
                     <div class="form-group">
