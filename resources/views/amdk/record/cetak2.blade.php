@@ -1,3 +1,8 @@
+<?php
+header("Content-type: application/vnd-ms-excel");
+header("Content-Disposition: attachment; filename=Rekam-Personil.xls");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -144,10 +149,10 @@
                         @endif
                         @if ($pendidikan != null)
                            <td style="text-align: center;">
+                            @php
+                                $noa = 1;
+                            @endphp
                                @foreach ($pendidikan as $item)
-                                    @php
-                                        $noa = 1;
-                                    @endphp
                                     <div class="isi">
                                         {{$noa++}} 
                                     </div><br>
@@ -174,10 +179,10 @@
                        @endif
                        @if ($pelatihan != null)
                            <td style="text-align: center">
+                            @php
+                                $nob = 1;
+                            @endphp
                                @foreach ($pelatihan as $item)
-                               @php
-                                   $nob = 1;
-                               @endphp
                                 <div class="isi">
                                     {{$nob++}} 
                                 </div><br>

@@ -1,3 +1,8 @@
+<?php
+header("Content-type: application/vnd-ms-excel");
+header("Content-Disposition: attachment; filename=Rekam-Personil.xls");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Rekaman Personel PPNPN</title>
+    <title>Rekaman Personel PNS</title>
     <style>
         @page {
             size: A4 landscape;
@@ -22,7 +27,10 @@
             border: none;
             border-collapse: collapse;
             font-weight: bold;
+            text-align: left;
         }
+
+
         table, th, td{
             border: 1px solid black;
             
@@ -46,6 +54,11 @@
         .isi{
             height: 35px;
         }
+
+        .cell-breakWord {
+            word-wrap: break-word;
+            max-width: 200px;
+        }
         
 
     </style>
@@ -64,10 +77,10 @@
             </div>
             <br>
             <div>
-                <table style="font-size: 12px;" class="judul" >
-                    <tr class="judul">
-                        <td class="judul">Nama</td>
-                        <td class="judul"> : {{$data->name}}</td>
+                <table style="font-size: 12px;" class="judul">
+                    <tr>
+                        <td class="judul" style="width: 20%;">Nama</td>
+                        <td class="judul">: {{$data->name}}</td>
                     </tr>
                     <tr class="judul">
                         <td class="judul">Tempat/Tanggal Lahir</td>
@@ -158,10 +171,10 @@
                         @endif
                         @if ($pendidikan != null)
                            <td style="text-align: center;">
+                                @php
+                                    $noa = 1;
+                                @endphp
                                @foreach ($pendidikan as $item)
-                                    @php
-                                        $noa = 1;
-                                    @endphp
                                     <div class="isi">
                                         {{$noa++}} 
                                     </div><br>
@@ -188,19 +201,19 @@
                        @endif
                        @if ($pelatihan != null)
                            <td style="text-align: center">
+                                @php
+                                    $nob = 1;
+                                @endphp
                                @foreach ($pelatihan as $item)
-                               @php
-                                   $nob = 1;
-                               @endphp
                                 <div class="isi">
                                     {{$nob++}} 
                                 </div><br>
                                @endforeach
                            </td>
-                           <td>
+                           <td class="cell-breakWord">
                                @foreach ($pelatihan as $item)
                                 <div class="isi">
-                                    {{$item->nama}} 
+                                    {{$item->nama}}
                                 </div><br>
                                @endforeach
                            </td>
