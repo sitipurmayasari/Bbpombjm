@@ -38,7 +38,7 @@
                     </div>
                     <div class="form-group"  id="pns">
                         <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1"> nama Pegawai
+                        for="form-field-1"> Nama Pegawai
                         </label>
                         <div class="col-sm-9">
                             <select name="pns" class="col-xs-10 col-sm-10 select2">
