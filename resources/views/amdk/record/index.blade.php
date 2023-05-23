@@ -12,7 +12,7 @@
     <div class="col-sm-12">
         <div class="widget-box">
             <div class="widget-header">
-                <h4 class="widget-title"> Cetak Rekaman Personil </h4>
+                <h4 class="widget-title"> Cetak Rekaman Personil Pegawai</h4>
                 <div class="widget-toolbar">
                     <a href="#" data-action="collapse">
                         <i class="ace-icon fa fa-chevron-down"></i>
