@@ -160,7 +160,13 @@ header("Content-Disposition: attachment; filename=Rekam-personil-ppnpn.xls");
                            <td>
                                 @foreach ($pengalaman as $item)
                                    <div  class="isi">
-                                        {{tgl_indo($item->tgl_mulai)}} s/d  {{tgl_indo($item->tgl_selesai)}}
+                                        {{tgl_indo($item->tgl_mulai)}} s/d 
+
+                                        @if ($item->tgl_selesai != null)
+                                            {{tgl_indo($item->tgl_selesai)}}
+                                        @else
+                                            Sekarang
+                                        @endif
                                    </div> <br>
                                 @endforeach
                            </td>
