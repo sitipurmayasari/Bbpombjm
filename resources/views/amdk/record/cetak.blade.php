@@ -1,6 +1,6 @@
 <?php
-// header("Content-type: application/vnd-ms-excel");
-// header("Content-Disposition: attachment; filename=Rekam-personil-pns.xls");
+header("Content-type: application/vnd-ms-excel");
+header("Content-Disposition: attachment; filename=Rekam-personil-pns.xls");
 ?>
 
 <!DOCTYPE html>
