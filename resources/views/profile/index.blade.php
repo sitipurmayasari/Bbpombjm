@@ -28,7 +28,11 @@
                       </button>
                     <div class="mt-3">
                       <h4>{{auth()->user()->name}}</h4>
-                      <p class="text-secondary mb-1">{{auth()->user()->jabatan->jabatan}}</p>
+                        @if ($data->jabasn_id != null)
+                        <p class="text-secondary mb-1">{{auth()->user()->jabasn->nama}}</p>
+                        @else
+                        <p class="text-secondary mb-1">{{auth()->user()->jabatan->jabatan}}</p>
+                        @endif
                       <p class="text-muted font-size-sm">{{auth()->user()->divisi->nama}}</p>
                     </div>
                   </div>

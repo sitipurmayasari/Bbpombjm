@@ -1,6 +1,6 @@
 <?php
-header("Content-type: application/vnd-ms-excel");
-header("Content-Disposition: attachment; filename=Rekam-personil-pns.xls");
+// header("Content-type: application/vnd-ms-excel");
+// header("Content-Disposition: attachment; filename=Rekam-personil-pns.xls");
 ?>
 
 <!DOCTYPE html>
@@ -160,7 +160,7 @@ header("Content-Disposition: attachment; filename=Rekam-personil-pns.xls");
                            <td>
                                 @foreach ($pengalaman as $item)
                                    <div  class="isi">
-                                        {{tgl_indo($item->tgl_mulai)}} s/d  {{tgl_indo($item->tgl_mulai)}}
+                                        {{tgl_indo($item->tgl_mulai)}} s/d  {{tgl_indo($item->tgl_selesai)}}
                                    </div> <br>
                                 @endforeach
                            </td>
