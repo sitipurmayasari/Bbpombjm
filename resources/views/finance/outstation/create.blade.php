@@ -211,6 +211,7 @@
                                             <option value="{{$peg->id}}">{{$peg->name}} | {{$peg->no_pegawai}}</option>
                                         @endforeach
                                     </select>
+
                                 </td>
                                 <td>
                                     <select name="no_sppd[]" class="form-control select2 penomoransppd">
@@ -231,9 +232,9 @@
                                     <input type="hidden" id="countRow" value="1">
                                 </td>
                             </tr>
-                            
                         </tfoot>
                     </table>
+                    <a href="{{Route('outsourcing.create')}}" class="btn btn-primary" target="_blank"><i class="glyphicon glyphicon-plus"></i> Pegawai External</a>
                 </fieldset>   
    
             </div>

@@ -125,7 +125,17 @@ class PegawaiController extends Controller
         return redirect('/amdk/pegawai')->with('sukses','Data Tersimpan');
     }
 
+    public function storepangol(Request $request)
+    {
+        Golongan::create($request->all());
+        return redirect('/amdk/outsourcing/create')->with('sukses','Golongan Berhasil Ditambahkan');
+    }
 
+    public function storejafung(Request $request)
+    {
+        Jabasn::create($request->all());
+        return redirect('/amdk/outsourcing/create')->with('sukses','JaFung Berhasil Ditambahkan');
+    }
 
     public function edit($id)
     {

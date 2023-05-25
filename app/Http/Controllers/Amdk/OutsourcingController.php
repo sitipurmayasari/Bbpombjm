@@ -73,4 +73,22 @@ class OutsourcingController extends Controller
         $user->update($request->all());
         return redirect('/amdk/outsourcing')->with('sukses','Data Diperbaharui');
     }
+
+    public function createpangol()
+    {
+        return view('amdk/outsourcing.createpangol');
+    }
+
+    public function storepangol(Request $request)
+    {
+        Golongan::create($request->all());
+        return redirect('/amdk/outsourcing/create')->with('sukses','Golongan Berhasil Ditambahkan');
+    }
+
+    public function storejafung(Request $request)
+    {
+        Jabasn::create($request->all());
+        return redirect('/amdk/outsourcing/create')->with('sukses','JaFung Berhasil Ditambahkan');
+    }
+
 }

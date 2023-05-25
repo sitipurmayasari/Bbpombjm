@@ -35,6 +35,7 @@
                                         class="col-xs-10 col-sm-10 required" 
                                         name="no_pegawai" required  />
                                         *tidak boleh sama
+                                <input type="hidden" value="N" name="aktif">
                             </div>
                         </div>
 
@@ -105,6 +106,9 @@
                                         <option value="{{$sub->id}}">{{$sub->nama}}</option>
                                     @endforeach
                                 </select>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalone">
+                                    <i class="glyphicon glyphicon-plus"></i></button>
+                                  </button>
                                 *Jika PNS
                             </div>
                         </div>
@@ -119,8 +123,10 @@
                                         <option value="{{$sub->id}}">{{$sub->jenis}} / {{$sub->golongan}}/{{$sub->ruang}}</option>
                                     @endforeach
                                 </select>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modaltwo">
+                                    <i class="glyphicon glyphicon-plus"></i></button>
+                                  </button>
                                 *Jika PNS
-                                <input type="hidden" value="N" name="aktif">
                             </div>
                         </div>
                         
@@ -141,6 +147,117 @@
     </div>
     </form>
 </div>
+
+{{-- Modal 1 --}}
+<div class="modal fade" id="modalone" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Tambah Jabatan Fungsional</h5>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal validate-form" role="form" 
+                method="post" action="{{route('outsourcing.storejafung')}}" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                <fieldset>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" 
+                        for="form-field-1"> Jabatan
+                        </label>
+                        <div class="col-sm-8">
+                            <select name="jabatan"  class="col-xs-10 col-sm-10 required " >
+                                <option value="">Pilih Jabatan</option>
+                                <option value="Ahli Pertama">Ahli Pertama</option>
+                                <option value="Ahli Muda">Ahli Muda</option>
+                                <option value="Ahli Madya">Ahli Madya</option>
+                                <option value="Ahli Utama">Ahli Utama</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" 
+                        for="form-field-1"> Nama Jabatan
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text"  placeholder="Mis : Apoteker Ahli Muda" class="col-xs-10 col-sm-10 required " 
+                                    name="nama" required />
+                            
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" 
+                        for="form-field-1"> Kelompok Jabatan
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text"  placeholder="Mis : Ahli Muda" class="col-xs-10 col-sm-10 required " 
+                                    name="kelompok" required />
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">TUTUP</button>
+                <button type="submit" class="btn btn-primary">SIMPAN</button>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{-- Modal 2 --}}
+<div class="modal fade" id="modaltwo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Tambah Pangkat dan Golongan</h5>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal validate-form" role="form" 
+                    method="post" action="{{route('outsourcing.storepangol')}}" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                <fieldset>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" 
+                        for="form-field-1">Jenis
+                        </label>
+                        <div class="col-sm-8" id="tambah" >
+                            <input type="text"  placeholder="contoh : Pembina Tingkat I / BRIPKA"
+                                    class="col-xs-10 col-sm-10 required" 
+                                    name="jenis" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Golongan / Ruang 
+                        </label>
+                        <div class="col-sm-8">
+                            <select class="col-xs-2 col-sm-4" name="golongan" required>
+                                <option value="">Pilih gol</option>
+                                <option value="I">I</option>
+                                <option value="II">II</option>
+                                <option value="III">III</option>
+                                <option value="IV">IV</option>
+                            </select>   
+                            <select class="col-xs-2 col-sm-4" name="ruang" required>
+                                <option value="">Pilih Ruang</option>
+                                <option value="a">a</option>
+                                <option value="b">b</option>
+                                <option value="c">c</option>
+                                <option value="d">d</option>
+                            </select>
+                        </div>    
+                    </div>
+                </fieldset>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">TUTUP</button>
+                <button type="submit" class="btn btn-primary">SIMPAN</button>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 @endsection
 
