@@ -347,6 +347,7 @@
                             
                         </tfoot>
                     </table>
+                    <a href="{{Route('outsourcing.create')}}" class="btn btn-primary" target="_blank"><i class="glyphicon glyphicon-plus"></i> Pegawai External</a>
                 </fieldset>   
    
             </div>
