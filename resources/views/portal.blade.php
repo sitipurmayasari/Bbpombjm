@@ -508,7 +508,7 @@ h2, a {
            <a class="bawah" data-tooltip="SIASN" href="https://siasn.pom.go.id/login" target="_blank">
             <img src="{{asset('images/terkait/siasn.png')}}" style="height:100%; width:100%">
           </a>
-          <a class="bawah" data-tooltip="SIPANDA" href="https://sipanda.pom.go.id/sipanda/formlogin.php" target="_blank">
+          <a class="bawah" data-tooltip="SIPANDA" href="https://sipanda.pom.go.id" target="_blank">
             <img src="{{asset('images/terkait/sipanda.png')}}" style="height:100%; width:100%">
           </a>
           <a class="bawah" data-tooltip="SRIKANDI" href="https://srikandi.arsip.go.id/login" target="_blank">
