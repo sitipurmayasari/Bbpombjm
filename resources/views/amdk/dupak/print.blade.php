@@ -290,7 +290,7 @@
             <tr>
                 <td class="tbl" colspan="7" style="text-align: center;"><b>JUMLAH UNSUR UTAMA DAN UNSUR PENUNJANG</b></td>
                 <td class="tbl" style="width: 10%; text-align:center;" > {{$data->jumlama}} </td>
-                <td class="tbl" style="width: 10%; text-align:center;" > {{$data->jumlah}}</td>
+                <td class="tbl" style="width: 10%; text-align:center;" > {{round($data->jumlah,3)}}</td>
                 <td class="tbl" style="width: 10%; text-align:center;" > {{round($data->total,3)}}</td>
             </tr>
                 <tr>&nbsp; 
