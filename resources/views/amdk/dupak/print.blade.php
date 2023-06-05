@@ -229,14 +229,14 @@
                     @if ($data->sc=='0')
                     -
                     @else
-                        {{$data->sc}}
+                        {{round($data->sc,3)}}
                     @endif
                 </td>
                 <td class="tbl" style="width: 10%; text-align:center;" >
                     @if ($data->sc=='0')
                         -
                     @else
-                        {{$data->sc}}
+                        {{round($data->sc,3)}}
                     @endif
                 </td>
             </tr>
@@ -249,14 +249,14 @@
                     @if ($data->jum1=='0')
                         -
                     @else
-                        {{$data->jum1}}
+                        {{round($data->jum1,3)}}
                     @endif
                 </td>
                 <td class="tbl" style="width: 10%; text-align:center;" >
                     @if ($data->jum1=='0')
                         -
                     @else
-                        {{$data->jum1}}
+                        {{round($data->jum1,3)}}
                     @endif
                 </td>
             </tr>
@@ -276,14 +276,14 @@
                     @if ($data->da=='0')
                         -
                     @else
-                        {{$data->da}}
+                        {{round($data->da,3)}}
                     @endif
                 </td>
                 <td class="tbl" style="width: 10%; text-align:center;" > 
                     @if ($data->da=='0')
                         -
                     @else
-                        {{$data->da}}
+                        {{round($data->da,3)}}
                     @endif
                 </td>
             </tr>
