@@ -26,6 +26,7 @@ use Carbon\Carbon;
 use App\Pok_detail;
 use Exception;
 use LogActivity;
+use PhpOffice\PhpWord\TemplateProcessor;
 
 
 class OutstationController extends Controller
@@ -131,7 +132,10 @@ class OutstationController extends Controller
         $data = Outstation::where('id',$id)->first();
         $isian = Outst_employee::orderBy('id','asc')
                             ->where('outstation_id','=',$id)
-                            ->get();        
+                            ->get();  
+        $datapeg = Outst_employee::orderBy('id','asc')
+                            ->where('outstation_id','=',$id)
+                            ->first();      
         $jmlpeg  = Outst_employee::SelectRaw('count(*) as hitung')   
                                   ->where('outstation_id',$id)
                                   ->first(); 
@@ -151,16 +155,10 @@ class OutstationController extends Controller
                               ->first();
         }
         
-        if ($jmlpeg->hitung > 6) {
+        if ($jmlpeg->hitung > 1) {
           $pdf = PDF::loadview('finance/outstation.printSTbanyak',compact('data','isian','menyetujui'));
-        }elseif ($jmlpeg->hitung > 1 && $jmlpeg->hitung <= 4){
-        //   $pdf = PDF::loadview('finance/outstation.printstgantung',compact('data','isian','menyetujui','now'));
-        // }elseif ($jmlpeg->hitung > 2 && $jmlpeg->hitung <= 4 && $data->dasar == null){
-          $pdf = PDF::loadview('finance/outstation.printstgantung',compact('data','isian','menyetujui','now'));
-        }elseif ($jmlpeg->hitung > 4 && $jmlpeg->hitung < 7){
-          $pdf = PDF::loadview('finance/outstation.printstgantung2',compact('data','isian','menyetujui','now'));
         } else {
-          $pdf = PDF::loadview('finance/outstation.printST',compact('data','isian','menyetujui','now'));
+          $pdf = PDF::loadview('finance/outstation.printST',compact('data','datapeg','menyetujui','now'));
         }
         return $pdf->stream();
         
@@ -172,6 +170,9 @@ class OutstationController extends Controller
         $isian = Outst_employee::orderBy('id','asc')
                             ->where('outstation_id','=',$id)
                             ->get();
+        $datapeg = Outst_employee::orderBy('id','asc')
+                            ->where('outstation_id','=',$id)
+                            ->first();      
         $menyetujui = Pejabat::where('jabatan_id', '=', 6)
                             ->whereRaw("pjs IS NULL || pjs != 'Plh.'")
                             ->orderby('id','desc')
@@ -181,20 +182,13 @@ class OutstationController extends Controller
                             ->first(); 
 
         // $phpWord = new \PhpOffice\PhpWord\PhpWord();
-        if ($jmlpeg->hitung > 6) {
+        if ($jmlpeg->hitung > 1) {
           $pdf = PDF::loadview('finance/outstation.printSTKopbanyak',compact('data','isian','menyetujui'));
-        }elseif ($jmlpeg->hitung > 1 && $jmlpeg->hitung <= 4 ){
-          $pdf = PDF::loadview('finance/outstation.printstkopgantung',compact('data','isian','menyetujui'));
-        }elseif ($jmlpeg->hitung > 4 && $jmlpeg->hitung < 7){
-          $pdf = PDF::loadview('finance/outstation.printstkopgantung2',compact('data','isian','menyetujui'));
         } else {
-          $pdf = PDF::loadview('finance/outstation.printSTKop',compact('data','isian','menyetujui'));
+          $pdf = PDF::loadview('finance/outstation.printSTKop',compact('data','datapeg','menyetujui'));
+          // return view('finance/outstation.printSTKop',compact('data','datapeg','menyetujui'));
         }
         return $pdf->stream();
-
-        // return view('finance/outstation.printSTKop',compact('data','isian','menyetujui'));
-
-        
       }
 
 
@@ -464,4 +458,16 @@ class OutstationController extends Controller
           ],200);
     }
 
+     
+    public function wordExport($id)
+    {
+        $data = Outstation::FindOrFail($id);
+        // $templateProcessor = new TemplateProcessor(documentTemplate:'word-template/surattugas.docx');
+        $templateProcessor = new Templateprocessor("documentTemplate:'word-template/surattugas.docx'");
+        $templateProcessor->setValue("search,'id', $data->id");
+        $templateProcessor->setValue("search,'id', $data->id");
+      }
+
+
+       
 }

@@ -12,7 +12,9 @@
 <style>
     @page {
         size: 21.59cm 33cm ;
-        margin-bottom: 2.5cm;
+        margin-left: 3cm;
+        margin-right: 2cm;
+        margin-bottom: 2.2cm;
         /* margin: 160px 0px 100px 0px; */
     }
 
@@ -134,7 +136,6 @@
                             </td>
                         </tr>
                     </table>
-                    <br>
                </td>
            </tr>
            <tr>
@@ -184,110 +185,101 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="3" style="text-align: center">Memberi perintah 
-                    <br><br>
+                <td colspan="3" style="text-align: center; padding-bottom:8px;">Memberi perintah 
                 </td>
             </tr>
             <tr>
                 <td>Kepada</td>
                 <td>:</td>
                 <td> - T e r l a m p i r -
-                    <br><br>
+                    <br>
                 </td>
             </tr>
             <tr>
                 <td>Untuk</td>
                 <td>:</td>
+                <td>{{$data->purpose}}</td>
+            </tr>
+            <tr>
+                <td>Tujuan&nbsp;</td>
+                <td>:</td>
+                <td style="width: 85%"> 
+                    @if (count($data->outst_destiny) == 1)
+                        @foreach ($data->outst_destiny as $key=>$item)
+                            @if ($loop->first)
+                                {{$item->destiny->capital}} 
+                            @endif
+                            
+                        @endforeach
+
+                    @elseif (count($data->outst_destiny) == 2)
+                        @foreach ($data->outst_destiny as $key=>$item)
+                            {{$item->destiny->capital}}
+                            @if ($data->outst_destiny->count()-1 != $key)
+                                {{' dan '}}
+                            @endif
+                        @endforeach
+
+                    @else
+                        @foreach ($data->outst_destiny as $key=>$item)
+                            @if ($loop->last-1)
+                                {{$item->destiny->capital}}{{','}} 
+                            @endif
+                            @if ($loop->last)
+                                {{' dan '}} {{$item->destiny->capital}}
+                            @endif
+                            
+                        @endforeach
+                    @endif    
+                </td>
+            </tr>
+            <tr>
+                <td>Waktu&nbsp;</td>
+                <td>:</td>
                 <td>
-                    <table style="width: 100%">
-                        <tr>
-                            <td colspan="3">
-                                {{$data->purpose}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Tujuan&nbsp;</td>
-                            <td>:</td>
-                            <td style="width: 85%"> 
-                                @if (count($data->outst_destiny) == 1)
-                                    @foreach ($data->outst_destiny as $key=>$item)
-                                        @if ($loop->first)
-                                            {{$item->destiny->capital}} 
-                                        @endif
-                                        
-                                    @endforeach
-            
-                                @elseif (count($data->outst_destiny) == 2)
-                                    @foreach ($data->outst_destiny as $key=>$item)
-                                        {{$item->destiny->capital}}
-                                        @if ($data->outst_destiny->count()-1 != $key)
-                                            {{' dan '}}
-                                        @endif
-                                    @endforeach
-            
-                                @else
-                                    @foreach ($data->outst_destiny as $key=>$item)
-                                        @if ($loop->last-1)
-                                            {{$item->destiny->capital}}{{','}} 
-                                        @endif
-                                        @if ($loop->last)
-                                            {{' dan '}} {{$item->destiny->capital}}
-                                        @endif
-                                        
-                                    @endforeach
-                                @endif    
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Waktu&nbsp;</td>
-                            <td>:</td>
-                            <td>
-                                @if (count($data->outst_destiny) == 1)
-                                    @foreach ($data->outst_destiny as $key=>$item)
-                                        @if ($item->go_date ==  $item->return_date)
-                                            {{tgl_indo($item->go_date)}} 
-                                        @else
-                                            {{tgl_indo($item->go_date)}} s/d {{tgl_indo($item->return_date)}}
-                                        @endif
-                                    @endforeach
-                                @else
-                                    @foreach ($data->outst_destiny as $key=>$item)
-                                        @if ($loop->first)
-                                            {{tgl_indo($item->go_date)}}
-                                            s/d
-                                        @endif
-                                        @if ($loop->last)
-                                        {{tgl_indo($item->return_date)}}
-                                        @endif
-                                    @endforeach
-                                @endif
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Biaya&nbsp;</td>
-                            <td>:</td>
-                            <td>
-                                @if ($data->budget_id == 3)
-                                {{$data->budget->name}}
-                                    {{-- {{$now->name}} Tahun Anggaran {{$now->tahun}} --}}
-                                @else
-                                    {{$data->budget->name}} Tahun Anggaran {{$data->budget->tahun}}
-                                @endif <br>
-                                MAK :
-                                @if ($data->pok_detail_id == 0)
-                                    {{' Non Anggaran '}}
-                                @elseif ($data->pok_detail_id == 1)
-                                    {{' - '}}
-                                @else
-                                    {{$data->pok->pok->act->prog->unit->klcode->code}}.{{$data->pok->pok->act->prog->unit->code}}.
-                                    {{$data->pok->pok->act->prog->code}}.{{$data->pok->pok->act->code}}.
-                                    {{$data->pok->sub->komponen->det->unit->code}}.{{$data->pok->sub->komponen->det->code}}.
-                                    {{$data->pok->sub->komponen->code}}.{{$data->pok->sub->code}}.{{$data->pok->akun->code}}
-            
-                                @endif
-                            </td>
-                        </tr>
-                    </table>
+                    @if (count($data->outst_destiny) == 1)
+                        @foreach ($data->outst_destiny as $key=>$item)
+                            @if ($item->go_date ==  $item->return_date)
+                                {{tgl_indo($item->go_date)}} 
+                            @else
+                                {{tgl_indo($item->go_date)}} s/d {{tgl_indo($item->return_date)}}
+                            @endif
+                        @endforeach
+                    @else
+                        @foreach ($data->outst_destiny as $key=>$item)
+                            @if ($loop->first)
+                                {{tgl_indo($item->go_date)}}
+                                s/d
+                            @endif
+                            @if ($loop->last)
+                            {{tgl_indo($item->return_date)}}
+                            @endif
+                        @endforeach
+                    @endif
+                </td>
+            </tr>
+            <tr>
+                <td>Biaya&nbsp;</td>
+                <td>:</td>
+                <td style="font-size:11">
+                    @if ($data->budget_id == 3)
+                        {{-- {{$now->name}} Tahun Anggaran {{$now->tahun}} --}}
+                        {{$data->budget->name}}
+                    @else
+                        {{$data->budget->name}} Tahun Anggaran {{$data->budget->tahun}}
+                    @endif <br>
+                    MAK :
+                    @if ($data->pok_detail_id == 0)
+                        {{' Non Anggaran '}}
+                    @elseif ($data->pok_detail_id == 1)
+                        {{' - '}}
+                    @else
+                        {{$data->pok->pok->act->prog->unit->klcode->code}}.{{$data->pok->pok->act->prog->unit->code}}.
+                        {{$data->pok->pok->act->prog->code}}.{{$data->pok->pok->act->code}}.
+                        {{$data->pok->sub->komponen->det->unit->code}}.{{$data->pok->sub->komponen->det->code}}.
+                        {{$data->pok->sub->komponen->code}}.{{$data->pok->sub->code}}.{{$data->pok->akun->code}}
+
+                    @endif
                 </td>
             </tr>
        </table>
@@ -357,11 +349,7 @@
         <table style="width: 100%">
             <tr>
                 <td style="width: 43%"></td>
-                <td colspan="3" style="font-size: 11">Lampiran</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td colspan="3" style="font-size: 11">Surat Tugas
+                <td colspan="3" style="font-size: 11">Lampiran Surat Tugas</td>
             </tr>
             <tr>
                 <td></td>
@@ -461,7 +449,7 @@
         </tr>
         <tr>
             <td></td>
-            <td style="height: 10%"></td>
+            <td>${ttd_pengirim}</td>
         </tr>
         <tr>
             <td></td>

@@ -14,7 +14,7 @@
         margin-top:175px;
         margin-left: 3cm;
         margin-right: 2cm;
-        margin-bottom: 1.75cm;
+        margin-bottom: 2.2cm;
         /* margin: 175px 0px 5px 0px; */
 
     }
@@ -132,7 +132,6 @@
                             </td>
                         </tr>
                     </table>
-                    <br>
                </td>
            </tr>
            <tr>
@@ -182,158 +181,143 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="3" style="text-align: center">Memberi Perintah 
-                    <br>
+                <td colspan="3" style="text-align: center; padding-bottom:8px;">Memberi Perintah 
                 </td>
             </tr>
             <tr>
                 <td>Kepada</td>
                 <td>:</td>
                 <td>
-                    <table style="width:100%" class="detail">
-                        <thead>
-                            <tr >
-                                <th style="width: 5%">NO</th>
-                                <th style="width: 25%">NAMA</th>
-                                <th style="width: 20%">NIP</th>
-                                <th >PANGKAT / GOLONGAN</th>
-                                <th style="width: 35%">JABATAN</th>
-                            </tr>
-                        </thead>
+                    <table style="width:100%">
                         <tbody>
-                            @php
-                                $no= 1;
-                            @endphp
-                            @foreach($isian as $key=>$row)
                             <tr>
-                                <td class="detail" style="text-align: center;">
-                                    {{$no++}}
-                                </td>
-                                <td class="detail">
-                                    {{$row->pegawai->name}}
-                                </td>
-                                <td class="detail" style="text-align: center;">
-                                    @if ($row->pegawai->golongan_id != null)
-                                        {{$row->pegawai->no_pegawai}}
+                                <td style="width: 20%">Nama</td>
+                                <td style="width: 3%; text_align:center">:</td>
+                                <td>{{$datapeg->pegawai->name}}</td>
+                            </tr>
+                            <tr>
+                                <td>NIP</td>
+                                <td style="text-align: center">:</td>
+                                <td>
+                                    @if ($datapeg->pegawai->golongan_id != null)
+                                        {{$datapeg->pegawai->no_pegawai}}
                                     @else
                                         {{' - '}}
                                     @endif
                                 </td>
-                                <td class="detail" style="text-align: center; vertical-align:top;">
-                                   @if ($row->pegawai->golongan_id != null)
-                                    {{$row->pegawai->gol->jenis}} /  
-                                    {{$row->pegawai->gol->golongan}} {{$row->pegawai->gol->ruang}}
-                                   @else
-                                       {{' - '}}
-                                   @endif
-                                </td>
-                                <td class="detail">
-                                    @if ($row->pegawai->jabasn_id != null)
-                                        {{$row->pegawai->jabasn->nama}}
+                            </tr>
+                            <tr>
+                                <td>Pangkat/Gol</td>
+                                <td style="text-align: center">:</td>
+                                <td>
+                                    @if ($datapeg->pegawai->golongan_id != null)
+                                        {{$datapeg->pegawai->gol->jenis}} /  
+                                        {{$datapeg->pegawai->gol->golongan}} {{$datapeg->pegawai->gol->ruang}}
                                     @else
-                                        {{$row->pegawai->deskjob}}
+                                        {{' - '}}
                                     @endif
                                 </td>
                             </tr>
-                            @endforeach
+                            <tr>
+                                <td>Jabatan</td>
+                                <td style="text-align: center">:</td>
+                                <td>
+                                    @if ($datapeg->pegawai->jabasn_id != null)
+                                        {{$datapeg->pegawai->jabasn->nama}}
+                                    @else
+                                        {{$datapeg->pegawai->deskjob}}
+                                    @endif
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
-                    <br>
                 </td>
             </tr>
             <tr>
                 <td>Untuk</td>
                 <td>:</td>
+                <td>{{$data->purpose}}</td>
+            </tr>
+            <tr>
+                <td>Tujuan&nbsp;</td>
+                <td>:</td>
+                <td style="width: 85%"> 
+                    @if (count($data->outst_destiny) == 1)
+                        @foreach ($data->outst_destiny as $key=>$item)
+                            @if ($loop->first)
+                                {{$item->destiny->capital}} 
+                            @endif
+                            
+                        @endforeach
+
+                    @elseif (count($data->outst_destiny) == 2)
+                        @foreach ($data->outst_destiny as $key=>$item)
+                            {{$item->destiny->capital}}
+                            @if ($data->outst_destiny->count()-1 != $key)
+                                {{' dan '}}
+                            @endif
+                        @endforeach
+
+                    @else
+                        @foreach ($data->outst_destiny as $key=>$item)
+                            @if ($loop->last-1)
+                                {{$item->destiny->capital}}{{','}} 
+                            @endif
+                            @if ($loop->last)
+                                {{' dan '}} {{$item->destiny->capital}}
+                            @endif
+                            
+                        @endforeach
+                    @endif    
+                </td>
+            </tr>
+            <tr>
+                <td>Waktu&nbsp;</td>
+                <td>:</td>
                 <td>
-                    <table style="width: 100%">
-                        <tr>
-                            <td colspan="3">
-                                {{$data->purpose}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Tujuan&nbsp;</td>
-                            <td>:</td>
-                            <td style="width: 85%"> 
-                                @if (count($data->outst_destiny) == 1)
-                                    @foreach ($data->outst_destiny as $key=>$item)
-                                        @if ($loop->first)
-                                            {{$item->destiny->capital}} 
-                                        @endif
-                                        
-                                    @endforeach
-            
-                                @elseif (count($data->outst_destiny) == 2)
-                                    @foreach ($data->outst_destiny as $key=>$item)
-                                        {{$item->destiny->capital}}
-                                        @if ($data->outst_destiny->count()-1 != $key)
-                                            {{' dan '}}
-                                        @endif
-                                    @endforeach
-            
-                                @else
-                                    @foreach ($data->outst_destiny as $key=>$item)
-                                        @if ($loop->last-1)
-                                            {{$item->destiny->capital}}{{','}} 
-                                        @endif
-                                        @if ($loop->last)
-                                            {{' dan '}} {{$item->destiny->capital}}
-                                        @endif
-                                        
-                                    @endforeach
-                                @endif    
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Waktu&nbsp;</td>
-                            <td>:</td>
-                            <td>
-                                @if (count($data->outst_destiny) == 1)
-                                    @foreach ($data->outst_destiny as $key=>$item)
-                                        @if ($item->go_date ==  $item->return_date)
-                                            {{tgl_indo($item->go_date)}} 
-                                        @else
-                                            {{tgl_indo($item->go_date)}} s/d {{tgl_indo($item->return_date)}}
-                                        @endif
-                                    @endforeach
-                                @else
-                                    @foreach ($data->outst_destiny as $key=>$item)
-                                        @if ($loop->first)
-                                            {{tgl_indo($item->go_date)}}
-                                            s/d
-                                        @endif
-                                        @if ($loop->last)
-                                        {{tgl_indo($item->return_date)}}
-                                        @endif
-                                    @endforeach
-                                @endif
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Biaya&nbsp;</td>
-                            <td>:</td>
-                            <td style="font-size:11">
-                                @if ($data->budget_id == 3)
-                                    {{-- {{$now->name}} Tahun Anggaran {{$now->tahun}} --}}
-                                    {{$data->budget->name}}
-                                @else
-                                    {{$data->budget->name}} Tahun Anggaran {{$data->budget->tahun}}
-                                @endif <br>
-                                MAK :
-                                @if ($data->pok_detail_id == 0)
-                                    {{' Non Anggaran '}}
-                                @elseif ($data->pok_detail_id == 1)
-                                    {{' - '}}
-                                @else
-                                    {{$data->pok->pok->act->prog->unit->klcode->code}}.{{$data->pok->pok->act->prog->unit->code}}.
-                                    {{$data->pok->pok->act->prog->code}}.{{$data->pok->pok->act->code}}.
-                                    {{$data->pok->sub->komponen->det->unit->code}}.{{$data->pok->sub->komponen->det->code}}.
-                                    {{$data->pok->sub->komponen->code}}.{{$data->pok->sub->code}}.{{$data->pok->akun->code}}
-            
-                                @endif
-                            </td>
-                        </tr>
-                    </table>
+                    @if (count($data->outst_destiny) == 1)
+                        @foreach ($data->outst_destiny as $key=>$item)
+                            @if ($item->go_date ==  $item->return_date)
+                                {{tgl_indo($item->go_date)}} 
+                            @else
+                                {{tgl_indo($item->go_date)}} s/d {{tgl_indo($item->return_date)}}
+                            @endif
+                        @endforeach
+                    @else
+                        @foreach ($data->outst_destiny as $key=>$item)
+                            @if ($loop->first)
+                                {{tgl_indo($item->go_date)}}
+                                s/d
+                            @endif
+                            @if ($loop->last)
+                            {{tgl_indo($item->return_date)}}
+                            @endif
+                        @endforeach
+                    @endif
+                </td>
+            </tr>
+            <tr>
+                <td>Biaya&nbsp;</td>
+                <td>:</td>
+                <td style="font-size:11">
+                    @if ($data->budget_id == 3)
+                        {{-- {{$now->name}} Tahun Anggaran {{$now->tahun}} --}}
+                        {{$data->budget->name}}
+                    @else
+                        {{$data->budget->name}} Tahun Anggaran {{$data->budget->tahun}}
+                    @endif <br>
+                    MAK :
+                    @if ($data->pok_detail_id == 0)
+                        {{' Non Anggaran '}}
+                    @elseif ($data->pok_detail_id == 1)
+                        {{' - '}}
+                    @else
+                        {{$data->pok->pok->act->prog->unit->klcode->code}}.{{$data->pok->pok->act->prog->unit->code}}.
+                        {{$data->pok->pok->act->prog->code}}.{{$data->pok->pok->act->code}}.
+                        {{$data->pok->sub->komponen->det->unit->code}}.{{$data->pok->sub->komponen->det->code}}.
+                        {{$data->pok->sub->komponen->code}}.{{$data->pok->sub->code}}.{{$data->pok->akun->code}}
+
+                    @endif
                 </td>
             </tr>
        </table>
@@ -368,7 +352,7 @@
             </tr>
             <tr>
                 <td></td>
-                <td style="height: 7%"></td>
+                <td style="height: 8%"></td>
             </tr>
             <tr>
                 <td></td>
