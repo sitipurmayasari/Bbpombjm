@@ -115,7 +115,7 @@
 
         #gratis{
             font-family: "Bookman Old Style";  
-            font-size: 11;
+            font-size: 9.5;
             font-weight: normal;
             font-style: normal;;
             color: brown;

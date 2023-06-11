@@ -91,7 +91,7 @@
 
         #gratis{
             font-family: "Bookman Old Style";  
-            font-size: 10;
+            font-size: 9.5;
             font-weight: normal;
             font-style: normal;;
             color: brown;
@@ -352,7 +352,7 @@
             </tr>
             <tr>
                 <td></td>
-                <td style="height: 8%"></td>
+                <td style="height: 6.5%"></td>
             </tr>
             <tr>
                 <td></td>
