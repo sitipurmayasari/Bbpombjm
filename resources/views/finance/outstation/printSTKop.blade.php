@@ -36,10 +36,10 @@
 <style>
     @page {
         size: 21.59cm 33cm ;
-        margin-top:160px;
+        margin-top:155px;
         margin-left: 3cm;
         margin-right: 2cm;
-        margin-bottom: 2.2cm;
+        margin-bottom: 1.9cm;
     }
 
     @font-face {
@@ -214,7 +214,7 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="3" style="text-align: center; padding-bottom:8px;">Memberi Perintah 
+                <td colspan="3" style="text-align: center; padding-bottom:5px;">Memberi Perintah 
                 </td>
             </tr>
             <tr>

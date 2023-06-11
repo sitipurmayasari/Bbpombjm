@@ -14,7 +14,7 @@
         margin-top:175px;
         margin-left: 3cm;
         margin-right: 2cm;
-        margin-bottom: 2.2cm;
+        margin-bottom: 1.9cm;
         /* margin: 175px 0px 5px 0px; */
 
     }
@@ -181,7 +181,7 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="3" style="text-align: center; padding-bottom:8px;">Memberi Perintah 
+                <td colspan="3" style="text-align: center; padding-bottom:5px;">Memberi Perintah 
                 </td>
             </tr>
             <tr>
