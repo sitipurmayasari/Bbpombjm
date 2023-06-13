@@ -195,5 +195,14 @@ class BarangkeluarController extends Controller
       return $nosbb;
     }
 
+    
+    public function daftarbrg($id)
+    {
+        $data = Sbb::where('id',$id)->first();
+        $isi = Sbbdetail::where('sbb_id',$id)->get();
+        $pdf = PDF::loadview('invent/barangkeluar.daftarbrg',compact('data','isi'));
+        return $pdf->stream();
+    }
+
 
 }

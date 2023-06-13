@@ -154,6 +154,11 @@
             <button class="btn btn-success btn-sm " type="submit">
                 <i class="ace-icon fa fa-check bigger-110"></i>Simpan
             </button>
+            <div style="float: right;">
+                <a class="btn btn-primary" href="/invent/barangkeluar/daftarbrg/{{$data->id}}" target="_blank" rel="noopener noreferrer">
+                    CETAK <i class="glyphicon glyphicon-print"></i>
+                </a>
+            </div>
         </div>
     </div>
 </form>

@@ -139,6 +139,7 @@
    Route::get('/invent/barangkeluar/getBarang','Invent\BarangkeluarController@getBarang')->name('barangkeluar.getbarang');
    Route::get('/invent/barangkeluar/edit/{id}','Invent\BarangkeluarController@edit')->name('barangkeluar.edit');
    Route::post('/invent/barangkeluar/update/{id}','Invent\BarangkeluarController@update')->name('barangkeluar.update');
+   Route::get('/invent/barangkeluar/daftarbrg/{id}','Invent\BarangkeluarController@daftarbrg')->name('barangkeluar.daftarbrg');
 
   //Route untuk Laporan
   Route::post('/invent/laporan/cetak','Invent\LaporanController@cetak')->name('laporan.cetak');
