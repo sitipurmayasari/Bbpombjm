@@ -37,6 +37,10 @@ Route::get('/qR/{id}/calibration','Calibration\GlassKualController@detail')->nam
   Route::get('/calendars/getData','CalendarController@getData')->name('calendars.getData');
 
 
+  //Route untuk maintenace
+  //--------------------------Invent------------------------------------------
+  Route::get('/invent/dashboard','Invent\DashboardController@index')->name('dashboard');
+
   //Route untuk dashboard
   //--------------------------Invent------------------------------------------
   Route::get('/invent/dashboard','Invent\DashboardController@index')->name('dashboard');
@@ -48,6 +52,7 @@ Route::get('/qR/{id}/calibration','Calibration\GlassKualController@detail')->nam
   Route::get('/finance/dashboarddin','Finance\DashboarddinController@index')->name('dashboard');
   Route::get('/finance/dashboardren','Finance\DashboardrenController@index')->name('dashboard');
   Route::get('/finance/dashboardforma','Finance\DashboardformaController@index')->name('dashboard');
+  Route::get('/mainten','Finance\DashboardkuController@index')->name('mainten');
   
   //--------------------------AMDK------------------------------------------
   Route::get('/amdk/dashboard','Amdk\DashboardController@index')->name('dashboard');
@@ -334,6 +339,11 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
      //Route untuk laporan RAPK
      Route::get('/finance/lapRAPK','Finance\LapRAPKController@index')->name('lapRAPK');
 
+
+    //-----kulihanku--------
+     //Route untuk Input kulihanku
+     Route::get('/finance/realRAPK','Finance\RealRAPKController@index')->name('realRAPK');
+     //Route untuk Setup RAPK
 
     //--------------------------Arsip------------------------------------------
      //Route untuk Subkelompok Surat

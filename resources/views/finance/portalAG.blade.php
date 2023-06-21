@@ -11,7 +11,6 @@
 <link rel="stylesheet" href="{{asset('assets/font-awesome/4.5.0/css/font-awesome.min.css')}}" />
 <link href="{{asset('assets/css/material-dashboard.css')}}" rel="stylesheet">
 <link href="{{asset('assets/css/demo.css')}}" rel="stylesheet" />
-
 <style>
   body, html {
     height: 100%;
@@ -95,9 +94,9 @@ h2, a {
   background-color: #c4c4c4;
   text-align: center;
   display: inline-block;
-  width: 130px;
-  height: 130px;
-  padding: 9px 0px;
+  width: 115px;
+  height: 115px;
+  padding: 5px 0px;
   color: white;
   margin: 2px;
   /* Color each button differently */
@@ -323,19 +322,16 @@ h2, a {
 }
 
 </style>
-
-
 </head>
-
 <body background="{{asset('images/background.jpg')}}">
-   <div class="wrapper">
+  <div class="wrapper">
     <div class="sidebar" data-background-color="white">
-      <div class="card">
-          <div class="card-body">
-            <img src="{{asset('images/naga.png')}}" style="height:100%; width:100%">
-            <h5>( <b>S</b>istem <b>I</b>nformasi <b>AN</b>alisa <b>ANG</b>garan dan 
-              <b>GA</b>mpang <b>L</b>apor Ak<b>U</b>ntabilitas <b>H</b>asil Kinerja )</h5>
-          </div>
+      <div class="card">  
+        <div class="card-body">
+          <img src="{{asset('images/naga.png')}}" style="height:100%; width:100%">
+          <h5>( <b>S</b>istem <b>I</b>nformasi <b>AN</b>alisa <b>ANG</b>garan dan 
+            <b>GA</b>mpang <b>L</b>apor Ak<b>U</b>ntabilitas <b>H</b>asil Kinerja )</h5>
+        </div>
       </div>
     </div>
     <div class="main-panel">
@@ -417,56 +413,55 @@ h2, a {
           </div>
         </a>   
         {{-- nama --}}
-        <div style="text-align: center;">
-          <div style=" line-height: 1;">
-            <h4>-SUB PORTAL SIBOB-</h4>
-            <h1><b> SI ANANG GALUH</b></h1>
-            
-          </div>
-         </div>
-         {{-- icon --}}
-         <div class="social">   
-            <a class="social-icon"  href="/finance/dashboardren">
-              <img src="{{asset('images/eplan2.png')}}" style="height:100%; width:100%">
-            </a>
-            <a class="social-icon"  href="/finance/dashboardforma">
-              <img src="{{asset('images/eperfo2.png')}}" style="height:100%; width:100%">
-            </a>
-            <a class="social-icon"  href="/finance/dashboard">
-              <img src="{{asset('images/anggaran.png')}}" style="height:100%; width:100%">
-            </a>
-            <a class="social-icon"  href="/finance/dashboarddin">
-              <img src="{{asset('images/perjadin2.png')}}" style="height:100%; width:100%">
-            </a>
-            <a class="social-icon" href="/portal">
-              <img src="{{asset('images/exit2.png')}}" style="height:100%; width:100%">
-            </a>
+        <div style=" line-height: 1; text-align:center;">
+          <h4>-SUB PORTAL SIBOB-</h4>
+          <h1><b> SI ANANG GALUH</b></h1>
         </div>
-        <br>
-        {{-- <div class="lain"> 
-          ----------------------------Link Terkait----------------------------
-           <br>  
-          <a class="bawah" href="/amdk/dashboard">
-            <img src="{{asset('images/amdk.png')}}" style="height:100%; width:100%">
-          </a>   
-          <a class="bawah" href="/invent/dashboard">
-            <img src="{{asset('images/invent.png')}}" style="height:100%; width:100%">
+        <br><br>
+        {{-- icon --}}
+        <div class="social">
+          <a class="social-icon"  href="/finance/dashboardren">
+            <img src="{{asset('images/eplan2.png')}}" style="height:100%; width:100%">
           </a>
-          <a class="bawah"  href="/finance/dashboard">
-            <img src="{{asset('images/naga.png')}}" style="height:100%; width:100%">
+          <a class="social-icon"  href="/finance/dashboardforma">
+            <img src="{{asset('images/eperfo2.png')}}" style="height:100%; width:100%">
           </a>
-          <a class="bawah"  href="/calibration/dashboard">
-            <img src="{{asset('images/lab.png')}}" style="height:100%; width:100%">
+          <a class="social-icon"  href="/finance/dashboard">
+            <img src="{{asset('images/anggaran.png')}}" style="height:100%; width:100%">
           </a>
-      </div> --}}
+          <a class="social-icon"  href="/finance/dashboarddin">
+            <img src="{{asset('images/perjadin2.png')}}" style="height:100%; width:100%">
+          </a>
+          <a class="social-icon"  href="/mainten">
+            <img src="{{asset('images/kulihanku.png')}}" style="height:100%; width:100%">
+          </a>
+          <a class="social-icon" href="/portal">
+            <img src="{{asset('images/exit2.png')}}" style="height:100%; width:100%">
+          </a>
+        </div>
+        <br><br>
+        <div class="strike">
+          <span>Link Terkait</span>
+       </div>
+
+        <div class="lain"> 
+           <a class="bawah" data-tooltip="SIASN" href="https://siasn.pom.go.id/login" target="_blank">
+            <img src="{{asset('images/terkait/siasn.png')}}" style="height:100%; width:100%">
+          </a>
+          <a class="bawah" data-tooltip="SIPANDA" href="https://sipanda.pom.go.id" target="_blank">
+            <img src="{{asset('images/terkait/sipanda.png')}}" style="height:100%; width:100%">
+          </a>
+          <a class="bawah" data-tooltip="SRIKANDI" href="https://srikandi.arsip.go.id/login" target="_blank">
+            <img src="{{asset('images/terkait/srikandi.png')}}" style="height:100%; width:100%">
+          </a>
+          <a class="bawah" data-tooltip="IDEAS" href="https://ppsdm.pom.go.id/ideas" target="_blank">
+            <img src="{{asset('images/terkait/ideas.png')}}" style="height:100%; width:100%">
+          </a>
       </div>
-      <footer class="footer" style="margin: 0; padding:0;">
-        <div class="container-fluid">
-          <span class="green bolder">BBPOM Banjarmasin</span> &copy; 2021 
-        </div>
-      </footer>
+      </div>
     </div>
-   </div>
+  </div>
+
 
     <script src="{{asset('assets/js/ace-extra.min.js')}}"></script>
 		<script src="{{asset('assets/js/jQuery-2.1.4.min.js')}}"></script>
@@ -509,5 +504,5 @@ h2, a {
 
       });
     </script>
-  </body>
+</body>
 </html>                            

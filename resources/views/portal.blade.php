@@ -471,20 +471,20 @@ h2, a {
             <h5>( SISTEM INFORMASI BBPOM BANJARMASIN )</h5>
           </div>
         </div>
-         {{-- icon --}}
-         <div class="social">   
-            <a class="social-icon" href="/amdk/dashboard">
-              <img src="{{asset('images/amdk2.png')}}" style="height:100%; width:100%">
-            </a>   
-            <a class="social-icon" href="/invent/dashboard">
-              <img src="{{asset('images/bmn2.png')}}" style="height:100%; width:100%">
-            </a>
-            <a class="social-icon" href="/finance/portalAG">
-              <img src="{{asset('images/anang2.png')}}" style="height:100%; width:100%">
-            </a>
-            <a class="social-icon" href="/arsip/dashboard">
-              <img src="{{asset('images/arsip2.png')}}" style="height:100%; width:100%">
-            </a>
+        {{-- icon --}}
+        <div class="social">   
+          <a class="social-icon" href="/amdk/dashboard">
+            <img src="{{asset('images/amdk2.png')}}" style="height:100%; width:100%">
+          </a>   
+          <a class="social-icon" href="/invent/dashboard">
+            <img src="{{asset('images/bmn2.png')}}" style="height:100%; width:100%">
+          </a>
+          <a class="social-icon" href="/finance/portalAG">
+            <img src="{{asset('images/anang2.png')}}" style="height:100%; width:100%">
+          </a>
+          <a class="social-icon" href="/arsip/dashboard">
+            <img src="{{asset('images/arsip2.png')}}" style="height:100%; width:100%">
+          </a>
         </div>
         <div class="social">
             <a class="social-icon" href="https://sites.google.com/view/kinerjabbpombjm2023" target="_blank">
@@ -502,10 +502,9 @@ h2, a {
         </div>
         <div class="strike">
           <span>Link Terkait</span>
-       </div>
-
+        </div>
         <div class="lain"> 
-           <a class="bawah" data-tooltip="SIASN" href="https://siasn.pom.go.id/login" target="_blank">
+          <a class="bawah" data-tooltip="SIASN" href="https://siasn.pom.go.id/login" target="_blank">
             <img src="{{asset('images/terkait/siasn.png')}}" style="height:100%; width:100%">
           </a>
           <a class="bawah" data-tooltip="SIPANDA" href="https://sipanda.pom.go.id" target="_blank">
@@ -517,17 +516,11 @@ h2, a {
           <a class="bawah" data-tooltip="IDEAS" href="https://ppsdm.pom.go.id/ideas" target="_blank">
             <img src="{{asset('images/terkait/ideas.png')}}" style="height:100%; width:100%">
           </a>
+        </div>
       </div>
-        {{-- <div class="container-fluid">
-          <span class="green bolder">BBPOM Banjarmasin</span> &copy; 2021 
-        </div>
-      </div> --}}
-      {{-- <footer class="footer" style="margin: 0; padding:0;">
-        <div class="container-fluid">
-          <span class="green bolder">BBPOM Banjarmasin</span> &copy; 2021 
-        </div>
-      </footer> --}}
     </div>
+  </div>
+
 
     <script src="{{asset('assets/js/ace-extra.min.js')}}"></script>
 		<script src="{{asset('assets/js/jQuery-2.1.4.min.js')}}"></script>

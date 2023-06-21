@@ -153,6 +153,7 @@
   Route::get('finance/outstation/delete/{id}','Finance\OutstationController@delete')->name('outstation.delete');
   Route::get('finance/outstation/deletepeg/{id}','Finance\OutstationController@deletepeg')->name('outstation.deletepeg');
   Route::get('finance/outstation/deletetujuan/{id}','Finance\OutstationController@deletetujuan')->name('outstation.deletetujuan');
+  Route::get('finance/outstation/wordExport/{id}','Finance\OutstationController@wordExport')->name('outstation.wordExport');
   
 
 //Route untuk kode anggaran
