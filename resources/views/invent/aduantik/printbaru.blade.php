@@ -60,28 +60,14 @@
     <div id="kepala">
         <table>
             <tr>
-                <td rowspan="5" style="width: 20%;"> <img src="{{asset('images/BBRI.jpg')}}" style="height:80px"></td>
-                <td rowspan="2" style="width: 30%; font-size: 14px;">BALAI BESAR POM DI BANJARMASIN</td>
-                <td class="kiri1">No. Bagian</td>
-                <td class="kiri2">: A 19</td>
+                <td rowspan="3" style="width: 20%;"> <img src="{{asset('images/BBRI.jpg')}}" style="height:80px"></td>
+                <td  style="font-size: 14px;"><b>BALAI BESAR POM DI BANJARMASIN</b></td>
             </tr>
             <tr>
-                <td class="kiri1">Terbitan/Tgl</td>
-                <td class="kiri2">: 2/30 Des 2009</td>
+                <td style="font-size: 14px;"><b>FORMAT - FORMAT</b></td>
             </tr>
             <tr>
-                <td rowspan="2" style="width: 85%; font-size: 14px;"><b>FORMAT - FORMAT</b></td>
-                <td class="kiri1">Revisi/Tgl</td>
-                <td class="kiri2">: 1/12 Apr 2013</td>
-            </tr>
-            <tr>
-                <td class="kiri1">Halaman</td>
-                <td class="kiri2">: 1 dari 1</td>
-            </tr>
-            <tr>
-                <td colspan="3" style="width: 30%; font-size: 16px;">
-                    <b>SURAT PERBAIKAN INVENTARIS</b>
-                </td>           
+                <td  style="font-size: 16px;"><b>SURAT PERBAIKAN INVENTARIS TIK</b></td>
             </tr>
         </table>
     </div>  
@@ -135,12 +121,14 @@
         <div id="ttd">
             <table class="ttd">
                 <tr class="ttd">
-                    <td class="ttd">Mengetahui,</td>
+                    <td class="ttd">
+                        {{-- Mengetahui, --}}
+                    </td>
                     <td class="ttd" style="width: 50%">Yang Meminta,</td>
                 </tr>
                 <tr class="ttd">
                     <td class="ttd">
-                                @if ($mengetahui!= null)
+                                {{-- @if ($mengetahui!= null)
                                     @if ($mengetahui->pjs != null)
                                         {{$mengetahui->pjs}}
                                         {{$mengetahui->jabatan->jabatan}} 
@@ -156,7 +144,7 @@
                                     @endif
                                 @else
                                     SILAHKAN CEK SETUP PEJABAT
-                                @endif
+                                @endif --}}
                     </td>
                     <td class="ttd"></td>
                 </tr>
@@ -166,22 +154,22 @@
                 </tr>
                 <tr class="ttd">
                     <td class="ttd"><u>
-                        @if ($mengetahui !=null)
+                        {{-- @if ($mengetahui !=null)
                         {{$mengetahui->user->name}}
                         @else
                         SILAHKAN CEK SETUP PEJABAT
-                        @endif
+                        @endif --}}
                     </u>
                     </td>
                     <td class="ttd"><u>{{$data->lapor->name}}</u></td>
                 </tr>
                 <tr class="ttd">
                     <td class="ttd">
-                        @if ($mengetahui !=null)
+                        {{-- @if ($mengetahui !=null)
                         NIP.  {{$mengetahui->user->no_pegawai}}
                         @else
                         SILAHKAN CEK SETUP PEJABAT
-                        @endif
+                        @endif --}}
                     </td>
                     <td class="ttd">
                         @if ($data->lapor->jabasn_id != null)

@@ -57,6 +57,7 @@
                         <li><a href="#dinas" data-toggle="tab">Surat Dinas</a></li>
                         <li><a href="#plan" data-toggle="tab">e-Planning</a></li>
                         <li><a href="#forma" data-toggle="tab">e-Performance</a></li>
+                        <li><a href="#kuli" data-toggle="tab">Kulihanku</a></li>
                         <li><a href="#arsip" data-toggle="tab">Arsiparis</a></li>
                         <li><a href="#qms" data-toggle="tab">QMS</a></li>
                         <li><a href="#nappza" data-toggle="tab">NAPPZA</a></li>
@@ -256,6 +257,32 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="tab-pane" id="kuli">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-success">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">KULIHANKU</h3>
+                                        </div>
+                        
+                                        <div class="panel-body">
+                                            <table id="simple-table" class="table  table-bordered table-hover" >
+                                                <thead >
+                                                    <th width="5%" style="text-align: center;">No</th>
+                                                    <th style="text-align: center;">Menu</th>
+                                                    <th width="20%" style="text-align: center;">
+                                                        <input type="checkbox" name="kuliCheckAll" id="kuliCheckAll" >
+                                                    </th>
+                                                </thead>
+                                                <tbody id="isi_kuli">
+                                                   
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="tab-pane" id="qms">
                             <div class="row">
                                 <div class="col-md-12">
@@ -438,6 +465,14 @@
             }
         });
 
+        $('#kuliCheckAll').click(function() {
+            if ($(this).prop('checked')) {
+                $('.cekkuli').prop('checked', true);
+            } else {
+                $('.cekkuli').prop('checked', false);
+            }
+        });
+
         $('#qmsCheckAll').click(function() {
             if ($(this).prop('checked')) {
                 $('.cekqms').prop('checked', true);
@@ -596,6 +631,22 @@
                     '</tr>';
               }
 
+              for (let i = 0; i < response.kuli.length; i++) {
+                  var is_check = '';
+                  var no = i+1;
+                  if (response.kuli[i].checked){
+                      is_check = 'checked';
+                  }
+                  isi_kuli+='<tr>'+
+                        '<td style="text-align: center;">'+no+'</td>'+
+                        '<td>'+response.kuli[i].nama+'</td>'+
+                        '<td style="text-align: center;">'+
+                            '<input type="checkbox" class="menu cekkuli" name="akses_kuli[]" '+is_check
+                            +' value="'+response.kuli[i].id+'">'+
+                        '</td>'+
+                    '</tr>';
+              }
+
               for (let i = 0; i < response.qms.length; i++) {
                   var is_check = '';
                   var no = i+1;
@@ -667,6 +718,7 @@
               $("#isi_dinas").html(isi_dinas);
               $("#isi_plan").html(isi_plan);
               $("#isi_forma").html(isi_forma);
+              $("#isi_kuli").html(isi_kuli);
               $("#isi_qms").html(isi_qms);
               $("#isi_nappza").html(isi_nappza);
               $("#isi_mikro").html(isi_mikro);

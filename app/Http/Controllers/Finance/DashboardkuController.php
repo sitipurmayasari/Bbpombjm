@@ -6,13 +6,15 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
-use App\Outstation;
-use App\Pok;
+use App\Linkkulihanku;
 
 class DashboardkuController extends Controller
 {
     public function index()
     {
-        return view('mainten');
+        $data = Linkkulihanku::orderBy('id','desc')
+                                ->where('aktif','Y')
+                                ->get();
+        return view('finance/dashboardku.index',compact('data'));
     }
 }

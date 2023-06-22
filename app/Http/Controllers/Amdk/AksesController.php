@@ -100,6 +100,16 @@ class AksesController extends Controller
                 }
             }
 
+            if ($request->input('akses_kuli')) {
+                for ($i = 0; $i < count($request->input('akses_kuli')); $i++){
+                    $data = [
+                        'user_id' => $request->user_id,
+                        'menu_id' => $request->akses_kuli[$i] ,
+                    ];
+                    UserPermission::create($data);
+                }
+            }
+
             if ($request->input('akses_qms')) {
                 for ($i = 0; $i < count($request->input('akses_qms')); $i++){
                     $data = [
@@ -191,6 +201,12 @@ class AksesController extends Controller
             ->where('menu.modul','forma')
             ->get();
 
+        $kuli = Submenu::orderBy('menu.id','asc')
+            ->select('submenu.*','menu.modul','menu.nama as group_nama')
+            ->leftJoin('menu','submenu.menu_id','=','menu.id')
+            ->where('menu.modul','kuli')
+            ->get();
+
         $qms = Submenu::orderBy('menu.id','asc')
             ->select('submenu.*','menu.modul','menu.nama as group_nama')
             ->leftJoin('menu','submenu.menu_id','=','menu.id')
@@ -276,6 +292,15 @@ class AksesController extends Controller
             );
         }
 
+        $outputkuli = array();
+        foreach ($kuli as $in) {
+            $outputkuli[] = array(
+                'id' => $in->id,
+                'nama' => $in->nama,
+                'checked' => $this->checkPermissonMenu($user_id,$in->id)
+            );
+        }
+
         $outputqms = array();
         foreach ($qms as $in) {
             $outputqms[] = array(
@@ -320,6 +345,7 @@ class AksesController extends Controller
             'finance' => $outputFinance,
             'arsip' => $outputArsip,
             'forma' => $outputForma,
+            'kuli' => $outputkuli,
             'dinas' => $outputDinas,
             'plan' => $outputPlan,
             'qms' => $outputqms,

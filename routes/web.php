@@ -52,7 +52,7 @@ Route::get('/qR/{id}/calibration','Calibration\GlassKualController@detail')->nam
   Route::get('/finance/dashboarddin','Finance\DashboarddinController@index')->name('dashboard');
   Route::get('/finance/dashboardren','Finance\DashboardrenController@index')->name('dashboard');
   Route::get('/finance/dashboardforma','Finance\DashboardformaController@index')->name('dashboard');
-  Route::get('/mainten','Finance\DashboardkuController@index')->name('mainten');
+  Route::get('/finance/dashboardku','Finance\DashboardkuController@index')->name('dashboardku');
   
   //--------------------------AMDK------------------------------------------
   Route::get('/amdk/dashboard','Amdk\DashboardController@index')->name('dashboard');
@@ -342,8 +342,7 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
 
     //-----kulihanku--------
      //Route untuk Input kulihanku
-     Route::get('/finance/realRAPK','Finance\RealRAPKController@index')->name('realRAPK');
-     //Route untuk Setup RAPK
+     Route::get('/finance/link','Finance\LinkController@index')->name('link');
 
     //--------------------------Arsip------------------------------------------
      //Route untuk Subkelompok Surat

@@ -135,7 +135,7 @@
 						</li>
 
 						<li class=" ">
-							<a href="/finance/dashboard">
+							<a href="/finance/dashboardku">
 								<i class="menu-icon fa fa-tachometer"></i>
 								<span class="menu-text"> Dashboard </span>
 							</a>

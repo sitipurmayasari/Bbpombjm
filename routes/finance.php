@@ -306,4 +306,12 @@
   Route::post('/finance/teamwork/update/{id}','Finance\TeamworkController@update')->name('teamwork.update');
 
 
+   //-----kulihanku--------
+  Route::get('/finance/link/create','Finance\LinkController@create')->name('link.create');
+  Route::post('finance/link/store','Finance\LinkController@store')->name('link.store');
+  Route::get('finance/link/delete/{id}','Finance\LinkController@delete')->name('link.delete');
+  Route::get('finance/link/edit/{id}','Finance\LinkController@edit')->name('link.edit');
+  Route::post('finance/link/update/{id}','Finance\LinkController@update')->name('link.update');
+
+
     

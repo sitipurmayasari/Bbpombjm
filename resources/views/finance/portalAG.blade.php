@@ -432,7 +432,7 @@ h2, a {
           <a class="social-icon"  href="/finance/dashboarddin">
             <img src="{{asset('images/perjadin2.png')}}" style="height:100%; width:100%">
           </a>
-          <a class="social-icon"  href="/mainten">
+          <a class="social-icon"  href="/finance/dashboardku">
             <img src="{{asset('images/kulihanku.png')}}" style="height:100%; width:100%">
           </a>
           <a class="social-icon" href="/portal">
