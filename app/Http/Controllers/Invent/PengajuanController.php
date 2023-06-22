@@ -97,7 +97,7 @@ class PengajuanController extends Controller
                                 ->whereRaw('subdivisi_id is null')
                                 ->whereRaw("curdate() BETWEEN dari AND sampai")
                                 ->first();
-        } else if ($jab->jabatan_id == '8' && $jab->subdivisi_id == null) {
+        } else if ($jab->jabatan_id == '8') {
             $mengetahui = Pejabat::orderBy('id','desc')
                                     ->whereRaw("divisi_id =
                                                 (SELECT u.divisi_id FROM users u
@@ -107,15 +107,7 @@ class PengajuanController extends Controller
                                     ->whereRaw('subdivisi_id is null')
                                     ->whereRaw("curdate() BETWEEN dari AND sampai")
                                     ->first();
-            } else  {
-            $mengetahui = Pejabat::orderBy('id','desc')
-                                ->whereRaw("subdivisi_id =
-                                                ( SELECT u.subdivisi_id FROM users u 
-                                                    LEFT JOIN pengajuan a ON a.pegawai_id=u.id 
-                                                    WHERE a.id=$id
-                                            )" )
-                                ->whereRaw("curdate() BETWEEN dari AND sampai")
-                                ->first();
+        
         }
         
         $pdf = PDF::loadview('invent/pengajuan.print',compact('data','isi','mengetahui'));
