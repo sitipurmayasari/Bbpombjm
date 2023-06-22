@@ -13,8 +13,8 @@ class LinkController extends Controller
     {
         $data = Linkkulihanku::orderBy('id','desc')
                         ->when($request->keyword, function ($query) use ($request) {
-                            $query->where('code','LIKE','%'.$request->keyword.'%')
-                                    ->orWhere('name', 'LIKE','%'.$request->keyword.'%');
+                            $query->where('name','LIKE','%'.$request->keyword.'%')
+                                    ->orWhere('aktif', 'LIKE','%'.$request->keyword.'%');
                         })
                         ->paginate('10');
         return view('finance/link.index',compact('data'));
