@@ -18,7 +18,7 @@
   <div class="col-sm-12" style="text-align: center">
     <div class="card">
         <div class="card-header card-header-warning">
-          <h4 class="card-title">TEMPLATE PERMINTAAN BARANG "MANUAL"</h4>
+          <h4 class="card-title">TEMPLATE FORM "MANUAL"</h4>
         </div>
         <div class="card-body">
           <table class="table table-hover" style="font-size: 12px;">
@@ -35,6 +35,13 @@
               </td>
               <td></td>
               <td style="text-align: left;">Permintaan Sampel</td>
+            </tr>
+            <tr>
+              <td>
+                <a href="https://docs.google.com/document/d/1B5YOb4dqVQuqZ1rx-FGdwg3sgWl7LO4S/edit?usp=sharing&ouid=116416378023964599190&rtpof=true&sd=true" target="_blank">LINK TEMPLATE</a>
+              </td>
+              <td></td>
+              <td style="text-align: left;">Perbaikan Kerusakan (Non TIK/BMN)</td>
             </tr>
           </table>
         </div>
