@@ -445,17 +445,32 @@ h2, a {
        </div>
 
         <div class="lain"> 
-           <a class="bawah" data-tooltip="SIASN" href="https://siasn.pom.go.id/login" target="_blank">
+           {{-- <a class="bawah" data-tooltip="SIASN" href="https://siasn.pom.go.id/login" target="_blank">
             <img src="{{asset('images/terkait/siasn.png')}}" style="height:100%; width:100%">
-          </a>
+          </a> --}}
           <a class="bawah" data-tooltip="SIPANDA" href="https://sipanda.pom.go.id" target="_blank">
             <img src="{{asset('images/terkait/sipanda.png')}}" style="height:100%; width:100%">
           </a>
           <a class="bawah" data-tooltip="SRIKANDI" href="https://srikandi.arsip.go.id/login" target="_blank">
             <img src="{{asset('images/terkait/srikandi.png')}}" style="height:100%; width:100%">
           </a>
-          <a class="bawah" data-tooltip="IDEAS" href="https://ppsdm.pom.go.id/ideas" target="_blank">
+          {{-- <a class="bawah" data-tooltip="IDEAS" href="https://ppsdm.pom.go.id/ideas" target="_blank">
             <img src="{{asset('images/terkait/ideas.png')}}" style="height:100%; width:100%">
+          </a> --}}
+          <a class="bawah" data-tooltip="SAKTI" href="https://sakti.kemenkeu.go.id/" target="_blank">
+            <img src="{{asset('images/terkait/sakti.png')}}" style="height:100%; width:100%">
+          </a>
+          <a class="bawah" data-tooltip="e-MONEV" href="https://e-monev.bappenas.go.id/" target="_blank">
+            <img src="{{asset('images/terkait/emonev.png')}}" style="height:100%; width:100%">
+          </a>
+          <a class="bawah" data-tooltip="MONEV-KEMENKEU" href="https://monev.kemenkeu.go.id/" target="_blank">
+            <img src="{{asset('images/terkait/smart.png')}}" style="height:100%; width:100%">
+          </a>
+          <a class="bawah" data-tooltip="SIMETRIS" href="https://simetris.pom.go.id/" target="_blank">
+            <img src="{{asset('images/terkait/simetris.png')}}" style="height:100%; width:100%">
+          </a>
+          <a class="bawah" data-tooltip="SIMENTRIS-RHPK" href="https://simetris.pom.go.id/rhpk/" target="_blank">
+            <img src="{{asset('images/terkait/simetris-rhpk.png')}}" style="height:100%; width:100%">
           </a>
       </div>
       </div>

@@ -12,7 +12,7 @@ class DashboardkuController extends Controller
 {
     public function index()
     {
-        $data = Linkkulihanku::orderBy('id','desc')
+        $data = Linkkulihanku::orderBy('name','asc')
                                 ->where('aktif','Y')
                                 ->get();
         return view('finance/dashboardku.index',compact('data'));
