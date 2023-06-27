@@ -359,6 +359,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
      Route::get('/arsip/archiveslist','Arsip\ArchiveslistController@index')->name('archiveslist');
      //Route untuk Laporan Arsip
      Route::get('/arsip/reportarchive','Arsip\ReportarchiveController@index')->name('reportarchive');
+     //Route setup web terkait
+     Route::get('/arsip/terkait','Arsip\TerkaitController@index')->name('terkait');
 
 
      //--------------------------QMS------------------------------------------

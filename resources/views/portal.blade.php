@@ -504,18 +504,11 @@ h2, a {
           <span>Link Terkait</span>
         </div>
         <div class="lain"> 
-          <a class="bawah" data-tooltip="SIASN" href="https://siasn.pom.go.id/login" target="_blank">
-            <img src="{{asset('images/terkait/siasn.png')}}" style="height:100%; width:100%">
-          </a>
-          <a class="bawah" data-tooltip="SIPANDA" href="https://sipanda.pom.go.id" target="_blank">
-            <img src="{{asset('images/terkait/sipanda.png')}}" style="height:100%; width:100%">
-          </a>
-          <a class="bawah" data-tooltip="SRIKANDI" href="https://srikandi.arsip.go.id/login" target="_blank">
-            <img src="{{asset('images/terkait/srikandi.png')}}" style="height:100%; width:100%">
-          </a>
-          <a class="bawah" data-tooltip="IDEAS" href="https://ppsdm.pom.go.id/ideas" target="_blank">
-            <img src="{{asset('images/terkait/ideas.png')}}" style="height:100%; width:100%">
-          </a>
+          @foreach ($terkait as $item)
+            <a class="bawah" data-tooltip="{{$item->name}}" href="{{$item->link}}" target="_blank">
+              <img src="{{$item->getFoto()}}" style="height:100%; width:100%">
+            </a>
+          @endforeach 
         </div>
       </div>
     </div>

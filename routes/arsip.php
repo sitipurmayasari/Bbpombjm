@@ -39,3 +39,10 @@ Route::get('/arsip/archivesrek/deletelist/{id}','Arsip\ArchivesrekController@del
 
 //Route untuk Laporan Arsip
 Route::post('/arsip/reportarchive/cetak','Arsip\ReportarchiveController@cetak')->name('reportarchive.cetak');
+
+//Route setup web terkait
+Route::get('/arsip/terkait/create','Arsip\TerkaitController@create')->name('terkait.create');
+Route::post('/arsip/terkait/store','Arsip\TerkaitController@store')->name('terkait.store');
+Route::get('/arsip/terkait/delete/{id}','Arsip\TerkaitController@delete')->name('terkait.delete');
+Route::get('/arsip/terkait/edit/{id}','Arsip\TerkaitController@edit')->name('terkait.edit');
+Route::post('/arsip/terkait/update/{id}','Arsip\TerkaitController@update')->name('terkait.update');

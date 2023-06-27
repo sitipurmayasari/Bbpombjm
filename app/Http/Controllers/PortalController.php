@@ -8,6 +8,7 @@ use App\Pengumuman;
 use App\Agenda;
 use App\Vehiclerent;
 use App\UserPermission;
+use App\Terkait;
 
 class PortalController extends Controller
 {
@@ -26,7 +27,8 @@ class PortalController extends Controller
         $pinjam = Vehiclerent::WhereRaw('status is null')->first();
         $aju = Vehiclerent::where('users_id', $peg)
                             ->WhereRaw('status IS NOT NULL AND updated_at >= NOW() - INTERVAL 1 DAY')->first();
+        $terkait = Terkait::where('lokasi','!=','2')->get();
                 
-        return view('portal',compact('data','tgl','bulan','tahun','hari','keterangan','pinjam','aksespinjam','aju'));
+        return view('portal',compact('data','tgl','bulan','tahun','hari','keterangan','pinjam','aksespinjam','aju','terkait'));
     }
 }
