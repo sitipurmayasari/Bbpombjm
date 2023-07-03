@@ -29,6 +29,17 @@
 
         table{
             width: 100%;
+            
+        }
+
+        tr{
+            border-top: none;
+            border-bottom: none;
+        }
+
+        .no-border{
+            border-top: none;
+            border-bottom: none;
         }
 
 
@@ -50,7 +61,7 @@
          <table>
             @foreach ($data as $item)
             <tr>
-                <td rowspan="7" style="width: 5%">No. {{$no}} 
+                <td style="width: 5%;  border-bottom: none;">No. {{$no}} 
                 </td>
                 <td style="width: 25%"><b>Jenis Kegiatan</b></td>
                 <td>
@@ -58,30 +69,35 @@
                 </td>
             </tr>
             <tr>
+                <td class="no-border"></td>
                 <td><b>Nama Kegiatan</b></td>
                 <td>
                     {{$item->nama}}
                 </td>
             </tr>
             <tr>
+                <td class="no-border"></td>
                 <td><b>Penyelenggara</b></td>
                 <td>
                     {{$item->penyelenggara}}
                 </td>
             </tr>
             <tr>
+                <td class="no-border"></td>
                 <td><b>Waktu Pelaksanaan</b></td>
                 <td>
                     {{tgl_indo($item->dari)}} s/d {{tgl_indo($item->sampai)}}
                 </td>
             </tr>
             <tr>
+                <td class="no-border"></td>
                 <td><b>Lama Kegaiatan (JP)</b></td>
                 <td>
                     {{$item->lama}} JP
                 </td>
             </tr>
             <tr>
+                <td class="no-border"></td>
                 <td><b>Deskripsi Singkat Kegaiatan</b></td>
                 <td>
                    @if ($item->deskripsi != null)
@@ -92,6 +108,7 @@
                 </td>
             </tr>
             <tr>
+                <td style="border-top: none;"></td>
                 <td><b>Data Dukung</b></td>
                 <td>
                     <a href="{{$item->getFIleSert()}}" target="_blank" >{{$item->file}}</a></label> <br>

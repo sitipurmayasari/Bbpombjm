@@ -40,7 +40,7 @@
                     </div>
                     <div class="form-group"  id="b">
                         <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1">Tanggal Mulai
+                        for="form-field-1">Tanggal Selesai
                         </label>
                         <div class="col-sm-9">
                             <input type="date" name="akhir" class="col-xs-5 col-sm-5" required/>
