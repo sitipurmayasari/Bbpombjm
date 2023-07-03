@@ -151,15 +151,13 @@
                                     Nomor {{$now->nomor}} tanggal {{tgl_indo($now->tanggal)}} --}}
                                 @else
                                     {{$data->budget->name}} Tahun Anggaran {{$data->budget->tahun}}
-                                    @if ($data->budget->nomor != null && $data->budget->tanggal == null)
-                                       ,
-                                        Nomor {{$data->budget->nomor}} 
+                                    @if ($data->budget->nomor != null && $data->budget->tanggal == null),
+                                        No. {{$data->budget->nomor}} 
                                     @elseif ($data->budget->tanggal != null && $data->budget->nomor == null)
                                         ,
                                         tanggal {{tgl_indo($data->budget->tanggal)}}
-                                    @elseif ($data->budget->tanggal != null && $data->budget->nomor != null)
-                                        ,
-                                        Nomor {{$data->budget->nomor}}  tanggal {{tgl_indo($data->budget->tanggal)}}
+                                    @elseif ($data->budget->tanggal != null && $data->budget->nomor != null),
+                                        No. {{$data->budget->nomor}}  tanggal {{tgl_indo($data->budget->tanggal)}}
                                     @else
                                         ;
                                     @endif

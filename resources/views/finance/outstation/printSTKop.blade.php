@@ -1,4 +1,4 @@
-{{-- @php
+@php
     // header("Content-Type: text/html; charset=utf-8");
     // header("Content-Disposition: attachment; filename=surat-tugas.docx");  //File name extension was wrong
     // header("Expires: 0");
@@ -15,13 +15,13 @@
     // header("Content-Length: file_size");
     // header('Cache-Control: private, max-age=0, must-revalidate');
 
-    $phpWord = new \PhpOffice\PhpWord\PhpWord();
-    $section = $phpWord->addSection();
+    // $phpWord = new \PhpOffice\PhpWord\PhpWord();
+    // $section = $phpWord->addSection();
 
-    header("Content-type: application/vnd.ms-word");
-    header("Content-Disposition: attachment;Filename=surat-tugas.docx"); 
-    header("Pragma: no-cache"); header("Expires: 0");
-@endphp --}}
+    // header("Content-type: application/vnd.ms-word");
+    // header("Content-Disposition: attachment;Filename=surat-tugas.doc"); 
+    // header("Pragma: no-cache"); header("Expires: 0");
+@endphp
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,7 +39,7 @@
         margin-top:155px;
         margin-left: 3cm;
         margin-right: 2cm;
-        margin-bottom: 1.9cm;
+        margin-bottom: 1.4cm;
     }
 
     @font-face {
@@ -187,15 +187,13 @@
                                     Nomor {{$now->nomor}} tanggal {{tgl_indo($now->tanggal)}} --}}
                                 @else
                                     {{$data->budget->name}} Tahun Anggaran {{$data->budget->tahun}}
-                                    @if ($data->budget->nomor != null && $data->budget->tanggal == null)
-                                       ,
-                                        Nomor {{$data->budget->nomor}} 
+                                    @if ($data->budget->nomor != null && $data->budget->tanggal == null),
+                                        No. {{$data->budget->nomor}} 
                                     @elseif ($data->budget->tanggal != null && $data->budget->nomor == null)
                                         ,
                                         tanggal {{tgl_indo($data->budget->tanggal)}}
-                                    @elseif ($data->budget->tanggal != null && $data->budget->nomor != null)
-                                        ,
-                                        Nomor {{$data->budget->nomor}}  tanggal {{tgl_indo($data->budget->tanggal)}}
+                                    @elseif ($data->budget->tanggal != null && $data->budget->nomor != null),
+                                        No. {{$data->budget->nomor}}  tanggal {{tgl_indo($data->budget->tanggal)}}
                                     @else
                                         ;
                                     @endif
