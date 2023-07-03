@@ -14,7 +14,7 @@
         margin-top:175px;
         margin-left: 3cm;
         margin-right: 2cm;
-        margin-bottom: 1.9cm;
+        margin-bottom: 1.3cm;
         /* margin: 175px 0px 5px 0px; */
 
     }
