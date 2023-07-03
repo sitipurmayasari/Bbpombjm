@@ -37,8 +37,6 @@ class AbsenImport implements ToModel,WithStartRow
 
         if ($hadir->file != null) {
            $aplot = $hadir->file;
-        } else {
-            $aplot = null;
         }
         
         // terlambat
