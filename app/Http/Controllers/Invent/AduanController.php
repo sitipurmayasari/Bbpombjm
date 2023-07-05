@@ -35,6 +35,7 @@ class AduanController extends Controller
     {   
         $div =auth()->user()->divisi_id;
         $data = Aduan::orderBy('aduan_status','asc')
+                    ->orderBy('id','desc')
                     ->select('aduan.*','users.name')
                     ->leftJoin('users','users.id','=','aduan.pegawai_id')
                     ->where('aduan.jenis','=','U')
