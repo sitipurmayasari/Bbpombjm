@@ -29,9 +29,9 @@
                                 data-date-format="yyyy-mm-dd" data-provide="datepicker">
                 </div>
                 <div class="col-md-3">
-                    <label > Bidang *</label>
-                    <select id="peg" name="pegawai_id" class="col-xs-10 col-sm-10 select2" required>
-                            <option value="">pilih nama pegawai</option>
+                    <label> Bidang *</label>
+                    <select id="peg" name="divisi_id" class="col-xs-10 col-sm-10 select2" required>
+                            <option value="">pilih nama divisi</option>
                         @foreach ($div as $isi)
                             <option value="{{$isi->id}}">{{$isi->nama}} </option>
                         @endforeach

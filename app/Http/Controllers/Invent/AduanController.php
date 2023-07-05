@@ -35,7 +35,6 @@ class AduanController extends Controller
     {   
         $div =auth()->user()->divisi_id;
         $data = Aduan::orderBy('aduan_status','asc')
-                    ->orderBy('id','desc')
                     ->select('aduan.*','users.name')
                     ->leftJoin('users','users.id','=','aduan.pegawai_id')
                     ->where('aduan.jenis','=','U')
@@ -73,7 +72,8 @@ class AduanController extends Controller
         $this->validate($request,[
             'no_aduan' => 'required|unique:aduan',
             'tanggal' => 'required',
-            'pegawai_id'=> 'required'
+            'pegawai_id'=> 'required',
+            'divisi_id' => 'required',
         ]);
 
         DB::beginTransaction();
