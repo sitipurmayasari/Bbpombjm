@@ -81,7 +81,7 @@ header("Content-Disposition: attachment; filename=Format-Laporan-Stok-Kelompok-B
         </div><br><br>
     </div>
     <br>
-    <div id="ttd">
+    {{-- <div id="ttd">
         <table class="ttd" style="width: 100%">
             <tr class="ttd">
                 <td class="ttd col-md-6"></td>
@@ -139,7 +139,7 @@ header("Content-Disposition: attachment; filename=Format-Laporan-Stok-Kelompok-B
                     {{$petugas->user->no_pegawai}}
                 </td>
             </tr>
-        </table>
+        </table> --}}
 
 </body>
 </html>
