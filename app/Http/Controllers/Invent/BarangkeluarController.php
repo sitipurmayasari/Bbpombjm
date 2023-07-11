@@ -24,13 +24,23 @@ class BarangkeluarController extends Controller
     public function index(Request $request)
     {   
         $data = Sbb::orderBy('id','desc')
-                    ->select('sbb.*','users.name')
-                    ->leftJoin('users','users.id','=','sbb.users_id')
+                    // ->select('sbb.*','users.name')
+                    // ->leftJoin('users','users.id','=','sbb.users_id')
                     ->where('sbb.stat_aduan','!=','B')
                     ->when($request->keyword, function ($query) use ($request) {
-                        $query->where('tanggal','LIKE','%'.$request->keyword.'%')
-                                ->orWhere('nomor', 'LIKE','%'.$request->keyword.'%')
-                                ->orWhere('name', 'LIKE','%'.$request->keyword.'%');
+                        $query->whereHas('isi', function ($query2) use ($request) {
+                            // $query2->where('inventaris_id', 'LIKE', '%'.$request->keyword.'%');
+                            $query2->whereHas('barang', function ($query3) use ($request) {
+                                $query3->where('nama_barang','LIKE','%'.$request->keyword.'%');
+                            });
+                                    
+                        })
+                        ->orwhereHas('pegawai', function ($query3) use ($request) {
+                            $query3->where('name','LIKE','%'.$request->keyword.'%');
+                        })
+                        ->orwhere('tanggal','LIKE','%'.$request->keyword.'%')
+                        ->orWhere('nomor', 'LIKE','%'.$request->keyword.'%');
+                        // ->orWhere('name', 'LIKE','%'.$request->keyword.'%');
                     })
                     ->paginate('10');
         return view('invent/barangkeluar.index',compact('data'));

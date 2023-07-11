@@ -36,8 +36,9 @@
             <thead>
                 <th class="col-md-1">No</th>
                 <th class="col-md-2">No. SBBK</th>
-                <th class="col-md-2">Tanggal</th>
-                <th class="col-md-4">Pengaju</th>
+                <th >Tanggal</th>
+                <th >Pengaju</th>
+                <th>Daftar Barang</th>
                 <th>Status</th>
                 <th class="col-md-1">Aksi</th>
                 {{-- <th>Upload SBBK</th> --}}
@@ -47,8 +48,13 @@
                 <tr>
                     <td style="text-align: center">{{$data->firstItem() + $key}}</td>
                     <td>{{$row->nomor}} </td>
-                    <td>{{$row->tanggal}}</td>
+                    <td>{{tgl_indo($row->tanggal)}}</td>
                     <td>{{$row->pegawai->name}} ( {{$row->pegawai->divisi->nama}} )</td>
+                    <td>
+                        @foreach ($row->isi as $daftar)
+                        <li>{{$daftar->barang->nama_barang}} </li>
+                        @endforeach
+                    </td>
                     <td>
                         @if ($row->stat_aduan=='S')
                             DITERIMA GUDANG
