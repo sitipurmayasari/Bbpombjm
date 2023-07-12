@@ -24,12 +24,21 @@
                     value="{{$norusak}}"/>
                     <input type="hidden" name="tanggal" value="{{date('Y-m-d')}}"/>
                 </div>
-                <div class="col-md-3">
+                {{-- <div class="col-md-3">
                     <label > Mengetahui *</label>
                     <select id="peg" name="pejabat_id" class="col-xs-10 col-sm-10 select2" required>
                             <option value="">pilih nama pejabat</option>
                         @foreach ($tahu as $lok)
                             <option value="{{$lok->id}}">{{$lok->user->name}} ({{$lok->jabatan->jabatan}})</option>
+                        @endforeach
+                    </select>
+                </div> --}}
+                <div class="col-md-3">
+                    <label > Mengetahui *</label>
+                    <select id="peg" name="mengetahui" class="col-xs-10 col-sm-10 select2" required>
+                            <option value="">pilih nama pejabat</option>
+                        @foreach ($tahu as $lok)
+                            <option value="{{$lok->id}}">{{$lok->name}} ({{$lok->no_pegawai}})</option>
                         @endforeach
                     </select>
                 </div>

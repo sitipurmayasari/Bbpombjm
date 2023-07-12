@@ -23,7 +23,7 @@
                     name="nomor"
                     value="{{$data->nomor}}"/>
                 </div>
-                <div class="col-md-3">
+                {{-- <div class="col-md-3">
                     <label > Mengetahui *</label>
                     <select id="peg" name="pejabat_id" class="col-xs-10 col-sm-10 select2" required>
                             <option value="">pilih nama pejabat</option>
@@ -32,6 +32,19 @@
                                 <option value="{{$lok->id}}" selected>{{$lok->user->name}} ({{$lok->jabatan->jabatan}})</option>
                             @else
                                 <option value="{{$lok->id}}">{{$lok->user->name}} ({{$lok->jabatan->jabatan}})</option>
+                            @endif
+                        @endforeach
+                    </select>
+                </div> --}}
+                <div class="col-md-3">
+                    <label > Mengetahui *</label>
+                    <select id="peg" name="mengetahui" class="col-xs-10 col-sm-10 select2" required>
+                            <option value="">pilih nama pejabat</option>
+                        @foreach ($tahu as $lok)
+                            @if ($lok->id == $data->mengetahui)
+                                <option value="{{$lok->id}}" selected>{{$lok->name}} ({{$lok->no_pegawai}})</option>
+                            @else
+                                <option value="{{$lok->id}}">{{$lok->name}} ({{$lok->no_pegawai}})</option>
                             @endif
                         @endforeach
                     </select>

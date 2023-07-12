@@ -42,8 +42,9 @@ class BrokenController extends Controller
         $satuan = Satuan::all();
         $norusak = $this->getNoRusak();
         $lab    = Labory::all();
-        $tahu = Pejabat::selectraw('DISTINCT(jabatan_id), id, divisi_id, subdivisi_id, users_id, pjs')
-                        -> whereraw('pjs is null and jabatan_id != 6')->Orderby('id','desc')->get();
+        // $tahu = Pejabat::selectraw('DISTINCT(jabatan_id), id, divisi_id, subdivisi_id, users_id, pjs')
+        //                 -> whereraw('pjs is null and jabatan_id != 6')->Orderby('id','desc')->get();
+        $tahu = User::where('status','PNS')->where('aktif','Y')->get();
         return view('invent/broken.create',compact('data','user','norusak','satuan','tahu','lab'));
     }
 
@@ -54,7 +55,7 @@ class BrokenController extends Controller
         $this->validate($request,[
             'nomor'         => 'required|unique:broken',
             'users_id'    => 'required',
-            'pejabat_id'    => 'required',
+            // 'pejabat_id'    => 'required',
             'inventaris_id' => 'required',
             'jumlah' => 'required',
             'file_foto' => 'mimes:jpg,png,jpeg|max:2048',
@@ -85,8 +86,12 @@ class BrokenController extends Controller
     public function print($id)
     {
         $data = Broken::where('id',$id)->first();
-        $tahu = $data->pejabat_id;
-        $mengetahui = Pejabat::where('id',$tahu)->first();
+        if ($data->mengetahui != null) {
+            $mengetahui = User::where('id',$data->mengetahui)->first();
+        } else {
+            $tahu = Pejabat::where('id',$data->pejabat_id)->first();
+            $mengetahui = User::where('id',$tahu->users_id)->first();
+        }
         $pdf = PDF::loadview('invent/broken.print',compact('data','mengetahui'));
         return $pdf->stream();
     }
@@ -113,9 +118,9 @@ class BrokenController extends Controller
         ->where('id','!=','1');
         $satuan = Satuan::all();
         $lab    = Labory::all();
-        $tahu = Pejabat::selectraw('DISTINCT(jabatan_id), id, divisi_id, subdivisi_id, users_id, pjs')
-            -> whereraw('pjs is null and jabatan_id != 6')->Orderby('id','desc')->get();
-
+        // $tahu = Pejabat::selectraw('DISTINCT(jabatan_id), id, divisi_id, subdivisi_id, users_id, pjs')
+        //     -> whereraw('pjs is null and jabatan_id != 6')->Orderby('id','desc')->get();
+        $tahu = User::where('status','PNS')->where('aktif','Y')->get();
         return view('invent/broken.edit',compact('data','barang','user','satuan','tahu','lab'));
     }
 

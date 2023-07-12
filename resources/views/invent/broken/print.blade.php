@@ -138,15 +138,19 @@
                     <td class="ttd"><u>
                         {{$data->pegawai->name}}
                     </u></td>
-                    <td class="ttd"> <u>{{$data->mengetahui->user->name}}</u></td>
+                    <td class="ttd"> <u>
+                        {{$mengetahui->name}}
+                    </u></td>
                 </tr>
                 <tr>
                     <td class="ttd">
-                        @if ($data->pegawai->status == 'PNS')
-                            NIP. {{$data->pegawai->no_pegawai}} 
+                        @if ($mengetahui->status == 'PNS')
+                            NIP. {{$mengetahui->no_pegawai}} 
                         @endif
                        </td>
-                    <td class="ttd">NIP. {{$data->mengetahui->user->no_pegawai}}</td>
+                    <td class="ttd">NIP. 
+                        {{$mengetahui->no_pegawai}}
+                    </td>
                 </tr>
             </table>
 
