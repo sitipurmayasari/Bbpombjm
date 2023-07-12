@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Broken extends Model
 {
     protected $table = "broken";
-    protected $fillable = ['users_id','nomor','pejabat_id','labory_id','inventaris_id','tanggal','jumlah','satuan_id','ket','foto'];
+    protected $fillable = ['users_id','nomor','pejabat_id','labory_id','inventaris_id','tanggal','jumlah','satuan_id','ket','mengetahui',
+    'foto'];
 
     public function pegawai()
     {
@@ -19,9 +20,14 @@ class Broken extends Model
         return $this->belongsTo(Labory::class,'labory_id','id');
     }
 
-    public function mengetahui()
+    // public function mengetahui()
+    // {
+    //     return $this->belongsTo(Pejabat::class,'pejabat_id','id');
+    // }
+    
+    public function tahu()
     {
-        return $this->belongsTo(Pejabat::class,'pejabat_id','id');
+        return $this->belongsTo(User::class,'mengetahui','id');
     }
 
     public function barang()
