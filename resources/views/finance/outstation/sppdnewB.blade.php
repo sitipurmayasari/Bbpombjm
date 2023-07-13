@@ -168,7 +168,7 @@ $no=1;
         <tr style="border-top: none;">
             <td colspan="3" style="border-top: 0; text-align:center;" >
                 @if ($data->external =="Y")
-                    Kepala Bagian Tata Usaha <br><br><br><br><br>
+                    Kepala Bagian Tata Usaha <br><br><br><br>
                     <u><b>{{$menyetujui->user->name}} 
                     </b></u><br>
                     NIP.{{$menyetujui->user->no_pegawai}}
@@ -178,7 +178,7 @@ $no=1;
             </td>
             <td colspan="2"  style="border-top: 0; text-align:center;">
                 @if ($data->external =="Y")
-                    Kepala Bagian Tata Usaha <br><br><br><br><br>
+                    Kepala Bagian Tata Usaha <br><br><br><br>
                     <u><b>{{$menyetujui->user->name}} 
                     </b></u><br>
                     NIP.{{$menyetujui->user->no_pegawai}}
@@ -358,15 +358,19 @@ $no=1;
                 @elseif($data->pok_detail_id == 1 )
                     <br><br><br><br><br><br><br>
                 @else
-                    Pejabat Pembuat Komitmen <br><br><br><br><br>
-                    <u><b> 
-                        @if ($data->ppk_id != 0)
-                            {{$data->ppk->user->name}}
-                        @endif
-                    </b></u><br>
-                        @if ($data->ppk_id != 0)
-                        NIP. {{$data->ppk->user->no_pegawai}}
-                        @endif
+                    @if ($data->external !="Y")
+                        Pejabat Pembuat Komitmen<br><br><br><br><br>
+                        <u><b> 
+                            @if ($data->ppk_id != 0)
+                                {{$data->ppk->user->name}}
+                            @endif
+                        </b></u><br>
+                            @if ($data->ppk_id != 0)
+                                NIP. {{$data->ppk->user->no_pegawai}}
+                            @endif
+                    @else
+                        <br><br><br><br><br>&nbsp;
+                    @endif
                 @endif
             </td>
             <td colspan="2"  style="border-top: 0; text-align:center;">
