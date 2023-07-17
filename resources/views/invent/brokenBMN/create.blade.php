@@ -19,7 +19,7 @@
                     <div class="col-md-4">
                         <div class="col-md-12">
                             <label>Nomor (SIPANDA)*</label><br>
-                            <input type="text" readonly name="nomor"
+                            <input type="text" name="nomor"
                                 class="col-xs-10 col-sm-10 required " />
                         </div>
                         <div class="col-md-12">
