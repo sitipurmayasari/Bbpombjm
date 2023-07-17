@@ -11,6 +11,7 @@ use App\Pengajuan;
 use App\PengajuanDetail;
 use App\Satuan;
 use App\Jenisbrg;
+use App\Inventaris;
 use PDF;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -59,8 +60,8 @@ class PengajuanController extends Controller
                     'pengajuan_id' => $pengajuan_id,
                     'nama_barang' => $request->nama_barang[$i],
                     'satuan_id' => $request->satuan_id[$i],
+                    'inventaris_id' => $request->inventaris_id[$i],
                     'jumlah' => $request->jumlah[$i],
-                    'spek' => $request->spek[$i],
                     'keperluan' => $request->keperluan[$i]
                 ];
                 PengajuanDetail::create($data);

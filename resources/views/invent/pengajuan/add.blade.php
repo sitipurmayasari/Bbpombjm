@@ -5,54 +5,46 @@
 @endsection
 @section('content')
 @include('layouts.validasi')
- <form class="form-horizontal validate-form" role="form" 
+<form class="form-horizontal validate-form" role="form" 
          method="post" action="{{route('pengajuan.store')}}" enctype="multipart/form-data"   >
     {{ csrf_field() }}
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-info">
-            <div class="panel-heading"><h3 class="panel-title"></h3></div>
+            <div class="panel-heading"><h3 class="panel-title">Pengaju</h3></div>
             <div class="panel-body">
-               <div class="col-md-12">
-                   <div class="col-md-6">
-                        <div class="col-md-12">
-                            <label>NO. PENGAJUAN*</label><br>
-                            <input type="text" id="no_adu" readonly required
-                            class="col-xs-9 col-sm-9 required " 
-                            name="no_ajuan"
-                            value="{{$no_ajuan}}"/>
-                        </div>
-                        <div class="col-md-12">
-                            <label> Kelompok Barang *</label><br>
-                            <select id="peg" name="jenis_barang_id" class="col-xs-9 col-sm-9 select2" required>
-                                    @foreach ($kelompok as $item)
-                                        <option value="{{$item->id}}">{{$item->nama}}</option>
-                                    @endforeach
-                            </select>
-                        </div>
-                   </div>
-                   <div class="col-md-6">
-                        <div class="col-md-12">
-                            <label>TANGGAL AJUAN *</label><br>
-                            <input type="text" name="tgl_ajuan" readonly 
-                                        class="col-xs-9 col-sm-9 " value="{{date('Y-m-d')}}">
-                        </div>
-                        <div class="col-md-12">
-                            <label> Pengaju *</label><br>
-                            {{-- <select id="peg" name="pegawai_id" class="col-xs-9 col-sm-9 select2" required>
-                                    <option value="">pilih nama pegawai</option>
-                                @foreach ($user as $peg)
-                                    <option value="{{$peg->id}}">{{$peg->no_pegawai}} || {{$peg->name}}</option>
-                                @endforeach
-                            </select> --}}
-                            <input type="text" value="{{auth()->user()->name}}" readonly
-                                class="col-xs-9 col-sm-9 required " 
-                                name="users_name"/>  
-                            <input type="hidden" name="pegawai_id" value="{{auth()->user()->id}}">
-                        </div>
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label>NO. PENGAJUAN*</label><br>
+                        <input type="text" id="no_adu" readonly required
+                        class="col-xs-9 col-sm-9 required " 
+                        name="no_ajuan"
+                        value="{{$no_ajuan}}"/>
                     </div>
-               </div>          
-           </div>
+                    <div class="col-md-12">
+                        <label> Kelompok Barang *</label><br>
+                        <select id="jenisbrg" name="jenis_barang_id" class="col-xs-9 col-sm-9 select2" required onchange="getkelompok()">>
+                                <option value="">Pilih Kelompok</option>
+                                @foreach ($kelompok as $item)
+                                    <option value="{{$item->id}}">{{$item->nama}}</option>
+                                @endforeach
+                        </select>
+                    </div>
+               </div>
+               <div class="col-md-6">
+                    <div class="col-md-12">
+                        <label>TANGGAL AJUAN *</label><br>
+                        <input type="text" name="tgl_ajuan" readonly 
+                                    class="col-xs-9 col-sm-9 " value="{{date('Y-m-d')}}">
+                    </div>
+                    <div class="col-md-12">
+                        <label> Pengaju *</label><br>
+                        <input type="text" value="{{auth()->user()->name}}" readonly
+                            class="col-xs-9 col-sm-9 required " 
+                            name="users_name"/>  
+                        <input type="hidden" name="pegawai_id" value="{{auth()->user()->id}}">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -60,59 +52,56 @@
         <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title">Barang yang di Ajukan</h3></div>
             <div class="panel-body">
-               <div class="col-md-12">
-                <table id="myTable" class="table table-bordered table-hover text-center">
-                    <thead>
-                        <th class="text-center col-md-1">No</th>
-                        <th class="text-center col-md-4">Nama Barang</th>
-                        <th class="text-center col-md-3">Spesifikasi</th>
-                        <th class="text-center col-md-2">Satuan</th>
-                        <th class="text-center col-md-1">Jumlah</th>
-                        <th class="text-center col-md-3">Keperluan</th>
-                        <th class="text-center col-md-1">Aksi</th>
-                    </thead>
-                    <tbody>
-                        <tr id="cell-1">
-                            <td>
-                                1
-                            </td>       
-                            <td>
-                                <input type="text" name="nama_barang[]" class="form-control">
-                            </td>
-                            <td>
-                                <textarea name="spek[]" class="form-control" placeholder="*contoh : 1 box isi 5" required></textarea>
-                                *wajib sertakan jumlah pcs / box/ kotak/dus/roll
-                            </td>
-                            <td>
-                                <select name="satuan_id[]" class="col-xs-9 col-sm-9 select2" required>
-                                    @foreach ($satuan as $brg)
-                                        <option value="{{$brg->id}}">{{$brg->satuan}}</option>
-                                    @endforeach
-                                </select>
-                            </td>
-                            <td>
-                                <input type="number" name="jumlah[]" class="form-control" value="0">
-                            </td>
-                            <td>
-                                <input type="text" name="keperluan[]" class="form-control" style="width:200px;">
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
-                        <span id="row-new"></span>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="7">
-                                <button type="button" class="form-control btn-default" onclick="addBarisNew()">
-                                    <i class="glyphicon glyphicon-plus"></i>TAMBAH BARIS BARU</button>
-                                <input type="hidden" id="countRow" value="1">
-                            </td>
-                        </tr>
-                        
-                    </tfoot>
-                </table>
-               </div>
+                <div class="col-md-12">
+                    <table id="myTable" class="table table-bordered table-hover text-center">
+                        <thead>
+                            <th class="text-center col-md-1">No</th>
+                            <th class="text-center col-md-3">Nama Barang</th>
+                            <th class="text-center col-md-2">Satuan</th>
+                            <th class="text-center col-md-1">Jumlah</th>
+                            <th class="text-center col-md-4">Keperluan</th>
+                            <th class="text-center col-md-1">Aksi</th>
+                        </thead>
+                        <tbody>
+                            <tr id="cell-1">
+                                <td>
+                                    1
+                                </td>       
+                                <td>
+                                    <select name="inventaris_id[]" class="col-xs-11 col-sm-11 select2 kelompok" required id="barang_id-1"
+                                    onchange="getData1()">
+                                        <option value="">Pilih Barang</option>
+                                    </select>
+                                    <input type="hidden" name="nama_barang[]" id="nama_barang-1">
+                                </td>
+                                <td>
+                                    <input type=hidden name="satuan_id[]" class="form-control" id="satuan_id-1">
+                                    <input type="text" name="satuan[]" class="form-control" readonly id="satuan-1">
+                                </td>
+                                <td>
+                                    <input type="number"  min="1" name="jumlah[]" class="form-control" value="0">
+                                   
+                                </td>
+                                <td>
+                                    <input type="text" name="keperluan[]" class="form-control" required>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                            <span id="row-new"></span>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <button type="button" class="form-control btn-default" onclick="addBarisNew()">
+                                        <i class="glyphicon glyphicon-plus"></i>TAMBAH BARIS BARU</button>
+                                    <input type="hidden" id="countRow" value="1">
+                                </td>
+                            </tr>
+                            
+                        </tfoot>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -129,34 +118,34 @@
 @endsection
 @section('footer')
    <script>
-       function addBarisNew(){
+        function addBarisNew(){
         var last_baris = $("#countRow").val();
         var new_baris = parseInt(last_baris)+1;
-        $isi =  '<tr id="cell-'+new_baris+'">'+
-            '<td>'+new_baris+'</td>'+
+        $isi ='<tr id="cell-'+new_baris+'">'+
+                '<td>'+new_baris+'</td>'+
                     '<td>'+
-                        '<input type="text" name="nama_barang[]" class="form-control">'+
+                        '<select name="inventaris_id[]" class="col-xs-11 col-sm-11 select2" required id="barang_id-'+new_baris+'" onchange="getDataBarang('+new_baris+')">'+
+                            '<option value="">Pilih Barang</option>'+                      
+                        '</select>'+
+                        '<input type="hidden" name="nama_barang[]" class="form-control" id="nama_barang-'+new_baris+'">'+     
                     '</td>'+
                     '<td>'+
-                        '<textarea name="spek[]" class="form-control"></textarea>'+
+                        '<input type=hidden name="satuan_id[]" class="form-control" id="satuan_id-'+new_baris+'">'+
+                        '<input type="text" name="satuan" class="form-control" readonly id="satuan-'+new_baris+'">'+
                     '</td>'+
                     '<td>'+
-                        '<select name="satuan_id[]" class="col-xs-9 col-sm-9 select2" required>'+
-                            '@foreach ($satuan as $brg)'+
-                                '<option value="{{$brg->id}}">{{$brg->satuan}}</option>'+
-                            '@endforeach </select>'+
+                        '<input type="number" min="1" name="jumlah[]" class="form-control" value="0">'+
                     '</td>'+
                     '<td>'+
-                        '<input type="number" name="jumlah[]" class="form-control" value="0">'+
+                        '<input type="text" name="keperluan[]" class="form-control" required>'+
                     '</td>'+
-                    '<td>'+
-                        '<input type="text" name="keperluan[]" class="form-control" style="width:200px;">'+
-                    '</td>'+
-                    '<td><button type="button"  class="btn btn-danger" onclick="deleteRow('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button></td>'+
-                '</tr>';
+                        '<td><button type="button" class="btn btn-danger" onclick="deleteRow('+new_baris+')"><i class="glyphicon glyphicon-trash"></i></button></td>'+
+                    '</tr>';
         $("#myTable").find('tbody').append($isi);
         $("#countRow").val(new_baris);
         $('.select2').select2();
+        getkelompoknext(new_baris);
+
        }
 
     
@@ -166,5 +155,76 @@
 
         }
 
+        function getkelompok(){
+            var jenis_barang = $("#jenisbrg").val();
+
+            $.get(
+            "{{route('atkrequest.getKelompok') }}",
+            {
+                jenis_barang: jenis_barang
+            },
+            function(response) {
+                var data2 = response.data;
+                var string ="<option value=''>Pilih Barang</option>";
+                    $.each(data2, function(index, value) {
+                        string = string + '<option value="'+ value.id +'">'+ value.nama_barang +'</option>';
+                    })
+                $(".kelompok").html(string);
+            }
+        );
+        }
+
+        function getkelompoknext(i){
+            var jenis_barang = $("#jenisbrg").val();
+
+            $.get(
+            "{{route('atkrequest.getKelompok') }}",
+            {
+                jenis_barang: jenis_barang
+            },
+            function(response) {
+                var data2 = response.data;
+                var string ="<option value=''>Pilih Barang</option>";
+                    $.each(data2, function(index, value) {
+                        string = string + '<option value="'+ value.id +'">'+ value.nama_barang +'</option>';
+                    })
+                $("#barang_id-"+i).html(string);
+            }
+        );
+        }
+
+        function getData1(){
+            var barang_id = $("#barang_id-1").val();
+
+            $.get(
+                "{{route('atkrequest.getbarang') }}",
+                {
+                    barang_id: barang_id
+                },
+                function(response) {
+                    $("#satuan_id-1").val(response.data.satuan_id);
+                    $("#satuan-1").val(response.data.satuan);
+                    $("#nama_barang-1").val(response.data.nama_barang);
+                }
+            );
+        }
+
+        function getDataBarang(i){
+            var barang_id =  $("#barang_id-"+i).val();
+            if (barang_id == '') return false;
+            $.get(
+                "{{route('atkrequest.getbarang') }}",
+                {
+                    barang_id: barang_id
+                },
+                function(response) {
+                    $("#satuan_id-"+i).val(response.data.satuan_id);
+                    $("#satuan-"+i).val(response.data.satuan);
+                    $("#nama_barang-"+i).val(response.data.nama_barang);
+                }
+            );
+        }
+    
    </script>
 @endsection
+

@@ -19,14 +19,11 @@ class PersetujuanController extends Controller
     public function index(Request $request)
     {   
         $detail = PengajuanDetail::all();
-        $data = Pengajuan::orderBy('status','asc')
-                    ->select('pengajuan.*','users.name')
-                    ->leftJoin('users','users.id','=','pengajuan.pegawai_id')
+        $data = Pengajuan::orderBy('id','desc')
                     ->when($request->keyword, function ($query) use ($request) {
                         $query->where('no_ajuan','LIKE','%'.$request->keyword.'%')
                                 ->orWhere('tgl_ajuan', 'LIKE','%'.$request->keyword.'%')
-                                ->orWhere('kelompok', 'LIKE','%'.$request->keyword.'%')
-                                ->orWhere('name', 'LIKE','%'.$request->keyword.'%');
+                                ->orWhere('kelompok', 'LIKE','%'.$request->keyword.'%');
                     })
                     ->paginate('10');
         return view('invent/persetujuan.index',compact('data','detail'));

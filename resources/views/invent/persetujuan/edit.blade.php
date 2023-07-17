@@ -41,7 +41,7 @@ method="post" action="/invent/persetujuan/update/{{$ajuan->id}}">
         <tr>
             <td style="text-align: center;">No</td>
             <td style="text-align: center;">Nama Barang</td>
-            <td style="text-align: center;">Spesifikasi</td>
+            {{-- <td style="text-align: center;">Spesifikasi</td> --}}
             <td style="text-align: center;">Jumlah</td>
             <td style="text-align: center;">keperluan</td>
             <td style="text-align: center;">Status</td>
@@ -57,7 +57,7 @@ method="post" action="/invent/persetujuan/update/{{$ajuan->id}}">
                     <input type="hidden" name="detail_id[]" value="{{$item->id}}">
                 </td>
                 <td>{{$item->nama_barang}}</td>
-                <td>{{$item->spek}}</td>
+                {{-- <td>{{$item->spek}}</td> --}}
                 <td style="text-align: center;">{{$item->jumlah}} {{$item->satuan->satuan}}</td>
                 <td>{{$item->keperluan}}</td>
                 <td>

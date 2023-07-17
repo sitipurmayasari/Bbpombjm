@@ -150,7 +150,6 @@
                 <tr class="detail">
                     <th style="width: 5%">NO</th>
                     <th style="width: 25%">NAMA BARANG</th>
-                    <th style="width: 30%">SPESIFIKASI</th>
                     <th style="width: 15%">JUMLAH</th>
                     <th style="width: 25%">KETERANGAN</th>
                 </tr>
@@ -163,7 +162,6 @@
                     <tr class="detail">
                         <td class="detail" style="text-align: center">{{$no}}</td>
                         <td class="detail">{{$item->nama_barang}}</td>
-                        <td class="detail">{{$item->spek}}</td>
                         <td class="detail" style="text-align: center">{{$item->jumlah}} {{$item->satuan->satuan}}</td>
                         <td class="detail">{{$item->keperluan}}</td>
                     </tr>
@@ -185,25 +183,6 @@
             <tr>
                <td style="text-align:center;">
                    Mengetahui, <br>
-                    {{-- @if ($mengetahui != null)
-                        @if ($mengetahui->pjs != null)
-                            {{$mengetahui->pjs}}
-                            {{$mengetahui->jabatan->jabatan}} 
-                        @else
-                        {{$mengetahui->jabatan->jabatan}} 
-                        @endif
-
-                        @if ($mengetahui->jabatan_id == 5 )
-                            {{$mengetahui->subdivisi->nama_subdiv}}
-                        @elseif ($mengetahui->jabatan_id == 7 or $mengetahui->jabatan_id==11)
-                            {{$mengetahui->divisi->nama}}
-                        @else
-                            Kepala Balai Besar POM di Banjarmasin
-                        @endif
-                       
-                    @else
-                        SILAHKAN CEK SETUP PEJABAT
-                    @endif    --}}
                     <br><br><br><br><br>
                </td>
                <td  style="text-align:center;">Yang Meminta, </td>
