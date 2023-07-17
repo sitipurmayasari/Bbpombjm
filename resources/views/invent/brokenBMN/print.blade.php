@@ -74,7 +74,7 @@
         </b> <br>
         NOMOR : {{$data->nomor}}
     </div>
-    <br><br>
+    <br>
     <div id="isi">
         @php
         $a = strtotime($data->tanggal);
