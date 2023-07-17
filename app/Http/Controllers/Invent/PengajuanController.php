@@ -37,7 +37,7 @@ class PengajuanController extends Controller
         $user = User::all()
                 ->where('id','!=','1');
         $satuan = Satuan::all();
-        $kelompok = Jenisbrg::all();
+        $kelompok = Jenisbrg::where('kelompok','K')->get();
         $no_ajuan = $this->getNoAjuan();
         return view('invent/pengajuan.add',compact('user','no_ajuan','satuan','kelompok'));
     }
