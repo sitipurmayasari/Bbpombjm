@@ -77,8 +77,7 @@ class BrokenBMNController extends Controller
         $data = BrokenBMN::where('id',$id)->first();
         $detail = BrokenBMN_det::where('brokenbmn_id',$id)->get();
         $petugas = Petugas::where('id','=','8')->first();
-        $mengetahui = Pejabat::where('jabatan_id', '=', 11)
-                                ->whereRaw("(SELECT st_date FROM outstation WHERE id=$id) BETWEEN dari AND sampai")
+        $mengetahui = Pejabat::where('jabatan_id', '=', 11)->orderby('id','desc')
                                 ->first();
         $pdf = PDF::loadview('invent/brokenBMN.print',compact('data','mengetahui','petugas','detail'));
         return $pdf->stream();
