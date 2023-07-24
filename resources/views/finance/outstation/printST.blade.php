@@ -145,34 +145,38 @@
                                 Pelaksana Teknis di lingkungan Badan Pengawas Obat dan Makanan
                             </td>
                         </tr>
-                        <tr>
-                            <td> 2.</td>
-                            <td>
-                                @if ($data->budget_id == 3)
-                                    {{$data->budget->name}}
-                                    {{-- {{$now->name}} Tahun Anggaran {{$now->tahun}}, <br>
-                                    Nomor {{$now->nomor}} tanggal {{tgl_indo($now->tanggal)}} --}}
-                                @else
-                                    {{$data->budget->name}} Tahun Anggaran {{$data->budget->tahun}}
-                                    @if ($data->budget->nomor != null && $data->budget->tanggal == null),
-                                        No. {{$data->budget->nomor}} 
-                                    @elseif ($data->budget->tanggal != null && $data->budget->nomor == null)
-                                        ,
-                                        tanggal {{tgl_indo($data->budget->tanggal)}}
-                                    @elseif ($data->budget->tanggal != null && $data->budget->nomor != null),
-                                        No. {{$data->budget->nomor}}  tanggal {{tgl_indo($data->budget->tanggal)}}
-                                    @else
-                                        ;
-                                    @endif
-                                @endif
-                            </td>
-                        </tr>
-                        @if ($data->dasar != null)
+                        @if ($data->budget_id != 3)
                             <tr>
-                                <td> 3.</td>
-                                <td>{{$data->dasar}} ;
-                                <br></td>
+                                <td> 2.</td>
+                                <td>
+                                        {{$data->budget->name}} Tahun Anggaran {{$data->budget->tahun}}
+                                        @if ($data->budget->nomor != null && $data->budget->tanggal == null),
+                                            No. {{$data->budget->nomor}} 
+                                        @elseif ($data->budget->tanggal != null && $data->budget->nomor == null)
+                                            ,
+                                            tanggal {{tgl_indo($data->budget->tanggal)}}
+                                        @elseif ($data->budget->tanggal != null && $data->budget->nomor != null),
+                                            No. {{$data->budget->nomor}}  tanggal {{tgl_indo($data->budget->tanggal)}}
+                                        @else
+                                            ;
+                                        @endif
+                                </td>
                             </tr>
+                            @if ($data->dasar != null)
+                                <tr>
+                                    <td> 3.</td>
+                                    <td>{{$data->dasar}} ;
+                                    <br></td>
+                                </tr>
+                            @endif  
+                        @else
+                            @if ($data->dasar != null)
+                                <tr>
+                                    <td> 2.</td>
+                                    <td>{{$data->dasar}} ;
+                                    <br></td>
+                                </tr>
+                            @endif  
                         @endif
                     </table>
                     <br>
