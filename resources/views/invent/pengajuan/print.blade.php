@@ -148,10 +148,10 @@
         <table style="width:100%" class="detail">
             <thead class="detail">
                 <tr class="detail">
-                    <th style="width: 5%">NO</th>
-                    <th style="width: 25%">NAMA BARANG</th>
-                    <th style="width: 15%">JUMLAH</th>
-                    <th style="width: 25%">KETERANGAN</th>
+                    <th class="detail" style="width: 5%">NO</th>
+                    <th class="detail" style="width: 60%">NAMA BARANG</th>
+                    <th class="detail" style="width: 10%">JUMLAH</th>
+                    <th class="detail">KETERANGAN</th>
                 </tr>
             </thead>
             <tbody class="detail">
@@ -161,7 +161,13 @@
                 @foreach ($isi as $item)
                     <tr class="detail">
                         <td class="detail" style="text-align: center">{{$no}}</td>
-                        <td class="detail">{{$item->nama_barang}}</td>
+                        <td class="detail">{{$item->nama_barang}}
+                            @if ($item->inventaris_id != null)
+                                (Merk : {{$item->barang->merk}})
+                            @else
+                                (Merk : -)
+                            @endif
+                        </td>
                         <td class="detail" style="text-align: center">{{$item->jumlah}} {{$item->satuan->satuan}}</td>
                         <td class="detail">{{$item->keperluan}}</td>
                     </tr>
