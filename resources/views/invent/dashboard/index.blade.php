@@ -43,6 +43,14 @@
               <td></td>
               <td style="text-align: left;">Perbaikan Kerusakan (Non TIK/BMN)</td>
             </tr>
+            <tr>
+              <td>
+                <a href="https://docs.google.com/document/d/1i4GOYX_VKY6l6SwzgePqCmZ3holLLaon/edit?usp=drive_link&ouid=116416378023964599190&rtpof=true&sd=true" target="_blank">LINK TEMPLATE</a>
+              </td>
+              <td></td>
+              <td style="text-align: left;">Permintaan Barang Baru</td>
+            </tr>
+
           </table>
         </div>
       </div>
