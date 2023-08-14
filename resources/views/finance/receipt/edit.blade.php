@@ -123,7 +123,7 @@
                     window.location = "/finance/receipt/deletetr/"+id;
                 }
             });
-        });
+        });                      
 
         $(".deleteplane").click(function() {
                 var id = $(this).attr('r-id');

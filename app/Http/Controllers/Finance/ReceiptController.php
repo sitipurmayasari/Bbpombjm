@@ -323,7 +323,7 @@ class ReceiptController extends Controller
         $x  = Expenses::where('id',$data->expenses_id)->first();
 
         $data->delete();
-        return redirect('finance/receipt/edit/'.$x)->with('sukses','Transport Terhapus');
+        return redirect('finance/receipt/edit/'.$x->id)->with('sukses','Transport Terhapus');
     }
 
     public function deleteplane($id)
@@ -331,7 +331,7 @@ class ReceiptController extends Controller
         $data = ExpensesPlane::find($id);
         $x  = Expenses::where('id',$data->expenses_id)->first();
         $data->delete();
-        return redirect('finance/receipt/edit/'.$x)->with('sukses','Transport Terhapus');
+        return redirect('finance/receipt/edit/'.$x->id)->with('sukses','Transport Terhapus');
     }
 
     public function deleteinn($id)
@@ -339,7 +339,7 @@ class ReceiptController extends Controller
         $data = ExpensesInap::find($id);
         $x  = Expenses::where('id',$data->expenses_id)->first();
         $data->delete();
-        return redirect('finance/receipt/edit/'.$x)->with('sukses','Transport Terhapus');
+        return redirect('finance/receipt/edit/'.$x->id)->with('sukses','Transport Terhapus');
     }
 
     public function update(Request $request,$id)
