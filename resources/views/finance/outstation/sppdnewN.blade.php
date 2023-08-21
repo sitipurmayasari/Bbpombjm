@@ -382,7 +382,17 @@ $no=1;
                 <table>
                     <tr>
                         <td>Dikeluarkan di</td>
-                        <td>:  {{$data->cityfrom->capital}}
+                        <td>: 
+                            @if ($data->external !="Y")
+                                {{$data->cityfrom->capital}}
+                            @else
+                                @foreach ($data->outst_destiny as $key=>$item)
+                                    @if ($loop->first)
+                                        {{$item->destiny->capital}} 
+                                    @endif
+                                @endforeach
+                            @endif
+                            
                         </td>
                     </tr>
                     <tr>
