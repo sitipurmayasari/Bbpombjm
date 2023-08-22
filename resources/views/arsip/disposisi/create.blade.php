@@ -83,7 +83,7 @@
                         for="form-field-1"> Bidang*
                         </label>
                         <div class="col-sm-10">
-                            <select  name="divisi_id" id="divisi_id" class="col-xs-12 col-sm-12 required" required>
+                            <select  name="divisi_id" id="divisi_id" class="col-xs-12 col-sm-12 required">
                                 <option value="">Pilih Bidang</option>
                                 @foreach ($div as $item)
                                     <option value="{{$item->id}}">{{$item->nama}}</option>
