@@ -50,7 +50,11 @@
                     <td>{{$row->no_surat}}</td>
                     <td>{{$row->pengirim}}</td>
                     <td>{{$row->hal}}</td>
-                    <td>{{$row->div->nama}}</td>
+                    <td>
+                        @if ($row->divisi_id != null)
+                         {{$row->div->nama}}
+                        @endif
+                    </td>
                     <td>
                         <a href="/arsip/disposisi/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>
