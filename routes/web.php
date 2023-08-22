@@ -225,9 +225,6 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/amdk/development','Amdk\DevelopmentController@index')->name('development');
     //Route untuk Kegiatan penunjang
     Route::get('/amdk/support','Amdk\SupportController@index')->name('support');
-    //disposisi
-    Route::get('/amdk/disposisi','Amdk\DisposisiController@index')->name('disposisi');
-    Route::get('/amdk/rekdisposisi','Amdk\DisposisiController@index')->name('disposisi.rekdisposisi');
     //Route untuk hari libur
     Route::get('/amdk/libur','Amdk\LiburController@index')->name('libur');
     //Route untuk absen
@@ -361,7 +358,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
      Route::get('/arsip/reportarchive','Arsip\ReportarchiveController@index')->name('reportarchive');
      //Route setup web terkait
      Route::get('/arsip/terkait','Arsip\TerkaitController@index')->name('terkait');
-
+     //disposisi
+    Route::get('/arsip/disposisi','Arsip\DisposisiController@index')->name('disposisi');
 
      //--------------------------QMS------------------------------------------
      //Route untuk input qms

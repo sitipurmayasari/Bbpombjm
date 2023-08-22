@@ -46,3 +46,10 @@ Route::post('/arsip/terkait/store','Arsip\TerkaitController@store')->name('terka
 Route::get('/arsip/terkait/delete/{id}','Arsip\TerkaitController@delete')->name('terkait.delete');
 Route::get('/arsip/terkait/edit/{id}','Arsip\TerkaitController@edit')->name('terkait.edit');
 Route::post('/arsip/terkait/update/{id}','Arsip\TerkaitController@update')->name('terkait.update');
+
+//Route untuk Disposisi
+ Route::get('/arsip/disposisi/create','Arsip\DisposisiController@create')->name('disposisi.create');
+ Route::post('/arsip/disposisi/store','Arsip\DisposisiController@store')->name('disposisi.store');
+ Route::get('/arsip/disposisi/delete/{id}','Arsip\DisposisiController@delete')->name('disposisi.delete');
+ Route::get('/arsip/disposisi/edit/{id}','Arsip\DisposisiController@edit')->name('disposisi.edit');
+ Route::post('/arsip/disposisi/update/{id}','Arsip\DisposisiController@update')->name('disposisi.update');

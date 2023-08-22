@@ -231,13 +231,6 @@
   Route::post('/amdk/support/update/{id}','Amdk\SupportController@update')->name('support.update');
   Route::get('/amdk/support/print/{id}','Amdk\SupportController@print')->name('support.print');
 
-   //Route untuk Disposisi
-  Route::get('/amdk/disposisi/create','Amdk\DisposisiController@create')->name('disposisi.create');
-  Route::post('/amdk/disposisi/store','Amdk\DisposisiController@store')->name('disposisi.store');
-  Route::get('/amdk/disposisi/delete/{id}','Amdk\DisposisiController@delete')->name('disposisi.delete');
-  Route::get('/amdk/disposisi/edit/{id}','Amdk\DisposisiController@edit')->name('disposisi.edit');
-  Route::post('/amdk/disposisi/update/{id}','Amdk\DisposisiController@update')->name('disposisi.update');
-
  //Route untuk Hari libur
  Route::get('/amdk/libur/create','Amdk\LiburController@create')->name('libur.create');
  Route::post('/amdk/libur/store','Amdk\LiburController@store')->name('libur.store');
