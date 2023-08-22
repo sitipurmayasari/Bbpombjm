@@ -145,7 +145,7 @@
                 <tr>
                     <td class="ttd">
                         @if ($mengetahui->status == 'PNS')
-                            NIP. {{$mengetahui->no_pegawai}} 
+                            NIP. {{$data->pegawai->no_pegawai}}
                         @endif
                        </td>
                     <td class="ttd">NIP. 
