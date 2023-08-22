@@ -80,7 +80,7 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1"> Bidang*
+                        for="form-field-1"> Tujuan*
                         </label>
                         <div class="col-sm-10">
                             <select  name="divisi_id" id="divisi_id" class="col-xs-12 col-sm-12 required">
