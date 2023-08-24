@@ -50,6 +50,13 @@
               <td></td>
               <td style="text-align: left;">Permintaan Barang Baru</td>
             </tr>
+            <tr>
+              <td>
+                <a href="https://docs.google.com/spreadsheets/d/1H5oYTunhF8A3MYNvUivl6pb3HaDHc-do/edit?usp=drive_link&ouid=116416378023964599190&rtpof=true&sd=true" target="_blank">LINK TEMPLATE</a>
+              </td>
+              <td></td>
+              <td style="text-align: left;">Kartu Stock</td>
+            </tr>
 
           </table>
         </div>
