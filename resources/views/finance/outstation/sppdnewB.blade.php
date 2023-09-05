@@ -369,17 +369,17 @@ $no=1;
                                 NIP. {{$data->ppk->user->no_pegawai}}
                             @endif
                     @else
-                        <br><br><br><br><br>&nbsp;
+                        <br><br><br><br>&nbsp;
                     @endif
                 @endif
             </td>
             <td colspan="2"  style="border-top: 0; text-align:center;">
                 @if ($data->pok_detail_id == 0 )
-                    <br><br><br><br><br><br><br>
+                    <br><br><br><br><br>
                 @elseif($data->pok_detail_id == 1 )
-                    <br><br><br><br><br><br><br>
+                    <br><br><br><br><br>
                 @else
-                    Pejabat Pembuat Komitmen <br><br><br><br><br>
+                    Pejabat Pembuat Komitmen <br><br><br><br>
                     <u><b> 
                         @if ($data->ppk_id != 0)
                             {{$data->ppk->user->name}}
