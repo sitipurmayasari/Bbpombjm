@@ -348,7 +348,7 @@ $no=1;
                 @endforeach
             </td>
             <td style="border-bottom: none;" colspan="2">
-                Telah diperiksa dengan keterangan bahwa perjalanan tersebut diatas benar dilakukan atas perintahnya dan semata - mata untuk kepentingan jabatan dalam waktu
+                Telah diperiksa dengan keterangan bahwa perjalanan tersebut diatas benar dilakukan atas perintahnya dan semata - mata untuk kepentingan jabatan dalam waktu yang sesingkat - singkatnya.
             </td>
         </tr>
         <tr style="border-top: none;">
