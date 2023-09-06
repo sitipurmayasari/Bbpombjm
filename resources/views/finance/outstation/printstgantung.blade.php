@@ -138,7 +138,7 @@
                     <table>
                         <tr>
                             <td> 1.</td>
-                            <tdPeraturan Badan pengawas Obat dan Makanan Nomor Nomor 19 Tahun 2023 Tentang Organisasi dan Tata Kerja Unit Pelaksana Teknis pada Badan Pengawas Obat dan Makanan
+                            <td> Peraturan Badan pengawas Obat dan Makanan Nomor 19 Tahun 2023 Tentang Organisasi dan Tata Kerja Unit Pelaksana Teknis pada Badan Pengawas Obat dan Makanan
                             </td>
                         </tr>
                         <tr>
