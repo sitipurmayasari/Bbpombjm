@@ -86,7 +86,6 @@ $no=1;
         <tr style="border-top: none;">
             <td colspan="3" style="border-top: 0;"></td>
             <td colspan="2"  style="border-top: 0; text-align:center;">
-                {{-- Pejabat Pembuat Komitmen <br><br><br><br><br> --}}
                 @if ($data->external =="N")
                     Kepala Bagian Tata Usaha <br><br><br><br><br>
                     <u><b>{{$menyetujui->user->name}} 
@@ -95,15 +94,6 @@ $no=1;
                 @else
                     <br><br><br><br><br>&nbsp;
                 @endif
-                {{-- <u><b> 
-                    @if ($data->ppk_id != 0)
-                        {{$data->ppk->user->name}}
-                    @endif
-                </b></u><br>
-                NIP.
-                    @if ($data->ppk_id != 0)
-                        {{$data->ppk->user->no_pegawai}}
-                    @endif --}}
             </td>
         </tr>
         <tr style=" border-bottom: none;"> 
@@ -173,7 +163,16 @@ $no=1;
                     </b></u><br>
                     NIP.{{$menyetujui->user->no_pegawai}}
                 @else
-                    <br><br><br><br><br>
+                    @if ($data->nama_petugas != null)
+                        {{$data->jab_petugas}} <br><br><br><br>
+                        <u><b>{{$data->nama_petugas}} 
+                        </b></u><br>
+                        @if ($data->nip_petugas != null)
+                            NIP.{{$menyetujui->user->no_pegawai}}
+                        @endif
+                    @else
+                        <br><br><br><br><br>
+                    @endif
                 @endif
             </td>
             <td colspan="2"  style="border-top: 0; text-align:center;">
@@ -183,7 +182,16 @@ $no=1;
                     </b></u><br>
                     NIP.{{$menyetujui->user->no_pegawai}}
                 @else
-                    <br><br><br><br><br>
+                    @if ($data->nama_petugas != null)
+                        {{$data->jab_petugas}} <br><br><br><br>
+                        <u><b>{{$data->nama_petugas}} 
+                        </b></u><br>
+                        @if ($data->nip_petugas != null)
+                            NIP.{{$menyetujui->user->no_pegawai}}
+                        @endif
+                    @else
+                        <br><br><br><br><br>
+                    @endif
                 @endif
             </td>
         </tr>
