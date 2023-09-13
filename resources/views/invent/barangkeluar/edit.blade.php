@@ -111,7 +111,7 @@
                                         <input type="number"  min="0" max="{{$stok->stock}}" name="jumlah[]" class="form-control" value="{{$item->jumlah}}" id="jum-{{$no}}">
                                         @php
                                             $a = $stok->stock;
-                                            $b = $item->jumlah_aju;
+                                            $b = $item->jumlah;
                                             $c = $a-$b;
                                         @endphp
                                         <input type="hidden" name="sisa[]" id="sisa-{{$no}}" value="{{$c}}" class="form-control">
