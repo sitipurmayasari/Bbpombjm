@@ -19,6 +19,7 @@ class DisposisiController extends Controller
                                 ->when($request->keyword, function ($query) use ($request) {
                                     $query->where('pengirim','LIKE','%'.$request->keyword.'%')
                                         ->orWhere('tgl_surat', 'LIKE','%'.$request->keyword.'%')
+                                        >orWhere('no_agenda', 'LIKE','%'.$request->keyword.'%')
                                         ->orWhere('hal', 'LIKE','%'.$request->keyword.'%');
                                 })
                                 ->paginate('10');
