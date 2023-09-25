@@ -290,7 +290,7 @@
         <table class="ttdini" style="width: 100%" >
             <tr>
                 <td></td>
-                <td style="width: 55%;">Banjarmasin, 
+                <td style="width: 55%;">Banjarbaru, 
                     @php
                         $a = $data->st_date;
                         echo tgl_indo($a); 
@@ -425,7 +425,7 @@
     <table class="ttdini" style="width: 100%" >
         <tr>
             <td></td>
-            <td style="width: 55%;">Banjarmasin, 
+            <td style="width: 55%;">Banjarbaru, 
                 @php
                     $a = $data->st_date;
                     echo tgl_indo($a); 
