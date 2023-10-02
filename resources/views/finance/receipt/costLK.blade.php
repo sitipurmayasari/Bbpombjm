@@ -251,7 +251,7 @@
             <th class="isi" style="width: 5%">No.</th>
             <th class="isi">Daftar Perincian</th>
             <th class="isi" style="width: 12%">Jumlah</th>
-            <th class="isi" style="width: 15%">Keterangan</th>
+            <th class="isi" style="width: 13%">Keterangan</th>
         </tr>
     </thead>
     <tbody>
