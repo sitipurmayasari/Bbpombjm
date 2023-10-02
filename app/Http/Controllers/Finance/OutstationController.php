@@ -320,28 +320,23 @@ class OutstationController extends Controller
 
       public function edit($id)
       {
-         
-          $thn            = Carbon::now()->year;
+          $data           = Outstation::where('id',$id)->first();
+          $div            = Divisi::all();
           $ppk            = PPK::all();
           $budget         = Budget::OrderBy('id','desc')->get();
-          $act            = Activitycode::all();
-          $sub            = Subcode::all();
-          $akun           = Accountcode::all();
-          $div            = Divisi::all();
-          $user           = User::where('id','!=','1')->get();
-          $destination    = Destination::all();
-          $data           = Outstation::where('id',$id)->first();
-          $petugas        = Outst_employee::where('outstation_id',$id)->get();
-          $kota           = Outst_destiny::where('outstation_id',$id)->get();
+          $thn            = Carbon::now()->year;
           $pok            = Pok_detail::SelectRaw('pok_detail.*')
-                          ->leftjoin('pok','pok.id','=','pok_detail.pok_id')
-                          ->where('pok.year','=',$thn)
-                          ->get();
-          $hitpeserta     = Outst_employee::SelectRaw('COUNT(id) AS jumpes')->where('outstation_id',$id)->first();
+                                      ->leftjoin('pok','pok.id','=','pok_detail.pok_id')
+                                      ->where('pok.year','=',$thn)
+                                      ->get();
+          $destination    = Destination::all();
+          $user           = User::where('id','!=','1')->get();
+          $petugas        = Outst_employee::where('outstation_id',$id)->get();
           $sppd           = Stbook_sppd::leftjoin('stbook','stbook.id','=','stbook_sppd.stbook_id')
-                            ->where('stbook.stbook_number',$data->number)->get();
-          return view('finance/outstation.edit',compact('data','petugas','kota','ppk','budget','act','sub',
-                      'akun','div','user','destination','pok','hitpeserta','sppd'
+                                        ->where('stbook.stbook_number',$data->number)->get();
+          $kota           = Outst_destiny::where('outstation_id',$id)->get();
+          $hitpeserta     = Outst_employee::SelectRaw('COUNT(id) AS jumpes')->where('outstation_id',$id)->first();
+          return view ('finance/outstation.edit',compact('data','div','ppk','budget','pok','destination','user','petugas','sppd','kota','hitpeserta'
           ));
       }
 
