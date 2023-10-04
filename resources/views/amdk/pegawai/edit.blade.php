@@ -30,7 +30,7 @@
                             for="form-field-1">  NIP. Pegawai
                             </label>
                             <div class="col-sm-8" id="tambah">
-                                <input type="text" readonly value="{{$data->no_pegawai}}"
+                                <input type="text" value="{{$data->no_pegawai}}"
                                         class="col-xs-10 col-sm-10 required" 
                                         name="no_pegawai" required  />
                             </div>
