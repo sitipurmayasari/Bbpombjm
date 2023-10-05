@@ -493,7 +493,10 @@ h2, a {
             <a class="social-icon" href="/calibration/dashboard">
               <img src="{{asset('images/lab2.png')}}" style="height:100%; width:100%">
             </a>
-            <a class="social-icon"  href="/qms/dashboard">
+            {{-- <a class="social-icon"  href="/qms/dashboard">
+              <img src="{{asset('images/qms3.png')}}" style="height:100%; width:100%">
+            </a> --}}
+            <a class="social-icon"  href="https://bit.ly/SOPBPOMBJM">
               <img src="{{asset('images/qms3.png')}}" style="height:100%; width:100%">
             </a>
             <a class="social-icon"  href="/ppnpn/dashboard">
