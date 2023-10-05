@@ -151,7 +151,7 @@ class PegawaiController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,[
-            'no_pegawai' => 'required|unique:users',
+            'no_pegawai' => 'required',
             'email' => 'required|unique:users,email,'.$id,
             'file_foto' => 'mimes:jpg,png,jpeg|max:2048'
         ]);
