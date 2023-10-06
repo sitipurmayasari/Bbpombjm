@@ -356,7 +356,7 @@
     </div>
     <br>
     <div>
-        <table style="width:100%" class="detail" >
+        <table style="width:100%" class="detail">
             <thead>
                 <tr >
                     <th style="width: 5%">NO</th>
