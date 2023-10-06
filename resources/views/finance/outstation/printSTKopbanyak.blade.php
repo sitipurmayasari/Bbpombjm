@@ -71,7 +71,7 @@
         .detail{
             font-family: "Bookman Old Style";
             border: 1px solid black;
-            font-size: 11;
+            font-size: 10;
             text-align: left;
             line-height: 1;
             vertical-align: top
@@ -376,10 +376,10 @@
             <thead>
                 <tr >
                     <th style="width: 5%">NO</th>
-                    <th style="width: 30%">NAMA</th>
-                    <th style="width: 20%">NIP</th>
-                    <th style="width: 22%">PANGKAT / GOLONGAN</th>
-                    <th style="width: 33%">JABATAN</th>
+                    <th style="width: 25%">NAMA</th>
+                    <th style="width: 25%">NIP</th>
+                    <th style="width: 20%">PANGKAT / GOLONGAN</th>
+                    <th style="width: 25%">JABATAN</th>
                 </tr>
             </thead>
             <tbody>
