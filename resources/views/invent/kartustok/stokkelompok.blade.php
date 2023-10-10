@@ -61,6 +61,7 @@ header("Content-Disposition: attachment; filename=Format-Laporan-Stok-Kelompok-B
                         <th style="text-align: center; vertical-align:middle;">Nama Barang</th>
                         <th style="text-align: center; vertical-align:middle;">Lokasi</th>
                         <th style="text-align: center; vertical-align:middle;">Sisa Stok</th>
+                        <th style="text-align: center; vertical-align:middle;">Satuan</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -73,7 +74,8 @@ header("Content-Disposition: attachment; filename=Format-Laporan-Stok-Kelompok-B
                             <td>{{$item->kode_barang}}</td>
                             <td>{{$item->nama_barang}} {{$item->merk}} ({{$item->no_seri}})</td>
                             <td>{{$item->location->nama}}</td>
-                            <td style="text-align: center">{{$item->stock }}  {{$item->satuan->satuan}}</td>
+                            <td style="text-align: center">{{$item->stock }}</td>
+                            <td style="text-align: center">{{$item->satuan->satuan}}</td>
                         </tr>
                     @endforeach 
                 </tbody>
