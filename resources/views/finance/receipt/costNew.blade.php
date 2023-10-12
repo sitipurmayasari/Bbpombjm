@@ -120,7 +120,7 @@
             </tr>
         </table>
         <br>
-        <table style="border: 1px solid black; width:100%;">
+        <table style="border: 1px solid black; width:99%;">
             <thead>
                 <tr style="border: 1px solid black;">
                     <th class="isi" style="width: 5%">No.</th>
