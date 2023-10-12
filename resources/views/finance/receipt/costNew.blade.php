@@ -35,10 +35,8 @@
 
         .isi{
             font-family: 'Times New Roman';
-            /* border: 1px solid black; */
             vertical-align : top;
             line-height: 1;
-
         }
 
         </style>
@@ -118,17 +116,17 @@
                             </td>
                         </tr>
                     </table>
-                </td>
+                </td> 
             </tr>
         </table>
         <br>
-        <table class="isi" style="border: 1px solid black;">
+        <table style="border: 1px solid black; width:100%;">
             <thead>
                 <tr style="border: 1px solid black;">
                     <th class="isi" style="width: 5%">No.</th>
                     <th class="isi">Daftar Perincian</th>
                     <th class="isi" style="width: 12%">Jumlah</th>
-                    <th class="isi" style="width: 15%">Keterangan</th>
+                    <th class="isi" >Keterangan</th>
                 </tr>
             </thead>
             <tbody>
