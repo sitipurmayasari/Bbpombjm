@@ -17,7 +17,7 @@ class DisposisiController extends Controller
     {
         $data = Disposisi::orderBy('id','desc')
                                 ->when($request->keyword, function ($query) use ($request) {
-                                    $query->Where('no_agenda', 'LIKE','%'.$request->keyword.'%')
+                                    $query->Where('no_agenda','LIKE','%'.$request->keyword.'%')
                                         ->orwhere('pengirim','LIKE','%'.$request->keyword.'%')
                                         ->orWhere('tgl_surat', 'LIKE','%'.$request->keyword.'%')
                                         ->orWhere('hal', 'LIKE','%'.$request->keyword.'%');
