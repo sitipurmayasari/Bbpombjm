@@ -37,7 +37,42 @@
 <body>
     <div id="header">
         REKAPITULASI SURAT MASUK (DISPOSISI) <br>
-        PERIODE {{tgl_indo($request->awal)}} S/D {{tgl_indo($request->akhir)}} <br>
+        PERIODE
+        @if ($request->piltgl==1)
+            @php
+                if ($request->daftarbulan=='1') {
+                    $bulan = "JANUARI";
+                } else if($request->daftarbulan=='2') {
+                    $bulan = "FEBRUARI";
+                } else if($request->daftarbulan=='3') {
+                    $bulan = "MARET";
+                } else if($request->daftarbulan=='4') {
+                    $bulan = "APRIL";
+                } else if($request->daftarbulan=='5') {
+                    $bulan = "MEI";
+                } else if($request->daftarbulan=='6') {
+                    $bulan = "JUNI";
+                } else if($request->daftarbulan=='7') {
+                    $bulan = "JULI";
+                } else if($request->daftarbulan=='8') {
+                    $bulan = "AGUSTUS";
+                } else if($request->daftarbulan=='9') {
+                    $bulan = "SEPTEMBER";
+                } else if($request->daftarbulan=='10') {
+                    $bulan = "OKTOBER";
+                } else if($request->daftarbulan=='11') {
+                    $bulan = "NOVEMBER";
+                } else {
+                    $bulan = "DESEMBER";
+            }
+            @endphp    
+            {{$bulan}}  {{$request->daftartahun}}       
+        @elseif($request->piltgl==2)    
+            {{tgl_indo($request->awal)}} S/D {{tgl_indo($request->akhir)}}
+        @else
+            {{$request->daftartahun}} 
+        @endif
+        <br>
         BALAI BESAR POM DI BANJARMASIN
     </div>
     <hr class="s5">
