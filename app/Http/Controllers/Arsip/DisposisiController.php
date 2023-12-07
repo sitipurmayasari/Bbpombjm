@@ -8,6 +8,8 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use App\Divisi;
 use App\Disposisi;
+use PDF;
+use LogActivity;
 
 
 class DisposisiController extends Controller
@@ -36,6 +38,7 @@ class DisposisiController extends Controller
     public function store(Request $request)
     {
         Disposisi::create($request->all());
+        LogActivity::addToLog('Simpan->Disposisi nomor disposisi = '.$request->no_agenda); 
         return redirect('/arsip/disposisi')->with('sukses','Data Tersimpan');
     }
    
@@ -52,6 +55,7 @@ class DisposisiController extends Controller
     {
         $data = Disposisi::find($id);
         $data->update($request->all());
+        LogActivity::addToLog('Ubah->Disposisi nomor disposisi = '.$request->no_agenda); 
         return redirect('/arsip/disposisi')->with('sukses','Data Diperbaharui');
     }
 
@@ -90,6 +94,23 @@ class DisposisiController extends Controller
         $nosurat = $first."/ Tahun ".date('Y');
         return $nosurat;
       }
+
+
+    public function rekap()
+    {
+        $div = Divisi::all();
+        return view('arsip/disposisi.rekap',compact('div'));
+    }
+
+    public function cetak(Request $request)
+    {
+            $data = Disposisi::orderBy('id','asc')
+                    ->WhereRaw('tanggal between "'.$request->awal.'" AND "'.$request->akhir.'"')
+                    ->get();
+            // return view('arsip/disposisi.cetak',compact('data','request'));
+            $pdf = PDF::loadview('arsip/disposisi.cetak',compact('data','request'));
+            return $pdf->stream();
+    }
   
 
 }

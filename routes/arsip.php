@@ -53,3 +53,5 @@ Route::post('/arsip/terkait/update/{id}','Arsip\TerkaitController@update')->name
  Route::get('/arsip/disposisi/delete/{id}','Arsip\DisposisiController@delete')->name('disposisi.delete');
  Route::get('/arsip/disposisi/edit/{id}','Arsip\DisposisiController@edit')->name('disposisi.edit');
  Route::post('/arsip/disposisi/update/{id}','Arsip\DisposisiController@update')->name('disposisi.update');
+ Route::get('/arsip/disposisi/rekap','Arsip\DisposisiController@rekap')->name('disposisi.rekap');
+ Route::post('/arsip/disposisi/cetak','Arsip\DisposisiController@cetak')->name('disposisi.cetak');

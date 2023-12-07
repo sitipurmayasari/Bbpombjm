@@ -12,6 +12,9 @@
                         <div class="form-group col-xs-12 col-sm-3" style="float: left">
                            <a href="{{Route('disposisi.create')}}"  class="btn btn-primary">Buat Surat Masuk</a>   
                         </div>
+                        <div class="form-group col-xs-12 col-sm-1" style="float: left">
+                            <a href="{{Route('disposisi.rekap')}}"  class="btn btn-primary">Cetak Rekapitulasi</a>   
+                         </div>
                         <div class="form-group col-xs-12 col-sm-3" style="float: right">
                             <div class="input-group">
                                 <input type="text" class="form-control gp-search" name="keyword" placeholder="Cari " value="{{request('keyword')}}" autocomplete="off">
@@ -34,11 +37,11 @@
             <thead>
                 <th width="40px">No</th>
                 <th>Tanggal</th>
-                <th>No. Agenda</th>
+                <th>No. Disposisi</th>
                 <th>No. Surat</th>
-                <th>Pengirim</th>
+                <th>Asal Surat</th>
                 <th>Hal</th>
-                <th>Tujuan</th>
+                <th>Tujuan Disposisi</th>
                 <th>Edit</th>
             <thead>
             <tbody>   	
