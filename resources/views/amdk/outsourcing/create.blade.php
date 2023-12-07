@@ -79,6 +79,7 @@
                             <div class="col-sm-8">
                                 <select id="status" name="status" class="col-xs-10 col-sm-10" required>
                                     <option value="PNS">PNS</option>
+                                    <option value="PPPK">PPPK</option>
                                     <option value="OSC">Lainnya</option>
                                 </select>
                                 <input type="hidden" name="jabatan_id" value="10">
@@ -109,7 +110,7 @@
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalone">
                                     <i class="glyphicon glyphicon-plus"></i></button>
                                   </button>
-                                *Jika PNS
+                                  *Jika PNS/PPPK
                             </div>
                         </div>
                         <div class="form-group">
@@ -126,7 +127,7 @@
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modaltwo">
                                     <i class="glyphicon glyphicon-plus"></i></button>
                                   </button>
-                                *Jika PNS
+                                *Jika PNS/PPPK
                             </div>
                         </div>
                         
@@ -231,20 +232,12 @@
                             for="form-field-1"> Golongan / Ruang 
                         </label>
                         <div class="col-sm-8">
-                            <select class="col-xs-2 col-sm-4" name="golongan" required>
-                                <option value="">Pilih gol</option>
-                                <option value="I">I</option>
-                                <option value="II">II</option>
-                                <option value="III">III</option>
-                                <option value="IV">IV</option>
-                            </select>   
-                            <select class="col-xs-2 col-sm-4" name="ruang" required>
-                                <option value="">Pilih Ruang</option>
-                                <option value="a">a</option>
-                                <option value="b">b</option>
-                                <option value="c">c</option>
-                                <option value="d">d</option>
-                            </select>
+                            <input type="text"  placeholder="contoh : IV"
+                                    class="col-xs-2 col-sm-4 required" 
+                                    name="golongan" required /> 
+                            <input type="text"  placeholder="contoh : c"
+                                    class="col-xs-2 col-sm-4 required" 
+                                    name="ruang" required /> 
                         </div>    
                     </div>
                 </fieldset>
