@@ -105,8 +105,19 @@ class DisposisiController extends Controller
     public function cetak(Request $request)
     {
             $data = Disposisi::orderBy('id','asc')
-                    ->WhereRaw('tanggal between "'.$request->awal.'" AND "'.$request->akhir.'"')
-                    ->get();
+                    ->whereYear('tanggal',$request->daftartahun)
+                            ->when($request->piltgl, function ($query) use ($request) {
+                                if($request->piltgl==1){
+                                    $query->whereYear('tanggal',$request->daftartahun);
+                                    $query->whereMonth('tanggal',$request->daftarbulan); 
+                                }
+                            })
+                            ->when($request->piltgl, function ($query) use ($request) {
+                                if($request->piltgl==2){
+                                    $query->WhereRaw('tanggal between "'.$request->awal.'" AND "'.$request->akhir.'"');
+                                }
+                             })
+                            ->get();
             // return view('arsip/disposisi.cetak',compact('data','request'));
             $pdf = PDF::loadview('arsip/disposisi.cetak',compact('data','request'));
             return $pdf->stream();

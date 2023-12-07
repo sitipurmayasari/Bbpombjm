@@ -80,13 +80,13 @@
     <div>
         <table>
             <thead>
-                <th width="40px">No</th>
+                <th width="5px">No</th>
                 <th>Tanggal</th>
                 <th>No. Disposisi</th>
                 <th>Tanggal Surat</th>
                 <th>No. Surat</th>
-                <th>Asal Surat</th>
-                <th>Hal</th>
+                <th style="width:15%">Asal Surat</th>
+                <th style="width:25%">Hal</th>
                 <th>Tujuan Disposisi</th>
                 <th>Keterangan</th>
             </thead>
@@ -94,28 +94,34 @@
                 @php
                     $no = 1;
                 @endphp
-                @foreach ($data as $item)
+                @if ($data != null)
+                    @foreach ($data as $item)
+                        <tr>
+                            <td style="text-align: center;">{{$no}}</td>
+                            <td>{{$item->tanggal}}</td>
+                            <td>{{$item->no_agenda}}</td>
+                            <td>{{$item->tgl_surat}}</td>
+                            <td>{{$item->no_surat}}</td>
+                            <td>{{$item->pengirim}}</td>
+                            <td>{{$item->hal}}</td>
+                            <td>
+                                @if  ($item->divisi_id != null)
+                                    {{$item->div->nama}}  
+                                @else
+                                    Belum Terdisposisi
+                                @endif
+                            </td>
+                            <td>{{$item->keterangan}}</td>
+                        </tr>
+                        @php
+                            $no++;
+                        @endphp
+                    @endforeach
+                @else
                     <tr>
-                        <td style="text-align: center;">{{$no}}</td>
-                        <td>{{$item->tanggal}}</td>
-                        <td>{{$item->no_agenda}}</td>
-                        <td>{{$item->tgl_surat}}</td>
-                        <td>{{$item->no_surat}}</td>
-                        <td>{{$item->pengirim}}</td>
-                        <td>{{$item->hal}}</td>
-                        <td>
-                            @if  ($item->divisi_id != null)
-                                {{$item->div->nama}}  
-                            @else
-                                Belum Terdisposisi
-                            @endif
-                        </td>
-                        <td>{{$item->hal}}</td>
+                        <td colspan="9" style="text-align: center;">&nbsp;<br>&nbsp;<br>&nbsp; - &nbsp; N &nbsp; I &nbsp; H &nbsp; I &nbsp; L &nbsp; - <br>&nbsp;<br>&nbsp;</td>
                     </tr>
-                    @php
-                        $no++;
-                    @endphp
-                @endforeach
+                @endif
             </tbody>
         </table>   
     </div>
