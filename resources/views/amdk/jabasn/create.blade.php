@@ -26,7 +26,7 @@
                 <div class="widget-main no-padding">
                     <fieldset>
                     <br>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
                         for="form-field-1"> Jabatan
                         </label>
@@ -39,13 +39,13 @@
                                 <option value="Ahli Utama">Ahli Utama</option>
                             </select>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
                         for="form-field-1"> Nama Jabatan
                         </label>
                         <div class="col-sm-10">
-                            <input type="text"  placeholder="Nama" class="col-xs-10 col-sm-10 required " 
+                            <input type="text"  placeholder="Mis : Apoteker Ahli Muda" class="col-xs-10 col-sm-10 required " 
                                     name="nama" required />
                             
                         </div>
@@ -55,7 +55,7 @@
                         for="form-field-1"> Kelompok Jabatan
                         </label>
                         <div class="col-sm-10">
-                            <input type="text"  placeholder="Nama" class="col-xs-10 col-sm-10 required " 
+                            <input type="text"  placeholder="Mis : Ahli Muda" class="col-xs-10 col-sm-10 required " 
                                     name="kelompok" required />
                             
                         </div>

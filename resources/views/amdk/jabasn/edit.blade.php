@@ -27,11 +27,11 @@
                 <div class="widget-main no-padding">
                     <fieldset>
                     <br>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
                         for="form-field-1"> Jabatan
-                        </label>
-                        <div class="col-sm-8">
+                        </label> --}}
+                        {{-- <div class="col-sm-8">
                             <select name="jabatan"  class="col-xs-10 col-sm-10 required " >
                                 @if ($data->jabatan=='Ahli Pertama')
                                     <option value="" >Pilih Jabatan</option>
@@ -66,7 +66,7 @@
                                 @endif
                             </select>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
                         for="form-field-1"> Nama Jabatan

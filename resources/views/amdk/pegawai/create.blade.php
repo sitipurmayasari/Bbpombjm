@@ -336,7 +336,7 @@
                 method="post" action="{{route('pegawai.storejafung')}}" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <fieldset>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right" 
                         for="form-field-1"> Jabatan
                         </label>
@@ -349,7 +349,7 @@
                                 <option value="Ahli Utama">Ahli Utama</option>
                             </select>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right" 
                         for="form-field-1"> Nama Jabatan

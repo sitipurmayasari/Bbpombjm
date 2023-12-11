@@ -36,7 +36,7 @@
             <thead>
                 <th width="40px">No</th>
                 <th>Nama Jabatan</th>
-                <th>Jabatan</th>
+                {{-- <th>Jabatan</th> --}}
                 <th>Kelompok Jabatan</th>
                 <th>Aksi</th>
             <thead>
@@ -46,7 +46,7 @@
                     <td>{{$data->firstItem() + $key}}</td>
                     <td>{{$row->nama}}</td>
                     <td>{{$row->kelompok}}</td>
-                    <td>{{$row->jabatan}}</td>
+                    {{-- <td>{{$row->jabatan}}</td> --}}
                     <td>
                         <a href="/amdk/jabasn/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>
