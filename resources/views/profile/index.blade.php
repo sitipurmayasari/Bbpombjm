@@ -29,227 +29,230 @@
 </style>
 @include('layouts.validasi')
     <form action="/profile/update/{{auth()->user()->id}}" method="POST">
-      {{ csrf_field() }}
+    {{ csrf_field() }}
     <div class="main-body">
-          <div class="row gutters-sm">
+        <div class="row gutters-sm">
             <div class="col-md-4 mb-3">
-              <div class="card">
-                <div class="card-body">
-                  <div class="d-flex flex-column align-items-center text-center">
-                    <img src="{{auth()->user()->getFoto()}}" class="rounded-circle" width="150"><br>
-                  
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                        <i class="ace-icon fa fa-pencil"></i>
-                      </button>
-                    <div class="mt-3">
-                      <h4>{{auth()->user()->name}}</h4>
-                        @if ($data->jabasn_id != null)
-                        <p class="text-secondary mb-1">{{auth()->user()->jabasn->nama}}</p>
-                        @else
-                        <p class="text-secondary mb-1">{{auth()->user()->jabatan->jabatan}}</p>
-                        @endif
-                      <p class="text-muted font-size-sm">{{auth()->user()->divisi->nama}}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card mt-3">
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                      <i>isi password jika ingin mengubah password</i>
-                    <h6 class="mb-0">
-					            	<span class="text-secondary"> Password Lama</span><br>
-                        <input type="password"  value="" id="myInputa"
-                               class="required" minlength="8"
-                              name="oldpass"/> &nbsp; 
-                        <i class="fa fa-eye" onclick="myFunction()"></i>
-                    </h6>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0">
-					            	<span class="text-secondary"> Password Baru</span><br>
-                        <input type="password"  placeholder="password min 8 character" 
-                        class="required" minlength="8" id="myInputb"
-                                        name="password_new"  />
-                        <i class="fa fa-eye" onclick="myFunctionb()"></i>
-                    </h6>
-                    <label for=""> 
-                        Strength  
-                    </label> 
-                    <div class="power-container"> 
-                        <div id="power-point"></div> 
-                    </div> 
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0">
-                        <div>
-                          <span class="text-secondary"> Ketik ulang password baru </span><br>
-                          <input type="password"  placeholder="password min 8 character" 
-                          class="required" minlength="8" id="myInputc"
-                                          name="repassword"  />
-                          <i class="fa fa-eye" onclick="myFunctionc()"></i>
+                {{-- section foto --}}
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex flex-column align-items-center text-center">
+                            <img src="{{auth()->user()->getFoto()}}" class="rounded-circle" width="150"><br>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                <i class="ace-icon fa fa-pencil"></i>
+                            </button>
+                            <div class="mt-3">
+                                <h4>{{auth()->user()->name}}</h4>
+                                  @if ($data->jabasn_id != null)
+                                  <p class="text-secondary mb-1">{{auth()->user()->jabasn->nama}}</p>
+                                  @else
+                                  <p class="text-secondary mb-1">{{auth()->user()->jabatan->jabatan}}</p>
+                                  @endif
+                                <p class="text-muted font-size-sm">{{auth()->user()->divisi->nama}}</p>
+                            </div>
                         </div>
-                    </h6>
-                    *Ketentuan password : <br>
-                    Minimun terdiri dari 8 (delapan) karakter, dengan kombinasi : <br>
-                    - angka <br>
-                    - huruf besar dan huruf kecil <br>
-                    - karakter khusus / simbol <br>
-                  </li>
-                </ul>
-              </div>
+                    </div>
+                </div>
+                {{-- section password --}}
+                <div class="card mt-3">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <i>isi password jika ingin mengubah password</i>
+                          <h6 class="mb-0">
+                                          <span class="text-secondary"> Password Lama</span><br>
+                              <input type="password"  value="" id="myInputa"
+                                     class="required" minlength="8"
+                                    name="oldpass"/> &nbsp; 
+                              <i class="fa fa-eye" onclick="myFunction()"></i>
+                          </h6>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                          <h6 class="mb-0">
+                                          <span class="text-secondary"> Password Baru</span><br>
+                              <input type="password"  placeholder="password min 8 character" 
+                              class="required" minlength="8" id="myInputb"
+                                              name="password_new"  />
+                              <i class="fa fa-eye" onclick="myFunctionb()"></i>
+                          </h6>
+                          <label for=""> 
+                              Strength  
+                          </label> 
+                          <div class="power-container"> 
+                              <div id="power-point"></div> 
+                          </div> 
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                          <h6 class="mb-0">
+                              <div>
+                                <span class="text-secondary"> Ketik ulang password baru </span><br>
+                                <input type="password"  placeholder="password min 8 character" 
+                                class="required" minlength="8" id="myInputc" onkeyup="ceksama()"
+                                                name="repassword"  />
+                                <i class="fa fa-eye" onclick="myFunctionc()"></i>
+                              </div>
+                          </h6>
+                          *Ketentuan password : <br>
+                          Minimun terdiri dari 8 (delapan) karakter, dengan kombinasi : <br>
+                          - angka <br>
+                          - huruf besar dan huruf kecil <br>
+                          - karakter khusus / simbol <br>
+                        </li>
+                    </ul>
+                </div>
             </div>
+            {{-- section data diri --}}
             <div class="col-md-8">
-              <div class="card mb-3">
-                <div class="card-body">
-                  <br>
-                  <div class="row">
-                    <div class="col-sm-2">
-                      Tempat/ Tanggal Lahir
-                    </div>
-                    <div class="col-sm-4 text-secondary">
-                      {{auth()->user()->tempat_lhr}}, {{tgl_indo(auth()->user()->tgl_lhr)}}
-                    </div>
-                    <div class="col-sm-2">
-                        Status Kepegawaian
-                    </div>
-                    <div class="col-sm-4 text-secondary">
-                        @if (auth()->user()->status=='PNS')
-                            PNS
-                        @elseif (auth()->user()->status=='PPNPN')
-                            PPNPN
-                        @elseif (auth()->user()->status=='OSC')
-                            Outsourcing
-                        @else
-                            Magang
-                        @endif
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-2">
-                        Jenis Kelamin
-                    </div>
-                    <div class="col-sm-4 text-secondary">
-                        @if (auth()->user()->jkel=='P')
-                            Perempuan
-                        @else
-                            Laki - laki
-                        @endif
-                    </div>
-                    <div class="col-sm-2">
-                        Jabatan Fungsional
-                      </div>
-                      <div class="col-sm-4 text-secondary">
-                        @if ($data->jabasn_id != null)
-                            {{auth()->user()->jabasn->nama}}
-                        @else
-                            -
-                        @endif
-                      </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-2">
-                        Status Pernikahan
-                    </div>
-                    <div class="col-sm-4 text-secondary">
-                        @if (auth()->user()->nikah=='Y')
-                            Menikah
-                        @else
-                            Lajang
-                        @endif
-                    </div>
-                    <div class="col-sm-2">
-                        Pangkat & Golongan
-                    </div>
-                    <div class="col-sm-4 text-secondary">
-                        @if (auth()->user()->golongan_id != null)
-                            {{auth()->user()->gol->jenis}} / {{auth()->user()->gol->golongan}}/{{auth()->user()->gol->ruang}}
-                        @else
-                            -
-                        @endif
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-2">
-                        No. Telp
-                    </div>
-                    <div class="col-sm-4 text-secondary">
-                        <div id="nohape">
-                            <label for="">
-                                {{auth()->user()->telp}}
-                            </label>
-                            <i class="ace-icon fa fa-pencil" onclick="hape()"></i>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                Tempat/ Tanggal Lahir
+                            </div>
+                            <div class="col-sm-4 text-secondary">
+                                {{auth()->user()->tempat_lhr}}, {{tgl_indo(auth()->user()->tgl_lhr)}}
+                            </div>
+                            <div class="col-sm-2">
+                                Status Kepegawaian
+                            </div>
+                            <div class="col-sm-4 text-secondary">
+                                @if (auth()->user()->status=='PNS')
+                                    PNS
+                                @elseif (auth()->user()->status=='PPNPN')
+                                    PPNPN
+                                @elseif (auth()->user()->status=='OSC')
+                                    Outsourcing
+                                @else
+                                    Magang
+                                @endif
+                            </div>
                         </div>
-                        <div id="ubahhape">
-                            <input type="number" name="telp" class="col-xs-10 col-sm-10" value="{{auth()->user()->telp}}">    
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                Jenis Kelamin
+                            </div>
+                            <div class="col-sm-4 text-secondary">
+                                @if (auth()->user()->jkel=='P')
+                                    Perempuan
+                                @else
+                                    Laki - laki
+                                @endif
+                            </div>
+                            <div class="col-sm-2">
+                                Jabatan Fungsional
+                            </div>
+                            <div class="col-sm-4 text-secondary">
+                                @if ($data->jabasn_id != null)
+                                    {{auth()->user()->jabasn->nama}}
+                                @else
+                                    -
+                                @endif
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                Status Pernikahan
+                            </div>
+                            <div class="col-sm-4 text-secondary">
+                                @if (auth()->user()->nikah=='Y')
+                                    Menikah
+                                @else
+                                    Lajang
+                                @endif
+                            </div>
+                            <div class="col-sm-2">
+                                Pangkat & Golongan
+                            </div>
+                            <div class="col-sm-4 text-secondary">
+                                @if (auth()->user()->golongan_id != null)
+                                    {{auth()->user()->gol->jenis}} / {{auth()->user()->gol->golongan}}/{{auth()->user()->gol->ruang}}
+                                @else
+                                    -
+                                @endif
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row" id="lorem">
+                            <div class="col-sm-2">
+                                No Telp / WA
+                            </div>
+                            <div class="col-sm-4 text-secondary">
+                                <div id="nohape">
+                                    <label for="">
+                                        {{auth()->user()->telp}}
+                                    </label>
+                                    <i class="ace-icon fa fa-pencil" onclick="hape()"></i>
+                                </div>
+                                <div id="ubahhape">
+                                    <input type="number" name="telp" class="col-xs-10 col-sm-10" value="{{auth()->user()->telp}}">    
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                Kelompok
+                            </div>
+                            <div class="col-sm-4 text-secondary">
+                                {{auth()->user()->divisi->nama}}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                Email 
+                            </div>
+                            <div class="col-sm-4 text-secondary">
+                                <div id="alamatpesan">
+                                    <label for="">
+                                        {{auth()->user()->email}}
+                                    </label>
+                                    <i class="ace-icon fa fa-pencil" onclick="pesan()"></i>
+                                </div>
+                                <div id="ubahpesan">
+                                    <input type="text" name="email" class="col-xs-10 col-sm-10" value="{{auth()->user()->email}}">    
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                Sub Kelompok
+                            </div>
+                            <div class="col-sm-4 text-secondary">
+                                @if (auth()->user()->subdivisi_id != null)
+                                    {{auth()->user()->subdivisi->nama_subdiv}}
+                                @else
+                                -
+                                @endif
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                Alamat
+                            </div>
+                            <div class="col-sm-10 text-secondary">
+                                <div id="alamatrumah">
+                                    <label for="">
+                                        {{auth()->user()->alamat}}
+                                    </label>
+                                    <i class="ace-icon fa fa-pencil" onclick="rumah()"></i>
+                                </div>
+                                <div id="ubahrumah">
+                                    <textarea class="col-xs-10 col-sm-10" name="alamat">{{auth()->user()->alamat}}</textarea>    
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-sm-2">
-                        Kelompok
-                    </div>
-                    <div class="col-sm-4 text-secondary">
-                        {{auth()->user()->divisi->nama}}
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-2">
-                        Email 
-                    </div>
-                    <div class="col-sm-4 text-secondary">
-                        <div id="alamatpesan">
-                            <label for="">
-                                {{auth()->user()->email}}
-                            </label>
-                            <i class="ace-icon fa fa-pencil" onclick="pesan()"></i>
-                        </div>
-                        <div id="ubahpesan">
-                            <input type="text" name="email" class="col-xs-10 col-sm-10" value="{{auth()->user()->email}}">    
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        Sub Kelompok
-                    </div>
-                    <div class="col-sm-4 text-secondary">
-                        @if (auth()->user()->subdivisi_id != null)
-                            {{auth()->user()->subdivisi->nama_subdiv}}
-                        @else
-                        -
-                        @endif
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-2">
-                        Alamat
-                    </div>
-                    <div class="col-sm-10 text-secondary">
-                        <div id="alamatrumah">
-                            <label for="">
-                                {{auth()->user()->alamat}}
-                            </label>
-                            <i class="ace-icon fa fa-pencil" onclick="rumah()"></i>
-                        </div>
-                        <div id="ubahrumah">
-                            <textarea class="col-xs-10 col-sm-10" name="alamat">{{auth()->user()->alamat}}</textarea>    
-                        </div>
-                    </div>
-                  </div>
                 </div>
-              </div>
-              <br>
-              <div class="col-md-12" style="text-align: right" id="updatedinfo">
-                <input type="submit" class="btn btn-primary" value="UPDATE INFORMASI"/>
-              </div>
+                <br>
+                <div class="col-md-12" style="text-align: right" id="updatedinfo">
+                    <input type="submit" class="btn btn-primary" value="UPDATE INFORMASI"/>
+                </div>
             </div>
-          </div>
         </div>
-
+    </div>
     </form>
     <div class="clearfix"></div>
+
+    {{-- data keluarga --}}
     <ul class="nav nav-tabs">
         <li class="active"><a href="#tab-keluarga" data-toggle="tab">Keluarga</a></li>
         <li><a href="#tab-dokument" data-toggle="tab">Dokumen Pendukung</a></li>
@@ -275,44 +278,78 @@
       
     </div>
 
-{{-- Modal --}}
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ubah Foto</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <form action="{{Route('profile.updatefoto')}}" method="post" enctype="multipart/form-data">
-            {{ csrf_field() }}
-            <div class="modal-body">
-                <div class="form-group">
-                    <label class="col-sm-3 control-label no-padding-right" 
-                    for="form-field-1"> File Foto
-                    </label>
-                    <div class="col-sm-9">
-                        <input type="file"  class="col-xs-8 col-sm-8 required " 
-                        name="foto_new" required />
-                    </div>
-                    <i>** File foto support jpeg, png</i>
+    {{-- modal --}}
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ubah Foto</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
+                <form action="{{Route('profile.updatefoto')}}" method="post" enctype="multipart/form-data">
+                    {{ csrf_field() }}
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> File Foto
+                            </label>
+                            <div class="col-sm-9">
+                                <input type="file"  class="col-xs-8 col-sm-8 required " 
+                                name="foto_new" required />
+                            </div>
+                            <i>** File foto support jpeg, png</i>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
             </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save changes</button>
-            </div>
-        </form>
-      </div>
+        </div>
     </div>
-  </div>
 @endsection
-
 @section('footer')
 <script>
- 
+    $(window).on('load', function() {
+        // data diri
+        $("#ubahhape").hide();
+        $("#ubahrumah").hide();
+        $("#ubahpesan").hide();
 
+        //untuk keluarga
+        getKeluarga();
+        getRiwayat();
+        getDokument();
+        getPengalaman();
+        getDokkepegawaian();
+        $(".ta").hide();
+        $(".ua").hide();
+        $(".tf").hide();
+        $(".uf").hide();
+        $("#jur").hide();
+
+        // pendidikan
+        $("#tambah").hide();
+        $("#edit").hide();
+
+        // dokumen
+        $("#tambah-dokument").hide();
+        $("#edit-dokument").hide();
+
+        // dokpeg
+        $("#tambah-dokpeg").hide();
+        $("#edit-dokpeg").hide();
+
+        // pengalaman
+        $("#tambah-pengalaman").hide();
+        $("#edit-pengalaman").hide();
+
+    });
+
+    // password
     function myFunction() {
     var x = document.getElementById("myInputa");
         if (x.type === "password") {
@@ -328,6 +365,8 @@
         } else {
             x.type = "password";
         }
+
+        ceksama();
     }
     function myFunctionc() {
     var x = document.getElementById("myInputc");
@@ -337,11 +376,47 @@
             x.type = "password";
         }
     }
+    
+        function ceksama() {
+            var a = document.getElementById("myInputa");
+            var b = document.getElementById("myInputb");
+            if (a == b) {
+                alert("password tidak boleh sama dengan yang lama");
+            }
+        }
+
+    //strenght pass
+    let password = document.getElementById("myInputb"); 
+    let power = document.getElementById("power-point"); 
+    password.oninput = function () { 
+        let point = 0; 
+        let value = password.value; 
+        let widthPower =  
+            ["1%", "25%", "50%", "75%", "100%"]; 
+        let colorPower =  
+            ["#D73F40", "#DC6551", "#F2B84F", "#BDE952", "#3ba62f"]; 
+    
+        if (value.length >= 6) { 
+            let arrayTest =  
+                [/[0-9]/, /[a-z]/, /[A-Z]/, /[^0-9a-zA-Z]/]; 
+            arrayTest.forEach((item) => { 
+                if (item.test(value)) { 
+                    point += 1; 
+                } 
+            }); 
+        } 
+        power.style.width = widthPower[point]; 
+        power.style.backgroundColor = colorPower[point]; 
+    };
+
+    // datadiri
+    function getpeg(){
+        var user_id = $("#user_id").val();
+    }
 
     function hape() {
         $("#ubahhape").show();  
         $("#nohape").hide();
-        $("#updatedinfo").show();
     }
     function rumah() {
         $("#ubahrumah").show();  
@@ -351,29 +426,9 @@
     function pesan() {
         $("#ubahpesan").show();  
         $("#alamatpesan").hide();
-        $("#updatedinfo").show();
     }
 
-    $().ready( function () {
-        $("#ubahhape").hide();
-        $("#ubahrumah").hide();
-        $("#ubahpesan").hide();
-
-        getKeluarga();
-        getRiwayat();
-        getDokument();
-        getPengalaman();
-        getDokkepegawaian();
-
-       
-
-        //untuk keluarga
-        $(".ta").hide();
-        $(".ua").hide();
-        $(".tf").hide();
-        $(".uf").hide();
-        $("#jur").hide();
-
+    // pendidikan
         $("#jenj").on("change", function(){
             var v = $(this).val();
             if(v==1 || v==2 || v==3){
@@ -382,45 +437,6 @@
                 $("#jur").show();
             } 
         });
-        
-        $('#addfam').click(function () {
-            $( '[data-toggle="tab"][href="#TambahSaudara"]' ).trigger( 'click' );
-            $(".af").hide();
-            $(".tf").show();
-            $(".uf").hide();
-        });
-
-        $('#addanak').click(function () {
-            $( '[data-toggle="tab"][href="#TambahAnak"]' ).trigger( 'click' );
-            $(".aa").hide();
-            $(".ta").show();
-            $(".ua").hide();
-        });
-
-      
-      
-        $(".deletesau").click(function() {
-                var id = $(this).attr('r-id');
-                var name = $(this).attr('r-name');
-                Swal.fire({
-                title: 'Ingin Menghapus?',
-                text: "Yakin ingin menghapus data  : "+name+" ini ?" ,
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, hapus !'
-            }).then((result) => {
-                console.log(result);
-                if (result.value) {
-                    window.location = "/profile/deletesaudara/"+id;
-                }
-            });
-        });
-
-        //untuk riwayat pendidikan
-        $("#tambah").hide();
-        $("#edit").hide();
 
         $('#Addata').click(function () {
             $("#daftar").hide();
@@ -434,72 +450,40 @@
             $("#edit").hide();
         });
 
-        //for dokument
-        $("#tambah-dokument").hide();
-        $("#edit-dokument").hide();
 
-        $('#AddataDokument').click(function () {
-            $("#daftar-dokument").hide();
-            $("#tambah-dokument").show();
-            $("#edit-dokument").hide();
+    // keluarga
+    $('#addfam').click(function () {
+        $( '[data-toggle="tab"][href="#TambahSaudara"]' ).trigger( 'click' );
+        $(".af").hide();
+        $(".tf").show();
+        $(".uf").hide();
+    });
+
+    $('#addanak').click(function () {
+        $( '[data-toggle="tab"][href="#TambahAnak"]' ).trigger( 'click' );
+        $(".aa").hide();
+        $(".ta").show();
+        $(".ua").hide();
+    });
+
+    $(".deletesau").click(function() {
+        var id = $(this).attr('r-id');
+        var name = $(this).attr('r-name');
+        Swal.fire({
+            title: 'Ingin Menghapus?',
+            text: "Yakin ingin menghapus data  : "+name+" ini ?" ,
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, hapus !'
+        }).then((result) => {
+            console.log(result);
+            if (result.value) {
+                window.location = "/profile/deletesaudara/"+id;
+            }
         });
-
-        $('.kembaliDokument').click(function () {
-            $("#daftar-dokument").show();
-            $("#tambah-dokument").hide();
-            $("#edit-dokument").hide();
-        });
-
-          //for dokpeg
-        $("#tambah-dokpeg").hide();
-        $("#edit-dokpeg").hide();
-
-        $('#AddataDokpeg').click(function () {
-            $("#daftar-dokpeg").hide();
-            $("#tambah-dokpeg").show();
-            $("#edit-dokpeg").hide();
-        });
-
-        $('.kembaliDokpeg').click(function () {
-            $("#daftar-dokpeg").show();
-            $("#tambah-dokpeg").hide();
-            $("#edit-dokpeg").hide();
-        });
-
-
-        $(".optionjendok").on("change", function(){
-            var v = $(this).val();
-            if(v=="1" || v=="2"){
-                $(".namapangkat").hide();
-                $(".namatmt").hide();
-            }else{
-                $(".namapangkat").show();
-                $(".namatmt").show();
-            } 
-        });
-
-        // FOR PENGALAMAN
-        $("#tambah-pengalaman").hide();
-        $("#edit-pengalaman").hide();
-
-        $('#Addata-pengalaman').click(function () {
-            $("#daftar-pengalaman").hide();
-            $("#tambah-pengalaman").show();
-            $("#edit-pengalaman").hide();
-        });
-
-        $('.kembaliPengalaman').click(function () {
-            $("#daftar-pengalaman").show();
-            $("#tambah-pengalaman").hide();
-            $("#edit-pengalaman").hide();
-        });
-
-    } );
-
-
-    function getpeg(){
-        var user_id = $("#user_id").val();
-    }
+    }); 
 
     function getKeluarga(){
         var user_id = $("#user_id").val();
@@ -747,6 +731,7 @@
         );
     }
 
+    // riwayat
     function getRiwayat(){
         var user_id = $("#user_id").val();
         $(".jenjuser").val(user_id);
@@ -831,7 +816,20 @@
             }
         );
     }
-    
+
+    // dokumen
+    $('#AddataDokument').click(function () {
+        $("#daftar-dokument").hide();
+        $("#tambah-dokument").show();
+        $("#edit-dokument").hide();
+    });
+
+    $('.kembaliDokument').click(function () {
+        $("#daftar-dokument").show();
+        $("#tambah-dokument").hide();
+        $("#edit-dokument").hide();
+    });
+
     function getDokument(){
         var user_id = $("#user_id").val();
         $(".jenjuser").val(user_id);
@@ -914,6 +912,7 @@
         );
     }
 
+    // pengalaman
     function getPengalaman(){
         var user_id = $("#user_id").val();
         $(".jenjuser").val(user_id);
@@ -994,8 +993,32 @@
         );
     }
 
+    // dokpeg
+        $('#AddataDokpeg').click(function () {
+            $("#daftar-dokpeg").hide();
+            $("#tambah-dokpeg").show();
+            $("#edit-dokpeg").hide();
+        });
 
-    function getDokkepegawaian(){
+        $('.kembaliDokpeg').click(function () {
+            $("#daftar-dokpeg").show();
+            $("#tambah-dokpeg").hide();
+            $("#edit-dokpeg").hide();
+        });
+
+
+        $(".optionjendok").on("change", function(){
+            var v = $(this).val();
+            if(v=="1" || v=="2"){
+                $(".namapangkat").hide();
+                $(".namatmt").hide();
+            }else{
+                $(".namapangkat").show();
+                $(".namatmt").show();
+            } 
+        });
+
+        function getDokkepegawaian(){
         var user_id = $("#user_id").val();
         $(".jenjuser").val(user_id);
 
@@ -1088,30 +1111,18 @@
             }
         );
     }
-
-    //strenght pass
-    let password = document.getElementById("myInputb"); 
-    let power = document.getElementById("power-point"); 
-    password.oninput = function () { 
-        let point = 0; 
-        let value = password.value; 
-        let widthPower =  
-            ["1%", "25%", "50%", "75%", "100%"]; 
-        let colorPower =  
-            ["#D73F40", "#DC6551", "#F2B84F", "#BDE952", "#3ba62f"]; 
     
-        if (value.length >= 6) { 
-            let arrayTest =  
-                [/[0-9]/, /[a-z]/, /[A-Z]/, /[^0-9a-zA-Z]/]; 
-            arrayTest.forEach((item) => { 
-                if (item.test(value)) { 
-                    point += 1; 
-                } 
-            }); 
-        } 
-        power.style.width = widthPower[point]; 
-        power.style.backgroundColor = colorPower[point]; 
-    };
+    // penngalaman
+        $('#Addata-pengalaman').click(function () {
+            $("#daftar-pengalaman").hide();
+            $("#tambah-pengalaman").show();
+            $("#edit-pengalaman").hide();
+        });
 
+        $('.kembaliPengalaman').click(function () {
+            $("#daftar-pengalaman").show();
+            $("#tambah-pengalaman").hide();
+            $("#edit-pengalaman").hide();
+        });
 </script>
 @endsection
