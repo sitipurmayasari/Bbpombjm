@@ -119,6 +119,7 @@ class ProfileController extends Controller
             ]);
             $hashPassword = $user->password;
             if (Hash::check($request->oldpass, $hashPassword)) {
+                $user->touch();
                 $user->update([  'password' => bcrypt($request->password_new)]);
             }else{
                 return redirect('/profile')->with('gagal','Password Lama Salah');

@@ -11,6 +11,21 @@
     .sidebar{
         overflow: auto;
     }
+
+    .power-container { 
+        background-color: #2E424D; 
+        width: 100%; 
+        height: 15px; 
+        border-radius: 5px; 
+    } 
+  
+    .power-container #power-point { 
+        background-color: #D73F40; 
+        width: 1%; 
+        height: 100%; 
+        border-radius: 5px; 
+        transition: 0.5s; 
+    }
 </style>
 @include('layouts.validasi')
     <form action="/profile/update/{{auth()->user()->id}}" method="POST">
@@ -58,6 +73,12 @@
                                         name="password_new"  />
                         <i class="fa fa-eye" onclick="myFunctionb()"></i>
                     </h6>
+                    <label for=""> 
+                        Strength  
+                    </label> 
+                    <div class="power-container"> 
+                        <div id="power-point"></div> 
+                    </div> 
                   </li>
                   <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                     <h6 class="mb-0">
@@ -69,6 +90,11 @@
                           <i class="fa fa-eye" onclick="myFunctionc()"></i>
                         </div>
                     </h6>
+                    *Ketentuan password : <br>
+                    Minimun terdiri dari 8 (delapan) karakter, dengan kombinasi : <br>
+                    - angka <br>
+                    - huruf besar dan huruf kecil <br>
+                    - karakter khusus / simbol <br>
                   </li>
                 </ul>
               </div>
@@ -158,7 +184,7 @@
                             <i class="ace-icon fa fa-pencil" onclick="hape()"></i>
                         </div>
                         <div id="ubahhape">
-                            <input type="text" name="telp" class="col-xs-10 col-sm-10" value="{{auth()->user()->telp}}">    
+                            <input type="number" name="telp" class="col-xs-10 col-sm-10" value="{{auth()->user()->telp}}">    
                         </div>
                     </div>
                     <div class="col-sm-2">
@@ -1062,6 +1088,30 @@
             }
         );
     }
+
+    //strenght pass
+    let password = document.getElementById("myInputb"); 
+    let power = document.getElementById("power-point"); 
+    password.oninput = function () { 
+        let point = 0; 
+        let value = password.value; 
+        let widthPower =  
+            ["1%", "25%", "50%", "75%", "100%"]; 
+        let colorPower =  
+            ["#D73F40", "#DC6551", "#F2B84F", "#BDE952", "#3ba62f"]; 
+    
+        if (value.length >= 6) { 
+            let arrayTest =  
+                [/[0-9]/, /[a-z]/, /[A-Z]/, /[^0-9a-zA-Z]/]; 
+            arrayTest.forEach((item) => { 
+                if (item.test(value)) { 
+                    point += 1; 
+                } 
+            }); 
+        } 
+        power.style.width = widthPower[point]; 
+        power.style.backgroundColor = colorPower[point]; 
+    };
 
 </script>
 @endsection
