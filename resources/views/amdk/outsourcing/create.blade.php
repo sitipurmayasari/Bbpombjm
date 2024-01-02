@@ -36,6 +36,11 @@
                                         name="no_pegawai" required  />
                                         *tidak boleh sama
                                 <input type="hidden" value="N" name="aktif">
+                                @error('no_pegawai')
+                                    <span class="text-danger role="alert">
+                                        {{ $message}}
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 

@@ -101,6 +101,8 @@ class ProfileController extends Controller
         $user = Auth::user();
         // dd($request->all());
         $this->validate($request, [
+            'oldpass' => 'required',
+            'password_new' => 'required|different:oldpass',
             'email' => 'required|unique:users,email,'.$user->id,
             'telp' => 'required',
         ]);

@@ -367,6 +367,45 @@ h2, a {
 </head>
 
 <body background="{{asset('images/background.jpg')}}">
+  {{-- modal --}}
+  @php
+      if ($pop != null) {
+        $n = 1;
+      } else {
+        $n = 0;
+      }
+      
+  @endphp
+  <input type="hidden" id="mpop" value="{{$n}}">
+
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Password</h4>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+          Anda sudah lama tidak mengubah password. <br>
+          Harap segera ubah password anda sebelum Kadaluarsa. 
+          <br>Terima Kasih 
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  {{-- modal --}}
+
+
+
   <div class="wrapper">
     <div class="sidebar" data-background-color="white">
       <div class="card">
@@ -553,10 +592,14 @@ h2, a {
 		<script src="{{asset('assets/js/dataTables.select.min.js')}}"></script>
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 		<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-      $(document).ready(function() {
-
-      });
+       var a = $('#mpop').val();
+        $(window).on('load', function() {
+            if (a == 0) {
+              $('#myModal').modal('show');
+            }
+        });   
     </script>
   </body>
-</html>                            
+</html>

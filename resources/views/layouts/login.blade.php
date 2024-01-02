@@ -18,23 +18,35 @@
         background-repeat: no-repeat;
         background-size: cover;
         }
+
+        .login-form{
+            margin-top: 15px;
+        }
 </style>
 
 </head>
 <body background="{{asset('images/background.jpg')}}">
 <div class="login-form">
+    
     <form action="{{Route('auth')}}" method="post">
         {{ csrf_field() }}
     	<img src="{{asset('images/bbpom.jpg')}}" style="height:100px">
         <br><br>        
         <table style="width: 100%">
             <tr>
+
                 <td>
                     <div class="form-group has-error">
-                        <input type="email" class="form-control" 
+                        <input type="text" class="form-control" 
                             name="email" placeholder="Email" 
                             required="required" value="{{old("email")}}">
                     </div>
+                    @error('email')
+                    <span class="text-danger role="alert">
+                        {{ $message }}
+                    </span>
+                @enderror
+               
                     <div class="form-group">
                         <input type="password" class="form-control" 
                             name="password" placeholder="Password" id="myInpute"
@@ -44,6 +56,23 @@
                 <td>
                     <br><br>
                     <i class="fa fa-eye" onclick="eye()" id="eye" style="margin-left: -30px; cursor: pointer;"></i>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div> <p>{!! captcha_img('math') !!}</p> </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" 
+                            name="captcha" placeholder="Captcha"
+                            required="required" value="{{old("captcha")}}">
+
+                            @error('captcha')
+                                <span class="text-danger role="alert">
+                                    {{ $message}}
+                                </span>
+                            @enderror
+                    </div>   
+                   
                 </td>
             </tr>
         </table>

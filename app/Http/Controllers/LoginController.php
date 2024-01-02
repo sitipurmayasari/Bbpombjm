@@ -21,6 +21,7 @@ class LoginController extends Controller
         $request->validate([
             'email' => 'required|string|email',
             'password' => 'required|string',
+            'captcha' => 'required|captcha'
         ]);
 
         if(Auth::attempt([

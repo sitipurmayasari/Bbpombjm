@@ -61,7 +61,7 @@
                           <h6 class="mb-0">
                                           <span class="text-secondary"> Password Lama</span><br>
                               <input type="password"  value="" id="myInputa"
-                                     class="required" minlength="8"
+                                      minlength="8"
                                     name="oldpass"/> &nbsp; 
                               <i class="fa fa-eye" onclick="myFunction()"></i>
                           </h6>
@@ -73,6 +73,12 @@
                               class="required" minlength="8" id="myInputb"
                                               name="password_new"  />
                               <i class="fa fa-eye" onclick="myFunctionb()"></i>
+                              
+                            @error('password_newp')
+                            <span class="text-danger role="alert">
+                                {{ $message}}
+                            </span>
+                        @enderror
                           </h6>
                           <label for=""> 
                               Strength  
@@ -86,7 +92,7 @@
                               <div>
                                 <span class="text-secondary"> Ketik ulang password baru </span><br>
                                 <input type="password"  placeholder="password min 8 character" 
-                                class="required" minlength="8" id="myInputc" onkeyup="ceksama()"
+                                class="required" minlength="8" id="myInputc"
                                                 name="repassword"  />
                                 <i class="fa fa-eye" onclick="myFunctionc()"></i>
                               </div>
@@ -365,8 +371,6 @@
         } else {
             x.type = "password";
         }
-
-        ceksama();
     }
     function myFunctionc() {
     var x = document.getElementById("myInputc");
@@ -376,14 +380,6 @@
             x.type = "password";
         }
     }
-    
-        function ceksama() {
-            var a = document.getElementById("myInputa");
-            var b = document.getElementById("myInputb");
-            if (a == b) {
-                alert("password tidak boleh sama dengan yang lama");
-            }
-        }
 
     //strenght pass
     let password = document.getElementById("myInputb"); 

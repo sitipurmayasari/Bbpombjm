@@ -168,6 +168,7 @@ return [
          * Package Service Providers...
          */
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Mews\Captcha\CaptchaServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -235,6 +236,8 @@ return [
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
         'LogActivity' => App\Helpers\LogActivity::class,
         'Browser' => \hisorange\BrowserDetect\Facade::class,
+        'Captcha' => Mews\Captcha\Facades\Captcha::class,
+
     ],
 
 ];
