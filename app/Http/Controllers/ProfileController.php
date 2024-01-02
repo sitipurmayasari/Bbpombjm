@@ -105,6 +105,8 @@ class ProfileController extends Controller
             'password_new' => 'required|different:oldpass',
             'email' => 'required|unique:users,email,'.$user->id,
             'telp' => 'required',
+        ],[
+            'password_new.different' => 'Password Baru Tidak Boleh Sama Dengan Password Lama'
         ]);
 
         $user->update([

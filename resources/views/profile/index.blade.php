@@ -58,6 +58,11 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                             <i>isi password jika ingin mengubah password</i>
+                            *Ketentuan password : <br>
+                            Minimun terdiri dari 8 (delapan) karakter, dengan kombinasi : <br>
+                            - angka <br>
+                            - huruf besar dan huruf kecil <br>
+                            - karakter khusus / simbol <br>
                           <h6 class="mb-0">
                                           <span class="text-secondary"> Password Lama</span><br>
                               <input type="password"  value="" id="myInputa"
@@ -74,9 +79,10 @@
                                               name="password_new"  />
                               <i class="fa fa-eye" onclick="myFunctionb()"></i>
                               
-                            @error('password_newp')
-                            <span class="text-danger role="alert">
-                                {{ $message}}
+                            @error('password_new')
+                            <br>
+                            <span class="text-danger" role="alert">
+                                {{"Password Lama Tidak Boleh Sama Dengan Password Yang Baru"}}
                             </span>
                         @enderror
                           </h6>
@@ -97,11 +103,6 @@
                                 <i class="fa fa-eye" onclick="myFunctionc()"></i>
                               </div>
                           </h6>
-                          *Ketentuan password : <br>
-                          Minimun terdiri dari 8 (delapan) karakter, dengan kombinasi : <br>
-                          - angka <br>
-                          - huruf besar dan huruf kecil <br>
-                          - karakter khusus / simbol <br>
                         </li>
                     </ul>
                 </div>
