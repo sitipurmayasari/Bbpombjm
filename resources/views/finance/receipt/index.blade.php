@@ -52,25 +52,40 @@
                     <td>{{$row->st->number}}</td>
                     <td>{{$row->st->purpose}}</td>
                     <td style="text-align: center">
-                        <a class="btn btn-primary" href="/finance/receipt/cost/{{$row->id}}" target="_blank" 
+                        @if ($row->st->pok_detail_id == 1 || $row->st->pok_detail_id == 0)
+                            <a class="btn btn-danger agr" href="#"
+                            rel="noopener noreferrer">NA</a>
+                        @else
+                        <a class="btn btn-primary agr" href="/finance/receipt/cost/{{$row->id}}" target="_blank" 
                             rel="noopener noreferrer">Kuitansi</a>
-                        <a class="btn btn-warning" href="/finance/receipt/nominatif/{{$row->id}}" target="_blank" 
+                        <a class="btn btn-warning agr" href="/finance/receipt/nominatif/{{$row->id}}" target="_blank" 
                                 rel="noopener noreferrer">Nominatif</a>
+                        @endif
                     </td>
                     <td style="text-align: center">
-                        <a class="btn btn-primary" href="/finance/receipt/riil/{{$row->id}}" target="_blank" 
-                            rel="noopener noreferrer">Riil</a>
-                        <a class="btn btn-warning" href="/finance/receipt/riilkkp/{{$row->id}}" target="_blank" 
-                            rel="noopener noreferrer">KKP</a>
+                        @if ($row->st->pok_detail_id == 1 || $row->st->pok_detail_id == 0)
+                            <a class="btn btn-danger agr" href="#"
+                            rel="noopener noreferrer">NA</a>
+                        @else
+                            <a class="btn btn-primary agr" href="/finance/receipt/riil/{{$row->id}}" target="_blank" 
+                                rel="noopener noreferrer">Riil</a>
+                            <a class="btn btn-warning agr" href="/finance/receipt/riilkkp/{{$row->id}}" target="_blank" 
+                                rel="noopener noreferrer">KKP</a>
+                        @endif
                     </td>
                     <td style="text-align: center">
-                        <a class="btn btn-primary" href="/finance/receipt/super/{{$row->id}}" target="_blank" 
-                            rel="noopener noreferrer">SuPer</a> <br>
-                        <a class="btn btn-warning" href="/finance/receipt/super30/{{$row->id}}" target="_blank" 
-                            rel="noopener noreferrer">SuPer30%</a>
-                        @if ($row->st->type == 'DL8')
-                            <a class="btn btn-success" href="/finance/travelexpenses/super8J/{{$row->id}}" target="_blank" 
-                                rel="noopener noreferrer">SuPer>8Jam</a>
+                        @if ($row->st->pok_detail_id == 1 || $row->st->pok_detail_id == 0)
+                            <a class="btn btn-danger agr" href="#"
+                            rel="noopener noreferrer">NA</a>
+                        @else
+                            <a class="btn btn-primary agr" href="/finance/receipt/super/{{$row->id}}" target="_blank" 
+                                rel="noopener noreferrer">SuPer</a> <br>
+                            <a class="btn btn-warning agr" href="/finance/receipt/super30/{{$row->id}}" target="_blank" 
+                                rel="noopener noreferrer">SuPer30%</a>
+                            @if ($row->st->type == 'DL8')
+                                <a class="btn btn-success agr" href="/finance/travelexpenses/super8J/{{$row->id}}" target="_blank" 
+                                    rel="noopener noreferrer">SuPer>8Jam</a>
+                            @endif
                         @endif
                     </td>
                     <td>

@@ -49,6 +49,7 @@
                                         <option value="{{$item->id}}">{{$item->number}}</option>
                                     @endforeach
                                 </select>
+                                <br>*note : Jika Nomor ST tidak ditemukan, maka ST merupakan non-anggaran.
                             </div>
                         </div>
                         <div class="form-group">
