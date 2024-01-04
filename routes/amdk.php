@@ -17,6 +17,7 @@
    Route::post('/amdk/outsourcing/update/{id}','Amdk\OutsourcingController@update')->name('outsourcing.update');
    Route::post('/amdk/outsourcing/storepangol','Amdk\OutsourcingController@storepangol')->name('outsourcing.storepangol');
    Route::post('/amdk/outsourcing/storejafung','Amdk\OutsourcingController@storejafung')->name('outsourcing.storejafung');
+   Route::get('/amdk/outsourcing/delete/{id}','Amdk\OutsourcingController@delete')->name('outsourcing.delete');
 
   //Route untuk pengumuman
   Route::get('/amdk/pengumuman/create','Amdk\PengumumanController@create')->name('pengumuman.create');

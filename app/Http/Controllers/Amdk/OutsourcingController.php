@@ -11,6 +11,7 @@ use App\User;
 use App\Golongan;
 use Illuminate\Support\Str;
 use App\Jabasn;
+use LogActivity;
 
 
 class OutsourcingController extends Controller
@@ -55,6 +56,9 @@ class OutsourcingController extends Controller
         ]);
 
         $user=User::create($request->all());
+
+        LogActivity::addToLog('Simpan->Pegawai Eksternal');
+        
         return redirect('/amdk/outsourcing')->with('sukses','Data Tersimpan');
     }
 
@@ -71,6 +75,9 @@ class OutsourcingController extends Controller
     {
         $user = User::find($id);
         $user->update($request->all());
+
+        LogActivity::addToLog('Ubah->Pegawai Eksternal->'.$user->name); 
+
         return redirect('/amdk/outsourcing')->with('sukses','Data Diperbaharui');
     }
 
@@ -89,6 +96,15 @@ class OutsourcingController extends Controller
     {
         Jabasn::create($request->all());
         return redirect('/amdk/outsourcing/create')->with('sukses','JaFung Berhasil Ditambahkan');
+    }
+
+    public function delete($id)
+    {
+        $data = User::find($id);
+        LogActivity::addToLog('Hapus->Pegawai Eksternal->id->'.$id); 
+
+        $data->delete();
+        return redirect('/amdk/outsourcing')->with('sukses','Data Terhapus');
     }
 
 }
