@@ -35,6 +35,7 @@
                                     <option value="rusaktik2">Laporan Kerusakan TIK (Baru)</option>
                                     <option value="rusaktik">Laporan Kerusakan TIK (Lama)</option>
                                     <option value="rusak">Laporan Kerusakan Inventaris</option>
+                                    <option value="alges">Laporan Kerusakan Alat Gelas</option>
                                 </select>
                             </div>
                         </div>

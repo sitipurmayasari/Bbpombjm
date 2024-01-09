@@ -81,11 +81,11 @@
                         @endif
                     </td>
                     <td>
-                        @if ($row->stat_aduan=='D')
+                        {{-- @if ($row->stat_aduan=='D') --}}
                             <a class="btn btn-primary" href="/invent/labrequest/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">
                                 CETAK <i class="glyphicon glyphicon-print"></i>
                             </a>
-                        @endif
+                        {{-- @endif --}}
                     </td>
                 </tr>
               

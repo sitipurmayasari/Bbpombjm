@@ -12,6 +12,7 @@ use App\PengajuanDetail;
 use App\Satuan;
 use App\AduanDetail;
 use App\AduanTIK;
+use App\Broken;
 use Excel;
 use PDF;
 class LapAjuController extends Controller
@@ -84,6 +85,18 @@ class LapAjuController extends Controller
                             ->get();
             
             $pdf = PDF::loadview('invent/lapajuan.aduan2',compact('user','data','request'));
+            return $pdf->stream();
+        }else if($request->jenis_Laporan=="alges"){
+            $user   = User::all();
+            $data   = Broken::orderBy('id','asc')
+                            ->whereYear('tanggal',$request->daftartahun)
+                            ->when($request->daftarbulan, function ($query) use ($request) {
+                                $query->whereYear('tanggal',$request->daftartahun);
+                                $query->whereMonth('tanggal',$request->daftarbulan);
+                                })
+                            ->get();
+            
+            $pdf = PDF::loadview('invent/lapajuan.alges',compact('user','data','request'));
             return $pdf->stream();
         }else{
             dd($request->all());

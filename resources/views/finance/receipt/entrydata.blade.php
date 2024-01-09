@@ -311,7 +311,15 @@
             var jenis =  $("#jenis-"+i).val();
             var id =  $("#expenses_id").val();
             if (jenis == 'Transport Lokal') {
-                $("#taxifee-"+i).val(150000);  
+                $.get(
+                    "{{route('receipt.getdatatran') }}",
+                    {
+                        id: id
+                    },
+                    function(response) {
+                       $("#taxifee-"+i).val(response.data.translokal);;  
+                    }
+                ); 
 
             }else if (jenis == 'Uang Transport') {
                 $.get(
