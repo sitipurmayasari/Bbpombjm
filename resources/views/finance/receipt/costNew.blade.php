@@ -486,7 +486,7 @@
                                 @if ($dataUH->fulldaysum != 0)
                                 <tr>
                                     <td style="width: 20%">
-                                        <i>- Uang Saku Fullday</i>
+                                        <i>- Uang Saku Half/Fullday</i>
                                     </td>
                                     <td style="width: 20%">
                                         <i>&nbsp;</i>
