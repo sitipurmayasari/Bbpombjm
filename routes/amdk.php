@@ -248,3 +248,10 @@
  Route::get('/amdk/setupttd/delete/{id}','Amdk\SetTTDController@delete')->name('setupttd.delete');
  Route::get('/amdk/setupttd/edit/{id}','Amdk\SetTTDController@edit')->name('setupttd.edit');
  Route::post('/amdk/setupttd/update/{id}','Amdk\SetTTDController@update')->name('setupttd.update');
+
+  //Route untuk ketua tim
+  Route::get('/amdk/teamlead/create','Amdk\TeamLeadController@create')->name('teamlead.create');
+  Route::post('/amdk/teamlead/store','Amdk\TeamLeadController@store')->name('teamlead.store');
+  Route::get('/amdk/teamlead/delete/{id}','Amdk\TeamLeadController@delete')->name('teamlead.delete');
+  Route::get('/amdk/teamlead/edit/{id}','Amdk\TeamLeadController@edit')->name('teamlead.edit');
+  Route::post('/amdk/teamlead/update/{id}','Amdk\TeamLeadController@update')->name('teamlead.update');
