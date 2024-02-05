@@ -88,9 +88,9 @@ $no=1;
             <td colspan="2"  style="border-top: 0; text-align:center;">
                 @if ($data->external =="N")
                     Kepala Bagian Tata Usaha <br><br><br><br><br>
-                    <u><b>{{$menyetujui->user->name}} 
+                    {{-- <u><b>{{$menyetujui->user->name}} 
                     </b></u><br>
-                    NIP.{{$menyetujui->user->no_pegawai}}
+                    NIP.{{$menyetujui->user->no_pegawai}} --}}
                 @else
                     <br><br><br><br><br>&nbsp;
                 @endif
@@ -159,9 +159,9 @@ $no=1;
             <td colspan="3" style="border-top: 0; text-align:center;" >
                 @if ($data->external =="Y")
                     Kepala Bagian Tata Usaha <br><br><br><br>
-                    <u><b>{{$menyetujui->user->name}} 
+                    {{-- <u><b>{{$menyetujui->user->name}} 
                     </b></u><br>
-                    NIP.{{$menyetujui->user->no_pegawai}}
+                    NIP.{{$menyetujui->user->no_pegawai}} --}}
                 @else
                     @if ($data->nama_petugas != null)
                         {{$data->jab_petugas}} <br><br><br><br>
@@ -178,9 +178,9 @@ $no=1;
             <td colspan="2"  style="border-top: 0; text-align:center;">
                 @if ($data->external =="Y")
                     Kepala Bagian Tata Usaha <br><br><br><br>
-                    <u><b>{{$menyetujui->user->name}} 
+                    {{-- <u><b>{{$menyetujui->user->name}} 
                     </b></u><br>
-                    NIP.{{$menyetujui->user->no_pegawai}}
+                    NIP.{{$menyetujui->user->no_pegawai}} --}}
                 @else
                     @if ($data->nama_petugas != null)
                         {{$data->jab_petugas}} <br><br><br><br>
