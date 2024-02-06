@@ -41,12 +41,14 @@
                             for="form-field-1"> Nama Anggaran Dinas
                             </label>
                             <div class="col-sm-8">
-                                <input type="text"  placeholder="Nama Anggaran Dinas" 
+                                <input type="checkbox" id="reset" name="reset" value="Y" onclick="respe();">&nbsp;
+                                <label class="control-label" for="form-field-1"> DIPA Balai Besar POM di Banjarmasin </label> <br>
+                                <input type="text"  placeholder="Nama Anggaran Dinas" id="namanya"
                                         class="col-xs-10 col-sm-10 required " 
                                         name="name" required/>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group lorem">
                             <label class="col-sm-2 control-label no-padding-right" 
                             for="form-field-1"> Nomor Angaran
                             </label>
@@ -56,7 +58,7 @@
                                         name="nomor"/>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group lorem">
                             <label class="col-sm-2 control-label no-padding-right" 
                             for="form-field-1"> Tanggal Anggaran
                             </label>
@@ -66,14 +68,14 @@
                                         name="tanggal"/>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group lorem">
                             <label class="col-sm-2 control-label no-padding-right" 
                             for="form-field-1"> Tahun Anggaran
                             </label>
                             <div class="col-sm-8">
                                 <input type="number"  placeholder="20XX" 
-                                class="col-xs-3 col-sm-3 required " 
-                                        name="tahun" required/>
+                                class="col-xs-3 col-sm-3 " 
+                                        name="tahun"/>
                             </div>
                         </div>
                         </fieldset>        
@@ -92,4 +94,23 @@
     </form>
 </div>
 
+@endsection
+@section('footer')
+    <script>
+          $().ready( function () {
+            $(".lorem").hide();
+        } );
+
+        function respe(){
+            if (document.getElementById('reset').checked) 
+            {
+                $(".lorem").show();
+                $("#namanya").hide();
+                document.getElementById("namanya").value = "DIPA Balai Besar POM di Banjarmasin";
+            } else {
+                $(".lorem").hide();
+                $("#namanya").show();
+            }
+        }
+    </script>
 @endsection

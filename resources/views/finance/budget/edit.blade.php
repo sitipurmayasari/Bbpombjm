@@ -73,8 +73,8 @@
                         </label>
                         <div class="col-sm-8">
                             <input type="number"  placeholder="20XX"  value="{{$data->tahun}}"
-                            class="col-xs-3 col-sm-3 required " 
-                                    name="tahun" required/>
+                            class="col-xs-3 col-sm-3 " 
+                                    name="tahun"/>
                         </div>
                     </div>
                     </fieldset>        
