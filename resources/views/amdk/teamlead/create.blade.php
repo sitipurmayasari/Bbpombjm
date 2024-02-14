@@ -26,7 +26,7 @@
                 <div class="widget-main no-padding">
                     <fieldset>
                     <br>
-                    <div class="form-group" id="div">
+                    {{-- <div class="form-group" id="div">
                         <label class="col-sm-3 control-label no-padding-right" 
                         for="form-field-1">Bidang/Kelompok
                         </label>
@@ -38,7 +38,7 @@
                                     @endforeach
                             </select>
                         </div>
-                    </div>
+                    </div> --}}
                     <div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
