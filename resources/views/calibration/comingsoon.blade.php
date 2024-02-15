@@ -1,4 +1,4 @@
-@extends('layouts.lab')
+@extends('layouts.ot')
 @section('content')
 <style>
     .sidebar{
