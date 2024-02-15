@@ -84,6 +84,7 @@ Route::get('/qR/{id}/calibration','Calibration\GlassKualController@detail')->nam
   Route::get('/calibration/dashboard','Calibration\DashboardController@index')->name('dashboard');
   Route::get('/calibration/dashboardnapza','Calibration\DashboardNapzaController@index')->name('dashboard');
   Route::get('/calibration/dashboardtomiku','Calibration\DashboardTomikuController@index')->name('dashboard');
+  Route::get('/calibration/dashboardotkos','Calibration\DashboardOTKOSController@index')->name('dashboardotkos');
 
    //--------------------------QMS------------------------------------------
    Route::get('/qms/dashboard','Qms\DashboardController@index')->name('dashboard');
