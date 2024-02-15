@@ -87,6 +87,9 @@ $no=1;
             <td colspan="3" style="border-top: 0;"></td>
             <td colspan="2"  style="border-top: 0; text-align:center;">
                 @if ($data->external =="N")
+                    @if ($menyetujui->pjs != null)
+                        {{$menyetujui->pjs}}
+                    @endif
                     Kepala Bagian Tata Usaha <br><br><br><br><br>
                     <u><b>{{$menyetujui->user->name}} 
                     </b></u><br>
@@ -158,6 +161,9 @@ $no=1;
         <tr style="border-top: none;">
             <td colspan="3" style="border-top: 0; text-align:center;" >
                 @if ($data->external =="Y")
+                    @if ($menyetujui->pjs != null)
+                        {{$menyetujui->pjs}}
+                    @endif
                     Kepala Bagian Tata Usaha <br><br><br><br>
                     <u><b>{{$menyetujui->user->name}} 
                     </b></u><br>
@@ -177,6 +183,9 @@ $no=1;
             </td>
             <td colspan="2"  style="border-top: 0; text-align:center;">
                 @if ($data->external =="Y")
+                    @if ($menyetujui->pjs != null)
+                        {{$menyetujui->pjs}}
+                    @endif
                     Kepala Bagian Tata Usaha <br><br><br><br>
                     <u><b>{{$menyetujui->user->name}} 
                     </b></u><br>

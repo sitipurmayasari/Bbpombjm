@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\Divisi;
 use App\Teamleader;
-use LogActivity;
 
 class TeamLeadController extends Controller
 {
@@ -37,8 +36,6 @@ class TeamLeadController extends Controller
     public function store(Request $request)
     {
         Teamleader::create($request->all());
-        
-        LogActivity::addToLog('Simpan->Ketua Tim->detail ='.$request->detail);
         return redirect('/amdk/teamlead')->with('sukses','Data Tersimpan');
     }
    
@@ -47,7 +44,6 @@ class TeamLeadController extends Controller
         $divisi = Divisi::all();
         $user = User::where('status','PNS')
         ->where('aktif','Y')->get();
-        $data = Teamleader::where('id',$id)->first();
         return view('amdk/teamlead.edit',compact('data','divisi','user'));
     }
 
@@ -56,8 +52,6 @@ class TeamLeadController extends Controller
     {
         $data = Teamleader::find($id);
         $data->update($request->all());
-
-        LogActivity::addToLog('Ubah->Ketua Tim->id ='.$data->id); 
         return redirect('/amdk/teamlead')->with('sukses','Data Diperbaharui');
     }
 
@@ -65,8 +59,6 @@ class TeamLeadController extends Controller
     public function delete($id)
     {
         $data = Teamleader::find($id);
-        LogActivity::addToLog('Hapus->Ketua Tim->id = '.$data->detail); 
-
         $data->delete();
        
         return redirect('/amdk/teamlead')->with('sukses','Data Terhapus');
