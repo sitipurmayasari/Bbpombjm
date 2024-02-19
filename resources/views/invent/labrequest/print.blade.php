@@ -293,7 +293,7 @@
             <tr>
                 <td class="ttd"></td>
                 <td class="ttd"></td>
-                <td class="ttd">Tanggal, {{tgl_indo($data->tgl_terima)}}</td>
+                <td class="ttd">Tanggal, {{tgl_indo($data->tanggal)}}</td>
             </tr>
             <tr>
                 <td class="ttd col-md-4">Yang Menerima,</td>
