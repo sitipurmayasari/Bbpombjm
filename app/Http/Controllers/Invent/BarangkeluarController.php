@@ -46,69 +46,69 @@ class BarangkeluarController extends Controller
         return view('invent/barangkeluar.index',compact('data'));
     }
 
-    // public function create()
-    // {
-    //     $data = Inventaris::select('inventaris.*','entrystock.exp_date','entrystock.id AS st_id')
-    //                         ->leftJoin('entrystock','entrystock.inventaris_id','=','inventaris.id')
-    //                         ->where('inventaris.kind','!=','R')
-    //                     ->get();
-    //     $user = User::all()
-    //             ->where('id','!=','1');
-    //     $satuan = Satuan::all();
-    //     $nosbb = $this->getNoSBB();
-    //     return view('invent/barangkeluar.create',compact('data','user','nosbb','satuan'));
-    // }
+    public function create()
+    {
+        $data = Inventaris::select('inventaris.*','entrystock.exp_date','entrystock.id AS st_id')
+                            ->leftJoin('entrystock','entrystock.inventaris_id','=','inventaris.id')
+                            ->where('inventaris.kind','!=','R')
+                        ->get();
+        $user = User::all()
+                ->where('id','!=','1');
+        $satuan = Satuan::all();
+        $nosbb = $this->getNoSBB();
+        return view('invent/barangkeluar.create',compact('data','user','nosbb','satuan'));
+    }
 
    
-    // public function store(Request $request)
-    // {
-    //     $this->validate($request,[
-    //         'nomor' => 'required|unique:sbb',
-    //         'tanggal' => 'required|date',
-    //         'users_id'=> 'required'
-    //     ]);
+    public function store(Request $request)
+    {
+        $this->validate($request,[
+            'nomor' => 'required|unique:sbb',
+            'tanggal' => 'required|date',
+            'users_id'=> 'required'
+        ]);
 
-    //     DB::beginTransaction();
-    //         $sbb =Sbb::create($request->all());
-    //         $sbb_id = $sbb->id;
-    //         for ($i = 0; $i < count($request->input('inventaris_id')); $i++){
-    //             $data = [
-    //                 'sbb_id' => $sbb_id,
-    //                 'inventaris_id' => $request->inventaris_id[$i],
-    //                 'satuan_id' => $request->satuan_id[$i] ,
-    //                 'jumlah' => $request->jumlah[$i] ,
-    //                 'ket' => $request->ket[$i]
-    //             ];
-    //             Sbbdetail::create($data);
+        DB::beginTransaction();
+            $sbb =Sbb::create($request->all());
+            $sbb_id = $sbb->id;
+            for ($i = 0; $i < count($request->input('inventaris_id')); $i++){
+                $data = [
+                    'sbb_id' => $sbb_id,
+                    'inventaris_id' => $request->inventaris_id[$i],
+                    'satuan_id' => $request->satuan_id[$i] ,
+                    'jumlah' => $request->jumlah[$i] ,
+                    'ket' => $request->ket[$i]
+                ];
+                Sbbdetail::create($data);
 
-    //             $stok1 = Entrystock::Where('inventaris_id',$request->inventaris_id[$i])
-    //                                 ->WhereRaw('stock != 0')->orderBy('id','asc')->first();
-    //             $stok2 = Entrystock::Where('inventaris_id',$request->inventaris_id[$i])
-    //                                 ->WhereRaw('stock != 0')->orderBy('id','desc')->first();
+                $stok1 = Entrystock::Where('inventaris_id',$request->inventaris_id[$i])
+                                    ->WhereRaw('stock != 0')->orderBy('id','asc')->first();
+                $stok2 = Entrystock::Where('inventaris_id',$request->inventaris_id[$i])
+                                    ->WhereRaw('stock != 0')->orderBy('id','desc')->first();
 
-    //             $minta = $request->jumlah[$i];
-    //             $rest =   $stok1->stock - $minta;
-    //             $rest2 = $minta - $stok1->stock;
-    //             $sisa = $stok2->stock - $rest2;
+                $minta = $request->jumlah[$i];
+                $rest =   $stok1->stock - $minta;
+                $rest2 = $minta - $stok1->stock;
+                $sisa = $stok2->stock - $rest2;
 
-    //             if ($rest < 0) {
-    //                 Entrystock::where('id',$stok1->id)->update([
-    //                 'stock' => 0
-    //                 ]);
-    //                 Entrystock::where('id',$stok2->id)->update([
-    //                 'stock' => $sisa
-    //                 ]);
-    //             } else {
-    //                Entrystock::where('id',$stok1->id)->update([
-    //                 'stock' => $rest
-    //                 ]);
-    //             }
+                if ($rest < 0) {
+                    Entrystock::where('id',$stok1->id)->update([
+                    'stock' => 0
+                    ]);
+                    Entrystock::where('id',$stok2->id)->update([
+                    'stock' => $sisa
+                    ]);
+                } else {
+                   Entrystock::where('id',$stok1->id)->update([
+                    'stock' => $rest
+                    ]);
+                }
 
-    //         }
-    //         DB::commit(); 
-    //         // return redirect('/invent/barangkeluar')->with('sukses','Data Tersimpan');
-    //     return redirect('/invent/barangkeluar/print/'.$sbb_id);
-    // }
+            }
+            DB::commit(); 
+            // return redirect('/invent/barangkeluar')->with('sukses','Data Tersimpan');
+        return redirect('/invent/barangkeluar/print/'.$sbb_id);
+    }
 
     public function print($id)
     {
