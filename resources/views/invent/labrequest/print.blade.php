@@ -299,6 +299,9 @@
                 <td class="ttd col-md-4">Yang Menerima,</td>
                 <td class="ttd col-md-4">
                     Mengetahui <br>
+                    @if ({{$menyetujui->pjs != null}})
+                        {{$data->pjs}}
+                    @endif
                     Kepala Bagian Tata Usaha 
                 </td>
                 <td class="ttd col-md-4">Pengelola Gudang</td>
