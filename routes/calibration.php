@@ -88,3 +88,24 @@
 
    //Route untuk Laporan MIkrobiologi
    Route::post('/calibration/laptomiku/cetak','Calibration\LapTomikuController@cetak')->name('laptomiku.cetak');
+
+
+
+
+//   --------------------------------------OTKOS--------------------------------------------------
+
+    //Route untuk parameter uji
+    Route::get('/calibration/parameter/create','Calibration\ParameterController@create')->name('parameter.create');
+    Route::post('/calibration/parameter/store','Calibration\ParameterController@store')->name('parameter.store');
+    Route::get('/calibration/parameter/edit/{id}','Calibration\ParameterController@edit')->name('parameter.edit');
+    Route::post('/calibration/parameter/update/{id}','Calibration\ParameterController@update')->name('parameter.update');
+    Route::get('/calibration/parameter/delete/{id}','Calibration\ParameterController@delete')->name('parameter.delete');
+    
+   //Route untuk catatan pengujian
+   Route::get('/calibration/catatan/create','Calibration\CatatanController@create')->name('catatan.create');
+   Route::post('/calibration/catatan/store','Calibration\CatatanController@store')->name('catatan.store');
+   Route::get('/calibration/catatan/edit/{id}','Calibration\CatatanController@edit')->name('catatan.edit');
+   Route::post('/calibration/catatan/update/{id}','Calibration\CatatanController@update')->name('catatan.update');
+   Route::get('/calibration/catatan/delete/{id}','Calibration\CatatanController@delete')->name('catatan.delete');
+
+ 

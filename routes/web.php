@@ -423,6 +423,13 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
      //Route untuk Laporan MIkrobiologi
      Route::get('/calibration/laptomiku','Calibration\LapTomikuController@index')->name('laptomiku');
 
+
+     //----OTKOS----
+    //Route untuk parameter uji
+    Route::get('/calibration/parameter','Calibration\ParameterController@index')->name('parameter');
+    //Route untuk catatan pengujian
+    Route::get('/calibration/catatan','Calibration\CatatanController@index')->name('catatan');
+
 });
 
 

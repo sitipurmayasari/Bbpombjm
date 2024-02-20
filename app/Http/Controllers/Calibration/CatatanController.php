@@ -8,13 +8,13 @@ use Carbon\Carbon;
 use App\UserPermission;
 
 
-class DashboardOTKOSController extends Controller
+class CatatanController extends Controller
 {
     public function index()
     {
         $peg =auth()->user()->id;
         $tgl = Carbon::now()->day;
         
-        return view('calibration/dashboardotkos.index');
+        return view('calibration/comingsoon');
     }
 }

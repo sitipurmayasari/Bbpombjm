@@ -74,7 +74,7 @@
 					<a href="/calibration/dashboard" class="navbar-brand">
 						<small>
 						<img src="{{asset('images/bbpom.jpg')}}" alt="" srcset="" style="height:35px">
-							PENGUJIAN - OBAT TRADISIONAL, KOSMETIK DAN SUPLEMEN KESEHATAN
+							PENGUJIAN - OBAT TRADISIONAL, KOSMETIK & SUPLEMEN KESEHATAN
 						</small>
 					</a>
 				</div>
@@ -123,8 +123,74 @@
 			<script type="text/javascript">
 				try{ace.settings.loadState('main-container')}catch(e){}
 			</script>
+
+			<div id="sidebar" class="sidebar responsive ace-save-state">
+				<script type="text/javascript">
+					try{ace.settings.loadState('sidebar')}catch(e){}
+				</script>
+
+				<ul class="nav nav-list">
+						<li class="">
+							<b class="arrow"></b>
+						</li>
+
+						<li class=" ">
+							<a href="/calibration/dashboardotkos">
+								<i class="menu-icon fa fa-tachometer"></i>
+								<span class="menu-text"> Dashboard </span>
+							</a>
+							<b class="arrow"></b>
+						</li>
+						@foreach (myMenu('otkos') as $item)
+						@if ($item->link!='')
+							<li class="{{ (request()->segment(2) == strtolower($item->nama) ) ? 'active' : '' }}">
+								<a href="{{$item->link}}">
+									<i class="menu-icon {{$item->icon}}"></i>
+									<span class="menu-text"> {{$item->nama}} </span>
+								</a>
+								<b class="arrow"></b>
+							</li>
+						@else
+							<li class="{{ strtolower(request()->segment(2)) == strtolower($item->nama)  ? 'open' : '' }} ">
+								<a href="" class="dropdown-toggle">
+								<i class="menu-icon fa {{$item->icon}}"></i>
+								<span class="menu-text"> {{$item->nama}} </span>
+								<b class="arrow fa fa-angle-down"></b>
+							</a>
+							<b class="arrow"></b>
+							<ul class="submenu">
+							@foreach (mySubMenu($item->id) as $sub)
+								<li class="{{strtolower(request()->segment(2)) == strtolower($sub->nama)  ? 'active' : '' }}">
+									<a href="{{$sub->link}}">
+										<i class="menu-icon {{$sub->icon}}"></i>
+										{{$sub->nama}}
+									</a>
+									<b class="arrow"></b>
+								</li>
+							@endforeach
+							</ul>
+						</li>
+						@endif
+					
+				   		@endforeach
+
+				</ul>
+
+				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+					<i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+				</div>
+			</div>
+
 			<div class="main-content">
 				<div class="main-content-inner">
+					<div class="breadcrumbs ace-save-state" id="breadcrumbs">
+						<!-- Breadcrumbs-->
+						<ol class="breadcrumb">
+							@yield('breadcrumb')
+						</ol>
+
+
+					</div>
 
 					<div class="page-content">
 
