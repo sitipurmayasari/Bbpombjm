@@ -132,6 +132,8 @@
   Route::get('/amdk/pelatihan/rekap','Amdk\PelatihanController@rekap')->name('pelatihan.rekap');
   Route::get('/amdk/pelatihan/rekappeg','Amdk\PelatihanController@rekappeg')->name('pelatihan.rekappeg');
   Route::post('/amdk/pelatihan/cetak','Amdk\PelatihanController@cetak')->name('pelatihan.cetak');
+  Route::get('/amdk/pelatihan/startimpor','Amdk\PelatihanController@startimpor')->name('pelatihan.startimpor');
+  Route::post('/amdk/pelatihan/impor','Amdk\PelatihanController@impor')->name('pelatihan.impor');
 
 
   //Route untuk dupak

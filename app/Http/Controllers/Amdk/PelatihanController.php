@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use PDF;
 use Excel;
 use LogActivity;
+use App\Imports\PelatihanImport;
 
 class PelatihanController extends Controller
 {
@@ -67,6 +68,11 @@ class PelatihanController extends Controller
                 ->where('id','!=','1');
         $jenis = Jenis_pelatihan::all();
         return view('amdk/pelatihan.createadmin',compact('user','jenis'));
+    }
+
+    public function startimpor()
+    {
+        return view('amdk/pelatihan.startimpor');
     }
 
     public function rekap()
@@ -191,6 +197,32 @@ class PelatihanController extends Controller
             // return view('amdk/pelatihan.cetakpeg',compact('data','request','atas'));
             
         }
+    }
+
+
+    public function impor(Request $request)
+    {
+
+       
+        $this->validate($request, [
+            'imporfile' => 'required|mimes:csv,xls,xlsx'
+        ]);
+
+        //proses import
+
+        $file = $request->imporfile;
+        $nama_file = $file->getClientOriginalName();
+
+        $file->move('excel',$nama_file);
+
+        DB::beginTransaction();
+
+            Excel::import(new PelatihanImport, public_path('/excel/'.$nama_file));
+        
+        DB::commit();
+
+        return redirect('/amdk/rekappelatihan')->with('sukses','Data Berhasil Diimport');
+ 
     }
 
 
