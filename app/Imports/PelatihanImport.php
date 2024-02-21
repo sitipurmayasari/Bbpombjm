@@ -21,7 +21,9 @@ class PelatihanImport implements ToModel,WithStartRow
     }
     public function model(array $row)
     {
-        $user = User::where('no_pegawai',$row[2])->first();
+        $nip = str_replace(' ', '', $row[2]);
+        $user = User::where('no_pegawai',$nip)->first();
+        // $user = User::where('no_pegawai',$row[2])->first();
         $desk = "Nomor Sertifikat : ".$row[14]."( Tgl :".$row[15].")";
         $rekam = "Y";
         $dari = str_replace('/', '-', $row[12]);
