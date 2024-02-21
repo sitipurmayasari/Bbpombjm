@@ -81,7 +81,7 @@
                                <td>
                                     @foreach ($item->isi as $list)
                                         @if ($list->status == 'Y')
-                                            <li>{{$list->barang->nama_barang}}
+                                            <li>{{$list->barang->nama_barang}} - {{$list->barang->kode_barang}}
                                                 ({{$list->jumlah}} {{$list->barang->satuan->satuan}})
                                             </li>
                                         @endif
