@@ -66,7 +66,8 @@ header("Content-Disposition: attachment; filename=Format-Laporan-Stok-Barang.xls
         <div class="isi">
             <div class="col-sm-12" style="text-align: center;font-size: 16;;">
                 <b>Laporan Kartu Stok</b><br>
-                <b><i>{{$data->nama_barang}}</i></b>
+                <b><i>{{$data->nama_barang}}</i></b> <br>
+                kode :  {{$item->kode_barang}}
             </div><br>
             <div class="col-sm-12" style="text-align: left;" >
                 Periode :

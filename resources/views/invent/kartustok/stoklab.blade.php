@@ -66,6 +66,7 @@ header("Content-Disposition: attachment; filename=Format-Laporan-Stok-Lab.xls");
                     <thead>
                         <tr>
                             <th style="width: 5%">No</th>
+                            <th>Kode Barang</th>
                             <th>Nama Barang</th>
                             <th>kelompok Barang</th>
                             <th style="width: 10%">Jumlah Barang</th>
@@ -78,6 +79,7 @@ header("Content-Disposition: attachment; filename=Format-Laporan-Stok-Lab.xls");
                         @foreach ($stock as $item)
                             <tr>
                                 <td style="text-align: center">{{$no++}}</td>
+                                <td>{{$item->kode_barang}}</td>
                                 <td>{{$item->nama_barang}}</td>
                                 <td>
                                     {{$item->jenis->nama}}
