@@ -63,7 +63,6 @@ class KartuStokController extends Controller
 
             $mengetahui = Pejabat::where('jabatan_id', '=', 11)
                           ->where('divisi_id', '=', 2)
-                          ->whereRaw("pjs IS null")
                           ->first();
             $gudang = Lokasi::where('id',$request->gudang)->first();
             $data = Jenisbrg::where('id',$request->kelompok)->first();
@@ -91,7 +90,6 @@ class KartuStokController extends Controller
             $petugas = Petugas::where('id', '=', 4)->first();
             $mengetahui = Pejabat::where('jabatan_id', '=', 11)
                                       ->where('divisi_id', '=', 2)
-                                      ->whereRaw("pjs IS null")
                                       ->first();
             return view('invent/kartustok.laporansbbk',compact('data','request','petugas','mengetahui'));
         }else{
