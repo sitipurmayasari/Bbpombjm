@@ -124,7 +124,7 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1">  Upload File
+                        for="form-field-1">  Unggah Sertifikat
                         </label>
                         <div class="col-sm-9">
                             <input type="file" name="file" class="btn btn-default btn-sm" id="" value="Upload File">      

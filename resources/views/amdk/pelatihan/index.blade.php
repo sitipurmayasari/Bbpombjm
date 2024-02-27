@@ -4,6 +4,84 @@
 @endsection
 @section('content')
 
+<style>
+   /* ============================ */
+/* TOOLTIP                      */
+/* ============================ */
+        [data-tooltip] {
+        position: relative;
+        /* tooltip arrow */   
+        /* tooltip box */
+        }
+        [data-tooltip]:before, [data-tooltip]:after {
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
+        transform: translateX(-50%);
+        -webkit-box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        -webkit-transition-property: opacity;
+        -moz-transition-property: opacity;
+        transition-property: opacity;
+        -webkit-transition-duration: 0.2s;
+        -moz-transition-duration: 0.2s;
+        transition-duration: 0.2s;
+        -webkit-transition-timing-function: linear;
+        -moz-transition-timing-function: linear;
+        transition-timing-function: linear;
+        position: absolute;
+        left: 50%;
+        top: 100%;
+        bottom: 100%;
+        visibility: hidden;
+        opacity: 0;
+        z-index: 9999;
+        -webkit-transform: translate3d(0, 0, 0);
+        -moz-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        }
+        [data-tooltip]:before {
+        content: "";
+        border-color: #323232;
+        border-style: none;
+        border: 5px solid transparent;
+        border-bottom: 6px solid #323232;
+        margin-top: -4px;
+        }
+        [data-tooltip]:after {
+        content: attr(data-tooltip);
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        width: auto;
+        height: 15px;
+        padding: 5px 5px 0 5px;
+        font-size: 11px;
+        line-height: 11px;
+        white-space: nowrap;
+        background-color: #323232;
+        color: #ecf0f1;
+        margin-top: 7px;
+        }
+        [data-tooltip]:hover, [data-tooltip]:focus {
+        background-color: transparent;
+        }
+        [data-tooltip]:hover:before, [data-tooltip]:hover:after, [data-tooltip]:focus:before, [data-tooltip]:focus:after {
+        -webkit-transform: translate(-50%, 0);
+        -moz-transform: translate(-50%, 0);
+        -ms-transform: translate(-50%, 0);
+        -o-transform: translate(-50%, 0);
+        transform: translate(-50%, 0);
+        opacity: 1;
+        visibility: visible;
+        }
+    </style>
+
 <form method="get" action="{{ url()->current() }}">
     <div class="row">
         <div class="col-xs-12">
@@ -64,13 +142,14 @@
                     </td>
                     <td><a href="{{$row->getFIleSert()}}" target="_blank" >{{$row->file}}</a></td>
                     <td>
-                        <a href="/amdk/pelatihan/edit/{{$row->id}}" class="btn btn-warning">
+                        <a href="/amdk/pelatihan/edit/{{$row->id}}" class="btn btn-warning " data-tooltip="Ubah & Unggah Sertifikat">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
-                        <a href="#" class="btn btn-danger delete"
+                        <a href="#" class="btn btn-danger delete" data-tooltip="Hapus"
                             r-name="{{$row->nama}}" 
                             r-id="{{$row->id}}">
-                            <i class="glyphicon glyphicon-trash"></i></a>
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </a>
                     </td>
                 </tr>
               
