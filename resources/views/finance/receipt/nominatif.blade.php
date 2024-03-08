@@ -357,7 +357,7 @@
                             {{number_format($item->fullcost)}}<br>
                         @endif
                         @if ($item->fbsum != 0)
-                            {{number_format($item->fblcost)}}<br>
+                            {{number_format($item->fbcost)}}<br>
                         @endif
                     </td>
                     <td style="vertical-align: top; text_align:center">
@@ -434,16 +434,18 @@
                     Pejabat Pembuat Komitmen
                      <br><br><br><br><br></td>
                 <td class="table2">
-                    @if ($menyetujui->pjs !=null)
-                        {{$menyetujui->pjs}}
-                        {{$menyetujui->jabatan->jabatan}} {{$menyetujui->divisi->nama}},
-                        {{-- {{$menyetujui->user->jabasn->nama}} --}}
-                        {{-- {{$menyetujui->jabatan->jabatan}} {{$menyetujui->divisi->nama}}, --}}
+                    @if ($data->st->teamleader_id != null)
+                        {{$data->st->teamleader->detail}}
                     @else
-                        {{$menyetujui->jabatan->jabatan}} {{$menyetujui->divisi->nama}},
-                        {{-- {{$menyetujui->user->jabasn->nama}} --}}
-                        {{-- {{$menyetujui->jabatan->jabatan}} {{$menyetujui->divisi->nama}}, --}}
+                        @if ($menyetujui->pjs !=null)
+                            {{$menyetujui->pjs}}
+                            {{$menyetujui->jabatan->jabatan}} {{$menyetujui->divisi->nama}},
+                        @else
+                            {{$menyetujui->jabatan->jabatan}} {{$menyetujui->divisi->nama}},
+                        @endif
                     @endif
+
+                    
                     <br><br><br><br><br>
                 </td>
             </tr>
@@ -456,8 +458,13 @@
                    
                 </td>
                 <td class="table2">
-                    <u>{{$menyetujui->user->name}}</u> <br>
-                    NIP. {{$menyetujui->user->no_pegawai}}
+                    @if ($data->st->teamleader_id != null)
+                        <u>{{$data->st->teamleader->peg->name}}</u> <br>
+                        NIP. {{$data->st->teamleader->peg->no_pegawai}}
+                    @else
+                        <u>{{$menyetujui->user->name}}</u> <br>
+                        NIP. {{$menyetujui->user->no_pegawai}}
+                    @endif
                 </td>
             </tr>
         </table>

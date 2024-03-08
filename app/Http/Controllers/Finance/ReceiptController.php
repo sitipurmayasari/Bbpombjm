@@ -142,7 +142,7 @@ class ReceiptController extends Controller
         $data = Expenses::create($request->all());
         $rens = $data->id;
 
-        LogActivity::addToLog('Simpan->Kuitansi 2023, nomor = '.$data->st->number);
+        LogActivity::addToLog('Simpan->Kuitansi, nomor = '.$data->st->number);
 
         return redirect('/finance/receipt/entrydata/'.$rens);
     }
@@ -675,6 +675,7 @@ class ReceiptController extends Controller
         }
         $menyetujui     = Pejabat::OrderBy('id','desc')
                                 ->where('divisi_id',$div)
+                                ->whereRaw("$data->date BETWEEN dari AND sampai")
                                 ->whereraw('subdivisi_id is null')
                                 ->first();
 

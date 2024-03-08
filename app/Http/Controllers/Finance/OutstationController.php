@@ -20,6 +20,7 @@ use App\Outst_destiny;
 use App\Pejabat;
 use App\Stbook;
 use App\Stbook_sppd;
+use App\Teamleader;
 use PDF;
 use DateTime;
 use Carbon\Carbon;
@@ -69,6 +70,7 @@ class OutstationController extends Controller
         $div            = Divisi::all();
         $user           = User::where('id','!=','1')->get();
         $destination    = Destination::all();
+        $tim            = Teamleader::orderby('detail','asc')->whereRaw("curdate() BETWEEN datefrom AND dateto")->get();
         $pok            = Pok_detail::SelectRaw('pok_detail.*')
                                     ->leftjoin('pok','pok.id','=','pok_detail.pok_id')
                                     ->where('pok.year','=',$thn)
@@ -76,8 +78,7 @@ class OutstationController extends Controller
                                     (select id from pok where year = $thn and activitycode_id = 2  ORDER BY id DESC LIMIT 1))")
                                     ->get();
         
-        return view('finance/outstation.create',compact('user','destination','div','ppk', 'sub', 'akun','act','budget'
-        ,'pok'));
+        return view('finance/outstation.create',compact('user','destination','div','ppk', 'sub', 'akun','act','budget','tim','pok'));
     }
       public function store(Request $request)
       { 
@@ -335,8 +336,9 @@ class OutstationController extends Controller
           $sppd           = Stbook_sppd::leftjoin('stbook','stbook.id','=','stbook_sppd.stbook_id')
                                         ->where('stbook.stbook_number',$data->number)->get();
           $kota           = Outst_destiny::where('outstation_id',$id)->get();
+          $tim            = Teamleader::orderby('detail','asc')->get();
           $hitpeserta     = Outst_employee::SelectRaw('COUNT(id) AS jumpes')->where('outstation_id',$id)->first();
-          return view ('finance/outstation.edit',compact('data','div','ppk','budget','pok','destination','user','petugas','sppd','kota','hitpeserta'
+          return view ('finance/outstation.edit',compact('data','div','ppk','budget','pok','destination','user','petugas','sppd','kota','hitpeserta','tim'
           ));
       }
 
