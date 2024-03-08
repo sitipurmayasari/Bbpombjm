@@ -441,7 +441,7 @@
                             {{$menyetujui->pjs}}
                             {{$menyetujui->jabatan->jabatan}} {{$menyetujui->divisi->nama}},
                         @else --}}
-                            {{$menyetujui->jabatan->jabatan}} {{$menyetujui->divisi->nama}},
+                            {{$menyetujui->jabatan->jabatan}} {{$menyetujui->divisi->nama}} ,
                         {{-- @endif --}}
                     @endif
 
