@@ -675,8 +675,7 @@ class ReceiptController extends Controller
         }
         $menyetujui     = Pejabat::OrderBy('id','desc')
                                 ->where('divisi_id',$div)
-                                ->whereRaw("$data->date BETWEEN dari AND sampai")
-                                ->whereraw('subdivisi_id is null')
+                                ->whereraw('subdivisi_id is null and "'.$data->date.'" BETWEEN dari AND sampai')
                                 ->first();
         $harian     = ExpensesUh::where('expenses_id',$id)->get();
         $pdf = PDF::loadview('finance/receipt.nominatif',compact('data','tujuan','menyetujui','harian'));
