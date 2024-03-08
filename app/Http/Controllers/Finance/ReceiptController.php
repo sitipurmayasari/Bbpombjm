@@ -674,7 +674,7 @@ class ReceiptController extends Controller
             $div = $data->st->divisi_id;
         }
         $menyetujui     = Pejabat::OrderBy('id','desc')
-                                ->where('didvisi_id',$div)
+                                ->where('divisi_id',$div)
                                 ->whereRaw("$data->date BETWEEN dari AND sampai")
                                 ->whereraw('subdivisi_id is null')
                                 ->first();
