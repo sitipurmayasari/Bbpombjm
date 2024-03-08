@@ -434,13 +434,14 @@
                     Pejabat Pembuat Komitmen
                      <br><br><br><br><br></td>
                 <td class="table2">
-                    @if ($data->st->teamleader_id != null)
-                        {{$data->st->teamleader->detail}}
-                    @else
+
+                    @if ($data->st->teamleader_id == null)
                         @if ($menyetujui->pjs !=null)
                             {{$menyetujui->pjs}} 
                         @endif
                         {{$menyetujui->jabatan->jabatan}} {{$menyetujui->divisi->nama}},
+                    @else
+                        {{$data->st->teamleader->detail}}
                     @endif
 
                     
