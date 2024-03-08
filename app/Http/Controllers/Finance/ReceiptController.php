@@ -674,18 +674,10 @@ class ReceiptController extends Controller
             $div = $data->st->divisi_id;
         }
         $menyetujui     = Pejabat::OrderBy('id','desc')
-                                ->where('divisi_id',$div)
+                                ->where('divsisi_id',$div)
                                 ->whereRaw("$data->date BETWEEN dari AND sampai")
                                 ->whereraw('subdivisi_id is null')
                                 ->first();
-
-        // $menyetujui    = Pejabat::SelectRaw('pejabat.* ')
-        //                 ->leftJoin('outstation','outstation.divisi_id','=','pejabat.divisi_id')
-        //                 ->leftJoin('divisi','divisi.id','=','outstation.divisi_id')
-        //                 ->whereraw('subdivisi_id IS NULL')
-        //                 ->where('outstation.id',$data->outstation_id)
-        //                 ->whereRaw("st_date BETWEEN pejabat.dari AND pejabat.sampai")
-        //                 ->first();
         $harian     = ExpensesUh::where('expenses_id',$id)->get();
         $pdf = PDF::loadview('finance/receipt.nominatif',compact('data','tujuan','menyetujui','harian'));
         return $pdf->stream();
