@@ -437,11 +437,10 @@
                     @if ($data->st->teamleader_id != null)
                         {{$data->st->teamleader->detail}}
                     @else
-                        @if ($menyetujui->pjs != null)
-                            {{$menyetujui->pjs}}
-                        @else
-                            {{$menyetujui->jabatan}} {{$menyetujui->divisi->nama}} ,
+                        @if ($menyetujui->pjs !=null)
+                            {{$menyetujui->pjs}} 
                         @endif
+                        {{$menyetujui->jabatan->jabatan}} {{$menyetujui->divisi->nama}},
                     @endif
 
                     
