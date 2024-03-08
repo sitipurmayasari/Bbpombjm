@@ -437,7 +437,7 @@
                     @if ($data->st->teamleader_id != null)
                         {{$data->st->teamleader->detail}}
                     @else
-                        @if ($menyetujui->pjs !=null)
+                        @if ($menyetujui->pjs != null)
                             {{$menyetujui->pjs}}
                             {{$menyetujui->jabatan->jabatan}} {{$menyetujui->divisi->nama}},
                         @else
