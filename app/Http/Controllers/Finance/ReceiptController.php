@@ -661,6 +661,7 @@ class ReceiptController extends Controller
     public function nominatif($id)
     {
         $data       = Expenses::where('id',$id)->first();
+        $tglst = Outstation::where('id',$data->outstation_id)->first();
         
         $tujuan    = Outst_destiny::SelectRaw('outst_destiny.* ')
                         ->leftJoin('outstation','outstation.id','=','outst_destiny.outstation_id')
@@ -675,7 +676,7 @@ class ReceiptController extends Controller
         }
         $menyetujui     = Pejabat::OrderBy('id','desc')
                                 ->where('divisi_id',$div)
-                                ->whereraw('subdivisi_id is null and "'.$data->date.'" BETWEEN dari AND sampai')
+                                ->whereraw('subdivisi_id is null and "'.$tglst->st_date.'" BETWEEN dari AND sampai')
                                 ->first();
         $harian     = ExpensesUh::where('expenses_id',$id)->get();
         $pdf = PDF::loadview('finance/receipt.nominatif',compact('data','tujuan','menyetujui','harian'));
