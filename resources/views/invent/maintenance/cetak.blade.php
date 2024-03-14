@@ -12,19 +12,19 @@
         @page {
             size: A4;
             font-family: Arial;
-            font-size: 11;
-            margin: 150px 0px 70px 0px;
+            font-size: 12pt;
+            margin: 150px 0px 0px 0px;
             line-height: 1;
         }
 
         html,table{
             font-family: Arial;
-            font-size: 10;
+            font-size: 12pt;
         }
         
         .pad{
             padding-top: 10px;
-            font-size: 11;
+            font-size: 12pt;
         }
 
         table, td, th {
@@ -36,14 +36,15 @@
 
         #isi{
             font-family: Arial;
-            font-size: 11;
+            font-size: 12pt;
             margin-left: 10%;
             margin-right: 10%;
         }
 
         #kop{
             text-align: center;
-            font-size: 14px;
+            font-size: 12pt;
+            font-weight: bold;
         }
 
         .atas{
@@ -64,10 +65,10 @@
 
         .ttd{
             text-align: center;
-            font-size: 11;
+            font-size: 12pt;
         }
         p{
-            font-size: 11;
+            font-size: 12pt;
         }
 
         </style>
@@ -216,7 +217,7 @@
             </tr>
         </table>
         <br>
-        <p><b>PIHAK PERTAMA</b> menyerahkan dan <b>PIHAK KEDUA</b> menerima penyerahan Barang Milik Negra (BMN) dengan spesifikasi sebagai berikut :</p>
+        <p><b>PIHAK PERTAMA</b> menyerahkan dan <b>PIHAK KEDUA</b> menerima penyerahan Barang Milik Negara (BMN) dengan spesifikasi sebagai berikut :</p>
         <table style="width: 100%" class="atas">
             <thead>
                 <tr>
@@ -250,17 +251,16 @@
         </table>
         <br>
         <p><b>PIHAK KEDUA</b> bertanggung jawab segala sesuatu atas barang - barang tersebut. Apabila terjadi kehilangan menjadi tanggung jawab petugas yang diserahkan barang. <br>
-        Demikian erita Acara ini dibuat dengan benar untuk dipergunakan sebagaimana mestinya.</p>
+        Demikian Berita Acara ini dibuat dengan benar untuk dipergunakan sebagaimana mestinya.</p>
     </div>
     <div>
-        <br>
         <table style="width: 100%" class="ttd">
             <tr class="ttd">
                 <td class="ttd" style="width: 50%">PIHAK PERTAMA</td>
                 <td class="ttd" tyle="width: 50%">PIHAK KEDUA</td>
             </tr>
             <tr class="ttd">
-                <td style="height: 50px" class="ttd"></td>
+                <td style="height: 30px" class="ttd"></td>
                 <td class="ttd"></td>
             </tr>
             <tr class="ttd">
@@ -278,7 +278,7 @@
                 <td class="ttd">KUASA PENGGUNA BARANG</td>
             </tr>
             <tr class="ttd">
-                <td style="height: 50px" class="ttd"></td>
+                <td style="height: 30px" class="ttd"></td>
             </tr>
             <tr class="ttd">
                 <td class="ttd">{{$mengetahui->user->name}}</td>

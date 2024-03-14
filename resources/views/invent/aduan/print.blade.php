@@ -9,16 +9,25 @@
     <title>Document</title>
 
     <style>
+         @page {
+            size: A4;
+            font-family: Arial;
+            font-size: 12pt;
+            line-height: 1;
+        }
+
         table, td, th {
             border: 1px solid black;
             text-align: center;
+            font-family: Arial;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
             text-align: center;
-            font-size: 11px;
+            font-size: 12pt;
+            font-family: Arial;
         }
 
         .lara{ 
@@ -26,31 +35,32 @@
             padding: 15px;
             text-align: center;
             height: 85%;
+            font-family: Arial;
 
             }
         .kiri1{
-            border:none; font-size: 10px; padding-left: 5px; text-align:left;width: 15%;
+            border:none; font-size: 10pt; padding-left: 5px; text-align:left;width: 15%;font-family: Arial;
         }
         .kiri2{
-            border: none; font-size: 10px; text-align:left;width: 20%;
+            border: none; font-size: 10pt; text-align:left;width: 20%;font-family: Arial;
         }
 
         .rapi{
             border:none;
             border-collapse: collapse;
-            text-align: left;
+            text-align: left;font-family: Arial;
         }
 
         .ttd{
             border:none;
             border-collapse: collapse;
-            text-align: center;
+            text-align: center;font-family: Arial;
         }
 
         .aduan{
             border: 1px solid black;
             height: 35px;
-            padding: 5px 5px 5px 5px;
+            padding: 5px 5px 5px 5px;font-family: Arial;
         }
         
 
@@ -62,7 +72,7 @@
         <table>
             <tr>
                 <td rowspan="5" style="width: 20%;"> <img src="{{asset('images/BBRI.jpg')}}" style="height:80px"></td>
-                <td rowspan="2" style="width: 30%; font-size: 14px;">BALAI BESAR POM DI BANJARMASIN</td>
+                <td rowspan="2" style="width: 30%; font-size: 12pt;">BALAI BESAR POM DI BANJARMASIN</td>
                 <td class="kiri1">No. Bagian</td>
                 <td class="kiri2">: A 19</td>
             </tr>
@@ -71,7 +81,7 @@
                 <td class="kiri2">: 2/30 Des 2009</td>
             </tr>
             <tr>
-                <td rowspan="2" style="width: 85%; font-size: 14px;"><b>FORMAT - FORMAT</b></td>
+                <td rowspan="2" style="width: 85%; font-size: 12pt;"><b>FORMAT - FORMAT</b></td>
                 <td class="kiri1">Revisi/Tgl</td>
                 <td class="kiri2">: 1/12 Apr 2013</td>
             </tr>
@@ -80,16 +90,16 @@
                 <td class="kiri2">: 1 dari 1</td>
             </tr>
             <tr>
-                <td colspan="3" style="width: 30%; font-size: 16px;">
+                <td colspan="3" style="width: 30%; font-size: 14pt;">
                     <b>SURAT PERBAIKAN INVENTARIS</b>
                 </td>           
             </tr>
         </table>
     </div>  
     <div class="lara">
-        <p style="text-align: center; font-size: 12px;">
+        <p style="text-align: center; font-size: 12pt;">
             <u><b>Surat Permintaan Perbaikan</b></u> <br>
-            NO. {{$data->no_aduan}}
+            No. {{$data->no_aduan}}
         </p>
         <div >
             <table class="rapi">
@@ -143,7 +153,7 @@
                @endforeach
             </tbody>
         </table>
-       <p style="font-size: 11px;text-align:left;"> *Diisi Oleh Petugas</p>
+       <p style="font-size: 12pt;text-align:left;"> *Diisi Oleh Petugas</p>
         <div id="ttd">
             <table class="ttd">
                 <tr class="ttd">
@@ -163,7 +173,7 @@
                                 {{$menyetujui->divisi->nama}}
                             @endif
                         @else
-                            SILAHKAN CEK SETUP PEJABAT
+                            Silahkan Cek Setup Pejabat
                         @endif
                     </td>
                     <td class="ttd">
@@ -182,7 +192,7 @@
                                         Kepala Balai Besar POM di Banjarmasin
                                     @endif
                                 @else
-                                    SILAHKAN CEK SETUP PEJABAT
+                                    Silahkan Cek Setup Pejabat
                                 @endif --}}
                     </td>
                     <td class="ttd"></td>
@@ -197,7 +207,7 @@
                             @if ($menyetujui !=null)
                                 {{$menyetujui->user->name}}
                             @else
-                                SILAHKAN CEK SETUP PEJABAT
+                                Silahkan Cek Setup Pejabat
                             @endif   
                         </u>
                     </td>
@@ -205,7 +215,7 @@
                         @if ($mengetahui !=null)
                         {{$mengetahui->user->name}}
                         @else
-                        SILAHKAN CEK SETUP PEJABAT
+                        Silahkan Cek Setup Pejabat
                         @endif
                     </u>
                     </td>
@@ -216,14 +226,14 @@
                         @if ($menyetujui !=null)
                         NIP. {{$menyetujui->user->no_pegawai}}
                         @else
-                        SILAHKAN CEK SETUP PEJABAT
+                        Silahkan Cek Setup Pejabat
                         @endif
                     </td>
                     <td class="ttd">
                         @if ($mengetahui !=null)
                         NIP.  {{$mengetahui->user->no_pegawai}}
                         @else
-                        SILAHKAN CEK SETUP PEJABAT
+                        Silahkan Cek Setup Pejabat
                         @endif
                     </td>
                     <td class="ttd">
@@ -235,7 +245,7 @@
             </table>
         </div><br>
         <br>
-        <div style="font-size: 11px; text-align:left;">
+        <div style="font-size: 12pt; text-align:left;">
             <b>Selesai Diperbaiki tanggal : </b>
         </div>
         <br>
