@@ -234,7 +234,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td class="atas" style="text-align: center; height: 40px;"> 1</td>
+                    <td class="atas" style="text-align: center;"> 1</td>
                     <td id="isiatas"> {{$data->barang->nama_barang}}</td>                       
                     <td class="atas" style="text-align: center;"> {{$data->barang->no_seri}}</td>
                     <td id="isiatas">{{$data->barang->merk}}</td>   
@@ -260,7 +260,7 @@
                 <td class="ttd" tyle="width: 50%">PIHAK KEDUA</td>
             </tr>
             <tr class="ttd">
-                <td style="height: 50px" class="ttd"></td>
+                <td style="height: 40px" class="ttd"></td>
                 <td class="ttd"></td>
             </tr>
             <tr class="ttd">
@@ -278,7 +278,7 @@
                 <td class="ttd">KUASA PENGGUNA BARANG</td>
             </tr>
             <tr class="ttd">
-                <td style="height: 50px" class="ttd"></td>
+                <td style="height: 40px" class="ttd"></td>
             </tr>
             <tr class="ttd">
                 <td class="ttd">{{$mengetahui->user->name}}</td>
