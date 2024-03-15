@@ -13,7 +13,7 @@
             size: A4;
             font-family: Arial;
             font-size: 12pt;
-            margin: 150px 0px 0px 0px;
+            margin: 130px 0px 0px 0px;
             line-height: 1;
         }
 
@@ -260,7 +260,7 @@
                 <td class="ttd" tyle="width: 50%">PIHAK KEDUA</td>
             </tr>
             <tr class="ttd">
-                <td style="height: 30px" class="ttd"></td>
+                <td style="height: 50px" class="ttd"></td>
                 <td class="ttd"></td>
             </tr>
             <tr class="ttd">
@@ -278,7 +278,7 @@
                 <td class="ttd">KUASA PENGGUNA BARANG</td>
             </tr>
             <tr class="ttd">
-                <td style="height: 30px" class="ttd"></td>
+                <td style="height: 50px" class="ttd"></td>
             </tr>
             <tr class="ttd">
                 <td class="ttd">{{$mengetahui->user->name}}</td>
