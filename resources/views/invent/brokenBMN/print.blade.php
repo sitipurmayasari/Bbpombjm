@@ -12,13 +12,13 @@
         @page {
             size: A4;
             font-family: Arial;
-            font-size: 12;
-            margin: 150px 0px 100px 0px;
+            font-size: 12pt;
+            margin: 130px 0px 0px 0px;
         }
 
         html,table{
             font-family: Arial;
-            font-size: 11;
+            font-size: 12pt;
         }
 
         table, td, th {
@@ -30,7 +30,7 @@
 
         #isi{
             font-family: Arial;
-            font-size: 11;
+            font-size: 12pt;
             margin-left: 10%;
             margin-right: 10%;
             /* line-height: 2; */
@@ -38,17 +38,11 @@
 
         #kop{
             text-align: center;
-            font-size: 16px;
+            font-size: 12pt;
         }
 
         .atas{
             border: solid 1px;
-        }
-
-        #isiatas{
-            border: solid 1px;
-            padding-left: 5px;
-            width: 40%;
         }
 
         th{
@@ -211,12 +205,12 @@
                 @endphp
                 @foreach ($detail as $item)
                     <tr class="atas">
-                        <td class="atas" style="text-align: center; height: 40px;"> {{$no++}}</td>
-                        <td id="isiatas"> {{$item->barang->nama_barang}} {{$item->barang->merk}}</td>                       
-                        <td class="atas">&nbsp; {{$item->barang->kode_barang}}</td>
-                        <td class="atas" style="text-align: center;"> {{$item->barang->no_seri}}</td>
-                        <td class="atas">&nbsp; {{$item->barang->location->nama}}</td>
-                        <td class="atas">&nbsp; {{$item->ket}}</td>
+                        <td class="atas" style="text-align: center; height: 40px;">{{$no++}}</td>
+                        <td class="atas">{{$item->barang->nama_barang}} {{$item->barang->merk}}</td>                       
+                        <td class="atas">{{$item->barang->kode_barang}}</td>
+                        <td class="atas" style="text-align: center;">{{$item->barang->no_seri}}</td>
+                        <td class="atas">{{$item->barang->location->nama}}</td>
+                        <td class="atas">{{$item->ket}}</td>
                     </tr>
                 @endforeach
                 
