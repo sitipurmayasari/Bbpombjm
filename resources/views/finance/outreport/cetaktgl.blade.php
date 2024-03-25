@@ -32,12 +32,7 @@
      </div>
      <div class="isi" style="font-size: 12px">
         Periode : 
-            @if ($request->awal == $request->akhir)
                 {{tgl_indo($request->awal)}}
-            @else
-                {{tgl_indo($request->awal)}} s/d {{tgl_indo($request->akhir)}}
-            @endif
-        
         <br>
         <br>
     </div>

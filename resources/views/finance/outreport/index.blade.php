@@ -131,18 +131,18 @@
                         <div id="tgl">
                             <div  class="form-group" id="a">
                                 <label class="col-sm-3 control-label no-padding-right" 
-                                for="form-field-1"> Tanggal Mulai
+                                for="form-field-1"> Tanggal Dinas
                                 </label>
                                 <div class="col-sm-8" >
                                     <input type="date" name="awal" class="col-xs-5 col-sm-5"/>
                             </div>
-                            <div  class="form-group" id="b">
+                            {{-- <div  class="form-group" id="b">
                                 <label class="col-sm-3 control-label no-padding-right" 
                                 for="form-field-1"> Tanggal Akhir
                                 </label>
                                 <div class="col-sm-8" >
                                     <input type="date" name="akhir" class="col-xs-5 col-sm-5"/>
-                            </div>
+                            </div> --}}
                         </div>
 
 
