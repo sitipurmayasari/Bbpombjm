@@ -174,7 +174,7 @@ $no=1;
                         <u><b>{{$data->nama_petugas}} 
                         </b></u><br>
                         @if ($data->nip_petugas != null)
-                            NIP.{{$menyetujui->user->no_pegawai}}
+                            NIP.{{$data->nip_petugas}}
                         @endif
                     @else
                         <br><br><br><br><br>
@@ -196,7 +196,7 @@ $no=1;
                         <u><b>{{$data->nama_petugas}} 
                         </b></u><br>
                         @if ($data->nip_petugas != null)
-                            NIP.{{$menyetujui->user->no_pegawai}}
+                            NIP.{{$data->nip_petugas}}
                         @endif
                     @else
                         <br><br><br><br><br>
