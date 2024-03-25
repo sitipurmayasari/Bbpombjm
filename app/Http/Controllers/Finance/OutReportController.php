@@ -72,6 +72,18 @@ class OutReportController extends Controller
             // $pdf = PDF::loadview('finance/outreport.cetakpeg',compact('data','request'));
             // return $pdf->stream(); 
             return view('finance/outreport.cetakpeg',compact('data','request'));
+
+        }elseif($request->jenis_Laporan=="tgl"){
+            // dd($request->all());
+            $data = Outst_employee::orderBy('outst_employee.id','asc')
+                                ->leftJoin('outstation','outstation.id','=','outst_employee.outstation_id')
+                                ->whereraw('outstation.deleted_at IS null')
+                                ->WhereRaw('outstation.st_date between "'.$request->awal.'" AND "'.$request->akhir.'"')
+                                ->get();
+            // $pdf = PDF::loadview('finance/outreport.cetakpeg',compact('data','request'));
+            // return $pdf->stream(); 
+            return view('finance/outreport.cetaktgl',compact('data','request'));
+            
         }elseif($request->jenis_Laporan=="Per"){
             $pegawai = User::where('id',$request->users)->first();
             $data = Outst_employee::orderBy('outst_employee.id','asc')

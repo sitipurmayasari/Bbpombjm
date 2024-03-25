@@ -35,11 +35,11 @@
                                     <option value="ST">Laporan daftar ST Keluar</option>
                                     <option value="Peg">Laporan Daftar Pegawai Dinas</option>
                                     <option value="Per">Laporan Perjadin Per Pegawai</option>
+                                    <option value="tgl">Laporan Perjadin Per Tanggal</option>
                                     <option value="Kui">Laporan Biaya Perjalanan Dinas</option>
                                 </select>
                             </div>
                         </div>
-                        <br>
                         <div class="form-group" id="ruang">
                             <label class="col-sm-3 control-label no-padding-right" 
                             for="form-field-1"> Bidang
@@ -53,7 +53,6 @@
                                 </select>
                             </div>
                         </div>
-                        <br>
                         <div class="form-group" id="pok">
                             <label class="col-sm-3 control-label no-padding-right" 
                             for="form-field-1"> Anggaran
@@ -82,21 +81,7 @@
                                 </select>
                             </div>
                         </div>
-                        {{-- <br> --}}
-                        {{-- <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Tahun
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="radio" name="tahun" value="1" checked id="thn">
-                                <label class="control-label no-padding-right" for="form-field-1"> Semua</label> 
-                                &nbsp;&nbsp;
-                                <input type="radio" name="tahun" value="2" id="thn2">
-                                <label class="control-label no-padding-right" for="form-field-1"> Per Tahun</label>
-                            </div>
-                        </div>
-                        <br> --}}
-                        <div class="form-group">
+                        <div class="form-group" id="year">
                             <label class="col-sm-3 control-label no-padding-right" 
                             for="form-field-1">
                             </label>
@@ -113,7 +98,6 @@
                                 </select>
                             </div>
                         </div>
-                        <br>
                         <div class="form-group" id="tampilbulan">
                             <label class="col-sm-3 control-label no-padding-right" 
                             for="form-field-1"> Bulan
@@ -126,7 +110,6 @@
                                 <label class="control-label no-padding-right" for="form-field-1"> Per bulan</label>
                             </div>
                         </div>
-                        <br>
                         <div class="form-group" id="tampildetilbulan">
                             <label class="col-sm-3 control-label no-padding-right" 
                             for="form-field-1">
@@ -143,6 +126,22 @@
                                     }
                                     @endphp
                                 </select>
+                            </div>
+                        </div>
+                        <div id="tgl">
+                            <div  class="form-group" id="a">
+                                <label class="col-sm-3 control-label no-padding-right" 
+                                for="form-field-1"> Tanggal Mulai
+                                </label>
+                                <div class="col-sm-8" >
+                                    <input type="date" name="awal" class="col-xs-5 col-sm-5"/>
+                            </div>
+                            <div  class="form-group" id="b">
+                                <label class="col-sm-3 control-label no-padding-right" 
+                                for="form-field-1"> Tanggal Akhir
+                                </label>
+                                <div class="col-sm-8" >
+                                    <input type="date" name="akhir" class="col-xs-5 col-sm-5"/>
                             </div>
                         </div>
 
@@ -175,6 +174,7 @@
         $("#tampildetilbulan").hide();
         $("#Datapeg").hide();
         $("#pok").hide();
+        $("#tgl").hide();
 
         // $("#thn").click(function(){
         //     $("#mew").hide();
@@ -202,12 +202,23 @@
                 $("#ruang").hide();
                 $("#Datapeg").show();
                 $("#pok").hide();
+                $("#year").show();
             }else if(v=="Kui"){
                 $("#pok").show();
+                $("#year").show();
+            }else if(v=="tgl"){
+                $("#pok").hide();
+                $("#Datapeg").hide();
+                $("#ruang").hide();
+                $("#pok").hide();
+                $("#year").hide();
+                $("#tgl").show();
+                $("#tampilbulan").hide();
             }else{
                 $("#Datapeg").hide();
                 $("#ruang").show();
                 $("#pok").hide();
+                $("#year").show();
             } 
         });
 </script>
