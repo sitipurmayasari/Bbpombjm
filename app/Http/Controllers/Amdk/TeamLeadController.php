@@ -41,6 +41,8 @@ class TeamLeadController extends Controller
    
     public function edit($id)
     {
+        
+        $data = Teamleader::orderBy('id','desc')->where('id',$id)->first();
         $divisi = Divisi::all();
         $user = User::where('status','PNS')
         ->where('aktif','Y')->get();
