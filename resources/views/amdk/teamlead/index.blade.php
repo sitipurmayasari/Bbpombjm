@@ -34,7 +34,6 @@
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
                 <th width="40px">No</th>
-                <th>Bidang</th>
                 <th>Nama</th>
                 <th>Tanggal Menjabat</th>
                 <th>Jabatan</th>
@@ -44,11 +43,6 @@
                 @foreach($data as $key=>$row)
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
-                    <td>
-                        @if ($row->divisi_id != null)
-                            {{$row->divisi->nama}}
-                        @endif
-                    </td>
                     <td>{{$row->peg->name}}</td>
                     <td style="text-align: center">
                         {{tgl_indo($row->datefrom)}} <br> s/d <br> {{tgl_indo($row->dateto)}}
