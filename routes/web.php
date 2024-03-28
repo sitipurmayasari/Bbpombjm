@@ -339,11 +339,11 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
       //Route untuk Renstra Lokal
       Route::get('/finance/renstrakal','Finance\RenstrakalController@index')->name('renstrakal');
       //Route untuk Rencana Bulanan
-      Route::get('/finance/renta','Finance\RentaController@index')->name('renta');
-      //Route untuk Assigmnent Target
-      Route::get('/finance/asta','Finance\AstaController@index')->name('asta');
-      //Route untuk laporan Renstra
-      Route::get('/finance/renstrapot','Finance\RenstraPotController@index')->name('renstrapot');
+      // Route::get('/finance/renta','Finance\RentaController@index')->name('renta');
+      // //Route untuk Assigmnent Target
+      // Route::get('/finance/asta','Finance\AstaController@index')->name('asta');
+      // //Route untuk laporan Renstra
+      // Route::get('/finance/renstrapot','Finance\RenstraPotController@index')->name('renstrapot');
       //Route untuk Eselon II
       Route::get('/finance/eselontwo','Finance\EselonTwoController@index')->name('eselontwo');
       //Route untuk Eselon II

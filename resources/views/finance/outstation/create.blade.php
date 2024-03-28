@@ -85,19 +85,6 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1"> Beban Anggaran
-                        </label>
-                        <div class="col-sm-8">
-                            <select name="budget_id" class="col-xs-10 col-sm-10 required select2" required>
-                                <option value="">Pilih Anggaran</option>
-                                @foreach ($budget as $item)
-                                    <option value="{{$item->id}}">{{$item->code}}/{{$item->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label no-padding-right" 
                         for="form-field-1"> PPK
                         </label>
                         <div class="col-sm-8"> 
@@ -106,6 +93,32 @@
                                 <option value="0">Tanpa PPK</option>
                                 @foreach ($ppk as $item)
                                     <option value="{{$item->id}}">{{$item->user->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Ketua Tim
+                        </label>
+                        <div class="col-sm-8"> 
+                            <select name="teamleader_id" class="col-xs-10 col-sm-10 required select2" required>
+                                <option value="">Pilih Pejabat</option>>
+                                @foreach ($tim as $item)
+                                    <option value="{{$item->id}}">{{$item->peg->name}} ({{$item->detail}})</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Beban Anggaran
+                        </label>
+                        <div class="col-sm-8">
+                            <select name="budget_id" class="col-xs-10 col-sm-10 required select2" required>
+                                <option value="">Pilih Anggaran</option>
+                                @foreach ($budget as $item)
+                                    <option value="{{$item->id}}">{{$item->code}}/{{$item->name}}</option>
                                 @endforeach
                             </select>
                         </div>

@@ -86,22 +86,6 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1"> Beban Anggaran
-                        </label>
-                        <div class="col-sm-8">
-                            <select name="budget_id" class="col-xs-10 col-sm-10 required select2" required>
-                                @foreach ($budget as $item)
-                                    @if ($data->budget_id==$item->id)
-                                        <option value="{{$item->id}}" selected>{{$item->code}}/{{$item->name}}</option>
-                                    @else
-                                        <option value="{{$item->id}}">{{$item->code}}/{{$item->name}}</option>
-                                    @endif
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label no-padding-right" 
                         for="form-field-1"> PPK
                         </label>
                         <div class="col-sm-8"> 
@@ -112,6 +96,38 @@
                                         <option value="{{$item->id}}" selected>{{$item->user->name}}</option>
                                     @else
                                         <option value="{{$item->id}}">{{$item->user->name}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Ketua Tim
+                        </label>
+                        <div class="col-sm-8"> 
+                            <select name="teamleader_id" class="col-xs-10 col-sm-10 required select2" required>
+                                @foreach ($tim as $item)
+                                    @if ($data->teamleader_id == $item->id)
+                                        <option value="{{$item->id}}" selected>{{$item->peg->name}} ({{$item->detail}})</option>
+                                    @else
+                                        <option value="{{$item->id}}">{{$item->peg->name}} ({{$item->detail}})</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> Beban Anggaran
+                        </label>
+                        <div class="col-sm-8">
+                            <select name="budget_id" class="col-xs-10 col-sm-10 required select2" required>
+                                @foreach ($budget as $item)
+                                    @if ($data->budget_id==$item->id)
+                                        <option value="{{$item->id}}" selected>{{$item->code}}/{{$item->name}}</option>
+                                    @else
+                                        <option value="{{$item->id}}">{{$item->code}}/{{$item->name}}</option>
                                     @endif
                                 @endforeach
                             </select>
