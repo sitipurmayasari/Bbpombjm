@@ -107,6 +107,7 @@
                         </label>
                         <div class="col-sm-8"> 
                             <select name="teamleader_id" class="col-xs-10 col-sm-10 required select2" required>
+                                    <option value="">Pilih Pejabat</option>>
                                 @foreach ($tim as $item)
                                     @if ($data->teamleader_id == $item->id)
                                         <option value="{{$item->id}}" selected>{{$item->peg->name}} ({{$item->detail}})</option>
