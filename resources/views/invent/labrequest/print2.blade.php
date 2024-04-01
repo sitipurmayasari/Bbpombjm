@@ -170,7 +170,11 @@
                 <td class="ttd">Pengelola Persediaan</td>
             </tr>
             <tr >
-                <td class="ttd"></td>
+                <td class="ttd">
+                    @if ($menyetujui->user->ttd != null)
+                        <img src="{{$menyetujui->user->ttd->getFoto()}}"  style="height:50px;width:50px;">
+                    @endif
+                </td>
                 <td class="ttd">
                    @if ($tahubaru->ttd != null)
                         <img src="{{$tahubaru->ttd->getFoto()}}"  style="height:50px;width:50px;">
@@ -312,6 +316,9 @@
             <tr >
                 <td class="ttd"></td>
                 <td class="ttd">
+                    @if ($menyetujui->user->ttd != null)
+                            <img src="{{$menyetujui->user->ttd->getFoto()}}"  style="height:50px;width:50px;">
+                        @endif
                 </td>
                 <td class="ttd">
                     @if ($petugas->user->ttd != null)

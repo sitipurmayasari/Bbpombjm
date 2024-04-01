@@ -169,18 +169,18 @@
             </tr>
             <tr >
                 <td class="ttd"> {{--menyetujui --}}
-                    @if ($data->stat_aduan == "S" || $data->stat_aduan == "D")
+                    {{-- @if ($data->stat_aduan == "S" || $data->stat_aduan == "D") --}}
                         @if ($menyetujui->user->ttd != null)
                             <img src="{{$menyetujui->user->ttd->getFoto()}}"  style="height:50px;width:50px;">
                         @endif
-                    @endif
+                    {{-- @endif --}}
                 </td> 
                 <td class="ttd"> {{--mengetahui --}}
-                    @if ($data->stat_aduan != "B" || $data->stat_aduan != "T")
+                    {{-- @if ($data->stat_aduan != "B" || $data->stat_aduan != "T") --}}
                         @if ($tahubaru->ttd != null)
                                 <img src="{{$tahubaru->ttd->getFoto()}}"  style="height:50px;width:50px;">
                         @endif
-                    @endif
+                    {{-- @endif --}}
                 </td>
                 <td class="ttd"> {{--yang meminta --}}
                     @if ($data->pegawai->ttd != null)
@@ -320,11 +320,11 @@
             <tr >
                 <td class="ttd"></td> {{-- Menerima --}}
                 <td class="ttd"> {{-- Mengetahui --}}
-                    @if ($data->stat_aduan == "S" || $data->stat_aduan == "D")
+                    {{-- @if ($data->stat_aduan == "S" || $data->stat_aduan == "D") --}}
                         @if ($menyetujui->user->ttd != null)
                             <img src="{{$menyetujui->user->ttd->getFoto()}}"  style="height:50px;width:50px;">
                         @endif
-                    @endif
+                    {{-- @endif --}}
                 </td>
                 <td class="ttd"> {{-- Pengelola --}}
                     @if ($petugas->user->ttd != null)
