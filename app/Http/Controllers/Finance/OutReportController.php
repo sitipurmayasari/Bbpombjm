@@ -75,7 +75,7 @@ class OutReportController extends Controller
 
         }elseif($request->jenis_Laporan=="tgl"){
             // dd($request->all());
-            $data = Outst_employee::orderBy('outst_employee.id','asc')
+            $data = Outst_employee::Selectraw(' DISTINCT users_id, outst_employee.outstation_id')
                                 ->leftJoin('outstation','outstation.id','=','outst_employee.outstation_id')
                                 ->leftJoin('outst_destiny','outst_destiny.outstation_id','=','outstation.id')
                                 ->whereraw('outstation.deleted_at IS null and "'.$request->awal.'" between outst_destiny.go_date AND outst_destiny.return_date')
