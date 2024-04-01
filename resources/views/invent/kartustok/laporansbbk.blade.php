@@ -101,7 +101,7 @@
                 </table>
             </div><br><br>
         </div>
-        <div id="ttd">
+        {{-- <div id="ttd">
             <table class="ttd" style="width: 100%">
                 <tr>
                     <td class="ttd col-md-6"></td>
@@ -161,5 +161,5 @@
                 </tr>
             </table>
 
-        </div><br><br>
+        </div><br><br> --}}
         @endsection
