@@ -74,7 +74,7 @@
 					<a href="/finance/portalAG" class="navbar-brand">
 						<small>
 						<img src="{{asset('images/bbpom.jpg')}}" alt="" srcset="" style="height:35px">
-							SI ANANG GALUH - Analisa Laporan akUntabilitas Hasil kinerja
+							SI ANANG GALUH - ALUH (Analisa Laporan akUntabilitas Hasil kinerja)
 						</small>
 					</a>
 				</div>
@@ -135,7 +135,7 @@
 						</li>
 
 						<li class=" ">
-							<a href="/finance/dashboardku">
+							<a href="/finance/dashboardaluh">
 								<i class="menu-icon fa fa-tachometer"></i>
 								<span class="menu-text"> Dashboard </span>
 							</a>

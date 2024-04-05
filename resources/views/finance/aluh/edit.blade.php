@@ -1,4 +1,4 @@
-@extends('layouts.kuli')
+@extends('layouts.aluh')
 @section('breadcrumb')
     <li><a href="/finance/aluh">Input Link Analisa Laporan akUntabilitas Hasil kinerja</a></li>
     <li>Edit</li>
