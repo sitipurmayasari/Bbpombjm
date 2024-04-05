@@ -58,6 +58,7 @@
                         <li><a href="#plan" data-toggle="tab">e-Planning</a></li>
                         <li><a href="#forma" data-toggle="tab">e-Performance</a></li>
                         <li><a href="#kuli" data-toggle="tab">Kulihanku</a></li>
+                        <li><a href="#aluh" data-toggle="tab">Aluh</a></li>
                         <li><a href="#arsip" data-toggle="tab">Arsiparis</a></li>
                         <li><a href="#qms" data-toggle="tab">QMS</a></li>
                         <li><a href="#nappza" data-toggle="tab">NAPPZA</a></li>
@@ -283,6 +284,32 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="tab-pane" id="aluh">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-success">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">ALUH</h3>
+                                        </div>
+                        
+                                        <div class="panel-body">
+                                            <table id="simple-table" class="table  table-bordered table-hover" >
+                                                <thead >
+                                                    <th width="5%" style="text-align: center;">No</th>
+                                                    <th style="text-align: center;">Menu</th>
+                                                    <th width="20%" style="text-align: center;">
+                                                        <input type="checkbox" name="aluhCheckAll" id="aluhCheckAll" >
+                                                    </th>
+                                                </thead>
+                                                <tbody id="isi_aluh">
+                                                   
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="tab-pane" id="qms">
                             <div class="row">
                                 <div class="col-md-12">
@@ -473,6 +500,14 @@
             }
         });
 
+        // $('#aluhCheckAll').click(function() {
+        //     if ($(this).prop('checked')) {
+        //         $('.cekaluh').prop('checked', true);
+        //     } else {
+        //         $('.cekaluh').prop('checked', false);
+        //     }
+        // });
+
         $('#qmsCheckAll').click(function() {
             if ($(this).prop('checked')) {
                 $('.cekqms').prop('checked', true);
@@ -647,6 +682,22 @@
                     '</tr>';
               }
 
+              for (let i = 0; i < response.aluh.length; i++) {
+                  var is_check = '';
+                  var no = i+1;
+                  if (response.aluh[i].checked){
+                      is_check = 'checked';
+                  }
+                  isi_aluh+='<tr>'+
+                        '<td style="text-align: center;">'+no+'</td>'+
+                        '<td>'+response.aluh[i].nama+'</td>'+
+                        '<td style="text-align: center;">'+
+                            '<input type="checkbox" class="menu cekaluh" name="akses_aluh[]" '+is_check
+                            +' value="'+response.aluh[i].id+'">'+
+                        '</td>'+
+                    '</tr>';
+              }
+
               for (let i = 0; i < response.qms.length; i++) {
                   var is_check = '';
                   var no = i+1;
@@ -719,6 +770,7 @@
               $("#isi_plan").html(isi_plan);
               $("#isi_forma").html(isi_forma);
               $("#isi_kuli").html(isi_kuli);
+              $("#isi_aluh").html(isi_aluh);
               $("#isi_qms").html(isi_qms);
               $("#isi_nappza").html(isi_nappza);
               $("#isi_mikro").html(isi_mikro);

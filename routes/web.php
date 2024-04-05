@@ -73,6 +73,7 @@ Route::get('/qR/{id}/calibration','Calibration\GlassKualController@detail')->nam
   Route::get('/finance/dashboardren','Finance\DashboardrenController@index')->name('dashboard');
   Route::get('/finance/dashboardforma','Finance\DashboardformaController@index')->name('dashboard');
   Route::get('/finance/dashboardku','Finance\DashboardkuController@index')->name('dashboardku');
+  Route::get('/finance/dashboardaluh','Finance\DashboardaluhController@index')->name('dashboardaluh');
   
   //--------------------------AMDK------------------------------------------
   Route::get('/amdk/dashboard','Amdk\DashboardController@index')->name('dashboard');
@@ -363,6 +364,10 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     //-----kulihanku--------
      //Route untuk Input kulihanku
      Route::get('/finance/link','Finance\LinkController@index')->name('link');
+
+     //-----ALUH --------
+     //Route untuk Input ALUH 
+     Route::get('/finance/aluh','Finance\AluhController@index')->name('aluh');
 
     //--------------------------Arsip------------------------------------------
      //Route untuk Subkelompok Surat

@@ -313,5 +313,12 @@
   Route::get('finance/link/edit/{id}','Finance\LinkController@edit')->name('link.edit');
   Route::post('finance/link/update/{id}','Finance\LinkController@update')->name('link.update');
 
+    //-----ALUH--------
+    Route::get('/finance/aluh/create','Finance\AluhController@create')->name('aluh.create');
+    Route::post('finance/aluh/store','Finance\AluhController@store')->name('aluh.store');
+    Route::get('finance/aluh/delete/{id}','Finance\AluhController@delete')->name('aluh.delete');
+    Route::get('finance/aluh/edit/{id}','Finance\AluhController@edit')->name('aluh.edit');
+    Route::post('finance/aluh/update/{id}','Finance\AluhController@update')->name('aluh.update');
+  
 
     
