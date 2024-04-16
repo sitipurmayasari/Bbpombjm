@@ -37,6 +37,7 @@
             <thead>
                 <th width="40px">No</th>
                 <th>perspektif</th>
+                <th>Kode Sasaran</th>
                 <th>Sasaran Kegiatan</th>
                 <th  class="col-md-2">Aksi</th>
             </thead>
@@ -45,6 +46,7 @@
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
                     <td>{{$row->pers->name}}</td>
+                    <td>{{$row->code}}</td>
                     <td>{{$row->name}}</td>
                     <td>
                         <a href="/finance/ikuTarget/edit/{{$row->id}}" class="btn btn-warning">
