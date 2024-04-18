@@ -29,6 +29,7 @@ use App\Mailsubgroup;
 use App\Mailgroup;
 use App\Kontrol;
 use App\Indicator_det;
+use App\Linkaluh;
 use App\Divisi;
 use Illuminate\Support\Facades\DB;
 
@@ -548,6 +549,15 @@ class InjectQuery
 
     public function dafkontrol($id){
         $data = Kontrol::where('media_id',$id)
+                        ->get();
+        return $data;
+    }
+
+ //----------------------Aluh----------------------
+    public function getIkuAluh($year){
+        $data = Linkaluh::where('year',$year)
+                        ->where('aktif','Y')
+                        ->orderby('id','asc')
                         ->get();
         return $data;
     }

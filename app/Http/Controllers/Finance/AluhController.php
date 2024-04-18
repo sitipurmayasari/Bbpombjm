@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Finance;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Carbon\Carbon;
+use App\Indicator;
 use App\Linkaluh;
 
 class AluhController extends Controller
@@ -22,7 +22,8 @@ class AluhController extends Controller
 
     public function create()
     {
-        return view('finance/aluh.create');
+        $iku = Indicator::all();
+        return view('finance/aluh.create',compact('iku'));
     }
 
     public function store(Request $request)
@@ -34,8 +35,9 @@ class AluhController extends Controller
    
     public function edit($id)
     {
+        $iku = Indicator::all();
         $data = Linkaluh::where('id',$id)->first();
-        return view('finance/aluh.edit',compact('data'));
+        return view('finance/aluh.edit',compact('data','iku'));
     }
 
    

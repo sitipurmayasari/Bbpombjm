@@ -5,6 +5,19 @@
 @endsection
 @section('content')
 @include('layouts.validasi')
+<style>
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    
+    /* Firefox */
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+</style>
 
 <div class="row">
     <form class="form-horizontal validate-form" role="form" 
@@ -25,6 +38,33 @@
                     <div class="widget-main no-padding">
                         <fieldset>
                         <br>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right" 
+                            for="form-field-1"> Tahun
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="number"  placeholder="2024" value="{{$data->year}}"
+                                        class="col-xs-10 col-sm-2 required " 
+                                        name="year" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right" 
+                            for="form-field-1"> Pilih IKU
+                            </label>
+                            <div class="col-sm-8">
+                                <select  name="indicator_id" id="indicator_id" class="col-xs-10 col-sm-10 required select2" required>
+                                    <option value="">Pilih IKU</option>
+                                    @foreach ($iku as $item)
+                                        @if ($item->id == $data->indicator_id)
+                                            <option value="{{$item->id}}" selected>{{$item->ikucode}} - {{$item->indicator}}</option>
+                                        @else
+                                            <option value="{{$item->id}}">{{$item->ikucode}} - {{$item->indicator}}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label no-padding-right" 
                             for="form-field-1"> Nama Laporan

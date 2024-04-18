@@ -35,6 +35,8 @@
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
                 <th width="40px">No</th>
+                <th>Tahun</th>
+                <th>Kode IKU</th>
                 <th class="col-md-2">Nama Laporan</th>
                 <th>Link</th>
                 <th>Status</th>
@@ -44,6 +46,8 @@
                 @foreach($data as $key=>$row)
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
+                    <td>{{$row->year}}</td>
+                    <td>{{$row->indi->ikucode}}</td>
                     <td>{{$row->name}}</td>
                     <td>
                         <a href="{{$row->link}}" target="_blank">{{$row->link}}</a>

@@ -10,9 +10,11 @@ class DashboardaluhController extends Controller
 {
     public function index()
     {
-        $data = Linkaluh::orderBy('name','asc')
-                                ->where('aktif','Y')
-                                ->get();
+        $data = Linkaluh::Select('year')
+                        ->orderBy('year','asc')
+                        ->GroupBy('year')
+                        ->where('aktif','Y')
+                        ->get();
         return view('finance/dashboardaluh.index',compact('data'));
     }
 }

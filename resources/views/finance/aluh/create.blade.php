@@ -26,6 +26,28 @@
                         <fieldset>
                         <br>
                         <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right" 
+                            for="form-field-1"> Tahun
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text"  placeholder="Input Tahun" 
+                                        class="col-xs-10 col-sm-2 required " 
+                                        name="year" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right" 
+                            for="form-field-1"> Pilih IKU
+                            </label>
+                            <div class="col-sm-8">
+                                <select  name="indicator_id" id="indicator_id" class="col-xs-10 col-sm-10 required select2" required>
+                                    <option value="">Pilih IKU</option>
+                                    @foreach ($iku as $item)
+                                        <option value="{{$item->id}}">{{$item->ikucode}} - {{$item->indicator}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label no-padding-right" 
                             for="form-field-1"> Nama Laporan
