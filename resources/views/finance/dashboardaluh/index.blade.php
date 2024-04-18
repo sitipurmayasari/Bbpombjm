@@ -29,6 +29,7 @@
           </div>
           <div class="card-body">
             <div>
+              @if ($data != null)
               @foreach ($data as $item)
               <div class="widget-box">
                   <div class="widget-header">
@@ -61,6 +62,7 @@
                   </div>
               </div>
               @endforeach
+              @endif
             </div>
         </div>
     </div>
