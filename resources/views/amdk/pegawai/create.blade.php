@@ -154,8 +154,8 @@
                                     <option value="CPNS">CPNS</option>
                                     <option value="PPPK">PPPK</option>
                                     <option value="PPNPN">PPNPN</option>
+                                    <option value="OUT">Outsourcing</option>
                                     <option value="Magang">Magang</option>
-                                    <option value="OSC">Outsourcing</option>
                                 </select>
                             </div>
                         </div>

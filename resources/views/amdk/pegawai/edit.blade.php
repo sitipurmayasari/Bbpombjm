@@ -213,7 +213,7 @@
                                         <option value="PPPK">PPPK</option>
                                         <option value="PPNPN">PPNPN</option>
                                         <option value="Magang">Magang</option>
-                                        <option value="OSC">Outsourcing</option>
+                                        <option value="OUT">Outsourcing</option>
                                     @elseif ($data->status==="PPNPN")
                                         <option value="">Pilih Status</option>
                                         <option value="PNS">PNS</option>
@@ -221,7 +221,7 @@
                                         <option value="PPPK">PPPK</option>
                                         <option value="PPNPN" selected>PPNPN</option>
                                         <option value="Magang">Magang</option>
-                                        <option value="OSC">Outsourcing</option>
+                                        <option value="OUT">Outsourcing</option>
                                     @elseif ($data->status==="Magang")
                                         <option value="">Pilih Status</option>
                                         <option value="PNS">PNS</option>
@@ -229,7 +229,7 @@
                                         <option value="PPPK">PPPK</option>
                                         <option value="PPNPN">PPNPN</option>
                                         <option value="Magang" selected>Magang</option>
-                                        <option value="OSC">Outsourcing</option>
+                                        <option value="OUT">Outsourcing</option>
                                     @elseif ($data->status==="CPNS")
                                         <option value="">Pilih Status</option>
                                         <option value="PNS">PNS</option>
@@ -237,7 +237,7 @@
                                         <option value="PPPK">PPPK</option>
                                         <option value="PPNPN">PPNPN</option>
                                         <option value="Magang">Magang</option>
-                                        <option value="OSC">Outsourcing</option>
+                                        <option value="OUT">Outsourcing</option>
                                     @elseif ($data->status==="PPPK")
                                         <option value="">Pilih Status</option>
                                         <option value="PNS">PNS</option>
@@ -245,7 +245,7 @@
                                         <option value="PPPK" selected>PPPK</option>
                                         <option value="PPNPN">PPNPN</option>
                                         <option value="Magang">Magang</option>
-                                        <option value="OSC">Outsourcing</option>
+                                        <option value="OUT">Outsourcing</option>
                                     @else
                                         <option value="">Pilih Status</option>
                                         <option value="PNS">PNS</option>
@@ -253,7 +253,7 @@
                                         <option value="PPPK">PPPK</option>
                                         <option value="PPNPN">PPNPN</option>
                                         <option value="Magang">Magang</option>
-                                        <option value="OSC" selected>Outsourcing</option>
+                                        <option value="OUT" selected>Outsourcing</option>
                                     @endif
                                     
                                 </select>
