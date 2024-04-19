@@ -37,8 +37,8 @@
                 <th>No. Pegawai</th>
                 <th>Nama</th>
                 <th>Jabatan</th>
-                <th>Penempatan</th>
                 <th>Status</th>
+                <th>Aktif</th>
                 <th>Edit</th>
             <thead>
             <tbody>   	
@@ -48,7 +48,13 @@
                     <td><a href="/amdk/pegawai/detail/{{$row->id}}">{{$row->no_pegawai}}</a></td>
                     <td>{{$row->name}}</td>
                     <td>{{$row->jabatan->jabatan}}</td>
-                    <td>{{$row->divisi->nama}}</td>
+                    <td>
+                        @if ($row->aktif == 'N')
+                            Nonaktif    
+                        @else
+                            Aktif
+                        @endif
+                    </td>
                     <td>{{$row->status}}</td>
                     <td>
                         <a href="/amdk/pegawai/edit/{{$row->id}}" class="btn btn-warning">
