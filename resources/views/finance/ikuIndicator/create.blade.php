@@ -45,7 +45,7 @@
                                 <div class="col-sm-10">
                                     <input type="text"  placeholder="input kode"
                                             class="col-xs-10 col-sm-10 required " 
-                                            name="code" required/>
+                                            name="ikucode" required/>
                                 </div>
                             </div>
                             <div class="form-group">
