@@ -47,7 +47,7 @@
                 <tr>
                     <td>{{$data->firstItem() + $key}}</td>
                     <td>{{$row->target->code}}</td>
-                    <td>{{$row->code}}</td>
+                    <td>{{$row->ikucode}}</td>
                     <td>{{$row->indicator}}</td>
                     {{-- <td>@if ($row->divisi_id != null)
                         {{$row->div->nama}}
