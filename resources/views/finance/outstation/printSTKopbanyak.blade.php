@@ -281,7 +281,7 @@
             </tr>
        </table>
         <br>
-        &nbsp;Agar yang bersangkutan melaksanakan tugas dengan baik dan penuh tanggung jawab.
+        Agar yang bersangkutan melaksanakan tugas dengan baik dan penuh tanggung jawab.
         <br>&nbsp;<br>
         <table class="ttdini" style="width: 100%" >
             <tr>
