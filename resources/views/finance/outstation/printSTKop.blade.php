@@ -138,7 +138,7 @@
 
 </style>
 <body background="{{asset('images/KOPNEW_F4.png')}}">
-    <br>
+    <br>&nbsp;<br>
     <div class="col-sm-12" style="text-align: center">
         <div id="kop">
             SURAT TUGAS <br>
