@@ -146,8 +146,13 @@
                 <td>
                     <table>
                         <tr>
-                            <td> 1.</td>
-                            <td>Peraturan Badan pengawas Obat dan Makanan Nomor 19 Tahun 2023 Tentang Organisasi dan Tata Kerja Unit Pelaksana Teknis pada Badan Pengawas Obat dan Makanan ;
+                            <td>
+                                @if ($data->dasar != null)
+                                    1.
+                                @endif
+                                </td>
+                            <td>
+                                Peraturan Badan pengawas Obat dan Makanan Nomor 19 Tahun 2023 Tentang Organisasi dan Tata Kerja Unit Pelaksana Teknis pada Badan Pengawas Obat dan Makanan;
                             </td>
                         </tr>
                         @if ($data->dasar != null)
