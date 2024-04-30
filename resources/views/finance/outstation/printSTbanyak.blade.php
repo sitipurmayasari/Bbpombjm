@@ -99,7 +99,7 @@
 <body>
 <div>
    <div class="col-sm-12" style="text-align: center">
-        <br>
+        <br>&nbsp;<br>
         <div id="kop">
             SURAT TUGAS <br>
            NOMOR : {{$data->number}}
