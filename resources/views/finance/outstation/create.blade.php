@@ -71,7 +71,7 @@
                         <div class="col-sm-8">
                             <input type="checkbox" id="reset" name="reset" value="Y" onclick="respe();">&nbsp;
                             <label class="control-label" for="form-field-1"> Manual </label> <br>
-                            <textarea name="menimbang" id="menimbang" cols="70%" rows="5">Bahwa untuk menunjang pelaksanaan tugas dan fungsi Balai Besar POM di Banjarmasin sebagai unit Pelaksana Teknis di lingkungan Badan POM RI, dipandang perlu untuk menerbitkan Surat Tugas.
+                            <textarea name="menimbang" id="menimbang" cols="70%" rows="5">Bahwa untuk menunjang pelaksanaan tugas dan fungsi Balai Besar POM di Banjarmasin sebagai unit Pelaksana Teknis di lingkungan Badan POM RI, dipandang perlu untuk menerbitkan Surat Tugas
                             </textarea>
                         </div>
                     </div>

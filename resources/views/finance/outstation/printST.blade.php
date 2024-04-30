@@ -10,8 +10,8 @@
 </head>
 <style>
     @page {
-        size: 21.59cm 33cm ;
-        margin-top:175px;
+        size: 21.59cm 33cm;
+        margin-top: 4.5cm;
         margin-left: 3cm;
         margin-right: 2cm;
         margin-bottom: 1.4cm;
@@ -37,7 +37,9 @@
             font-family: "Bookman Old Style";
             margin-left: 10%;
             margin-right: 10%;
+            text-align: center;
             line-height: 1;
+            font-size: 12;
         }
 
         #isi{
@@ -82,7 +84,6 @@
         th{
             font-family: "Bookman Old Style"; 
             border: 1px solid black;
-            font-weight: bold;
             font-size: 10; 
             vertical-align: middle;
             text-align: center;
@@ -94,25 +95,26 @@
             font-size: 9.5;
             font-weight: normal;
             font-style: normal;;
-            color: brown;
+            color: black;
             line-height: 1;
             text-align: center;
-            border: 2px solid brown;
+            border: 2px solid black;
             width: 100%;
-            /* padding-top: 5px;
-            padding-bottom: 5px; */
+            position:absolute;
+            bottom:0;
         }
         
 
 </style>
 <body>
     <div class="col-sm-12" style="text-align: center">
-        <br>
-        <div style="align=center;" id="kop">
-            <u><b style="font-size: 14">SURAT TUGAS</b></u><br>
-            <p style="font-size: 12">NOMOR : {{$data->number}}</p>
+        <div id="kop">
+            SURAT TUGAS <br>
+           NOMOR : {{$data->number}}
+           <br>
         </div>
     </div>
+    <br>
     <div id="isi">
        <table>
            <tr>
@@ -122,8 +124,7 @@
                     <table>
                         <tr>
                             <td> a.</td>
-                            <td>{{$data->menimbang}}
-                                
+                            <td>{{$data->menimbang}};
                             </td>
                         </tr>
                         <tr>
@@ -141,42 +142,16 @@
                     <table>
                         <tr>
                             <td> 1.</td>
-                            <td>Peraturan Badan pengawas Obat dan Makanan Nomor 19 Tahun 2023 Tentang Organisasi dan Tata Kerja Unit Pelaksana Teknis pada Badan Pengawas Obat dan Makanan
+                            <td>Peraturan Badan pengawas Obat dan Makanan Nomor 19 Tahun 2023 Tentang Organisasi dan Tata Kerja Unit Pelaksana Teknis pada Badan Pengawas Obat dan Makanan;
                             </td>
                         </tr>
-                        @if ($data->budget_id != 3)
-                            <tr>
-                                <td> 2.</td>
-                                <td>
-                                        {{$data->budget->name}} Tahun Anggaran {{$data->budget->tahun}}
-                                        @if ($data->budget->nomor != null && $data->budget->tanggal == null),
-                                            No. {{$data->budget->nomor}} 
-                                        @elseif ($data->budget->tanggal != null && $data->budget->nomor == null)
-                                            ,
-                                            tanggal {{tgl_indo($data->budget->tanggal)}}
-                                        @elseif ($data->budget->tanggal != null && $data->budget->nomor != null),
-                                            No. {{$data->budget->nomor}}  tanggal {{tgl_indo($data->budget->tanggal)}}
-                                        @else
-                                            ;
-                                        @endif
-                                </td>
-                            </tr>
-                            @if ($data->dasar != null)
-                                <tr>
-                                    <td> 3.</td>
-                                    <td>{{$data->dasar}} ;
-                                    <br></td>
-                                </tr>
-                            @endif  
-                        @else
-                            @if ($data->dasar != null)
-                                <tr>
-                                    <td> 2.</td>
-                                    <td>{{$data->dasar}} ;
-                                    <br></td>
-                                </tr>
-                            @endif  
-                        @endif
+                        @if ($data->dasar != null)
+                        <tr>
+                            <td> 2.</td>
+                            <td>{{$data->dasar}};
+                            <br></td>
+                        </tr>
+                    @endif
                     </table>
                     <br>
                 </td>
@@ -237,89 +212,102 @@
             <tr>
                 <td>Untuk</td>
                 <td>:</td>
-                <td>{{$data->purpose}}</td>
-            </tr>
-            <tr>
-                <td>Tujuan&nbsp;</td>
-                <td>:</td>
-                <td style="width: 85%"> 
-                    @if (count($data->outst_destiny) == 1)
-                        @foreach ($data->outst_destiny as $key=>$item)
-                            @if ($loop->first)
-                                {{$item->destiny->capital}} 
-                            @endif
-                            
-                        @endforeach
-
-                    @elseif (count($data->outst_destiny) == 2)
-                        @foreach ($data->outst_destiny as $key=>$item)
-                            {{$item->destiny->capital}}
-                            @if ($data->outst_destiny->count()-1 != $key)
-                                {{' dan '}}
-                            @endif
-                        @endforeach
-
-                    @else
-                        @foreach ($data->outst_destiny as $key=>$item)
-                            @if ($loop->last-1)
-                                {{$item->destiny->capital}}{{','}} 
-                            @endif
-                            @if ($loop->last)
-                                {{' dan '}} {{$item->destiny->capital}}
-                            @endif
-                            
-                        @endforeach
-                    @endif    
-                </td>
-            </tr>
-            <tr>
-                <td>Waktu&nbsp;</td>
-                <td>:</td>
                 <td>
-                    @if (count($data->outst_destiny) == 1)
-                        @foreach ($data->outst_destiny as $key=>$item)
-                            @if ($item->go_date ==  $item->return_date)
-                                {{tgl_indo($item->go_date)}} 
-                            @else
-                                {{tgl_indo($item->go_date)}} s/d {{tgl_indo($item->return_date)}}
-                            @endif
-                        @endforeach
-                    @else
-                        @foreach ($data->outst_destiny as $key=>$item)
-                            @if ($loop->first)
-                                {{tgl_indo($item->go_date)}}
-                                s/d
-                            @endif
-                            @if ($loop->last)
-                            {{tgl_indo($item->return_date)}}
-                            @endif
-                        @endforeach
-                    @endif
-                </td>
-            </tr>
-            <tr>
-                <td>Biaya&nbsp;</td>
-                <td>:</td>
-                <td style="font-size:11">
-                    @if ($data->budget_id == 3)
-                        {{-- {{$now->name}} Tahun Anggaran {{$now->tahun}} --}}
-                        {{$data->budget->name}}
-                    @else
-                        {{$data->budget->name}} Tahun Anggaran {{$data->budget->tahun}}
-                    @endif <br>
-                    MAK :
-                    @if ($data->pok_detail_id == 0)
-                        {{' Non Anggaran '}}
-                    @elseif ($data->pok_detail_id == 1)
-                        {{' - '}}
-                    @else
-                        {{$data->pok->pok->act->prog->unit->klcode->code}}.{{$data->pok->pok->act->prog->unit->code}}.
-                        {{$data->pok->pok->act->prog->code}}.{{$data->pok->pok->act->code}}.
-                        {{$data->pok->sub->komponen->det->unit->code}}.{{$data->pok->sub->komponen->det->code}}.
-                        {{$data->pok->sub->komponen->code}}.{{$data->pok->sub->code}}.{{$data->pok->akun->code}}
+                    <table style="width: 100%;">
+                        <tbody>
+                            <tr>
+                                <td>1.</td>
+                                <td>
+                                    {{$data->purpose}} 
+                                    di 
+                                    @if (count($data->outst_destiny) == 1)
+                                        @foreach ($data->outst_destiny as $key=>$item)
+                                            @if ($loop->first)
+                                                {{$item->destiny->capital}}
+                                            @endif
+                                            
+                                        @endforeach
 
-                    @endif
-                </td>
+                                    @elseif (count($data->outst_destiny) == 2)
+                                        @foreach ($data->outst_destiny as $key=>$item)
+                                            {{$item->destiny->capital}}
+                                            @if ($data->outst_destiny->count()-1 != $key)
+                                                {{' dan '}}
+                                            @endif
+                                        @endforeach
+
+                                    @else
+                                        @foreach ($data->outst_destiny as $key=>$item)
+                                            @if ($loop->last-1)
+                                                {{$item->destiny->capital}}{{','}} 
+                                            @endif
+                                            @if ($loop->last)
+                                                {{' dan '}} {{$item->destiny->capital}}
+                                            @endif
+                                            
+                                        @endforeach
+                                    @endif;
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2.</td>
+                                <td>
+                                    Melaksanakan tugas tersebut dengan seksama dan penuh tanggung jawab serta melaporkan hasil kegiatan kepada Kepala Balai Besar Pengawas Obat dan Makanan di Banjarmasin;
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3.</td>
+                                <td>
+                                    Biaya yang dikeluarkan atas kegiatan ini 
+                                    @if ($data->budget_id == 3)
+                                        merupakan "Non Anggaran";
+                                    @else
+                                        dibebankan pada anggaran
+                                        {{$data->budget->name}}  {{$data->budget->nomor}} 
+                                        MAK : 
+                                        @if ($data->pok_detail_id == 0)
+                                            {{' Non Anggaran '}}
+                                        @elseif ($data->pok_detail_id == 1)
+                                            {{' - '}}
+                                        @else
+                                            {{$data->pok->pok->act->prog->unit->klcode->code}}.{{$data->pok->pok->act->prog->unit->code}}.
+                                            {{$data->pok->pok->act->prog->code}}.{{$data->pok->pok->act->code}}.
+                                            {{$data->pok->sub->komponen->det->unit->code}}.{{$data->pok->sub->komponen->det->code}}.
+                                            {{$data->pok->sub->komponen->code}}.{{$data->pok->sub->code}}.{{$data->pok->akun->code}}
+
+                                        @endif
+                                        Tahun Anggaran {{$data->budget->tahun}};
+                                    @endif 
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>4.</td>
+                                <td>
+                                    Surat tugas ini berlaku pada tanggal 
+                                    @if (count($data->outst_destiny) == 1)
+                                        @foreach ($data->outst_destiny as $key=>$item)
+                                            @if ($item->go_date ==  $item->return_date)
+                                                {{tgl_indo($item->go_date)}} 
+                                            @else
+                                                {{tgl_indo($item->go_date)}} s/d {{tgl_indo($item->return_date)}}
+                                            @endif
+                                        @endforeach
+                                    @else
+                                        @foreach ($data->outst_destiny as $key=>$item)
+                                            @if ($loop->first)
+                                                {{tgl_indo($item->go_date)}}
+                                                s/d
+                                            @endif
+                                            @if ($loop->last)
+                                            {{tgl_indo($item->return_date)}}
+                                            @endif
+                                        @endforeach
+                                    @endif.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                <td>
             </tr>
        </table>
         <br>
@@ -328,7 +316,7 @@
         <table class="ttdini" style="width: 100%" >
             <tr>
                 <td></td>
-                <td style="width: 55%;">Banjarbaru, 
+                <td style="width: 65%;">Banjarbaru, 
                     @php
                         $a = $data->st_date;
                         echo tgl_indo($a); 
@@ -345,7 +333,9 @@
                 </td>
                 <td>
                    @if ($menyetujui != null)
-                        Kepala {{$menyetujui->divisi->nama}},
+                         {{-- Kepala {{$menyetujui->divisi->nama}}, --}}
+                         Kepala Balai Besar Pengawas Obat dan Makanan <br>
+                         Di Banjarmasin,
                    @else
                         <b>Pejabat Belum Ditentukan</b>
                    @endif
@@ -374,9 +364,7 @@
         </table>
         <br>
         <div id="gratis">
-            Petugas Tidak diperkenankan menerima gratifikasi dalam bentuk apapun. <br>        
-            Pengaduan Gratifikasi/KKN ditujukan kepada <br>
-            Kepala Balai Besar POM di Banjarmasin melalui Hp : 082149000821
+            "Petugas Tidak diperkenankan menerima gratifikasi dalam bentuk apapun"
         </div>
     </div>
 </body>
