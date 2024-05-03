@@ -151,15 +151,25 @@ class AksesController extends Controller
                 }
             }
 
-            if ($request->input('akses_ppnpn')) {
-                for ($i = 0; $i < count($request->input('akses_ppnpn')); $i++){
+            if ($request->input('akses_otkos')) {
+                for ($i = 0; $i < count($request->input('akses_otkos')); $i++){
                     $data = [
                         'user_id' => $request->user_id,
-                        'menu_id' => $request->akses_ppnpn[$i] ,
+                        'menu_id' => $request->akses_otkos[$i] ,
                     ];
                     UserPermission::create($data);
                 }
             }
+
+            // if ($request->input('akses_ppnpn')) {
+            //     for ($i = 0; $i < count($request->input('akses_ppnpn')); $i++){
+            //         $data = [
+            //             'user_id' => $request->user_id,
+            //             'menu_id' => $request->akses_ppnpn[$i] ,
+            //         ];
+            //         UserPermission::create($data);
+            //     }
+            // }
            
         DB::commit(); 
         return redirect()->route('akses')->with('sukses','Data Tersimpan');
@@ -242,11 +252,17 @@ class AksesController extends Controller
             ->where('menu.modul','mikro')
             ->get();
 
-        $ppnpn = Submenu::orderBy('menu.id','asc')
+        $otkos = Submenu::orderBy('menu.id','asc')
             ->select('submenu.*','menu.modul','menu.nama as group_nama')
             ->leftJoin('menu','submenu.menu_id','=','menu.id')
-            ->where('menu.modul','ppnpn')
+            ->where('menu.modul','otkos')
             ->get();
+
+        // $ppnpn = Submenu::orderBy('menu.id','asc')
+        //     ->select('submenu.*','menu.modul','menu.nama as group_nama')
+        //     ->leftJoin('menu','submenu.menu_id','=','menu.id')
+        //     ->where('menu.modul','ppnpn')
+        //     ->get();
 
         $outputAmdk = array();
         foreach ($amdk as $am) {
@@ -353,15 +369,24 @@ class AksesController extends Controller
                 'checked' => $this->checkPermissonMenu($user_id,$in->id)
             );
         }
-
-        $outputppnpn = array();
-        foreach ($ppnpn as $in) {
-            $outputppnpn[] = array(
+        
+        $outputotkos = array();
+        foreach ($otkos as $in) {
+            $outputotkos[] = array(
                 'id' => $in->id,
                 'nama' => $in->nama,
                 'checked' => $this->checkPermissonMenu($user_id,$in->id)
             );
         }
+
+        // $outputppnpn = array();
+        // foreach ($ppnpn as $in) {
+        //     $outputppnpn[] = array(
+        //         'id' => $in->id,
+        //         'nama' => $in->nama,
+        //         'checked' => $this->checkPermissonMenu($user_id,$in->id)
+        //     );
+        // }
 
 
         return response()->json([ 
@@ -378,7 +403,8 @@ class AksesController extends Controller
             'qms' => $outputqms,
             'nappza' => $outputnappza,
             'mikro' => $outputmikro,
-            'ppnpn' => $outputppnpn
+            'otkos' => $outputotkos
+            // 'ppnpn' => $outputppnpn
         ],200);
     }
 

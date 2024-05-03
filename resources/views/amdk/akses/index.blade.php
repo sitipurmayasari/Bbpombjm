@@ -63,7 +63,8 @@
                         <li><a href="#qms" data-toggle="tab">QMS</a></li>
                         <li><a href="#nappza" data-toggle="tab">NAPPZA</a></li>
                         <li><a href="#mikro" data-toggle="tab">TOMIKU</a></li>
-                        <li><a href="#ppnpn" data-toggle="tab">PPNPN</a></li>
+                        <li><a href="#otkos" data-toggle="tab">OTKOS</a></li>
+                        {{-- <li><a href="#ppnpn" data-toggle="tab">PPNPN</a></li> --}}
                     </ul>
 
                     <div class="tab-content">
@@ -388,7 +389,33 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane" id="ppnpn">
+                        <div class="tab-pane" id="otkos">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-success">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">OT-KOS</h3>
+                                        </div>
+                        
+                                        <div class="panel-body">
+                                            <table id="simple-table" class="table  table-bordered table-hover" >
+                                                <thead >
+                                                    <th width="5%" style="text-align: center;">No</th>
+                                                    <th style="text-align: center;">Menu</th>
+                                                    <th width="20%" style="text-align: center;">
+                                                        <input type="checkbox" name="otkosCheckAll" id="otkosCheckAll" >
+                                                    </th>
+                                                </thead>
+                                                <tbody id="isi_otkos">
+                                                   
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- <div class="tab-pane" id="ppnpn">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="panel panel-success">
@@ -413,7 +440,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                </div>
 
@@ -500,13 +527,13 @@
             }
         });
 
-        // $('#aluhCheckAll').click(function() {
-        //     if ($(this).prop('checked')) {
-        //         $('.cekaluh').prop('checked', true);
-        //     } else {
-        //         $('.cekaluh').prop('checked', false);
-        //     }
-        // });
+        $('#aluhCheckAll').click(function() {
+            if ($(this).prop('checked')) {
+                $('.cekaluh').prop('checked', true);
+            } else {
+                $('.cekaluh').prop('checked', false);
+            }
+        });
 
         $('#qmsCheckAll').click(function() {
             if ($(this).prop('checked')) {
@@ -531,13 +558,20 @@
                 $('.cekmikro').prop('checked', false);
             }
         });
-        $('#ppnpnCheckAll').click(function() {
+        $('#otkosCheckAll').click(function() {
             if ($(this).prop('checked')) {
-                $('.cekppnpn').prop('checked', true);
+                $('.cekotkos').prop('checked', true);
             } else {
-                $('.cekppnpn').prop('checked', false);
+                $('.cekotkos').prop('checked', false);
             }
         });
+        // $('#ppnpnCheckAll').click(function() {
+        //     if ($(this).prop('checked')) {
+        //         $('.cekppnpn').prop('checked', true);
+        //     } else {
+        //         $('.cekppnpn').prop('checked', false);
+        //     }
+        // });
     });
      function getpeg(){
         var user_id = $("#user_id").val();
@@ -746,21 +780,37 @@
                     '</tr>';
               }
 
-              for (let i = 0; i < response.ppnpn.length; i++) {
+              for (let i = 0; i < response.otkos.length; i++) {
                   var is_check = '';
                   var no = i+1;
-                  if (response.ppnpn[i].checked){
+                  if (response.otkos[i].checked){
                       is_check = 'checked';
                   }
-                  isi_ppnpn+='<tr>'+
+                  isi_otkos+='<tr>'+
                         '<td style="text-align: center;">'+no+'</td>'+
-                        '<td>'+response.ppnpn[i].nama+'</td>'+
+                        '<td>'+response.otkos[i].nama+'</td>'+
                         '<td style="text-align: center;">'+
-                            '<input type="checkbox" class="menu cekppnpn" name="akses_ppnpn[]" '+is_check
-                            +' value="'+response.ppnpn[i].id+'">'+
+                            '<input type="checkbox" class="menu cekotkos" name="akses_otkos[]" '+is_check
+                            +' value="'+response.otkos[i].id+'">'+
                         '</td>'+
                     '</tr>';
               }
+
+            //   for (let i = 0; i < response.ppnpn.length; i++) {
+            //       var is_check = '';
+            //       var no = i+1;
+            //       if (response.ppnpn[i].checked){
+            //           is_check = 'checked';
+            //       }
+            //       isi_ppnpn+='<tr>'+
+            //             '<td style="text-align: center;">'+no+'</td>'+
+            //             '<td>'+response.ppnpn[i].nama+'</td>'+
+            //             '<td style="text-align: center;">'+
+            //                 '<input type="checkbox" class="menu cekppnpn" name="akses_ppnpn[]" '+is_check
+            //                 +' value="'+response.ppnpn[i].id+'">'+
+            //             '</td>'+
+            //         '</tr>';
+            //   }
 
               $("#isi_amdk").html(isi_amdk);
               $("#isi_inv").html(isi_inv);
@@ -774,7 +824,8 @@
               $("#isi_qms").html(isi_qms);
               $("#isi_nappza").html(isi_nappza);
               $("#isi_mikro").html(isi_mikro);
-              $("#isi_ppnpn").html(isi_ppnpn);
+              $("#isi_otkos").html(isi_otkos);
+            //   $("#isi_ppnpn").html(isi_ppnpn);
 
             }
         );

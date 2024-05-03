@@ -287,6 +287,7 @@ h2, a {
   color: #00a1b2;
   font-size:1vw;
   line-height: 0.3;
+  padding-top: 5px;
   padding-bottom: 5px;
   
 }
@@ -361,6 +362,13 @@ h2, a {
     margin-left: 15px;
 }
 
+#kaki{
+  text-align: center;
+  width: 95%;
+  position:absolute;
+  bottom:0;
+}
+
 </style>
 
 
@@ -429,7 +437,7 @@ h2, a {
         <div class="container-fluid">
           <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
-              <li class="nav-item ">
+              {{-- <li class="nav-item ">
                 <li class="nav-item ">
                   <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="material-icons">notifications</i>
@@ -469,7 +477,7 @@ h2, a {
                       @endif    
                     </div> 
                 </li>
-              </li>
+              </li> --}}
               <li class="nav-item dropdown">
                 <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <b>{{auth()->user()->name}}</b>
@@ -482,6 +490,8 @@ h2, a {
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                   <a class="dropdown-item" href="/profile">Profile</a>
                   <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="/calendars">Kalender</a>
+                  <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="/logout">Log out</a>
                 </div>
               </li>
@@ -489,29 +499,16 @@ h2, a {
           </div>
         </div>
       </nav>
+      <div style="line-height: 1;">&nbsp;</div>
       <div class="content">
-        {{-- kalender --}}
-        <a href="/calendars">
-          <div class="tgl">
-            <div class="tgl_det">{{$hari}}</div>
-            <div class="hari">
-              <p style="font-size:6vw; padding-top:20px;"><b>{{$tgl}}</b></p>
-              <i class="material-icons">campaign</i> 
-              Klik Untuk melihat Kalender
-            </div>
-            <div class="tgl_det">{{$bulan}} {{$tahun}}</div>
-          </div>
-        </a>   
         {{-- nama --}}
-        <div style="text-align: center;">
-          <div style="padding-left: 18%;  line-height: 1; margin-top:-25px">
-            {{-- <h4>SELAMAT DATANG DI</h4> --}} <br>
+        <div style="text-align: center; line-height: 1; margin-top:-25px">
             <h1><b>SI-BOB</b></h1>
-            <h5>( SISTEM INFORMASI BBPOM BANJARMASIN )</h5>
-          </div>
+            <h5><b>( SISTEM INFORMASI BBPOM BANJARMASIN )</b></h5>
         </div>
-        {{-- icon --}}
-        <div class="social">   
+
+        {{-- portal --}}
+        <div class="social col-sm-6 col-xs-12" >
           <a class="social-icon" href="/amdk/dashboard">
             <img src="{{asset('images/amdk2.png')}}" style="height:100%; width:100%">
           </a>   
@@ -521,36 +518,33 @@ h2, a {
           <a class="social-icon" href="/finance/portalAG">
             <img src="{{asset('images/anang2.png')}}" style="height:100%; width:100%">
           </a>
+          <a class="social-icon" href="/calibration/dashboard">
+            <img src="{{asset('images/lab2.png')}}" style="height:100%; width:100%">
+          </a>
           <a class="social-icon" href="/arsip/dashboard">
             <img src="{{asset('images/arsip2.png')}}" style="height:100%; width:100%">
           </a>
+          <a class="social-icon" href="https://sites.google.com/view/kinerjabbpombjm2023" target="_blank">
+            <img src="{{asset('images/terkait/anpeg.png')}}" style="height:100%; width:100%">
+          </a>
+          <a class="social-icon"  href="https://bit.ly/SOPBPOMBJM">
+            <img src="{{asset('images/qms3.png')}}" style="height:100%; width:100%">
+          </a>
+          {{-- <a class="social-icon"  href="/ppnpn/dashboard">
+            <img src="{{asset('images/ppnpn.png')}}" style="height:100%; width:100%">
+          </a> --}}
         </div>
-        <div class="social">
-            <a class="social-icon" href="https://sites.google.com/view/kinerjabbpombjm2023" target="_blank">
-              <img src="{{asset('images/terkait/anpeg.png')}}" style="height:100%; width:100%">
-            </a>
-            <a class="social-icon" href="/calibration/dashboard">
-              <img src="{{asset('images/lab2.png')}}" style="height:100%; width:100%">
-            </a>
-            {{-- <a class="social-icon"  href="/qms/dashboard">
-              <img src="{{asset('images/qms3.png')}}" style="height:100%; width:100%">
-            </a> --}}
-            <a class="social-icon"  href="https://bit.ly/SOPBPOMBJM">
-              <img src="{{asset('images/qms3.png')}}" style="height:100%; width:100%">
-            </a>
-            <a class="social-icon"  href="/ppnpn/dashboard">
-              <img src="{{asset('images/ppnpn.png')}}" style="height:100%; width:100%">
-            </a>
-        </div>
-        <div class="strike">
-          <span>Link Terkait</span>
-        </div>
-        <div class="lain"> 
-          @foreach ($terkait as $item)
-            <a class="bawah" data-tooltip="{{$item->name}}" href="{{$item->link}}" target="_blank">
-              <img src="{{$item->getFoto()}}" style="height:100%; width:100%">
-            </a>
-          @endforeach 
+        <div id="kaki">
+          <div class="strike">
+            <span>Link Terkait</span>
+          </div>
+          <div class="lain"> 
+            @foreach ($terkait as $item)
+              <a class="bawah" data-tooltip="{{$item->name}}" href="{{$item->link}}" target="_blank">
+                <img src="{{$item->getFoto()}}" style="height:100%; width:100%">
+              </a>
+            @endforeach 
+          </div>
         </div>
       </div>
     </div>

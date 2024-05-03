@@ -95,9 +95,9 @@ h2, a {
   background-color: #c4c4c4;
   text-align: center;
   display: inline-block;
-  width: 130px;
-  height: 130px;
-  padding: 9px 0px;
+  width: 105px;
+  height: 105px;
+  padding: 5px 0px;
   color: white;
   margin: 2px;
   /* Color each button differently */
@@ -237,9 +237,9 @@ h2, a {
   -moz-border-radius: 3px;
   border-radius: 3px;
   width: auto;
-  height: 22px;
-  padding: 11px 11px 0 11px;
-  font-size: 13px;
+  height: 15px;
+  padding: 5px 5px 0 5px;
+  font-size: 11px;
   line-height: 11px;
   white-space: nowrap;
   background-color: #323232;
@@ -272,11 +272,12 @@ h2, a {
 
 .tgl{
   width: 15%;
+  height : auto;
   float: right;
   background: #00a1b2;
   color: white;
   margin-right: 3%;
-  margin-top: -3%;
+  margin-top: -5%;
   border-radius: 20px;
   box-shadow: 3px 6px #888888;
 }
@@ -284,8 +285,10 @@ h2, a {
 .hari{
   background:#ecf0f1;
   color: #00a1b2;
-  font-size:12px;
-  line-height: 1;
+  font-size:1vw;
+  line-height: 0.3;
+  padding-top: 5px;
+  padding-bottom: 5px;
   
 }
 
@@ -322,13 +325,57 @@ h2, a {
   margin: 5px auto;
 }
 
+.tgl_det{
+  font-size:1.3vw;
+
+}
+
+.strike {
+    display: block;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap; 
+}
+
+.strike > span {
+    position: relative;
+    display: inline-block;
+}
+
+.strike > span:before,
+.strike > span:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 9999px;
+    height: 1px;
+    background: red;
+}
+
+.strike > span:before {
+    right: 100%;
+    margin-right: 15px;
+}
+
+.strike > span:after {
+    left: 100%;
+    margin-left: 15px;
+}
+/* 
+#kaki{
+  text-align: center;
+  width: 95%;
+  position:absolute;
+  bottom:0;
+} */
+
 </style>
 
 
 </head>
 
 <body background="{{asset('images/background.jpg')}}">
-   <div class="wrapper">
+  <div class="wrapper">
     <div class="sidebar" data-background-color="white">
       <div class="card">
           <div class="card-body">
@@ -342,47 +389,6 @@ h2, a {
         <div class="container-fluid">
           <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
-              <li class="nav-item ">
-                <li class="nav-item ">
-                  <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="material-icons">notifications</i>
-                      @if ($aksespinjam != null && $pinjam != null)
-                        <span class="notification"> 
-                            !
-                        </span>
-                      @endif
-                      @if ($aju != null)
-                      <span class="notification"> 
-                          !
-                      </span>
-                    @endif
-                    
-                    <p class="d-lg-none d-md-block">
-                      Some Actions
-                    </p>
-                  </a>
-                    <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                      @if ($aksespinjam != null && $pinjam != null)
-                      <div class="alert alert-info ">
-                            <span>
-                              <a href="/invent/carok/" class="btn btn-warning">
-                                <b> Peminjaman Kendaraan - </b> Pengajuan Baru 
-                              </a>
-                            </span>
-                      </div>
-                      @endif 
-                      @if ($aju != null)
-                      <div class="alert alert-info ">
-                            <span>
-                              <a href="/invent/carrent/" class="btn btn-warning">
-                                <b> Peminjaman Kendaraan - </b> Telah Diproses 
-                              </a>
-                            </span>
-                      </div>
-                      @endif    
-                    </div> 
-                </li>
-              </li>
               <li class="nav-item dropdown">
                 <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <b>{{auth()->user()->name}}</b>
@@ -395,6 +401,8 @@ h2, a {
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                   <a class="dropdown-item" href="/profile">Profile</a>
                   <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="/calendars">Kalender</a>
+                  <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="/logout">Log out</a>
                 </div>
               </li>
@@ -402,51 +410,44 @@ h2, a {
           </div>
         </div>
       </nav>
+      <div style="line-height: 1;">&nbsp;</div>
       <div class="content">
-        {{-- kalender --}}
-        <a href="/calendars">
-          <div class="tgl">
-            <div class="tgl_det">{{$hari}}</div>
-            <div class="hari">
-              <h1><b>{{$tgl}}</b></h1>
-              <i class="material-icons">campaign</i> 
-              Klik Untuk melihat Kalender
-            </div>
-            <div class="tgl_det">{{$bulan}} {{$tahun}}</div>
-          </div>
-        </a>   
         {{-- nama --}}
-        <div style="text-align: center;">
-          <div style=" line-height: 1;">
-            <h4>-SUB PORTAL SIBOB-</h4>
-            <h1><b>PENGUJIAN</b></h1>
-            
+        <div style="text-align: center; line-height: 1; margin-top:-25px">
+          <h4>-SUB PORTAL SIBOB-</h4>
+          <h1><b>PENGUJIAN</b></h1>
+        </div>
+
+        {{-- portal --}}
+        <div class="social col-sm-12" >
+          <a class="social-icon" href="/calibration/dashboardnapza">
+            <img src="{{asset('images/nappza2.png')}}" style="height:100%; width:100%">
+          </a>   
+          <a class="social-icon"  href="/calibration/dashboardtomiku">
+            <img src="{{asset('images/tomiku.png')}}" style="height:100%; width:100%">
+          </a> 
+          <a class="social-icon"  href="/calibration/dashboardotkos">
+            <img src="{{asset('images/otkos.png')}}" style="height:100%; width:100%">
+          </a> 
+          <a class="social-icon" href="/portal">
+            <img src="{{asset('images/exit2.png')}}" style="height:100%; width:100%">
+          </a> 
+        </div>
+        {{-- <div id="kaki">
+          <div class="strike">
+            <span>Link Terkait</span>
           </div>
-         </div>
-         {{-- icon --}}
-         <div class="social">   
-            <a class="social-icon" href="/calibration/dashboardnapza">
-              <img src="{{asset('images/nappza2.png')}}" style="height:100%; width:100%">
-            </a>   
-            <a class="social-icon"  href="/calibration/dashboardtomiku">
-              <img src="{{asset('images/tomiku.png')}}" style="height:100%; width:100%">
-            </a> 
-            <a class="social-icon"  href="/calibration/dashboardotkos">
-              <img src="{{asset('images/otkos.png')}}" style="height:100%; width:100%">
-            </a> 
-            <a class="social-icon" href="/portal">
-              <img src="{{asset('images/exit2.png')}}" style="height:100%; width:100%">
-            </a> 
-        </div>
-        <br>
+          <div class="lain"> 
+            @foreach ($terkait as $item)
+              <a class="bawah" data-tooltip="{{$item->name}}" href="{{$item->link}}" target="_blank">
+                <img src="{{$item->getFoto()}}" style="height:100%; width:100%">
+              </a>
+            @endforeach 
+          </div>
+        </div> --}}
       </div>
-      <footer class="footer" style="margin: 0; padding:0;">
-        <div class="container-fluid">
-          <span class="green bolder">BBPOM Banjarmasin</span> &copy; 2021 
-        </div>
-      </footer>
     </div>
-   </div>
+  </div>
 
     <script src="{{asset('assets/js/ace-extra.min.js')}}"></script>
 		<script src="{{asset('assets/js/jQuery-2.1.4.min.js')}}"></script>
@@ -483,11 +484,6 @@ h2, a {
 		<script src="{{asset('assets/js/dataTables.select.min.js')}}"></script>
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 		<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-   
-    <script>
-      $(document).ready(function() {
-
-      });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   </body>
-</html>                            
+</html>
