@@ -322,7 +322,7 @@ h2, a {
 }
 
 .lain {
-  margin: 5px auto;
+  margin: 2px auto;
 }
 
 .tgl_det{
@@ -367,6 +367,17 @@ h2, a {
   width: 95%;
   position:absolute;
   bottom:0;
+}
+
+@media screen and (max-width: 600px) {
+  .title_message {
+    visibility: hidden;
+    clear: both;
+    float: left;
+    margin: 10px auto 5px 20px;
+    width: 28%;
+    display: none;
+  }
 }
 
 </style>
@@ -502,13 +513,13 @@ h2, a {
       <div style="line-height: 1;">&nbsp;</div>
       <div class="content">
         {{-- nama --}}
-        <div style="text-align: center; line-height: 1; margin-top:-25px">
+        <div style="text-align: center; line-height: 1; margin-top:-50px">
             <h1><b>SI-BOB</b></h1>
-            <h5><b>( SISTEM INFORMASI BBPOM BANJARMASIN )</b></h5>
+            <h5 class="title_message"><b>( SISTEM INFORMASI BBPOM BANJARMASIN )</b></h5>
         </div>
 
         {{-- portal --}}
-        <div class="social col-sm-6 col-xs-12" >
+        <div class="social col-md-6 col-sm-12 col-xs-12" >
           <a class="social-icon" href="/amdk/dashboard">
             <img src="{{asset('images/amdk2.png')}}" style="height:100%; width:100%">
           </a>   
@@ -534,7 +545,7 @@ h2, a {
             <img src="{{asset('images/ppnpn.png')}}" style="height:100%; width:100%">
           </a> --}}
         </div>
-        <div id="kaki">
+        <div id="kaki" class="title_message">
           <div class="strike">
             <span>Link Terkait</span>
           </div>
