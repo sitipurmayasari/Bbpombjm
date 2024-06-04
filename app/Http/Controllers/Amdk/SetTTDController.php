@@ -21,7 +21,7 @@ class SetTTDController extends Controller
 
     public function create()
     {
-        $user = User::where('aktif','Y')->where('status','PNS')->get();
+        $user = User::where('aktif','Y')->get();
         return view('amdk/setupttd.create',compact('user'));
     }
 
@@ -50,7 +50,7 @@ class SetTTDController extends Controller
    
     public function edit($id)
     {
-        $user = User::where('aktif','Y')->where('status','PNS')->get();
+        $user = User::where('aktif','Y')->get();
         $data = Setupttd::where('id',$id)->first();
         return view('amdk/setupttd.edit',compact('data','user'));
     }
