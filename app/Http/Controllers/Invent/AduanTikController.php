@@ -306,7 +306,7 @@ class AduanTikController extends Controller
         $data = AduanTIK::find($id);
         LogActivity::addToLog('Hapus->Aduan Kerusakan TIK, No. Aduan = '.$data->no_aduan);
         $data->delete();
-        return redirect('/invent/aduantik/')->with('sukses','Data Terhapus');
+        return redirect('/invent/aduantik')->with('sukses','Data Terhapus');
     }
 
     public function print2($id)
