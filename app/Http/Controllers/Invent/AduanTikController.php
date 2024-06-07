@@ -294,8 +294,8 @@ class AduanTikController extends Controller
 
     public function delete($id)
     {
-        $data = Aduan::find($id);
-        // LogActivity::addToLog('Hapus->Aduan Kerusakan TIK, No. Aduan = '.$data->no_aduan);
+        $data = AduanTIK::find($id);
+        LogActivity::addToLog('Hapus->Aduan Kerusakan TIK, No. Aduan = '.$data->no_aduan);
         $data->delete();
         
         return redirect('/invent/aduantik/bidang')->with('sukses','Data Terhapus');
@@ -304,9 +304,9 @@ class AduanTikController extends Controller
     public function delete2($id)
     {
         $data = AduanTIK::find($id);
-        // LogActivity::addToLog('Hapus->Aduan Kerusakan TIK, No. Aduan = '.$data->no_aduan);
+        LogActivity::addToLog('Hapus->Aduan Kerusakan TIK, No. Aduan = '.$data->no_aduan);
         $data->delete();
-        return redirect('/invent/aduantik/bidang')->with('sukses','Data Terhapus');
+        return redirect('/invent/aduantik/')->with('sukses','Data Terhapus');
     }
 
     public function print2($id)
