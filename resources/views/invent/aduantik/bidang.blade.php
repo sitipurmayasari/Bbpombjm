@@ -82,8 +82,7 @@
 
 @section('footer')
 <script>
-     $().ready( function () {
-        $(".delete").click(function() {
+      $(".delete").click(function() {
                 var id = $(this).attr('r-id');
                 var name = $(this).attr('r-name');
                 Swal.fire({
@@ -97,10 +96,9 @@
             }).then((result) => {
                 console.log(result);
                 if (result.value) {
-                    window.location = "/invent/aduantik/delete/"+id;
+                   window.location = "/invent/aduantik/delete/"+id;
                 }
             });
         });
-    } );
 </script>
 @endsection
