@@ -4,10 +4,14 @@ namespace App\Http\Controllers\Amdk;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use App\User;
 use App\Pelatihan;
 use App\Jenis_pelatihan;
-use Illuminate\Support\Collection;
+use App\Evaluasi;
+use App\Evaluasi_detail;
+use App\Pejabat;
+use App\Teamleader;
 use Illuminate\Support\Facades\DB;
 use PDF;
 use Excel;
@@ -19,8 +23,9 @@ class PelatihanController extends Controller
 
     public function index(Request $request)
     {
+        $now = Carbon::now();
         $peg =auth()->user()->id;
-        $data = Pelatihan::orderBy('id','desc')
+        $data = Pelatihan::orderBy('dari','desc')
                         ->select('pelatihan.*')
                         ->leftjoin('jenis_pelatihan','jenis_pelatihan.id','pelatihan.jenis_pelatihan_id')
                         ->where('pelatihan.users_id','=',$peg)
@@ -31,15 +36,15 @@ class PelatihanController extends Controller
                                     ->orWhere('lama', 'LIKE','%'.$request->keyword.'%');
                             })
                         ->paginate('10');
-        return view('amdk/pelatihan.index',compact('data'));
+        return view('amdk/pelatihan.index',compact('data','now'));
     }
 
     public function rekappelatihan(Request $request)
     {
-       
+        $now = Carbon::now();
         $user = User::all();
         $jenis = Jenis_pelatihan::all();
-        $data = Pelatihan::orderBy('id','desc')
+        $data = Pelatihan::orderBy('dari','desc')
                 ->select('pelatihan.*','users.name')
                 ->leftJoin('users','users.id','=','pelatihan.users_id')
                 ->leftjoin('jenis_pelatihan','jenis_pelatihan.id','pelatihan.jenis_pelatihan_id')
@@ -52,7 +57,7 @@ class PelatihanController extends Controller
                             ->orWhere('lama', 'LIKE','%'.$request->keyword.'%');
                     })
                 ->paginate('10');
-        return view('amdk/pelatihan.rekappelatihan',compact('data','user','jenis'));
+        return view('amdk/pelatihan.rekappelatihan',compact('data','user','jenis','now'));
     }
 
     public function create()
@@ -223,6 +228,49 @@ class PelatihanController extends Controller
 
         return redirect('/amdk/rekappelatihan')->with('sukses','Data Berhasil Diimport');
  
+    }
+
+    public function kirimverif($id)
+    {
+        $data = Pelatihan::where('id',$id)->first();
+        $tim  = Teamleader::where('aktif','Y')->get();
+        return view('amdk/pelatihan.kirimverif',compact('data','tim'));
+    }
+
+    public function getjabatan(Request $request)
+    {
+        $id = $request->users_id;
+
+        $data =User::where('id',$id)->first();
+        return response()->json([ 'success' => true,'data' => $data],200);
+    }
+
+    public function updverif(Request $request, $id)
+    {
+        $data = Pelatihan::find($id);
+        $data->update($request->all());
+        if ($request->admin=='true') {
+            return redirect('/amdk/rekappelatihan')->with('sukses','Data Diperbaharui');
+        }else{
+            return redirect('/amdk/pelatihan')->with('sukses','Data Diperbaharui');
+        }
+    }
+
+
+
+    public function hasilverif($id)
+    {
+        $data = Pelatihan::where('id',$id)->first();
+        $evaluasi = Evaluasi::where('pelatihan_id',$id)->first();
+        $detail = Evaluasi_detail::where('evaluasi_id',$evaluasi->id)->get();
+        $kepala = Pejabat::where('jabatan_id', '=', 6)
+                                    ->whereRaw("pjs IS NULL || pjs = 'Plt.'")
+                                    ->orderby('id','desc')
+                                    ->first();
+
+        $pdf = PDF::loadview('amdk/pelatihan.cetakverif',compact('data','evaluasi','detail','kepala'));
+        return $pdf->stream();
+        // return view('amdk/pelatihan.cetakverif',compact('data','evaluasi','detail','kepala));       
     }
 
 
