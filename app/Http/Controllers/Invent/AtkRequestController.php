@@ -46,7 +46,8 @@ class AtkRequestController extends Controller
                             ->get();
         $user = User::all()
                 ->where('id','!=','1');
-        $jenis = Jenisbrg::where('kelompok','K')->get();
+        // $jenis = Jenisbrg::where('kelompok','K')->get();
+        $jenis = Jenisbrg::where('id','17')->get();
         $satuan = Satuan::all();
         $nosbb = $this->getNoSBB();
         // $tahu = Pejabat::selectraw('DISTINCT(jabatan_id), id, divisi_id, subdivisi_id, users_id, pjs')
