@@ -24,7 +24,7 @@ Route::any('captcha-test', function() {
 //     return view('welcome');
 // });
 Route::get('/','LoginController@index')->name('login');
-Route::get('/refereshcapcha', 'LoginController@refereshCapcha');
+Route::get('/refereshcapcha', 'LoginController@refereshcapcha');
 
 Route::post('/login','LoginController@auth')->name('auth');
 Route::get('/logout','LoginController@logout')->name('logout');
