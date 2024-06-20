@@ -60,19 +60,23 @@
             </tr>
             <tr>
                 <td>
-                    <div> <p>{!! captcha_img('math') !!}</p> </div>
+                    <div class="refereshrecapcha"> {!! captcha_img('math') !!} </div> <br>
                     <div class="form-group">
                         <input type="text" class="form-control" 
                             name="captcha" placeholder="Captcha"
                             required="required" value="{{old("captcha")}}">
 
                             @error('captcha')
-                                <span class="text-danger role="alert">
+                                <span class="text-danger role="alert>
                                     {{ $message}}
                                 </span>
                             @enderror
                     </div>   
                    
+                </td>
+                <td>
+                    <br><br>
+                    <i class="fa fa-refresh" onclick="refreshCaptcha()" id="refresh" style="margin-left: -30px; cursor: pointer;"></i>
                 </td>
             </tr>
         </table>
@@ -107,6 +111,21 @@
                 document.getElementById("eye").classList.add('fa fa-eye-slash');
                 document.getElementById("eye").classList.remove('fa fa-eye');
             }
+        }
+
+        function refreshCaptcha(){
+            $.ajax({
+                url: "/refereshcapcha",
+                type: 'get',
+                dataType: 'html',        
+                success: function(json) {
+                    $('.refereshrecapcha').html(json);
+                },
+                error: function(data) {
+                    alert('Try Again.');
+                }
+            });
+                
         }
 
     </script>

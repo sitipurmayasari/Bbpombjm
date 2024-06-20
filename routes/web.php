@@ -24,6 +24,8 @@ Route::any('captcha-test', function() {
 //     return view('welcome');
 // });
 Route::get('/','LoginController@index')->name('login');
+Route::get('/refereshcapcha', 'LoginController@refereshCapcha');
+
 Route::post('/login','LoginController@auth')->name('auth');
 Route::get('/logout','LoginController@logout')->name('logout');
 Route::get('/forgot','ForgotController@index')->name('forgot');
@@ -216,6 +218,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/amdk/dosir','Amdk\DosirController@index')->name('dosir');
     //Route untuk pelatihan
     Route::get('/amdk/pelatihan','Amdk\PelatihanController@index')->name('pelatihan');
+    //Route untuk evaluasi pelatihan
+    Route::get('/amdk/evaluasi','Amdk\EvaluasiController@index')->name('evaluasi');
     //Route untuk Rekap
     Route::get('/amdk/rekapdosir','Amdk\DosirController@rekapdosir')->name('rekapdosir');
     Route::get('/amdk/rekappelatihan','Amdk\PelatihanController@rekappelatihan')->name('rekappelatihan');

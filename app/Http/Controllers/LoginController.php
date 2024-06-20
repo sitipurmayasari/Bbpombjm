@@ -16,6 +16,9 @@ class LoginController extends Controller
            return redirect('/portal');
         }
     }
+    public function refereshCapcha(){
+        return captcha_img('math');
+    }
     public function auth(Request $request)
     {    
         $request->validate([

@@ -107,5 +107,6 @@
    Route::get('/calibration/catatan/edit/{id}','Calibration\CatatanController@edit')->name('catatan.edit');
    Route::post('/calibration/catatan/update/{id}','Calibration\CatatanController@update')->name('catatan.update');
    Route::get('/calibration/catatan/delete/{id}','Calibration\CatatanController@delete')->name('catatan.delete');
+   Route::get('/calibration/catatan/printcatatan/{id}','Calibration\CatatanController@printcatatan')->name('catatan.printcatatan');
 
  

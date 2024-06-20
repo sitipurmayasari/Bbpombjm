@@ -134,7 +134,15 @@
   Route::post('/amdk/pelatihan/cetak','Amdk\PelatihanController@cetak')->name('pelatihan.cetak');
   Route::get('/amdk/pelatihan/startimpor','Amdk\PelatihanController@startimpor')->name('pelatihan.startimpor');
   Route::post('/amdk/pelatihan/impor','Amdk\PelatihanController@impor')->name('pelatihan.impor');
+  Route::get('/amdk/pelatihan/kirimverif/{id}','Amdk\PelatihanController@kirimverif')->name('pelatihan.kirimverif');
+  Route::get('/amdk/pelatihan/getjabatan','Amdk\PelatihanController@getjabatan')->name('pelatihan.getjabatan');
+  Route::post('/amdk/pelatihan/updverif/{id}','Amdk\PelatihanController@updverif')->name('pelatihan.updverif');
+  Route::get('/amdk/pelatihan/hasilverif/{id}','Amdk\PelatihanController@hasilverif')->name('pelatihan.hasilverif');
 
+  //Route untuk evaluasi pelatihan
+  Route::get('/amdk/evaluasi/proses/{id}','Amdk\EvaluasiController@proses')->name('evaluasi.proses');
+  Route::post('/amdk/evaluasi/store','Amdk\EvaluasiController@store')->name('evaluasi.store');
+  Route::post('/amdk/evaluasi/update/{id}','Amdk\EvaluasiController@update')->name('evaluasi.update');
 
   //Route untuk dupak
   Route::get('/amdk/dupak','Amdk\DupakController@index')->name('dupak');
