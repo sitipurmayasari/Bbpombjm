@@ -41,7 +41,8 @@ class PelatihanImport implements ToModel,WithStartRow
                 'lama'              => $row[16],
                 'penyelenggara'     => $row[9],
                 'terekam'           => $rekam,
-                'deskripsi'         => $desk
+                'deskripsi'         => $desk,
+                'evaluasi'          => $row[20]
             ]);
         }
     }

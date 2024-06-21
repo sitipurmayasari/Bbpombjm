@@ -245,10 +245,40 @@ class PelatihanController extends Controller
         return response()->json([ 'success' => true,'data' => $data],200);
     }
 
+    public function ubaheva($id)
+    {
+        $data = Pelatihan::where('id',$id)->first();
+        $tim  = Teamleader::where('aktif','Y')->get();
+        return view('amdk/pelatihan.ubaheva',compact('data','tim'));
+    }
+
+
+
     public function updverif(Request $request, $id)
     {
+        $kepala = Pejabat::where('jabatan_id', '=', 6)
+                                    ->whereRaw("pjs IS NULL || pjs = 'Plt.'")
+                                    ->orderby('id','desc')
+                                    ->first();
+
+        if ($request->ketua=='N') {
+            $eva = $kepala->users_id;
+            $jabeva = 11;
+        } else {
+            $eva = $request->evaluator_id;
+            $jabeva = $request->jabasn_id;
+        }
+
         $data = Pelatihan::find($id);
-        $data->update($request->all());
+        // $data->update($request->all());
+        if($data) {
+            $data->evaluasi = 'D';
+            $data->evaluator_id = $eva;
+            $data->jabasn_id = $jabeva;
+            $data->ketua = $request->ketua;
+            $data->save();
+        }
+
         if ($request->admin=='true') {
             return redirect('/amdk/rekappelatihan')->with('sukses','Data Diperbaharui');
         }else{
