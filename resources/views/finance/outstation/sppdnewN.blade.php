@@ -77,7 +77,7 @@ $no=1;
                <b>BALAI BESAR PENGAWAS OBAT DAN MAKANAN<br>
                 DI BANJARMASIN <br>
                 </b>
-                Jl. Brigjend H.Hasan Basri No.40 Banjarmasin<br>
+                Jl. Bina Praja Utara, Banjarbaru 70371<br>
             </td>
             <td style="padding-left: 80px; font-size: 7;">
                <p>
