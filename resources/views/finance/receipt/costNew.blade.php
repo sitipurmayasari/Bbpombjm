@@ -55,7 +55,7 @@
                    <b style="line-height: 1;">BALAI BESAR PENGAWAS OBAT DAN MAKANAN<br>
                     DI BANJARMASIN <br>
                     </b>
-                    Jl. Brigjend H.Hasan Basri No.40 Banjarmasin<br>
+                    Jl. Bina Praja Utara, Banjarbaru 70371 <br>
                 </td>
                 <td style="width:50%; padding-left: 7%; line-height: 1; font-size: 7;">
                     LAMPIRAN II <br>
@@ -1037,7 +1037,7 @@
                 </tr>
                 <tr>
                     <td style="text-align:center;">
-                        Jl. Brigjend H. Hasan Basri No. 40 Banjarmasin - 70247 Telp (0511) 3304286, 3305115 ; Fax (0511) 3302162
+                        Jl. Bina Praja Utara, Banjarbaru 70371 
                     </td>
                 </tr>
             </table>

@@ -1082,7 +1082,7 @@
         </tr>
         <tr>
             <td colspan ="5" style="text-align:center;">
-                Jl. Brigjend H. Hasan Basri No. 40 Banjarmasin - 70247 Telp (0511) 3304286, 3305115 ; Fax (0511) 3302162
+                Jl. Bina Praja Utara, Banjarbaru 70371 
             </td>
         </tr>
    </table>
