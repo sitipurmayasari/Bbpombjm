@@ -29,7 +29,7 @@ class DriverController extends Controller
     public function edit($id)
     {
         $data = Driver::where('id',$id)->first();
-        return view('invent/drivers.edit',compact('data','jenjang'));
+        return view('invent/drivers.edit',compact('data'));
     }
 
    
