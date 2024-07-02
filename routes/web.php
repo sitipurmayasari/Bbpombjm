@@ -188,6 +188,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/invent/planlab/daftar','Invent\PlanLabController@daftar')->name('planlab.daftar');
     //Route untuk pERALATAN TIK
     Route::get('/invent/itasset','Invent\ITAssetController@index')->name('itasset');
+    //Route untuk supir
+    Route::get('/invent/drivers','Invent\DriverController@index')->name('drivers');
 
     //--------------------------AMDK------------------------------------------
     //Route untuk pegawai
