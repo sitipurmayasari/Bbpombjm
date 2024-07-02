@@ -235,8 +235,8 @@
   Route::get('/invent/itasset/getbarangtik','Invent\ITAssetController@getbarangtik')->name('itasset.getbarangtik');
 
    //Route untuk supir
-   Route::get('/amdk/drivers/create','Invent\DriverController@create')->name('drivers.create');
-   Route::post('/amdk/drivers/store','Invent\DriverController@store')->name('drivers.store');
-   Route::get('/amdk/drivers/edit/{id}','Invent\DriverController@edit')->name('drivers.edit');
-   Route::post('/amdk/drivers/update/{id}','Invent\DriverController@update')->name('drivers.update');
-   Route::get('/amdk/drivers/delete/{id}','Invent\DriverController@delete')->name('drivers.delete');
+   Route::get('/invent/drivers/create','Invent\DriverController@create')->name('drivers.create');
+   Route::post('/invent/drivers/store','Invent\DriverController@store')->name('drivers.store');
+   Route::get('/invent/drivers/edit/{id}','Invent\DriverController@edit')->name('drivers.edit');
+   Route::post('/invent/drivers/update/{id}','Invent\DriverController@update')->name('drivers.update');
+   Route::get('/invent/drivers/delete/{id}','Invent\DriverController@delete')->name('drivers.delete');

@@ -23,7 +23,7 @@ class Vehiclerent extends Model
 
     public function supir()
     {
-        return $this->belongsTo(User::class,'driver_id','id');
+        return $this->belongsTo(Driver::class,'driver_id','id');
     }
 
     public function getFile() 

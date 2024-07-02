@@ -6,12 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Car;
 use App\User;
-use App\Outstation;
-use App\Pejabat;
+use App\Driver;
 use App\Vehiclerent;
 use PDF;
-use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
 
 class CarrentController extends Controller
 {
