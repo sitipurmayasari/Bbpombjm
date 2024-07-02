@@ -76,7 +76,7 @@
 
                     </td>
                     <td>
-                        <a href="/amdk/drivers/edit/{{$row->id}}" class="btn btn-warning">
+                        <a href="/invent/drivers/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
                         <a href="#" class="btn btn-danger delete"
