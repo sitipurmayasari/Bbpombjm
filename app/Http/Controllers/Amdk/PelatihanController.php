@@ -149,7 +149,7 @@ class PelatihanController extends Controller
 
     public function update(Request $request, $id)
     {
-        $user_id = $request->users_id;
+        $peg = $request->users_id;
         $data = Pelatihan::find($id);
         $data->update($request->all());
         if($request->hasFile('file')){ // Kalau file ada
@@ -162,7 +162,7 @@ class PelatihanController extends Controller
         }
 
         if ($request->admin=='true') {
-            LogActivity::addToLog('Ubah->Kompetensi Pegawai->Data Pegawai->'.$peg->name); 
+            LogActivity::addToLog('Ubah->Kompetensi Pegawai->Data Pegawai->'.$peg); 
             return redirect('/amdk/rekappelatihan')->with('sukses','Data Diperbaharui');
         }else{
             LogActivity::addToLog('Ubah->Kompetensi Pegawai'); 

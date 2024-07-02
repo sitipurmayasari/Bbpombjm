@@ -137,6 +137,7 @@
   Route::get('/amdk/pelatihan/kirimverif/{id}','Amdk\PelatihanController@kirimverif')->name('pelatihan.kirimverif');
   Route::get('/amdk/pelatihan/getjabatan','Amdk\PelatihanController@getjabatan')->name('pelatihan.getjabatan');
   Route::post('/amdk/pelatihan/updverif/{id}','Amdk\PelatihanController@updverif')->name('pelatihan.updverif');
+  Route::get('/amdk/pelatihan/ubaheva/{id}','Amdk\PelatihanController@ubaheva')->name('pelatihan.ubaheva');
   Route::get('/amdk/pelatihan/hasilverif/{id}','Amdk\PelatihanController@hasilverif')->name('pelatihan.hasilverif');
 
   //Route untuk evaluasi pelatihan
