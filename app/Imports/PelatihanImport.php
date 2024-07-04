@@ -31,10 +31,18 @@ class PelatihanImport implements ToModel,WithStartRow
         $sampai = str_replace('/', '-', $row[13]);
         $tglsampai = date('Y-m-d', strtotime($sampai));
 
+        $jenis = $row[5];
+        if ($jenis == 6 || $jenis == 8 || $jenis == 9) {
+            $eva = "T";
+        } else {
+             $eva = "N";
+        }
+        
+
         if ($user) {
             return new Pelatihan([
                 'users_id'          => $user->id,
-                'jenis_pelatihan_id'=> $row[5],
+                'jenis_pelatihan_id'=> $jenis,
                 'nama'              => $row[7],
                 'dari'              => $tgldari,
                 'sampai'            => $tglsampai,
@@ -42,7 +50,7 @@ class PelatihanImport implements ToModel,WithStartRow
                 'penyelenggara'     => $row[9],
                 'terekam'           => $rekam,
                 'deskripsi'         => $desk,
-                'evaluasi'          => $row[20]
+                'evaluasi'          => $eva
             ]);
         }
     }

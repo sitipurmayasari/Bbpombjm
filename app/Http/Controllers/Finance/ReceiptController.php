@@ -550,6 +550,23 @@ class ReceiptController extends Controller
         return $pdf->stream();
     }
 
+    public function spextend($id)
+    {
+        $data       = Expenses::where('id',$id)->first();
+        $pegawai    = Outst_employee::SelectRaw('outst_employee.* ')
+                        ->leftJoin('outstation','outstation.id','=','outst_employee.outstation_id')
+                        ->leftJoin('expenses','expenses.outstation_id','=','outstation.id')
+                        ->where('expenses.id',$id)
+                        ->get();
+        $tujuan    = Outst_destiny::SelectRaw('outst_destiny.* ')
+                        ->leftJoin('outstation','outstation.id','=','outst_destiny.outstation_id')
+                        ->leftJoin('expenses','expenses.outstation_id','=','outstation.id')
+                        ->where('expenses.id',$id)
+                        ->get();
+        $pdf = PDF::loadview('finance/receipt.spextend',compact('data','pegawai','tujuan'));
+        return $pdf->stream();
+    }
+
     public function riilkkp($id)
     {
         $petugas    = Petugas::where('id', '=', 5)->first();

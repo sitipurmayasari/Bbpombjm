@@ -298,6 +298,7 @@
     Route::get('finance/receipt/riil/{id}','Finance\ReceiptController@riil')->name('receipt.riil');
     Route::get('finance/receipt/nominatif/{id}','Finance\ReceiptController@nominatif')->name('receipt.nominatif');
     Route::get('finance/receipt/delete/{id}','Finance\ReceiptController@delete')->name('receipt.delete');
+    Route::get('finance/receipt/spextend/{id}','Finance\ReceiptController@spextend')->name('receipt.spextend');
 
   //Route untuk ketua tim kerja
   Route::post('/finance/teamwork/store','Finance\TeamworkController@store')->name('teamwork.store');

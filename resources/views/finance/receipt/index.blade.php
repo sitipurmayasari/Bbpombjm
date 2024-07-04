@@ -72,6 +72,8 @@
                                 rel="noopener noreferrer">KKP</a>
                         </td>
                         <td style="text-align: center">
+                            <a class="btn btn-success agr" href="/finance/receipt/spextend/{{$row->id}}" target="_blank" 
+                                rel="noopener noreferrer">Extend</a> <br>
                             <a class="btn btn-primary agr" href="/finance/receipt/super/{{$row->id}}" target="_blank" 
                                 rel="noopener noreferrer">SuPer</a> <br>
                             <a class="btn btn-warning agr" href="/finance/receipt/super30/{{$row->id}}" target="_blank" 
