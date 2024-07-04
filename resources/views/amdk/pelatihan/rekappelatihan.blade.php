@@ -80,6 +80,19 @@
          opacity: 1;
          visibility: visible;
          }
+
+         .pill {
+            background-color: #ddd;
+            border: none;
+            color: black;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 16px;
+            }
      </style>
 
 <form method="get" action="{{ url()->current() }}">
@@ -121,11 +134,12 @@
                 <th>Nama Pegawai</th>
                 <th>Nama Kegiatan</th>
                 <th>Jenis</th>
-                <th>Penyelenggara</th>
+                {{-- <th>Penyelenggara</th> --}}
                 <th>Tanggal pelatihan</th>
-                <th>Jumlah Jam</th>
+                {{-- <th>Jumlah Jam</th> --}}
                 <th>Terekam di SIASN</th>
                 <th>Sertifikat</th>
+                <th>Verifikasi</th>
                 <th>Aksi</th>
             <thead>
             <tbody>   	
@@ -135,17 +149,39 @@
                     <td>{{$row->user->name}} ({{$row->user->no_pegawai}})</td>
                     <td>{{$row->nama}}</td>
                     <td>{{$row->jenis->name}}</td>
-                    <td>{{$row->penyelenggara}}</td>
+                    {{-- <td>{{$row->penyelenggara}}</td> --}}
                     <td>{{$row->dari}} s/d  {{$row->sampai}} </td>
-                    <td>{{$row->lama}}</td>
+                    {{-- <td>{{$rows->lama}}</td> --}}
                     <td>
                         @if ($row->terekam=="Y")
-                            Sudah
+                            Sudah 
                         @else
                             Belum
                         @endif
                     </td>
                     <td><a href="{{$row->getFIleSert()}}" target="_blank" >{{$row->file}}</a></td>
+                    <td style="text-align: center;">
+                        @php
+                            $effectiveDate = date('Y-m-d', strtotime("+3 months", strtotime($row->sampai)));
+                            $today = $now->toDateString();
+                        @endphp
+            
+                        @if ($row->evaluasi == 'Y')
+                        <a href="/amdk/pelatihan/hasilverif/{{$row->id}}" target="_blank" class="btn btn-success pill">
+                            <i class="glyphicon glyphicon-print" target="_blank"></i> Hasil Penilaian Evaluasi
+                        </a>
+                        @elseif($row->evaluasi == 'D')
+                            <a href="/amdk/pelatihan/ubaheva/{{$row->id}}" class="btn btn-warning pill">Proses Penilaian</a><br>
+                            *Evaluasi sedang dilakukan oleh ketua tim
+                        @elseif($row->evaluasi == 'N')
+                            @if ($today < $effectiveDate )
+                            <button class="btn btn-info pill" disabled>Pra Evaluasi Penilaian</button><br>
+                            *Pengajuan penilaian muncul setelah 3 bulan pasca pelatihan
+                            @else
+                                <a href="/amdk/pelatihan/kirimverif/{{$row->id}}" class="btn btn-danger pill">Pengajuan Penilaian</a>
+                            @endif
+                        @endif
+                    </td>
                     <td>
                         <a href="/amdk/pelatihan/editadmin/{{$row->id}}" class="btn btn-warning" data-tooltip="Edit & Upload Sertifikat">
                             <i class="glyphicon glyphicon-edit"></i>

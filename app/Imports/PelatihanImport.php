@@ -32,7 +32,7 @@ class PelatihanImport implements ToModel,WithStartRow
         $tglsampai = date('Y-m-d', strtotime($sampai));
 
         $jenis = $row[5];
-        if ($jenis == 6 || $jenis == 8 || $jenis == 9) {
+        if ($jenis == 6 ||$jenis == 7 || $jenis == 8 || $jenis == 9) {
             $eva = "T";
         } else {
              $eva = "N";

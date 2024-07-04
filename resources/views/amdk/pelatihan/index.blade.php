@@ -122,6 +122,7 @@
                 <th>Jumlah Jam</th>
                 <th>Terekam di SIASN</th>
                 <th>Sertifikat</th>
+                <th>Verifikasi</th>
                 <th>Aksi</th>
             <thead>
             <tbody>   	
@@ -141,6 +142,28 @@
                         @endif
                     </td>
                     <td><a href="{{$row->getFIleSert()}}" target="_blank" >{{$row->file}}</a></td>
+                    <td style="text-align: center;">
+                        @php
+                            $effectiveDate = date('Y-m-d', strtotime("+3 months", strtotime($row->sampai)));
+                            $today = $now->toDateString();
+                        @endphp
+            
+                        @if ($row->evaluasi == 'Y')
+                        <a href="/amdk/pelatihan/hasilverif/{{$row->id}}" target="_blank" class="btn btn-success pill">
+                            <i class="glyphicon glyphicon-print" target="_blank"></i> Hasil Penilaian Evaluasi
+                        </a>
+                        @elseif($row->evaluasi == 'D')
+                            <button class="btn btn-warning pill" disabled>Proses Penilaian</button><br>
+                            *Evaluasi sedang dilakukan oleh ketua tim
+                        @elseif($row->evaluasi == 'N')
+                            @if ($today < $effectiveDate )
+                            <button class="btn btn-info pill" disabled>Pra Evaluasi Penilaian</button><br>
+                            *Pengajuan penilaian muncul setelah 3 bulan pasca pelatihan
+                            @else
+                                <a href="/amdk/pelatihan/kirimverif/{{$row->id}}" class="btn btn-danger pill">Pengajuan Penilaian</a>
+                            @endif
+                        @endif
+                    </td>
                     <td>
                         <a href="/amdk/pelatihan/edit/{{$row->id}}" class="btn btn-warning " data-tooltip="Ubah & Unggah Sertifikat">
                             <i class="glyphicon glyphicon-edit"></i>
