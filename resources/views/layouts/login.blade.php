@@ -85,7 +85,7 @@
         <div class="form-group">
             <button type="submit" class="btn btn-primary btn-lg btn-block btn_sign">Login</button>
         </div>
-        <p style="text-align: center;font-size: 11px"><a href="/forgot">Jika Lupa Password, Silahkan Hubungi TIM IT</a></p>
+        <p style="text-align: center;font-size: 11px"><a href="https://wa.me/6281545833889">Jika Lupa Password, Silahkan Hubungi TIM IT</a></p>
     </form>
 </div>
     <script src="{{asset('assets/js/jquery-2.1.4.min.js')}}"></script>
