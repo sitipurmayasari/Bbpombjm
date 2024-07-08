@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('amdk/layouts_amdk.app')
 @section('breadcrumb')
-    <li>Setup</li>
-    <li><a href="/invent/drivers"> Supir</a></li>
+    <li>Kompetensi Pegawai</li>
+    <li><a href="/amdk/aspek"> Aspek Evaluasi</a></li>
     <li>Edit</li>
 @endsection
 @section('content')
@@ -10,12 +10,12 @@
 
 <div class="row">
     <form class="form-horizontal validate-form" role="form" 
-         method="post" action="/invent/drivers/update/{{$data->id}}">
+         method="post" action="/amdk/aspek/update/{{$data->id}}">
     {{ csrf_field() }}
     <div class="col-sm-12">
         <div class="widget-box">
             <div class="widget-header">
-                <h4 class="widget-title">Edit Supir</h4>
+                <h4 class="widget-title">Edit Aspek Evaluasi</h4>
                 <div class="widget-toolbar">
                     <a href="#" data-action="collapse">
                         <i class="ace-icon fa fa-chevron-down"></i>
@@ -29,13 +29,13 @@
                     <br>
                     <div class="form-group">
                         <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1"> Nama Supir
+                        for="form-field-1"> Aspek
                         </label>
 
                         <div class="col-sm-8">
-                            <input type="text"  placeholder=" Masukkan Supir" 
-                                    class="col-xs-10 col-sm-10 required " value="{{$data->name}}"
-                                    name="drivers" required />
+                            <input type="text"  placeholder=" Masukkan Aspek Evaluasi" 
+                                    class="col-xs-10 col-sm-10 required " value="{{$data->aspek}}"
+                                    name="aspek" required />
                         </div>
                     </div>
                     <div class="form-group">

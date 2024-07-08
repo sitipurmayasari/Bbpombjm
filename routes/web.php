@@ -242,7 +242,6 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/amdk/kategori','Amdk\KategoriController@index')->name('kategori');
     //Route untuk rekaman personel
     Route::get('/amdk/record','Amdk\RecordController@index')->name('record');
-  
     //Route untuk Setup Angka Kredit
     Route::get('/amdk/ak','Amdk\CreditsController@index')->name('ak');
     //Route untuk SKP
@@ -263,6 +262,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/amdk/setupttd','Amdk\SetTTDController@index')->name('setupttd');
     //Route untuk ketua tim
     Route::get('/amdk/teamlead','Amdk\TeamLeadController@index')->name('teamlead');
+    //Route untuk aspek evaluasi
+    Route::get('/amdk/aspek','Amdk\AspekController@index')->name('aspek');
     
 
     //--------------------------PPNPN------------------------------------------

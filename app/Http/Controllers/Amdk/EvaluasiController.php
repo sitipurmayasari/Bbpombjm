@@ -36,7 +36,7 @@ class EvaluasiController extends Controller
     {
         $data = Pelatihan::where('id', $id)
                             ->first();
-        $aspek = Aspek_evaluasi::all();
+        $aspek = Aspek_evaluasi::where('aktif','Y')->get();
         return view('amdk/evaluasi.create',compact('data','aspek'));
     }
 

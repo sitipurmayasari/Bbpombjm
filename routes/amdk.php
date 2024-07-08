@@ -266,3 +266,11 @@
   Route::get('/amdk/teamlead/delete/{id}','Amdk\TeamLeadController@delete')->name('teamlead.delete');
   Route::get('/amdk/teamlead/edit/{id}','Amdk\TeamLeadController@edit')->name('teamlead.edit');
   Route::post('/amdk/teamlead/update/{id}','Amdk\TeamLeadController@update')->name('teamlead.update');
+
+
+  //Route untuk aspek evaluasi
+  Route::post('/amdk/aspek/store','Amdk\AspekController@store')->name('aspek.store');
+  Route::get('/amdk/aspek/delete/{id}','Amdk\AspekController@delete')->name('aspek.delete');
+  Route::get('/amdk/aspek/edit/{id}','Amdk\AspekController@edit')->name('aspek.edit');
+  Route::post('/amdk/aspek/update/{id}','Amdk\AspekController@update')->name('aspek.update');
+
