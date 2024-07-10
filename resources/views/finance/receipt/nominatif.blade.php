@@ -376,7 +376,9 @@
                     </td>
                     <td style="vertical-align: top;">
                         @foreach ($trans as $itemtrans)
-                            {{$itemtrans->taxitype}}<br>
+                            @if ($itemtrans->taxisum != 0)
+                                {{$itemtrans->taxitype}}
+                            @endif<br>
                         @endforeach
 
                         @foreach ($plane as $itemplane)
@@ -385,7 +387,9 @@
                     </td>
                     <td style="vertical-align: top; text_align:center">
                         @foreach ($trans as $itemtrans)
-                            {{$itemtrans->taxicount}} OK<br>
+                            @if ($itemtrans->taxisum != 0)
+                                {{$itemtrans->taxicount}} OK
+                            @endif<br>
                         @endforeach
 
                         @foreach ($plane as $itemplane)
@@ -394,7 +398,9 @@
                     </td>
                     <td style="vertical-align: top; text_align:center">
                         @foreach ($trans as $itemtrans)
-                            {{number_format($itemtrans->taxifee)}}<br>
+                            @if ($itemtrans->taxisum != 0)
+                                {{number_format($itemtrans->taxifee)}}
+                            @endif<br>
                         @endforeach
 
                         @foreach ($plane as $itemplane)
@@ -403,7 +409,9 @@
                     </td>
                     <td style="vertical-align: top; text_align:center">
                         @foreach ($trans as $itemtrans)
-                            {{number_format($itemtrans->taxisum)}}<br>
+                            @if ($itemtrans->taxisum != 0)
+                                {{number_format($itemtrans->taxisum)}}
+                            @endif<br>
                         @endforeach
                         @foreach ($plane as $itemplane)
                             {{number_format($itemplane->ticketfee)}}<br>
