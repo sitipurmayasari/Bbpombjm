@@ -274,3 +274,12 @@
   Route::get('/amdk/aspek/edit/{id}','Amdk\AspekController@edit')->name('aspek.edit');
   Route::post('/amdk/aspek/update/{id}','Amdk\AspekController@update')->name('aspek.update');
 
+  //Route untuk Rotasi/Mutasi
+  Route::get('/amdk/rotasi/create','Amdk\RotasiController@create')->name('rotasi.create');
+  Route::post('/amdk/rotasi/store','Amdk\RotasiController@store')->name('rotasi.store');
+  Route::get('/amdk/rotasi/edit/{id}','Amdk\RotasiController@edit')->name('rotasi.edit');
+  Route::get('/amdk/rotasi/delete/{id}','Amdk\RotasiController@delete')->name('rotasi.delete');
+  Route::get('/amdk/rotasi/evaluation/{id}','Amdk\RotasiController@evaluation')->name('rotasi.evaluation');
+  Route::post('/amdk/rotasi/update/{id}','Amdk\RotasiController@update')->name('rotasi.update');
+  Route::get('/amdk/rotasi/cetak/{id}','Amdk\RotasiController@cetak')->name('rotasi.cetak');
+

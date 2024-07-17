@@ -264,6 +264,9 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/amdk/teamlead','Amdk\TeamLeadController@index')->name('teamlead');
     //Route untuk aspek evaluasi
     Route::get('/amdk/aspek','Amdk\AspekController@index')->name('aspek');
+    //Route untuk aspek Rotasi/Mutasi
+    Route::get('/amdk/rotasi','Amdk\RotasiController@index')->name('rotasi');
+    Route::get('/amdk/rotasi/assignment','Amdk\RotasiController@assignment')->name('assignment');
     
 
     //--------------------------PPNPN------------------------------------------
