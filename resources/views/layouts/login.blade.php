@@ -88,7 +88,7 @@
         <p style="text-align: center;font-size: 11px"><a href="https://wa.me/6281545833889">Jika Lupa Password, Silahkan Hubungi TIM IT</a></p>
     </form>
 </div>
-    <script src="{{asset('assets/js/jquery-2.1.4.min.js')}}"></script>
+    <script src="{{asset('assets/js/jQuery-2.1.4.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('assets/toastr/toastr.min.js')}}"></script>
 
