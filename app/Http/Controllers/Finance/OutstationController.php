@@ -157,9 +157,9 @@ class OutstationController extends Controller
         }
         
         if ($jmlpeg->hitung > 1) {
-          $pdf = PDF::loadview('finance/outstation.printSTbanyak',compact('data','isian','menyetujui'));
+          $pdf = PDF::loadview('finance/outstation.printSTbanyak',compact('data','isian','menyetujui', 'cekkepala'));
         } else {
-          $pdf = PDF::loadview('finance/outstation.printST',compact('data','datapeg','menyetujui','now'));
+          $pdf = PDF::loadview('finance/outstation.printST',compact('data','datapeg','menyetujui','now','cekkepala'));
         }
         return $pdf->stream();
         
@@ -173,7 +173,11 @@ class OutstationController extends Controller
                             ->get();
         $datapeg = Outst_employee::orderBy('id','asc')
                             ->where('outstation_id','=',$id)
-                            ->first();      
+                            ->first();   
+        $cekkepala = Outst_employee::where('outstation_id',$id)
+                            ->whereraw("users_id = (SELECT users_id FROM pejabat WHERE jabatan_id = 6 and pjs IS NULL ORDER BY id DESC LIMIT 1)")
+                            ->orderby('id','desc')
+                            ->first();   
         $menyetujui = Pejabat::where('jabatan_id', '=', 6)
                             ->whereRaw("pjs IS NULL || pjs != 'Plh.'")
                             ->orderby('id','desc')
@@ -184,9 +188,9 @@ class OutstationController extends Controller
 
         // $phpWord = new \PhpOffice\PhpWord\PhpWord();
         if ($jmlpeg->hitung > 1) {
-          $pdf = PDF::loadview('finance/outstation.printSTKopbanyak',compact('data','isian','menyetujui'));
+          $pdf = PDF::loadview('finance/outstation.printSTKopbanyak',compact('data','isian','menyetujui','cekkepala'));
         } else {
-          $pdf = PDF::loadview('finance/outstation.printSTKop',compact('data','datapeg','menyetujui'));
+          $pdf = PDF::loadview('finance/outstation.printSTKop',compact('data','datapeg','menyetujui','cekkepala'));
           // return view('finance/outstation.printSTKop',compact('data','datapeg','menyetujui'));
         }
         return $pdf->stream();

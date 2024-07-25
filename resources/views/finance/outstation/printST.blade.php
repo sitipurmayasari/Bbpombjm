@@ -257,7 +257,11 @@
                             <tr>
                                 <td>2.</td>
                                 <td>
-                                    Melaksanakan tugas tersebut dengan seksama dan penuh tanggung jawab serta melaporkan hasil kegiatan kepada Kepala Balai Besar Pengawas Obat dan Makanan di Banjarmasin;
+                                    @if ($cekkepala != null)
+                                        Melaksanakan tugas tersebut dengan seksama dan penuh tanggung jawab.
+                                    @else
+                                        Melaksanakan tugas tersebut dengan seksama dan penuh tanggung jawab serta melaporkan hasil kegiatan kepada Kepala Balai Besar Pengawas Obat dan Makanan di Banjarmasin;
+                                    @endif
                                 </td>
                             </tr>
                             <tr>
