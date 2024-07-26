@@ -56,15 +56,6 @@
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
-                            for="form-field-1"> Tanggal Expired 
-                            </label>
-                            <div class="col-sm-8">
-                                <input type="date" name="exp_date" readonly class="col-xs-5 col-sm-5" 
-                                data-date-format="yyyy-mm-dd"  data-provide="datepicker">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" 
                             for="form-field-1"> Harga Satuan
                             </label>
                             <div class="col-sm-8">
