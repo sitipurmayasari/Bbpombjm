@@ -23,15 +23,12 @@ class InventImport implements ToModel,WithStartRow
         return new Inventaris([
             'nama_barang'       => $row[0],
             'kode_barang'       => $row[1],
-            'harga'             => $row[2],
-            'jenis_barang'      => $row[3],
-            'jumlah_barang'     => $row[4],
-            'satuan_id'         => $row[5],
-            'merk'              => $row[6],
-            'no_seri'           => $row[7],
-            'lokasi'            => $row[8],
-            'penanggung_jawab'  => $row[9],
-            'kind'              => $row[10]
+            'jenis_barang'      => $row[2],
+            'satuan_id'         => $row[3],
+            'merk'              => $row[4],
+            'lokasi'            => $row[5],
+            'penanggung_jawab'  => $row[6],
+            'kind'              => $row[7]
 
         ]);
     }
