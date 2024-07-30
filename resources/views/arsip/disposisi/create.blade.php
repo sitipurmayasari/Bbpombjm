@@ -105,7 +105,7 @@
                         for="form-field-1">
                         </label>
                         <div class="col-sm-10">
-                            <input type="file" name="fileDispo" class="btn btn-default btn-sm" id="" value="Upload File ">      
+                            <input type="file" name="file" class="btn btn-default btn-sm" id="" value="Upload File ">      
                             <label><i>ex:Lorem_ipsum.pdf</i></label>
                         </div>
                     </div>

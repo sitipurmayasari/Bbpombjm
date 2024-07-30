@@ -39,12 +39,12 @@ class DisposisiController extends Controller
     {
         $dispo =Disposisi::create($request->all());
 
-        if($request->hasFile('fileDispo')){
-            $request->file('fileDispo')
+        if($request->hasFile('file')){
+            $request->file('file')
                         ->move('images/arsiparis/disposisi/'.$dispo->id,$request
-                        ->file('fileDispo')
+                        ->file('file')
                         ->getClientOriginalName());
-            $dispo->fileDispo = $request->file('fileDispo')->getClientOriginalName();
+            $dispo->file = $request->file('file')->getClientOriginalName();
             $dispo->save();
         }
 
@@ -63,16 +63,18 @@ class DisposisiController extends Controller
    
     public function update(Request $request, $id)
     {
-        $dispo = Disposisi::find($id);
-        $dispo->update($request->all());
-        if($request->hasFile('fileDispo')){
-            $request->file('fileDispo')
-                        ->move('images/arsiparis/disposisi/'.$dispo->id,$request
-                        ->file('fileDispo')
-                        ->getClientOriginalName());
-            $dispo->fileDispo = $request->file('fileDispo')->getClientOriginalName();
-            $dispo->save();
+        $data = Disposisi::find($id);
+        $data->update($request->all());
+
+        if($request->hasFile('file')){ 
+          $request->file('file')
+                      ->move('images/arsiparis/disposisi/'.$id,$request
+                      ->file('file')
+                      ->getClientOriginalName()); 
+          $data->file = $request->file('file')->getClientOriginalName(); 
+          $data->save();
         }
+
         LogActivity::addToLog('Ubah->Disposisi nomor disposisi = '.$request->no_agenda); 
         return redirect('/arsip/disposisi')->with('sukses','Data Diperbaharui');
     }

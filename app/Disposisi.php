@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Disposisi extends Model
 {
     protected $table = "disposisi";
-    protected $fillable = ['tanggal','no_agenda','no_surat','tgl_surat','pengirim','hal','divisi_id','keterangan','fileDispo'
+    protected $fillable = ['tanggal','no_agenda','no_surat','tgl_surat','pengirim','hal','divisi_id','keterangan','file'
 ];
 
     public function div()
@@ -17,7 +17,7 @@ class Disposisi extends Model
 
     public function getfileDispo() 
     {
-        return $this->fileDispo==null ? 'Tidak Ada File' : asset('images/arsiparis/disposisi').'/'.$this->id.'/'.$this->fileDispo;
+        return $this->file==null ? 'Tidak Ada File' : asset('images/arsiparis/disposisi').'/'.$this->id.'/'.$this->file;
     }
 
 

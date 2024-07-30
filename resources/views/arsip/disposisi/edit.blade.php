@@ -105,8 +105,8 @@
                         for="form-field-1"> File
                         </label>
                         <div class="col-sm-10">
-                            <input type="file" name="fileDispo" class="btn btn-default btn-sm" id="" value="Upload Ulang File User Disposisi">
-                            <label><a href="{{$data->getfileDispo()}}" target="_blank" >{{$data->fileDispo}}</a></label>
+                            <input type="file" name="file" class="btn btn-default btn-sm" id="" value="Upload Ulang File User Disposisi">
+                            <label><a href="{{$data->getfileDispo()}}" target="_blank" >{{$data->file}}</a></label>
                         </div>
                     </div>
                     </fieldset>        
