@@ -37,7 +37,16 @@ class DisposisiController extends Controller
 
     public function store(Request $request)
     {
-        Disposisi::create($request->all());
+        $data = Disposisi::create($request->all());
+        if($request->hasFile('fileDispo')){ // Kalau file ada
+            $request->file('fileDispo')
+                        ->move('images/arsiparis/disposisi/'.$data->id,$request
+                        ->file('fileDispo')
+                        ->getClientOriginalName()); 
+            $data->fileDispo = $request->file('fileDispo')->getClientOriginalName(); 
+            $data->save(); // save ke database
+        }
+
         LogActivity::addToLog('Simpan->Disposisi nomor disposisi = '.$request->no_agenda); 
         return redirect('/arsip/disposisi')->with('sukses','Data Tersimpan');
     }
@@ -55,6 +64,14 @@ class DisposisiController extends Controller
     {
         $data = Disposisi::find($id);
         $data->update($request->all());
+        if($request->hasFile('fileDispo')){
+            $request->file('fileDispo')
+                        ->move('images/arsiparis/disposisi/'.$data->id,$request
+                        ->file('fileDispo')
+                        ->getClientOriginalName()); 
+            $data->fileDispo = $request->file('fileDispo')->getClientOriginalName(); 
+            $data->save(); // save ke database
+        }
         LogActivity::addToLog('Ubah->Disposisi nomor disposisi = '.$request->no_agenda); 
         return redirect('/arsip/disposisi')->with('sukses','Data Diperbaharui');
     }

@@ -100,6 +100,15 @@
                             <textarea name="keterangan" id="" class="col-xs-12 col-sm-12"  rows="3">{{$data->keterangan}}</textarea>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" 
+                        for="form-field-1"> File
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="file" name="fileDispo" class="btn btn-default btn-sm" id="" value="Upload Ulang File User Disposisi">
+                            <label><a href="{{$data->getfileDispo()}}" target="_blank" >{{$data->fileDispo}}</a></label>
+                        </div>
+                    </div>
                     </fieldset>        
                 </div>
             </div>
