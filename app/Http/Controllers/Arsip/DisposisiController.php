@@ -37,14 +37,15 @@ class DisposisiController extends Controller
 
     public function store(Request $request)
     {
-        $data = Disposisi::create($request->all());
-        if($request->hasFile('fileDispo')){ // Kalau file ada
+        $dispo =Disposisi::create($request->all());
+
+        if($request->hasFile('fileDispo')){
             $request->file('fileDispo')
-                        ->move('images/arsiparis/disposisi/'.$data->id,$request
+                        ->move('images/arsiparis/disposisi/'.$dispo->id,$request
                         ->file('fileDispo')
-                        ->getClientOriginalName()); 
-            $data->fileDispo = $request->file('fileDispo')->getClientOriginalName(); 
-            $data->save(); // save ke database
+                        ->getClientOriginalName());
+            $dispo->fileDispo = $request->file('fileDispo')->getClientOriginalName();
+            $dispo->save();
         }
 
         LogActivity::addToLog('Simpan->Disposisi nomor disposisi = '.$request->no_agenda); 
@@ -62,15 +63,15 @@ class DisposisiController extends Controller
    
     public function update(Request $request, $id)
     {
-        $data = Disposisi::find($id);
-        $data->update($request->all());
+        $dispo = Disposisi::find($id);
+        $dispo->update($request->all());
         if($request->hasFile('fileDispo')){
             $request->file('fileDispo')
-                        ->move('images/arsiparis/disposisi/'.$data->id,$request
+                        ->move('images/arsiparis/disposisi/'.$dispo->id,$request
                         ->file('fileDispo')
-                        ->getClientOriginalName()); 
-            $data->fileDispo = $request->file('fileDispo')->getClientOriginalName(); 
-            $data->save(); // save ke database
+                        ->getClientOriginalName());
+            $dispo->fileDispo = $request->file('fileDispo')->getClientOriginalName();
+            $dispo->save();
         }
         LogActivity::addToLog('Ubah->Disposisi nomor disposisi = '.$request->no_agenda); 
         return redirect('/arsip/disposisi')->with('sukses','Data Diperbaharui');
