@@ -28,7 +28,7 @@
   <div class="col-sm-12" style="text-align: center">
     <div class="card">
         <div class="card-header card-header-warning">
-          <h4 class="card-title">TEMPLATE SURAT</h4>
+          <h4 class="card-title">TEMPLATE SURAT ABSENSI</h4>
         </div>
         <div class="card-body">
           <table class="table table-hover" style="font-size: 12px;">
