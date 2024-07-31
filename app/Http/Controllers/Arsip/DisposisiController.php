@@ -37,7 +37,7 @@ class DisposisiController extends Controller
 
     public function store(Request $request)
     {
-        $dispo =Disposisi::create($request->all());
+        $dispo = Disposisi::create($request->all());
 
         if($request->hasFile('file')){
             $request->file('file')
