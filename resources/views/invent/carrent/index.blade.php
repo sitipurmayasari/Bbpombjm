@@ -13,6 +13,7 @@
                     <div class="row">
                         <div class="form-group col-xs-12 col-sm-3" style="float: left">
                            <a href="{{Route('carrent.create')}}"  class="btn btn-primary">Tambah Data</a>   
+                           <a class="btn btn-default" href="/calendars" target="_blank" rel="noopener noreferrer">Cek Ketersediaan</a>
                         </div>
                         <div class="form-group col-xs-12 col-sm-5" style="float: right">
                             <div class="input-group">
@@ -21,7 +22,7 @@
                                     <button type="submit" class="btn btn-default no-border btn-sm gp-search">
                                     <i class="ace-icon fa fa-search icon-on-right bigger-110"></i>
                                     </button>
-                                    <a class="btn btn-default" href="/calendars" target="_blank" rel="noopener noreferrer">Cek Ketersediaan</a>
+                                   
                                 </div>
                             </div>
                         </div>
