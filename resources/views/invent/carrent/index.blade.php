@@ -21,6 +21,7 @@
                                     <button type="submit" class="btn btn-default no-border btn-sm gp-search">
                                     <i class="ace-icon fa fa-search icon-on-right bigger-110"></i>
                                     </button>
+                                    <a class="btn btn-default" href="/calendars" target="_blank" rel="noopener noreferrer">Cek Ketersediaan</a>
                                 </div>
                             </div>
                         </div>
