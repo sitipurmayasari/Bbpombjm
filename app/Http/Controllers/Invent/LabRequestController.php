@@ -50,7 +50,7 @@ class LabRequestController extends Controller
         $user = User::all()
                 ->where('id','!=','1');
         $lab = Labory::all();
-        $jenis = Jenisbrg::where('kelompok','L')->get();
+        $jenis = Jenisbrg::where('kelompok','L')->where('aktif','Y')->get();
         $satuan = Satuan::all();
         // $tahu = Pejabat::selectraw('DISTINCT(jabatan_id), id, divisi_id, subdivisi_id, users_id, pjs')
         //                         -> whereraw('pjs is null and jabatan_id != 6')->Orderby('id','desc')->get();
@@ -171,7 +171,7 @@ class LabRequestController extends Controller
         // $tahu = Pejabat::selectraw('DISTINCT(jabatan_id), id, divisi_id, subdivisi_id, users_id, pjs')
         //                 -> whereraw('pjs is null and jabatan_id != 6')->Orderby('id','desc')->get();
         $tahu = User::where('aktif','Y')->where('status','PNS')->get();
-        $jenis = Jenisbrg::where('kelompok','L')->get();
+        $jenis = Jenisbrg::where('kelompok','L')->where('aktif','Y')->get();
         $kel = Sbbdetail::where('sbb_id',$id)->first();
         $inv = Inventaris::where('jenis_barang',$kel->barang->jenis->id)->get();
 

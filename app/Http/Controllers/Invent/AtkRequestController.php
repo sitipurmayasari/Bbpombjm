@@ -46,7 +46,7 @@ class AtkRequestController extends Controller
                             ->get();
         $user = User::all()
                 ->where('id','!=','1');
-        $jenis = Jenisbrg::where('kelompok','K')->get();
+        $jenis = Jenisbrg::where('kelompok','K')->where('aktif','Y')->get();
         $satuan = Satuan::all();
         $nosbb = $this->getNoSBB();
         // $tahu = Pejabat::selectraw('DISTINCT(jabatan_id), id, divisi_id, subdivisi_id, users_id, pjs')
@@ -165,7 +165,7 @@ class AtkRequestController extends Controller
         // $tahu = Pejabat::selectraw('DISTINCT(jabatan_id), id, divisi_id, subdivisi_id, users_id, pjs')
         // -> whereraw('pjs is null and jabatan_id != 6')->Orderby('id','desc')->get();
         $tahu = User::where('aktif','Y')->where('status','PNS')->get();
-        $jenis = Jenisbrg::where('kelompok','K')->get();
+        $jenis = Jenisbrg::where('kelompok','K')->where('aktif','Y')->get();
         $kel = Sbbdetail::where('sbb_id',$id)->first();
         $inv = Inventaris::where('jenis_barang',$kel->barang->jenis->id)->get();
 

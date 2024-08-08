@@ -183,84 +183,98 @@ class AksesController extends Controller
         $amdk = Submenu::orderBy('menu.id','asc')
             ->select('submenu.*','menu.modul','menu.nama as group_nama')
             ->leftJoin('menu','submenu.menu_id','=','menu.id')
+            ->where('aktif','Y')
             ->where('menu.modul','amdk')
             ->get();
 
         $inventaris = Submenu::orderBy('menu.id','asc')
             ->select('submenu.*','menu.modul','menu.nama as group_nama')
             ->leftJoin('menu','submenu.menu_id','=','menu.id')
+            ->where('aktif','Y')
             ->where('menu.modul','inventaris')
             ->get();
 
         $finance = Submenu::orderBy('menu.id','asc')
             ->select('submenu.*','menu.modul','menu.nama as group_nama')
             ->leftJoin('menu','submenu.menu_id','=','menu.id')
+            ->where('aktif','Y')
             ->where('menu.modul','finance')
             ->get();
 
         $arsip = Submenu::orderBy('menu.id','asc')
             ->select('submenu.*','menu.modul','menu.nama as group_nama')
             ->leftJoin('menu','submenu.menu_id','=','menu.id')
+            ->where('aktif','Y')
             ->where('menu.modul','arsip')
             ->get();
 
         $dinas = Submenu::orderBy('menu.id','asc')
             ->select('submenu.*','menu.modul','menu.nama as group_nama')
             ->leftJoin('menu','submenu.menu_id','=','menu.id')
+            ->where('aktif','Y')
             ->where('menu.modul','dinas')
             ->get();
 
         $plan = Submenu::orderBy('menu.id','asc')
             ->select('submenu.*','menu.modul','menu.nama as group_nama')
             ->leftJoin('menu','submenu.menu_id','=','menu.id')
+            ->where('aktif','Y')
             ->where('menu.modul','plan')
             ->get();
 
         $forma = Submenu::orderBy('menu.id','asc')
             ->select('submenu.*','menu.modul','menu.nama as group_nama')
             ->leftJoin('menu','submenu.menu_id','=','menu.id')
+            ->where('aktif','Y')
             ->where('menu.modul','forma')
             ->get();
 
         $kuli = Submenu::orderBy('menu.id','asc')
             ->select('submenu.*','menu.modul','menu.nama as group_nama')
             ->leftJoin('menu','submenu.menu_id','=','menu.id')
+            ->where('aktif','Y')
             ->where('menu.modul','kuli')
             ->get();
         
         $aluh = Submenu::orderBy('menu.id','asc')
             ->select('submenu.*','menu.modul','menu.nama as group_nama')
             ->leftJoin('menu','submenu.menu_id','=','menu.id')
+            ->where('aktif','Y')
             ->where('menu.modul','aluh')
             ->get();
 
         $qms = Submenu::orderBy('menu.id','asc')
             ->select('submenu.*','menu.modul','menu.nama as group_nama')
             ->leftJoin('menu','submenu.menu_id','=','menu.id')
+            ->where('aktif','Y')
             ->where('menu.modul','qms')
             ->get();
 
         $nappza = Submenu::orderBy('menu.id','asc')
             ->select('submenu.*','menu.modul','menu.nama as group_nama')
             ->leftJoin('menu','submenu.menu_id','=','menu.id')
+            ->where('aktif','Y')
             ->where('menu.modul','napza')
             ->get();
         
         $mikro = Submenu::orderBy('menu.id','asc')
             ->select('submenu.*','menu.modul','menu.nama as group_nama')
             ->leftJoin('menu','submenu.menu_id','=','menu.id')
+            ->where('aktif','Y')
             ->where('menu.modul','mikro')
             ->get();
 
         $otkos = Submenu::orderBy('menu.id','asc')
             ->select('submenu.*','menu.modul','menu.nama as group_nama')
             ->leftJoin('menu','submenu.menu_id','=','menu.id')
+            ->where('aktif','Y')
             ->where('menu.modul','otkos')
             ->get();
 
         // $ppnpn = Submenu::orderBy('menu.id','asc')
         //     ->select('submenu.*','menu.modul','menu.nama as group_nama')
         //     ->leftJoin('menu','submenu.menu_id','=','menu.id')
+        // ->where('aktif','Y')
         //     ->where('menu.modul','ppnpn')
         //     ->get();
 
