@@ -11,8 +11,8 @@ use App\Sbbdetail;
 use App\Satuan;
 use App\Pejabat;
 use App\Petugas;
-use App\Subdivisi;
-use App\Divisi;
+use App\Teamleader;
+use App\Jenisbrg;
 use App\Entrystock;
 use PDF;
 use Illuminate\Support\Facades\DB;
@@ -52,11 +52,13 @@ class BarangkeluarController extends Controller
                             ->leftJoin('entrystock','entrystock.inventaris_id','=','inventaris.id')
                             ->where('inventaris.kind','!=','R')
                         ->get();
-        $user = User::all()
+        $user = User::all()->where('aktif','Y')
                 ->where('id','!=','1');
         $satuan = Satuan::all();
         $nosbb = $this->getNoSBB();
-        return view('invent/barangkeluar.create',compact('data','user','nosbb','satuan'));
+        $tahu  = Teamleader::where('aktif','Y')->get();
+        $jenis = Jenisbrg::where('kelompok','K')->where('aktif','Y')->get();
+        return view('invent/barangkeluar.create',compact('data','user','nosbb','satuan','tahu','jenis'));
     }
 
    
@@ -77,37 +79,27 @@ class BarangkeluarController extends Controller
                     'inventaris_id' => $request->inventaris_id[$i],
                     'satuan_id' => $request->satuan_id[$i] ,
                     'jumlah' => $request->jumlah[$i] ,
-                    'ket' => $request->ket[$i]
+                    'jumlah_aju' => $request->jumlah_aju[$i],
+                    'ket' => $request->ket[$i],
+                    'status' => $request->status[$i]
                 ];
                 Sbbdetail::create($data);
 
-                $stok1 = Entrystock::Where('inventaris_id',$request->inventaris_id[$i])
-                                    ->WhereRaw('stock != 0')->orderBy('id','asc')->first();
-                $stok2 = Entrystock::Where('inventaris_id',$request->inventaris_id[$i])
-                                    ->WhereRaw('stock != 0')->orderBy('id','desc')->first();
-
-                $minta = $request->jumlah[$i];
-                $rest =   $stok1->stock - $minta;
-                $rest2 = $minta - $stok1->stock;
-                $sisa = $stok2->stock - $rest2;
-
-                if ($rest < 0) {
-                    Entrystock::where('id',$stok1->id)->update([
-                    'stock' => 0
-                    ]);
-                    Entrystock::where('id',$stok2->id)->update([
-                    'stock' => $sisa
-                    ]);
-                } else {
-                   Entrystock::where('id',$stok1->id)->update([
-                    'stock' => $rest
-                    ]);
+                // potong stock
+                if ($request->status[$i] == 'Y') {
+                    $stok = [
+                        'entry_date' => $request->tanggal,
+                        'inventaris_id' => $request->inventaris_id[$i],
+                        'stock' => $request->sisa[$i],
+                        'keluar' => $request->jumlah[$i]
+                        ];
+                     Entrystock::create($stok);
                 }
+               
 
             }
             DB::commit(); 
-            // return redirect('/invent/barangkeluar')->with('sukses','Data Tersimpan');
-        return redirect('/invent/barangkeluar/print/'.$sbb_id);
+        return redirect('/invent/barangkeluar')->with('sukses','Data Tersimpan');
     }
 
     public function print($id)
@@ -129,11 +121,24 @@ class BarangkeluarController extends Controller
     {
         $id = $request->barang_id;
 
-        $data = Inventaris::selectRaw('inventaris.id, inventaris.nama_barang, inventaris.satuan_id, satuan.satuan, SUM(entrystock.stock) AS sisa')
-                        ->leftJoin('satuan', 'inventaris.satuan_id', '=', 'satuan.id')
-                        ->leftJoin('entrystock','entrystock.inventaris_id','=','inventaris.id')
-                        ->where('inventaris.id',$id)
-                        ->first();
+        $data =Inventaris::SelectRaw('inventaris.*,  entrystock.stock, satuan.satuan' )
+            ->LeftJoin(DB::raw("(SELECT MAX(id) as max_id, inventaris_id FROM entrystock GROUP BY inventaris_id) stok"),
+                                    'stok.inventaris_id','=','inventaris.id')
+            ->LeftJoin('entrystock','stok.max_id','=','entrystock.id')
+            ->leftJoin('satuan', 'inventaris.satuan_id', '=', 'satuan.id')
+            ->where('inventaris.id',$id)
+            ->first();
+        return response()->json([ 'success' => true,'data' => $data],200);
+    }
+
+    public function getKelompok(Request $request)
+    {
+        $kel= $request->jenis_barang;
+
+        $data = Inventaris::LeftJoin("jenis_barang","jenis_barang.id","=","inventaris.jenis_barang")
+                            ->where("kelompok",$kel)
+                            ->where("kind","D")
+                            ->get();
         return response()->json([ 'success' => true,'data' => $data],200);
     }
    
@@ -191,18 +196,19 @@ class BarangkeluarController extends Controller
 
 
     function getNoSBB(){
-      $nomor = Sbb::orderBy('id','desc')->whereYear('tanggal',date('Y'))->get();
-      $first = "001";
-      if($nomor->count()>0){
-        $first = $nomor->first()->id+1;
-        if($first < 10){
-            $first = "00".$first;
-        }else if($first < 100){
-            $first = "0".$first;
+        $nomor = Sbb::orderBy('id','desc')->whereYear('tanggal',date('Y'))->get();
+        $counting = Sbb::SelectRaw("COUNT(*)AS jum ")->whereYear('tanggal',date('Y'))->first();
+        $first = "001";
+        if($nomor->count()>0){
+          $first = $counting->jum+1;
+          if($first < 10){
+              $first = "00".$first;
+          }else if($first < 100){
+              $first = "0".$first;
+          }
         }
-      }
-      $nosbb = $first."/SBBK/BBPOM/".date('m')."/".date('Y');
-      return $nosbb;
+        $nosbb = $first."/SBBK/BBPOM/".date('m')."/".date('Y');
+        return $nosbb;
     }
 
     
