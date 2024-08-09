@@ -185,7 +185,7 @@
                 var jenis_barang = $("#jenisbrg").val();
     
                 $.get(
-                "{{route('atkrequest.getKelompok') }}",
+                "{{route('barangkeluar.getKelompok') }}",
                 {
                     jenis_barang: jenis_barang
                 },
@@ -204,7 +204,7 @@
                 var jenis_barang = $("#jenisbrg").val();
     
                 $.get(
-                "{{route('atkrequest.getKelompok') }}",
+                "{{route('barangkeluar.getKelompok') }}",
                 {
                     jenis_barang: jenis_barang
                 },
@@ -223,7 +223,7 @@
                 var barang_id = $("#barang_id-1").val();
     
                 $.get(
-                    "{{route('atkrequest.getbarang') }}",
+                    "{{route('barangkeluar.getbarang') }}",
                     {
                         barang_id: barang_id
                     },
@@ -264,7 +264,7 @@
                 var barang_id =  $("#barang_id-"+i).val();
                 if (barang_id == '') return false;
                 $.get(
-                    "{{route('atkrequest.getbarang') }}",
+                    "{{route('barangkeluar.getbarang') }}",
                     {
                         barang_id: barang_id
                     },

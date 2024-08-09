@@ -133,11 +133,10 @@ class BarangkeluarController extends Controller
 
     public function getKelompok(Request $request)
     {
-        $kel= $request->jenis_barang;
+        $id = $request->jenis_barang;
 
-        $data = Inventaris::LeftJoin("jenis_barang","jenis_barang.id","=","inventaris.jenis_barang")
-                            ->where("kelompok",$kel)
-                            ->where("kind","D")
+        $data = Inventaris::where("jenis_barang",$id)
+                            ->where("kind","!=","R")
                             ->get();
         return response()->json([ 'success' => true,'data' => $data],200);
     }
