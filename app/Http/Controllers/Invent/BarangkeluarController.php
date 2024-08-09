@@ -57,7 +57,7 @@ class BarangkeluarController extends Controller
         $satuan = Satuan::all();
         $nosbb = $this->getNoSBB();
         $tahu  = Teamleader::where('aktif','Y')->get();
-        $jenis = Jenisbrg::where('kelompok','K')->where('aktif','Y')->get();
+        $jenis = Jenisbrg::where('aktif','Y')->get();
         return view('invent/barangkeluar.create',compact('data','user','nosbb','satuan','tahu','jenis'));
     }
 
