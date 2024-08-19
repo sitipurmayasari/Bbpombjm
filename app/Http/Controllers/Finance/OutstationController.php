@@ -318,9 +318,15 @@ class OutstationController extends Controller
                   ->where('outstation_id','=',$id)
                   ->first();
         }
-
-        $pdf = PDF::loadview('finance/outstation.sppdnewB',compact('data','isian','menyetujui','destinys','lama'));
-        return $pdf->stream();
+        if ($data->lkdp == 'Y') {
+          $pdf = PDF::loadview('finance/outstation.sppdLKDP',compact('data','isian','menyetujui','destinys','lama'));
+          return $pdf->stream();
+            
+        } else {
+          $pdf = PDF::loadview('finance/outstation.sppdnewB',compact('data','isian','menyetujui','destinys','lama'));
+          return $pdf->stream();
+        }
+       
       }
 
       public function edit($id)

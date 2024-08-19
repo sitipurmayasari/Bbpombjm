@@ -31,6 +31,8 @@
                             <input type="date" required id="st_date" value="{{date('Y-m-d')}}"
                                     class="col-xs-3 col-sm-3 required " 
                                     name="st_date"/>
+                            &nbsp; &nbsp;
+                            <input type="checkbox" name="lkdp" value="Y"> LKDP
                         </div>
                     </div>
                     <div class="form-group">

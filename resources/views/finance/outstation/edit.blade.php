@@ -30,6 +30,12 @@
                             <input type="date" required id="st_date" value="{{$data->st_date}}"
                                     class="col-xs-3 col-sm-3 required " 
                                     name="st_date"/>
+                            &nbsp; &nbsp;
+                            @if ($data->lkdp == 'Y')
+                                <input type="checkbox" name="lkdp" value="Y" checked> LKDP
+                            @else
+                                <input type="checkbox" name="lkdp" value="Y"> LKDP
+                            @endif
                         </div>
                     </div>
                     <div class="form-group">
