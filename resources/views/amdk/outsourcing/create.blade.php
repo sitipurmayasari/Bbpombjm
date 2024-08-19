@@ -115,7 +115,7 @@
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalone">
                                     <i class="glyphicon glyphicon-plus"></i></button>
                                   </button>
-                                  *Jika PNS/PPPK
+                                  *untuk eksternal non PNS/PPPK tidak perlu diisi 
                             </div>
                         </div>
                         <div class="form-group">
@@ -132,7 +132,7 @@
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modaltwo">
                                     <i class="glyphicon glyphicon-plus"></i></button>
                                   </button>
-                                *Jika PNS/PPPK
+                                  *untuk eksternal non PNS/PPPK tidak perlu diisi 
                             </div>
                         </div>
                         
