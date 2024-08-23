@@ -115,6 +115,7 @@
         <thead>
             <tr>
                 <th>NO</th>
+                <th>KODE BARANG</th>
                 <th>NAMA BARANG</th>
                 <th>SATUAN</th>
                 <th>JUMLAH</th>
@@ -128,6 +129,7 @@
             @foreach ($isi as $item)
             <tr>
                 <td>{{$no++}}</td>
+                <td style="text-align: left;">{{$item->barang->kode_barang}}</td>
                 <td style="text-align: left;">{{$item->barang->nama_barang}}</td>
                 <td>{{$item->satuan->satuan}}</td>
                 <td>{{$item->jumlah_aju}}</td>
@@ -277,6 +279,7 @@
         <thead>
             <tr>
                 <th>NO</th>
+                <th>KODE BARANG</th>
                 <th>NAMA BARANG</th>
                 <th>SATUAN</th>
                 <th>JUMLAH</th>
@@ -290,6 +293,7 @@
             @foreach ($isi as $item)
             <tr>
                 <td>{{$no++}}</td>
+                <td style="text-align: left;">{{$item->barang->kode_barang}}</td>
                 <td style="text-align: left;">{{$item->barang->nama_barang}}</td>
                 <td>{{$item->satuan->satuan}}</td>
                 <td>{{$item->jumlah}}</td>

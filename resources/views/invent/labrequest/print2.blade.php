@@ -96,6 +96,7 @@
                     @else
                         {{$data->pegawai->divisi->nama}}
                     @endif
+                    ({{$data->labory->name}})
                 </td>
             </tr>
             <tr>
@@ -129,8 +130,8 @@
             @foreach ($isi as $item)
             <tr>
                 <td>{{$no++}}</td>
-                <td>{{$item->barang->kode_barang}}</td>
-                <td style="text-align: left;">{{$item->barang->nama_barang}}</td>
+                <td style="text-align: left;">{{$item->barang->kode_barang}}</td>
+                <td style="text-align: left;">{{$item->barang->nama_barang}}  (No. Katalog : {{$item->barang->no_seri}})</td>
                 <td>{{$item->satuan->satuan}}</td>
                 <td>{{$item->jumlah_aju}}</td>
                 <td>{{$item->ket}}</td>
@@ -170,18 +171,26 @@
                 <td class="ttd">Pengelola Persediaan</td>
             </tr>
             <tr >
-                <td class="ttd">
-                    @if ($menyetujui->user->ttd != null)
-                        <img src="{{$menyetujui->user->ttd->getFoto()}}"  style="height:50px;width:50px;">
+                <td class="ttd"> {{--menyetujui --}}
+                    {{-- @if ($data->stat_aduan == "S" || $data->stat_aduan == "D") --}}
+                        @if ($menyetujui->user->ttd != null)
+                            <img src="{{$menyetujui->user->ttd->getFoto()}}"  style="height:50px;width:50px;">
+                        @endif
+                    {{-- @endif --}}
+                </td> 
+                <td class="ttd"> {{--mengetahui --}}
+                    {{-- @if ($data->stat_aduan != "B" || $data->stat_aduan != "T") --}}
+                        @if ($tahubaru->ttd != null)
+                                <img src="{{$tahubaru->ttd->getFoto()}}"  style="height:50px;width:50px;">
+                        @endif
+                    {{-- @endif --}}
+                </td>
+                <td class="ttd"> {{--yang meminta --}}
+                    @if ($data->pegawai->ttd != null)
+                        <img src="{{$data->pegawai->ttd->getFoto()}}"  style="height:50px;width:50px">
                     @endif
-                </td>
-                <td class="ttd">
-                   @if ($tahubaru->ttd != null)
-                        <img src="{{$tahubaru->ttd->getFoto()}}"  style="height:50px;width:50px;">
-                   @endif
-                </td>
-                <td class="ttd"></td>
-                <td class="ttd">
+                </td>  
+                <td class="ttd"> {{--pengelola --}}
                     @if ($petugas->user->ttd != null)
                         <img src="{{$petugas->user->ttd->getFoto()}}"  style="height:50px;width:50px">
                     @endif
@@ -285,8 +294,8 @@
             @foreach ($isi as $item)
             <tr>
                 <td>{{$no++}}</td>
-                <td>{{$item->barang->kode_barang}}</td>
-                <td style="text-align: left;">{{$item->barang->nama_barang}}</td>
+                <td  style="text-align: left;">{{$item->barang->kode_barang}}</td>
+                <td style="text-align: left;">{{$item->barang->nama_barang}} (No. Katalog : {{$item->barang->no_seri}})</td>
                 <td>{{$item->satuan->satuan}}</td>
                 <td>{{$item->jumlah}}</td>
                 <td>{{$item->ket}}</td>
@@ -307,20 +316,22 @@
                 <td class="ttd col-md-4">
                     Mengetahui <br>
                     @if ($menyetujui->pjs != null)
-                    {{$menyetujui->pjs}}
-                @endif
+                        {{$menyetujui->pjs}}
+                    @endif
                     Kepala Bagian Tata Usaha 
                 </td>
                 <td class="ttd col-md-4">Pengelola Gudang</td>
             </tr>
             <tr >
-                <td class="ttd"></td>
-                <td class="ttd">
-                    @if ($menyetujui->user->ttd != null)
+                <td class="ttd"></td> {{-- Menerima --}}
+                <td class="ttd"> {{-- Mengetahui --}}
+                    {{-- @if ($data->stat_aduan == "S" || $data->stat_aduan == "D") --}}
+                        @if ($menyetujui->user->ttd != null)
                             <img src="{{$menyetujui->user->ttd->getFoto()}}"  style="height:50px;width:50px;">
                         @endif
+                    {{-- @endif --}}
                 </td>
-                <td class="ttd">
+                <td class="ttd"> {{-- Pengelola --}}
                     @if ($petugas->user->ttd != null)
                         <img src="{{$petugas->user->ttd->getFoto()}}"  style="height:50px;width:50px">
                     @endif

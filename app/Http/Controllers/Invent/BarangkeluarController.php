@@ -14,6 +14,7 @@ use App\Petugas;
 use App\Teamleader;
 use App\Jenisbrg;
 use App\Entrystock;
+use App\Labory;
 use PDF;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -56,9 +57,10 @@ class BarangkeluarController extends Controller
                 ->where('id','!=','1');
         $satuan = Satuan::all();
         $nosbb = $this->getNoSBB();
+        $lab = Labory::all();
         $tahu  = Teamleader::where('aktif','Y')->get();
         $jenis = Jenisbrg::where('aktif','Y')->get();
-        return view('invent/barangkeluar.create',compact('data','user','nosbb','satuan','tahu','jenis'));
+        return view('invent/barangkeluar.create',compact('data','user','nosbb','satuan','tahu','jenis','lab'));
     }
 
    

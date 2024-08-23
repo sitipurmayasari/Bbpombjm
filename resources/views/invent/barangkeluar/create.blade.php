@@ -26,7 +26,7 @@
                                 </select>
                             </div>
                             <div class="col-md-12">
-                                <label>NO. SPB*</label><br>
+                                <label>NO. SPB</label><br>
                                 <input type="text" id="nomor" readonly required
                                 class="col-xs-9 col-sm-9 required " 
                                 name="nomor"
@@ -35,6 +35,17 @@
                                 <input type="hidden" name="jenis" value="A">
                                 <input type="hidden" name="stat_aduan" value="D">
                             </div>
+                            <div class="col-md-12">
+                                <label>Asal Lab *</label><br>
+                                <select name="labory_id" id="labory_id" class="col-xs-9 col-sm-9" required>
+                                    <option value="">Pilih Laboratorium</option>
+                                    @foreach ($lab as $lok)
+                                        <option value="{{$lok->id}}">{{$lok->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            *Hanya untuk permintaan dari G.Reagen
+
                        </div>
                        <div class="col-md-6">
                             <div class="col-md-12">
