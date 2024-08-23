@@ -92,7 +92,7 @@
                 <td  class="rapi"style="width: 2%;">:</td>
                 <td class="rapi">
                     @if ($data->pegawai->subdivisi_id !=null)
-                        {{$data->pegawai->subdivisi->nama_subdiv}} ( {{$data->pegawai->divisi->nama}} )
+                        {{$data->pegawai->subdivisi->nama_subdiv}} - {{$data->pegawai->divisi->nama}}
                     @else
                         {{$data->pegawai->divisi->nama}}
                     @endif

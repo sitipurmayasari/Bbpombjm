@@ -290,7 +290,7 @@
             <tr>
                 <td>{{$no++}}</td>
                 <td style="text-align: left;">{{$item->barang->kode_barang}}</td>
-                <td style="text-align: left;">{{$item->barang->nama_barang}} (No. Katalog : {{$item->barang->no_seri}})</td>
+                <td style="text-align: left;">{{$item->barang->nama_barang}}</td>
                 <td>{{$item->satuan->satuan}}</td>
                 <td>{{$item->jumlah}}</td>
                 <td>{{$item->ket}}</td>
