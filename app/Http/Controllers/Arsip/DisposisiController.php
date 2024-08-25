@@ -41,7 +41,7 @@ class DisposisiController extends Controller
 
         if($request->hasFile('file')){
             $request->file('file')
-                        ->move('images/arsiparis/disposisi/'.$dispo->id,$request
+                        ->move('images/disposisi/'.$dispo->id,$request
                         ->file('file')
                         ->getClientOriginalName());
             $dispo->file = $request->file('file')->getClientOriginalName();
@@ -68,7 +68,7 @@ class DisposisiController extends Controller
 
         if($request->hasFile('file')){ 
           $request->file('file')
-                      ->move('images/arsiparis/disposisi/'.$id,$request
+                      ->move('images/disposisi/'.$id,$request
                       ->file('file')
                       ->getClientOriginalName()); 
           $data->file = $request->file('file')->getClientOriginalName(); 

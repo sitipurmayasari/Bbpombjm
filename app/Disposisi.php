@@ -17,7 +17,7 @@ class Disposisi extends Model
 
     public function getfileDispo() 
     {
-        return $this->file==null ? 'Tidak Ada File' : asset('images/arsiparis/disposisi').'/'.$this->id.'/'.$this->file;
+        return $this->file==null ? 'Tidak Ada File' : asset('images/disposisi').'/'.$this->id.'/'.$this->file;
     }
 
 
