@@ -37,7 +37,7 @@
                             </div>
                             <div class="col-md-12">
                                 <label>Asal Lab *</label><br>
-                                <select name="labory_id" id="labory_id" class="col-xs-9 col-sm-9" required>
+                                <select name="labory_id" id="labory_id" class="col-xs-9 col-sm-9">
                                     <option value="">Pilih Laboratorium</option>
                                     @foreach ($lab as $lok)
                                         <option value="{{$lok->id}}">{{$lok->name}}</option>
