@@ -60,7 +60,7 @@
                         @endif
                     </td>
                     <td>
-                        <a href="{{$row->getfileDispo()}}" target="_blank" >{{$data->file}}</a>
+                        <a href="{{$row->getfileDispo()}}" target="_blank" >{{$row->file}}</a>
                     </td>
                     <td>
                         <a href="/arsip/disposisi/edit/{{$row->id}}" class="btn btn-warning">
