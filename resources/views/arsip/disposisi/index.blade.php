@@ -42,6 +42,7 @@
                 <th>Asal Surat</th>
                 <th>Hal</th>
                 <th>Tujuan Disposisi</th>
+                <th>File</th>
                 <th>Edit</th>
             <thead>
             <tbody>   	
@@ -57,6 +58,9 @@
                         @if ($row->divisi_id != null)
                          {{$row->div->nama}}
                         @endif
+                    </td>
+                    <td>
+                        <a href="{{$data->getfileDispo()}}" target="_blank" >{{$data->file}}</a>
                     </td>
                     <td>
                         <a href="/arsip/disposisi/edit/{{$row->id}}" class="btn btn-warning">
