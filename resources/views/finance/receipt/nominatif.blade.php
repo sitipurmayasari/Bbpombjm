@@ -185,6 +185,7 @@
                             @endforeach
                         @endif
                     </td>
+                    {{-- UHar --}}
                     <td style="vertical-align: top;">
                         @if ($item->uhar1sum != 0)
                             @if (count($data->st->outst_destiny) == 1)
@@ -297,6 +298,8 @@
                             {{number_format($item->fullboardsum)}} <br>
                         @endif
                     </td>
+                    
+                    {{-- repre --}}
                     <td style="vertical-align: top; text_align:center">
                         @if ($item->repssum != 0)
                             {{$item->repskali}} OH<br>
@@ -312,6 +315,8 @@
                             {{number_format($item->repssum)}} <br>
                         @endif
                     </td>
+
+                    {{-- hotel --}}
                     <td style="vertical-align: top; text-align:left">
                         @foreach ($hotel as $itemhotel)
                             {{$itemhotel->hotelname}} <br>
@@ -374,6 +379,8 @@
                             {{number_format($item->fbsum)}} <br>
                         @endif
                     </td>
+
+                    {{-- transport --}}
                     <td style="vertical-align: top;">
                         @foreach ($trans as $itemtrans)
                             @if ($itemtrans->taxisum != 0)
@@ -417,13 +424,48 @@
                             {{number_format($itemplane->ticketfee)}}<br>
                         @endforeach
                     </td>
+
+                    {{-- total per orang --}}
                     <td style="vertical-align: top; text_align:center">
                         {{number_format($total)}}
                     </td>
                 </tr>
-                @php  $no++; @endphp
             @endforeach
         </tbody>
+        <tfoot>
+            @php
+                $allUH = $InjectNew->AllUH($data->id);
+                $allRep = $InjectNew->AllRep($data->id);
+                $allInn = $InjectNew->AllInn($data->id);
+                $allTrans = $InjectNew->AllTrans($data->id);
+            @endphp
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td colspan="3">Total Uang Harian</td>
+            <td style="text-align: center;">
+                {{number_format($allUH)}}
+            </td>
+            <td colspan="2">Total Representatif</td>
+            <td style="text-align: center;">
+                {{number_format($allRep)}}
+            </td>
+            <td colspan="3">Total Penginapan</td>
+            <td style="text-align: center;">
+                {{number_format($allInn)}}
+            </td>
+            <td colspan="3">Total Transport</td>
+            <td style="text-align: center;">
+                {{number_format($allTrans)}}
+            </td>
+            <td style="text-align: center;">
+                @php
+                    $TotalAkhir = $allUH + $allRep + $allInn + $allTrans
+                @endphp
+                {{number_format($TotalAkhir)}}
+            </td>
+        </tfoot>
     </table>
     <br>
     <div class="ttd">

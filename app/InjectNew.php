@@ -227,5 +227,96 @@ class InjectNew
                             ->get();
         return $data;
     }
+
+
+    // NOMINATIF
+    public function AllUH($id){
+        $nilaiUH = ExpensesUh::SelectRaw("SUM(tlokalsum) lokal, SUM(uhar1sum) uhar1, SUM(uhar2sum) uhar2, SUM(uhar3sum) uhar3, SUM(diklatsum) diklat, SUM(fullboardsum) fullb, SUM(fulldaysum) fulld")
+                            ->Where('expenses_id',$id)->first();
+
+        //-----------UANG HARIAN-----------
+        $lokal      = $nilaiUH->lokal;
+        $uhar1      = $nilaiUH->uhar1;
+        $uhar2      = $nilaiUH->uhar2;
+        $uhar3      = $nilaiUH->uhar3;
+        $diklat     = $nilaiUH->diklat;
+        $fullboard  = $nilaiUH->fullb;
+        $fullday    = $nilaiUH->fulld;
+
+        $jumlah = $lokal+$uhar1+$uhar2+$uhar3+$diklat+$fullboard+$fullday;
+
+        return $jumlah;
+
+    }
+
+    public function AllRep($id){
+        $nilaiUH = ExpensesUh::SelectRaw("SUM(repssum) repssum")
+                            ->Where('expenses_id',$id)->first();
+
+        //-----------UANG HARIAN-----------
+        $jumlah      = $nilaiUH->repssum;
+
+        return $jumlah;
+
+    }
+
+    public function AllInn($id){
+        $nilaiIN = ExpensesInap::SelectRaw('SUM(hotelsum) jumhotel')
+                                ->Where('expenses_id',$id)
+                                ->where('hotelkkp','!=','Y')
+                                ->first();
+
+        //-----------PENGINAPAN-----------
+        if ( $nilaiIN != null) {
+            $jumiN  = $nilaiIN->jumhotel !='0' ? $nilaiIN->jumhotel : '0';
+        } else {
+            $jumiN  = '0' ;
+        }
+
+
+        // ------PERTEMUAN------
+        $nilaiUH = ExpensesUh::SelectRaw('SUM(halfsum) halfsum, SUM(fullsum) fullsum, SUM(fbsum) fbsum')
+                            ->Where('expenses_id',$id)->first();
+        $meethalf   = $nilaiUH->halfsum !='0' ? $nilaiUH->halfsum : '0';
+        $meetfull   = $nilaiUH->fullsum !='0' ? $nilaiUH->fullsum : '0';
+        $meetfb     = $nilaiUH->fbsum !='0' ? $nilaiUH->fbsum : '0';
+
+        // ------TOTAL------
+        $jumlah = $jumiN + $meethalf + $meetfull +  $meetfb;
+        return $jumlah;
+
+    }
+
+    public function AllTrans($id){
+        //-----------PESAWAT-----------
+        $nilaiPL = ExpensesPlane::SelectRaw('SUM(ticketfee) jumtiket')
+                                ->Where('expenses_id',$id)
+                                ->where('planekkp','!=','Y')
+                                ->first();
+        if ($nilaiPL != null) {
+            $pesawat  = $nilaiPL->jumtiket !='0' ? $nilaiPL->jumtiket : '0';
+        } else {
+            $pesawat = '0';
+        }
+
+        //-----------TRANSPORT-----------
+        $nilaiTR = ExpensesTrans::SelectRaw('sum(taxisum) AS jumtax')
+                                ->Where('expenses_id',$id)
+                                ->first();
+
+        if ($nilaiTR  != null ) {
+            $transport = $nilaiTR->jumtax;
+        } else {
+            $transport = '0';
+        }
+
+        // ----------TOTAL-----------------
+
+        $jumlah =$transport + $pesawat;
+
+        return $jumlah;
+
+    }
+
     
 }
