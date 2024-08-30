@@ -472,7 +472,7 @@
         <table class="table2">
             <tr class="table2">
                 <td class="table2" style="width: 70%"></td>
-                <td class="table2">Banjarmasin, {{tgl_indo($data->st->st_date)}}</td>
+                <td class="table2">Banjarbaru, {{tgl_indo($data->st->st_date)}}</td>
             </tr>
             <tr class="table2">
                 <td class="table2">
