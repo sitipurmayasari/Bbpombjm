@@ -430,6 +430,9 @@
                         {{number_format($total)}}
                     </td>
                 </tr>
+                @php
+                    $no++;
+                @endphp 
             @endforeach
         </tbody>
         <tfoot>
