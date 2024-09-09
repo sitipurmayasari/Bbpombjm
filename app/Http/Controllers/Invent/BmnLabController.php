@@ -86,6 +86,15 @@ class BmnLabController extends Controller
             $inventaris->save(); // save ke database
         }
 
+        if($request->hasFile('file_evakali')){ // Kalau file ada
+            $request->file('file_evakali')
+                        ->move('images/inventaris/'.$inventaris->id,$request
+                        ->file('file_evakali')
+                        ->getClientOriginalName()); // pindah file user manual k inventaris folder id file
+            $inventaris->file_evakali = $request->file('file_evakali')->getClientOriginalName(); // update isi kolum file user dengan origin gambar
+            $inventaris->save(); // save ke database
+        }
+
         if($request->hasFile('file_foto')){ // Kalau file ada
             $request->file('file_foto')
                         ->move('images/inventaris/'.$inventaris->id,$request
@@ -190,6 +199,15 @@ class BmnLabController extends Controller
                         ->file('file_sert2')
                         ->getClientOriginalName()); // pindah file user manual k inventaris folder id file
             $inventaris->file_sert = $request->file('file_sert2')->getClientOriginalName(); // update isi kolum file user dengan origin gambar
+            $inventaris->save(); // save ke database
+        }
+
+        if($request->hasFile('file_evakali2')){ // Kalau file ada
+            $request->file('file_evakali2')
+                        ->move('images/inventaris/'.$inventaris->id,$request
+                        ->file('file_evakali2')
+                        ->getClientOriginalName()); // pindah file user manual k inventaris folder id file
+            $inventaris->file_evakali = $request->file('file_evakali2')->getClientOriginalName(); // update isi kolum file user dengan origin gambar
             $inventaris->save(); // save ke database
         }
 

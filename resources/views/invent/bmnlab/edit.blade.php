@@ -200,6 +200,15 @@
                             <label><a href="{{$data->getFIleSert()}}" target="_blank" >{{$data->file_sert}}</a></label>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" 
+                        for="form-field-1">  EVALUASI KALIBRASI
+                        </label>
+                        <div class="col-sm-9">
+                            <input type="file" name="file_evakali2" class="btn btn-default btn-sm" id="" value="Upload File Sertifikasi">      
+                            <label><a href="{{$data->getFIleEvaKali()}}" target="_blank" >{{$data->file_evakali}}</a></label>
+                        </div>
+                    </div>
                     <div class="form-actions" style="text-align: center">
                         <input type="file" name="file_foto2" class="btn btn-success btn-sm" id="" 
                             value="Upload Ulang Foto Barang">   

@@ -187,6 +187,15 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right" 
+                        for="form-field-1"> EVALUASI KALIBRASI
+                        </label>
+                        <div class="col-sm-9">
+                            <input type="file" name="file_evakali" class="btn btn-default btn-sm" id="" value="Upload File Sertifikasi">      
+                            <label><i>ex:Lorem_ipsum.pdf</i></label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" 
                         for="form-field-1"> Foto Barang
                         </label>
                         <div class="col-sm-9">

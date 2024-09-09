@@ -240,3 +240,6 @@
    Route::get('/invent/drivers/edit/{id}','Invent\DriverController@edit')->name('drivers.edit');
    Route::post('/invent/drivers/update/{id}','Invent\DriverController@update')->name('drivers.update');
    Route::get('/invent/drivers/delete/{id}','Invent\DriverController@delete')->name('drivers.delete');
+
+   //Route untuk penggunaan Alat Lab
+   Route::get('/invent/bpla','Invent\BPLAController@index')->name('bpla');
