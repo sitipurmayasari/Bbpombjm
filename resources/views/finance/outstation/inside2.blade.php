@@ -144,7 +144,7 @@
                             $b = strtotime($item->return_date);
                             $c = date('D', $a);
                             $d = date('D', $b);
-                            if ($c=='sun') {
+                            if ($c=='Sun') {
                             $days='Minggu';
                             }else if ($c=='Mon') {
                                 $days='Senin';
@@ -160,7 +160,7 @@
                                 $days='Sabtu';
                             };
 
-                            if ($d=='sun') {
+                            if ($d=='Sun') {
                             $days2='Minggu';
                             }else if ($d=='Mon') {
                                 $days2='Senin';
