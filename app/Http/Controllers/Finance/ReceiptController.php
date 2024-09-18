@@ -346,6 +346,7 @@ class ReceiptController extends Controller
     { 
         // dd($request->all());
         $expenses = Expenses::find($id);
+        $expenses->update($request->all());
         $expenses->touch();
 
         DB::beginTransaction(); 
