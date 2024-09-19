@@ -242,4 +242,4 @@
    Route::get('/invent/drivers/delete/{id}','Invent\DriverController@delete')->name('drivers.delete');
 
    //Route untuk penggunaan Alat Lab
-   Route::get('/invent/bpla','Invent\BPLAController@index')->name('bpla');
+   Route::post('/invent/bpla/cetak','Invent\BPLAController@cetak')->name('bpla.cetak');

@@ -190,6 +190,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/invent/itasset','Invent\ITAssetController@index')->name('itasset');
     //Route untuk supir
     Route::get('/invent/drivers','Invent\DriverController@index')->name('drivers');
+    //Route untuk penggunaan Alat Lab
+    Route::get('/invent/bpla','Invent\BPLAController@index')->name('bpla');
 
     //--------------------------AMDK------------------------------------------
     //Route untuk pegawai
