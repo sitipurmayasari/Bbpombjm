@@ -1,19 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Document</title>
-</head>
-<body>
-	<div class="text-center" style="margin-top: 50px;">
-		<h3>{{$invent->nama_barang}}</h3>
-        {{-- {{$data}} --}}
-		{!! QrCode::size(300)->generate(request()->getHttpHost().'/qR/'.$data.'/inventaris'); !!}
-
-		{{-- <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(300)->generate(request()->getHttpHost().'/qR/'.$data.'/inventaris')) !!} "> --}}
+@extends('layouts.app')
+@section('breadcrumb')
+    <li>Inventaris</li>
+@endsection
+@section('content')
+	<div class="col-xs-12 col-sm-6" style="text-align: center;">
+		<table style="width: 100%">
+			<tr>
+				<td style="text-align: center;"><h1>BBPOM BANJARMASIN</h1></td>
+			</tr>
+			<tr>
+				<td style="text-align: center;">{!! QrCode::size(300)->generate(request()->getHttpHost().'/qR/'.$data.'/inventaris'); !!}</td>
+			</tr>
+			<tr>
+				<td style="text-align: center;"><h3>{{$invent->nama_barang}}</h3></td>
+			</tr>
+		</table>
 	</div>
-</body>
-</html>
+@endsection
 
