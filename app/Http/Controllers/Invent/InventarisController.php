@@ -114,7 +114,7 @@ class InventarisController extends Controller
         $invent = Inventaris::where('id',$id)->first();
         $data = Crypt::encryptString($invent->id);
         
-        return view('invent/inventaris.qrcode',compact('data'));
+        return view('invent/inventaris.qrcode',compact('data','invent'));
     }
 
     public function jadwal($id)

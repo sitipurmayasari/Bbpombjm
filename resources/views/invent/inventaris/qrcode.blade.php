@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div class="text-center" style="margin-top: 50px;">
-		<h3>{{$data->nama_barang}}</h3>
+		<h3>{{$invent->nama_barang}}</h3>
         {{-- {{$data}} --}}
 		{!! QrCode::size(300)->generate(request()->getHttpHost().'/qR/'.$data.'/inventaris'); !!}
 
