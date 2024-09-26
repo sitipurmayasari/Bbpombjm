@@ -177,7 +177,7 @@ class PelatihanController extends Controller
         LogActivity::addToLog('Hapus->Kompetensi Pegawai->id = '.$id); 
 
         $data->delete();
-        return redirect('/amdk/pelatihan')->with('sukses','Data Terhapus');
+        return redirect('/amdk/rekappelatihan')->with('sukses','Data Terhapus');
     }
 
 
