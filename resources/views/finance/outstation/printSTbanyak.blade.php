@@ -62,6 +62,8 @@
             font-family: "Bookman Old Style";
             font-size: 12;
             width: 100%;
+            overflow: hidden;
+            page-break-inside: avoid;
         }
 
         .detail{
@@ -408,7 +410,7 @@
     </div>
     <br><br> 
    
-    <table class="ttdini" style="width: 100%" >
+    <table class="ttdini overflow-page" style="width: 100%" >
         <tr>
             <td></td>
             <td style="width: 65%;">Banjarbaru, 
@@ -458,5 +460,6 @@
         </tr>
     </table>
 </div>
+
 </body>
 </html>
