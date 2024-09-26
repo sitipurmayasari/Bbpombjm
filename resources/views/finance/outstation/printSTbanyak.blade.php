@@ -96,6 +96,9 @@
             bottom:0;
         }
         
+        .first-page {
+            margin-top: 50px;
+        }
 
 </style> 
 <body>
@@ -410,7 +413,7 @@
     </div>
     <br><br> 
    
-    <table class="ttdini overflow-page" style="width: 100%" >
+    <table class="ttdini my-element" style="width: 100%" >
         <tr>
             <td></td>
             <td style="width: 65%;">Banjarbaru, 
@@ -460,6 +463,19 @@
         </tr>
     </table>
 </div>
+
+<script>
+    const myContainer = document.querySelector('.my-element');
+
+    // Logika untuk mendeteksi apakah kontainer berada di awal halaman baru
+    // (Contoh sederhana, perlu disesuaikan dengan kasus Anda)
+    if (/* kondisi untuk memeriksa awal halaman */) {
+        myContainer.classList.add('first-page');
+    }
+
+    // Panggil fungsi untuk menghasilkan PDF dengan DOMPDF
+    // ...
+</script>
 
 </body>
 </html>
