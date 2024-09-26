@@ -48,7 +48,7 @@ class PelatihanImport implements ToModel,WithStartRow
                 return new Pelatihan([
                     'users_id'          => $user->id,
                     'jenis_pelatihan_id'=> $jenis,
-                    'nama'              => $row[7],
+                    'nama'              => $row[6],
                     'dari'              => $tgldari,
                     'sampai'            => $tglsampai,
                     'lama'              => $row[16],
