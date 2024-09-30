@@ -224,7 +224,7 @@
                                 <td>3.</td>
                                 <td>
                                     Biaya yang dikeluarkan atas kegiatan ini 
-                                    @if ($data->budget_id == 3)
+                                    @if ($data->budget_id == 21)
                                         merupakan "Non Anggaran" ;
                                     @else
                                         dibebankan pada anggaran
