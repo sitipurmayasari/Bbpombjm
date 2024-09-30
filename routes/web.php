@@ -34,11 +34,11 @@ Route::get('/fgt/{id}/forgot','ForgotController@pageChangePassword')->name('forg
 Route::post('/forgot/{id}/update','ForgotController@updatePassword')->name('forgot.update');
 
 //import
-Route::get('/import','ImportExcelController@index')->name('import');
-Route::post('/import/jabasn','ImportExcelController@jabasn')->name('import.jabasn');
-Route::post('/import/users','ImportExcelController@users')->name('import.users');
-Route::post('/import/inventaris','ImportExcelController@inventaris')->name('import.inventaris');
-Route::post('/import/stok','ImportExcelController@stok')->name('import.stok');
+// Route::get('/import','ImportExcelController@index')->name('import');
+// Route::post('/import/jabasn','ImportExcelController@jabasn')->name('import.jabasn');
+// Route::post('/import/users','ImportExcelController@users')->name('import.users');
+// Route::post('/import/inventaris','ImportExcelController@inventaris')->name('import.inventaris');
+// Route::post('/import/stok','ImportExcelController@stok')->name('import.stok');
 
 //qrcode
 Route::get('/qR/{id}/inventaris','Invent\InventarisController@detail')->name('inventaris.detail');
