@@ -106,7 +106,7 @@ class PegawaiController extends Controller
         ]);
         
         $request->merge([
-            'password' =>  bcrypt("BpomBjmDiBjb"),
+            'password' =>  bcrypt("Bpombjm2024"),
             'remember_token' => Str::random(60)
         ]);
 

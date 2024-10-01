@@ -397,7 +397,7 @@ h2, a {
   @endphp
   <input type="hidden" id="mpop" value="{{$n}}">
 
-  {{-- <div class="modal fade" id="myModal">
+  <div class="modal fade" id="myModal">
     <div class="modal-dialog">
       <div class="modal-content">
   
@@ -420,7 +420,7 @@ h2, a {
   
       </div>
     </div>
-  </div> --}}
+  </div>
   {{-- modal --}}
 
 
