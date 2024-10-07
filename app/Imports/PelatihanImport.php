@@ -37,6 +37,8 @@ class PelatihanImport implements ToModel,WithStartRow
         } else {
              $eva = "N";
         }
+
+        dd($user);
         
         $cek = Pelatihan::where('users_id', $user->id)
                         ->where('nama', $namapel)

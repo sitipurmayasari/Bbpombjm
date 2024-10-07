@@ -270,6 +270,8 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
     Route::get('/amdk/rotasi','Amdk\RotasiController@index')->name('rotasi');
     Route::get('/amdk/rotasi/assignment','Amdk\RotasiController@assignment')->name('assignment');
     
+    // Route reset password default 
+    Route::get('/amdk/resetpass','Amdk\ResetPassController@index')->name('resetpass');
 
     //--------------------------PPNPN------------------------------------------
     //Route untuk Surat Izin Pramubakti

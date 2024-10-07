@@ -283,3 +283,7 @@
   Route::post('/amdk/rotasi/update/{id}','Amdk\RotasiController@update')->name('rotasi.update');
   Route::get('/amdk/rotasi/cetak/{id}','Amdk\RotasiController@cetak')->name('rotasi.cetak');
 
+
+    // Route reset password default 
+    Route::post('/amdk/resetpass/store','Amdk\ResetPassController@store')->name('resetpass.store');
+
