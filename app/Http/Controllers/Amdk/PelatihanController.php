@@ -279,11 +279,11 @@ class PelatihanController extends Controller
             $data->save();
         }
 
-        if ($request->admin=='true') {
-            return redirect('/amdk/rekappelatihan')->with('sukses','Data Diperbaharui');
-        }else{
+        // if ($request->admin=='true') {
+        //     return redirect('/amdk/rekappelatihan')->with('sukses','Data Diperbaharui');
+        // }else{
             return redirect('/amdk/pelatihan')->with('sukses','Data Diperbaharui');
-        }
+        // }
     }
 
 

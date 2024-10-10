@@ -93,7 +93,7 @@
                                 </select>
                             </div>
                             <input type="hidden" name="jabasn_id" value="" id="jabatan">
-                            <input type="hidden" name="admin" value="true">
+                            {{-- <input type="hidden" name="admin" value="false"> --}}
                         </div>
                     </div>
                     </fieldset>        
