@@ -27,18 +27,30 @@ class LabRequestController extends Controller
 {
     public function index(Request $request)
     {   
-        $peg =auth()->user()->id;
-        $data = Sbb::orderBy('id','desc')
-                    ->select('sbb.*','users.name')
-                    ->leftJoin('users','users.id','=','sbb.users_id')
-                    ->where('sbb.jenis','L')
-                    ->where('sbb.users_id',$peg)
-                    ->when($request->keyword, function ($query) use ($request) {
-                        $query->where('tanggal','LIKE','%'.$request->keyword.'%')
-                                ->orWhere('nomor', 'LIKE','%'.$request->keyword.'%')
-                                ->orWhere('name', 'LIKE','%'.$request->keyword.'%');
-                    })
-                    ->paginate('10');
+        // $peg =auth()->user()->id;
+        // $data = Sbb::orderBy('id','desc')
+        //             ->select('sbb.*','users.name')
+        //             ->leftJoin('users','users.id','=','sbb.users_id')
+        //             ->where('sbb.jenis','L')
+        //             ->where('sbb.users_id',$peg)
+        //             ->when($request->keyword, function ($query) use ($request) {
+        //                 $query->where('tanggal','LIKE','%'.$request->keyword.'%')
+        //                         ->orWhere('nomor', 'LIKE','%'.$request->keyword.'%')
+        //                         ->orWhere('name', 'LIKE','%'.$request->keyword.'%');
+        //             })
+        //             ->paginate('10');
+        $data = Inventaris::orderBy('inventaris.id','desc')
+                        ->leftJoin('entrystock','entrystock.inventaris_id','=','inventaris.id')
+                        ->where('inventaris.kind','=','L')
+                        ->groupBy('inventaris.id')
+                        ->when($request->keyword, function ($query) use ($request) {
+                            $query->where('nama_barang','LIKE','%'.$request->keyword.'%')
+                                    ->orWhere('no_seri', 'LIKE','%'.$request->keyword.'%')
+                                    ->orWhere('merk', 'LIKE','%'.$request->keyword.'%')
+                                    ->where('inventaris.kind','=','L');
+                        })
+                        ->paginate('10');
+
         return view('invent/labrequest.index',compact('data'));
     }
 

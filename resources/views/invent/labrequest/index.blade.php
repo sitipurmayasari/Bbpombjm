@@ -1,7 +1,9 @@
+@inject('injectQuery', 'App\InjectQuery')
 @extends('layouts.app')
 @section('breadcrumb')
     <li>Persediaan</li>
-    <li>Permintaan Persediaan Lab</li>
+    {{-- <li>Permintaan Persediaan Lab</li> --}}
+    <li>Info Stok Persediaan Lab</li>
 @endsection
 @section('content')
 
@@ -11,9 +13,9 @@
             <div class="row">
                 <div class="form-group col-sm-12">
                     <div class="row">
-                        <div class="form-group col-xs-12 col-sm-3" style="float: left">
+                        {{-- <div class="form-group col-xs-12 col-sm-3" style="float: left">
                            <a href="{{Route('labrequest.create')}}"  class="btn btn-primary">Tambah Data</a>   
-                        </div>
+                        </div> --}}
                         <div class="form-group col-xs-12 col-sm-5" style="float: right">
                             <div class="input-group">
                                 <input type="text" class="form-control gp-search" name="keyword" placeholder="Cari " value="{{request('keyword')}}" autocomplete="off">
@@ -33,6 +35,38 @@
 
     <div class="table-responsive">
         <table id="simple-table" class="table  table-bordered table-hover">
+            <thead>
+                <th width="40px">No</th>
+                <th class="col-md-2">Nama Barang</th>
+                <th>No. Katalog</th>
+                <th>Merk</th>
+                <th class="col-md-1">Stok</th>
+            <thead>
+            <tbody>   	
+                @foreach($data as $key=>$row)
+                <tr>
+                    <td>{{$data->firstItem() + $key}}</td>
+                    <td>{{$row->nama_barang}}</td>
+                    <td>{{$row->no_seri}}</td>
+                    <td>{{$row->merk}}</td>
+                    <td>{{$row->location->nama}}</td>
+                    <td>
+                        @php
+                            $total = $injectQuery->laststock($row->id)
+                        @endphp
+                        @if ($total != null)
+                            {{$total->stock}}
+                        @else
+                            {{0}}
+                        @endif
+                    </a></td>
+                </tr>
+              
+                @endforeach
+            <tbody>
+        </table>
+
+        {{-- <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
                 <th class="col-md-1">No</th>
                 <th class="col-md-2">No. Ajuan</th>
@@ -81,17 +115,15 @@
                         @endif
                     </td>
                     <td>
-                        {{-- @if ($row->stat_aduan=='D') --}}
                             <a class="btn btn-primary" href="/invent/labrequest/print/{{$row->id}}" target="_blank" rel="noopener noreferrer">
                                 CETAK <i class="glyphicon glyphicon-print"></i>
                             </a>
-                        {{-- @endif --}}
                     </td>
                 </tr>
               
                 @endforeach
             <tbody>
-        </table>
+        </table> --}}
     </div>
 {{$data->appends(Request::all())->links()}}
 @endsection
