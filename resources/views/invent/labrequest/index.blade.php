@@ -49,7 +49,6 @@
                     <td>{{$row->nama_barang}}</td>
                     <td>{{$row->no_seri}}</td>
                     <td>{{$row->merk}}</td>
-                    <td>{{$row->location->nama}}</td>
                     <td>
                         @php
                             $total = $injectQuery->laststock($row->id)
