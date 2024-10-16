@@ -49,7 +49,7 @@ class LabRequestController extends Controller
                                     ->orWhere('merk', 'LIKE','%'.$request->keyword.'%')
                                     ->where('inventaris.kind','=','L');
                         })
-                        ->paginate('10');
+                        ->paginate('25');
 
         return view('invent/labrequest.index',compact('data'));
     }
