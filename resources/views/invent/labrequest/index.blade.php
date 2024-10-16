@@ -37,7 +37,7 @@
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
                 <th width="40px">No</th>
-                <th class="col-md-2">Nama Barang</th>
+                <th>Nama Barang</th>
                 <th>No. Katalog</th>
                 <th>Merk</th>
                 <th class="col-md-1">Stok</th>
