@@ -40,15 +40,17 @@ class LabRequestController extends Controller
         //             })
         //             ->paginate('10');
         $data = Inventaris::orderBy('inventaris.id','desc')
-                        ->leftJoin('entrystock','entrystock.inventaris_id','=','inventaris.id')
-                        ->where('inventaris.kind','=','L')
-                        ->groupBy('inventaris.id')
-                        ->when($request->keyword, function ($query) use ($request) {
-                            $query->where('nama_barang','LIKE','%'.$request->keyword.'%')
-                                    ->orWhere('no_seri', 'LIKE','%'.$request->keyword.'%')
-                                    ->orWhere('merk', 'LIKE','%'.$request->keyword.'%')
-                                    ->where('inventaris.kind','=','L');
-                        })
+                            ->selectRaw('inventaris.*, users.name')
+                            ->leftJoin('users','users.id','=','inventaris.penanggung_jawab')
+                            ->leftJoin('entrystock','entrystock.inventaris_id','=','inventaris.id')
+                            ->where('inventaris.kind','=','L')
+                            ->groupBy('inventaris.id')
+                            ->when($request->keyword, function ($query) use ($request) {
+                                $query->where('nama_barang','LIKE','%'.$request->keyword.'%')
+                                        ->orWhere('merk', 'LIKE','%'.$request->keyword.'%')
+                                        ->where('inventaris.kind','=','L')
+                                        ->orWhere('name', 'LIKE','%'.$request->keyword.'%');
+                            })
                         ->paginate('25');
 
         return view('invent/labrequest.index',compact('data'));
