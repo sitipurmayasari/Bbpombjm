@@ -101,13 +101,11 @@
                         </td>
                         <td class="isi" style="text-align: center">{{$item->stock}}  {{$item->barang->satuan->satuan}}</td>
                         <td class="isi">
-                            @if ($item->keterangan != null)
+                            @if ($item->keterangan != null && $item->keluar != null)
                                 {{$item->keterangan}}
                             @endif
-                            @if ($item->barang->kind == 'L' && $item->exp_date != null)
+                            @if ($item->barang->kind == 'L' && $item->exp_date != null && $item->stockawal != null)
                                 Exp. Date : {{$item->exp_date}}
-                            @else
-                                -
                             @endif
                         </td>
                     </tr>
