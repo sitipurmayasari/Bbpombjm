@@ -17,7 +17,6 @@ class RekapSbbController extends Controller
     
     public function index(Request $request)
     {
-        $div = Divisi::whereraw('id != 1')->get();
         $data = Dosir::SelectRaw('dosir.* , archive_time.masa_aktif, CURDATE() AS hari_ini,
                             DATE_ADD(DATE(dosir.created_at),INTERVAL archive_time.masa_aktif YEAR) batas_aktif')
                     ->orderBy('dosir.id','desc')
@@ -31,12 +30,12 @@ class RekapSbbController extends Controller
                                 ->orWhere('created_at', 'LIKE','%'.$request->keyword.'%');
                         })
                     ->paginate('10');
-        return view('invent/rekapsbb.index',compact('data','div'));
+        return view('invent/rekapsbb.index',compact('data'));
     }
 
     public function create()
     {
-        $divisi = Divisi::whereraw('id != 1')->get();
+        $divisi = Divisi::all();
         $masa = Archive_time::all();
         return view('invent/rekapsbb.create',compact('masa','divisi'));
     }
@@ -63,7 +62,7 @@ class RekapSbbController extends Controller
 
     public function edit($id)
     {
-        $divisi = Divisi::whereraw('id != 1')->get();
+        $divisi = Divisi::all();
         $masa = Archive_time::all();
         $data = Dosir::where('id',$id)->first();
         return view('invent/rekapsbb.edit',compact('data','masa','divisi'));

@@ -23,7 +23,7 @@ class SbbController extends Controller
                     ->orderBy('dosir.id','desc')
                     ->leftJoin('archive_time','archive_time.id','=','dosir.archive_time_id')
                     ->where('archive_time_id','=','6')
-                    ->where('divisi_id','=',$div)
+                    ->whereRaw('divisi_id = 1 or divisi_id ='.$div)
                     ->whereRaw('CURDATE() BETWEEN DATE(dosir.created_at) 
                             and DATE_ADD(DATE(dosir.created_at),INTERVAL archive_time.masa_aktif YEAR)')
                     ->when($request->keyword, function ($query) use ($request) {

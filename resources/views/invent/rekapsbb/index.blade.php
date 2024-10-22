@@ -14,15 +14,9 @@
                         <div class="form-group col-xs-12 col-sm-3" style="float: left">
                            <a href="{{Route('rekapsbb.create')}}"  class="btn btn-primary">Tambah Data</a>   
                         </div>
-                        <div class="form-group col-xs-12 col-sm-6" style="float: right">
+                        <div class="form-group col-xs-12 col-sm-5" style="float: right">
                             <div class="input-group">
-                                <select name="divisi_id" id="divisi_id" class="col-sm-4">
-                                    <option value="">Pilih Substansi</option>
-                                    @foreach ($div as $item)
-                                    <option value="{{$item->id}}">{{$item->nama}}</option> 
-                                    @endforeach
-                                </select>
-                                <input type="text" class="col-sm-8 gp-search" name="keyword" placeholder="Cari " value="{{request('keyword')}}" autocomplete="off">
+                                <input type="text" class="form-control gp-search" name="keyword" placeholder="Cari " value="{{request('keyword')}}" autocomplete="off">
                                 <div class="input-group-btn">
                                     <button type="submit" class="btn btn-default no-border btn-sm gp-search">
                                     <i class="ace-icon fa fa-search icon-on-right bigger-110"></i>
