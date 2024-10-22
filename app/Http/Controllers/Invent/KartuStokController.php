@@ -42,9 +42,8 @@ class KartuStokController extends Controller
                                 ->Where('inventaris_id',$request->inventaris_id)
                                 ->get();
             $data = Inventaris::Where('id',$request->inventaris_id)->first();
-            // $pdf = PDF::loadview('invent/kartustok.stokbarang',compact('stock','request','data','now'));
-            // return $pdf->stream();
-            return view('invent/kartustok.stokbarang',compact('stock','request','data','now'));
+            $pdf = PDF::loadview('invent/kartustok.stokbarang',compact('stock','request','data','now'));
+            return $pdf->stream();
         }else if($request->jenis_Laporan=="2"){
 
             $stock = Inventaris::OrderBy('stock','desc')
@@ -66,6 +65,7 @@ class KartuStokController extends Controller
                           ->first();
             $gudang = Lokasi::where('id',$request->gudang)->first();
             $data = Jenisbrg::where('id',$request->kelompok)->first();
+
             return view('invent/kartustok.stokkelompok',compact('stock','data','request','petugas','mengetahui','gudang'));
 
         } else if($request->jenis_Laporan=="3"){
