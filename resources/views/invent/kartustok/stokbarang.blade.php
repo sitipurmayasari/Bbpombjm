@@ -30,20 +30,21 @@
         <div id="kop">
             <table>
                 <tr>
-                    <td>
-                        <img src="{{asset('images/bbpom.jpg')}}" style="height:100px">
+                    <td style="width: 10%;">
+                        <img src="{{asset('images/bbpom.jpg')}}" style="height:50px">
                     </td>
-                    <td style="text-align: center; font-weight:bold;">
+                    <td style="text-align: center; font-weight:bold; padding-left:-10%;">
                         BADAN POM REPUBLIK INDONESIA <br>
                         BALAI BESAR PENGAWAS OBAT DAN MAKANAN <br>
-                        DI BANJARMASIN <br>
-                        KARTU STOCK
+                        DI BANJARMASIN 
                     </td>
-                    <td></td>
                 </tr>
             </table>
             <hr>
             <table>
+                <tr>
+                    <td colspan="3" style="text-align: center;"><h3><b>KARTU STOCK</b></h3></td>
+                </tr>
                 <tr>
                     <td style="width: 25%">KODE BARANG</td>
                     <td style="width: 1%">:</td>
@@ -67,6 +68,7 @@
             </table>
         </div>
     </header>
+    <br>
     <main>
         <table class="isi">
             <thead class="isi">
