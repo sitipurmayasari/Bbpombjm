@@ -92,8 +92,11 @@ Route::get('/qR/{id}/calibration','Calibration\GlassKualController@detail')->nam
    //--------------------------QMS------------------------------------------
    Route::get('/qms/dashboard','Qms\DashboardController@index')->name('dashboard');
 
-   //--------------------------PPNPN------------------------------------------
-   Route::get('/ppnpn/dashboard','Ppnpn\DashboardController@index')->name('dashboard');
+  //--------------------------CoomingSoon------------------------------------------
+  Route::get('/coomingsoon/dashboard','Coomingsoon\DashboardController@index')->name('dashboard');
+
+  //  //--------------------------PPNPN------------------------------------------
+  //  Route::get('/ppnpn/dashboard','Ppnpn\DashboardController@index')->name('dashboard');
 
 
   //Route untuk Profile
@@ -306,6 +309,15 @@ Route::group(['middleware' => ['auth','userPermission']], function(){
       Route::get('/finance/nominatif','Finance\NominatifController@index')->name('nominatif');
       //Route untuk Kuitansi baru
       Route::get('/finance/receipt','Finance\ReceiptController@index')->name('receipt');
+
+
+    // Baruuuuuuuuuuuuuuuuu
+      // Perjadin // 
+      Route::get('/finance/outsideduties','Finance\OutsidedutiesController@index')->name('outsideduties');
+      // Biaya Perjadin // 
+      Route::get('/finance/outreceipt','Finance\OutreceiptController@index')->name('outreceipt');
+
+
 
     //-----Anggaran--------
    

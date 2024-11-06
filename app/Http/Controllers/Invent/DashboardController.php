@@ -34,15 +34,6 @@ class DashboardController extends Controller
         $car    = Car::orderBy('id','desc')
                         ->whereMonth('tax_date',date('m'))    
                         ->paginate('5');
-        $dinas  = Vehiclerent::orderBy('id','desc')
-                        ->where('users_id',$peg)
-                        ->first();
-        // media mikro --
-        // $mikro = Entrystock::LeftJoin('inventaris','inventaris.id','entrystock.inventaris_id')  
-        //                     ->Where('jenis_barang',15)
-        //                     ->where('stockawal','!=',0)
-        //                     ->WhereRaw('exp_date between CURDATE() AND CURDATE()+ INTERVAL 4 MONTH')
-        //                     ->get();  
         $mikro = Entrystock::SelectRaw('inventaris_id,SUM(stockawal) as stockawal')
                             ->LeftJoin('inventaris','inventaris.id','entrystock.inventaris_id')  
                             ->Where('jenis_barang',15)
@@ -58,21 +49,8 @@ class DashboardController extends Controller
                             ->WhereRaw('exp_date between CURDATE() AND CURDATE()+ INTERVAL 4 MONTH')
                             ->GroupBy('inventaris_id')
                             ->get();  
-     
-        //-----
 
-        $tglaju = Pengajuan::orderBy('id','desc')
-                        ->where('pegawai_id',$peg)
-                        ->first();
-        if ($tglaju !=null) {
-                    $aju    =  PengajuanDetail::orderBy('id','asc')
-                    ->where('pengajuan_id',$tglaju->id)
-                    ->get();
-
-            return view('invent/dashboard.index',compact('jadwal','aduan','car','dinas','tglaju','aju','mikro','kimia'));
-        }else{
-            return view('invent/dashboard.index',compact('jadwal','aduan','car','dinas','tglaju','mikro','kimia'));
-        }
+            return view('invent/dashboard.index',compact('jadwal','aduan','car','mikro','kimia'));
         
         
     }

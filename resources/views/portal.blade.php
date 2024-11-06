@@ -541,6 +541,10 @@ h2, a {
           <a class="social-icon"  href="https://bit.ly/SOPBPOMBJM">
             <img src="{{asset('images/qms3.png')}}" style="height:100%; width:100%">
           </a>
+          {{-- cooming soon --}}
+          <a class="social-icon"  href="/coomingsoon/dashboard">
+            <img src="{{asset('images/pem_logo.png')}}" style="height:100%; width:100%">
+          </a>
           {{-- <a class="social-icon"  href="/ppnpn/dashboard">
             <img src="{{asset('images/ppnpn.png')}}" style="height:100%; width:100%">
           </a> --}}

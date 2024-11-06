@@ -105,7 +105,11 @@
                                 {{$item->keterangan}}
                             @endif
                             @if ($item->barang->kind == 'L' && $item->exp_date != null && $item->stockawal != null)
-                                Exp. Date : {{$item->exp_date}}
+                                Exp. Date : {{$item->exp_date}} <br>
+                                @if ($item->provider != null)
+                                    <br>
+                                    Penyedia : {{$item->provider}}
+                                @endif
                             @endif
                         </td>
                     </tr>

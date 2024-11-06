@@ -52,11 +52,11 @@
                         <a href="/amdk/outsourcing/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
-                        <a href="#" class="btn btn-danger delete"
+                        {{-- <a href="#" class="btn btn-danger delete"
                             r-name="{{$row->name}}" 
                             r-id="{{$row->id}}">
                             <i class="glyphicon glyphicon-trash"></i>
-                        </a>
+                        </a> --}}
                     </td>
                 </tr>
               

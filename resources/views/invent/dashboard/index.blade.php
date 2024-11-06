@@ -62,21 +62,6 @@
         </div>
       </div>
   </div>
-  <div class="col-md-12">
-    <div class="card card-chart">
-      <div class="card-header card-header-warning">
-        <h4 class="card-title">Jumlah Aduan Kerusakan Per Bulan</h4>
-      </div>
-      <div class="card-header card-header-danger">
-        <div class="ct-chart" id="completedTasksChart"></div>
-      </div>
-      <div class="card-body">
-        <h5 class="card-title">Tahun @php echo date('Y');@endphp</h5>
-      </div>
-      <div class="card-footer">
-      </div>
-    </div>
-    
   <div class="col-sm-12" style="text-align: center">
     <div class="card">
         <div class="card-header card-header-warning">
@@ -107,9 +92,77 @@
                 @endforeach
             </tbody> 
           </table>
-        
         </div>
       </div>
+  </div>
+  <div class="col-md-12">
+    <div class="card card-chart">
+      <div class="card-header card-header-warning">
+        <h4 class="card-title">Jumlah Aduan Kerusakan Per Bulan</h4>
+      </div>
+      <div class="card-header card-header-danger">
+        <div class="ct-chart" id="completedTasksChart"></div>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Tahun @php echo date('Y');@endphp</h5>
+      </div>
+      <div class="card-footer">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-sm-6" style="text-align: center">
+  <div class="col-sm-12" style="text-align: center">
+    <div class="card">
+      <div class="card-header card-header-warning">
+        <h4 class="card-title">Media Mikrobiologi Yang Akan Kadaluarsa</h4>
+      </div>
+      <div class="card-body">
+        <table class="table table-hover" style="font-size: 12px;">
+          <thead>
+              <th>Sisa</th>
+              <th>Tgl. Kadaluarsa</th>
+              <th>No. Katalog</th>
+              <th>Nama Barang</th>
+              <th>No</th>
+          </thead>
+          <tbody>
+              @php
+                  $no = 1;
+              @endphp
+              @foreach($mikro as $row)
+                 @php
+                          $ed =  $injectQuery->hitdataed($row->inventaris_id);
+                          $last = $injectQuery->hitdatalast($row->inventaris_id);
+                          $total = $injectQuery->hitsisaexp($row->inventaris_id, $row->exp_date);
+                          $ins = $row->stockawal;
+                          $outs = $total->keluar;
+                          $sisanya = $ins - $outs;
+                  @endphp
+
+                  @if ($sisanya > 0)
+                  <tr>
+                    <td>
+                        {{$sisanya}}
+                    </td>
+                    <td>
+                      {{$ed->exp_date}}
+                    </td>
+                    <td>
+                      {{$row->barang->no_seri}}
+                    </td>
+                    <td style="text-align: left">
+                      {{$row->barang->nama_barang}}
+                    </td>
+                    <td>{{$no}}</td>
+                  </tr>
+                  @endif
+              @php $no++; @endphp
+              @endforeach
+          </tbody> 
+        </table>
+      </div>
+    </div>
   </div>
   <div class="col-sm-12" style="text-align: center">
     <div class="card">
@@ -163,138 +216,6 @@
       </div>
       </div>
   </div>
-</div>
-
-</div>
-
-<div class="col-sm-6" style="text-align: center">
-  <div class="col-sm-6" style="text-align: center">
-    <div class="card">
-        <div class="card-header card-header-warning">
-          <i class="material-icons">commute</i> 
-          <h4 class="card-title">Peminjaman Kendaraan Dinas</h4>
-        </div>
-        <div class="card-body">
-          @if ($dinas!= null)
-            Tanggal {{$dinas->date_from}} s/d {{$dinas->date_to}}
-            
-              @if ($dinas->status==null)
-                <h1 class="card-title">Menunggu</h1>
-              @elseif($dinas->status=='Y')
-                <h1 class="card-title">Disetujui</h1><br>
-                <h5>Kendaraan : {{$dinas->car->merk}} ( {{$dinas->car->police_number}}</h5>
-                @if ($dinas->driver_id != null)
-                  <h5>Supir : {{$dinas->supir->name}}</h5>
-                @endif
-              @else
-                <h1 class="card-title">Ditolak</h1>
-              @endif
-            
-          @else
-              <h1 class="card-title">Belum Ada Pengajuan </h1>
-          @endif
-          
-          
-        </div>
-      </div>
-  </div>
-  <div class="col-sm-6" style="text-align: center">
-    <div class="card">
-        <div class="card-header card-header-warning">
-          <i class="material-icons">pending_actions</i> 
-          <h4 class="card-title">Pengajuan Barang baru</h4>
-        </div>
-        <div class="card-body">
-         
-           @if ($tglaju != null)
-            <h5>Pengajuan :
-              @php
-                $a = $tglaju->tgl_ajuan;
-                echo tgl_indo($a); 
-              @endphp
-            </h5>
-              <table class="table table-hover" style="font-size: 12px;">
-                <thead>
-                    <th>Status</th>
-                    <th>Nama Barang</th>
-                </thead>
-                <tbody>
-                    @foreach($aju as $key=>$row)
-                    <tr>
-                        <td>
-                          @if ($row->status==1)
-                            Disetujui
-                          @elseif($row->status==2)   
-                            Ditolak 
-                          @else
-                              Menunggu
-                          @endif
-                        </td>
-                        <td>{{$row->nama_barang}}</td>
-                    </tr>
-                    @endforeach
-                </tbody> 
-              </table>
-           @else
-              <h1>Belum Ada Pengajuan</h1>
-           @endif
-       
-        </div>
-      </div>
-  </div>
-  <div class="col-sm-12" style="text-align: center">
-    <div class="card">
-        <div class="card-header card-header-warning">
-          <h4 class="card-title">Media Mikrobiologi Yang Akan Kadaluarsa</h4>
-        </div>
-        <div class="card-body">
-          <table class="table table-hover" style="font-size: 12px;">
-            <thead>
-                <th>Sisa</th>
-                <th>Tgl. Kadaluarsa</th>
-                <th>No. Katalog</th>
-                <th>Nama Barang</th>
-                <th>No</th>
-            </thead>
-            <tbody>
-                @php
-                    $no = 1;
-                @endphp
-                @foreach($mikro as $row)
-                   @php
-                            $ed =  $injectQuery->hitdataed($row->inventaris_id);
-                            $last = $injectQuery->hitdatalast($row->inventaris_id);
-                            $total = $injectQuery->hitsisaexp($row->inventaris_id, $row->exp_date);
-                            $ins = $row->stockawal;
-                            $outs = $total->keluar;
-                            $sisanya = $ins - $outs;
-                    @endphp
-
-                    @if ($sisanya > 0)
-                    <tr>
-                      <td>
-                          {{$sisanya}}
-                      </td>
-                      <td>
-                        {{$ed->exp_date}}
-                      </td>
-                      <td>
-                        {{$row->barang->no_seri}}
-                      </td>
-                      <td style="text-align: left">
-                        {{$row->barang->nama_barang}}
-                      </td>
-                      <td>{{$no}}</td>
-                    </tr>
-                    @endif
-                @php $no++; @endphp
-                @endforeach
-            </tbody> 
-          </table>
-        
-        </div>
-      </div>
-</div>
 </div>
 
 @endsection
