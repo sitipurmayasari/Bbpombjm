@@ -111,6 +111,14 @@
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" 
+                            for="form-field-1"> Penyedia
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text"  class="col-xs-9 col-sm-9 required " name="provider" value="{{$data->provider}}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" 
                             for="form-field-1">Harga Satuan
                             </label>
                             <div class="col-sm-8">
