@@ -38,7 +38,7 @@ class KartuStokController extends Controller
             $now = Carbon::now()->month;
 
             $stock = EntryStock::orderby('entry_date','asc')
-                                ->orderby('entrystock.id', 'desc')
+                                ->orderby('entrystock.id', 'asc')
                                 ->LeftJoin('inventaris','inventaris.id','=','entrystock.inventaris_id')
                                 ->Where('inventaris_id',$request->inventaris_id)
                                 ->get();
