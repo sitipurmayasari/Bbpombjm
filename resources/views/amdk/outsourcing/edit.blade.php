@@ -82,19 +82,17 @@
                             <div class="col-sm-8">
                                 <select id="status" name="status" class="col-xs-10 col-sm-10">
                                     @if ($data->status==="PNS")
-                                        <option value="">Pilih Status</option>
                                         <option value="PNS" selected>PNS</option>
-                                        <option value="OSC">Outsourcing</option>
+                                        <option value="PPPK">PPPK</option>
+                                        <option value="OSC">Lainnya</option>
                                     @elseif ($data->status==="OSC")
-                                        <option value="">Pilih Status</option>
-                                        <option value="PNS">PNS</option>
-                                        <option value="OSC" selected>Outsourcing</option>
+                                        <option value="PNS" selected>PNS</option>
+                                        <option value="PPPK">PPPK</option>
+                                        <option value="OSC" selected>Lainnya</option>
                                     @else
-                                        <option value="">Pilih Status</option>
-                                        <option value="PNS">PNS</option>
-                                        <option value="PPNPN">PPNPN</option>
-                                        <option value="Magang">Magang</option>
-                                        <option value="OSC">Outsourcing</option>
+                                        <option value="PNS" selected>PNS</option>
+                                        <option value="PPPK" selected>PPPK</option>
+                                        <option value="OSC">Lainnya</option>
                                     @endif
                                     
                                 </select>
