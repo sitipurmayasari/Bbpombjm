@@ -25,9 +25,7 @@ use PDF;
 use DateTime;
 use Carbon\Carbon;
 use App\Pok_detail;
-use Exception;
 use LogActivity;
-use PhpOffice\PhpWord\TemplateProcessor;
 
 
 class OutstationController extends Controller
@@ -68,7 +66,11 @@ class OutstationController extends Controller
         $sub            = Subcode::all();
         $akun           = Accountcode::all();
         $div            = Divisi::all();
-        $user           = User::where('id','!=','1')->get();
+        $outsor         = User::where('email',NULL)->where('aktif','N');
+        $user           = User::where('id','!=','1')
+                            ->where('aktif','Y')
+                            ->UnionAll($outsor)
+                            ->get();
         $destination    = Destination::all();
         $tim            = Teamleader::orderby('detail','asc')->whereRaw("curdate() BETWEEN datefrom AND dateto")->get();
         $pok            = Pok_detail::SelectRaw('pok_detail.*')
@@ -341,7 +343,11 @@ class OutstationController extends Controller
                                       ->where('pok.year','=',$thn)
                                       ->get();
           $destination    = Destination::all();
-          $user           = User::where('id','!=','1')->get();
+          $outsor         = User::where('email',NULL)->where('aktif','N');
+          $user           = User::where('id','!=','1')
+                            ->where('aktif','Y')
+                            ->UnionAll($outsor)
+                            ->get();
           $petugas        = Outst_employee::where('outstation_id',$id)->get();
           $sppd           = Stbook_sppd::leftjoin('stbook','stbook.id','=','stbook_sppd.stbook_id')
                                         ->where('stbook.stbook_number',$data->number)->get();
@@ -464,17 +470,5 @@ class OutstationController extends Controller
             'nosppd' => $nosppd
           ],200);
     }
-
-     
-    public function wordExport($id)
-    {
-        $data = Outstation::FindOrFail($id);
-        // $templateProcessor = new TemplateProcessor(documentTemplate:'word-template/surattugas.docx');
-        $templateProcessor = new Templateprocessor("documentTemplate:'word-template/surattugas.docx'");
-        $templateProcessor->setValue("search,'id', $data->id");
-        $templateProcessor->setValue("search,'id', $data->id");
-      }
-
-
-       
+   
 }
