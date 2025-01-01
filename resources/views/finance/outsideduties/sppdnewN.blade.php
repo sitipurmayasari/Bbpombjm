@@ -89,13 +89,8 @@ $no=1;
                         <td style="width: 30%"><i>Program/kegiatan</i></td>
                         <td style="width: 70%">:
                             <i>
-                                
                                @if ($data->activitycode_id != null)
-                                    @php
-                                        $akt = str_replace("/", ".", $data->act->lengkap);
-                                    @endphp
-
-                                   {{$akt}}
+                                   {{$data->act->lengkap}}
                                @else
                                     @if ($data->pok_detail_id == 0)
                                         &nbsp;
@@ -137,7 +132,7 @@ $no=1;
                         <td>:
                            <i>
                             @if ($data->activitycode_id != null)
-                                {{$data->sub->code}} / {{$data->akun->code}}
+                                {{$data->sub->code}}/{{$data->akun->code}}
                             @else
                                 @if ($data->pok_detail_id == 0)
                                     &nbsp;
@@ -232,34 +227,6 @@ $no=1;
             </td>
             <td colspan="2" class="tabbor">
                 {{$data->purpose}} 
-                di 
-                @if (count($data->outst_destiny) == 1)
-                    @foreach ($data->outst_destiny as $key=>$item)
-                        @if ($loop->first)
-                            {{$item->destiny->capital}}
-                        @endif
-                        
-                    @endforeach
-
-                @elseif (count($data->outst_destiny) == 2)
-                    @foreach ($data->outst_destiny as $key=>$item)
-                        {{$item->destiny->capital}}
-                        @if ($data->outst_destiny->count()-1 != $key)
-                            {{' dan '}}
-                        @endif
-                    @endforeach
-
-                @else
-                    @foreach ($data->outst_destiny as $key=>$item)
-                        @if ($loop->last-1)
-                            {{$item->destiny->capital}}{{','}} 
-                        @endif
-                        @if ($loop->last)
-                            {{' dan '}} {{$item->destiny->capital}}
-                        @endif
-                        
-                    @endforeach
-                @endif;               
             </td>
         </tr>
         <tr class="tabbor">
@@ -391,11 +358,7 @@ $no=1;
             </td>
             <td class="tabbor" colspan="2" style="border-top: none; padding-top:0;">
                 @if ($data->activitycode_id != null)
-                    @php
-                        $akt = str_replace("/", ".", $data->act->lengkap);
-                        $subk = str_replace("/", ".", $data->sub->kodeall);
-                    @endphp
-                    {{$akt}}. {{$subk}}. {{$data->akun->code}}
+                    {{$data->act->lengkap}}/{{$data->sub->kodeall}}/{{$data->akun->code}}
                 @else
                     @if ($data->pok_detail_id == 0)
                         &nbsp;

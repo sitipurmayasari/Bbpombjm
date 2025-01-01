@@ -140,8 +140,8 @@
 
   //Route untuk surat tugas
   Route::get('/finance/outstation/create','Finance\OutstationController@create')->name('outstation.create');
-  Route::get('finance/outstation/getnomorst','Finance\OutstationController@getnomorst')->name('outstation.getnomorst');
-  Route::get('finance/outstation/getnomorsppd','Finance\OutstationController@getnomorsppd')->name('outstation.getnomorsppd');
+  Route::get('finance/outstation/getnosppd','Finance\OutstationController@getnosppd')->name('outstation.getnosppd');
+  Route::get('finance/outstation/getnosppdnext','Finance\OutstationController@getnosppdnext')->name('outstation.getnosppdnext');
   Route::post('finance/outstation/store','Finance\OutstationController@store')->name('outstation.store');
   Route::get('finance/outstation/edit/{id}','Finance\OutstationController@edit')->name('outstation.edit');
   Route::post('finance/outstation/update/{id}','Finance\OutstationController@update')->name('outstation.update');
@@ -153,8 +153,9 @@
   Route::get('finance/outstation/delete/{id}','Finance\OutstationController@delete')->name('outstation.delete');
   Route::get('finance/outstation/deletepeg/{id}','Finance\OutstationController@deletepeg')->name('outstation.deletepeg');
   Route::get('finance/outstation/deletetujuan/{id}','Finance\OutstationController@deletetujuan')->name('outstation.deletetujuan');
-  Route::get('finance/outstation/wordExport/{id}','Finance\OutstationController@wordExport')->name('outstation.wordExport');
-  
+  Route::get('finance/outstation/getpejabat','Finance\OutstationController@getpejabat')->name('outstation.getpejabat');
+  Route::get('finance/outstation/getnomorst','Finance\OutstationController@getnomorst')->name('outstation.getnomorst');
+  Route::get('finance/outstation/getnomorsppd','Finance\OutstationController@getnomorsppd')->name('outstation.getnomorsppd');  
 
 //Route untuk kode anggaran
   Route::get('/finance/budget/create','Finance\BudgetController@create')->name('budget.create');
@@ -163,19 +164,19 @@
   Route::post('finance/budget/update/{id}','Finance\BudgetController@update')->name('budget.update');
 
   //Route untuk Kuitansi
-  Route::get('finance/travelexpenses/getMaksud','Finance\TravelexpensesController@getMaksud')->name('travelexpenses.getMaksud');
-  Route::get('/finance/travelexpenses/create','Finance\TravelexpensesController@create')->name('travelexpenses.create');
-  Route::post('finance/travelexpenses/store','Finance\TravelexpensesController@store')->name('travelexpenses.store');
-  Route::get('finance/travelexpenses/edit/{id}','Finance\TravelexpensesController@edit')->name('travelexpenses.edit');
-  Route::post('finance/travelexpenses/update/{id}','Finance\TravelexpensesController@update')->name('travelexpenses.update');
-  Route::get('finance/travelexpenses/receipt/{id}','Finance\TravelexpensesController@receipt')->name('travelexpenses.receipt');
-  Route::get('finance/travelexpenses/riil/{id}','Finance\TravelexpensesController@riil')->name('travelexpenses.riil');
-  Route::get('finance/travelexpenses/super/{id}','Finance\TravelexpensesController@super')->name('travelexpenses.super');
-  Route::get('finance/travelexpenses/super30/{id}','Finance\TravelexpensesController@super30')->name('travelexpenses.super30');
-  Route::get('finance/travelexpenses/super8J/{id}','Finance\TravelexpensesController@super8J')->name('travelexpenses.super8J');
-  Route::get('finance/travelexpenses/getIsian','Finance\TravelexpensesController@getIsian')->name('travelexpenses.getIsian');
-  Route::get('finance/travelexpenses/delete/{id}','Finance\TravelexpensesController@delete')->name('travelexpenses.delete');
-  Route::get('finance/travelexpenses/riilkkp/{id}','Finance\TravelexpensesController@riilkkp')->name('travelexpenses.riilkkp');
+  // Route::get('finance/travelexpenses/getMaksud','Finance\TravelexpensesController@getMaksud')->name('travelexpenses.getMaksud');
+  // Route::get('/finance/travelexpenses/create','Finance\TravelexpensesController@create')->name('travelexpenses.create');
+  // Route::post('finance/travelexpenses/store','Finance\TravelexpensesController@store')->name('travelexpenses.store');
+  // Route::get('finance/travelexpenses/edit/{id}','Finance\TravelexpensesController@edit')->name('travelexpenses.edit');
+  // Route::post('finance/travelexpenses/update/{id}','Finance\TravelexpensesController@update')->name('travelexpenses.update');
+  // Route::get('finance/travelexpenses/receipt/{id}','Finance\TravelexpensesController@receipt')->name('travelexpenses.receipt');
+  // Route::get('finance/travelexpenses/riil/{id}','Finance\TravelexpensesController@riil')->name('travelexpenses.riil');
+  // Route::get('finance/travelexpenses/super/{id}','Finance\TravelexpensesController@super')->name('travelexpenses.super');
+  // Route::get('finance/travelexpenses/super30/{id}','Finance\TravelexpensesController@super30')->name('travelexpenses.super30');
+  // Route::get('finance/travelexpenses/super8J/{id}','Finance\TravelexpensesController@super8J')->name('travelexpenses.super8J');
+  // Route::get('finance/travelexpenses/getIsian','Finance\TravelexpensesController@getIsian')->name('travelexpenses.getIsian');
+  // Route::get('finance/travelexpenses/delete/{id}','Finance\TravelexpensesController@delete')->name('travelexpenses.delete');
+  // Route::get('finance/travelexpenses/riilkkp/{id}','Finance\TravelexpensesController@riilkkp')->name('travelexpenses.riilkkp');
 
   //Route untuk petugas
   Route::post('/finance/petugas/store','Finance\PetugasController@store')->name('petugasmon.store');

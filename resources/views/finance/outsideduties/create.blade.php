@@ -1,7 +1,7 @@
 @extends('layouts.din')
 @section('breadcrumb')
     <li>Surat Tugas</li>
-    <li><a href="/finance/outstation">Surat Tugas</a></li>
+    <li><a href="/finance/outsideduties">Surat Tugas</a></li>
     <li>Tambah Baru</li>
 @endsection
 @section('content')
@@ -15,7 +15,7 @@
 </style>
 
 <form class="form-horizontal validate-form" role="form" 
-         method="post" action="{{route('outstation.store')}}" enctype="multipart/form-data">
+         method="post" action="{{route('outsideduties.store')}}" enctype="multipart/form-data">
     {{ csrf_field() }}
 <div class="row">
     <div class="col-md-12">
@@ -205,7 +205,7 @@
                         for="form-field-1"> Jenis Dinas
                         </label>
                         <div class="col-sm-8">
-                            <select name="type" class="col-xs-8 col-sm-8 required" onchange="getAsal()" id="jenas">
+                            <select name="type" class="col-xs-10 col-sm-10 required" onchange="getAsal()" id="jenas">
                                 <option value="">Pilih Jenis</option>
                                 <option value="DL">Dalam Kota</option>
                                 <option value="DL8">Dalam Kota > 8 Jam</option>
@@ -388,7 +388,7 @@
         function cekplh(){
             var date = $("#st_date").val();
             $.get(
-                "{{route('outstation.getpejabat') }}",
+                "{{route('outsideduties.getpejabat') }}",
                 {
                     date:date,
                 },
@@ -404,7 +404,7 @@
             var divisi_id = $("#div").val();
             var last_baris = $("#countRow").val();
             $.get(
-                "{{route('outstation.getnosppd') }}",
+                "{{route('outsideduties.getnosppd') }}",
                 {
                     date:date,
                     divisi_id:divisi_id,
@@ -424,7 +424,7 @@
         var plusplus = new_baris;
 
         $.get(
-            "{{route('outstation.getnosppdnext') }}",
+            "{{route('outsideduties.getnosppdnext') }}",
             {
                 date:date,
                 divisi_id:divisi_id,

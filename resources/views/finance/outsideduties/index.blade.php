@@ -12,7 +12,7 @@
                 <div class="form-group col-sm-12">
                     <div class="row">
                         <div class="form-group col-xs-12 col-sm-3" style="float: left">
-                           <a href="{{Route('outstation.create')}}"  class="btn btn-primary">Tambah Data</a>   
+                           <a href="{{Route('outsideduties.create')}}"  class="btn btn-primary">Tambah Data</a>   
                         </div>
                         <div class="form-group col-xs-12 col-sm-5" style="float: right">
                             <div class="input-group">
@@ -58,25 +58,25 @@
                         @endforeach
                     </td>
                     <td style="text-align: center">
-                        <a class="btn btn-info" href="/finance/outstation/printST/{{$row->id}}" target="_blank" rel="noopener noreferrer">Cetak</a> <br>
+                        <a class="btn btn-info" href="/finance/outsideduties/cetakST/{{$row->id}}" target="_blank" rel="noopener noreferrer">Tanpa KOP</a> <br>
                     </td>
                     <td style="text-align: center">
                         @if ($row->type=="LK")
-                            <a class="btn btn-primary" href="/finance/outstation/printSppdD/{{$row->id}}" target="_blank" rel="noopener noreferrer">DEPAN</a>
-                            <a class="btn btn-success" href="/finance/outstation/printSppdB/{{$row->id}}" target="_blank" rel="noopener noreferrer">BELAKANG</a>
+                            <a class="btn btn-primary" href="/finance/outsideduties/printSppdD/{{$row->id}}" target="_blank" rel="noopener noreferrer">DEPAN</a>
+                            <a class="btn btn-success" href="/finance/outsideduties/printSppdB/{{$row->id}}" target="_blank" rel="noopener noreferrer">BELAKANG</a>
                         @elseif($row->type=="DL8")
-                            <a class="btn btn-primary" href="/finance/outstation/printSppdD/{{$row->id}}" target="_blank" rel="noopener noreferrer">DEPAN</a>
-                            <a class="btn btn-success" href="/finance/outstation/printSppdB/{{$row->id}}" target="_blank" rel="noopener noreferrer">BELAKANG</a>
-                            <a class="btn btn-primary" href="/finance/outstation/printSppd/{{$row->id}}" target="_blank" rel="noopener noreferrer">LANDSCAPE</a>
+                            <a class="btn btn-primary" href="/finance/outsideduties/printSppdD/{{$row->id}}" target="_blank" rel="noopener noreferrer">DEPAN</a>
+                            <a class="btn btn-success" href="/finance/outsideduties/printSppdB/{{$row->id}}" target="_blank" rel="noopener noreferrer">BELAKANG</a>
+                            <a class="btn btn-primary" href="/finance/outsideduties/printSppd/{{$row->id}}" target="_blank" rel="noopener noreferrer">LANDSCAPE</a>
                         @elseif($row->type=="LN")
-                            <a class="btn btn-primary" href="/finance/outstation/printSppdD/{{$row->id}}" target="_blank" rel="noopener noreferrer">DEPAN</a>
-                            <a class="btn btn-success" href="/finance/outstation/printSppdB/{{$row->id}}" target="_blank" rel="noopener noreferrer">BELAKANG</a>
+                            <a class="btn btn-primary" href="/finance/outsideduties/sppdEngD/{{$row->id}}" target="_blank" rel="noopener noreferrer">DEPAN</a>
+                            <a class="btn btn-success" href="/finance/outsideduties/sppdEngB/{{$row->id}}" target="_blank" rel="noopener noreferrer">BELAKANG</a>
                         @else
-                            <a class="btn btn-primary" href="/finance/outstation/printSppd/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
+                            <a class="btn btn-primary" href="/finance/outsideduties/printSppd/{{$row->id}}" target="_blank" rel="noopener noreferrer">CETAK</a>
                         @endif
                     </td>
                     <td>
-                        <a href="/finance/outstation/edit/{{$row->id}}" class="btn btn-warning">
+                        <a href="/finance/outsideduties/edit/{{$row->id}}" class="btn btn-warning">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
                         <a href="#" class="btn btn-danger delete"
@@ -111,7 +111,7 @@
             }).then((result) => {
                 console.log(result);
                 if (result.value) {
-                    window.location = "/finance/outstation/delete/"+id;
+                    window.location = "/finance/outsideduties/delete/"+id;
                 }
             });
         });

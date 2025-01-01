@@ -93,12 +93,62 @@
                             </td>
                             <td>
                                 : ............................ <br>
-                                : {{$item->out->pok->pok->year}} <br>
-                                : {{$item->out->pok->pok->act->prog->unit->klcode->code}}.{{$item->out->pok->pok->act->prog->unit->code}}.
-                                    {{$item->out->pok->pok->act->prog->code}} / {{$item->out->pok->pok->act->code}}<br>
-                                : {{$item->out->pok->sub->komponen->det->unit->code}} / {{$item->out->pok->sub->komponen->det->code}} / 
-                                    {{$item->out->pok->sub->komponen->code}} <br>
-                                : {{$item->out->pok->sub->code}} / {{$item->out->pok->akun->code}} <br>
+                                : 
+                                    @if ($item->out->pok_detail_id != null)
+                                        {{$item->out->pok->pok->year}}
+                                    @else
+                                        @php
+                                            $tgl = DateTime::createFromFormat("Y-m-d", $data->date);
+                                            echo $tgl->format("Y");
+                                        @endphp
+                                    @endif
+                                    <br>
+                                : 
+                                    @if ($item->out->activitycode_id != null)
+                                        @php
+                                            $akt = str_replace("/", ".", $item->out->act->lengkap);
+                                        @endphp
+                                        {{$akt}}
+                                    @else
+                                        @if ($item->out->pok_detail_id == 0)
+                                            &nbsp;
+                                        @elseif ($item->out->pok_detail_id == 1)
+                                            {{' - '}}
+                                        @else
+                                            {{$item->out->pok->pok->act->prog->unit->klcode->code}}.{{$item->out->pok->pok->act->prog->unit->code}}.
+                                            {{$item->out->pok->pok->act->prog->code}} / {{$item->out->pok->pok->act->code}}
+                                        @endif
+                                    @endif
+                                    <br>
+                                : 
+                                    @if ($item->out->activitycode_id != null)
+                                        {{$item->out->sub->komponen->det->unit->code}}
+                                        / {{$item->out->sub->komponen->det->code}}
+                                        / {{$item->out->sub->komponen->code}}
+                                    @else
+                                        @if ($item->out->pok_detail_id == 0)
+                                            &nbsp;
+                                        @elseif ($item->out->pok_detail_id == 1)
+                                            {{' - '}}
+                                        @else
+                                            {{$item->out->pok->sub->komponen->det->unit->code}} / {{$item->out->pok->sub->komponen->det->code}} / 
+                                            {{$item->out->pok->sub->komponen->code}} 
+                                        @endif
+                                    @endif
+                                    <br>
+                                : 
+                                    @if ($item->out->activitycode_id != null)
+                                        {{$item->out->sub->code}} / {{$item->out->akun->code}}
+                                    @else
+                                        @if ($item->out->pok_detail_id == 0)
+                                            &nbsp;
+                                        @elseif ($item->out->pok_detail_id == 1)
+                                            {{' - '}}
+                                        @else
+                                            {{$item->out->pok->sub->code}} / {{$item->out->pok->akun->code}} 
+                                        @endif
+                                    @endif
+                                    <br>
                             </td>
                         </tr>
                     </table>

@@ -1,7 +1,7 @@
 @extends('layouts.din')
 @section('breadcrumb')
 @section('breadcrumb')
-    <li>Biaya Perjalanan Dinas (2023)</i></li>
+    <li>Biaya Perjalanan Dinas Ver 2</i></li>
 @endsection
 @section('content')
 
@@ -51,7 +51,7 @@
                     <td>{{$row->date}}</td>
                     <td>{{$row->st->number}}</td>
                     <td>{{$row->st->purpose}}</td>
-                    @if ($row->st->pok_detail_id == 1 || $row->st->pok_detail_id == 0)
+                    @if ($row->st->budget_id == 21)
                         <td colspan="3" style="text-align: center">
                             <a class="btn btn-danger agr" href="/finance/outstation/edit/{{$row->id}}"
                             rel="noopener noreferrer">Non Anggaran</a>
@@ -81,6 +81,7 @@
                             @if ($row->st->type == 'DL8')
                                 <a class="btn btn-success agr" href="/finance/travelexpenses/super8J/{{$row->id}}" target="_blank" 
                                     rel="noopener noreferrer">SuPer>8Jam</a>
+                                    
                             @endif
                         </td>
                     @endif

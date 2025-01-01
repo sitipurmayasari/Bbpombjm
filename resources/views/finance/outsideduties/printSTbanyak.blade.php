@@ -133,38 +133,31 @@
                </td>
            </tr>
            <tr>
-            <td>Dasar</td>
-            <td>:</td>
-            <td>
-                <table>
-                    <tr>
-                        <td>
-                            @if ($data->dasar != null)
-                                1.
-                            @endif
+                <td>Dasar</td>
+                <td>:</td>
+                <td>
+                    <table>
+                        <tr>
+                            <td>
+                                @if ($data->dasar != null)
+                                    1.
+                                @endif
+                                </td>
+                            <td>
+                                Peraturan Badan pengawas Obat dan Makanan Nomor 19 Tahun 2023 Tentang Organisasi dan Tata Kerja Unit Pelaksana Teknis pada Badan Pengawas Obat dan Makanan;
                             </td>
-                        <td>
-                            Peraturan Badan pengawas Obat dan Makanan Nomor 19 Tahun 2023 Tentang Organisasi dan Tata Kerja Unit Pelaksana Teknis pada Badan Pengawas Obat dan Makanan;
-                        </td>
-                    </tr>
-                    @if ($data->dasar != null)
-                    <tr>
-                        <td> 2.</td>
-                        <td>{{$data->dasar}};
-                        <br></td>
-                    </tr>
+                        </tr>
+                        @if ($data->dasar != null)
+                        <tr>
+                            <td> 2.</td>
+                            <td>{{$data->dasar}};
+                            <br></td>
+                        </tr>
                     @endif
-                    @if ($data->dasar && $data->dasar2 != null)
-                    <tr>
-                        <td> 3.</td>
-                        <td>{{$data->dasar2}};
-                        <br></td>
-                    </tr>
-                    @endif
-                </table>
-                <br>
-            </td>
-        </tr>
+                    </table>
+                    <br>
+                </td>
+            </tr>
             <tr>
                 <td colspan="3" style="text-align: center; padding-bottom:8px;">Memberi Perintah 
                 </td>
@@ -232,7 +225,7 @@
                                 <td>
                                     Biaya yang dikeluarkan atas kegiatan ini 
                                     @if ($data->budget_id == 21)
-                                        merupakan "Non Anggaran";
+                                        merupakan "Non Anggaran" ;
                                     @else
                                         dibebankan pada anggaran
                                         {{$data->budget->name}}  {{$data->budget->nomor}} 
@@ -250,11 +243,7 @@
 
                                             @endif
                                         @else
-                                            @php
-                                                $akt = str_replace("/", ".", $data->act->lengkap);
-                                                $subk = str_replace("/", ".", $data->sub->kodeall);
-                                            @endphp
-                                            {{$data->act->prog->code}}.{{$data->act->code}}.{{$subk}}.{{$data->akun->code}}
+                                        {{$data->act->lengkap}}. {{$data->sub->kodeall}}.{{$data->akun->code}}
                                         @endif
                                         Tahun Anggaran {{$data->budget->tahun}};
                                     @endif 

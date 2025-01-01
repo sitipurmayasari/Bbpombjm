@@ -6,15 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    {{-- <link href="{{asset('assets/css/no_header.css')}}" rel="stylesheet"> --}}
     <title>Surat Tugas</title>
 </head>
 <style>
     @page {
-        size: 21.59cm 33cm ;
+        size: 21.59cm 33cm;
+        margin-top: 5cm;
         margin-left: 3cm;
         margin-right: 2cm;
-        margin-bottom: 2cm;
+        margin-bottom: 1.4cm;
+        /* margin: 175px 0px 5px 0px; */
+
     }
 
     @font-face {
@@ -25,68 +27,74 @@
         font-variant: normal;
         font-weight: normal;
     }
-
+    
     html, table{
-            font-family: "Bookman Old Style";
-            font-size: 12;
-        }
+        font-family: "Bookman Old Style";
+        font-size: 12;
+    }
 
         #kop{
-            margin-top: 100px;
             font-family: "Bookman Old Style";
             margin-left: 10%;
             margin-right: 10%;
-            line-height: 1;
-            vertical-align: top;
             text-align: center;
+            line-height: 1;
             font-size: 12;
         }
 
-        .isi{
-            font-family: "Bookman Old Style";
+        #isi{
+            font-family: "Bookman Old Style"; 
             font-size: 12;
+            font-weight: normal;
+            font-style: normal;;
+            /* margin-left: 113.38px;
+            margin-right: 75.59px; */
             line-height: 1;
             text-align: justify;
         }
 
         table, td, tr {
-            font-family: "Bookman Old Style";
+            font-family: "Bookman Old Style"; 
             text-align: justify;
             vertical-align: top;
             line-height: 1;
             font-size: 12;
+            font-weight: normal;
+            font-style: normal;;
             border-collapse: collapse;
         }
 
         .ttdini{
             font-family: "Bookman Old Style";
+            /* margin-right: 10%; */
             font-size: 12;
+            font-weight: normal;
+            font-style: normal;;
             width: 100%;
-            overflow: hidden;
-            page-break-inside: avoid;
         }
 
         .detail{
-            font-family: "Bookman Old Style";
+            font-family: "Bookman Old Style";  
             border: 1px solid black;
-            font-size: 10;
+            font-size: 11;
             text-align: left;
             line-height: 1;
             vertical-align: top
         }
         th{
-            font-family: "Bookman Old Style";
+            font-family: "Bookman Old Style"; 
             border: 1px solid black;
-            font-weight: normal;
-            font-size: 11; 
+            font-size: 10; 
             vertical-align: middle;
             text-align: center;
             line-height: 1;
         }
 
         #gratis{
-            font-family: "Bookman Old Style";
-            font-size: 12;
+            font-family: "Bookman Old Style";  
+            font-size: 9.5;
+            font-weight: normal;
+            font-style: normal;;
             color: black;
             line-height: 1;
             text-align: center;
@@ -96,15 +104,10 @@
             bottom:0;
         }
         
-        .first-page {
-            margin-top: 50px;
-        }
 
-</style> 
+</style>
 <body>
-<div>
-   <div class="col-sm-12" style="text-align: center">
-        <br>&nbsp;<br>
+    <div class="col-sm-12" style="text-align: center">
         <div id="kop">
             SURAT TUGAS <br>
            NOMOR : {{$data->number}}
@@ -112,7 +115,7 @@
         </div>
     </div>
     <br>
-     <div class="isi">
+    <div id="isi">
        <table>
            <tr>
                <td>Menimbang</td>
@@ -133,47 +136,82 @@
                </td>
            </tr>
            <tr>
-            <td>Dasar</td>
-            <td>:</td>
-            <td>
-                <table>
-                    <tr>
-                        <td>
-                            @if ($data->dasar != null)
-                                1.
-                            @endif
+                <td>Dasar</td>
+                <td>:</td>
+                <td>
+                    <table>
+                        <tr>
+                            <td>
+                                @if ($data->dasar != null)
+                                    1.
+                                @endif
+                                </td>
+                            <td>
+                                Peraturan Badan pengawas Obat dan Makanan Nomor 19 Tahun 2023 Tentang Organisasi dan Tata Kerja Unit Pelaksana Teknis pada Badan Pengawas Obat dan Makanan;
                             </td>
-                        <td>
-                            Peraturan Badan pengawas Obat dan Makanan Nomor 19 Tahun 2023 Tentang Organisasi dan Tata Kerja Unit Pelaksana Teknis pada Badan Pengawas Obat dan Makanan;
-                        </td>
-                    </tr>
-                    @if ($data->dasar != null)
-                    <tr>
-                        <td> 2.</td>
-                        <td>{{$data->dasar}};
-                        <br></td>
-                    </tr>
+                        </tr>
+                        @if ($data->dasar != null)
+                        <tr>
+                            <td> 2.</td>
+                            <td>{{$data->dasar}};
+                            <br></td>
+                        </tr>
                     @endif
-                    @if ($data->dasar && $data->dasar2 != null)
-                    <tr>
-                        <td> 3.</td>
-                        <td>{{$data->dasar2}};
-                        <br></td>
-                    </tr>
-                    @endif
-                </table>
-                <br>
-            </td>
-        </tr>
+                    </table>
+                    <br>
+                </td>
+            </tr>
             <tr>
-                <td colspan="3" style="text-align: center; padding-bottom:8px;">Memberi Perintah 
+                <td colspan="3" style="text-align: center; padding-bottom:5px;">Memberi Perintah 
                 </td>
             </tr>
             <tr>
                 <td>Kepada</td>
                 <td>:</td>
-                <td> Daftar Terlampir
-                    <br>
+                <td>
+                    <table style="width:100%">
+                        <tbody>
+                            <tr>
+                                <td style="width: 20%">Nama</td>
+                                <td style="width: 3%; text_align:center">:</td>
+                                <td>{{$datapeg->pegawai->name}}</td>
+                            </tr>
+                            <tr>
+                                <td>NIP</td>
+                                <td style="text-align: center">:</td>
+                                <td>
+                                    @if ($datapeg->pegawai->golongan_id != null)
+                                        {{$datapeg->pegawai->no_pegawai}}
+                                    @else
+                                        {{' - '}}
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Pangkat/Gol</td>
+                                <td style="text-align: center">:</td>
+                                <td>
+                                    @if ($datapeg->pegawai->golongan_id != null)
+                                        {{$datapeg->pegawai->gol->jenis}} /  
+                                        {{$datapeg->pegawai->gol->golongan}} {{$datapeg->pegawai->gol->ruang}}
+                                    @else
+                                        {{' - '}}
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Jabatan</td>
+                                <td style="text-align: center">:</td>
+                                <td>
+                                    @if ($datapeg->pegawai->jabasn_id != null)
+                                        {{$datapeg->pegawai->jabasn->nama}}
+                                    @else
+                                        {{$datapeg->pegawai->deskjob}}
+                                    @endif
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </td>
             </tr>
             <tr>
@@ -190,7 +228,7 @@
                                     @if (count($data->outst_destiny) == 1)
                                         @foreach ($data->outst_destiny as $key=>$item)
                                             @if ($loop->first)
-                                                {{$item->destiny->capital}} 
+                                                {{$item->destiny->capital}}
                                             @endif
                                             
                                         @endforeach
@@ -213,8 +251,7 @@
                                             @endif
                                             
                                         @endforeach
-                                    @endif    
-                                    ;
+                                    @endif;
                                 </td>
                             </tr>
                             <tr>
@@ -232,7 +269,7 @@
                                 <td>
                                     Biaya yang dikeluarkan atas kegiatan ini 
                                     @if ($data->budget_id == 21)
-                                        merupakan "Non Anggaran";
+                                        merupakan "Non Anggaran" ;
                                     @else
                                         dibebankan pada anggaran
                                         {{$data->budget->name}}  {{$data->budget->nomor}} 
@@ -250,12 +287,9 @@
 
                                             @endif
                                         @else
-                                            @php
-                                                $akt = str_replace("/", ".", $data->act->lengkap);
-                                                $subk = str_replace("/", ".", $data->sub->kodeall);
-                                            @endphp
-                                            {{$data->act->prog->code}}.{{$data->act->code}}.{{$subk}}.{{$data->akun->code}}
+                                        {{$data->act->lengkap}}.{{$data->sub->kodeall}}.{{$data->akun->code}}
                                         @endif
+                                        
                                         Tahun Anggaran {{$data->budget->tahun}};
                                     @endif 
                                 </td>
@@ -292,11 +326,11 @@
        </table>
         <br>
         Agar yang bersangkutan melaksanakan tugas dengan baik dan penuh tanggung jawab.
-        <br>&nbsp;<br>
+        <br>
         <table class="ttdini" style="width: 100%" >
             <tr>
                 <td></td>
-                <td style="width: 65%;">Banjarbaru,
+                <td style="width: 65%;">Banjarbaru, 
                     @php
                         $a = $data->st_date;
                         echo tgl_indo($a); 
@@ -312,18 +346,18 @@
                     @endif     
                 </td>
                 <td>
-                    @if ($menyetujui != null)
-                            {{-- Kepala {{$menyetujui->divisi->nama}}, --}}
-                            Kepala Balai Besar Pengawas Obat dan Makanan <br>
-                            Di Banjarmasin,
-                    @else
+                   @if ($menyetujui != null)
+                         {{-- Kepala {{$menyetujui->divisi->nama}}, --}}
+                         Kepala Balai Besar Pengawas Obat dan Makanan <br>
+                         Di Banjarmasin,
+                   @else
                         <b>Pejabat Belum Ditentukan</b>
-                    @endif
+                   @endif
                 </td>
             </tr>
             <tr>
                 <td></td>
-                <td style="height: 8%"></td>
+                <td style="height: 6.5%"></td>
             </tr>
             <tr>
                 <td></td>
@@ -347,150 +381,5 @@
             "Petugas Tidak diperkenankan menerima gratifikasi dalam bentuk apapun"
         </div>
     </div>
-</div>
-<div style="page-break-before: always;" class="isi">
-    <div style="text-align: center;"> - 2 - </div>
-    <br><br>
-    <div>
-        <table style="width: 100%">
-            <tr>
-                <td style="width: 43%"></td>
-                <td colspan="3">Lampiran <br>Surat Tugas</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td style=" width: 10%">Nomor</td>
-                <td style="width:3%"> : </td>
-                <td > {{$data->number}}</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td >Tanggal</td>
-                <td> : </td>
-                <td> {{tgl_indo($data->st_date)}}</td>
-            </tr>
-        </table>
-    </div>
-    <br><br>
-    <div style="text-align: center; font-size: 12">
-        DAFTAR PEJABAT / PEGAWAI YANG DITUGASKAN <br>
-    </div>
-    <br>
-    <div>
-        <table style="width:100%" class="detail">
-            <thead>
-                <tr >
-                    <th style="width: 5%">NO</th>
-                    <th style="width: 25%">NAMA</th>
-                    <th style="width: 25%">NIP</th>
-                    <th style="width: 20%">PANGKAT / GOLONGAN</th>
-                    <th style="width: 25%">JABATAN</th>
-                </tr>
-            </thead>
-            <tbody>
-                @php
-                    $no= 1;
-                @endphp
-                @foreach($isian as $key=>$row)
-                <tr>
-                    <td class="detail" style="text-align: center;">
-                        {{$no++}}
-                    </td>
-                    <td class="detail">
-                        {{$row->pegawai->name}}
-                    </td>
-                    <td class="detail" style="text-align: center;">
-                        @if ($row->pegawai->golongan_id != null)
-                            {{$row->pegawai->no_pegawai}}
-                        @else
-                            {{' - '}}
-                        @endif
-                    </td>
-                    <td class="detail" style="text-align: center; vertical-align:top;">
-                       @if ($row->pegawai->golongan_id != null)
-                        {{$row->pegawai->gol->jenis}} /  
-                        {{$row->pegawai->gol->golongan}} {{$row->pegawai->gol->ruang}}
-                       @else
-                           {{' - '}}
-                       @endif
-                    </td>
-                    <td class="detail">
-                        @if ($row->pegawai->jabasn_id != null)
-                            {{$row->pegawai->jabasn->nama}}
-                        @else
-                            {{$row->pegawai->deskjob}}
-                        @endif
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-    <br><br> 
-   
-    <table class="ttdini my-element" style="width: 100%" >
-        <tr>
-            <td></td>
-            <td style="width: 65%;">Banjarbaru, 
-                @php
-                    $a = $data->st_date;
-                    echo tgl_indo($a); 
-                @endphp
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right">
-                @if ($menyetujui != null)
-                    @if ($menyetujui->pjs !=null)
-                        {{$menyetujui->pjs}}
-                    @endif
-                @endif     
-            </td>
-            <td>
-               @if ($menyetujui != null)
-                     {{-- Kepala {{$menyetujui->divisi->nama}}, --}}
-                     Kepala Balai Besar Pengawas Obat dan Makanan <br>
-                     Di Banjarmasin,
-               @else
-                    <b>Pejabat Belum Ditentukan</b>
-               @endif
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td style="height: 6.5%"></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                @if ($menyetujui != null)
-                    @if ($menyetujui->pjs !=null)
-                        {{$menyetujui->user->name}}<br>
-                        {{-- NIP: {{$menyetujui->user->no_pegawai}} --}}
-                    @else
-                        {{$menyetujui->user->name}}
-                    @endif
-                @else
-                    <b>Silahkan Cek Setup Pejabat</b>
-                @endif
-                
-            </td>
-        </tr>
-    </table>
-</div>
-
-<script>
-    const myContainer = document.querySelector('.my-element');
-
-    // Logika untuk mendeteksi apakah kontainer berada di awal halaman baru
-    // (Contoh sederhana, perlu disesuaikan dengan kasus Anda)
-    if (/* kondisi untuk memeriksa awal halaman */) {
-        myContainer.classList.add('first-page');
-    }
-
-    // Panggil fungsi untuk menghasilkan PDF dengan DOMPDF
-    // ...
-</script>
-
 </body>
 </html>

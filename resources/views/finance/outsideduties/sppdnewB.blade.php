@@ -370,7 +370,11 @@ $no=1;
         </tr>
         <tr style="border-top: none;">
             <td colspan="3" style="border-top: 0; text-align:center;">
-                @if ($data->activitycode_id != null)
+                @if ($data->pok_detail_id == 0 )
+                    <br><br><br><br><br><br><br>
+                @elseif($data->pok_detail_id == 1 )
+                    <br><br><br><br><br><br><br>
+                @else
                     @if ($data->external !="Y")
                         Pejabat Pembuat Komitmen<br><br><br><br><br>
                         <u><b> 
@@ -383,60 +387,24 @@ $no=1;
                             @endif
                     @else
                         <br><br><br><br>&nbsp;
-                    @endif
-                @else
-                    @if ($data->pok_detail_id == 0 || $data->pok_detail_id == 1)
-                        <br><br><br><br><br><br><br>
-                    @else
-                        @if ($data->external !="Y")
-                            Pejabat Pembuat Komitmen<br><br><br><br><br>
-                            <u><b> 
-                                @if ($data->ppk_id != 0)
-                                    {{$data->ppk->user->name}}
-                                @endif
-                            </b></u><br>
-                                @if ($data->ppk_id != 0)
-                                    NIP. {{$data->ppk->user->no_pegawai}}
-                                @endif
-                        @else
-                            <br><br><br><br>&nbsp;
-                        @endif
                     @endif
                 @endif
             </td>
             <td colspan="2"  style="border-top: 0; text-align:center;">
-                @if ($data->activitycode_id != null)
-                    @if ($data->external !="Y")
-                        Pejabat Pembuat Komitmen<br><br><br><br><br>
-                        <u><b> 
-                            @if ($data->ppk_id != 0)
-                                {{$data->ppk->user->name}}
-                            @endif
-                        </b></u><br>
-                            @if ($data->ppk_id != 0)
-                                NIP. {{$data->ppk->user->no_pegawai}}
-                            @endif
-                    @else
-                        <br><br><br><br>&nbsp;
-                    @endif
+                @if ($data->pok_detail_id == 0 )
+                    <br><br><br><br><br>
+                @elseif($data->pok_detail_id == 1 )
+                    <br><br><br><br><br>
                 @else
-                    @if ($data->pok_detail_id == 0 || $data->pok_detail_id == 1)
-                        <br><br><br><br><br><br><br>
-                    @else
-                        @if ($data->external !="Y")
-                            Pejabat Pembuat Komitmen<br><br><br><br><br>
-                            <u><b> 
-                                @if ($data->ppk_id != 0)
-                                    {{$data->ppk->user->name}}
-                                @endif
-                            </b></u><br>
-                                @if ($data->ppk_id != 0)
-                                    NIP. {{$data->ppk->user->no_pegawai}}
-                                @endif
-                        @else
-                            <br><br><br><br>&nbsp;
+                    Pejabat Pembuat Komitmen <br><br><br><br>
+                    <u><b> 
+                        @if ($data->ppk_id != 0)
+                            {{$data->ppk->user->name}}
                         @endif
-                    @endif
+                    </b></u><br>
+                        @if ($data->ppk_id != 0)
+                        NIP. {{$data->ppk->user->no_pegawai}}
+                        @endif
                 @endif
             </td>
         </tr>

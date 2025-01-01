@@ -50,25 +50,42 @@
             <tr>
                 <td style="width: 11%">Program/kegiatan</td>
                 <td style="width: 18%">:
-                    @if ($data->pok_detail_id == 0)
-                        {{' Non Anggaran '}}
-                    @elseif ($data->pok_detail_id == 1)
-                        {{' - '}}
+                    @if ($data->activitycode_id != null)
+                            @php
+                                $akt = str_replace("/", ".", $data->act->lengkap);
+                            @endphp
+
+                        {{$akt}}
                     @else
-                        {{$data->pok->pok->act->prog->unit->klcode->code}}.{{$data->pok->pok->act->prog->unit->code}}.
-                        {{$data->pok->pok->act->prog->code}} / {{$data->pok->pok->act->code}}
+                            @if ($data->pok_detail_id == 0)
+                                &nbsp;
+                            @elseif ($data->pok_detail_id == 1)
+                                {{' - '}}
+                            @else
+                                {{$data->pok->pok->act->prog->unit->klcode->code}}.{{$data->pok->pok->act->prog->unit->code}}.
+                                {{$data->pok->pok->act->prog->code}}
+                                / {{$data->pok->pok->act->code}}
+                            @endif
                     @endif
                 </td>
             </tr>
             <tr>
                 <td>KRO/RO/komponen</td>
                 <td>:
-                    @if ($data->pok_detail_id == 0)
-                        {{' Non Anggaran '}}
-                    @elseif ($data->pok_detail_id == 1)
-                        {{' - '}}
+                    @if ($data->activitycode_id != null)
+                                    {{$data->sub->komponen->det->unit->code}}
+                                    / {{$data->sub->komponen->det->code}}
+                                    / {{$data->sub->komponen->code}}
                     @else
-                        {{$data->pok->sub->komponen->det->unit->code}} / {{$data->pok->sub->komponen->det->code}} / {{$data->pok->sub->komponen->code}}
+                        @if ($data->pok_detail_id == 0)
+                            &nbsp;
+                        @elseif ($data->pok_detail_id == 1)
+                            {{' - '}}
+                        @else
+                            {{$data->pok->sub->komponen->det->unit->code}}
+                            / {{$data->pok->sub->komponen->det->code}}
+                            / {{$data->pok->sub->komponen->code}}
+                        @endif
                     @endif
                 </td>
                
@@ -76,16 +93,18 @@
             <tr>
                 <td>Sub Komponen/Akun</td>
                 <td>:
-                    @if ($data->pok_detail_id == 0)
-                        {{' Non Anggaran '}}
-                    @elseif ($data->pok_detail_id == 1)
-                        {{' - '}}
+                    @if ($data->activitycode_id != null)
+                        {{$data->sub->code}} / {{$data->akun->code}}
                     @else
-                        {{$data->pok->sub->code}} / {{$data->pok->akun->code}}
+                        @if ($data->pok_detail_id == 0)
+                            &nbsp;
+                        @elseif ($data->pok_detail_id == 1)
+                            {{' - '}}
+                        @else
+                            {{$data->pok->sub->code}} / {{$data->pok->akun->code}}
+                        @endif
                     @endif
-                    
                 </td>
-                
             </tr>
             <tr>
                 <td>No. Surat Tugas</td>

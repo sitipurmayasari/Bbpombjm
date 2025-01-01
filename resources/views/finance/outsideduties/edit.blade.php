@@ -1,7 +1,7 @@
 @extends('layouts.din')
 @section('breadcrumb')
     <li>Surat Tugas</li>
-    <li><a href="/finance/outstation">Surat Tugas</a></li>
+    <li><a href="/finance/outsideduties">Surat Tugas</a></li>
     <li>Edit</li>
 @endsection
 @section('content')
@@ -14,7 +14,7 @@
 </style>
 
 <form class="form-horizontal validate-form" role="form" 
-        method="post" action="/finance/outstation/update/{{$data->id}}" enctype="multipart/form-data">
+        method="post" action="/finance/outsideduties/update/{{$data->id}}" enctype="multipart/form-data">
     {{ csrf_field() }}
 <div class="row">
     <div class="col-md-12">
@@ -30,21 +30,12 @@
                             <input type="date" required id="st_date" value="{{$data->st_date}}"
                                     class="col-xs-3 col-sm-3 required " 
                                     name="st_date"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label no-padding-right" 
-                        for="form-field-1">Penanda Tangan
-                        </label>
-                        <div class="col-sm-8" id="plh_today">
-                            <input type="text" required id="nama_plh" value="{{$menyetujui->user->name}}"
-                                    class="col-xs-8 col-sm-8 " readonly
-                                    name="today"/>
                             &nbsp; &nbsp;
-                            <input type="checkbox" name="plh" value="Y" id="plhok"
-                            <?php if ($data->plh == 'Y') echo "checked='checked'"; ?>
-                            > 
-                            PLH
+                            @if ($data->lkdp == 'Y')
+                                <input type="checkbox" name="lkdp" value="Y" checked> LKDP
+                            @else
+                                <input type="checkbox" name="lkdp" value="Y"> LKDP
+                            @endif
                         </div>
                     </div>
                     <div class="form-group">
@@ -104,7 +95,7 @@
                         for="form-field-1"> Dasar Pelaksanaan 2 (*Tidak Wajib)
                         </label>
                         <div class="col-sm-8">
-                            <textarea name="dasar2" id="" class="col-xs-10 col-sm-10" rows="2">{{$data->dasar2}}</textarea>
+                            <textarea name="dasar" id="" class="col-xs-10 col-sm-10" rows="2">{{$data->dasar2}}</textarea>
                         </div>
                     </div>
                     <div class="form-group">
@@ -262,7 +253,7 @@
                         for="form-field-1"> Jenis Dinas
                         </label>
                         <div class="col-sm-8">
-                            <select name="type" class="col-xs-10 col-sm-8 required" onchange="getAsal()" id="jenas">
+                            <select name="type" class="col-xs-10 col-sm-10 required" onchange="getAsal()" id="jenas">
                                 @if ($data->type=="DL")
                                     <option value="DL" selected>Dalam Kota</option>
                                     <option value="DL8">Dalam Kota > 8 Jam</option>
@@ -285,12 +276,6 @@
                                     <option value="LN">Luar Negri</option>
                                 @endif
                             </select>
-                            &nbsp; &nbsp;
-                            @if ($data->lkdp == 'Y')
-                                <input type="checkbox" name="lkdp" value="Y" checked> LKDP
-                            @else
-                                <input type="checkbox" name="lkdp" value="Y"> LKDP
-                            @endif
                         </div>
                     </div>
                     <div class="form-group">
@@ -515,7 +500,7 @@
             }).then((result) => {
                 console.log(result);
                 if (result.value) {
-                   window.location = "/finance/outstation/deletepeg/"+id;
+                   window.location = "/finance/outsideduties/deletepeg/"+id;
                 }
             });
         });
@@ -536,7 +521,7 @@
             }).then((result) => {
                 console.log(result);
                 if (result.value) {
-                   window.location = "/finance/outstation/deletetujuan/"+id;
+                   window.location = "/finance/outsideduties/deletetujuan/"+id;
                 }
             });
         });
@@ -552,7 +537,7 @@
         var plusplus = parseInt(tambahan)+1;
 
         $.get(
-            "{{route('outstation.getnosppdnext') }}",
+            "{{route('outsideduties.getnosppdnext') }}",
             {
                 date:date,
                 divisi_id:divisi_id,
@@ -624,7 +609,7 @@
         function getnomorsppd(){
             var stbook_number = $("#nomorst").val();
             $.get(
-                "{{route('outstation.getnomorsppd') }}",
+                "{{route('outsideduties.getnomorsppd') }}",
                 {
                     stbook_number:stbook_number
                 },

@@ -156,7 +156,14 @@
                             <td>{{$data->dasar}};
                             <br></td>
                         </tr>
-                    @endif
+                        @endif
+                        @if ($data->dasar && $data->dasar2 != null)
+                        <tr>
+                            <td> 3.</td>
+                            <td>{{$data->dasar2}};
+                            <br></td>
+                        </tr>
+                        @endif
                     </table>
                     <br>
                 </td>
@@ -273,17 +280,25 @@
                                     @else
                                         dibebankan pada anggaran
                                         {{$data->budget->name}}  {{$data->budget->nomor}} 
-                                        MAK : 
-                                        @if ($data->pok_detail_id == 0)
-                                            {{' Non Anggaran '}}
-                                        @elseif ($data->pok_detail_id == 1)
-                                            {{' - '}}
-                                        @else
-                                            {{$data->pok->pok->act->prog->unit->klcode->code}}.{{$data->pok->pok->act->prog->unit->code}}.
-                                            {{$data->pok->pok->act->prog->code}}.{{$data->pok->pok->act->code}}.
-                                            {{$data->pok->sub->komponen->det->unit->code}}.{{$data->pok->sub->komponen->det->code}}.
-                                            {{$data->pok->sub->komponen->code}}.{{$data->pok->sub->code}}.{{$data->pok->akun->code}}
+                                        MAK :
+                                        @if ($data->pok_detail_id != null)
+                                            @if ($data->pok_detail_id == 0)
+                                                Non Anggaran
+                                            @elseif ($data->pok_detail_id == 1)
+                                                -
+                                            @else
+                                                {{$data->pok->pok->act->prog->unit->klcode->code}}.{{$data->pok->pok->act->prog->unit->code}}.
+                                                {{$data->pok->pok->act->prog->code}}.{{$data->pok->pok->act->code}}.
+                                                {{$data->pok->sub->komponen->det->unit->code}}.{{$data->pok->sub->komponen->det->code}}.
+                                                {{$data->pok->sub->komponen->code}}.{{$data->pok->sub->code}}.{{$data->pok->akun->code}}
 
+                                            @endif
+                                        @else
+                                            @php
+                                                $akt = str_replace("/", ".", $data->act->lengkap);
+                                                $subk = str_replace("/", ".", $data->sub->kodeall);
+                                            @endphp
+                                            {{$data->act->prog->code}}.{{$data->act->code}}.{{$subk}}.{{$data->akun->code}}
                                         @endif
                                         Tahun Anggaran {{$data->budget->tahun}};
                                     @endif 

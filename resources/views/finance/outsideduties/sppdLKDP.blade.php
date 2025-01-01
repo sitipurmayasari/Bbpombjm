@@ -134,26 +134,16 @@ $no=1;
                 @endforeach
                 <br>
                 : 
-                @if (count($data->outst_destiny) == 1) {{--kota asal--}}
-                    {{$data->cityfrom->capital}}
-                @elseif (count($data->outst_destiny) == 2) {{--tujuan kedua--}}
-                    @foreach ($data->outst_destiny as $key=>$item)
-                        @if ($loop->last)
-                            {{$item->destiny->capital}}
-                        @endif
-                    @endforeach
-                @elseif (count($data->outst_destiny) == 3) {{--tujuan kedua--}}
-                    @foreach ($data->outst_destiny as $key=>$item)
-                        @if ($loop->index == 1)
-                            {{$item->destiny->capital}} 
-                        @endif
-                    @endforeach
-                @endif
+                @foreach ($data->outst_destiny as $key=>$item)
+                    @if ($loop->first)
+                        {{$item->destiny->capital}} 
+                    @endif
+                @endforeach
                 <br>
                 : {{--tgl pulang tujuan pertama--}}
                 @foreach ($data->outst_destiny as $key=>$item)
                     @if ($loop->first)
-                        {{tgl_indo($item->return_date)}} 
+                        {{tgl_indo($item->go_date)}} 
                     @endif
                 @endforeach
             </td>
@@ -212,6 +202,65 @@ $no=1;
             </td>
             <td style="border-left: 0;">
                 :
+                @foreach ($data->outst_destiny as $key=>$item)
+                    @if ($loop->first)
+                        {{$item->destiny->capital}} 
+                    @endif
+                @endforeach
+                <br>
+                :
+                @foreach ($data->outst_destiny as $key=>$item)
+                    @if ($loop->first)
+                        {{tgl_indo($item->return_date)}} 
+                    @endif
+                @endforeach
+            </td>
+            <td style="border-right: 0;">
+                Berangkat dari<br>
+                Ke<br>
+                Pada Tanggal <br>
+                <br><br><br><br><br><br>
+            </td>
+            <td style="border-left: 0;">
+                :  {{--tujuan pertama--}}
+                @foreach ($data->outst_destiny as $key=>$item)
+                    @if ($loop->first)
+                        {{$item->destiny->capital}} 
+                    @endif
+                @endforeach
+                <br>
+                : 
+                @if (count($data->outst_destiny) == 1) {{--kota asal--}}
+                    {{$data->cityfrom->capital}}
+                @elseif (count($data->outst_destiny) == 2) {{--tujuan kedua--}}
+                    @foreach ($data->outst_destiny as $key=>$item)
+                        @if ($loop->last)
+                            {{$item->destiny->capital}}
+                        @endif
+                    @endforeach
+                @elseif (count($data->outst_destiny) == 3) {{--tujuan kedua--}}
+                    @foreach ($data->outst_destiny as $key=>$item)
+                        @if ($loop->index == 1)
+                            {{$item->destiny->capital}} 
+                        @endif
+                    @endforeach
+                @endif
+                <br>
+                : {{--tgl pulang tujuan pertama--}}
+                @foreach ($data->outst_destiny as $key=>$item)
+                    @if ($loop->first)
+                        {{tgl_indo($item->return_date)}} 
+                    @endif
+                @endforeach
+            </td>
+        </tr>
+        <tr>
+            <td style="border-right: 0;">IV.</td>
+            <td style="border-left: 0;border-right:0;">
+                Tiba di<br>
+                Pada Tanggal
+            </td>
+            <td style="border-left: 0;">
                 @if (count($data->outst_destiny) == 2) {{--tujuan kedua--}}
                     @foreach ($data->outst_destiny as $key=>$item)
                         @if ($loop->last)
@@ -240,12 +289,13 @@ $no=1;
                         @endif
                     @endforeach
                 @endif
+              
             </td>
             <td style="border-right: 0;">
                 Berangkat dari<br>
                 Ke<br>
                 Pada Tanggal <br>
-                <br><br><br><br><br><br>
+                <br><br><br><br><br>
             </td>
             <td style="border-left: 0;">
                 : 
@@ -289,64 +339,6 @@ $no=1;
                         @endif
                     @endforeach
                 @endif
-             
-            </td>
-        </tr>
-        <tr>
-            <td style="border-right: 0;">IV.</td>
-            <td style="border-left: 0;border-right:0;">
-                Tiba di<br>
-                Pada Tanggal
-            </td>
-            <td style="border-left: 0;">
-                : 
-                @if(count($data->outst_destiny) == 3) {{--tujuan ketiga--}}
-                    @foreach ($data->outst_destiny as $key=>$item)
-                        @if ($loop->last)
-                            {{$item->destiny->capital}} 
-                        @endif
-                    @endforeach
-                @endif
-                <br>
-                :
-                @if(count($data->outst_destiny) == 3) {{--tujuan ketiga--}}
-                    @foreach ($data->outst_destiny as $key=>$item)
-                        @if ($loop->last)
-                            {{tgl_indo($item->go_date)}} 
-                        @endif
-                    @endforeach
-                @endif
-              
-            </td>
-            <td style="border-right: 0;">
-                Berangkat dari<br>
-                Ke<br>
-                Pada Tanggal <br>
-                <br><br><br><br><br>
-            </td>
-            <td style="border-left: 0;">
-                : 
-                @if(count($data->outst_destiny) == 3) {{--tujuan ketiga--}}
-                    @foreach ($data->outst_destiny as $key=>$item)
-                        @if ($loop->last)
-                            {{$item->destiny->capital}} 
-                        @endif
-                    @endforeach
-                @endif
-                <br>
-                :
-                @if(count($data->outst_destiny) == 3) {{--kota asal--}}
-                    {{$data->cityfrom->capital}}
-                @endif
-                <br>
-                :
-                @if(count($data->outst_destiny) == 3) {{--tujuan ketiga--}}
-                    @foreach ($data->outst_destiny as $key=>$item)
-                        @if ($loop->last)
-                            {{tgl_indo($item->return_date)}} 
-                        @endif
-                    @endforeach
-                @endif
             </td>
         </tr>
         <tr style="border-bottom: none;">
@@ -370,7 +362,11 @@ $no=1;
         </tr>
         <tr style="border-top: none;">
             <td colspan="3" style="border-top: 0; text-align:center;">
-                @if ($data->activitycode_id != null)
+                @if ($data->pok_detail_id == 0 )
+                    <br><br><br><br><br><br><br>
+                @elseif($data->pok_detail_id == 1 )
+                    <br><br><br><br><br><br><br>
+                @else
                     @if ($data->external !="Y")
                         Pejabat Pembuat Komitmen<br><br><br><br><br>
                         <u><b> 
@@ -383,60 +379,24 @@ $no=1;
                             @endif
                     @else
                         <br><br><br><br>&nbsp;
-                    @endif
-                @else
-                    @if ($data->pok_detail_id == 0 || $data->pok_detail_id == 1)
-                        <br><br><br><br><br><br><br>
-                    @else
-                        @if ($data->external !="Y")
-                            Pejabat Pembuat Komitmen<br><br><br><br><br>
-                            <u><b> 
-                                @if ($data->ppk_id != 0)
-                                    {{$data->ppk->user->name}}
-                                @endif
-                            </b></u><br>
-                                @if ($data->ppk_id != 0)
-                                    NIP. {{$data->ppk->user->no_pegawai}}
-                                @endif
-                        @else
-                            <br><br><br><br>&nbsp;
-                        @endif
                     @endif
                 @endif
             </td>
             <td colspan="2"  style="border-top: 0; text-align:center;">
-                @if ($data->activitycode_id != null)
-                    @if ($data->external !="Y")
-                        Pejabat Pembuat Komitmen<br><br><br><br><br>
-                        <u><b> 
-                            @if ($data->ppk_id != 0)
-                                {{$data->ppk->user->name}}
-                            @endif
-                        </b></u><br>
-                            @if ($data->ppk_id != 0)
-                                NIP. {{$data->ppk->user->no_pegawai}}
-                            @endif
-                    @else
-                        <br><br><br><br>&nbsp;
-                    @endif
+                @if ($data->pok_detail_id == 0 )
+                    <br><br><br><br><br>
+                @elseif($data->pok_detail_id == 1 )
+                    <br><br><br><br><br>
                 @else
-                    @if ($data->pok_detail_id == 0 || $data->pok_detail_id == 1)
-                        <br><br><br><br><br><br><br>
-                    @else
-                        @if ($data->external !="Y")
-                            Pejabat Pembuat Komitmen<br><br><br><br><br>
-                            <u><b> 
-                                @if ($data->ppk_id != 0)
-                                    {{$data->ppk->user->name}}
-                                @endif
-                            </b></u><br>
-                                @if ($data->ppk_id != 0)
-                                    NIP. {{$data->ppk->user->no_pegawai}}
-                                @endif
-                        @else
-                            <br><br><br><br>&nbsp;
+                    Pejabat Pembuat Komitmen <br><br><br><br>
+                    <u><b> 
+                        @if ($data->ppk_id != 0)
+                            {{$data->ppk->user->name}}
                         @endif
-                    @endif
+                    </b></u><br>
+                        @if ($data->ppk_id != 0)
+                        NIP. {{$data->ppk->user->no_pegawai}}
+                        @endif
                 @endif
             </td>
         </tr>

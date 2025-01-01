@@ -82,8 +82,31 @@
                 Bukti Kas
             </td>
             <td style="width: 25%  font-size: 7;" rowspan="3">
-                : {{$item->out->pok->sub->code}} / {{$item->out->pok->akun->code}} <br>
-                : {{$item->out->pok->pok->year}} <br>
+                : 
+                    @if ($item->out->activitycode_id != null)
+                        {{$item->out->sub->code}} / {{$item->out->akun->code}}
+                    @else
+                        @if ($item->out->pok_detail_id == 0)
+                            &nbsp;
+                        @elseif ($item->out->pok_detail_id == 1)
+                            {{' - '}}
+                        @else
+                            {{$item->out->pok->sub->code}} / {{$item->out->pok->akun->code}} 
+                        @endif
+                    @endif
+                    <br>
+                : 
+                    @if ($item->out->activitycode_id != null)
+                        @php
+                            $tgl = DateTime::createFromFormat("Y-m-d", $data->date);
+                            echo $tgl->format("Y");
+                        @endphp
+                    @else
+                        {{$item->out->pok->pok->year}} 
+                    @endif
+
+                    
+                    <br>
                 : ...............................
             </td>
         </tr>
@@ -105,11 +128,52 @@
                 Petugas
             </td>
             <td style="font-size: 7;" rowspan="4">
-                : {{$item->out->pok->pok->act->prog->unit->klcode->code}}.{{$item->out->pok->pok->act->prog->unit->code}}.
-                    {{$item->out->pok->pok->act->prog->code}} / {{$item->out->pok->pok->act->code}} <br>
-                : {{$item->out->pok->sub->komponen->det->unit->code}} / {{$item->out->pok->sub->komponen->det->code}} / 
-                    {{$item->out->pok->sub->komponen->code}} <br>
-                : {{$item->out->pok->sub->code}} / {{$item->out->pok->akun->code}} <br>
+                : 
+                    @if ($item->out->activitycode_id != null)
+                        @php
+                            $akt = str_replace("/", ".", $item->out->act->lengkap);
+                        @endphp
+                        {{$akt}}
+                    @else
+                        @if ($item->out->pok_detail_id == 0)
+                            &nbsp;
+                        @elseif ($item->out->pok_detail_id == 1)
+                            {{' - '}}
+                        @else
+                            {{$item->out->pok->pok->act->prog->unit->klcode->code}}.{{$item->out->pok->pok->act->prog->unit->code}}.
+                            {{$item->out->pok->pok->act->prog->code}} / {{$item->out->pok->pok->act->code}}
+                        @endif
+                    @endif
+                    <br>
+                : 
+                    @if ($item->out->activitycode_id != null)
+                        {{$item->out->sub->komponen->det->unit->code}}
+                        / {{$item->out->sub->komponen->det->code}}
+                        / {{$item->out->sub->komponen->code}}
+                    @else
+                        @if ($item->out->pok_detail_id == 0)
+                            &nbsp;
+                        @elseif ($item->out->pok_detail_id == 1)
+                            {{' - '}}
+                        @else
+                            {{$item->out->pok->sub->komponen->det->unit->code}} / {{$item->out->pok->sub->komponen->det->code}} / 
+                            {{$item->out->pok->sub->komponen->code}} 
+                        @endif
+                    @endif
+                    <br>
+                : 
+                    @if ($item->out->activitycode_id != null)
+                        {{$item->out->sub->code}} / {{$item->out->akun->code}}
+                    @else
+                        @if ($item->out->pok_detail_id == 0)
+                            &nbsp;
+                        @elseif ($item->out->pok_detail_id == 1)
+                            {{' - '}}
+                        @else
+                            {{$item->out->pok->sub->code}} / {{$item->out->pok->akun->code}} 
+                        @endif
+                    @endif
+                    <br>
                 :  {{$item->out->number}} <br>
                 : {{$no}}
             </td>
@@ -169,23 +233,23 @@
                     @if (count($item->out->outst_destiny) == 1)
                         @foreach ($tujuan as $key=>$kota)
                             @if ($loop->first)
-                                {{$kota->destiny->capital}} 
+                {{$kota->destiny->capital}} 
                             @endif 
                         @endforeach
                     @elseif (count($item->out->outst_destiny) == 2)
                         @foreach ($tujuan as $key=>$kota)
                             {{$kota->destiny->capital}}
                             @if ($tujuan->count()-1 != $key)
-                                {{' dan '}}
+                {{' dan '}}
                             @endif
                         @endforeach
                     @else
                         @foreach ($tujuan as $key=>$kota)
                             @if ($loop->last-1)
-                                {{$kota->destiny->capital}}{{','}} 
+                {{$kota->destiny->capital}}{{','}} 
                             @endif
                             @if ($loop->last)
-                                {{' dan '}} {{$kota->destiny->capital}}
+                {{' dan '}} {{$kota->destiny->capital}}
                             @endif
                         @endforeach
                     @endif
@@ -222,13 +286,13 @@
                         <td class="isi">
                             <i>Biaya Penginapan {{$itemhotel->hotelname}}</i> <br>
                             <table>
-                                <tr>
-                                    <td><i>
-                                        {{$itemhotel->hotellong}} hari
-                                    </i></td>
-                                    <td><i> &nbsp; x &nbsp; Rp.</i></td>
-                                    <td><i>{{$itemhotel->hotelfee}}</i></td>
-                                </tr>
+                <tr>
+                    <td><i>
+                        {{$itemhotel->hotellong}} hari
+                    </i></td>
+                    <td><i> &nbsp; x &nbsp; Rp.</i></td>
+                    <td><i>{{$itemhotel->hotelfee}}</i></td>
+                </tr>
                             </table>
                         </td>
                         <td class="isi">
@@ -379,8 +443,31 @@
                 Bukti Kas
             </td>
             <td style="width: 25%  font-size: 7;" rowspan="3">
-                : {{$item->out->pok->sub->code}} / {{$item->out->pok->akun->code}} <br>
-                : {{$item->out->pok->pok->year}} <br>
+                : 
+                    @if ($item->out->activitycode_id != null)
+                        {{$item->out->sub->code}} / {{$item->out->akun->code}}
+                    @else
+                        @if ($item->out->pok_detail_id == 0)
+                            &nbsp;
+                        @elseif ($item->out->pok_detail_id == 1)
+                            {{' - '}}
+                        @else
+                            {{$item->out->pok->sub->code}} / {{$item->out->pok->akun->code}} 
+                        @endif
+                    @endif
+                    <br>
+                : 
+                    @if ($item->out->activitycode_id != null)
+                        @php
+                            $tgl = DateTime::createFromFormat("Y-m-d", $data->date);
+                            echo $tgl->format("Y");
+                        @endphp
+                    @else
+                        {{$item->out->pok->pok->year}} 
+                    @endif
+
+                    
+                    <br>
                 : ...............................
             </td>
         </tr>
@@ -402,11 +489,52 @@
                 Petugas
             </td>
             <td style="font-size: 7;" rowspan="4">
-                : {{$item->out->pok->pok->act->prog->unit->klcode->code}}.{{$item->out->pok->pok->act->prog->unit->code}}.
-                    {{$item->out->pok->pok->act->prog->code}} / {{$item->out->pok->pok->act->code}} <br>
-                : {{$item->out->pok->sub->komponen->det->unit->code}} / {{$item->out->pok->sub->komponen->det->code}} / 
-                    {{$item->out->pok->sub->komponen->code}} <br>
-                : {{$item->out->pok->sub->code}} / {{$item->out->pok->akun->code}} <br>
+                : 
+                    @if ($item->out->activitycode_id != null)
+                        @php
+                            $akt = str_replace("/", ".", $item->out->act->lengkap);
+                        @endphp
+                        {{$akt}}
+                    @else
+                        @if ($item->out->pok_detail_id == 0)
+                            &nbsp;
+                        @elseif ($item->out->pok_detail_id == 1)
+                            {{' - '}}
+                        @else
+                            {{$item->out->pok->pok->act->prog->unit->klcode->code}}.{{$item->out->pok->pok->act->prog->unit->code}}.
+                            {{$item->out->pok->pok->act->prog->code}} / {{$item->out->pok->pok->act->code}}
+                        @endif
+                    @endif
+                    <br>
+                : 
+                    @if ($item->out->activitycode_id != null)
+                        {{$item->out->sub->komponen->det->unit->code}}
+                        / {{$item->out->sub->komponen->det->code}}
+                        / {{$item->out->sub->komponen->code}}
+                    @else
+                        @if ($item->out->pok_detail_id == 0)
+                            &nbsp;
+                        @elseif ($item->out->pok_detail_id == 1)
+                            {{' - '}}
+                        @else
+                            {{$item->out->pok->sub->komponen->det->unit->code}} / {{$item->out->pok->sub->komponen->det->code}} / 
+                            {{$item->out->pok->sub->komponen->code}} 
+                        @endif
+                    @endif
+                    <br>
+                : 
+                    @if ($item->out->activitycode_id != null)
+                        {{$item->out->sub->code}} / {{$item->out->akun->code}}
+                    @else
+                        @if ($item->out->pok_detail_id == 0)
+                            &nbsp;
+                        @elseif ($item->out->pok_detail_id == 1)
+                            {{' - '}}
+                        @else
+                            {{$item->out->pok->sub->code}} / {{$item->out->pok->akun->code}} 
+                        @endif
+                    @endif
+                    <br>
                 :  {{$item->out->number}} <br>
                 : {{$no}}
             </td>
@@ -466,23 +594,23 @@
                     @if (count($item->out->outst_destiny) == 1)
                         @foreach ($tujuan as $key=>$kota)
                             @if ($loop->first)
-                                {{$kota->destiny->capital}} 
+                {{$kota->destiny->capital}} 
                             @endif 
                         @endforeach
                     @elseif (count($item->out->outst_destiny) == 2)
                         @foreach ($tujuan as $key=>$kota)
                             {{$kota->destiny->capital}}
                             @if ($tujuan->count()-1 != $key)
-                                {{' dan '}}
+                {{' dan '}}
                             @endif
                         @endforeach
                     @else
                         @foreach ($tujuan as $key=>$kota)
                             @if ($loop->last-1)
-                                {{$kota->destiny->capital}}{{','}} 
+                {{$kota->destiny->capital}}{{','}} 
                             @endif
                             @if ($loop->last)
-                                {{' dan '}} {{$kota->destiny->capital}}
+                {{' dan '}} {{$kota->destiny->capital}}
                             @endif
                         @endforeach
                     @endif
@@ -519,13 +647,13 @@
                         <td class="isi">
                             <i>Biaya Tiket {{$itempesawat->planetype}} </i> <br>
                             <table>
-                                <tr>
-                                    <td><i>
-                                        {{tgl_indo($itempesawat->ticketdate)}}
-                                    </i></td>
-                                    <td><i>: Rp.</i></td>
-                                    <td><i>{{number_format($itempesawat->ticketfee)}}</i></td>
-                                </tr>
+                <tr>
+                    <td><i>
+                        {{tgl_indo($itempesawat->ticketdate)}}
+                    </i></td>
+                    <td><i>: Rp.</i></td>
+                    <td><i>{{number_format($itempesawat->ticketfee)}}</i></td>
+                </tr>
                             </table>
                         </td>
                         <td class="isi">

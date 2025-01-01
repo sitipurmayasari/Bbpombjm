@@ -53,27 +53,32 @@
         padding: 10px 5px 10px 5px; /* top right bottom left */
         border: 0.5px solid black;
         border-collapse: collapse;
-        line-height: normal;
+        line-height: 0.8;
     }
+    
 
     .tabno{
         padding-top: 10px;
         border: 0.5px solid black;
         border-collapse: collapse;
-        line-height: normal;
+    }
+
+    .eng{
+        font-size: 7;
     }
         
 
 </style>
 @php
-$no=1;
+    $no=1;
 @endphp
+
 @foreach ($isian as $item)
 <body>
     <table>
         <tr>
             <td style="width: 45%;text-align:center; vertical-align:bottom;" >
-                <img src="{{asset('images/bbpom.jpg')}}" style="height:100px"> <br>
+                <img src="{{asset('images/bbpom.jpg')}}" style="height:80px"> <br>
                <b>BALAI BESAR PENGAWAS OBAT DAN MAKANAN<br>
                 DI BANJARMASIN <br>
                 </b>
@@ -81,94 +86,53 @@ $no=1;
             </td>
             <td style="padding-left: 80px; font-size: 7;">
                <p>
-                PERATURAN DIREKTORAT JENDRAL PERBENDAHARAAN NOMOR  PER 22/PB/2013 TENTANG KETENTUAN LEBIH LANJUT PELAKSANAAN PERJALANAN DINAS DALAM NEGERI BAGI PEJABAT NEGARA, PEGAWAI NEGERI, DAN PEGAWAI TIDAK TETAP. 
+                PERATURAN DIREKTORAT JENDRAL PERBENDAHARAAN NOMOR PER 22/PB/2013 TENTANG KETENTUAN LEBIH LANJUT PELAKSANAAN PERJALANAN DINAS LUAR NEGERI BAGI PEJABAT NEGARA, PEGAWAI NEGERI, DAN PEGAWAI TIDAK TETAP. 
                </p>
-                <br>
                 <table>
                     <tr>
-                        <td style="width: 30%"><i>Program/kegiatan</i></td>
-                        <td style="width: 70%">:
-                            <i>
-                                
-                               @if ($data->activitycode_id != null)
-                                    @php
-                                        $akt = str_replace("/", ".", $data->act->lengkap);
-                                    @endphp
-
-                                   {{$akt}}
-                               @else
-                                    @if ($data->pok_detail_id == 0)
-                                        &nbsp;
-                                    @elseif ($data->pok_detail_id == 1)
-                                        {{' - '}}
-                                    @else
-                                        {{$data->pok->pok->act->prog->unit->klcode->code}}.{{$data->pok->pok->act->prog->unit->code}}.
-                                        {{$data->pok->pok->act->prog->code}}
-                                        / {{$data->pok->pok->act->code}}
-                                    @endif
-                               @endif
+                        <td><i><u>Lembar Ke</u><br>
+                                Sheet No
                             </i>
                         </td>
-                    </tr>
-                    <tr>
-                        <td><i>KRO/RO/komponen</i></td>
-                        <td>:
-                            <i>
-                                @if ($data->activitycode_id != null)
-                                    {{$data->sub->komponen->det->unit->code}}
-                                    / {{$data->sub->komponen->det->code}}
-                                    / {{$data->sub->komponen->code}}
-                                @else
-                                    @if ($data->pok_detail_id == 0)
-                                        &nbsp;
-                                    @elseif ($data->pok_detail_id == 1)
-                                        {{' - '}}
-                                    @else
-                                        {{$data->pok->sub->komponen->det->unit->code}}
-                                        / {{$data->pok->sub->komponen->det->code}}
-                                        / {{$data->pok->sub->komponen->code}}
-                                    @endif
-                                @endif
-                            </i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><i>Sub Komponen/Akun</i></td>
-                        <td>:
-                           <i>
-                            @if ($data->activitycode_id != null)
-                                {{$data->sub->code}} / {{$data->akun->code}}
-                            @else
-                                @if ($data->pok_detail_id == 0)
-                                    &nbsp;
-                                @elseif ($data->pok_detail_id == 1)
-                                    {{' - '}}
-                                @else
-                                    {{$data->pok->sub->code}} / {{$data->pok->akun->code}}
-                                @endif
-                            @endif
-                           </i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><i>No. Surat Tugas</i></td>
-                        <td>:
-                            <i>{{$data->number}}</i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><i>Petugas</i></td>
                         <td>: 
-                            <i>{{$no++}}</i>
+                            <i class="eng">{{$no++}}</i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i><u>Kode No</u><br>
+                            Code No
+                            </i>
+                        </td>
+                        <td>:
+                            <i>
+                                <?php
+                                    $kode = substr($item->no_sppd,5);
+                                    echo $kode;
+                                ?>
+                            </i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i><u>Nomor</u><br>
+                            Number
+                            </i>
+                        </td>
+                        <td>:
+                            <i>
+                                <?php
+                                    $kode = substr($item->no_sppd,0,4);
+                                    echo $kode;
+                                ?>
+                            </i>
                         </td>
                     </tr>
                 </table>
             </td>
         </tr>
         <tr>
-            <td colspan="2"style="text-align:center; padding-top:30px;line-height:1.5">
+            <td colspan="2"style="text-align:center; padding-top:30px;">
                 <b style="font-size: 12;"><u>SURAT PERJALANAN DINAS</u><br></b>
-                Nomor : {{$item->no_sppd}}
+                <b style="font-size: 11;"><i>LETTER OF OFFICIAL TRAVEL</i></b>
             </td>
         </tr>
     </table>
@@ -177,7 +141,8 @@ $no=1;
         <tr class="tabbor">
             <td style="text-align: center;" class="tabno">1.</td>
             <td class="tabbor" colspan="2">
-                Pejabat Pembuat Komitmen
+                <u>Pejabat Pembuat Komitmen</u> <br>
+                <i class="eng">Authorizing Officer</i>
             </td>
             <td colspan="2" class="tabbor">
                 @if ($data->ppk_id != 0)
@@ -190,8 +155,9 @@ $no=1;
         <tr class="tabbor">
             <td style="text-align: center;" class="tabno">2.</td>
             <td class="tabbor" colspan="2">
-                Nama/NIP Pegawai yang melaksanakan
-                perjalanan dinas</td>
+                <u>Nama/NIP Pegawai yang melaksanakan perjalanan dinas</u><br>
+                <i class="eng">Name/Employee Register Number of the assigned officer</i>
+            </td>
             <td colspan="2" class="tabbor">
                 {{$item->pegawai->name}} /
                 @if ($item->pegawai->golongan_id != null)
@@ -204,9 +170,12 @@ $no=1;
         <tr class="tabbor">
             <td style="text-align: center;" class="tabno">3.</td>
             <td class="tabbor" colspan="2">
-                a. Pangkat dan Golongan<br>
-                b. Jabatan <br>
-                c. Tingkat Biaya Perjalanan Dinas 
+                a. <u>Pangkat dan Golongan</u><br>
+                &nbsp; &nbsp; <i class="eng">Official rank</i><br>
+                b. <u>Jabatan</u> <br>
+                &nbsp; &nbsp; <i class="eng">Position/Institution</i><br>
+                c. <u> Tingkat Biaya Perjalanan Dinas</u> <br>
+                &nbsp; &nbsp; <i class="eng">Level of official Travel Expense</i><br>
                 
             </td>
             <td colspan="2" class="tabbor">
@@ -215,57 +184,31 @@ $no=1;
                 @else
                     {{' - '}}
                 @endif    
-                <br>
+                <br><br>
                 @if ($item->pegawai->jabasn_id != null)
                     {{$item->pegawai->jabasn->nama}}
                 @else
                     {{$item->pegawai->deskjob}} 
                 @endif  
-                <br>
-                - 
+                <br><br>
+                B
             </td>
         </tr>
         <tr>
             <td style="text-align: center;" class="tabno">4.</td>
             <td class="tabbor" colspan="2">
-                Maksud Perjalanan Dinas
+                <u>Maksud Perjalanan Dinas</u><br>
+                <i class="eng">Purpose of Travel</i>
             </td>
             <td colspan="2" class="tabbor">
                 {{$data->purpose}} 
-                di 
-                @if (count($data->outst_destiny) == 1)
-                    @foreach ($data->outst_destiny as $key=>$item)
-                        @if ($loop->first)
-                            {{$item->destiny->capital}}
-                        @endif
-                        
-                    @endforeach
-
-                @elseif (count($data->outst_destiny) == 2)
-                    @foreach ($data->outst_destiny as $key=>$item)
-                        {{$item->destiny->capital}}
-                        @if ($data->outst_destiny->count()-1 != $key)
-                            {{' dan '}}
-                        @endif
-                    @endforeach
-
-                @else
-                    @foreach ($data->outst_destiny as $key=>$item)
-                        @if ($loop->last-1)
-                            {{$item->destiny->capital}}{{','}} 
-                        @endif
-                        @if ($loop->last)
-                            {{' dan '}} {{$item->destiny->capital}}
-                        @endif
-                        
-                    @endforeach
-                @endif;               
             </td>
         </tr>
         <tr class="tabbor">
             <td style="text-align: center;" class="tabno">5.</td>
             <td class="tabbor" colspan="2">
-                Alat Angkutan yang Dipergunakan
+                <u>Alat Angkutan yang Dipergunakan</u><br>
+                <i class="eng">Mode of transportation</i>
             </td>
             <td colspan="2" class="tabbor">
                {{$data->transport}} <br>
@@ -274,11 +217,14 @@ $no=1;
         <tr class="tabbor">
             <td style="text-align: center;" class="tabno">6.</td>
             <td class="tabbor" colspan="2">
-                a. Tempat Berangkat <br>
-                b. Tempat Tujuan <br>
+                a. <u>Tempat Berangkat</u> <br>
+                &nbsp; &nbsp; <i class="eng">Point of Departure</i> <br>
+                b. <u>Tempat Tujuan</u> <br>
+                &nbsp; &nbsp; <i class="eng">Point of Destionation</i> <br>
             </td>
             <td colspan="2" class="tabbor">
-                {{$data->cityfrom->capital}} <br>
+                {{$data->cityfrom->capital}} 
+                <br><br>
                 @if (count($data->outst_destiny) == 1)
                      @foreach ($data->outst_destiny as $key=>$item)
                          @if ($loop->first)
@@ -311,23 +257,72 @@ $no=1;
         <tr class="tabbor">
             <td style="text-align: center;" class="tabno">7.</td>
             <td class="tabbor" colspan="2">
-                a. Lamanya Perjalanan Dinas <br>
-                b. Tanggal Berangkat <br>
-                c. Tanggal harus kembali<br>
-                
+                a. <u>Lamanya Perjalanan Dinas</u> <br>
+                    &nbsp; &nbsp; <i class="eng">Duration of Official Travel</i><br>
+                b. <u>Tanggal Berangkat</u> <br>
+                    &nbsp; &nbsp; <i class="eng">Date of Departure</i><br>
+                c. <u>Tanggal harus kembali</u> <br>
+                    &nbsp; &nbsp; <i class="eng">End of assignment Date</i>
             </td>
             <td colspan="2" class="tabbor">
-                {{$lama->hitung}} ({{terbilang($lama->hitung)}}) Hari  
+                <u>{{$lama->hitung}} ({{terbilang($lama->hitung)}}) Hari  </u> <br>
+                <i class="eng">{{$lama->hitung}}
+                    <?php
+                        function numToWords($number) {
+                            $units = array('', 'one', 'two', 'three', 'four',
+                                        'five', 'six', 'seven', 'eight', 'nine');
+
+                            $tens = array('', 'ten', 'twenty', 'thirty', 'forty',
+                                        'fifty', 'sixty', 'seventy', 'eighty', 
+                                        'ninety');
+
+                            $special = array('eleven', 'twelve', 'thirteen',
+                                            'fourteen', 'fifteen', 'sixteen',
+                                            'seventeen', 'eighteen', 'nineteen');
+
+                            $words = '';
+                            if ($number < 10) {
+                                $words .= $units[$number];
+                            } elseif ($number < 20) {
+                                $words .= $special[$number - 11];
+                            } else {
+                                $words .= $tens[(int)($number / 10)] . ' '
+                                        . $units[$number % 10];
+                            }
+
+                            return $words;
+                        }
+
+                        // Example usage:
+                        $number = $lama->hitung;
+                        echo "(".numToWords($number).") Days";
+
+                    ?>
+                </i>
                 <br>
                     @foreach ($data->outst_destiny as $key=>$item)
                         @if ($loop->first)
-                             {{tgl_indo($item->go_date)}}
+                             <u>{{tgl_indo($item->go_date)}}</u> <br>
+                             <i class="eng">
+                                @php
+                                    $timestamp = strtotime($item->go_date);
+                                    $new_format = date('d F Y', $timestamp);
+                                    echo $new_format;
+                                @endphp
+                            </i>
                         @endif
                     @endforeach
                 <br>
                     @foreach ($data->outst_destiny as $key=>$item)
                         @if ($loop->last)
-                            {{tgl_indo($item->return_date)}}
+                            <u>{{tgl_indo($item->return_date)}}</u> <br>
+                            <i class="eng">
+                                @php
+                                    $timestamp = strtotime($item->return_date);
+                                    $new_format = date('d F Y', $timestamp);
+                                    echo $new_format;
+                                @endphp
+                            </i> <br>
                         @endif
                     @endforeach
             </td>
@@ -335,16 +330,20 @@ $no=1;
         <tr class="tabbor">
             <td style="text-align: center;width: 3%" class="tabno" rowspan="2">8.</td>
             <td class="tabbor"style="vertical-align:top; width:12%;border-right: none;">
-                Pengikut:
+                <u>Pengikut:</u> <br>
+                <i class="eng">Companion</i>
             </td>
             <td class="tabbor" style="text-align: center;border-left: none;width:25%;">
-                Nama
+                <u>Nama</u><br>
+                <i class="eng">Name</i>
             </td>
             <td class="tabbor" style="text-align: center;">
-                Tanggal Lahir / NIP
+                <u>Tanggal Lahir</u> <br>
+                <i class="eng">Date of Birth</i>
             </td>
             <td class="tabbor" style="text-align: center;">
-                Keterangan
+                <u>Keterangan</u><br>
+                <i class="eng">Note</i>
             </td>
         </tr>
         <tr class="tabbor">
@@ -361,11 +360,13 @@ $no=1;
         <tr class="tabbor" style="border-bottom: none; padding-bottom:0;">
             <td style="text-align: center;" rowspan="2" class="tabno">9.</td>
             <td class="tabbor" colspan="2" style="border-bottom: none;  padding-bottom:0;">
-                Pembebanan anggaran <br>
-                a. Instansi
+                <u>Pembebanan anggaran</u> <br>
+                <i class="eng">Budget Allocation</i> <br>
+                a. <u>Instansi</u><br>
+                &nbsp; &nbsp; <i class="eng">Institution</i>
             </td>
             <td class="tabbor" colspan="2" colspan="2" style="border-bottom: none;  padding-bottom:0;">
-                <br>
+                <br><br>
                 @if ($data->budget_id == 3)
                     {{$data->budget->name}}
                 @else
@@ -387,15 +388,12 @@ $no=1;
         </tr>
         <tr class="tabbor" style="border-top: none; padding-top:0;">
             <td class="tabbor" colspan="2" style="border-top: none; padding-top:0;">
-                b. Akun
+                b. <u>Akun</u> <br>
+                &nbsp; &nbsp; <i class="eng">Code of Account</i>
             </td>
             <td class="tabbor" colspan="2" style="border-top: none; padding-top:0;">
                 @if ($data->activitycode_id != null)
-                    @php
-                        $akt = str_replace("/", ".", $data->act->lengkap);
-                        $subk = str_replace("/", ".", $data->sub->kodeall);
-                    @endphp
-                    {{$akt}}. {{$subk}}. {{$data->akun->code}}
+                    {{$data->act->lengkap}}/{{$data->sub->kodeall}}/{{$data->akun->code}}
                 @else
                     @if ($data->pok_detail_id == 0)
                         &nbsp;
@@ -414,7 +412,10 @@ $no=1;
         </tr>
         <tr class="tabbor">
             <td style="text-align: center;" class="tabno">10.</td>
-            <td class="tabbor" colspan="2">Keterangan lain - lain</td>
+            <td class="tabbor" colspan="2">
+                <u>Keterangan lain - lain</u><br>
+                <i class="eng">Additional Note</i>
+            </td>
             <td class="tabbor" colspan="2" colspan="2">
               SPD Tanggal 
                 @foreach ($data->outst_destiny as $key=>$item)
@@ -437,7 +438,10 @@ $no=1;
             <td>
                 <table>
                     <tr>
-                        <td>Dikeluarkan di</td>
+                        <td style="line-height: 0.8;">
+                            <u>Dikeluarkan di</u><br>
+                            <i class="eng">Place of Issuance</i>
+                        </td>
                         <td>: 
                             @if ($data->external !="Y")
                                 {{$data->cityfrom->capital}}
@@ -452,14 +456,23 @@ $no=1;
                         </td>
                     </tr>
                     <tr>
-                        <td>Pada tanggal</td>
-                        <td>: {{tgl_indo($data->st_date)}}
+                        <td style="line-height: 0.8;">
+                            <u>Pada tanggal</u><br>
+                            <i class="eng">Date of Issuance</i>
+                        </td>
+                        <td>: 
+                            @php
+                                $timestamp = strtotime($data->st_date);
+                                $new_format = date('d F Y', $timestamp);
+                                echo $new_format;
+                            @endphp
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2" style="font-weight:bold;">
+                        <td colspan="2" style="line-height: 0.8;">
                             <br>
-                                Pejabat Pembuat Komitmen
+                               <b><u> Pejabat Pembuat Komitmen</u></b><br>
+                               <i class="eng">Authorizing Officer</i>
                         </td>
                     </tr>
                     <tr>

@@ -61,14 +61,23 @@
             </td>
             <td  class="atas" style="width: 5%">MAK</td>
             <td  class="atas" style="width: 35%">:
-                @if ($data->st->pok_detail_id == 0)
-                    {{' Non Anggaran '}}
+                @if ($data->st->activitycode_id != null)
+                    @php
+                        $akt = str_replace("/", ".", $data->st->act->lengkap);
+                        $subk = str_replace("/", ".", $data->st->sub->kodeall);
+                    @endphp
+                        {{$akt}}.{{$subk}}.{{$data->st->akun->code}}
                 @else
-                    {{$data->st->pok->pok->act->prog->unit->klcode->code}}.{{$data->st->pok->pok->act->prog->unit->code}}.
-                    {{$data->st->pok->pok->act->prog->code}}.{{$data->st->pok->pok->act->code}}.
-                    {{$data->st->pok->sub->komponen->det->unit->code}}.{{$data->st->pok->sub->komponen->det->code}}.
-                    {{$data->st->pok->sub->komponen->code}}.{{$data->st->pok->sub->code}}.{{$data->st->pok->akun->code}}
-
+                    @if ($data->st->pok_detail_id == 0)
+                        {{' Non Anggaran '}}
+                    @elseif ($data->st->pok_detail_id == 1)
+                        {{' - '}}
+                    @else
+                        {{$data->st->pok->pok->act->prog->unit->klcode->code}}.{{$data->st->pok->pok->act->prog->unit->code}}.
+                        {{$data->st->pok->pok->act->prog->code}}.{{$data->st->pok->pok->act->code}}.
+                        {{$data->st->pok->sub->komponen->det->unit->code}}.{{$data->st->pok->sub->komponen->det->code}}.
+                        {{$data->st->pok->sub->komponen->code}}.{{$data->st->pok->sub->code}}.{{$data->st->pok->akun->code}}    
+                    @endif
                 @endif
             </td>
         </tr>

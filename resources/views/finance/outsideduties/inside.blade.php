@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>DALAM KOTA > 8 JAM</title>
+    <title>DALAM KOTA</title>
     <style>
          @page {
             size:8.5in 13in landscape;
@@ -51,21 +51,16 @@
                 <td style="width: 11%">Program/kegiatan</td>
                 <td style="width: 18%">:
                     @if ($data->activitycode_id != null)
-                            @php
-                                $akt = str_replace("/", ".", $data->act->lengkap);
-                            @endphp
-
-                        {{$akt}}
+                                   {{$data->act->lengkap}}
                     @else
-                            @if ($data->pok_detail_id == 0)
-                                &nbsp;
-                            @elseif ($data->pok_detail_id == 1)
-                                {{' - '}}
-                            @else
-                                {{$data->pok->pok->act->prog->unit->klcode->code}}.{{$data->pok->pok->act->prog->unit->code}}.
-                                {{$data->pok->pok->act->prog->code}}
-                                / {{$data->pok->pok->act->code}}
-                            @endif
+                    @if ($data->pok_detail_id == 0)
+                        &nbsp;
+                    @elseif ($data->pok_detail_id == 1)
+                        {{' - '}}
+                    @else
+                        {{$data->pok->pok->act->prog->unit->klcode->code}}.{{$data->pok->pok->act->prog->unit->code}}.
+                        {{$data->pok->pok->act->prog->code}}
+                        / {{$data->pok->pok->act->code}}
                     @endif
                 </td>
             </tr>
@@ -73,18 +68,16 @@
                 <td>KRO/RO/komponen</td>
                 <td>:
                     @if ($data->activitycode_id != null)
-                                    {{$data->sub->komponen->det->unit->code}}
-                                    / {{$data->sub->komponen->det->code}}
-                                    / {{$data->sub->komponen->code}}
+                        {{$data->sub->komponen->det->unit->code}}
+                        / {{$data->sub->komponen->det->code}}
+                        / {{$data->sub->komponen->code}}
                     @else
                         @if ($data->pok_detail_id == 0)
-                            &nbsp;
+                            {{' Non Anggaran '}}
                         @elseif ($data->pok_detail_id == 1)
                             {{' - '}}
                         @else
-                            {{$data->pok->sub->komponen->det->unit->code}}
-                            / {{$data->pok->sub->komponen->det->code}}
-                            / {{$data->pok->sub->komponen->code}}
+                            {{$data->pok->sub->komponen->det->unit->code}} / {{$data->pok->sub->komponen->det->code}} / {{$data->pok->sub->komponen->code}}
                         @endif
                     @endif
                 </td>
@@ -94,17 +87,19 @@
                 <td>Sub Komponen/Akun</td>
                 <td>:
                     @if ($data->activitycode_id != null)
-                        {{$data->sub->code}} / {{$data->akun->code}}
+                        {{$data->sub->code}}/{{$data->akun->code}}
                     @else
                         @if ($data->pok_detail_id == 0)
-                            &nbsp;
+                            {{' Non Anggaran '}}
                         @elseif ($data->pok_detail_id == 1)
                             {{' - '}}
                         @else
                             {{$data->pok->sub->code}} / {{$data->pok->akun->code}}
                         @endif
                     @endif
+                    
                 </td>
+                
             </tr>
             <tr>
                 <td>No. Surat Tugas</td>
@@ -118,7 +113,7 @@
        <br>
        <br>
        <br>
-       <h5 style="text-align: center">BUKTI KEHADIRAN PELAKSANAAN PERJALANAN DINAS JABATAN DALAM KOTA LEBIH DARI 8 (DELAPAN) JAM</h5>
+       <h5 style="text-align: center">BUKTI KEHADIRAN PELAKSANAAN PERJALANAN DINAS JABATAN DALAM KOTA SAMPAI DENGAN 8 (DELAPAN) JAM</h5>
        <table style="width:100%" class="detail">
             <thead>
                 <tr>
@@ -160,50 +155,51 @@
                     </td>
                     <td class="detail" style="text-align:center;">
                         @php
-                            $a = strtotime($item->go_date);
-                            $b = strtotime($item->return_date);
-                            $c = date('D', $a);
-                            $d = date('D', $b);
-                            if ($c=='Sun') {
-                            $days='Minggu';
-                            }else if ($c=='Mon') {
-                                $days='Senin';
-                            }else if ($c=='Tue') {
-                                $days='Selasa';
-                            }else if ($c=='Wed') {
-                                $days='Rabu';
-                            }else if ($c=='Thu') {
-                                $days='Kamis';
-                            }else if ($c=='Fri') {
-                                $days='Jumat';
-                            }else{
-                                $days='Sabtu';
-                            };
+                        $a = strtotime($item->go_date);
+                        $b = strtotime($item->return_date);
+                        $c = date('D', $a);
+                        $d = date('D', $b);
+                        if ($c=='Sun') {
+                           $days='Minggu';
+                        }else if ($c=='Mon') {
+                            $days='Senin';
+                        }else if ($c=='Tue') {
+                            $days='Selasa';
+                        }else if ($c=='Wed') {
+                            $days='Rabu';
+                        }else if ($c=='Thu') {
+                            $days='Kamis';
+                        }else if ($c=='Fri') {
+                            $days='Jumat';
+                        }else{
+                            $days='Sabtu';
+                        };
 
-                            if ($d=='Sun') {
-                            $days2='Minggu';
-                            }else if ($d=='Mon') {
-                                $days2='Senin';
-                            }else if ($d=='Tue') {
-                                $days2='Selasa';
-                            }else if ($d=='Wed') {
-                                $days2='Rabu';
-                            }else if ($d=='Thu') {
-                                $days2='Kamis';
-                            }else if ($d=='Fri') {
-                                $days2='Jumat';
-                            }else{
-                                $days2='Sabtu';
-                            };
-                        @endphp
+                        if ($d=='Sun') {
+                           $days2='Minggu';
+                        }else if ($d=='Mon') {
+                            $days2='Senin';
+                        }else if ($d=='Tue') {
+                            $days2='Selasa';
+                        }else if ($d=='Wed') {
+                            $days2='Rabu';
+                        }else if ($d=='Thu') {
+                            $days2='Kamis';
+                        }else if ($d=='Fri') {
+                            $days2='Jumat';
+                        }else{
+                            $days2='Sabtu';
+                        };
+                    @endphp
 
-                        @if ($lama->hitung == 1)
-                            {{$days}}
-                        @else
-                            {{$days}} <br><br>
-                            {{ 's/d' }} <br><br>
-                            {{$days2}}
-                        @endif
+                    @if ($lama->hitung == 1)
+                        {{$days}}
+                    @else
+                        {{$days}} <br><br>
+                        {{ 's/d' }} <br><br>
+                        {{$days2}}
+                    @endif
+
                     </td class="detail">
                     <td class="detail" style="height:60%; text-align:center;" >
                         @if ($lama->hitung == 1)

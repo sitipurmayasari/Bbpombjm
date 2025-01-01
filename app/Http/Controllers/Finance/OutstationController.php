@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Finance;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Destination;
@@ -52,313 +51,120 @@ class OutstationController extends Controller
                             })
                         ->paginate(10);
       }
-      
-     
         return view('finance/outstation.index',compact('data'));
     }
 
     public function create()
     {
-        $thn            = Carbon::now()->year;
-        $ppk            = PPK::all();
-        $budget         = Budget::OrderBy('id','desc')->get();
-        $act            = Activitycode::all();
-        $sub            = Subcode::all();
-        $akun           = Accountcode::all();
-        $div            = Divisi::all();
-        $outsor         = User::where('email',NULL)->where('aktif','N');
-        $user           = User::where('id','!=','1')
+      $thn            = Carbon::now()->year;
+      $ppk            = PPK::all();
+      $budget         = Budget::OrderBy('id','desc')->get();
+      $act            = Activitycode::all();
+      $sub            = Subcode::all();
+      $akun           = Accountcode::all();
+      $div            = Divisi::all();
+      $outsor         = User::where('email',NULL)->where('aktif','N');
+      $user           = User::where('id','!=','1')
                             ->where('aktif','Y')
                             ->UnionAll($outsor)
                             ->get();
-        $destination    = Destination::all();
-        $tim            = Teamleader::orderby('detail','asc')->whereRaw("curdate() BETWEEN datefrom AND dateto")->get();
-        $pok            = Pok_detail::SelectRaw('pok_detail.*')
-                                    ->leftjoin('pok','pok.id','=','pok_detail.pok_id')
-                                    ->where('pok.year','=',$thn)
-                                    ->WhereRaw("pok_id IN ((select id from pok where year = $thn and activitycode_id = 3  ORDER BY id DESC LIMIT 1),
-                                    (select id from pok where year = $thn and activitycode_id = 2  ORDER BY id DESC LIMIT 1))")
-                                    ->get();
+      $destination    = Destination::all();
+      $tim            = Teamleader::orderby('detail','asc')->whereRaw("curdate() BETWEEN datefrom AND dateto")->get();
+      $cekplh         = Pejabat::orderby('id','desc')->whereRaw("curdate() BETWEEN dari AND sampai")->first();
         
-        return view('finance/outstation.create',compact('user','destination','div','ppk', 'sub', 'akun','act','budget','tim','pok'));
+        return view('finance/outstation.create',compact('user','destination','div','ppk', 'sub', 'akun','act','budget','tim','cekplh'));
     }
-      public function store(Request $request)
-      { 
-        // dd($request->all());
-        $this->validate($request,[
-            'number' => 'required',
-            'divisi_id' => 'required',
-            'purpose'=> 'required',
-            'ppk_id'=> 'required',
-            'budget_id'=> 'required',
-            'city_from'=> 'required',
-            'type'=> 'required',
-        ]);          
-        DB::beginTransaction(); 
-            $outstation = Outstation::create($request->all());
-            $outstation_id = $outstation->id;
-            for ($i = 0; $i < count($request->input('users_id')); $i++){
-                $data = [
-                    'outstation_id' => $outstation_id,
-                    'users_id'      => $request->users_id[$i],
-                    'no_sppd'       => $request->no_sppd[$i],
-                ];
-                Outst_employee::create($data);
-            }
+      
+    public function store(Request $request)
+    { 
+      $this->validate($request,[
+        'number' => 'required',
+        'divisi_id' => 'required',
+        'purpose'=> 'required',
+        'ppk_id'=> 'required',
+        'budget_id'=> 'required',
+        'city_from'=> 'required',
+        'type'=> 'required',
+      ]);          
+      DB::beginTransaction(); 
+        $outstation = Outstation::create($request->all());
+        $outstation_id = $outstation->id;
+        for ($i = 0; $i < count($request->input('users_id')); $i++){
+          $data = [
+            'outstation_id' => $outstation_id,
+            'users_id'      => $request->users_id[$i],
+            'no_sppd'       => $request->no_sppd[$i],
+          ];
+          Outst_employee::create($data);
+        }
             
-            for ($i = 0; $i < count($request->input('destination_id')); $i++){
-              $tgl1 = new DateTime($request->go_date[$i]);
-              $tgl2 = new DateTime($request->return_date[$i]);
-              $daylong_1 = $tgl2->diff($tgl1)->days + 1;
-              $request->merge(['daylong_1'=>$daylong_1]);
+        for ($i = 0; $i < count($request->input('destination_id')); $i++){
+          $tgl1 = new DateTime($request->go_date[$i]);
+          $tgl2 = new DateTime($request->return_date[$i]);
+          $daylong_1 = $tgl2->diff($tgl1)->days + 1;
+          $request->merge(['daylong_1'=>$daylong_1]);
               
-              $data = [
-                  'outstation_id'   => $outstation_id,
-                  'destination_id'  => $request->destination_id[$i],
-                  'go_date'         =>$request->go_date[$i],
-                  'return_date'     =>$request->return_date[$i],
-                  'longday'         =>$daylong_1
-              ];
-              Outst_destiny::create($data);
-            }
-
-            DB::commit();
-
-            LogActivity::addToLog('Simpan->Surat Tugas, nomor = '.$request->number);
+          $data = [
+            'outstation_id'   => $outstation_id,
+            'destination_id'  => $request->destination_id[$i],
+            'go_date'         =>$request->go_date[$i],
+            'return_date'     =>$request->return_date[$i],
+            'longday'         =>$daylong_1
+          ];
+          Outst_destiny::create($data);
+        }
   
-          return redirect('/finance/outstation');  
-      }
+      DB::commit();
+  
+      LogActivity::addToLog('Simpan->Surat Tugas, nomor = '.$request->number);
+      return redirect('/finance/outstation');  
+    }
 
-      public function printST($id)
-      {
-        $now = Budget::whereraw('code LIKE "D%"')->orderBy('id','desc')->first(); 
-        $data = Outstation::where('id',$id)->first();
-        $isian = Outst_employee::orderBy('id','asc')
-                            ->where('outstation_id','=',$id)
-                            ->get();  
-        $datapeg = Outst_employee::orderBy('id','asc')
-                            ->where('outstation_id','=',$id)
-                            ->first();      
-        $jmlpeg  = Outst_employee::SelectRaw('count(*) as hitung')   
-                                  ->where('outstation_id',$id)
-                                  ->first(); 
-        $cekkepala = Outst_employee::where('outstation_id',$id)
-                                  ->whereraw("users_id = (SELECT users_id FROM pejabat WHERE jabatan_id = 6 and pjs IS NULL ORDER BY id DESC LIMIT 1)")
-                                  ->orderby('id','desc')
-                                  ->first();
-        if ($cekkepala != null) {
-          $menyetujui = Pejabat::where('jabatan_id', '=', 6)
-                                ->whereRaw("pjs IS NULL")
-                                ->orderby('id','desc')
-                                ->first();
-        } else {
-          $menyetujui = Pejabat::where('jabatan_id', '=', 6)
+    public function edit($id)
+  {
+      $data           = Outstation::where('id',$id)->first();
+      $div            = Divisi::all();
+      $ppk            = PPK::all();
+      $budget         = Budget::OrderBy('id','desc')->get();
+      $thn            = Carbon::now()->year;
+      $act            = Activitycode::all();
+      $sub            = Subcode::all();
+      $akun           = Accountcode::all();
+      $pok            = Pok_detail::SelectRaw('pok_detail.*')
+                                  ->leftjoin('pok','pok.id','=','pok_detail.pok_id')
+                                  ->where('pok.year','=',$thn)
+                                  ->get();
+      $destination    = Destination::all();
+      $outsor         = User::where('email',NULL)->where('aktif','N');
+      $user           = User::where('id','!=','1')
+                            ->where('aktif','Y')
+                            ->UnionAll($outsor)
+                            ->get();
+      $petugas        = Outst_employee::where('outstation_id',$id)->get();
+      $sppd           = Stbook_sppd::leftjoin('stbook','stbook.id','=','stbook_sppd.stbook_id')
+                                    ->where('stbook.stbook_number',$data->number)->get();
+      $kota           = Outst_destiny::where('outstation_id',$id)->get();
+      $tim            = Teamleader::orderby('detail','asc')->get();
+
+      if ($data->plh == 'Y') {
+        $menyetujui = Pejabat::where('jabatan_id', '=', 6)
                               ->whereRaw("(SELECT st_date FROM outstation WHERE id=$id) BETWEEN dari AND sampai")
+                              ->where('pjs','Plh.')
                               ->orderby('id','desc')
                               ->first();
-        }
-        
-        if ($jmlpeg->hitung > 1) {
-          $pdf = PDF::loadview('finance/outstation.printSTbanyak',compact('data','isian','menyetujui', 'cekkepala'));
-        } else {
-          $pdf = PDF::loadview('finance/outstation.printST',compact('data','datapeg','menyetujui','now','cekkepala'));
-        }
-        return $pdf->stream();
-        
-      }
-
-      public function printSTKop($id)
-      {
-        $data = Outstation::where('id',$id)->first();
-        $isian = Outst_employee::orderBy('id','asc')
-                            ->where('outstation_id','=',$id)
-                            ->get();
-        $datapeg = Outst_employee::orderBy('id','asc')
-                            ->where('outstation_id','=',$id)
-                            ->first();   
-        $cekkepala = Outst_employee::where('outstation_id',$id)
-                            ->whereraw("users_id = (SELECT users_id FROM pejabat WHERE jabatan_id = 6 and pjs IS NULL ORDER BY id DESC LIMIT 1)")
-                            ->orderby('id','desc')
-                            ->first();   
+       } else {
         $menyetujui = Pejabat::where('jabatan_id', '=', 6)
-                            ->whereRaw("pjs IS NULL || pjs != 'Plh.'")
-                            ->orderby('id','desc')
-                            ->first();
-        $jmlpeg  = Outst_employee::SelectRaw('count(*) as hitung')   
-                            ->where('outstation_id',$id)
-                            ->first(); 
-
-        // $phpWord = new \PhpOffice\PhpWord\PhpWord();
-        if ($jmlpeg->hitung > 1) {
-          $pdf = PDF::loadview('finance/outstation.printSTKopbanyak',compact('data','isian','menyetujui','cekkepala'));
-        } else {
-          $pdf = PDF::loadview('finance/outstation.printSTKop',compact('data','datapeg','menyetujui','cekkepala'));
-          // return view('finance/outstation.printSTKop',compact('data','datapeg','menyetujui'));
-        }
-        return $pdf->stream();
+                              ->whereraw("pjs IS NULL OR pjs = 'Plt.'")
+                              ->orderby('id','desc')
+                              ->first();
       }
+      
+      $hitpeserta     = Outst_employee::SelectRaw('COUNT(id) AS jumpes')->where('outstation_id',$id)->first();
+      return view ('finance/outstation.edit',compact('data','div','ppk','budget','pok','destination','user','petugas','sppd','kota','hitpeserta','tim',
+                   'sub', 'akun','act','menyetujui'));
+  }
 
-
-      public function printSppd($id)
-      {
-        $data       = Outstation::where('id',$id)->first();
-        $isian      = Outst_employee::orderBy('id','asc')
-                            ->where('outstation_id','=',$id)
-                            ->get();
-        $menyetujui = Pejabat::where('jabatan_id', '=', 11)
-                            ->whereRaw("(SELECT st_date FROM outstation WHERE id=$id) BETWEEN dari AND sampai")
-                            ->first();
-        $destinys   = Outst_destiny::orderBy('id','asc')
-                            ->where('outstation_id','=',$id)
-                            ->get();      
-        $hit       = Outst_destiny::selectRaw('count(*) as jum')
-                            ->where('outstation_id','=',$id)
-                            ->first();
-        $desti1   = Outst_destiny::orderBy('id','asc')
-                      ->where('outstation_id','=',$id)
-                      ->first();  
-        $desti2   = Outst_destiny::orderBy('id','desc')
-                      ->where('outstation_id','=',$id)
-                      ->first();   
-
-        if ($desti1->go_date==$desti2->go_date) {
-            $lama = Outst_destiny::selectRaw('longday as hitung')
-                  ->where('outstation_id','=',$id)
-                  ->first();
-        } elseif($desti1->return_date==$desti2->go_date){
-          $lama = Outst_destiny::selectRaw('((sum(longday)) - 1) as hitung')
-                  ->where('outstation_id','=',$id)
-                  ->first();
-        } else {
-            $lama = Outst_destiny::selectRaw('sum(longday) as hitung')
-                  ->where('outstation_id','=',$id)
-                  ->first();
-        }
-            
-        if ($data->type=='DL') {
-          $pdf = PDF::loadview('finance/outstation.inside',compact('data','isian','destinys','lama'));
-        } elseif ($data->type=='DL8') {
-            $pdf = PDF::loadview('finance/outstation.inside2',compact('data','isian','destinys','lama'));
-        } else {
-          $pdf = PDF::loadview('finance/outstation.sppdnewN',compact('data','isian','menyetujui','destinys','lama'));
-        }
-        return $pdf->stream();
-      }
-
-      public function printSppdD($id)
-      {
-        $data       = Outstation::where('id',$id)->first();
-        $isian      = Outst_employee::orderBy('id','asc')
-                            ->where('outstation_id','=',$id)
-                            ->get();
-        $menyetujui = Pejabat::where('jabatan_id', '=', 11)
-                            ->whereRaw("(SELECT st_date FROM outstation WHERE id=$id) BETWEEN dari AND sampai")
-                            ->first();
-        $destinys   = Outst_destiny::orderBy('id','asc')
-                            ->where('outstation_id','=',$id)
-                            ->get();      
-        $hit       = Outst_destiny::selectRaw('count(*) as jum')
-                            ->where('outstation_id','=',$id)
-                            ->first();
-        $desti1   = Outst_destiny::orderBy('id','asc')
-                      ->where('outstation_id','=',$id)
-                      ->first();  
-        $desti2   = Outst_destiny::orderBy('id','desc')
-                      ->where('outstation_id','=',$id)
-                      ->first();   
-
-        if ($desti1->go_date==$desti2->go_date) {
-            $lama = Outst_destiny::selectRaw('longday as hitung')
-                  ->where('outstation_id','=',$id)
-                  ->first();
-        } elseif($desti1->return_date==$desti2->go_date){
-          $lama = Outst_destiny::selectRaw('((sum(longday)) - 1) as hitung')
-                  ->where('outstation_id','=',$id)
-                  ->first();
-        } else {
-            $lama = Outst_destiny::selectRaw('sum(longday) as hitung')
-                  ->where('outstation_id','=',$id)
-                  ->first();
-        }
-            
-          $pdf = PDF::loadview('finance/outstation.sppdnewN',compact('data','isian','menyetujui','destinys','lama'));
-        return $pdf->stream();
-      }
-
-      public function printSppdB($id)
-      {
-        $data       = Outstation::where('id',$id)->first();
-        $isian      = Outst_employee::orderBy('id','asc')
-                            ->where('outstation_id','=',$id)
-                            ->get();
-        $menyetujui = Pejabat::where('jabatan_id', '=', 11)
-                            ->whereRaw("(SELECT st_date FROM outstation WHERE id=$id) BETWEEN dari AND sampai")
-                            ->first();
-        $destinys   = Outst_destiny::orderBy('id','asc')
-                            ->where('outstation_id','=',$id)
-                            ->get();      
-        $hit       = Outst_destiny::selectRaw('count(*) as jum')
-                            ->where('outstation_id','=',$id)
-                            ->first();
-        $desti1   = Outst_destiny::orderBy('id','asc')
-                      ->where('outstation_id','=',$id)
-                      ->first();  
-        $desti2   = Outst_destiny::orderBy('id','desc')
-                      ->where('outstation_id','=',$id)
-                      ->first();   
-
-        if ($desti1->go_date==$desti2->go_date) {
-            $lama = Outst_destiny::selectRaw('longday as hitung')
-                  ->where('outstation_id','=',$id)
-                  ->first();
-        } elseif($desti1->return_date==$desti2->go_date){
-          $lama = Outst_destiny::selectRaw('((sum(longday)) - 1) as hitung')
-                  ->where('outstation_id','=',$id)
-                  ->first();
-        } else {
-            $lama = Outst_destiny::selectRaw('sum(longday) as hitung')
-                  ->where('outstation_id','=',$id)
-                  ->first();
-        }
-        if ($data->lkdp == 'Y') {
-          $pdf = PDF::loadview('finance/outstation.sppdLKDP',compact('data','isian','menyetujui','destinys','lama'));
-          return $pdf->stream();
-            
-        } else {
-          $pdf = PDF::loadview('finance/outstation.sppdnewB',compact('data','isian','menyetujui','destinys','lama'));
-          return $pdf->stream();
-        }
-       
-      }
-
-      public function edit($id)
-      {
-          $data           = Outstation::where('id',$id)->first();
-          $div            = Divisi::all();
-          $ppk            = PPK::all();
-          $budget         = Budget::OrderBy('id','desc')->get();
-          $thn            = Carbon::now()->year;
-          $pok            = Pok_detail::SelectRaw('pok_detail.*')
-                                      ->leftjoin('pok','pok.id','=','pok_detail.pok_id')
-                                      ->where('pok.year','=',$thn)
-                                      ->get();
-          $destination    = Destination::all();
-          $outsor         = User::where('email',NULL)->where('aktif','N');
-          $user           = User::where('id','!=','1')
-                            ->where('aktif','Y')
-                            ->UnionAll($outsor)
-                            ->get();
-          $petugas        = Outst_employee::where('outstation_id',$id)->get();
-          $sppd           = Stbook_sppd::leftjoin('stbook','stbook.id','=','stbook_sppd.stbook_id')
-                                        ->where('stbook.stbook_number',$data->number)->get();
-          $kota           = Outst_destiny::where('outstation_id',$id)->get();
-          $tim            = Teamleader::orderby('detail','asc')->get();
-          $hitpeserta     = Outst_employee::SelectRaw('COUNT(id) AS jumpes')->where('outstation_id',$id)->first();
-          return view ('finance/outstation.edit',compact('data','div','ppk','budget','pok','destination','user','petugas','sppd','kota','hitpeserta','tim'
-          ));
-      }
-
-      public function update(Request $request, $id)
+  public function update(Request $request, $id)
       {
         $data = Outstation::find($id);
         $data->touch();
@@ -446,29 +252,269 @@ class OutstationController extends Controller
     }
 
 
-    public function getnomorst(Request $request)
+    // _______________________cetak___________________________
+
+    public function printST($id)
     {
-        $nost = Stbook::WhereRaw('stbook_number NOT IN ("select number from outstation")')
-                        ->where('divisi_id',$request->divisi_id)
-                        ->orderBy('id','desc')
-                        ->get();
-        return response()->json([ 
+      $now = Budget::whereraw('code LIKE "D%"')->orderBy('id','desc')->first(); 
+      $data = Outstation::where('id',$id)->first();
+      $isian = Outst_employee::orderBy('id','asc')
+                          ->where('outstation_id','=',$id)
+                          ->get();  
+      $datapeg = Outst_employee::orderBy('id','asc')
+                          ->where('outstation_id','=',$id)
+                          ->first();      
+      $jmlpeg  = Outst_employee::SelectRaw('count(*) as hitung')   
+                                ->where('outstation_id',$id)
+                                ->first(); 
+      $cekkepala = Outst_employee::where('outstation_id',$id)
+                                ->whereraw("users_id = (SELECT users_id FROM pejabat WHERE jabatan_id = 6 and pjs IS NULL ORDER BY id DESC LIMIT 1)")
+                                ->orderby('id','desc')
+                                ->first();
+      if ($data->plh == 'Y') {
+        $menyetujui = Pejabat::where('jabatan_id', '=', 6)
+                              ->whereRaw("(SELECT st_date FROM outstation WHERE id=$id) BETWEEN dari AND sampai")
+                              ->where('pjs','Plh.')
+                              ->orderby('id','desc')
+                              ->first();
+       } else {
+        $menyetujui = Pejabat::where('jabatan_id', '=', 6)
+                              ->whereraw("pjs IS NULL OR pjs = 'Plt.'")
+                              ->orderby('id','desc')
+                              ->first();
+      }
+      
+      if ($jmlpeg->hitung > 1) {
+        $pdf = PDF::loadview('finance/outstation.printSTbanyak',compact('data','isian','menyetujui', 'cekkepala'));
+      } else {
+        $pdf = PDF::loadview('finance/outstation.printST',compact('data','datapeg','menyetujui','now','cekkepala'));
+      }
+      return $pdf->stream();
+      
+    }
+
+    public function printSppdD($id)
+      {
+        $data       = Outstation::where('id',$id)->first();
+        $isian      = Outst_employee::orderBy('id','asc')
+                            ->where('outstation_id','=',$id)
+                            ->get();
+        $menyetujui = Pejabat::where('jabatan_id', '=', 11)
+                            ->whereRaw("(SELECT st_date FROM outstation WHERE id=$id) BETWEEN dari AND sampai")
+                            ->first();
+        $destinys   = Outst_destiny::orderBy('id','asc')
+                            ->where('outstation_id','=',$id)
+                            ->get();      
+        $hit       = Outst_destiny::selectRaw('count(*) as jum')
+                            ->where('outstation_id','=',$id)
+                            ->first();
+        $desti1   = Outst_destiny::orderBy('id','asc')
+                      ->where('outstation_id','=',$id)
+                      ->first();  
+        $desti2   = Outst_destiny::orderBy('id','desc')
+                      ->where('outstation_id','=',$id)
+                      ->first();   
+
+        if ($desti1->go_date==$desti2->go_date) {
+            $lama = Outst_destiny::selectRaw('longday as hitung')
+                  ->where('outstation_id','=',$id)
+                  ->first();
+        } elseif($desti1->return_date==$desti2->go_date){
+          $lama = Outst_destiny::selectRaw('((sum(longday)) - 1) as hitung')
+                  ->where('outstation_id','=',$id)
+                  ->first();
+        } else {
+            $lama = Outst_destiny::selectRaw('sum(longday) as hitung')
+                  ->where('outstation_id','=',$id)
+                  ->first();
+        }
+           
+          if  ($data->type=='LN') {
+            $pdf = PDF::loadview('finance/outstation.sppdEngD',compact('data','isian','menyetujui','destinys','lama'));
+          } else {
+            $pdf = PDF::loadview('finance/outstation.sppdnewN',compact('data','isian','menyetujui','destinys','lama'));
+          }
+        return $pdf->stream();
+      }
+
+      public function printSppdB($id)
+      {
+        $data       = Outstation::where('id',$id)->first();
+        $isian      = Outst_employee::orderBy('id','asc')
+                            ->where('outstation_id','=',$id)
+                            ->get();
+        $menyetujui = Pejabat::where('jabatan_id', '=', 11)
+                            ->whereRaw("(SELECT st_date FROM outstation WHERE id=$id) BETWEEN dari AND sampai")
+                            ->first();
+        $destinys   = Outst_destiny::orderBy('id','asc')
+                            ->where('outstation_id','=',$id)
+                            ->get();      
+        $hit       = Outst_destiny::selectRaw('count(*) as jum')
+                            ->where('outstation_id','=',$id)
+                            ->first();
+        $desti1   = Outst_destiny::orderBy('id','asc')
+                      ->where('outstation_id','=',$id)
+                      ->first();  
+        $desti2   = Outst_destiny::orderBy('id','desc')
+                      ->where('outstation_id','=',$id)
+                      ->first();   
+
+        if ($desti1->go_date==$desti2->go_date) {
+            $lama = Outst_destiny::selectRaw('longday as hitung')
+                  ->where('outstation_id','=',$id)
+                  ->first();
+        } elseif($desti1->return_date==$desti2->go_date){
+          $lama = Outst_destiny::selectRaw('((sum(longday)) - 1) as hitung')
+                  ->where('outstation_id','=',$id)
+                  ->first();
+        } else {
+            $lama = Outst_destiny::selectRaw('sum(longday) as hitung')
+                  ->where('outstation_id','=',$id)
+                  ->first();
+        }
+        if ($data->lkdp == 'Y') {
+          $pdf = PDF::loadview('finance/outstation.sppdLKDP',compact('data','isian','menyetujui','destinys','lama'));
+          return $pdf->stream();
+            
+        } else {
+          if  ($data->type=='LN') {
+            $pdf = PDF::loadview('finance/outstation.sppdEngB',compact('data','isian','menyetujui','destinys','lama'));
+          } else {
+            $pdf = PDF::loadview('finance/outstation.sppdnewB',compact('data','isian','menyetujui','destinys','lama'));
+          }
+          return $pdf->stream();
+        }
+       
+      }
+
+      public function printSppd($id)
+      {
+        $data       = Outstation::where('id',$id)->first();
+        $isian      = Outst_employee::orderBy('id','asc')
+                            ->where('outstation_id','=',$id)
+                            ->get();
+        $menyetujui = Pejabat::where('jabatan_id', '=', 11)
+                            ->whereRaw("(SELECT st_date FROM outstation WHERE id=$id) BETWEEN dari AND sampai")
+                            ->first();
+        $destinys   = Outst_destiny::orderBy('id','asc')
+                            ->where('outstation_id','=',$id)
+                            ->get();      
+        $hit       = Outst_destiny::selectRaw('count(*) as jum')
+                            ->where('outstation_id','=',$id)
+                            ->first();
+        $desti1   = Outst_destiny::orderBy('id','asc')
+                      ->where('outstation_id','=',$id)
+                      ->first();  
+        $desti2   = Outst_destiny::orderBy('id','desc')
+                      ->where('outstation_id','=',$id)
+                      ->first();   
+
+        if ($desti1->go_date==$desti2->go_date) {
+            $lama = Outst_destiny::selectRaw('longday as hitung')
+                  ->where('outstation_id','=',$id)
+                  ->first();
+        } elseif($desti1->return_date==$desti2->go_date){
+          $lama = Outst_destiny::selectRaw('((sum(longday)) - 1) as hitung')
+                  ->where('outstation_id','=',$id)
+                  ->first();
+        } else {
+            $lama = Outst_destiny::selectRaw('sum(longday) as hitung')
+                  ->where('outstation_id','=',$id)
+                  ->first();
+        }
+            
+        if ($data->type=='DL') {
+          $pdf = PDF::loadview('finance/outstation.inside',compact('data','isian','destinys','lama'));
+        } elseif ($data->type=='DL8') {
+            $pdf = PDF::loadview('finance/outstation.inside2',compact('data','isian','destinys','lama'));
+        }
+        return $pdf->stream();
+      }
+
+    function getpejabat(Request $request){
+
+      $tanggal = $request->date;
+      $data  = Pejabat::orderby('id','desc')->whereRaw("$tanggal BETWEEN dari AND sampai")->first();
+      return response()->json([ 'success' => true,'data' => $data],200);
+    }
+
+    function getnosppd(Request $request){
+
+      $baris = $request->last_baris;
+      $sppd = Outst_employee::orderBy('id','desc')->whereYear('created_at',date('Y'))->get(); 
+      $bidang = Divisi::select('kode_sppd')->where('id',$request->divisi_id)->first();
+      $counting = Outst_employee::SelectRaw("COUNT(*)AS jum ")->whereYear('created_at',date('Y'))->first();
+      $first = "0001";
+      if($sppd->count()>0){
+        $first = $counting->jum+$baris;
+          // $first = $counting->jum+1;
+          if($first < 10){
+            $first = "000".$first;
+          }else if($first < 100){
+            $first = "00".$first;
+          }else if($first < 1000){
+          $first = "0".$first;
+          }
+      }
+          $no_sppd = $first."/".$bidang->kode_sppd."/SPD/BBPOM"."/".date('Y');
+      
+      return response()->json([ 
           'success' => true,
-          'nost' => $nost
-        ],200);
+          'no_sppd' => $no_sppd],200
+      );
     }
+
+    function getnosppdnext(Request $request){
+
+      $baris = $request->plusplus;
+      $sppd = Outst_employee::orderBy('id','desc')->whereYear('created_at',date('Y'))->get(); 
+      $bidang = Divisi::select('kode_sppd')->where('id',$request->divisi_id)->first();
+      $counting = Outst_employee::SelectRaw("COUNT(*)AS jum")->whereYear('created_at',date('Y'))->first();;
+      $first = "0001";
+      if($sppd->count()>0){
+        // $first = $sppd->first()->id+$baris;
+        $first = $counting->jum+$baris;
+          if($first < 10){
+            $first = "000".$first;
+          }else if($first < 100){
+            $first = "00".$first;
+          }else if($first < 1000){
+          $first = "0".$first;
+          }
+      }
+          $no_sppd = $first."/".$bidang->kode_sppd."/SPD/BBPOM"."/".date('Y');
+      
+      return response()->json([ 
+          'success' => true,
+          'no_sppd' => $no_sppd],200
+      );
+    }
+
+
+//     public function getnomorst(Request $request)
+//     {
+//         $nost = Stbook::WhereRaw('stbook_number NOT IN ("select number from outstation")')
+//                         ->where('divisi_id',$request->divisi_id)
+//                         ->orderBy('id','desc')
+//                         ->get();
+//         return response()->json([ 
+//           'success' => true,
+//           'nost' => $nost
+//         ],200);
+//     }
     
-    public function getnomorsppd(Request $request)
-    {
-        $nosppd = Stbook_sppd::SelectRaw('stbook_sppd.*')
-                              ->LeftJoin('stbook','stbook.id','=','stbook_sppd.stbook_id')
-                              ->WhereRaw('stbook_sppd.nomor_sppd NOT IN ("select no_sppd from outst_employee")')
-                              ->where('stbook.stbook_number',$request->stbook_number)
-                              ->get();
-        return response()->json([ 
-            'success' => true,
-            'nosppd' => $nosppd
-          ],200);
-    }
-   
+//     public function getnomorsppd(Request $request)
+//     {
+//         $nosppd = Stbook_sppd::SelectRaw('stbook_sppd.*')
+//                               ->LeftJoin('stbook','stbook.id','=','stbook_sppd.stbook_id')
+//                               ->WhereRaw('stbook_sppd.nomor_sppd NOT IN ("select no_sppd from outst_employee")')
+//                               ->where('stbook.stbook_number',$request->stbook_number)
+//                               ->get();
+//         return response()->json([ 
+//             'success' => true,
+//             'nosppd' => $nosppd
+//           ],200);
+//     }
+    
+       
 }
